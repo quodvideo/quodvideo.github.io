@@ -1,0 +1,32 @@
+#graph0 {
+  display: block;
+  float: left;
+}
+* {
+  
+}
+
+fieldset {
+  border: thin solid black;
+}
+input[type=text] {
+  font-family: monospace;
+}
+label.tab {
+  display: table-row;
+}
+
+label.tab * {
+  display: table-cell;
+  margin-bottom: 3px;
+}
+
+label.tab span.label {
+  text-align: right;
+  padding-right: 6px;
+}
+label.tab span.units {
+  text-align: left;
+  padding-left: 3px;
+}
+

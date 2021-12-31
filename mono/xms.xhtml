@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC
+    "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN"
+    "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Double Crystal Monochromator</title>
+    <link rel="stylesheet" href="xms.css" type="text/css"/>
+    <script type="text/javascript" src="xms.js"/>
+  </head>
+  <body>
+    <h1>Double Crystal Monochromator</h1><h2>With Fixed Exit</h2>
+    <!-- <math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><msup><mi>e</mi><mrow><mi>&ii;</mi><mo>&it;</mo><mi>&pi;</mi></mrow></msup><mo>+</mo><mn>1</mn><mo>=</mo><mn>0</mn></math> -->
+    <svg:svg id="graph0" version="1.1"
+             xmlns:svg="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             width="150mm" height="150mm"
+             viewBox="0 0 1000 1000">
+      <svg:rect x="0" y="0" width="1000" height="1000" fill="#aaa"/>
+      <!-- BEGIN NEW EXPERIMENTAL SECTION -->
+      <svg:rect x="0" y="475" width="500" height="50" fill="black"/>
+      <svg:rect x="500" y="575" width="500" height="50" fill="black"/>
+      <svg:circle cx="500" cy="500" r="300" fill="black" stroke="black"/>
+      <!-- END NEW EXPERIMENTAL SECTION -->
+      <svg:circle cx="500" cy="500" r="10" fill="none" stroke="black"/>
+      <svg:g stroke-linecap="round">
+        <svg:line id="whitelight" x1="0"   y1="500" x2="500"  y2="500" stroke-width="16" stroke="white"/>
+        <svg:line id="pinklight"  x1="500" y1="500" x2="500"  y2="600" stroke-width="8"/>
+        <svg:line id="redlight"   x1="500" y1="600" x2="1000" y2="600" stroke-width="2"/>
+      </svg:g>
+      <svg:g fill="#eee">
+        <svg:rect id="xtal1" x="450" y="495" width="100" height="5" transform="rotate(45 500 500)"/>
+        <svg:rect id="xtal2" x="450" y="500" width="100" height="5" transform="translate(0 100) rotate(45 500 500)"/>
+      </svg:g>
+    </svg:svg>
+    <form id="controls" action="">
+      <fieldset><legend>Monochromator Controls</legend>
+        <!-- <button type="button">
+          <svg:svg version="1.1" style="display:block;"
+                   xmlns:svg="http://www.w3.org/2000/svg"
+                   xmlns:xlink="http://www.w3.org/1999/xlink"
+                   width="5mm" height="5mm" viewBox="0 0 1000 1000">
+            <svg:g transform="translate(1000) scale(-1,1)">
+            <svg:path d="M0,0 L433,250 L0,500" transform="translate(0,250)"/>
+            <svg:path d="M0,0 L433,250 L0,500" transform="translate(450,250)"/>
+            <svg:rect x="900" y="250" width="100" height="500"/>
+            </svg:g>
+          </svg:svg>
+        </button>
+        <button type="button">
+          <svg:svg version="1.1" style="display:block;"
+                   xmlns:svg="http://www.w3.org/2000/svg"
+                   xmlns:xlink="http://www.w3.org/1999/xlink"
+                   width="5mm" height="5mm" viewBox="0 0 1000 1000">
+            <svg:g transform="translate(1000) scale(-1,1)">
+            <svg:path d="M0,0 L433,250 L0,500" transform="translate(0,250)"/>
+            <svg:path d="M0,0 L433,250 L0,500" transform="translate(450,250)"/>
+            </svg:g>
+          </svg:svg>
+        </button> -->
+        <button type="button" id="backButton">
+          <svg:svg version="1.1" style="display:block;"
+                   xmlns:svg="http://www.w3.org/2000/svg"
+                   xmlns:xlink="http://www.w3.org/1999/xlink"
+                   width="5mm" height="5mm" viewBox="0 0 1000 1000">
+            <svg:g transform="translate(1000) scale(-1,1)">
+            <svg:path d="M0,0 L433,250 L0,500" transform="translate(250,250)"/>
+            </svg:g>
+          </svg:svg>
+        </button>
+        <button type="button" id="stopButton">
+          <svg:svg version="1.1" style="display:block;"
+                  xmlns:svg="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  width="5mm" height="5mm" viewBox="0 0 1000 1000">
+            <svg:rect x="250" y="250" width="500" height="500"/>
+          </svg:svg>
+        </button>
+        <button type="button" id="forwardButton">
+          <svg:svg version="1.1" style="display:block;"
+                   xmlns:svg="http://www.w3.org/2000/svg"
+                   xmlns:xlink="http://www.w3.org/1999/xlink"
+                   width="5mm" height="5mm" viewBox="0 0 1000 1000">
+            <svg:path d="M0,0 L433,250 L0,500" transform="translate(330,250)"/>
+          </svg:svg>
+        </button>
+        <!-- <button type="button">
+          <svg:svg version="1.1" style="display:block;"
+                   xmlns:svg="http://www.w3.org/2000/svg"
+                   xmlns:xlink="http://www.w3.org/1999/xlink"
+                   width="5mm" height="5mm" viewBox="0 0 1000 1000">
+            <svg:path d="M0,0 L433,250 L0,500" transform="translate(0,250)"/>
+            <svg:path d="M0,0 L433,250 L0,500" transform="translate(450,250)"/>
+          </svg:svg>
+        </button>
+        <button type="button">
+          <svg:svg version="1.1" style="display:block;"
+                   xmlns:svg="http://www.w3.org/2000/svg"
+                   xmlns:xlink="http://www.w3.org/1999/xlink"
+                   width="5mm" height="5mm" viewBox="0 0 1000 1000">
+            <svg:path d="M0,0 L433,250 L0,500" transform="translate(0,250)"/>
+            <svg:path d="M0,0 L433,250 L0,500" transform="translate(450,250)"/>
+            <svg:rect x="900" y="250" width="100" height="500"/>
+          </svg:svg>
+        </button> -->
+        <fieldset><legend>Scan Parameters</legend>
+          <label class="tab">
+            <span class="label">E0:</span>
+            <input id="e0" type="text"/>
+            <span class="units">eV</span>
+          </label>
+          <label class="tab">
+            <span class="label">Region Boundaries:</span>
+            <input id="regionBoundaries" type="text" disabled="disabled"/>
+            <span class="units">eV</span>
+          </label>
+          <label class="tab">
+            <span class="label">Step Sizes:</span>
+            <input id="stepSizes" type="text" disabled="disabled"/>
+            <span class="units">eV</span>
+          </label>
+          <label class="tab">
+            <span class="label">Integration Times:</span>
+            <input id="integrationTimes" type="text" disabled="disabled"/>
+            <span class="units">s</span>
+          </label>
+          <label class="tab">
+            <span class="label">Settle Time:</span>
+            <input id="settleTime" type="text" value="0.7"/>
+            <span class="units">s</span>
+          </label>
+          <label class="tab">
+            <span class="label">Estimated Duration:</span>
+            <input id="estimatedDuration" type="text" readonly="readonly" value="NA"/>
+          </label>
+        </fieldset>
+        <select id="scanRateMultiplier">
+          <option value="1">Real Time</option>
+          <option value="2">Double Time</option>
+          <option value="3">Triple Time</option>
+          <option value="10">Dectuple Time</option>
+          <option value="1000">Millenuple Time</option>
+        </select>
+        <button id="startScan" type="button" disabled="disabled">Start</button>
+        <button id="stopScan" type="button" disabled="disabled">Stop</button>
+        <label>Current Step: <input id="currentStep" type="text" readonly="readonly"/></label>
+      </fieldset>
+    </form>
+  </body>
+</html>
+
