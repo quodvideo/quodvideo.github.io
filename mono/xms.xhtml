@@ -14,13 +14,13 @@
     <svg:svg id="graph0" version="1.1"
              xmlns:svg="http://www.w3.org/2000/svg"
              xmlns:xlink="http://www.w3.org/1999/xlink"
-             width="150mm" height="150mm"
+             width="250mm" height="250mm"
              viewBox="0 0 1000 1000">
       <svg:rect x="0" y="0" width="1000" height="1000" fill="#aaa"/>
       <!-- BEGIN NEW EXPERIMENTAL SECTION -->
-      <svg:rect x="0" y="475" width="500" height="50" fill="black"/>
-      <svg:rect x="500" y="575" width="500" height="50" fill="black"/>
-      <svg:circle cx="500" cy="500" r="300" fill="black" stroke="black"/>
+      <svg:rect x="0" y="475" width="500" height="50" fill="grey"/>
+      <svg:rect x="500" y="575" width="500" height="50" fill="grey"/>
+      <svg:circle cx="500" cy="500" r="300" fill="grey" stroke="grey"/>
       <!-- END NEW EXPERIMENTAL SECTION -->
       <svg:circle cx="500" cy="500" r="10" fill="none" stroke="black"/>
       <svg:g stroke-linecap="round">
@@ -32,37 +32,24 @@
         <svg:rect id="xtal1" x="450" y="495" width="100" height="5" transform="rotate(45 500 500)"/>
         <svg:rect id="xtal2" x="450" y="500" width="100" height="5" transform="translate(0 100) rotate(45 500 500)"/>
       </svg:g>
+	  <svg:image xlink:href="mono.jpg" x="0" y="0" width="3349" height="2999" opacity="0.5" transform="translate (-370,-110) scale(0.465,0.465)"/>
     </svg:svg>
+	<table id="current-info">
+	<tr><th>Crystals:</th><td id="crystal">Ge (220)</td></tr>
+	<tr><th>Spacing:</th><td id="spacing">2.00000 &#197;</td></tr>
+	<tr><th>Angle:</th><td id="angle">0&deg;</td></tr>
+	<tr><th>Energy:</th><td id="energy">0 eV</td></tr>
+	<tr><th>Frequency:</th><td id="frequency">0 EHz</td></tr>
+	<tr><th>Wavelength:</th><td id="wavelength">0 nanometers</td></tr>
+	</table>
     <form id="controls" action="">
       <fieldset><legend>Monochromator Controls</legend>
-        <!-- <button type="button">
-          <svg:svg version="1.1" style="display:block;"
-                   xmlns:svg="http://www.w3.org/2000/svg"
-                   xmlns:xlink="http://www.w3.org/1999/xlink"
-                   width="5mm" height="5mm" viewBox="0 0 1000 1000">
-            <svg:g transform="translate(1000) scale(-1,1)">
-            <svg:path d="M0,0 L433,250 L0,500" transform="translate(0,250)"/>
-            <svg:path d="M0,0 L433,250 L0,500" transform="translate(450,250)"/>
-            <svg:rect x="900" y="250" width="100" height="500"/>
-            </svg:g>
-          </svg:svg>
-        </button>
-        <button type="button">
-          <svg:svg version="1.1" style="display:block;"
-                   xmlns:svg="http://www.w3.org/2000/svg"
-                   xmlns:xlink="http://www.w3.org/1999/xlink"
-                   width="5mm" height="5mm" viewBox="0 0 1000 1000">
-            <svg:g transform="translate(1000) scale(-1,1)">
-            <svg:path d="M0,0 L433,250 L0,500" transform="translate(0,250)"/>
-            <svg:path d="M0,0 L433,250 L0,500" transform="translate(450,250)"/>
-            </svg:g>
-          </svg:svg>
-        </button> -->
+	  <div id="buttons">
         <button type="button" id="backButton">
           <svg:svg version="1.1" style="display:block;"
                    xmlns:svg="http://www.w3.org/2000/svg"
                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                   width="5mm" height="5mm" viewBox="0 0 1000 1000">
+                   width="15mm" height="15mm" viewBox="0 0 1000 1000">
             <svg:g transform="translate(1000) scale(-1,1)">
             <svg:path d="M0,0 L433,250 L0,500" transform="translate(250,250)"/>
             </svg:g>
@@ -72,7 +59,7 @@
           <svg:svg version="1.1" style="display:block;"
                   xmlns:svg="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink"
-                  width="5mm" height="5mm" viewBox="0 0 1000 1000">
+                  width="15mm" height="15mm" viewBox="0 0 1000 1000">
             <svg:rect x="250" y="250" width="500" height="500"/>
           </svg:svg>
         </button>
@@ -80,30 +67,12 @@
           <svg:svg version="1.1" style="display:block;"
                    xmlns:svg="http://www.w3.org/2000/svg"
                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                   width="5mm" height="5mm" viewBox="0 0 1000 1000">
+                   width="15mm" height="15mm" viewBox="0 0 1000 1000">
             <svg:path d="M0,0 L433,250 L0,500" transform="translate(330,250)"/>
           </svg:svg>
         </button>
-        <!-- <button type="button">
-          <svg:svg version="1.1" style="display:block;"
-                   xmlns:svg="http://www.w3.org/2000/svg"
-                   xmlns:xlink="http://www.w3.org/1999/xlink"
-                   width="5mm" height="5mm" viewBox="0 0 1000 1000">
-            <svg:path d="M0,0 L433,250 L0,500" transform="translate(0,250)"/>
-            <svg:path d="M0,0 L433,250 L0,500" transform="translate(450,250)"/>
-          </svg:svg>
-        </button>
-        <button type="button">
-          <svg:svg version="1.1" style="display:block;"
-                   xmlns:svg="http://www.w3.org/2000/svg"
-                   xmlns:xlink="http://www.w3.org/1999/xlink"
-                   width="5mm" height="5mm" viewBox="0 0 1000 1000">
-            <svg:path d="M0,0 L433,250 L0,500" transform="translate(0,250)"/>
-            <svg:path d="M0,0 L433,250 L0,500" transform="translate(450,250)"/>
-            <svg:rect x="900" y="250" width="100" height="500"/>
-          </svg:svg>
-        </button> -->
-        <fieldset><legend>Scan Parameters</legend>
+		</div>
+        <fieldset id="scan-parameters"><legend>Scan Parameters</legend>
           <label class="tab">
             <span class="label">E0:</span>
             <input id="e0" type="text"/>
@@ -146,6 +115,7 @@
         <label>Current Step: <input id="currentStep" type="text" readonly="readonly"/></label>
       </fieldset>
     </form>
+	<img id="glowworm" src="green_glow.jpg" height="360" width="480"/>
   </body>
 </html>
 

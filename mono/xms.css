@@ -3,11 +3,28 @@
   float: left;
 }
 * {
-  
+  font-family: sans-serif;
 }
+table#current-info, form#controls {
+	margin-left: 950px;
+	padding: 20px 20px 20px 20px;
 
+}
+img#glowworm{
+padding: 20px;
+}
+th {
+	text-align:right;
+}
 fieldset {
   border: thin solid black;
+  width: 410px;
+}
+fieldset#scan-parameters {
+  margin: 20px;
+}
+div#buttons {
+  text-align:center;
 }
 input[type=text] {
   font-family: monospace;

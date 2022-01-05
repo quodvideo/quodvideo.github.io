@@ -26,47 +26,7 @@ function braggEnergyToAngle(energy,n,d) {
   if (!d) d=2.0;  
   return Math.asin(n*hc/2/d/energy)*180/Math.PI;
 }
-/*
-function Crystal(name,dSpacing) {
-  this.name = name;
-  this.dSpacing = dSpacing;
-}
-var DCM = {
-  crystal: { name: "Ge(220)", dSpacing: 2.0 },
-  minAngle: 12.5,
-  maxAngle: 72,
-  settleTime: 0.7,
-  angleStepSize: 0.5,
-  angleStepTime: 1,
-  g: document.getElementById("graph0"),
-  convertAngleToEnergy: function (angle,harmonic) {
-    if (!harmonic) harmonic = 1;
-    return harmonic*hc/2/this.crystal.dSpacing/Math.sin(angle*Math.PI/180.0);
-  },
-  convertEnergyToAngle: function (energy,harmonic) {
-    if (!harmonic) harmonic = 1;
-    return Math.asin(harmonic*hc/2/this.crystal.dSpacing/energy)*180/Math.PI;
-  },
-  convertEnergyToHue: function (energy) {
-    var eMax = convertAngleToEnergy(this.minAngle);
-    var eMin = convertAngleToEnergy(this.maxAngle);
-    var eRange = eMax - eMin;
-    var ePercent = (energy - eMin)/eRange;
-    return ePercent*300/360;
-  },
-  moveToAngle: function (angle) {
-    var energy = convertAngleToEnergy(angle);
-    var hue = convertEnergyToHue(energy);
-    var x = 100/Math.tan((180-2*angle)*Math.PI/180);
-    var g = document.getElementById("graph0");
-    var s = g.suspendRedraw(1000);
-    changeLine("pinklight","x2",500-x,convertHSVtoRGB([hue,0.3,1]));
-    changeLine("redlight","x1",500-x,convertHSVtoRGB([hue,1,1]));
-    changeXtal1(angle);
-    changeXtal2(angle,x);
-    g.unsuspendRedraw(s);
-  }
-}*/
+
 function init() {
   moveToAngle(45);
   document.getElementById("backButton").onclick = moveDown;
@@ -75,10 +35,7 @@ function init() {
   connectScanParameters();
   document.getElementById("startScan").onclick = startScan;
   document.getElementById("stopScan").onclick = stopScan;
-  /*alert("The DCM Object is "+DCM+" .\n"
-        +"Given the angle 45 degrees it returns the energy "+DCM.convertAngleToEnergy(45)+" eV.\n"
-        +"Given the energy 4383.502439049964 eV it returns the angle "+DCM.convertEnergyToAngle(4383.502439049964)+" degrees.");
-        \*/ 
+  
 }
 function convertAngleToEnergy(angle) { return n*hc/2/d/Math.sin(angle*Math.PI/180.0); }
 function convertEnergyToAngle(energy) { return Math.asin(n*hc/2/d/energy)*180/Math.PI; }
@@ -155,13 +112,17 @@ function moveToAngle(angle) {
   var hue = convertEnergyToHue(energy);
   var x = 100/Math.tan((180-2*angle)*Math.PI/180);
   var g = document.getElementById("graph0");
-  var s = g.suspendRedraw(1000);
+  
   changeLine("pinklight","x2",500-x,convertHSVtoRGB([hue,0.3,1]));
   changeLine("redlight","x1",500-x,convertHSVtoRGB([hue,1,1]));
   document.getElementById("xtal1").setAttributeNS(null,"transform","rotate("+angle+" 500 500)");
   document.getElementById("xtal2").setAttributeNS(null,"transform","translate("+(-x)+" 100) rotate("+angle+" 500 500)");
-  g.unsuspendRedraw(s);
+  
   currentAngle = angle;
+  document.getElementById("angle").innerHTML = angle.toFixed(5)+"&#176;";
+  document.getElementById("energy").innerHTML = braggAngleToEnergy(angle,1,2).toFixed(5)+" eV";
+  document.getElementById("frequency").innerHTML = ((299792458/(hc/(10*braggAngleToEnergy(angle,1,2))))/1000000000).toFixed(5)+" EHz";
+  document.getElementById("wavelength").innerHTML = (hc/braggAngleToEnergy(angle,1,2)).toFixed(5)+" &#197;";
 }
 function connectScanParameters() {
   var e = document.getElementById("e0");
