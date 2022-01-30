@@ -1,0 +1,101 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="600" height="300" version="1.2" baseProfile="tiny" 
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events">
+  <!-- INDEX: Incompatible New Desktop Environment for X11 -->
+  <defs>
+    <g id="aSpreadsheet">
+      <use xlink:href="./vsw.svg#windowFrame"/>
+      <path fill="url(./gradients.svg#greyshade)"
+            stroke="url(./gradients.svg#strokeColor)"
+            d="M 123,23
+               C 129.5,23 130.5,3 138,3
+               H 243
+               C 249.5,3 250.5,23 258,23"/>
+      <use x="140" y="5" xlink:href="./vsw.svg#inactiveTitleBlock"/>
+      <path fill="url(./gradients.svg#greylight)"
+            stroke="url(./gradients.svg#strokeColor)"
+            d="M 3,26
+               V 23
+               H 8
+               C 14.5,23 15.5,3 23,3
+               H 123
+               C 129.5,3 130.5,23 137.5,23
+               H 597
+               V 26
+               H 3"/>
+      <use x="25"  y="5"  xlink:href="./vsw.svg#activeTitleBlock"/>
+      <rect x="3" y="26" width="579" height="256"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#textAreaFill)"/>
+      <g stroke="#dddddd">
+        <path d="M93,26 V282"/>
+        <path d="M138,26 V282"/>
+        <path d="M183,26 V282"/>
+        <path d="M228,26 V282"/>
+        <path d="M273,26 V282"/>
+        <path d="M318,26 V282"/>
+        <path d="M363,26 V282"/>
+        <path d="M408,26 V282"/>
+        <path d="M453,26 V282"/>
+        <path d="M498,26 V282"/>
+        <path d="M543,26 V282"/>
+
+        <path d="M48,70 H582"/>
+        <path d="M48,92 H582"/>
+        <path d="M48,114 H582"/>
+        <path d="M48,136 H582"/>
+        <path d="M48,158 H582"/>
+        <path d="M48,180 H582"/>
+        <path d="M48,202 H582"/>
+        <path d="M48,224 H582"/>
+        <path d="M48,246 H582"/>
+        <path d="M48,268 H582"/>
+      </g>
+      <use x="3"   y="26" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="48"  y="26" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="93"  y="26" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="138" y="26" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="183" y="26" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="228" y="26" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="273" y="26" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="318" y="26" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="363" y="26" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="408"  y="26" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="453"  y="26" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="498"  y="26" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="543"  y="26" xlink:href="./fsw.svg#rcButton2"/>
+
+      <use x="3"   y="48" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="3"   y="70" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="3"   y="92" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="3"   y="114" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="3"   y="136" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="3"   y="158" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="3"   y="180" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="3"   y="202" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="3"   y="224" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="3"   y="246" xlink:href="./fsw.svg#rcButton2"/>
+      <use x="3"   y="268" xlink:href="./fsw.svg#rcButton2"/>
+
+      <rect x="582" y="26" width="15" height="22"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#greylight)"/>
+      <g transform="translate(582,48)"> <!-- Height = 244 -->
+        <rect width="15" height="234"
+              stroke="url(./gradients.svg#strokeColor)"
+              fill="url(./gradients.svg#scrollBarTrough)"/>
+        <use x="0" y="12"  xlink:href="./vsw.svg#vScrollBarSlider"/>
+        <use x="0" y="204" xlink:href="./fsw.svg#upScrollBarStepper"/>
+        <use x="0" y="219" xlink:href="./fsw.svg#downScrollBarStepper"/>
+      </g>
+      <use x="3"   y="282" xlink:href="./fsw.svg#smallButton"/>
+      <use x="18"  y="282" xlink:href="./fsw.svg#smallButton"/>
+      <use x="33"  y="282" xlink:href="./fsw.svg#zoomControl"/>
+      <use x="78"  y="282" xlink:href="./vsw.svg#sheetTabGroup"/>
+      <use x="258" y="282" xlink:href="./vsw.svg#hScrollBar"/>
+    </g>
+  </defs>
+  <use x="0.5" y="0.5" xlink:href="#aSpreadsheet"/>
+</svg>

@@ -1,0 +1,150 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="1500" height="800" version="1.2" baseProfile="tiny" 
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events">
+  <!-- INDEX: Incompatible New Desktop Environment for X11 -->
+  <!-- Varied-size Elements -->
+  <!--
+      optionMenu
+      hScrollBarSlider
+      vScrollBarSlider
+      hScrollBar
+      vScrollBar
+      activeTitleBlock
+      inactiveTitleBlock
+      windowFrame
+      textField
+      spinButtonField
+      contentArea
+      zoomControl
+      sheetTabGroup
+      dialogFrame
+  -->
+
+  <defs>
+    <g id="optionMenu">
+      <rect width="91" height="22" rx="3" ry="3"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#greylight)"/>
+      <line x1="78" y1="0" x2="78" y2="22"
+            stroke="url(./gradients.svg#strokeColor)"/>
+      <use x="80" y="8.5" xlink:href="./fsw.svg#bigArrowDown"/>
+      <text stroke="none" fill="black" font-family="sans" font-size="12"
+            x="5" y="15">Option</text>
+    </g>
+    <g id="hScrollBarSlider">
+      <rect width="30" height="15"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#greylight)"/>
+      <use x="10" y="3" xlink:href="./fsw.svg#hGrippy"/>
+    </g>
+    <g id="vScrollBarSlider">
+      <rect width="15" height="30"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#greylight)"/>
+      <use x="3" y="10" xlink:href="./fsw.svg#vGrippy"/>
+    </g>
+    <g id="hScrollBar"> <!-- Width = 579 -->
+      <rect width="324" height="15"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#scrollBarTrough)"/>
+      <use x="70" y="0" xlink:href="#hScrollBarSlider"/>
+      <!-- Width-ButtonWidth-ButtonWidth = 579-15-15 = 549 -->
+      <use x="294" y="0" xlink:href="./fsw.svg#leftScrollBarStepper"/>
+      <!-- Width-ButtonWidth = 579-15 = 564 -->
+      <use x="309" y="0" xlink:href="./fsw.svg#rightScrollBarStepper"/>
+    </g>
+    <g id="vScrollBar"> <!-- Height = 231 -->
+      <rect width="15" height="231"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#scrollBarTrough)"/>
+      <use x="0" y="12"  xlink:href="#vScrollBarSlider"/>
+      <use x="0" y="201" xlink:href="./fsw.svg#upScrollBarStepper"/>
+      <use x="0" y="216" xlink:href="./fsw.svg#downScrollBarStepper"/>
+    </g>
+    <g id="activeTitleBlock">
+      <use xlink:href="./fsw.svg#documentIcon"/>
+      <text x="19.5" y="11.5" font-family="sans" font-size="12"
+            stroke="none" fill="black">Document</text>
+      <use x="89.5" y="5.5" xlink:href="./fsw.svg#bigArrowDown"/>
+    </g>
+    <g id="inactiveTitleBlock">
+      <use stroke="url(./gradients.svg#grey50)"
+           xlink:href="./fsw.svg#documentIcon"/>
+      <text x="19.5" y="11.5" font-family="sans" font-size="12"
+            stroke="none" fill="url(./gradients.svg#grey50)">Document</text>
+    </g>
+    <g id="windowFrame">
+      <rect width="600" height="300" rx="3" ry="3"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#greylight)"/>
+      <use x="581" y="281" xlink:href="./fsw.svg#cornerGrippy"/>
+    </g>
+    <g id="textField">
+      <rect width="200" height="22" rx="3" ry="3"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#textlight)"/>
+      <text stroke="none" fill="black" font-family="sans" font-size="12"
+            x="5" y="15">http://www.afakeurl.com/</text>      
+    </g>
+    <g id="spinButtonField">
+      <rect width="40" height="22" rx="3" ry="3"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#textlight)"/>
+      <use x="29" y="0" xlink:href="./fsw.svg#upSpinStepper"/>
+      <use x="29" y="11" xlink:href="./fsw.svg#downSpinStepper"/>
+      <text stroke="none" fill="black" font-family="sans" font-size="12"
+            x="5" y="15">12</text>      
+    </g>
+
+    <rect id="contentArea" width="579" height="231"
+          fill="url(./gradients.svg#textAreaFill)"
+          stroke="url(./gradients.svg#strokeColor)"/>
+    <g id="sheetTabGroup">
+      <!-- Alternative: Let the tabs go to 15 and don't outline the area. -->
+      <rect width="180" height="15" fill="none"
+            stroke="url(./gradients.svg#strokeColor)"/>
+      <path fill="url(./gradients.svg#textAreaFill)"
+            stroke="url(./gradients.svg#strokeColor)"
+            d="M0,0 H115 L120,13 H170 L175,0 H180"/>
+      <text font-size="10" font-family="sans" stroke="none" fill="black"
+            x="141" y="10">3</text>
+      <path fill="url(./gradients.svg#textAreaFill)"
+            stroke="url(./gradients.svg#strokeColor)"
+            d="M0,0 H60 L65,13 H115 L120,0 H180"/>
+      <text font-size="10" font-family="sans" stroke="none" fill="black"
+            x="86" y="10">2</text>
+      <path d="M1,0 H179" stroke="#ffffff"/>
+      <path fill="url(./gradients.svg#textAreaFill)"
+            stroke="url(./gradients.svg#strokeColor)"
+            d="M0,0 H5 L10,13 H60 L65,0 H180"/>
+      <text font-size="10" font-family="sans" stroke="none" fill="black"
+            x="31" y="10">1</text>
+    </g>
+    <g id="dialogFrame">
+      <rect width="400" height="300" rx="3" ry="3"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#greylight)"/>
+      <use x="381" y="281" xlink:href="./fsw.svg#cornerGrippy"/>
+    </g>
+  </defs>
+  <rect width="1500" height="800" fill="#eeeeee"/>
+  <g stroke="#a0a0a0" transform="translate(0.5,0.5)">
+    <use x="10" y="10" xlink:href="#optionMenu"/>
+    <use x="480" y="42" xlink:href="#hScrollBarSlider"/>
+    <use x="435" y="47" xlink:href="#vScrollBarSlider"/>
+    <use x="10" y="110" xlink:href="#activeTitleBlock"/>
+    <use x="10" y="140" xlink:href="#inactiveTitleBlock"/>
+    <use x="10" y="170" xlink:href="#textField"/>
+    <use x="10" y="210" xlink:href="#spinButtonField"/>
+    <use x="10" y="250" xlink:href="#zoomControl"/>
+    <use x="10" y="280" xlink:href="#sheetTabGroup"/>
+
+    <use x="410" y="10" xlink:href="#hScrollBar"/>
+    <use x="410" y="35" xlink:href="#vScrollBar"/>
+    <use x="10" y="410" xlink:href="#contentArea"/>
+    <use x="760" y="10" xlink:href="#windowFrame"/>
+    <use x="760" y="410" xlink:href="#dialogFrame"/>
+  </g>
+</svg>

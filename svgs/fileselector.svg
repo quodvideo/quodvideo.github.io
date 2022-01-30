@@ -1,0 +1,34 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="400" height="300" version="1.2" baseProfile="tiny" 
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events">
+  <!-- INDEX: Incompatible New Desktop Environment for X11 -->
+  <defs>
+    <g id="aFileSelector">
+      <use xlink:href="./vsw.svg#dialogFrame"/>
+      <g transform="translate(19,19)"> <!-- option menu -->
+        <rect width="91" height="22" rx="3" ry="3"
+              stroke="url(./gradients.svg#strokeColor)"
+              fill="url(./gradients.svg#greylight)"/>
+        <line x1="78" y1="0" x2="78" y2="22"
+              stroke="url(./gradients.svg#strokeColor)"/>
+        <use x="80" y="8.5" xlink:href="./fsw.svg#bigArrowDown"/>
+        <text stroke="none" fill="black" font-family="sans" font-size="12"
+              x="5" y="15">$HOME</text>
+      </g>
+      <use x="275" y="19" xlink:href="./fsw.svg#toolBarButtonWithMenu"/>
+      <use x="303" y="19" xlink:href="./fsw.svg#toolBarButtonWithMenu"/>
+      <use x="331" y="19" xlink:href="./fsw.svg#toolBarButtonWithMenu"/>
+      <use x="359" y="19" xlink:href="./fsw.svg#toolBarButtonWithMenu"/>
+      <g transform="translate(19,51)">
+        <rect width="360" height="194"
+              stroke="url(./gradients.svg#strokeColor)"
+              fill="url(./gradients.svg#textAreaFill)"/>
+      </g>
+      <use x="234" y="259" xlink:href="./fsw.svg#cancelButton"/>
+      <use x="317" y="259" xlink:href="./fsw.svg#okButton"/>
+    </g>
+  </defs>
+  <use x="0.5" y="0.5" xlink:href="#aFileSelector"/>
+</svg>

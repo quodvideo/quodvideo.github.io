@@ -1,0 +1,195 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="1920" height="1080" version="1.2" baseProfile="tiny" 
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events">
+  <!-- INDEX: Incompatible New Desktop Environment for X11 -->
+  <defs>
+
+  </defs>
+  <rect width="1920" height="1080" fill="#5d1803"/>
+  <g stroke="red" fill="none">
+    <use x="100.5" y="100.5" xlink:href="./window.svg#aWindow"/>
+    <use x="100.5" y="450.5"
+         xlink:href="./smallspreadsheet.svg#bSmallSpreadsheet"/>
+    <use x="750.5" y="100.5" xlink:href="./fileselector.svg#aFileSelector"/>
+    <use x="750.5" y="450.5" xlink:href="./settingspanel.svg#bSettingsPanel"/>
+    <use x="1200.5" y="100.5" xlink:href="./calendar.svg#aCalendar"/>
+    <use x="1200.5" y="450.5" xlink:href="./spreadsheet.svg#aSpreadsheet"/>
+    <path fill="#efefef"
+          d="M 0,500.5
+             H 19.5
+             C 21.156,500 22.5,498.844 22.5,497.5
+             V 22.5
+             H 1920.5
+             V -0.5
+             H -0.5"/>
+    <g id="undoButton">
+      <use x="-2.5" y="-2.5" xlink:href="./fsw.svg#toolBarButton"/>
+      <text font-size="20" fill="black" stroke="none" x="1" y="15">⎌</text>
+    </g>
+    <use x="-2.5" y="25.5" xlink:href="./fsw.svg#toolBarButton"/>
+    <rect x="-2.5" y="49.5" width="22" height="44" rx="3" ry="3"
+          fill="url(./gradients.svg#greylight)"/>
+    <text x="30" y="15" font-family="sans" font-size="12"
+          stroke="none" fill="black">File   Edit   View   Help</text>
+    <text font-size="25" font-family="sans" fill="black" stroke="none"
+          x="1600" y="19">♫  ⚛  ✉  ♿</text>
+    <g transform="translate(1750.5,0.5) rotate(45)"
+       stroke-width="2" stroke="black">
+      <path d="M 12,16 C 12,9.376  6.624,4  0,4"/>
+      <path d="M  8,16 C  8,11.584 4.416,8  0,8"/>
+      <path d="M  4,16 C  4,13.792 2.208,12 0,12"/>
+    </g>
+    <g transform="translate(1770.5,8.5) rotate(-45)"
+       stroke-width="2" stroke="black">
+      <path d="M 16,16 C 16,7.168  8.832,0  0,0"/>
+      <path d="M 12,16 C 12,9.376  6.624,4  0,4"/>
+      <path d="M  8,16 C  8,11.584 4.416,8  0,8"/>
+      <path d="M  4,16 C  4,13.792 2.208,12 0,12"/>
+    </g>
+    <g transform="translate(1815,12)" stroke="black">
+      <circle r="8"/>
+      <path d="M-8,-5.2 l10,0 c2,-4 -12,-4 -10,0"
+            transform="translate(-3) rotate(-45 -3 -5.2)"/>
+      <path d="M-2,-5.2 l10,0 c2,-4 -12,-4 -10,0"
+            transform="translate(3) rotate(45 3 -5.2)"/>
+    </g>
+    <use stroke="black" x="1830" y="3.5" xlink:href="./fsw.svg#bluetoothIcon"/>
+    <text x="1850" y="15" font-family="sans" font-size="12"
+          stroke="none" fill="black">12:00 PM</text>
+  </g>
+  <g transform="translate(450.5,170.5)" stroke="black" fill="none">
+    <rect x="-10" y="-10" width="200" height="205"
+          fill="url(./gradients.svg#greylight)"/>
+    <g transform="translate(0,0)">
+      <circle cx="6" cy="6" r="6"
+              fill="url(./gradients.svg#greylight)" stroke="#808080"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">Option</text>
+    </g>
+    <g transform="translate(0,16)">
+      <circle cx="6" cy="6" r="6"
+              fill="url(./gradients.svg#greylight)" stroke="#808080"/>
+      <circle cx="6" cy="6" r="2"
+              fill="#000" stroke="#000"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">Option</text>
+    </g>
+    <g transform="translate(0,32)">
+      <circle cx="6" cy="6" r="6"
+              fill="url(./gradients.svg#greylight)" stroke="#808080"/>
+      <line x1="1.5" y1="6" x2="10.5" y2="6"
+            stroke-width="2" stroke="#000"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">Option</text>
+    </g>
+    <g transform="translate(0,48)">
+      <circle cx="6" cy="6" r="6"
+              fill="#f0f0f0" stroke="#a0a0a0"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="#808080">Option</text>
+    </g>
+    <g transform="translate(0,64)">
+      <circle cx="6" cy="6" r="6"
+              fill="#f0f0f0" stroke="#a0a0a0"/>
+      <circle cx="6" cy="6" r="2"
+              fill="#808080" stroke="#808080"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">Option</text>
+    </g>
+    <g transform="translate(0,80)">
+      <circle cx="6" cy="6" r="6"
+              fill="#f0f0f0" stroke="#a0a0a0"/>
+      <line x1="1.5" y1="6" x2="10.5" y2="6"
+            stroke-width="2" stroke="#808080"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="#808080">Option</text>
+    </g>
+    <g transform="translate(0,96)">
+      <rect x="0" y="0" width="12" height="12"
+            fill="url(./gradients.svg#greylight)" stroke="#808080"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">Option</text>
+    </g>
+    <g transform="translate(0,112)">
+      <rect x="0" y="0" width="12" height="12"
+            fill="url(./gradients.svg#greylight)" stroke="#808080"/>
+      <path d="M1,6.5 L5,10.5 L11,1.5"
+            stroke="#000" stroke-width="2"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">Option</text>
+    </g>
+    <g transform="translate(0,128)">
+      <rect x="0" y="0" width="12" height="12"
+            fill="url(./gradients.svg#greylight)" stroke="#808080"/>
+      <line x1="1.5" y1="6" x2="10.5" y2="6"
+            stroke-width="2" stroke="#000"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">Option</text>
+    </g>
+    <g transform="translate(0,144)">
+      <rect x="0" y="0" width="12" height="12"
+            fill="#f0f0f0" stroke="#a0a0a0"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="#808080">Option</text>
+    </g>
+    <g transform="translate(0,160)">
+      <rect x="0" y="0" width="12" height="12"
+            fill="#f0f0f0" stroke="#a0a0a0"/>
+      <path d="M1,6.5 L5,10.5 L11,1.5"
+            stroke="#808080" stroke-width="2"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="#808080">Option</text>
+    </g>
+    <g transform="translate(0,176)">
+      <rect x="0" y="0" width="12" height="12"
+            fill="#f0f0f0" stroke="#a0a0a0"/>
+      <line x1="1.5" y1="6" x2="10.5" y2="6"
+            stroke-width="2" stroke="#a0a0a0"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="#808080">Option</text>
+    </g>
+    <g transform="translate(100,0)">
+      <path fill="url(./gradients.svg#greylight)" stroke="#808080"
+            d="M3,0 V12 H4 L10,6 L4,0 Z"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">More</text>
+    </g>
+    <g transform="translate(100,16)">
+      <path fill="url(./gradients.svg#greylight)" stroke="#808080"
+            d="M3,0 V12 H4 L10,6 L4,0 Z" transform="rotate(45 6 6)"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">More</text>
+    </g>
+    <g transform="translate(100,32)">
+      <path fill="url(./gradients.svg#greylight)" stroke="#808080"
+            d="M3,0 V12 H4 L10,6 L4,0 Z" transform="rotate(90 6 6)"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">More</text>
+    </g>
+    <g transform="translate(100,48)">
+      <rect rx="3" ry="3" width="64" height="22"
+            fill="url(./gradients.svg#greylight)" stroke="#808080"/>
+      <text x="32" y="15" font-size="12" font-family="sans"
+            text-anchor="middle"
+            stroke="none" fill="black">Cancel</text>
+    </g>
+    <g transform="translate(100,80)">
+      <rect x="-1" y="-1" rx="4" ry="4" width="66" height="24"
+            fill="none" stroke="#404040" stroke-width="3"/>
+      <rect rx="3" ry="3" width="64" height="22"
+            fill="url(./gradients.svg#greylight)" stroke="#808080"/>
+      <text x="32" y="15" font-size="12" font-family="sans"
+            text-anchor="middle"
+            stroke="none" fill="black">OK</text>
+    </g>
+    <g transform="translate(100,112)">
+      <rect rx="3" ry="3" width="64" height="22"
+            fill="url(./gradients.svg#greyshade)" stroke="#808080"/>
+      <text x="32" y="15" font-size="12" font-family="sans"
+            text-anchor="middle"
+            stroke="none" fill="black">OK</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,126 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="400" height="300" version="1.2" baseProfile="tiny" 
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events">
+  <!-- INDEX: Incompatible New Desktop Environment for X11 -->
+  <defs>
+    <g id="aSettingsPanel">
+      <use xlink:href="./vsw.svg#dialogFrame"/>
+      <g transform="translate(19,19)">
+        <use xlink:href="./fsw.svg#documentIcon" transform="scale(2,2)"/>
+        <text x="34.5" y="11.5" font-family="sans" font-size="14"
+              stroke="none" fill="black">Document Settings</text>
+        <text x="34.5" y="28.5" font-family="sans" font-size="12"
+              font-style="italic"
+              stroke="none" fill="black">Some informative subtext</text>
+      </g>
+      <g transform="translate(19,66)">
+        <rect width="100" height="215"
+              stroke="url(./gradients.svg#strokeColor)"
+              fill="url(./gradients.svg#textAreaFill)"/>
+        <rect x="1" y="1" width="98" height="21"
+              stroke="#dddddd" fill="#bfffbf"/>
+        <text x="6.5" y="15.5" font-family="sans" font-size="12"
+              stroke="none" fill="black">Program</text>
+        <g transform="translate(0,21)">
+          <rect x="1" y="1" width="98" height="21" stroke="#dddddd" fill="none"/>
+          <text x="6.5" y="15.5" font-family="sans" font-size="12"
+                stroke="none" fill="black">Session</text>
+        </g>
+        <g transform="translate(0,42)">
+          <rect x="1" y="1" width="98" height="21" stroke="#dddddd" fill="none"/>
+          <text x="6.5" y="15.5" font-family="sans" font-size="12"
+                stroke="none" fill="black">Association</text>
+        </g>
+        <g transform="translate(0,63)">
+          <rect x="1" y="1" width="98" height="21" stroke="#dddddd" fill="none"/>
+          <text x="6.5" y="15.5" font-family="sans" font-size="12"
+                stroke="none" fill="black">Window</text>
+        </g>
+        <g transform="translate(0,84)">
+          <rect x="1" y="1" width="98" height="21" stroke="#dddddd" fill="none"/>
+          <text x="6.5" y="15.5" font-family="sans" font-size="12"
+                stroke="none" fill="black">General</text>
+        </g>
+      </g>
+      <g transform="translate(130,66)">
+        <text x="0.5" y="15.5"  font-family="sans" font-size="12"
+              stroke="none" fill="black">Path and file name:</text>
+        <rect y="20" width="177" height="22" rx="3" ry="3"
+              stroke="url(./gradients.svg#strokeColor)"
+              fill="url(./gradients.svg#textlight)"/>
+        <g transform="translate(187,20)">
+          <rect rx="3" ry="3" width="64" height="22"
+                fill="url(./gradients.svg#greylight)"
+                stroke="url(./gradients.svg#strokeColor)"/>
+          <text x="32" y="15" font-size="12" font-family="sans"
+                text-anchor="middle"
+                stroke="none" fill="black">Find…</text>
+        </g>
+        <text x="0.5" y="59.5"  font-family="sans" font-size="12"
+              stroke="none" fill="black">Parameters:</text>
+        <rect y="64" width="251" height="22" rx="3" ry="3"
+              stroke="url(./gradients.svg#strokeColor)"
+              fill="url(./gradients.svg#textlight)"/>
+        <text x="0.5" y="103.5"  font-family="sans" font-size="12"
+              stroke="none" fill="black">Working directory:</text>
+        <rect y="108" width="251" height="22" rx="3" ry="3"
+              stroke="url(./gradients.svg#strokeColor)"
+              fill="url(./gradients.svg#textlight)"/>
+        <use x="0" y="182" xlink:href="./fsw.svg#helpButton"/>
+        <use x="74" y="182" xlink:href="./fsw.svg#undoButton"/>
+        <use x="148" y="182" xlink:href="./fsw.svg#defaultsButton"/>
+      </g>
+    </g>
+    <g id="bSettingsPanel" font-family="sans" font-size="12">
+      <use xlink:href="./vsw.svg#dialogFrame"/>
+      <g transform="translate(19,19)">
+        <use xlink:href="./fsw.svg#documentIcon" transform="scale(2,2)"/>
+        <g font-family="sans" stroke="none" fill="black">
+          <text x="34.5" y="11.5" font-size="14">Document Settings</text>
+          <text x="34.5" y="28.5" font-style="italic">Some informative subtext</text>
+        </g>
+      </g>
+      <g transform="translate(19,66)">
+        <rect width="100" height="215" stroke="none" fill="#dddddd"/>
+        <rect x="-18" width="119" height="233" stroke="none" fill="#dddddd"/>
+
+        <line x1="100" y1="0" x2="100" y2="215" stroke="#bfffbf"/>
+        <rect x="1" y="1" width="98" height="21" stroke="#bfffbf" fill="#bfffbf"/>
+        <rect x="-18" y="1" width="98" height="21" stroke="#bfffbf" fill="#bfffbf"/>
+        <g stroke="none" fill="black">
+          <text x="6.5" y="15.5">Program</text>
+          <text x="6.5" y="36.5">Session</text>
+          <text x="6.5" y="57.5">Association</text>
+          <text x="6.5" y="78.5">Window</text>
+          <text x="6.5" y="99.5">General</text>
+        </g>
+      </g>
+      <g transform="translate(130,66)">
+        <text x="0.5" y="15.5" stroke="none" fill="black">Path and file name:</text>
+        <rect y="20" width="177" height="22" rx="3" ry="3" stroke="none" fill="#fffff3"/>
+        <line x1="0" y1="42" x2="177" y2="42" stroke="url(./gradients.svg#strokeColor)"/>
+        <g transform="translate(187,20)">
+          <rect rx="3" ry="3" width="64" height="22"
+                fill="url(./gradients.svg#greylight)"
+                stroke="url(./gradients.svg#strokeColor)"/>
+          <text x="32" y="15" text-anchor="middle" stroke="none" fill="black">Find…</text>
+        </g>
+        <text x="0.5" y="59.5" stroke="none" fill="black">Parameters:</text>
+        <rect y="64" width="251" height="22" rx="3" ry="3" stroke="none" fill="#fffff3"/>
+        <line x1="0" y1="86" x2="251" y2="86" stroke="url(./gradients.svg#strokeColor)"/>
+
+        <text x="0.5" y="103.5" stroke="none" fill="black">Working directory:</text>
+        <rect y="108" width="251" height="22" rx="3" ry="3" stroke="none" fill="#fffff3"/>
+        <line x1="0" y1="130" x2="251" y2="130" stroke="url(./gradients.svg#strokeColor)"/>
+
+        <use x="0" y="182" xlink:href="./fsw.svg#helpButton"/>
+        <use x="74" y="182" xlink:href="./fsw.svg#undoButton"/>
+        <use x="148" y="182" xlink:href="./fsw.svg#defaultsButton"/>
+      </g>
+      <path d="M387,5 l0.5,-0.5 4,4 4,-4 1,1 -4,4 4,4 -1,1 -4,-4 -4,4 -1,-1 4,-4 -4,-4 0.5,-0.5z" stroke="url(./gradients.svg#strokeColor)" fill="red"/>
+    </g>
+  </defs>
+  <use x="0.5" y="0.5" xlink:href="#bSettingsPanel"/>
+</svg>

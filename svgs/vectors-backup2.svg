@@ -1,0 +1,782 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="1920" height="1080" version="1.2" baseProfile="tiny" 
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events">
+  <!-- INDEX: Incompatible New Desktop Environment for X11 -->
+  <defs>
+    <linearGradient id="greylight1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <!-- (webkit 0.4 f9f9f9) 0 f0f0f0 ffffee -->
+      <stop offset="0" stop-color="#f0f0f0"/>
+      <!-- (webkit 0.7 e3e3e3) 1 eeeeee ddddcc -->
+      <stop offset="1" stop-color="#eeeeee"/>
+    </linearGradient>
+    <linearGradient id="greylight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0" stop-color="#f8f8f8"/>
+      <stop offset="0.2" stop-color="#f0f0f0"/>
+      <stop offset="0.8" stop-color="#f0f0f0"/>
+      <stop offset="1" stop-color="#dddddd"/>
+    </linearGradient>
+    <linearGradient id="greyshade1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0"  stop-color="#999999"/><!-- 999988 -->
+      <stop offset="1"  stop-color="#dddddd"/><!-- ddddcc -->
+    </linearGradient>
+    <linearGradient id="greyshade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0" stop-color="#999999"/>
+      <stop offset="0.2" stop-color="#bbbbbb"/>
+      <stop offset="0.8" stop-color="#bbbbbb"/>
+      <stop offset="1" stop-color="#dddddd"/>
+    </linearGradient>
+    <linearGradient id="textlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0" stop-color="#d8d8d8"/><!-- d8d8d8 -->
+      <stop offset="0.15" stop-color="#ffffff"/><!-- fffff3 -->
+      <stop offset="1" stop-color="#ffffff"/><!-- fffff3 -->
+    </linearGradient>
+    <linearGradient id="scrollBarTrough">
+      <stop stop-color="#bbbbbb"/><!-- bbbbaa -->
+    </linearGradient>
+    <linearGradient id="textAreaFill">
+      <stop stop-color="#ffffff"/><!-- fffff3 -->
+    </linearGradient>
+    <linearGradient id="grey50">
+      <stop stop-color="#808080"/><!-- 808080 -->
+    </linearGradient>
+    <linearGradient id="gripLight">
+      <stop stop-color="#eeeeee"/><!-- ffffee -->
+    </linearGradient>
+    <linearGradient id="gripShade">
+      <stop stop-color="#aaaaaa"/><!-- aaaaaa -->
+    </linearGradient>
+<!-- Static-size Elements -->
+    <rect id="smallIconPlaceHolder" width="16" height="16"
+          stroke="none" fill="red"/>
+    <path id="bigArrowDown"   d="M0,0 H8 L4,4Z" stroke="none" fill="black"/>
+    <path id="bigArrowUp"     d="M0,4 H8 L4,0Z" stroke="none" fill="black"/>
+    <path id="bigArrowRight"  d="M0,0 V8 L4,4Z" stroke="none" fill="black"/>
+    <path id="bigArrowLeft"   d="M4,0 V8 L0,4Z" stroke="none" fill="black"/>
+    <path id="smallArrowDown" d="M0,0 H6 L3,3Z" stroke="none" fill="black"/>
+    <path id="smallArrowUp"   d="M0,3 H6 L3,0Z" stroke="none" fill="black"/>
+    <path id="documentIcon" stroke="black" fill="white"
+          d="M  1,0
+             H  9
+             L 14,5
+             V    15
+             H  1
+             V    0
+             H  9
+             V    5
+             H 14"/>
+    <rect id="toolBarButton" width="22" height="22" rx="3" ry="3"
+          fill="url(#greylight)"/>
+    <!-- Cubic Bezier Control points at radius*0.552 -->
+    <path id="leftRadioToolBarButton"
+          d="M 22 0
+             H 3
+             C 1.344 0 0 1.344 0 3
+             V 19
+             C 0 20.656 1.344 22 3 22
+             H 22
+             V 0"/>
+    <rect id="centerRadioToolBarButton" width="22" height="22"/>
+    <path id="rightRadioToolBarButton"
+          d="M 0 0
+             H 19
+             C 20.656 0 22 1.344 22 3
+             V 19
+             C 22 20.656 20.656 22 19 22
+             H 0
+             V 0"/>
+    <g id="upSpinStepper">
+      <path fill="url(#greylight)"
+            d="M0,0 H8 C9.656,0 11,1.344 11,3 V11 H0 V0"/>
+      <use x="2.5" y="4" xlink:href="#smallArrowUp"/>
+    </g>
+    <g id="downSpinStepper">
+      <path fill="url(#greylight)"
+            d="M0,0 H11 V8 C 11,9.656 9.656,11 8,11 H0 V0"/>
+      <use x="2.5" y="4" xlink:href="#smallArrowDown"/>
+    </g>
+    <!-- row or column header button - height=22 is probably better -->
+    <rect id="rcButton" width="45" height="15" fill="url(#greylight)"/>
+    <!-- 16x16 for status bar or scroll bar steppers-->
+    <rect id="smallButton" width="15" height="15" fill="url(#greylight)"/>
+    <g id="upScrollBarStepper">
+      <use xlink:href="#smallButton"/>
+      <use x="3.5" y="6" xlink:href="#bigArrowUp"/>
+    </g>
+    <g id="rightScrollBarStepper">
+      <use xlink:href="#smallButton"/>
+      <use x="6" y="3.5" xlink:href="#bigArrowRight"/>
+    </g>
+    <g id="downScrollBarStepper">
+      <use xlink:href="#smallButton"/>
+      <use x="3.5" y="6" xlink:href="#bigArrowDown"/>
+    </g>
+    <g id="leftScrollBarStepper">
+      <use xlink:href="#smallButton"/>
+            <use x="6" y="3.5" xlink:href="#bigArrowLeft"/>
+    </g>
+    <g id="hGrippy">
+      <rect width="10" height="10" fill="url(#gripLight)" stroke="none"/>
+      <path d="M1,0 v10 M3,0 v10 M5,0 v10 M7,0 v10 M9,0 v10"
+            stroke="url(#gripShade)"/>
+    </g>
+    <g id="vGrippy">
+      <rect width="9" height="9" fill="url(#gripLight)" stroke="none"/>
+      <path d="M0,1 h9 M0,3 h9 M0,5 h9 M0,7 h9 M0,9 h9"
+            stroke="url(#gripShade)"/>
+    </g>
+    <g id="cornerGrippy">
+      <path d="M0,8 L8,0 M2,10 L10,2 M4,12 L12,4 M6,14 L14,6"
+            stroke="url(#gripLight)"/>
+      <path d="M1,9 L9,1 M3,11 L11,3 M5,13 L13,5 M7,15 L15,7"
+            stroke="url(#gripShade)"/>
+    </g>
+    <path id="bluetoothIcon" stroke-width="1.3"
+          d="M    0,3.5
+             l    7,7
+               -3.5,3.5
+                  0,-14
+                3.5,3.5
+                 -7,7"/>
+<!-- Varied-size Elements -->
+    <g id="radioGroup">
+      <use x="0"  y="0" xlink:href="#leftRadioToolBarButton"
+           fill="url(#greylight)"/>
+      <use x="22" y="0" xlink:href="#centerRadioToolBarButton"
+           fill="url(#greyshade)"/>
+      <use x="44" y="0" xlink:href="#rightRadioToolBarButton"
+           fill="url(#greylight)"/>
+    </g>
+    <g id="optionMenu">
+      <rect width="91" height="22" rx="3" ry="3" fill="url(#greylight)"/>
+      <line x1="78" y1="0" x2="78" y2="22"/>
+      <use x="80" y="8.5" xlink:href="#bigArrowDown"/>
+      <text stroke="none" fill="black" font-family="sans" font-size="12"
+            x="5" y="15">Option</text>
+    </g>
+    <g id="hScrollBarSlider">
+      <rect width="30" height="15" fill="url(#greylight)"/>
+      <use x="10" y="3" xlink:href="#hGrippy"/>
+    </g>
+    <g id="vScrollBarSlider">
+      <rect width="15" height="30" fill="url(#greylight)"/>
+      <use x="3" y="10" xlink:href="#vGrippy"/>
+    </g>
+    <g id="hScrollBar"> <!-- Width = 579 -->
+      <rect width="324" height="15" fill="url(#scrollBarTrough)"/>
+      <use x="70" y="0" xlink:href="#hScrollBarSlider"/>
+      <!-- Width-ButtonWidth-ButtonWidth = 579-15-15 = 549 -->
+      <use x="294" y="0" xlink:href="#leftScrollBarStepper"/>
+      <!-- Width-ButtonWidth = 579-15 = 564 -->
+      <use x="309" y="0" xlink:href="#rightScrollBarStepper"/>
+    </g>
+    <g id="vScrollBar"> <!-- Height = 231 -->
+      <rect width="15" height="231" fill="url(#scrollBarTrough)"/>
+      <use x="0" y="12"  xlink:href="#vScrollBarSlider"/>
+      <use x="0" y="201" xlink:href="#upScrollBarStepper"/>
+      <use x="0" y="216" xlink:href="#downScrollBarStepper"/>
+    </g>
+    <g id="activeTitleBlock">
+      <use xlink:href="#documentIcon"/>
+      <text x="19.5" y="11.5" font-family="sans" font-size="12"
+            stroke="none" fill="black">Document</text>
+      <use x="89.5" y="5.5" xlink:href="#bigArrowDown"/>
+    </g>
+    <g id="inactiveTitleBlock">
+      <use stroke="url(#grey50)" xlink:href="#documentIcon"/>
+      <text x="19.5" y="11.5" font-family="sans" font-size="12"
+            stroke="none" fill="url(#grey50)">Document</text>
+    </g>
+    <g id="windowFrame">
+      <rect width="600" height="300" rx="3" ry="3" fill="url(#greylight)"/>
+      <use x="581" y="281" xlink:href="#cornerGrippy"/>
+    </g>
+    <g id="textField">
+      <rect width="200" height="22" rx="3" ry="3" fill="url(#textlight)"/>
+      <text stroke="none" fill="black" font-family="sans" font-size="12"
+            x="5" y="15">http://www.afakeurl.com/</text>      
+    </g>
+    <g id="spinButtonField">
+      <rect width="40" height="22" rx="3" ry="3" fill="url(#textlight)"/>
+      <use x="29" y="0" xlink:href="#upSpinStepper"/>
+      <use x="29" y="11" xlink:href="#downSpinStepper"/>
+      <text stroke="none" fill="black" font-family="sans" font-size="12"
+            x="5" y="15">12</text>      
+    </g>
+
+    <rect id="contentArea" width="579" height="231" fill="url(#textAreaFill)"/>
+    <g id="zoomControl">
+      <rect width="45" height="15" fill="url(#greylight)"/>
+      <text font-size="10" font-family="sans" stroke="none" fill="black"
+            x="2" y="11">100%</text>
+      <use x="35" y="6.5" xlink:href="#smallArrowDown"/>
+    </g>
+    <g id="sheetTabGroup">
+      <!-- Alternative: Let the tabs go to 15 and don't outline the area. -->
+      <rect width="180" height="15" fill="none"/>
+      <path fill="url(#textAreaFill)"
+            d="M0,0 H115 L120,13 H170 L175,0 H180"/>
+      <text font-size="10" font-family="sans" stroke="none" fill="black"
+            x="141" y="10">3</text>
+      <path fill="url(#textAreaFill)"
+            d="M0,0 H60 L65,13 H115 L120,0 H180"/>
+      <text font-size="10" font-family="sans" stroke="none" fill="black"
+            x="86" y="10">2</text>
+      <path d="M1,0 H179" stroke="#ffffff"/>
+      <path fill="url(#textAreaFill)"
+            d="M0,0 H5 L10,13 H60 L65,0 H180"/>
+      <text font-size="10" font-family="sans" stroke="none" fill="black"
+            x="31" y="10">1</text>
+    </g>
+    <g id="aWindow">
+      <use xlink:href="#windowFrame"/>
+      <use x="258" y="282" xlink:href="#hScrollBar"/>
+      <use x="582" y="51"  xlink:href="#vScrollBar"/>
+      <path fill="url(#greyshade)"
+            d="M 123,23
+               C 129.5,23 130.5,3 138,3
+               H 243
+               C 249.5,3 250.5,23 258,23"/>
+      <use x="140" y="5" xlink:href="#inactiveTitleBlock"/>
+      <path fill="url(#greylight)"
+            d="M 3,51
+               V 23
+               H 8
+               C 14.5,23 15.5,3 23,3
+               H 123
+               C 129.5,3 130.5,23 137.5,23
+               H 597
+               V 51
+               H 3"/>
+      <use x="25"  y="5"  xlink:href="#activeTitleBlock"/>
+      <use x="6"   y="26" xlink:href="#toolBarButton"/>
+      <use x="9"   y="29" xlink:href="#smallIconPlaceHolder"/>
+      <use x="31"  y="26" xlink:href="#toolBarButton"/>
+      <use x="56"  y="26" xlink:href="#radioGroup"/>
+      <use x="127" y="26" xlink:href="#optionMenu"/>
+      <use x="221" y="26" xlink:href="#textField"/>
+      <use x="425" y="26" xlink:href="#spinButtonField"/>
+      <use x="3"   y="51" xlink:href="#contentArea"/>
+      <use x="3"   y="282" xlink:href="#smallButton"/>
+      <use x="18"  y="282" xlink:href="#smallButton"/>
+      <use x="33"  y="282" xlink:href="#zoomControl"/>
+      <use x="78"  y="282" xlink:href="#sheetTabGroup"/>
+    </g>
+    <g id="aWindow2">
+      <use xlink:href="#windowFrame"/>
+      <path fill="url(#greyshade)"
+            d="M 123,23
+               C 129.5,23 130.5,3 138,3
+               H 243
+               C 249.5,3 250.5,23 258,23"/>
+      <use x="140" y="5" xlink:href="#inactiveTitleBlock"/>
+      <path fill="url(#greylight)"
+            d="M 3,38
+               V 23
+               H 8
+               C 14.5,23 15.5,3 23,3
+               H 123
+               C 129.5,3 130.5,23 137.5,23
+               H 597
+               V 38
+               H 3"/>
+      <use x="25"  y="5"  xlink:href="#activeTitleBlock"/>
+<!--      <use x="6"   y="26" xlink:href="#toolBarButton"/> -->
+<!--      <use x="9"   y="29" xlink:href="#smallIconPlaceHolder"/> -->
+<!--      <use x="31"  y="26" xlink:href="#toolBarButton"/> -->
+<!--      <use x="56"  y="26" xlink:href="#radioGroup"/> -->
+<!--      <use x="127" y="26" xlink:href="#optionMenu"/> -->
+<!--      <use x="221" y="26" xlink:href="#textField"/> -->
+<!--      <use x="425" y="26" xlink:href="#spinButtonField"/> -->
+<!--      <use x="3"   y="38" xlink:href="#contentArea"/> -->
+      <rect x="3" y="38" width="579" height="244" fill="url(#textAreaFill)"/>
+      <g stroke="#dddddd">
+        <line x1="93" x2="93" y1="38" y2="282"/>
+        <line x1="138" x2="138" y1="38" y2="282"/>
+        <line x1="183" x2="183" y1="38" y2="282"/>
+        <line x1="228" x2="228" y1="38" y2="282"/>
+        <line x1="273" x2="273" y1="38" y2="282"/>
+        <line x1="318" x2="318" y1="38" y2="282"/>
+        <line x1="363" x2="363" y1="38" y2="282"/>
+        <line x1="408" x2="408" y1="38" y2="282"/>
+        <line x1="453" x2="453" y1="38" y2="282"/>
+        <line x1="498" x2="498" y1="38" y2="282"/>
+        <line x1="543" x2="543" y1="38" y2="282"/>
+        <line x1="48" x2="582" y1="53" y2="53"/>
+        <line x1="48" x2="582" y1="68" y2="68"/>
+        <line x1="48" x2="582" y1="83" y2="83"/>
+        <line x1="48" x2="582" y1="98" y2="98"/>
+        <line x1="48" x2="582" y1="113" y2="113"/>
+        <line x1="48" x2="582" y1="128" y2="128"/>
+        <line x1="48" x2="582" y1="143" y2="143"/>
+        <line x1="48" x2="582" y1="158" y2="158"/>
+        <line x1="48" x2="582" y1="173" y2="173"/>
+        <line x1="48" x2="582" y1="188" y2="188"/>
+        <line x1="48" x2="582" y1="203" y2="203"/>
+        <line x1="48" x2="582" y1="218" y2="218"/>
+        <line x1="48" x2="582" y1="233" y2="233"/>
+        <line x1="48" x2="582" y1="248" y2="248"/>
+        <line x1="48" x2="582" y1="263" y2="263"/>
+        <line x1="48" x2="582" y1="278" y2="278"/>
+      </g>
+      <use x="3"   y="23" xlink:href="#rcButton"/>
+      <use x="48"  y="23" xlink:href="#rcButton"/>
+      <use x="93"  y="23" xlink:href="#rcButton"/>
+      <use x="138" y="23" xlink:href="#rcButton"/>
+      <use x="183" y="23" xlink:href="#rcButton"/>
+      <use x="228" y="23" xlink:href="#rcButton"/>
+      <use x="273" y="23" xlink:href="#rcButton"/>
+      <use x="318" y="23" xlink:href="#rcButton"/>
+      <use x="363" y="23" xlink:href="#rcButton"/>
+      <use x="408"  y="23" xlink:href="#rcButton"/>
+      <use x="453"  y="23" xlink:href="#rcButton"/>
+      <use x="498"  y="23" xlink:href="#rcButton"/>
+      <use x="543"  y="23" xlink:href="#rcButton"/>
+
+      <use x="3"   y="38" xlink:href="#rcButton"/>
+      <use x="3"   y="53" xlink:href="#rcButton"/>
+      <use x="3"   y="68" xlink:href="#rcButton"/>
+      <use x="3"   y="83" xlink:href="#rcButton"/>
+      <use x="3"   y="98" xlink:href="#rcButton"/>
+      <use x="3"   y="113" xlink:href="#rcButton"/>
+      <use x="3"   y="128" xlink:href="#rcButton"/>
+      <use x="3"   y="143" xlink:href="#rcButton"/>
+      <use x="3"   y="158" xlink:href="#rcButton"/>
+      <use x="3"   y="173" xlink:href="#rcButton"/>
+      <use x="3"   y="188" xlink:href="#rcButton"/>
+      <use x="3"   y="203" xlink:href="#rcButton"/>
+      <use x="3"   y="218" xlink:href="#rcButton"/>
+      <use x="3"   y="233" xlink:href="#rcButton"/>
+      <use x="3"   y="248" xlink:href="#rcButton"/>
+      <use x="3"   y="263" xlink:href="#rcButton"/>
+
+      <use x="258" y="282" xlink:href="#hScrollBar"/>
+<!--      <use x="582" y="51"  xlink:href="#vScrollBar"/> -->
+      <g transform="translate(582,38)"> <!-- Height = 244 -->
+        <rect width="15" height="244" fill="url(#scrollBarTrough)"/>
+        <use x="0" y="12"  xlink:href="#vScrollBarSlider"/>
+        <use x="0" y="214" xlink:href="#upScrollBarStepper"/>
+        <use x="0" y="229" xlink:href="#downScrollBarStepper"/>
+      </g>
+      <use x="582" y="23" xlink:href="#smallButton"/>
+      <use x="3"   y="282" xlink:href="#smallButton"/>
+      <use x="18"  y="282" xlink:href="#smallButton"/>
+      <use x="33"  y="282" xlink:href="#zoomControl"/>
+      <use x="78"  y="282" xlink:href="#sheetTabGroup"/>
+<!-- This was to test one idea to make the spreadsheet look more natural.
+     <line x1="3" x2="3" y1="23" y2="278" stroke="url(#greylight)"/>
+     It didn't look so good.
+ -->
+    </g>
+    <g id="toolBarButtonWithMenu">
+      <use xlink:href="#toolBarButton"/>
+      <use x="14" y="17" xlink:href="#smallArrowDown"/>
+    </g>
+    <g id="dialogFrame">
+      <rect width="400" height="300" rx="3" ry="3" fill="url(#greylight)"/>
+      <use x="381" y="281" xlink:href="#cornerGrippy"/>
+    </g>
+    <g id="aFileSelector">
+      <use xlink:href="#dialogFrame"/>
+      <g transform="translate(19,19)"> <!-- option menu -->
+        <rect width="91" height="22" rx="3" ry="3" fill="url(#greylight)"/>
+        <line x1="78" y1="0" x2="78" y2="22"/>
+        <use x="80" y="8.5" xlink:href="#bigArrowDown"/>
+        <text stroke="none" fill="black" font-family="sans" font-size="12"
+              x="5" y="15">$HOME</text>
+      </g>
+      <use x="275" y="19" xlink:href="#toolBarButtonWithMenu"/>
+      <use x="303" y="19" xlink:href="#toolBarButtonWithMenu"/>
+      <use x="331" y="19" xlink:href="#toolBarButtonWithMenu"/>
+      <use x="359" y="19" xlink:href="#toolBarButtonWithMenu"/>
+      <g transform="translate(19,51)">
+        <rect width="360" height="194" fill="url(#textAreaFill)"/>
+      </g>
+      <g transform="translate(234,259)">
+        <rect rx="3" ry="3" width="64" height="22"
+              fill="url(#greylight)" stroke="#808080"/>
+        <text x="32" y="15" font-size="12" font-family="sans"
+              text-anchor="middle"
+              stroke="none" fill="black">Cancel</text>
+      </g>
+      <g transform="translate(317,259)">
+        <rect x="-1" y="-1" rx="4" ry="4" width="66" height="24"
+              fill="none" stroke="#404040" stroke-width="3"/>
+        <rect rx="3" ry="3" width="64" height="22"
+              fill="url(#greylight)" stroke="#808080"/>
+        <text x="32" y="15" font-size="12" font-family="sans"
+              text-anchor="middle"
+              stroke="none" fill="black">OK</text>
+      </g>
+    </g>
+    <g id="aSettingsPanel">
+      <use xlink:href="#dialogFrame"/>
+      <g transform="translate(19,19)">
+        <use xlink:href="#documentIcon" transform="scale(2,2)"/>
+        <text x="34.5" y="11.5" font-family="sans" font-size="14"
+              stroke="none" fill="black">Document Settings</text>
+        <text x="34.5" y="28.5" font-family="sans" font-size="12" font-style="italic"
+              stroke="none" fill="black">Some informative subtext</text>
+      </g>
+      <g transform="translate(19,66)">
+        <rect width="100" height="215" fill="url(#textAreaFill)"/>
+        <rect x="1" y="1" width="98" height="21" stroke="#dddddd" fill="#bfffbf"/>
+        <text x="6.5" y="15.5" font-family="sans" font-size="12"
+              stroke="none" fill="black">Program</text>
+        <g transform="translate(0,21)">
+          <rect x="1" y="1" width="98" height="21" stroke="#dddddd" fill="none"/>
+          <text x="6.5" y="15.5" font-family="sans" font-size="12"
+                stroke="none" fill="black">Session</text>
+        </g>
+        <g transform="translate(0,42)">
+          <rect x="1" y="1" width="98" height="21" stroke="#dddddd" fill="none"/>
+          <text x="6.5" y="15.5" font-family="sans" font-size="12"
+                stroke="none" fill="black">Association</text>
+        </g>
+        <g transform="translate(0,63)">
+          <rect x="1" y="1" width="98" height="21" stroke="#dddddd" fill="none"/>
+          <text x="6.5" y="15.5" font-family="sans" font-size="12"
+                stroke="none" fill="black">Window</text>
+        </g>
+        <g transform="translate(0,84)">
+          <rect x="1" y="1" width="98" height="21" stroke="#dddddd" fill="none"/>
+          <text x="6.5" y="15.5" font-family="sans" font-size="12"
+                stroke="none" fill="black">General</text>
+        </g>
+      </g>
+      <g transform="translate(130,66)">
+        <text x="0.5" y="15.5"  font-family="sans" font-size="12"
+              stroke="none" fill="black">Path and file name:</text>
+        <rect y="20" width="177" height="22" rx="3" ry="3" fill="url(#textlight)"/>
+        <g transform="translate(187,20)">
+          <rect rx="3" ry="3" width="64" height="22"
+                fill="url(#greylight)" stroke="#808080"/>
+          <text x="32" y="15" font-size="12" font-family="sans"
+                text-anchor="middle"
+                stroke="none" fill="black">Find…</text>
+        </g>
+        <text x="0.5" y="59.5"  font-family="sans" font-size="12"
+              stroke="none" fill="black">Parameters:</text>
+        <rect y="64" width="251" height="22" rx="3" ry="3" fill="url(#textlight)"/>
+        <text x="0.5" y="103.5"  font-family="sans" font-size="12"
+              stroke="none" fill="black">Working directory:</text>
+        <rect y="108" width="251" height="22" rx="3" ry="3" fill="url(#textlight)"/>
+        <g transform="translate(0,182)">
+          <rect rx="3" ry="3" width="64" height="22"
+                fill="url(#greylight)" stroke="#808080"/>
+          <text x="32" y="15" font-size="12" font-family="sans"
+                text-anchor="middle"
+                stroke="none" fill="black">Help</text>
+        </g>
+        <g transform="translate(74,182)">
+          <rect rx="3" ry="3" width="64" height="22"
+                fill="url(#greylight)" stroke="#808080"/>
+          <text x="32" y="15" font-size="12" font-family="sans"
+                text-anchor="middle"
+                stroke="none" fill="black">Undo</text>
+        </g>
+        <g transform="translate(148,182)">
+          <rect rx="3" ry="3" width="64" height="22"
+                fill="url(#greylight)" stroke="#808080"/>
+          <text x="32" y="15" font-size="12" font-family="sans"
+                text-anchor="middle"
+                stroke="none" fill="black">Defaults</text>
+        </g>
+      </g>
+    </g>
+    <g id="aWindow3">
+      <use xlink:href="#windowFrame"/>
+<!--      <use x="258" y="282" xlink:href="#hScrollBar"/>
+      <use x="582" y="51"  xlink:href="#vScrollBar"/> -->
+<!--      <path fill="url(#greyshade)"
+            d="M 123,23
+               C 129.5,23 130.5,3 138,3
+               H 243
+               C 249.5,3 250.5,23 258,23"/>
+      <use x="140" y="5" xlink:href="#inactiveTitleBlock"/> -->
+      <path fill="url(#greylight)"
+            d="M 3,51
+               V 23
+               H 8
+               C 14.5,23 15.5,3 23,3
+               H 123
+               C 129.5,3 130.5,23 137.5,23
+               H 597
+               V 51
+               H 3"/>
+<!--      <use x="25"  y="5"  xlink:href="#activeTitleBlock"/> -->
+      <g transform="translate(25,5)">
+        <use xlink:href="#documentIcon"/>
+        <text x="19.5" y="11.5" font-family="sans" font-size="12"
+              stroke="none" fill="black">Calendar</text>
+        <use x="89.5" y="5.5" xlink:href="#bigArrowDown"/>
+      </g>
+
+<!--      <use x="6"   y="26" xlink:href="#toolBarButton"/>
+      <use x="9"   y="29" xlink:href="#smallIconPlaceHolder"/>
+      <use x="31"  y="26" xlink:href="#toolBarButton"/>
+      <use x="56"  y="26" xlink:href="#radioGroup"/>
+      <use x="127" y="26" xlink:href="#optionMenu"/>
+      <use x="221" y="26" xlink:href="#textField"/>
+      <use x="425" y="26" xlink:href="#spinButtonField"/>
+      <use x="3"   y="51" xlink:href="#contentArea"/> -->
+      <rect x="3" y="51" width="594" height="231" fill="url(#textAreaFill)"/>
+      <g transform="translate(3,51)" stroke="#dddddd">
+        <line x1="0" y1="46" x2="594" y2="46"/>
+        <line x1="0" y1="92" x2="594" y2="92"/>
+        <line x1="0" y1="138" x2="594" y2="138"/>
+        <line x1="0" y1="184" x2="594" y2="184"/>
+        <line x1="84.86" y1="0" x2="84.86" y2="231"/>
+        <line x1="169.71" y1="0" x2="169.71" y2="231"/>
+        <line x1="254.57" y1="0" x2="254.57" y2="231"/>
+        <line x1="339.43" y1="0" x2="339.43" y2="231"/>
+        <line x1="424.29" y1="0" x2="424.29" y2="231"/>
+        <line x1="509.14" y1="0" x2="509.14" y2="231"/>
+      </g>
+      <g transform="translate(3,51)" stroke="none" fill="#aaa" font-size="24"
+         text-anchor="end" font-family="sans">
+        <text x="84.86" y="23" fill="#dddddd">30</text>
+        <text x="169.71" y="23" fill="#dddddd">31</text>
+        <text x="254.57" y="23">1</text>
+        <text x="339.43" y="23">2</text>
+        <text x="424.29" y="23">3</text>
+        <text x="509.14" y="23">4</text>
+        <text x="594" y="23">5</text>
+        <text x="84.86" y="69">6</text>
+        <text x="169.71" y="69">7</text>
+        <text x="254.57" y="69">8</text>
+        <text x="339.43" y="69">9</text>
+        <text x="424.29" y="69">10</text>
+        <text x="509.14" y="69">11</text>
+        <text x="594" y="69">12</text>
+        <text x="84.86" y="115">13</text>
+        <text x="169.71" y="115">14</text>
+        <text x="254.57" y="115">15</text>
+        <text x="339.43" y="115">16</text>
+        <text x="424.29" y="115">17</text>
+        <text x="509.14" y="115">18</text>
+        <text x="594" y="115">19</text>
+        <text x="84.86" y="161">20</text>
+        <text x="169.71" y="161">21</text>
+        <text x="254.57" y="161">22</text>
+        <text x="339.43" y="161">23</text>
+        <text x="424.29" y="161">24</text>
+        <text x="509.14" y="161">25</text>
+        <text x="594" y="161">26</text>
+        <text x="84.86" y="207">27</text>
+        <text x="169.71" y="207">28</text>
+        <text x="254.57" y="207" fill="#dddddd">1</text>
+        <text x="339.43" y="207" fill="#dddddd">2</text>
+        <text x="424.29" y="207" fill="#dddddd">3</text>
+        <text x="509.14" y="207" fill="#dddddd">4</text>
+        <text x="594" y="207" fill="#dddddd">5</text>
+
+
+      </g>
+<!--      <use x="3"   y="282" xlink:href="#smallButton"/>
+      <use x="18"  y="282" xlink:href="#smallButton"/>
+      <use x="33"  y="282" xlink:href="#zoomControl"/>
+      <use x="78"  y="282" xlink:href="#sheetTabGroup"/> -->
+    </g>
+  </defs>
+  <rect width="1920" height="1080" fill="#5d1803"/>
+  <g stroke="#a0a0a0" fill="none">
+    <use x="100.5" y="100.5" xlink:href="#aWindow"/>
+    <use x="100.5" y="450.5" xlink:href="#aWindow2"/>
+    <use x="750.5" y="100.5" xlink:href="#aFileSelector"/>
+    <use x="750.5" y="450.5" xlink:href="#aSettingsPanel"/>
+    <use x="1200.5" y="100.5" xlink:href="#aWindow3"/>
+    <use x="300.5" y="700.5" xlink:href="./window.svg#xWindow"/>
+    <path fill="#efefef"
+          d="M 0,500.5
+             H 19.5
+             C 21.156,500 22.5,498.844 22.5,497.5
+             V 22.5
+             H 1920.5
+             V -0.5
+             H -0.5"/>
+    <g id="undoButton">
+      <use x="-2.5" y="-2.5" xlink:href="#toolBarButton"/>
+      <text font-size="20" fill="black" stroke="none" x="1" y="15">⎌</text>
+    </g>
+    <use x="-2.5" y="25.5" xlink:href="#toolBarButton"/>
+    <rect x="-2.5" y="49.5" width="22" height="44" rx="3" ry="3"
+          fill="url(#greylight)"/>
+    <text x="30" y="15" font-family="sans" font-size="12"
+          stroke="none" fill="black">File   Edit   View   Help</text>
+    <text font-size="25" font-family="sans" fill="black" stroke="none"
+          x="1600" y="19">♫  ⚛  ✉  ♿</text>
+    <g transform="translate(1750.5,0.5) rotate(45)"
+       stroke-width="2" stroke="black">
+      <path d="M 12,16 C 12,9.376  6.624,4  0,4"/>
+      <path d="M  8,16 C  8,11.584 4.416,8  0,8"/>
+      <path d="M  4,16 C  4,13.792 2.208,12 0,12"/>
+    </g>
+    <g transform="translate(1770.5,8.5) rotate(-45)"
+       stroke-width="2" stroke="black">
+      <path d="M 16,16 C 16,7.168  8.832,0  0,0"/>
+      <path d="M 12,16 C 12,9.376  6.624,4  0,4"/>
+      <path d="M  8,16 C  8,11.584 4.416,8  0,8"/>
+      <path d="M  4,16 C  4,13.792 2.208,12 0,12"/>
+    </g>
+    <g transform="translate(1815,12)" stroke="black">
+      <circle r="8"/>
+      <path d="M-8,-5.2 l10,0 c2,-4 -12,-4 -10,0"
+            transform="translate(-3) rotate(-45 -3 -5.2)"/>
+      <path d="M-2,-5.2 l10,0 c2,-4 -12,-4 -10,0"
+            transform="translate(3) rotate(45 3 -5.2)"/>
+    </g>
+    <use stroke="black" x="1830" y="3.5" xlink:href="#bluetoothIcon"/>
+    <text x="1850" y="15" font-family="sans" font-size="12"
+          stroke="none" fill="black">12:00 PM</text>
+  </g>
+  <g transform="translate(450.5,170.5)" stroke="black" fill="none">
+    <rect x="-10" y="-10" width="200" height="205" fill="url(#greylight)"/>
+    <g transform="translate(0,0)">
+      <circle cx="6" cy="6" r="6"
+              fill="url(#greylight)" stroke="#808080"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">Option</text>
+    </g>
+    <g transform="translate(0,16)">
+      <circle cx="6" cy="6" r="6"
+              fill="url(#greylight)" stroke="#808080"/>
+      <circle cx="6" cy="6" r="2"
+              fill="#000" stroke="#000"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">Option</text>
+    </g>
+    <g transform="translate(0,32)">
+      <circle cx="6" cy="6" r="6"
+              fill="url(#greylight)" stroke="#808080"/>
+      <line x1="1.5" y1="6" x2="10.5" y2="6"
+            stroke-width="2" stroke="#000"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">Option</text>
+    </g>
+    <g transform="translate(0,48)">
+      <circle cx="6" cy="6" r="6"
+              fill="#f0f0f0" stroke="#a0a0a0"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="#808080">Option</text>
+    </g>
+    <g transform="translate(0,64)">
+      <circle cx="6" cy="6" r="6"
+              fill="#f0f0f0" stroke="#a0a0a0"/>
+      <circle cx="6" cy="6" r="2"
+              fill="#808080" stroke="#808080"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">Option</text>
+    </g>
+    <g transform="translate(0,80)">
+      <circle cx="6" cy="6" r="6"
+              fill="#f0f0f0" stroke="#a0a0a0"/>
+      <line x1="1.5" y1="6" x2="10.5" y2="6"
+            stroke-width="2" stroke="#808080"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="#808080">Option</text>
+    </g>
+    <g transform="translate(0,96)">
+      <rect x="0" y="0" width="12" height="12"
+            fill="url(#greylight)" stroke="#808080"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">Option</text>
+    </g>
+    <g transform="translate(0,112)">
+      <rect x="0" y="0" width="12" height="12"
+            fill="url(#greylight)" stroke="#808080"/>
+      <path d="M1,6.5 L5,10.5 L11,1.5"
+            stroke="#000" stroke-width="2"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">Option</text>
+    </g>
+    <g transform="translate(0,128)">
+      <rect x="0" y="0" width="12" height="12"
+            fill="url(#greylight)" stroke="#808080"/>
+      <line x1="1.5" y1="6" x2="10.5" y2="6"
+            stroke-width="2" stroke="#000"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">Option</text>
+    </g>
+    <g transform="translate(0,144)">
+      <rect x="0" y="0" width="12" height="12"
+            fill="#f0f0f0" stroke="#a0a0a0"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="#808080">Option</text>
+    </g>
+    <g transform="translate(0,160)">
+      <rect x="0" y="0" width="12" height="12"
+            fill="#f0f0f0" stroke="#a0a0a0"/>
+      <path d="M1,6.5 L5,10.5 L11,1.5"
+            stroke="#808080" stroke-width="2"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="#808080">Option</text>
+    </g>
+    <g transform="translate(0,176)">
+      <rect x="0" y="0" width="12" height="12"
+            fill="#f0f0f0" stroke="#a0a0a0"/>
+      <line x1="1.5" y1="6" x2="10.5" y2="6"
+            stroke-width="2" stroke="#a0a0a0"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="#808080">Option</text>
+    </g>
+    <g transform="translate(100,0)">
+      <path fill="url(#greylight)" stroke="#808080"
+            d="M3,0 V12 H4 L10,6 L4,0 Z"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">More</text>
+    </g>
+    <g transform="translate(100,16)">
+      <path fill="url(#greylight)" stroke="#808080"
+            d="M3,0 V12 H4 L10,6 L4,0 Z" transform="rotate(45 6 6)"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">More</text>
+    </g>
+    <g transform="translate(100,32)">
+      <path fill="url(#greylight)" stroke="#808080"
+            d="M3,0 V12 H4 L10,6 L4,0 Z" transform="rotate(90 6 6)"/>
+      <text x="16" y="10" font-size="12" font-family="sans"
+            stroke="none" fill="black">More</text>
+    </g>
+    <g transform="translate(100,48)">
+      <rect rx="3" ry="3" width="64" height="22"
+            fill="url(#greylight)" stroke="#808080"/>
+      <text x="32" y="15" font-size="12" font-family="sans"
+            text-anchor="middle"
+            stroke="none" fill="black">Cancel</text>
+    </g>
+    <g transform="translate(100,80)">
+      <rect x="-1" y="-1" rx="4" ry="4" width="66" height="24"
+            fill="none" stroke="#404040" stroke-width="3"/>
+      <rect rx="3" ry="3" width="64" height="22"
+            fill="url(#greylight)" stroke="#808080"/>
+      <text x="32" y="15" font-size="12" font-family="sans"
+            text-anchor="middle"
+            stroke="none" fill="black">OK</text>
+    </g>
+    <g transform="translate(100,112)">
+      <rect rx="3" ry="3" width="64" height="22"
+            fill="url(#greyshade)" stroke="#808080"/>
+      <text x="32" y="15" font-size="12" font-family="sans"
+            text-anchor="middle"
+            stroke="none" fill="black">OK</text>
+    </g>
+  </g>
+  <text id="getme" x="110" y="300" font-size="20" font-family="sans"
+        stroke="none" fill="black">✓ ✔ ◯ ⬜ ☐ ☑ ⬥ ◆ ⬩ ⋄ ⎈ ⎇ ⎆</text>
+  <g id="overlay"></g>
+
+<script type="application/ecmascript">
+  var textelement = document.getElementById("getme");
+  var boxit = document.createElementNS("svg","rect");
+  boxit.setAttributeNS("svg","fill","none");
+  boxit.setAttributeNS("svg","stroke","blue");
+  boxit.setAttributeNS("svg","stroke-width",2);
+  boxit.setAttributeNS("svg","width",100);
+  boxit.setAttributeNS("svg","height",100);
+  boxit.setAttributeNS("svg","x",105);
+  boxit.setAttributeNS("svg","y",295);
+  document.getElementById("overlay").appendChild(boxit);
+</script>
+</svg>

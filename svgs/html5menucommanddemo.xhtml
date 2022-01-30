@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: sans;
+      font-size: 12px;
+    }
+    menu[type=toolbar] {
+      border: 1px solid #a0a0a0;
+      padding-left: 6px;
+      padding-top: 2px;
+      padding-bottom: 4px;
+      background-color: #dddddd;
+    }
+    menu[type=toolbar] command[type=radio] {
+      display: inline-block;
+      min-width: 64px;
+      min-height: 22px;
+      border: 1px solid black;
+      text-align: center;
+    }
+    menu[type=toolbar] command[checked=checked] {
+      background-image: -webkit-linear-gradient(top, #999999 20%, #bbbbbb 80%, #dddddd);
+    }
+    menu[type=toolbar] command:not([checked=checked]) {
+      background-image: -webkit-linear-gradient(top, #f8f8f8 20%, #f0f0f0 80%, #dddddd);
+    }
+    menu[type=toolbar] command:after {
+      content: attr(label);
+      position: relative;
+      top: 5px;
+    }
+    menu[type=toolbar] command[type=radio]:first-child {
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+    menu[type=toolbar] command[type=radio]:not(:last-child) {
+      border-right: 0;
+    }
+    menu[type=toolbar] command[type=radio]:last-child {
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+  </style>
+  <script><![CDATA[
+  window.onload = function () {
+    var commands = document.getElementsByTagName("command");
+    for (var i=0;i<commands.length;i++) {
+      if (commands[i].getAttributeNS(null,"type") == "radio") {
+        commands[i].addEventListener("click",changeRadioSetting,false);
+      }
+    }
+  }
+  function changeRadioSetting(e) {
+    var thisgroup = e.target.getAttributeNS(null,"radiogroup");
+    var commands = document.getElementsByTagName("command");
+    for (var i=0;i<commands.length;i++) {
+      group = commands[i].getAttributeNS(null,"radiogroup");
+      if (group && group==thisgroup) {
+        commands[i].setAttributeNS(null,"checked",null);
+      }
+    }
+    e.target.setAttributeNS(null,"checked","checked");
+  }
+  ]]></script>
+</head>
+<body>
+  <menu type="toolbar"><command type="checkbox" label="Bold"/><command type="radio" radiogroup="alignment" label="Left"/><command type="radio" radiogroup="alignment" label="Center"/><command type="radio" radiogroup="alignment" label="Right"/></menu>
+</body>
+</html>

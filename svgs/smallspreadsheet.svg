@@ -1,0 +1,198 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="600" height="300" version="1.2" baseProfile="tiny" 
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events">
+  <!-- INDEX: Incompatible New Desktop Environment for X11 -->
+  <defs>
+    <g id="aSmallSpreadsheet">
+      <use xlink:href="./vsw.svg#windowFrame"/>
+      <path fill="url(./gradients.svg#greyshade)"
+            stroke="url(./gradients.svg#strokeColor)"
+            d="M 123,23
+               C 129.5,23 130.5,3 138,3
+               H 243
+               C 249.5,3 250.5,23 258,23"/>
+      <use x="140" y="5" xlink:href="./vsw.svg#inactiveTitleBlock"/>
+      <path fill="url(./gradients.svg#greylight)"
+            stroke="url(./gradients.svg#strokeColor)"
+            d="M 3,38
+               V 23
+               H 8
+               C 14.5,23 15.5,3 23,3
+               H 123
+               C 129.5,3 130.5,23 137.5,23
+               H 597
+               V 38
+               H 3"/>
+      <use x="25"  y="5"  xlink:href="./vsw.svg#activeTitleBlock"/>
+      <rect x="3" y="38" width="579" height="244"
+            fill="url(./gradients.svg#textAreaFill)"/>
+      <g stroke="#dddddd">
+        <line x1="93" x2="93" y1="38" y2="282"/>
+        <line x1="138" x2="138" y1="38" y2="282"/>
+        <line x1="183" x2="183" y1="38" y2="282"/>
+        <line x1="228" x2="228" y1="38" y2="282"/>
+        <line x1="273" x2="273" y1="38" y2="282"/>
+        <line x1="318" x2="318" y1="38" y2="282"/>
+        <line x1="363" x2="363" y1="38" y2="282"/>
+        <line x1="408" x2="408" y1="38" y2="282"/>
+        <line x1="453" x2="453" y1="38" y2="282"/>
+        <line x1="498" x2="498" y1="38" y2="282"/>
+        <line x1="543" x2="543" y1="38" y2="282"/>
+        <line x1="48" x2="582" y1="53" y2="53"/>
+        <line x1="48" x2="582" y1="68" y2="68"/>
+        <line x1="48" x2="582" y1="83" y2="83"/>
+        <line x1="48" x2="582" y1="98" y2="98"/>
+        <line x1="48" x2="582" y1="113" y2="113"/>
+        <line x1="48" x2="582" y1="128" y2="128"/>
+        <line x1="48" x2="582" y1="143" y2="143"/>
+        <line x1="48" x2="582" y1="158" y2="158"/>
+        <line x1="48" x2="582" y1="173" y2="173"/>
+        <line x1="48" x2="582" y1="188" y2="188"/>
+        <line x1="48" x2="582" y1="203" y2="203"/>
+        <line x1="48" x2="582" y1="218" y2="218"/>
+        <line x1="48" x2="582" y1="233" y2="233"/>
+        <line x1="48" x2="582" y1="248" y2="248"/>
+        <line x1="48" x2="582" y1="263" y2="263"/>
+        <line x1="48" x2="582" y1="278" y2="278"/>
+      </g>
+      <use x="3"   y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="48"  y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="93"  y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="138" y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="183" y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="228" y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="273" y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="318" y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="363" y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="408"  y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="453"  y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="498"  y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="543"  y="23" xlink:href="./fsw.svg#rcButton"/>
+
+      <use x="3"   y="38" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="53" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="68" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="83" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="98" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="113" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="128" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="143" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="158" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="173" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="188" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="203" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="218" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="233" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="248" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="263" xlink:href="./fsw.svg#rcButton"/>
+
+      <use x="258" y="282" xlink:href="./vsw.svg#hScrollBar"/>
+      <g transform="translate(582,38)"> <!-- Height = 244 -->
+        <rect width="15" height="244"
+              stroke="url(./gradients.svg#strokeColor)"
+              fill="url(./gradients.svg#scrollBarTrough)"/>
+        <use x="0" y="12"  xlink:href="./vsw.svg#vScrollBarSlider"/>
+        <use x="0" y="214" xlink:href="./fsw.svg#upScrollBarStepper"/>
+        <use x="0" y="229" xlink:href="./fsw.svg#downScrollBarStepper"/>
+      </g>
+      <use x="582" y="23" xlink:href="./fsw.svg#smallButton"/>
+      <use x="3"   y="282" xlink:href="./fsw.svg#smallButton"/>
+      <use x="18"  y="282" xlink:href="./fsw.svg#smallButton"/>
+      <use x="33"  y="282" xlink:href="./fsw.svg#zoomControl"/>
+      <use x="78"  y="282" xlink:href="./vsw.svg#sheetTabGroup"/>
+    </g>
+    <g id="bSmallSpreadsheet">
+      <use xlink:href="./vsw.svg#windowFrame"/>
+      <path fill="url(./gradients.svg#greyshade)"
+            stroke="url(./gradients.svg#strokeColor)"
+            d="M 123,23
+               C 129.5,23 130.5,3 138,3
+               H 243
+               C 249.5,3 250.5,23 258,23"/>
+      <use x="140" y="5" xlink:href="./vsw.svg#inactiveTitleBlock"/>
+      <path fill="url(./gradients.svg#greylight)"
+            stroke="url(./gradients.svg#strokeColor)"
+            d="M 3,38
+               V 23
+               H 8
+               C 14.5,23 15.5,3 23,3
+               H 123
+               C 129.5,3 130.5,23 137.5,23
+               H 597
+               V 38
+               H 3"/>
+      <use x="25"  y="5"  xlink:href="./vsw.svg#activeTitleBlock"/>
+      <rect x="3" y="38" width="594" height="244"
+            fill="url(./gradients.svg#textAreaFill)"/>
+      <g stroke="#dddddd">
+        <line x1="93" x2="93" y1="38" y2="282"/>
+        <line x1="138" x2="138" y1="38" y2="282"/>
+        <line x1="183" x2="183" y1="38" y2="282"/>
+        <line x1="228" x2="228" y1="38" y2="282"/>
+        <line x1="273" x2="273" y1="38" y2="282"/>
+        <line x1="318" x2="318" y1="38" y2="282"/>
+        <line x1="363" x2="363" y1="38" y2="282"/>
+        <line x1="408" x2="408" y1="38" y2="282"/>
+        <line x1="453" x2="453" y1="38" y2="282"/>
+        <line x1="498" x2="498" y1="38" y2="282"/>
+        <line x1="543" x2="543" y1="38" y2="282"/>
+        <line x1="588" x2="588" y1="38" y2="282"/>
+        <line x1="48" x2="597" y1="53" y2="53"/>
+        <line x1="48" x2="597" y1="68" y2="68"/>
+        <line x1="48" x2="597" y1="83" y2="83"/>
+        <line x1="48" x2="597" y1="98" y2="98"/>
+        <line x1="48" x2="597" y1="113" y2="113"/>
+        <line x1="48" x2="597" y1="128" y2="128"/>
+        <line x1="48" x2="597" y1="143" y2="143"/>
+        <line x1="48" x2="597" y1="158" y2="158"/>
+        <line x1="48" x2="597" y1="173" y2="173"/>
+        <line x1="48" x2="597" y1="188" y2="188"/>
+        <line x1="48" x2="597" y1="203" y2="203"/>
+        <line x1="48" x2="597" y1="218" y2="218"/>
+        <line x1="48" x2="597" y1="233" y2="233"/>
+        <line x1="48" x2="597" y1="248" y2="248"/>
+        <line x1="48" x2="597" y1="263" y2="263"/>
+        <line x1="48" x2="597" y1="278" y2="278"/>
+      </g>
+      <use x="3"   y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="48"  y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="93"  y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="138" y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="183" y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="228" y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="273" y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="318" y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="363" y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="408"  y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="453"  y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="498"  y="23" xlink:href="./fsw.svg#rcButton"/>
+      <use x="543"  y="23" xlink:href="./fsw.svg#rcButton"/>
+
+      <use x="3"   y="38" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="53" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="68" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="83" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="98" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="113" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="128" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="143" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="158" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="173" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="188" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="203" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="218" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="233" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="248" xlink:href="./fsw.svg#rcButton"/>
+      <use x="3"   y="263" xlink:href="./fsw.svg#rcButton"/>
+
+
+      <use x="3"   y="282" xlink:href="./fsw.svg#smallButton"/>
+      <use x="18"  y="282" xlink:href="./fsw.svg#smallButton"/>
+      <use x="33"  y="282" xlink:href="./fsw.svg#zoomControl"/>
+      <use x="78"  y="282" xlink:href="./vsw.svg#sheetTabGroup"/>
+    </g>
+  </defs>
+  <use x="0.5" y="0.5" xlink:href="#aSmallSpreadsheet"/>
+</svg>

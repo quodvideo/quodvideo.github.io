@@ -1,0 +1,46 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="600" height="300" version="1.2" baseProfile="tiny" 
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events">
+  <!-- INDEX: Incompatible New Desktop Environment for X11 -->
+  <defs>
+    <g id="aWindow">
+      <use xlink:href="./vsw.svg#windowFrame"/>
+      <use x="258" y="282" xlink:href="./vsw.svg#hScrollBar"/>
+      <use x="582" y="51"  xlink:href="./vsw.svg#vScrollBar"/>
+      <path fill="url(./gradients.svg#greyshade)"
+            stroke="url(./gradients.svg#strokeColor)"
+            d="M 123,23
+               C 129.5,23 130.5,3 138,3
+               H 243
+               C 249.5,3 250.5,23 258,23"/>
+      <use x="140" y="5" xlink:href="./vsw.svg#inactiveTitleBlock"/>
+      <path fill="url(./gradients.svg#greylight)"
+            stroke="url(./gradients.svg#strokeColor)"
+            d="M 3,51
+               V 23
+               H 8
+               C 14.5,23 15.5,3 23,3
+               H 123
+               C 129.5,3 130.5,23 137.5,23
+               H 597
+               V 51
+               H 3"/>
+      <use x="25"  y="5"  xlink:href="./vsw.svg#activeTitleBlock"/>
+      <use x="6"   y="26" xlink:href="./fsw.svg#toolBarButton"/>
+      <use x="9"   y="29" xlink:href="./fsw.svg#smallIconPlaceHolder"/>
+      <use x="31"  y="26" xlink:href="./fsw.svg#toolBarButton"/>
+      <use x="56"  y="26" xlink:href="./fsw.svg#threeRadioGroup"/>
+      <use x="127" y="26" xlink:href="./vsw.svg#optionMenu"/>
+      <use x="221" y="26" xlink:href="./vsw.svg#textField"/>
+      <use x="425" y="26" xlink:href="./vsw.svg#spinButtonField"/>
+      <use x="3"   y="51" xlink:href="./vsw.svg#contentArea"/>
+      <use x="3"   y="282" xlink:href="./fsw.svg#smallButton"/>
+      <use x="18"  y="282" xlink:href="./fsw.svg#smallButton"/>
+      <use x="33"  y="282" xlink:href="./fsw.svg#zoomControl"/>
+      <use x="78"  y="282" xlink:href="./vsw.svg#sheetTabGroup"/>
+    </g>
+  </defs>
+  <use x="0.5" y="0.5" xlink:href="#aWindow"/>
+</svg>

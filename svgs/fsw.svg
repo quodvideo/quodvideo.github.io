@@ -1,0 +1,361 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="600" height="600" version="1.2" baseProfile="tiny" 
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:ev="http://www.w3.org/2001/xml-events">
+  <!-- INDEX: Incompatible New Desktop Environment for X11 -->
+  <!-- Fixed size widgets -->
+  <!-- Widgets are:
+
+    Icons:
+      smallIconPlaceHolder
+      documentIcon
+      bluetoothIcon
+
+    Arrows:
+      bigArrowDown
+      bigArrowUp
+      bigArrowRight
+      bigArrowLeft
+      smallArrowDown
+      smallArrowUp
+
+    Grips:
+      hGrippy
+      vGrippy
+      cornerGrippy
+
+    Buttons:
+      toolBarButton
+      toolBarButtonWithMenu
+      leftRadioToolBarButton
+      centerRadioToolBarButton
+      rightRadioToolBarButton
+      
+      upSpinStepper
+      downSpinStepper
+      
+      rcButton - spreadsheet row or column header button
+
+      smallButton - 16x16 for status bar or scroll bar steppers
+      upScrollBarStepper
+      rightScrollBarStepper
+      downScrollBarStepper
+      leftScrollBarStepper
+
+      twoRadioGroup
+      threeRadioGroup
+      fourRadioGroup
+
+      pushButton
+      defaultPushButton
+
+      okButton
+      cancelButton
+      helpButton
+      undoButton
+      defaultsButton
+
+      zoomControl
+
+      slideToggle
+  -->
+  <defs>
+    <path id="bluetoothIcon" stroke-width="1.3" stroke="black" fill="none"
+          d="M    0,3.5
+             l    7,7
+               -3.5,3.5
+                  0,-14
+                3.5,3.5
+                 -7,7"/>
+    <rect id="smallIconPlaceHolder" width="16" height="16"
+          stroke="none" fill="red"/>
+    <path id="bigArrowDown"   d="M0,0 H8 L4,4Z" stroke="none" fill="black"/>
+    <path id="bigArrowUp"     d="M0,4 H8 L4,0Z" stroke="none" fill="black"/>
+    <path id="bigArrowRight"  d="M0,0 V8 L4,4Z" stroke="none" fill="black"/>
+    <path id="bigArrowLeft"   d="M4,0 V8 L0,4Z" stroke="none" fill="black"/>
+    <path id="smallArrowDown" d="M0,0 H6 L3,3Z" stroke="none" fill="black"/>
+    <path id="smallArrowUp"   d="M0,3 H6 L3,0Z" stroke="none" fill="black"/>
+    <path id="documentIcon" stroke="black" fill="white"
+          d="M  1,0
+             H  9
+             L 14,5
+             V    15
+             H  1
+             V    0
+             H  9
+             V    5
+             H 14"/>
+    <rect id="toolBarButton" width="22" height="22" rx="3" ry="3"
+          stroke="url(./gradients.svg#strokeColor)"
+          fill="url(./gradients.svg#greylight)"/>
+    <g id="toolBarButtonWithMenu">
+      <use xlink:href="#toolBarButton"/>
+      <use x="14" y="17" xlink:href="#smallArrowDown"/>
+    </g>
+    <!-- Cubic Bezier Control points at radius*0.552
+         to approximate rx=ry=3 corner radius-->
+    <path id="leftRadioToolBarButton"
+          stroke="url(./gradients.svg#strokeColor)"
+          fill="url(./gradients.svg#greylight)"
+          d="M 22 0
+             H 3
+             C 1.344 0 0 1.344 0 3
+             V 19
+             C 0 20.656 1.344 22 3 22
+             H 22
+             V 0"/>
+    <rect id="centerRadioToolBarButton"
+          stroke="url(./gradients.svg#strokeColor)"
+          fill="url(./gradients.svg#greylight)"
+          width="22" height="22"/>
+    <path id="rightRadioToolBarButton"
+          stroke="url(./gradients.svg#strokeColor)"
+          fill="url(./gradients.svg#greylight)"
+          d="M 0 0
+             H 19
+             C 20.656 0 22 1.344 22 3
+             V 19
+             C 22 20.656 20.656 22 19 22
+             H 0
+             V 0"/>
+
+    <g id="onSlideToggle">
+      <rect width="64" height="22" rx="3" ry="3"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="#0966ab"/>
+      <rect x="32" width="32" height="22" rx="3" ry="3"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#greylight)"/>
+      <text x="16" y="15" font-size="12" font-family="sans"
+            text-anchor="middle"
+            stroke="none" fill="white">ON</text>
+
+    </g>
+    <g id="offSlideToggle">
+      <rect width="64" height="22" rx="3" ry="3"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#scrollBarTrough)"/>
+      <rect width="32" height="22" rx="3" ry="3"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#greylight)"/>
+      <text x="48" y="15" font-size="12" font-family="sans"
+            text-anchor="middle"
+            stroke="none" fill="black">OFF</text>
+    </g>
+
+    <g id="upSpinStepper">
+      <path stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#greylight)"
+            d="M0,0 H8 C9.656,0 11,1.344 11,3 V11 H0 V0"/>
+      <use x="2.5" y="4" xlink:href="#smallArrowUp"/>
+    </g>
+    <g id="downSpinStepper">
+      <path stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#greylight)"
+            d="M0,0 H11 V8 C 11,9.656 9.656,11 8,11 H0 V0"/>
+      <use x="2.5" y="4" xlink:href="#smallArrowDown"/>
+    </g>
+    <!-- row or column header button - height=22 is probably better -->
+    <rect id="rcButton" width="45" height="15"
+          stroke="url(./gradients.svg#strokeColor)"
+          fill="url(./gradients.svg#greylight)"/>
+    <rect id="rcButton2" width="45" height="22"
+          stroke="url(./gradients.svg#strokeColor)"
+          fill="url(./gradients.svg#greylight)"/>
+    <!-- 16x16 for status bar or scroll bar steppers-->
+    <rect id="smallButton" width="15" height="15"
+          stroke="url(./gradients.svg#strokeColor)"
+          fill="url(./gradients.svg#greylight)"/>
+    <g id="upScrollBarStepper">
+      <use xlink:href="#smallButton"/>
+      <use x="3.5" y="6" xlink:href="#bigArrowUp"/>
+    </g>
+    <g id="rightScrollBarStepper">
+      <use xlink:href="#smallButton"/>
+      <use x="6" y="3.5" xlink:href="#bigArrowRight"/>
+    </g>
+    <g id="downScrollBarStepper">
+      <use xlink:href="#smallButton"/>
+      <use x="3.5" y="6" xlink:href="#bigArrowDown"/>
+    </g>
+    <g id="leftScrollBarStepper">
+      <use xlink:href="#smallButton"/>
+            <use x="6" y="3.5" xlink:href="#bigArrowLeft"/>
+    </g>
+    <g id="hGrippy">
+      <rect width="10" height="10" fill="url(#gripLight)" stroke="none"/>
+      <path d="M1,0 v10 M3,0 v10 M5,0 v10 M7,0 v10 M9,0 v10"
+            stroke="url(./gradients.svg#gripShade)"/>
+    </g>
+    <g id="vGrippy">
+      <rect width="9" height="9" fill="url(#gripLight)" stroke="none"/>
+      <path d="M0,1 h9 M0,3 h9 M0,5 h9 M0,7 h9 M0,9 h9"
+            stroke="url(./gradients.svg#gripShade)"/>
+    </g>
+    <g id="cornerGrippy">
+      <path d="M0,8 L8,0 M2,10 L10,2 M4,12 L12,4 M6,14 L14,6"
+            stroke="url(./gradients.svg#gripLight)"/>
+      <path d="M1,9 L9,1 M3,11 L11,3 M5,13 L13,5 M7,15 L15,7"
+            stroke="url(./gradients.svg#gripShade)"/>
+    </g>
+    <g id="twoRadioGroup">
+      <use x="0"  y="0" xlink:href="#leftRadioToolBarButton"/>
+      <use x="22" y="0" xlink:href="#rightRadioToolBarButton"/>
+    </g>
+    <g id="threeRadioGroup">
+      <use x="0"  y="0" xlink:href="#leftRadioToolBarButton"/>
+      <use x="22" y="0" xlink:href="#centerRadioToolBarButton"/>
+      <use x="44" y="0" xlink:href="#rightRadioToolBarButton"/>
+    </g>
+    <g id="fourRadioGroup">
+      <use x="0"  y="0" xlink:href="#leftRadioToolBarButton"/>
+      <use x="22" y="0" xlink:href="#centerRadioToolBarButton"/>
+      <use x="44" y="0" xlink:href="#centerRadioToolBarButton"/>
+      <use x="66" y="0" xlink:href="#rightRadioToolBarButton"/>
+    </g>
+    <rect id="pushButton" rx="3" ry="3" width="64" height="22"
+          stroke="url(./gradients.svg#strokeColor)"
+          fill="url(./gradients.svg#greylight)"/>
+    <g id="defaultPushButton">
+      <rect x="-1" y="-1" rx="4" ry="4" width="66" height="24"
+            fill="none" stroke="#404040" stroke-width="3"/>
+      <use xlink:href="#pushButton"/>      
+    </g>
+    <g id="okButton">
+      <use xlink:href="#defaultPushButton"/>
+      <text x="32" y="15" font-size="12" font-family="sans"
+            text-anchor="middle"
+            stroke="none" fill="black">OK</text>
+    </g>
+    <g id="cancelButton">
+      <use xlink:href="#pushButton"/>
+      <text x="32" y="15" font-size="12" font-family="sans"
+            text-anchor="middle"
+            stroke="none" fill="black">Cancel</text>
+    </g>
+    <g id="pressedCancelButton">
+      <rect rx="3" ry="3" width="64" height="22"
+            fill="url(./gradients.svg#greyshade)" stroke="#808080"/>
+      <text x="32" y="15" font-size="12" font-family="sans"
+            text-anchor="middle"
+            stroke="none" fill="black">Cancel</text>
+    </g>
+    <g id="helpButton">
+      <use xlink:href="#pushButton"/>
+      <text x="32" y="15" font-size="12" font-family="sans"
+            text-anchor="middle"
+            stroke="none" fill="black">Help</text>
+    </g>
+    <g id="undoButton">
+      <use xlink:href="#pushButton"/>
+      <text x="32" y="15" font-size="12" font-family="sans"
+            text-anchor="middle"
+            stroke="none" fill="black">Undo</text>
+    </g>
+    <g id="defaultsButton">
+      <use xlink:href="#pushButton"/>
+      <text x="32" y="15" font-size="12" font-family="sans"
+            text-anchor="middle"
+            stroke="none" fill="black">Defaults</text>
+    </g>
+    <g id="zoomControl">
+      <rect width="45" height="15"
+            stroke="url(./gradients.svg#strokeColor)"
+            fill="url(./gradients.svg#greylight)"/>
+      <text font-size="10" font-family="sans" stroke="none" fill="black"
+            x="2" y="11">100%</text>
+      <use x="35" y="6.5" xlink:href="#smallArrowDown"/>
+    </g>
+  </defs>
+  <rect width="600" height="600" fill="#eeeeee"/>
+  <g transform="translate(0.5,0.5)">
+    <g>
+      <rect width="150" height="150" fill="none"/>
+      <text x="10" y="10" stroke="none" fill="black">Icons</text>
+      <use x="10" y="20" xlink:href="#smallIconPlaceHolder"/>
+      <text x="36" y="35" stroke="none" fill="black">smallIconPlaceHolder</text>
+      <use x="10" y="46" xlink:href="#documentIcon"/>
+      <text x="36" y="61" stroke="none" fill="black">documentIcon</text>
+      <use x="10" y="72" xlink:href="#bluetoothIcon"/>
+      <text x="36" y="87" stroke="none" fill="black">bluetoothIcon</text>
+    </g>
+    <g transform="translate(150,0)">
+      <rect width="300" height="150" fill="none"/>
+      <text x="10" y="10" stroke="none" fill="black">Arrows</text>
+      <use x="10" y="20" xlink:href="#bigArrowDown"/>
+      <text x="36" y="30" stroke="none" fill="black">bigArrowDown</text>
+      <use x="10" y="48" xlink:href="#bigArrowUp"/>
+      <text x="36" y="58" stroke="none" fill="black">bigArrowUp</text>
+      <use x="10" y="76" xlink:href="#bigArrowRight"/>
+      <text x="36" y="86" stroke="none" fill="black">bigArrowRight</text>
+      <use x="10" y="104" xlink:href="#bigArrowLeft"/>
+      <text x="36" y="114" stroke="none" fill="black">bigArrowLeft</text>
+      <use x="150" y="20" xlink:href="#smallArrowDown"/>
+      <text x="176" y="30" stroke="none" fill="black">smallArrowDown</text>
+      <use x="150" y="48" xlink:href="#smallArrowUp"/>
+      <text x="176" y="58" stroke="none" fill="black">smallArrowUp</text>
+    </g>
+    <g transform="translate(450,0)">
+      <rect width="150" height="150" fill="none"/>
+      <text x="10" y="10" stroke="none" fill="black">Grips</text>
+      <use x="10" y="20" xlink:href="#hGrippy"/>
+      <text x="36" y="30" stroke="none" fill="black">hGrippy</text>
+      <use x="10" y="45" xlink:href="#vGrippy"/>
+      <text x="36" y="55" stroke="none" fill="black">vGrippy</text>
+      <use x="10" y="70" xlink:href="#cornerGrippy"/>
+      <text x="36" y="80" stroke="none" fill="black">cornerGrippy</text>
+    </g>
+    <g transform="translate(0,150)">
+      <rect width="600" height="450" fill="none"/>
+      <text x="10" y="10" stroke="none" fill="black">Buttons (toolBarButtonWithMenu not shown)</text>
+      <use x="10" y="20" xlink:href="#toolBarButton"/>
+      <text x="42" y="35" stroke="none" fill="black">toolBarButton</text>
+      <use x="10" y="52" xlink:href="#leftRadioToolBarButton"/>
+      <text x="42" y="67" stroke="none" fill="black">leftRadioToolBarButton</text>
+      <use x="10" y="84" xlink:href="#centerRadioToolBarButton"/>
+      <text x="42" y="99" stroke="none" fill="black">centerRadioToolBarButton</text>
+      <use x="10" y="116" xlink:href="#rightRadioToolBarButton"/>
+      <text x="42" y="131" stroke="none" fill="black">rightRadioToolBarButton</text>
+
+      <use x="210" y="20" xlink:href="#upSpinStepper"/>
+      <text x="242" y="35" stroke="none" fill="black">upSpinStepper</text>
+      <use x="210" y="52" xlink:href="#downSpinStepper"/>
+      <text x="242" y="67" stroke="none" fill="black">downSpinStepper</text>
+
+      <!-- spreadsheet row or column header button -->      
+      <use x="210" y="84" xlink:href="#rcButton"/>
+      <text x="272" y="99" stroke="none" fill="black">rcButton</text>
+
+      <!-- 16x16 for status bar or scroll bar steppers -->
+      <use x="210" y="116" xlink:href="#smallButton"/>
+      <text x="242" y="131" stroke="none" fill="black">smallButton</text>
+
+      <use x="210" y="148" xlink:href="#zoomControl"/>
+      <text x="272" y="163" stroke="none" fill="black">zoomControl</text>
+
+      <use x="210" y="180" xlink:href="#toolBarButtonWithMenu"/>
+      <text x="242" y="195" stroke="none" fill="black">toolBarButtonWithMenu</text>
+      <use x="210" y="212" xlink:href="#onSlideToggle"/>
+      <use x="210" y="244" xlink:href="#offSlideToggle"/>
+
+      <use x="410" y="20" xlink:href="#upScrollBarStepper"/>
+      <text x="442" y="35" stroke="none" fill="black">upScrollBarStepper</text>
+      <use x="410" y="52" xlink:href="#rightScrollBarStepper"/>
+      <text x="442" y="67" stroke="none" fill="black">rightScrollBarStepper</text>
+      <use x="410" y="84" xlink:href="#downScrollBarStepper"/>
+      <text x="442" y="99" stroke="none" fill="black">rdownScrollBarStepper</text>
+      <use x="410" y="116" xlink:href="#leftScrollBarStepper"/>
+      <text x="442" y="131" stroke="none" fill="black">leftScrollBarStepper</text>
+      <use x="10" y="148" xlink:href="#twoRadioGroup"/>
+      <use x="10" y="180" xlink:href="#threeRadioGroup"/>
+      <use x="10" y="212" xlink:href="#fourRadioGroup"/>
+      <use x="10" y="244" xlink:href="#okButton"/>
+      <use x="10" y="276" xlink:href="#cancelButton"/>
+      <use x="10" y="308" xlink:href="#helpButton"/>
+      <use x="10" y="340" xlink:href="#undoButton"/>
+      <use x="10" y="372" xlink:href="#defaultsButton"/>
+
+    </g>
+  </g>
+</svg>

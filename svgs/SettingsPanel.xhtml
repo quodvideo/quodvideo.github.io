@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Fooling Around</title>
+  <meta charset="UTF-8" />
+  <style>
+  * {
+    font-family: sans;
+    font-size: 12px;
+  }
+  body {
+    background-color: #f0f0f0;
+  }
+  svg, header, header h1, header h2, nav, section {
+    position: absolute;
+  }
+  svg {
+    top:0; left:0; 
+    margin: 16px;
+  }
+  header {
+    height: 64px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f0f0f0;
+  }
+  header h1 {
+    top: 16px; left: 54px; right:0; bottom: 0;
+    margin:0;
+    font-weight: normal;
+    font-size: 14px;
+  }
+  
+  header h2 {
+    top: 32px; left: 54px; right:0; bottom: 0;
+    margin:0;
+    font-weight: normal;
+    font-style: italic;
+  }
+  nav {
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    right 0;
+    width: 119px;
+    background-color: #dddddd;
+    border-right: 1px solid #bfffbf;
+  }
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  nav ul li {
+    width: 120px;
+    height: 22px;
+  }
+  nav ul li a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding-top: 4px;
+    padding-left: 19px;
+
+  }
+  section {
+    top: 64px;
+    left: 120px;
+    bottom: 0;
+    right 0;
+    background-color: #f0f0f0;
+
+  }
+  button.StandardPushButton {
+    min-width: 64px;
+    height: 22px;
+
+  }
+  section form dl {
+    margin: 0;
+  }
+  section form dl dt {
+    margin: 0;
+    padding-top: 6px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+  }
+  section form dl dd {
+    margin: 0;
+    padding-bottom: 2px;
+    padding-left: 10px;
+  }
+  input {
+    border: 0;
+    border-bottom: 1px solid #a0a0a0;
+    height: 20px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+  </style>
+  <script><![CDATA[
+    function changePage(evt) {
+    }
+  ]]></script>
+</head>
+<body>
+<header>
+  <!-- Icon -->
+  <svg width="32" height="32" version="1.2" baseProfile="tiny"
+       xmlns="http://www.w3.org/2000/svg"
+       xmlns:xlink="http://www.w3.org/1999/xlink"
+       xmlns:ev="http://www.w3.org/2001/xml-events">
+    <path stroke="black" stroke-width="0.5" fill="white" d="M1,0 H9 L14,5 V15 H1 V0 H9 V5 H14"
+          transform="translate(0,0) scale(2,2)"/>
+  </svg>
+  <!-- Title -->
+  <h1>Document Settings</h1>
+  <h2>Some informative subtext</h2>
+</header>
+<!-- Subtext -->
+<nav><!-- The "tabs" -->
+  <ul>
+    <li style="background-color: #bfffbf;"><a href="#programPanel">Program</a></li>
+    <li><a href="#sessionPanel">Session</a></li>
+    <li><a href="#associationPanel">Association</a></li>
+    <li><a href="#windowPanel">Window</a></li>
+    <li><a href="#generalPanel">General</a></li>
+  </ul>
+</nav>
+<section id="programPanel"><!-- Program Panel -->
+<form>
+<dl>
+  <dt><label>Path and file name:</label></dt>
+  <dd><input/><button class="StandardPushButton">Find...</button></dd>
+  <dt><label>Parameters:</label></dt>
+  <dd><input/></dd>
+  <dt><label>Working directory:</label></dt>
+  <dd><input/></dd>
+</dl>
+<ul contenteditable="true">  
+</ul>  
+
+</form>
+</section>
+<div style="display:none;">
+<section id="sessionPanel"><!-- Session Panel --></section>
+<section id="associationPanel"><!-- Association Panel --></section>
+<section id="windowPanel"><!-- Window Panel --></section>
+<section id="generalPanel"><!-- General Panel --></section>
+</div>
+<div style="position: fixed; top: auto; left: 120px; right: auto; bottom: 6px; padding-left: 10px;">
+<button class="StandardPushButton">Help</button>
+<button class="StandardPushButton">Undo</button>
+<button class="StandardPushButton">Defaults</button>
+</div>
+</body>
+</html>
