@@ -1,15 +1,23 @@
-<?xml version="1.0" standalone="no">
+<?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg"
      version="1.1" width="1920" height="1080">
   <g class="window">
     <g class="vbox">
+      <g class="listbox"></g>
       <g class="hbox">
         <g class="spacer"></g>
-        <g class="button"></g>
-        <g class="button"></g>
+        <g class="button"><text>Cancel</text></g>
+        <g class="button">
+          <rect x="" y="" width="" height="" fill="grey" stroke="black" stroke-width="1"/>
+          <polyline points="x0 y0 x1 y1 x2 y2" fill="none" stroke="darkgrey" stroke-width="1"/>
+          <polyline points="x0 y0 x3 y3 x2 y2" fill="none" stroke="lightgrey" stroke-width="1"/>
+          <text>OK</text>
+        </g>
       </g>
     </g>
   </g>
 </svg>
+
+
