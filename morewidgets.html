@@ -38,6 +38,18 @@
         <linearGradient id="strokeColor">
           <stop stop-color="#a0a0a0"/>
         </linearGradient>
+        <path id="bigArrowDown"   d="M0,0 H8 L4,4Z" stroke="none" fill="black"/>
+        <path id="bigArrowUp"     d="M0,4 H8 L4,0Z" stroke="none" fill="black"/>
+        <path id="bigArrowRight"  d="M0,0 V8 L4,4Z" stroke="none" fill="black"/>
+        <path id="bigArrowLeft"   d="M4,0 V8 L0,4Z" stroke="none" fill="black"/>
+        <g id="hGrippy">
+          <rect width="10" height="10" fill="url(#gripLight)" stroke="none"/>
+          <path d="M1,0 v10 M3,0 v10 M5,0 v10 M7,0 v10 M9,0 v10" stroke="url(#gripShade)"/>
+        </g>
+        <g id="vGrippy">
+          <rect width="9" height="9" fill="url(#gripLight)" stroke="none"/>
+          <path d="M0,1 h9 M0,3 h9 M0,5 h9 M0,7 h9 M0,9 h9" stroke="url(#gripShade)"/>
+        </g>
       </defs>
     </svg>
     <table style="background-color: #dddddd">
@@ -327,7 +339,7 @@
               </clipPath>
             </defs>
             <g transform="translate(70.5,44.5)">
-              <circle cx="6" cy="6" r="7" fill="white" stroke="white""/>
+              <circle cx="6" cy="6" r="7" fill="white" stroke="white"/>
               <circle cx="6" cy="6" r="7" fill="darkgrey" stroke="darkgrey" clip-path="url(#circle-slice)"/>
               <circle cx="6" cy="6" r="6" fill="#ffffff" stroke="black"/>
               <text x="16" y="10" font-size="13.3" font-family="sans-serif" stroke="none" fill="black">Option</text>
@@ -537,30 +549,130 @@
                 <rect width="16" height="16" stroke="black" fill="#efefef"/>
                 <polyline points="1,15 15,15 15,1" stroke="darkgrey" fill="none"/>
                 <polyline points="1,15 1,1 15,1" stroke="white" fill="none"/>
+                <use x="6" y="3.5" xlink:href="#bigArrowLeft"/>
               </g>
               <g transform="translate(144,0)">
                 <rect width="16" height="16" stroke="black" fill="#efefef"/>
                 <polyline points="1,15 15,15 15,1" stroke="darkgrey" fill="none"/>
                 <polyline points="1,15 1,1 15,1" stroke="white" fill="none"/>
+                <use x="6" y="3.5" xlink:href="#bigArrowRight"/>
               </g>
               <g transform="translate(100,0)">
                 <rect width="32" height="16" stroke="black" fill="#efefef"/>
                 <polyline points="1,15 31,15 31,1" stroke="darkgrey" fill="none"/>
                 <polyline points="1,15 1,1 31,1" stroke="white" fill="none"/>
+                <use x="11" y="3" xlink:href="#hGrippy"/>
               </g>
-
             </g>
           </svg>
         </td>
-        <td></td>
-        <td></td>
+        <td>
+          <svg width="200" height="100">
+            <g transform="translate (0.5, 0.5)">
+              <rect width="160" height="16" stroke="black" fill="url(#scrollBarTrough)"/>
+              <g>
+                <rect width="16" height="16" stroke="black" fill="url(#greylight)"/>
+                <use x="6" y="3.5" xlink:href="#bigArrowLeft"/>
+              </g>
+              <g transform="translate(144,0)">
+                <rect width="16" height="16" stroke="black" fill="url(#greylight)"/>
+                <use x="6" y="3.5" xlink:href="#bigArrowRight"/>
+              </g>
+              <g transform="translate(100,0)">
+                <rect width="32" height="16" stroke="black" fill="url(#greylight)"/>
+                <use x="11" y="3" xlink:href="#hGrippy"/>
+              </g>
+            </g>
+          </svg>
+        </td>
+        <td>
+          <svg width="200" height="100">
+            <g transform="translate (0.5, 0.5)">
+              <rect width="160" height="16" stroke="black" fill="url(#scrollBarTrough)"/>
+              <g>
+                <rect width="16" height="16" stroke="black" fill="#efefef"/>
+                <use x="6" y="3.5" xlink:href="#bigArrowLeft"/>
+              </g>
+              <g transform="translate(144,0)">
+                <rect width="16" height="16" stroke="black" fill="#efefef"/>
+                <use x="6" y="3.5" xlink:href="#bigArrowRight"/>
+              </g>
+              <g transform="translate(100,0)">
+                <rect width="32" height="16" stroke="black" fill="#efefef"/>
+                <use x="11" y="3" xlink:href="#hGrippy"/>
+              </g>
+            </g>
+          </svg>
+        </td>
       </tr>
       <tr>
         <th>Vertical Scrollbar</th>
         <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>
+          <svg width="200" height="200">
+            <g transform="translate (0.5, 0.5)">
+              <rect width="16" height="160" stroke="black" fill="url(#scrollBarTrough)"/>
+              <polyline points="1,143 1,17 15,17" stroke="darkgrey" fill="none"/>
+              <polyline points="1,143 15,143 15,17" stroke="white" fill="none"/>
+              <g>
+                <rect width="16" height="16" stroke="black" fill="#efefef"/>
+                <polyline points="1,15 15,15 15,1" stroke="darkgrey" fill="none"/>
+                <polyline points="1,15 1,1 15,1" stroke="white" fill="none"/>
+                <use x="3.5" y="6" xlink:href="#bigArrowUp"/>
+              </g>
+              <g transform="translate(0,144)">
+                <rect width="16" height="16" stroke="black" fill="#efefef"/>
+                <polyline points="1,15 15,15 15,1" stroke="darkgrey" fill="none"/>
+                <polyline points="1,15 1,1 15,1" stroke="white" fill="none"/>
+                <use x="3.5" y="6" xlink:href="#bigArrowDown"/>
+              </g>
+              <g transform="translate(0,100)">
+                <rect width="16" height="32" stroke="black" fill="#efefef"/>
+                <polyline points="1,31 15,31 15,1" stroke="darkgrey" fill="none"/>
+                <polyline points="1,31 1,1 15,1" stroke="white" fill="none"/>
+                <use x="3" y="11" xlink:href="#vGrippy"/>
+              </g>
+            </g>
+          </svg>
+        </td>
+        <td>
+          <svg width="200" height="200">
+            <g transform="translate (0.5, 0.5)">
+              <rect width="16" height="160" stroke="black" fill="url(#scrollBarTrough)"/>
+              <g>
+                <rect width="16" height="16" stroke="black" fill="url(#greylight)"/>
+                <use x="3.5" y="6" xlink:href="#bigArrowUp"/>
+              </g>
+              <g transform="translate(0,144)">
+                <rect width="16" height="16" stroke="black" fill="url(#greylight)"/>
+                <use x="3.5" y="6" xlink:href="#bigArrowDown"/>
+              </g>
+              <g transform="translate(0,100)">
+                <rect width="16" height="32" stroke="black" fill="url(#greylight)"/>
+                <use x="3" y="11" xlink:href="#vGrippy"/>
+              </g>
+            </g>
+          </svg>
+        </td>
+        <td>
+          <svg width="200" height="200">
+            <g transform="translate (0.5, 0.5)">
+              <rect width="16" height="160" stroke="black" fill="url(#scrollBarTrough)"/>
+              <g>
+                <rect width="16" height="16" stroke="black" fill="#efefef"/>
+                <use x="3.5" y="6" xlink:href="#bigArrowUp"/>
+              </g>
+              <g transform="translate(0,144)">
+                <rect width="16" height="16" stroke="black" fill="#efefef"/>
+                <use x="3.5" y="6" xlink:href="#bigArrowDown"/>
+              </g>
+              <g transform="translate(0,100)">
+                <rect width="16" height="32" stroke="black" fill="#efefef"/>
+                <use x="3" y="11" xlink:href="#vGrippy"/>
+              </g>
+            </g>
+          </svg>
+        </td>
       </tr>
 
     </table>
