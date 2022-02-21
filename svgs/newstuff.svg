@@ -9,15 +9,16 @@
       <g class="hbox">
         <g class="spacer"></g>
         <g class="button"><text>Cancel</text></g>
-        <g class="button">
-          <rect x="" y="" width="" height="" fill="grey" stroke="black" stroke-width="1"/>
-          <polyline points="x0 y0 x1 y1 x2 y2" fill="none" stroke="darkgrey" stroke-width="1"/>
-          <polyline points="x0 y0 x3 y3 x2 y2" fill="none" stroke="lightgrey" stroke-width="1"/>
-          <text>OK</text>
-        </g>
+        <g class="button"><text>OK</text></g>
       </g>
     </g>
   </g>
+  <script>
+<!--  <rect x="" y="" width="" height="" fill="grey" stroke="black" stroke-width="1"/>
+      <polyline points="x0 y0 x1 y1 x2 y2" fill="none" stroke="darkgrey" stroke-width="1"/>
+      <polyline points="x0 y0 x3 y3 x2 y2" fill="none" stroke="lightgrey" stroke-width="1"/>
+-->
+  </script>
 </svg>
 
 
