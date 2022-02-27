@@ -23,14 +23,29 @@
         text-anchor: middle;
         alignment-baseline: central;
       }
+      .button rect {
+        fill: #efefef;
+        stroke: black;
+      }
+      .button .shadow {
+        stroke: darkgrey;
+      }
+      .button .highlight {
+        stroke: white;
+      }
       .button:active rect {
         fill: #bbbbbb;
+        stroke: black;
       }
       .button:active .shadow {
         stroke: white;
       }
       .button:active .highlight {
         stroke: darkgrey;
+      }
+      rect.trough {
+        fill:#bbbbbb;
+        stroke: black;
       }
     </style>
   </head>
@@ -71,42 +86,36 @@
           <stop offset="1" stop-color="#dddddd"/>
         </linearGradient>
         <linearGradient id="textlight" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0" stop-color="#d8d8d8"/><!-- d8d8d8 -->
-          <stop offset="0.15" stop-color="#ffffff"/><!-- fffff3 -->
-          <stop offset="1" stop-color="#ffffff"/><!-- fffff3 -->
-        </linearGradient>
-        <linearGradient id="scrollBarTrough">
-          <stop stop-color="#bbbbbb"/><!-- bbbbaa -->
-        </linearGradient>
-        <linearGradient id="textAreaFill">
-          <stop stop-color="#ffffff"/><!-- fffff3 -->
-        </linearGradient>
-        <linearGradient id="grey50">
-          <stop stop-color="#808080"/><!-- 808080 -->
+          <stop offset="0" stop-color="#d8d8d8"/>
+          <stop offset="0.15" stop-color="#ffffff"/>
+          <stop offset="1" stop-color="#ffffff"/>
         </linearGradient>
         <linearGradient id="gripLight">
-          <stop stop-color="#eeeeee"/><!-- ffffee -->
+          <stop stop-color="#eeeeee"/>
         </linearGradient>
         <linearGradient id="gripShade">
-          <stop stop-color="#aaaaaa"/><!-- aaaaaa -->
+          <stop stop-color="#aaaaaa"/>
         </linearGradient>
-        <linearGradient id="strokeColor">
-          <stop stop-color="#a0a0a0"/>
-        </linearGradient>
-        <path id="bigArrowDown"   d="M0,0 H8 L4,4Z" stroke="none" fill="black"/>
-        <path id="bigArrowUp"     d="M0,4 H8 L4,0Z" stroke="none" fill="black"/>
-        <path id="bigArrowRight"  d="M0,0 V8 L4,4Z" stroke="none" fill="black"/>
-        <path id="bigArrowLeft"   d="M4,0 V8 L0,4Z" stroke="none" fill="black"/>
-        <path id="documentIcon" stroke="black" fill="white" vector-effect="non-scaling-stroke"
-              d="M  1,0
-                 H  9
-                 L 14,5
-                 V    15
-                 H  1
-                 V    0
-                 H  9
-                 V    5
-                 H 14"/>
+        <symbol id="newArrowDown" viewBox="-4 -6.5 16 16">
+          <path d="M0,0 H8 L4,4Z" stroke="none" fill="black"/>
+        </symbol>
+        <symbol id="newArrowUp" viewBox="-4 -5.5 16 16">
+          <path d="M0,4 H8 L4,0Z" stroke="none" fill="black"/>
+        </symbol>
+        <symbol id="newArrowRight" viewBox="-6.5 -4 16 16">
+          <path d="M0,0 V8 L4,4Z" stroke="none" fill="black"/>
+        </symbol>
+        <symbol id="newArrowLeft" viewBox="-5.5 -4 16 16">
+          <path d="M4,0 V8 L0,4Z" stroke="none" fill="black"/>
+        </symbol>
+        <symbol id="documentIcon" viewBox="0 0 16 16">
+          <path stroke="black" fill="inherit" vector-effect="non-scaling-stroke"
+                d="M14.5,5.5 H9.5 V0.5 L14.5,5.5 V15.5 H1.5 V0.5 H9.5"/>
+        </symbol>
+        <symbol id="folderIcon" viewbox="0 0 16 16">
+          <path stroke="black" fill="inherit" vector-effect="non-scaling-stroke"
+                d="M8.5,3.5 L6.5,5.5 H0.5 V3.5 L2.5,1.5 H6.5 L8.5,3.5 H15.5 V14.5 H0.5 V5.5"/>
+        </symbol>
         <g id="hGrippy">
           <rect width="10" height="10" fill="url(#gripLight)" stroke="none"/>
           <path d="M1,0 v10 M3,0 v10 M5,0 v10 M7,0 v10 M9,0 v10" stroke="url(#gripShade)"/>
@@ -114,10 +123,6 @@
         <g id="vGrippy">
           <rect width="9" height="9" fill="url(#gripLight)" stroke="none"/>
           <path d="M0,1 h9 M0,3 h9 M0,5 h9 M0,7 h9 M0,9 h9" stroke="url(#gripShade)"/>
-        </g>
-        <g id="cornerGrippy">
-          <path d="M0,8 L8,0 M2,10 L10,2 M4,12 L12,4 M6,14 L14,6" stroke="url(#gripLight)"/>
-          <path d="M1,9 L9,1 M3,11 L11,3 M5,13 L13,5 M7,15 L15,7" stroke="url(#gripShade)"/>
         </g>
         <clipPath id="circle-slice">
           <polyline points="-2,14 14,-2 -2,-2 -2,14"/>
@@ -127,31 +132,34 @@
           <circle cx="6" cy="6" r="7" fill="darkgrey" stroke="darkgrey" clip-path="url(#circle-slice)"/>
           <circle cx="6" cy="6" r="6" fill="#ffffff" stroke="black"/>
         </g>
+        <symbol id="checkmark">
+          <path d="M1,6.5 L5,10.5 L11,1.5" stroke="#000" stroke-width="2" fill="none"/>
+        </symbol>
         <g id="checkbox">
           <rect width="12" height="12" fill="white" stroke="black"/>
           <polyline class="shadow" points="-1,13 -1,-1 13,-1"/>
           <polyline class="highlight" points="-1,13 13,13 13,-1"/>
         </g>
-        <g id="scrollbar-stepper">
-          <rect width="16" height="16" stroke="black" fill="#efefef"/>
+        <g id="scrollbar-stepper" class="button">
+          <rect width="16" height="16" stroke="black" fill="inherit"/>
           <polyline class="shadow" points="1,15 15,15 15,1"/>
           <polyline class="highlight" points="1,15 1,1 15,1"/>
         </g>
         <g id="scrollbar-stepper-up">
           <use xlink:href="#scrollbar-stepper"/>
-          <use xlink:href="#bigArrowUp"/>
+          <use xlink:href="#newArrowUp"/>
         </g>
         <g id="scrollbar-stepper-down">
           <use xlink:href="#scrollbar-stepper"/>
-          <use xlink:href="#bigArrowDown"/>
+          <use xlink:href="#newArrowDown"/>
         </g>
-        <g id="scrollbar-stepper-left">
-          <use xlink:href="#scrollbar-stepper"/>
-          <use x="6" y="3.5" xlink:href="#bigArrowLeft"/>
+        <g id="scrollbar-stepper-left" class="button">
+          <use xlink:href="#scrollbar-stepper" fill="inherit" class="button"/>
+          <use xlink:href="#newArrowLeft"/>
         </g>
         <g id="scrollbar-stepper-right">
           <use xlink:href="#scrollbar-stepper"/>
-          <use x="6.5" y="3" xlink:href="#bigArrowRight"/>
+          <use xlink:href="#newArrowRight"/>
         </g>
       </defs>
     </svg>
@@ -169,7 +177,7 @@
         <td>
           <svg width="200" height="100">
             <g class="button" transform="translate(68,39)">
-              <rect x="0.5" y="0.5" width="64" height="22" fill="#efefef" stroke="black"/>
+              <rect x="0.5" y="0.5" width="64" height="22"/>
               <polyline class="shadow" points="1,21.5 63.5,21.5 63.5,1"/>
               <polyline class="highlight" points="1.5,22 1.5,1.5 64,1.5"/>
               <text class="centered" x="32" y="11">OK</text>
@@ -370,7 +378,7 @@
           <svg width="200" height="100">
             <g transform="translate(70.5,44.5)">
               <use xlink:href="#checkbox"/>
-              <path d="M1,6.5 L5,10.5 L11,1.5" stroke="#000" stroke-width="2" fill="none"/>
+              <use xlink:href="#checkmark"/>
               <text x="16" y="10">Option</text>
             </g>
           </svg>
@@ -379,7 +387,7 @@
           <svg width="200" height="100">
             <g transform="translate(70.5,44.5)">
               <rect width="12" height="12" fill="url(#greylight)" stroke="black"/>
-              <path d="M1,6.5 L5,10.5 L11,1.5" stroke="#000" stroke-width="2" fill="none"/>
+              <use xlink:href="#checkmark"/>
               <text x="16" y="10">Option</text>
             </g>
           </svg>
@@ -388,7 +396,7 @@
           <svg width="200" height="100">
             <g transform="translate(70.5,44.5)">
               <rect width="12" height="12" fill="#efefef" stroke="black"/>
-              <path d="M1,6.5 L5,10.5 L11,1.5" stroke="#000" stroke-width="2" fill="none"/>
+              <use xlink:href="#checkmark"/>
               <text x="16" y="10">Option</text>
             </g>
           </svg>
@@ -618,20 +626,20 @@
         <td>
           <svg width="200" height="100">
             <g transform="translate (0.5, 0.5)">
-              <rect width="160" height="16" stroke="black" fill="url(#scrollBarTrough)"/>
+              <rect class="trough" width="160" height="16"/>
               <polyline class="shadow" points="1,15 1,1 127,1"/>
               <polyline class="highlight" points="1,15 127,15 127,1"/>
-              <g transform="translate(128,0)">
-                <rect width="16" height="16" stroke="black" fill="#efefef"/>
+              <g class="button" transform="translate(128,0)">
+                <rect width="16" height="16"/>
                 <polyline class="shadow" points="1,15 15,15 15,1"/>
                 <polyline class="highlight" points="1,15 1,1 15,1"/>
-                <use x="6" y="3.5" xlink:href="#bigArrowLeft"/>
+                <use xlink:href="#newArrowLeft" width="16" height="16"/>
               </g>
-              <g transform="translate(144,0)">
-                <rect width="16" height="16" stroke="black" fill="#efefef"/>
+              <g class="button" transform="translate(144,0)">
+                <rect width="16" height="16"/>
                 <polyline class="shadow" points="1,15 15,15 15,1"/>
                 <polyline class="highlight" points="1,15 1,1 15,1"/>
-                <use x="6" y="3.5" xlink:href="#bigArrowRight"/>
+                <use xlink:href="#newArrowRight" width="16" height="16"/>
               </g>
               <g transform="translate(50,0)">
                 <rect width="32" height="16" stroke="black" fill="#efefef"/>
@@ -645,14 +653,14 @@
         <td>
           <svg width="200" height="100">
             <g transform="translate (0.5, 0.5)">
-              <rect width="160" height="16" stroke="black" fill="url(#scrollBarTrough)"/>
+              <rect class="trough" width="160" height="16"/>
               <g transform="translate(128,0)">
                 <rect width="16" height="16" stroke="black" fill="url(#greylight)"/>
-                <use x="6" y="3.5" xlink:href="#bigArrowLeft"/>
+                <use xlink:href="#newArrowLeft" width="16" height="16"/>
               </g>
               <g transform="translate(144,0)">
                 <rect width="16" height="16" stroke="black" fill="url(#greylight)"/>
-                <use x="6" y="3.5" xlink:href="#bigArrowRight"/>
+                <use xlink:href="#newArrowRight" width="16" height="16"/>
               </g>
               <g transform="translate(50,0)">
                 <rect width="32" height="16" stroke="black" fill="url(#greylight)"/>
@@ -664,14 +672,14 @@
         <td>
           <svg width="200" height="100">
             <g transform="translate (0.5, 0.5)">
-              <rect width="160" height="16" stroke="black" fill="url(#scrollBarTrough)"/>
+              <rect class="trough" width="160" height="16"/>
               <g transform="translate(128,0)">
                 <rect width="16" height="16" stroke="black" fill="#efefef"/>
-                <use x="6" y="3.5" xlink:href="#bigArrowLeft"/>
+                <use xlink:href="#newArrowLeft" width="16" height="16"/>
               </g>
               <g transform="translate(144,0)">
                 <rect width="16" height="16" stroke="black" fill="#efefef"/>
-                <use x="6" y="3.5" xlink:href="#bigArrowRight"/>
+                <use xlink:href="#newArrowRight" width="16" height="16"/>
               </g>
               <g transform="translate(50,0)">
                 <rect width="32" height="16" stroke="black" fill="#efefef"/>
@@ -687,20 +695,20 @@
         <td>
           <svg width="200" height="200">
             <g transform="translate (0.5, 0.5)">
-              <rect width="16" height="160" stroke="black" fill="url(#scrollBarTrough)"/>
+              <rect class="trough" width="16" height="160"/>
               <polyline class="shadow" points="1,127 1,1 15,1"/>
               <polyline class="highlight" points="1,127 15,127 15,1"/>
-              <g transform="translate(0,128)">
-                <rect width="16" height="16" stroke="black" fill="#efefef"/>
+              <g class="button" transform="translate(0,128)">
+                <rect width="16" height="16"/>
                 <polyline class="shadow" points="1,15 15,15 15,1"/>
                 <polyline class="highlight" points="1,15 1,1 15,1"/>
-                <use x="3.5" y="6" xlink:href="#bigArrowUp"/>
+                <use xlink:href="#newArrowUp" width="16" height="16"/>
               </g>
-              <g transform="translate(0,144)">
-                <rect width="16" height="16" stroke="black" fill="#efefef"/>
+              <g class="button" transform="translate(0,144)">
+                <rect width="16" height="16"/>
                 <polyline class="shadow" points="1,15 15,15 15,1"/>
                 <polyline class="highlight" points="1,15 1,1 15,1"/>
-                <use x="3.5" y="6" xlink:href="#bigArrowDown"/>
+                <use xlink:href="#newArrowDown" width="16" height="16"/>
               </g>
               <g transform="translate(0,50)">
                 <rect width="16" height="32" stroke="black" fill="#efefef"/>
@@ -714,14 +722,14 @@
         <td>
           <svg width="200" height="200">
             <g transform="translate (0.5, 0.5)">
-              <rect width="16" height="160" stroke="black" fill="url(#scrollBarTrough)"/>
+              <rect class="trough" width="16" height="160"/>
               <g transform="translate(0,128)">
                 <rect width="16" height="16" stroke="black" fill="url(#greylight)"/>
-                <use x="3.5" y="6" xlink:href="#bigArrowUp"/>
+                <use xlink:href="#newArrowUp" width="16" height="16"/>
               </g>
               <g transform="translate(0,144)">
                 <rect width="16" height="16" stroke="black" fill="url(#greylight)"/>
-                <use x="3.5" y="6" xlink:href="#bigArrowDown"/>
+                <use xlink:href="#newArrowDown" width="16" height="16"/>
               </g>
               <g transform="translate(0,50)">
                 <rect width="16" height="32" stroke="black" fill="url(#greylight)"/>
@@ -733,14 +741,14 @@
         <td>
           <svg width="200" height="200">
             <g transform="translate (0.5, 0.5)">
-              <rect width="16" height="160" stroke="black" fill="url(#scrollBarTrough)"/>
+              <rect class="trough" width="16" height="160"/>
               <g transform="translate(0,128)">
                 <rect width="16" height="16" stroke="black" fill="#efefef"/>
-                <use x="3.5" y="6" xlink:href="#bigArrowUp"/>
+                <use xlink:href="#newArrowUp" width="16" height="16"/>
               </g>
               <g transform="translate(0,144)">
                 <rect width="16" height="16" stroke="black" fill="#efefef"/>
-                <use x="3.5" y="6" xlink:href="#bigArrowDown"/>
+                <use xlink:href="#newArrowDown" width="16" height="16"/>
               </g>
               <g transform="translate(0,50)">
                 <rect width="16" height="32" stroke="black" fill="#efefef"/>
@@ -772,20 +780,20 @@
         <polyline class="highlight" points="0.5,184.5 364.5,184.5 364.5,0.5"/>
       </g>
       <g class="v-scrollbar" transform="translate(365.5,59.5)">
-        <rect width="16" height="182" stroke="black" fill="url(#scrollBarTrough)"/>
+        <rect class="trough" width="16" height="182"/>
         <polyline class="shadow" points="1,149 1,1 15,1"/>
         <polyline class="highlight" points="1,149 15,149 15,1"/>
         <g class="button" transform="translate(0,150)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
           <polyline class="shadow" points="1,15 15,15 15,1"/>
           <polyline class="highlight" points="1,15 1,1 15,1"/>
-          <use x="3.5" y="6" xlink:href="#bigArrowUp"/>
+          <use xlink:href="#newArrowUp" width="16" height="16"/>
         </g>
         <g class="button" transform="translate(0,166)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
           <polyline class="shadow" points="1,15 15,15 15,1"/>
           <polyline class="highlight" points="1,15 1,1 15,1"/>
-          <use x="3.5" y="6" xlink:href="#bigArrowDown"/>
+          <use xlink:href="#newArrowDown" width="16" height="16"/>
         </g>
         <g transform="translate(0,50)">
           <rect width="16" height="32" stroke="black" fill="#efefef"/>
@@ -841,34 +849,51 @@
         <text class="centered" x="32" y="11">Save</text>
       </g>
     </svg>
+    <svg width="400" height="300">
+      <rect x="0.5" y="0.5" width="399" height="299" fill="#efefef" stroke="black"/>
+      <polyline class="shadow" points="1.5,298.5 398.5,298.5 398.5,1.5"/>
+      <polyline class="highlight" points="1.5,298.5 1.5,1.5 398.5,1.5"/>
+      <use x="382" y="282" xlink:href="#newcornergrip"/>
+      <rect x="2.5" y="2.5" width="48" height="48" stroke="none" fill="none"/>
+      <use x="1" y="1" xlink:href="#documentIcon" width="48" height="48" fill="red"/>
+      <text x="56" y="24" style="font-family: Sans-serif; font-size: 24">Program Settings</text>
+      <text x="56" y="40" style="font-family: Sans-serif; font-size: 13.3; font-style: italic;">Some informative subtext</text>
+      <g transform="translate(0.5,13.5)">
+        <rect x="19" y="53" width="100" height="215" stroke="black" fill="white"/>
+        <polyline class="shadow" points="18,269 18,52 120,52"/>
+        <polyline class="highlight" points="18,269 120,269 120,52"/>
+        <text x="23" y="68">Program</text>
+        <text x="23" y="88">Session</text>
+        <text x="23" y="108">Association</text>
+        <text x="23" y="128">Window</text>
+        <text x="23" y="148">General</text>
+      </g>
+    </svg>
     <svg width="640" height="480">
       <rect x="0.5" y="0.5" width="639" height="479" stroke="black" fill="#efefef"/>
       <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
       <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
       <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
-      <g transform="translate(9.5,9.5)">
-        <rect width="32" height="32" stroke="none" fill="none"/>
-        <path stroke="black" fill="white" d="M4,0 H24 L28,4 V32 H4Z M24,0 V4 H28"/>
-      </g>
+      <use xlink:href="#documentIcon" x="5" y="6" width="40" height="40" fill="white"/>
       <text x="56" y="24" style="font-size: 24">Document Title</text>
       <text x="56" y="40">plain text</text>
       <rect x="0.5" y="51.5" width="639" height="428" stroke="black" fill="white"/>
       <polyline class="shadow" points="1.5,50.5 638.5,50.5"/>
       <g class="v-scrollbar" transform="translate(623.5,51.5)">
-        <rect width="16" height="396" stroke="black" fill="url(#scrollBarTrough)"/>
+        <rect class="trough" width="16" height="396"/>
         <polyline class="shadow" points="1,379 1,1 15,1"/>
         <polyline class="highlight" points="1,379 15,379 15,1"/>
         <g class="button" transform="translate(0,380)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
           <polyline class="shadow" points="1,15 15,15 15,1"/>
           <polyline class="highlight" points="1,15 1,1 15,1"/>
-          <use x="3.5" y="6" xlink:href="#bigArrowUp"/>
+          <use xlink:href="#newArrowUp" width="16" height="16"/>
         </g>
         <g class="button" transform="translate(0,396)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
           <polyline class="shadow" points="1,15 15,15 15,1"/>
           <polyline class="highlight" points="1,15 1,1 15,1"/>
-          <use x="3.5" y="6" xlink:href="#bigArrowDown"/>
+          <use xlink:href="#newArrowDown" width="16" height="16"/>
         </g>
         <g transform="translate(0,100)">
           <rect width="16" height="32" stroke="black" fill="#efefef"/>
@@ -879,20 +904,20 @@
       </g>
       <use x="623" y="463" xlink:href="#newcornergrip"/>
       <g class="h-scrollbar" transform="translate (0.5, 463.5)">
-        <rect width="607" height="16" stroke="black" fill="url(#scrollBarTrough)"/>
+        <rect class="trough" width="607" height="16"/>
         <polyline class="shadow" points="1,15 1,1 590,1"/>
         <polyline class="highlight" points="1,15 590,15 590,1"/>
         <g class="button" transform="translate(591,0)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
           <polyline class="shadow" points="1,15 15,15 15,1"/>
           <polyline class="highlight" points="1,15 1,1 15,1"/>
-          <use x="6" y="3.5" xlink:href="#bigArrowLeft"/>
+          <use xlink:href="#newArrowLeft" width="16" height="16"/>
         </g>
         <g class="button" transform="translate(607,0)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
           <polyline class="shadow" points="1,15 15,15 15,1"/>
           <polyline class="highlight" points="1,15 1,1 15,1"/>
-          <use x="6" y="3.5" xlink:href="#bigArrowRight"/>
+          <use xlink:href="#newArrowRight" width="16" height="16"/>
         </g>
         <g transform="translate(100,0)">
           <rect width="32" height="16" stroke="black" fill="#efefef"/>
@@ -907,30 +932,27 @@
       <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
       <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
       <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
-      <g transform="translate(9.5,9.5)">
-        <rect width="32" height="32" stroke="none" fill="none"/>
-        <path stroke="black" fill="#ffffaa" d="M4,0 H24 L28,4 V32 H4Z M24,0 V4 H28"/>
-      </g>
+      <use xlink:href="#folderIcon" x="1" y="1" width="48" height="48" fill="#aaaaaa"/>
       <text x="56" y="24" style="font-size: 24">Project Folder</text>
       <text x="56" y="40">Source Code</text>
       <rect x="0.5" y="51.5" width="160" height="428" stroke="black" fill="white"/>
       <rect x="160.5" y="51.5" width="463" height="428" stroke="black" fill="white"/>
       <polyline class="shadow" points="1.5,50.5 638.5,50.5"/>
       <g class="v-scrollbar" transform="translate(623.5,51.5)">
-        <rect width="16" height="396" stroke="black" fill="url(#scrollBarTrough)"/>
+        <rect class="trough" width="16" height="396"/>
         <polyline class="shadow" points="1,379 1,1 15,1"/>
         <polyline class="highlight" points="1,379 15,379 15,1"/>
         <g class="button" transform="translate(0,380)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
           <polyline class="shadow" points="1,15 15,15 15,1"/>
           <polyline class="highlight" points="1,15 1,1 15,1"/>
-          <use x="3.5" y="6" xlink:href="#bigArrowUp"/>
+          <use xlink:href="#newArrowUp" width="16" height="16"/>
         </g>
         <g class="button" transform="translate(0,396)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
           <polyline class="shadow" points="1,15 15,15 15,1"/>
           <polyline class="highlight" points="1,15 1,1 15,1"/>
-          <use x="3.5" y="6" xlink:href="#bigArrowDown"/>
+          <use xlink:href="#newArrowDown" width="16" height="16"/>
         </g>
         <g transform="translate(0,100)">
           <rect width="16" height="32" stroke="black" fill="#efefef"/>
@@ -941,11 +963,21 @@
       </g>
       <use x="623" y="463" xlink:href="#newcornergrip"/>
       <g class="h-scrollbar" transform="translate (160.5, 463.5)">
-        <rect width="447" height="16" stroke="black" fill="url(#scrollBarTrough)"/>
+        <rect class="trough" width="447" height="16"/>
         <polyline class="shadow" points="1,15 1,1 430,1"/>
         <polyline class="highlight" points="1,15 430,15 430,1"/>
-        <use xlink:href="#scrollbar-stepper-left" x="431" class="button"/>
-        <use xlink:href="#scrollbar-stepper-right" x="447" y="0" class="button"/>
+        <g class="button" transform="translate(431,0)">
+          <rect width="16" height="16" stroke="black" fill="#efefef"/>
+          <polyline class="shadow" points="1,15 15,15 15,1"/>
+          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <use xlink:href="#newArrowLeft" width="16" height="16"/>
+        </g>
+        <g class="button" transform="translate(447,0)">
+          <rect width="16" height="16" stroke="black" fill="#efefef"/>
+          <polyline class="shadow" points="1,15 15,15 15,1"/>
+          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <use xlink:href="#newArrowRight" width="16" height="16"/>
+        </g>
         <g transform="translate(100,0)">
           <rect width="32" height="16" stroke="black" fill="#efefef"/>
           <polyline class="shadow" points="1,15 31,15 31,1"/>
@@ -959,26 +991,26 @@
       <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
       <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
       <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
-      <use x="2.5" y="2.5" xlink:href="#documentIcon" transform="scale(2.5,2.5)"/>
+      <use x="1" y="1" xlink:href="#documentIcon" width="48" height="48" fill="white"/>
       <text x="56" y="24" style="font-size: 24">Document Title</text>
       <text x="56" y="40">plain text</text>
       <rect x="0.5" y="51.5" width="639" height="428" stroke="black" fill="white"/>
       <polyline class="shadow" points="1.5,50.5 638.5,50.5"/>
       <g class="v-scrollbar" transform="translate(623.5,51.5)">
-        <rect width="16" height="396" stroke="black" fill="url(#scrollBarTrough)"/>
+        <rect class="trough" width="16" height="396"/>
         <polyline class="shadow" points="1,379 1,1 15,1"/>
         <polyline class="highlight" points="1,379 15,379 15,1"/>
         <g class="button" transform="translate(0,380)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
           <polyline class="shadow" points="1,15 15,15 15,1"/>
           <polyline class="highlight" points="1,15 1,1 15,1"/>
-          <use x="3.5" y="6" xlink:href="#bigArrowUp"/>
+          <use xlink:href="#newArrowUp" width="16" height="16"/>
         </g>
         <g class="button" transform="translate(0,396)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
           <polyline class="shadow" points="1,15 15,15 15,1"/>
           <polyline class="highlight" points="1,15 1,1 15,1"/>
-          <use x="3.5" y="6" xlink:href="#bigArrowDown"/>
+          <use xlink:href="#newArrowDown" width="16" height="16"/>
         </g>
         <g transform="translate(0,100)">
           <rect width="16" height="32" stroke="black" fill="#efefef"/>
@@ -989,20 +1021,20 @@
       </g>
       <use x="623" y="463" xlink:href="#newcornergrip"/>
       <g class="h-scrollbar" transform="translate (0.5, 463.5)">
-        <rect width="607" height="16" stroke="black" fill="url(#scrollBarTrough)"/>
+        <rect class="trough" width="607" height="16"/>
         <polyline class="shadow" points="1,15 1,1 590,1"/>
         <polyline class="highlight" points="1,15 590,15 590,1"/>
         <g class="button" transform="translate(591,0)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
           <polyline class="shadow" points="1,15 15,15 15,1"/>
           <polyline class="highlight" points="1,15 1,1 15,1"/>
-          <use x="6" y="3.5" xlink:href="#bigArrowLeft"/>
+          <use xlink:href="#newArrowLeft" width="16" height="16"/>
         </g>
         <g class="button" transform="translate(607,0)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
           <polyline class="shadow" points="1,15 15,15 15,1"/>
           <polyline class="highlight" points="1,15 1,1 15,1"/>
-          <use x="6" y="3.5" xlink:href="#bigArrowRight"/>
+          <use xlink:href="#newArrowRight" width="16" height="16"/>
         </g>
         <g transform="translate(100,0)">
           <rect width="32" height="16" stroke="black" fill="#efefef"/>
@@ -1011,6 +1043,14 @@
           <use x="11" y="3" xlink:href="#hGrippy"/>
         </g>
       </g>
+    </svg>
+    <svg width="100" height="100">
+      <defs>
+      </defs>
+      <rect x="0.5" y="0.5" width="99" height="99" stroke="black" fill="#dddddd"/>
+      
+      <use x="20" y="20" xlink:href="#documentIcon" fill="white" width="16" height="16"/>
+      <use x="40" y="40" xlink:href="#folderIcon" fill="red" width="16" height="16"/>
     </svg>
   </body>
 </html>
