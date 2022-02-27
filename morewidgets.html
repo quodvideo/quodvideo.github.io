@@ -27,24 +27,58 @@
         fill: #efefef;
         stroke: black;
       }
-      .button .shadow {
+      .button rect + polyline {
         stroke: darkgrey;
+        fill: none;
       }
-      .button .highlight {
+      .button rect + polyline + polyline {
         stroke: white;
+        fill: none;
       }
       .button:active rect {
         fill: #bbbbbb;
         stroke: black;
       }
-      .button:active .shadow {
+      .button:active rect + polyline {
         stroke: white;
       }
-      .button:active .highlight {
+      .button:active rect + polyline +polyline  {
         stroke: darkgrey;
       }
       rect.trough {
         fill:#bbbbbb;
+        stroke: black;
+      }
+      rect.trough + polyline {
+        fill: none;
+        stroke: darkgrey;
+      }
+      rect.trough + polyline + polyline {
+        fill: none;
+        stroke: white;
+      }
+      .slider rect {
+        fill: #efefef;
+        stroke: black;
+      }
+      .slider rect + polyline {
+        stroke: darkgrey;
+        fill: none;
+      }
+      .slider rect + polyline + polyline {
+        stroke: white;
+        fill: none;
+      }
+      .textfield polyline {
+        fill: none;
+        stroke: darkgrey;
+      }
+      .textfield polyline + polyline {
+        fill: none;
+        stroke: white;
+      }
+      .textfield polyline + polyline + rect {
+        fill: white;
         stroke: black;
       }
     </style>
@@ -171,15 +205,14 @@
         <th>Smooth</th>
         <th>Flat</th>
       </tr>
-      <tr>
-        <th>Button</th>
+      <tr><th>Button</th>
         <td style="padding:28"><button style="width: 64px; height: 22px">OK</button></td>
         <td>
           <svg width="200" height="100">
             <g class="button" transform="translate(68,39)">
               <rect x="0.5" y="0.5" width="64" height="22"/>
-              <polyline class="shadow" points="1,21.5 63.5,21.5 63.5,1"/>
-              <polyline class="highlight" points="1.5,22 1.5,1.5 64,1.5"/>
+              <polyline points="1,21.5 63.5,21.5 63.5,1"/>
+              <polyline points="1.5,22 1.5,1.5 64,1.5"/>
               <text class="centered" x="32" y="11">OK</text>
             </g>
           </svg>
@@ -201,8 +234,7 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th>Button Pressed</th>
+      <tr><th>Button Pressed</th>
         <td style="padding:28"><button style="width: 64px; height: 22px">OK</button></td>
         <td>
           <svg width="200" height="100">
@@ -231,14 +263,13 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th>Text Field</th>
+      <tr><th>Text Field</th>
         <td><input/></td>
         <td>
           <svg width="200" height="100">
-            <g transform="translate(28,38)">
-              <polyline class="highlight" points="1,23.5 143.5,23.5 143.5,1"/>
+            <g class="textfield" transform="translate(28,38)">
               <polyline class="shadow" points="1.5,24 1.5,1.5 144,1.5"/>
+              <polyline class="highlight" points="1,23.5 143.5,23.5 143.5,1"/>
               <rect x="2.5" y="2.5" width="140" height="20" fill="#ffffff" stroke="black"/>
               <text x="8" y="12" text-anchor="start" alignment-baseline="central">Input</text>
             </g>
@@ -261,8 +292,7 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th>Text Field Focused</th>
+      <tr><th>Text Field Focused</th>
         <td><input/></td>
         <td>
           <svg width="200" height="100">
@@ -292,8 +322,7 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th>Spinbutton</th>
+      <tr><th>Spinbutton</th>
         <td><input type="number"/></td>
         <td>
           <svg width="200" height="100">
@@ -343,8 +372,7 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th>Check Button (unchecked)</th>
+      <tr><th>Check Button (unchecked)</th>
         <td></td>
         <td>
           <svg width="200" height="100">
@@ -371,8 +399,7 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th>Check Button (checked)</th>
+      <tr><th>Check Button (checked)</th>
         <td></td>
         <td>
           <svg width="200" height="100">
@@ -402,8 +429,7 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th>Check Button (mixed)</th>
+      <tr><th>Check Button (mixed)</th>
         <td></td>
         <td>
           <svg width="200" height="100">
@@ -433,8 +459,7 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th>Radio Button (unchecked)</th>
+      <tr><th>Radio Button (unchecked)</th>
         <td></td>
         <td>
           <svg width="200" height="100">
@@ -461,8 +486,7 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th>Radio Button (checked)</th>
+      <tr><th>Radio Button (checked)</th>
         <td></td>
         <td>
           <svg width="200" height="100">
@@ -492,8 +516,7 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th>Radio Button (mixed)</th>
+      <tr><th>Radio Button (mixed)</th>
         <td></td>
         <td>
           <svg width="200" height="100">
@@ -523,8 +546,7 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th>Reveal Button (closed)</th>
+      <tr><th>Reveal Button (closed)</th>
         <td></td>
         <td>
           <svg width="200" height="100">
@@ -554,8 +576,7 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th>Reveal Button (opened)</th>
+      <tr><th>Reveal Button (opened)</th>
         <td></td>
         <td>
           <svg width="200" height="100">
@@ -587,8 +608,7 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th>Reveal Button (turning)</th>
+      <tr><th>Reveal Button (turning)</th>
         <td></td>
         <td>
           <svg width="200" height="100">
@@ -620,8 +640,7 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th>Horizontal Scrollbar</th>
+      <tr><th>Horizontal Scrollbar</th>
         <td></td>
         <td>
           <svg width="200" height="100">
@@ -631,20 +650,20 @@
               <polyline class="highlight" points="1,15 127,15 127,1"/>
               <g class="button" transform="translate(128,0)">
                 <rect width="16" height="16"/>
-                <polyline class="shadow" points="1,15 15,15 15,1"/>
-                <polyline class="highlight" points="1,15 1,1 15,1"/>
+                <polyline points="1,15 15,15 15,1"/>
+                <polyline points="1,15 1,1 15,1"/>
                 <use xlink:href="#newArrowLeft" width="16" height="16"/>
               </g>
               <g class="button" transform="translate(144,0)">
                 <rect width="16" height="16"/>
-                <polyline class="shadow" points="1,15 15,15 15,1"/>
-                <polyline class="highlight" points="1,15 1,1 15,1"/>
+                <polyline points="1,15 15,15 15,1"/>
+                <polyline points="1,15 1,1 15,1"/>
                 <use xlink:href="#newArrowRight" width="16" height="16"/>
               </g>
-              <g transform="translate(50,0)">
-                <rect width="32" height="16" stroke="black" fill="#efefef"/>
-                <polyline class="shadow" points="1,15 31,15 31,1"/>
-                <polyline class="highlight" points="1,15 1,1 31,1"/>
+              <g class="slider" transform="translate(50,0)">
+                <rect width="32" height="16"/>
+                <polyline points="1,15 31,15 31,1"/>
+                <polyline points="1,15 1,1 31,1"/>
                 <use x="11" y="3" xlink:href="#hGrippy"/>
               </g>
             </g>
@@ -689,8 +708,7 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th>Vertical Scrollbar</th>
+      <tr><th>Vertical Scrollbar</th>
         <td></td>
         <td>
           <svg width="200" height="200">
@@ -700,20 +718,20 @@
               <polyline class="highlight" points="1,127 15,127 15,1"/>
               <g class="button" transform="translate(0,128)">
                 <rect width="16" height="16"/>
-                <polyline class="shadow" points="1,15 15,15 15,1"/>
-                <polyline class="highlight" points="1,15 1,1 15,1"/>
+                <polyline points="1,15 15,15 15,1"/>
+                <polyline points="1,15 1,1 15,1"/>
                 <use xlink:href="#newArrowUp" width="16" height="16"/>
               </g>
               <g class="button" transform="translate(0,144)">
                 <rect width="16" height="16"/>
-                <polyline class="shadow" points="1,15 15,15 15,1"/>
-                <polyline class="highlight" points="1,15 1,1 15,1"/>
+                <polyline points="1,15 15,15 15,1"/>
+                <polyline points="1,15 1,1 15,1"/>
                 <use xlink:href="#newArrowDown" width="16" height="16"/>
               </g>
-              <g transform="translate(0,50)">
-                <rect width="16" height="32" stroke="black" fill="#efefef"/>
-                <polyline class="shadow" points="1,31 15,31 15,1"/>
-                <polyline class="highlight" points="1,31 1,1 15,1"/>
+              <g class="slider" transform="translate(0,50)">
+                <rect width="16" height="32"/>
+                <polyline points="1,31 15,31 15,1"/>
+                <polyline points="1,31 1,1 15,1"/>
                 <use x="3" y="11" xlink:href="#vGrippy"/>
               </g>
             </g>
@@ -758,26 +776,62 @@
           </svg>
         </td>
       </tr>
-      <tr>
-        <th></th>
+      <tr><th>Menu Button or Option Button</th>
+        <td></td>
+        <td>
+          <svg width="200" height="100">
+            <g transform="translate(57, 39)">
+              <rect x="0.5" y="0.5" width="86" height="22" fill="#efefef" stroke="black"/>
+              <polyline class="shadow" points="1.5,21.5 64.5,21.5 64.5,1.5"/>
+              <polyline class="highlight" points="1.5,21.5 1.5,1.5 64.5,1.5"/>
+              <text class="centered" x="32" y="11">Option</text>
+              <use x="64.5" width="22" height="22" xlink:href="#newArrowDown"/>
+              <polyline class="shadow" points="65.5,21.5 85.5,21.5 85.5,1.5"/>
+              <polyline class="highlight" points="65.5,21.5 65.5,1.5 85.5,1.5"/>
+            </g>
+          </svg>
+        </td>
+        <td>
+          <svg width="200" height="100">
+            <g transform="translate(57, 39)">
+              <rect x="0.5" y="0.5" width="86" height="22" fill="url(#greylight)" stroke="black"/>
+              <text class="centered" x="32" y="11">Option</text>
+              <use x="64.5" width="22" height="22" xlink:href="#newArrowDown"/>
+              <line x1="64.5" y1="1" x2="64.5" y2="22" stroke="#a0a0a0"/>
+            </g>
+          </svg>
+        </td>
+        <td>
+          <svg width="200" height="100">
+            <g transform="translate(57, 39)">
+              <rect x="0.5" y="0.5" width="86" height="22" fill="#efefef" stroke="black"/>
+              <text class="centered" x="32" y="11">Option</text>
+              <use x="64.5" width="22" height="22" xlink:href="#newArrowDown"/>
+              <line x1="64.5" y1="1" x2="64.5" y2="22" stroke="#a0a0a0"/>
+            </g>
+          </svg>
+        </td>
       </tr>
     </table>
     <br/>
-    <svg width="400" height="300">
+    <svg width="400" height="300"><title>Open Dialog</title>
       <rect x="0.5" y="0.5" width="399" height="299" fill="#efefef" stroke="black"/>
       <polyline class="shadow" points="1.5,298.5 398.5,298.5 398.5,1.5"/>
       <polyline class="highlight" points="1.5,298.5 1.5,1.5 398.5,1.5"/>
       <use x="382" y="282" xlink:href="#newcornergrip"/>
       <g transform="translate(18,18)">
-        <rect x="0.5" y="0.5" width="64" height="22" fill="#efefef" stroke="black"/>
-        <polyline class="shadow" points="1.5,21.5 63.5,21.5 63.5,1.5"/>
-        <polyline class="highlight" points="1.5,21.5 1.5,1.5 63.5,1.5"/>
+        <rect x="0.5" y="0.5" width="86" height="22" fill="#efefef" stroke="black"/>
+        <polyline class="shadow" points="1.5,21.5 64.5,21.5 64.5,1.5"/>
+        <polyline class="highlight" points="1.5,21.5 1.5,1.5 64.5,1.5"/>
         <text class="centered" x="32" y="11">$PWD</text>
+        <use x="64.5" width="22" height="22" xlink:href="#newArrowDown"/>
+        <polyline class="shadow" points="65.5,21.5 85.5,21.5 85.5,1.5"/>
+        <polyline class="highlight" points="65.5,21.5 65.5,1.5 85.5,1.5"/>
       </g>
-      <g transform="translate(18,58)">
-        <rect x="1.5" y="1.5" width="362" height="182" fill="white" stroke="black"/>
+      <g class="textfield" transform="translate(18,58)">
         <polyline class="shadow" points="0.5,184.5 0.5,0.5 364.5,0.5"/>
         <polyline class="highlight" points="0.5,184.5 364.5,184.5 364.5,0.5"/>
+        <rect x="1.5" y="1.5" width="362" height="182" fill="white" stroke="black"/>
       </g>
       <g class="v-scrollbar" transform="translate(365.5,59.5)">
         <rect class="trough" width="16" height="182"/>
@@ -785,71 +839,74 @@
         <polyline class="highlight" points="1,149 15,149 15,1"/>
         <g class="button" transform="translate(0,150)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 15,15 15,1"/>
-          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
           <use xlink:href="#newArrowUp" width="16" height="16"/>
         </g>
         <g class="button" transform="translate(0,166)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 15,15 15,1"/>
-          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
           <use xlink:href="#newArrowDown" width="16" height="16"/>
         </g>
-        <g transform="translate(0,50)">
-          <rect width="16" height="32" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,31 15,31 15,1"/>
-          <polyline class="highlight" points="1,31 1,1 15,1"/>
+        <g class="slider" transform="translate(0,50)">
+          <rect width="16" height="32"/>
+          <polyline points="1,31 15,31 15,1"/>
+          <polyline points="1,31 1,1 15,1"/>
           <use x="3" y="11" xlink:href="#vGrippy"/>
         </g>
       </g>
       <g class="button" transform="translate(236,260)">
-        <rect x="0.5" y="0.5" width="64" height="22" fill="#efefef" stroke="black"/>
-        <polyline class="shadow" points="1,21.5 63.5,21.5 63.5,1"/>
-        <polyline class="highlight" points="1.5,22 1.5,1.5 64,1.5"/>
+        <rect x="0.5" y="0.5" width="64" height="22"/>
+        <polyline points="1,21.5 63.5,21.5 63.5,1"/>
+        <polyline points="1.5,22 1.5,1.5 64,1.5"/>
         <text class="centered" x="32" y="11">Cancel</text>
       </g>
       <g class="button" transform="translate(318,260)">
-        <rect x="0.5" y="0.5" width="64" height="22" fill="#efefef" stroke="black" stroke-width="3"/>
+        <rect x="0.5" y="0.5" width="64" height="22" stroke-width="3"/>
         <polyline class="shadow" points="1,21.5 63.5,21.5 63.5,1"/>
         <polyline class="highlight" points="1.5,22 1.5,1.5 64,1.5"/>
         <text class="centered" x="32" y="11">Open</text>
       </g>
     </svg>
-    <svg width="400" height="300">
+    <svg width="400" height="300"><title>Save Dialog</title>
       <rect x="0.5" y="0.5" width="399" height="299" fill="#efefef" stroke="black"/>
       <polyline class="shadow" points="1.5,298.5 398.5,298.5 398.5,1.5"/>
       <polyline class="highlight" points="1.5,298.5 1.5,1.5 398.5,1.5"/>
       <use x="382" y="282" xlink:href="#newcornergrip"/>
       <g transform="translate(18,18)">
-        <rect x="0.5" y="0.5" width="64" height="22" fill="#efefef" stroke="black"/>
-        <polyline class="shadow" points="1.5,21.5 63.5,21.5 63.5,1.5"/>
-        <polyline class="highlight" points="1.5,21.5 1.5,1.5 63.5,1.5"/>
+        <rect x="0.5" y="0.5" width="86" height="22" fill="#efefef" stroke="black"/>
+        <polyline class="shadow" points="1.5,21.5 64.5,21.5 64.5,1.5"/>
+        <polyline class="highlight" points="1.5,21.5 1.5,1.5 64.5,1.5"/>
         <text class="centered" x="32" y="11">$PWD</text>
+        <use x="64.5" width="22" height="22" xlink:href="#newArrowDown"/>
+        <polyline class="shadow" points="65.5,21.5 85.5,21.5 85.5,1.5"/>
+        <polyline class="highlight" points="65.5,21.5 65.5,1.5 85.5,1.5"/>
       </g>
-      <g transform="translate(18,58)">
-        <rect x="1.5" y="1.5" width="362" height="140" fill="white" stroke="black"/>
+      <g class="textfield" transform="translate(18,58)">
         <polyline class="shadow" points="0.5,142.5 0.5,0.5 364.5,0.5"/>
         <polyline class="highlight" points="0.5,142.5 364.5,142.5 364.5,0.5"/>
+        <rect x="1.5" y="1.5" width="362" height="140" fill="white" stroke="black"/>
       </g>
-      <g transform="translate(18,220)">
-        <rect x="1.5" y="1.5" width="362" height="20" fill="white" stroke="black"/>
+      <g class="textfield" transform="translate(18,220)">
         <polyline class="shadow" points="0.5,22.5 0.5,0.5 364.5,0.5"/>
         <polyline class="highlight" points="0.5,22.5 364.5,22.5 364.5,0.5"/>
+        <rect x="1.5" y="1.5" width="362" height="20" fill="white" stroke="black"/>
       </g>
       <g class="button" transform="translate(236,260)">
         <rect x="0.5" y="0.5" width="64" height="22" fill="#efefef" stroke="black"/>
-        <polyline class="shadow" points="1,21.5 63.5,21.5 63.5,1"/>
-        <polyline class="highlight" points="1.5,22 1.5,1.5 64,1.5"/>
+        <polyline points="1,21.5 63.5,21.5 63.5,1"/>
+        <polyline points="1.5,22 1.5,1.5 64,1.5"/>
         <text class="centered" x="32" y="11">Cancel</text>
       </g>
       <g class="button" transform="translate(318,260)">
         <rect x="0.5" y="0.5" width="64" height="22" fill="#efefef" stroke="black" stroke-width="3"/>
-        <polyline class="shadow" points="1,21.5 63.5,21.5 63.5,1"/>
-        <polyline class="highlight" points="1.5,22 1.5,1.5 64,1.5"/>
+        <polyline points="1,21.5 63.5,21.5 63.5,1"/>
+        <polyline points="1.5,22 1.5,1.5 64,1.5"/>
         <text class="centered" x="32" y="11">Save</text>
       </g>
     </svg>
-    <svg width="400" height="300">
+    <svg width="400" height="300"><title>Program Settings Panel</title>
       <rect x="0.5" y="0.5" width="399" height="299" fill="#efefef" stroke="black"/>
       <polyline class="shadow" points="1.5,298.5 398.5,298.5 398.5,1.5"/>
       <polyline class="highlight" points="1.5,298.5 1.5,1.5 398.5,1.5"/>
@@ -858,10 +915,10 @@
       <use x="1" y="1" xlink:href="#documentIcon" width="48" height="48" fill="red"/>
       <text x="56" y="24" style="font-family: Sans-serif; font-size: 24">Program Settings</text>
       <text x="56" y="40" style="font-family: Sans-serif; font-size: 13.3; font-style: italic;">Some informative subtext</text>
-      <g transform="translate(0.5,13.5)">
-        <rect x="19" y="53" width="100" height="215" stroke="black" fill="white"/>
-        <polyline class="shadow" points="18,269 18,52 120,52"/>
-        <polyline class="highlight" points="18,269 120,269 120,52"/>
+      <g class="textfield" transform="translate(0.5,13.5)">
+        <polyline points="18,269 18,52 120,52"/>
+        <polyline points="18,269 120,269 120,52"/>
+        <rect x="19" y="53" width="100" height="215"/>
         <text x="23" y="68">Program</text>
         <text x="23" y="88">Session</text>
         <text x="23" y="108">Association</text>
@@ -869,7 +926,7 @@
         <text x="23" y="148">General</text>
       </g>
     </svg>
-    <svg width="640" height="480">
+    <svg width="640" height="480"><title>Document Window</title>
       <rect x="0.5" y="0.5" width="639" height="479" stroke="black" fill="#efefef"/>
       <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
       <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
@@ -891,14 +948,14 @@
         </g>
         <g class="button" transform="translate(0,396)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 15,15 15,1"/>
-          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
           <use xlink:href="#newArrowDown" width="16" height="16"/>
         </g>
-        <g transform="translate(0,100)">
-          <rect width="16" height="32" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,31 15,31 15,1"/>
-          <polyline class="highlight" points="1,31 1,1 15,1"/>
+        <g class="slider" transform="translate(0,100)">
+          <rect width="16" height="32"/>
+          <polyline points="1,31 15,31 15,1"/>
+          <polyline points="1,31 1,1 15,1"/>
           <use x="3" y="11" xlink:href="#vGrippy"/>
         </g>
       </g>
@@ -909,25 +966,25 @@
         <polyline class="highlight" points="1,15 590,15 590,1"/>
         <g class="button" transform="translate(591,0)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 15,15 15,1"/>
-          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
           <use xlink:href="#newArrowLeft" width="16" height="16"/>
         </g>
         <g class="button" transform="translate(607,0)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 15,15 15,1"/>
-          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
           <use xlink:href="#newArrowRight" width="16" height="16"/>
         </g>
-        <g transform="translate(100,0)">
-          <rect width="32" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 31,15 31,1"/>
-          <polyline class="highlight" points="1,15 1,1 31,1"/>
+        <g class="slider" transform="translate(100,0)">
+          <rect width="32" height="16"/>
+          <polyline points="1,15 31,15 31,1"/>
+          <polyline points="1,15 1,1 31,1"/>
           <use x="11" y="3" xlink:href="#hGrippy"/>
         </g>
       </g>
     </svg>
-    <svg width="640" height="480">
+    <svg width="640" height="480"><title>Project Folder</title>
       <rect x="0.5" y="0.5" width="639" height="479" stroke="black" fill="#efefef"/>
       <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
       <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
@@ -944,20 +1001,20 @@
         <polyline class="highlight" points="1,379 15,379 15,1"/>
         <g class="button" transform="translate(0,380)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 15,15 15,1"/>
-          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
           <use xlink:href="#newArrowUp" width="16" height="16"/>
         </g>
         <g class="button" transform="translate(0,396)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 15,15 15,1"/>
-          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
           <use xlink:href="#newArrowDown" width="16" height="16"/>
         </g>
-        <g transform="translate(0,100)">
-          <rect width="16" height="32" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,31 15,31 15,1"/>
-          <polyline class="highlight" points="1,31 1,1 15,1"/>
+        <g class="slider" transform="translate(0,100)">
+          <rect width="16" height="32"/>
+          <polyline points="1,31 15,31 15,1"/>
+          <polyline points="1,31 1,1 15,1"/>
           <use x="3" y="11" xlink:href="#vGrippy"/>
         </g>
       </g>
@@ -968,25 +1025,25 @@
         <polyline class="highlight" points="1,15 430,15 430,1"/>
         <g class="button" transform="translate(431,0)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 15,15 15,1"/>
-          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
           <use xlink:href="#newArrowLeft" width="16" height="16"/>
         </g>
         <g class="button" transform="translate(447,0)">
           <rect width="16" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 15,15 15,1"/>
-          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
           <use xlink:href="#newArrowRight" width="16" height="16"/>
         </g>
-        <g transform="translate(100,0)">
-          <rect width="32" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 31,15 31,1"/>
-          <polyline class="highlight" points="1,15 1,1 31,1"/>
+        <g class="slider" transform="translate(100,0)">
+          <rect width="32" height="16"/>
+          <polyline points="1,15 31,15 31,1"/>
+          <polyline points="1,15 1,1 31,1"/>
           <use x="11" y="3" xlink:href="#hGrippy"/>
         </g>
       </g>
     </svg>
-    <svg width="640" height="480">
+    <svg width="640" height="480"><title>Another Document Window</title>
       <rect x="0.5" y="0.5" width="639" height="479" stroke="black" fill="#efefef"/>
       <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
       <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
@@ -1001,21 +1058,21 @@
         <polyline class="shadow" points="1,379 1,1 15,1"/>
         <polyline class="highlight" points="1,379 15,379 15,1"/>
         <g class="button" transform="translate(0,380)">
-          <rect width="16" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 15,15 15,1"/>
-          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <rect width="16" height="16"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
           <use xlink:href="#newArrowUp" width="16" height="16"/>
         </g>
         <g class="button" transform="translate(0,396)">
-          <rect width="16" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 15,15 15,1"/>
-          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <rect width="16" height="16"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
           <use xlink:href="#newArrowDown" width="16" height="16"/>
         </g>
-        <g transform="translate(0,100)">
-          <rect width="16" height="32" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,31 15,31 15,1"/>
-          <polyline class="highlight" points="1,31 1,1 15,1"/>
+        <g class="slider" transform="translate(0,100)">
+          <rect width="16" height="32"/>
+          <polyline points="1,31 15,31 15,1"/>
+          <polyline points="1,31 1,1 15,1"/>
           <use x="3" y="11" xlink:href="#vGrippy"/>
         </g>
       </g>
@@ -1025,30 +1082,29 @@
         <polyline class="shadow" points="1,15 1,1 590,1"/>
         <polyline class="highlight" points="1,15 590,15 590,1"/>
         <g class="button" transform="translate(591,0)">
-          <rect width="16" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 15,15 15,1"/>
-          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <rect width="16" height="16"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
           <use xlink:href="#newArrowLeft" width="16" height="16"/>
         </g>
         <g class="button" transform="translate(607,0)">
-          <rect width="16" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 15,15 15,1"/>
-          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <rect width="16" height="16"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
           <use xlink:href="#newArrowRight" width="16" height="16"/>
         </g>
-        <g transform="translate(100,0)">
-          <rect width="32" height="16" stroke="black" fill="#efefef"/>
-          <polyline class="shadow" points="1,15 31,15 31,1"/>
-          <polyline class="highlight" points="1,15 1,1 31,1"/>
+        <g class="slider" transform="translate(100,0)">
+          <rect width="32" height="16"/>
+          <polyline points="1,15 31,15 31,1"/>
+          <polyline points="1,15 1,1 31,1"/>
           <use x="11" y="3" xlink:href="#hGrippy"/>
         </g>
       </g>
     </svg>
-    <svg width="100" height="100">
+    <svg width="100" height="100"><title>Playground</title>
       <defs>
       </defs>
       <rect x="0.5" y="0.5" width="99" height="99" stroke="black" fill="#dddddd"/>
-      
       <use x="20" y="20" xlink:href="#documentIcon" fill="white" width="16" height="16"/>
       <use x="40" y="40" xlink:href="#folderIcon" fill="red" width="16" height="16"/>
     </svg>
