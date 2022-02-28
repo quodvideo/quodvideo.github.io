@@ -405,7 +405,8 @@
           <svg width="200" height="100">
             <g transform="translate(70.5,44.5)">
               <use xlink:href="#checkbox"/>
-              <use xlink:href="#checkmark"/>
+              <!-- <use xlink:href="#checkmark"/> -->
+              <text class="centered" x="6" y="6" style="font-size: 18">✓</text>
               <text x="16" y="10">Option</text>
             </g>
           </svg>
@@ -815,7 +816,7 @@
     </table>
     <br/>
     <svg width="400" height="300"><title>Open Dialog</title>
-      <rect x="0.5" y="0.5" width="399" height="299" fill="#efefef" stroke="black"/>
+      <rect x="0.5" y="0.5" width="399" height="299" fill="#dddddd" stroke="black"/>
       <polyline class="shadow" points="1.5,298.5 398.5,298.5 398.5,1.5"/>
       <polyline class="highlight" points="1.5,298.5 1.5,1.5 398.5,1.5"/>
       <use x="382" y="282" xlink:href="#newcornergrip"/>
@@ -870,7 +871,7 @@
       </g>
     </svg>
     <svg width="400" height="300"><title>Save Dialog</title>
-      <rect x="0.5" y="0.5" width="399" height="299" fill="#efefef" stroke="black"/>
+      <rect x="0.5" y="0.5" width="399" height="299" fill="#dddddd" stroke="black"/>
       <polyline class="shadow" points="1.5,298.5 398.5,298.5 398.5,1.5"/>
       <polyline class="highlight" points="1.5,298.5 1.5,1.5 398.5,1.5"/>
       <use x="382" y="282" xlink:href="#newcornergrip"/>
@@ -907,14 +908,14 @@
       </g>
     </svg>
     <svg width="400" height="300"><title>Program Settings Panel</title>
-      <rect x="0.5" y="0.5" width="399" height="299" fill="#efefef" stroke="black"/>
+      <rect x="0.5" y="0.5" width="399" height="299" fill="#dddddd" stroke="black"/>
       <polyline class="shadow" points="1.5,298.5 398.5,298.5 398.5,1.5"/>
       <polyline class="highlight" points="1.5,298.5 1.5,1.5 398.5,1.5"/>
       <use x="382" y="282" xlink:href="#newcornergrip"/>
       <rect x="2.5" y="2.5" width="48" height="48" stroke="none" fill="none"/>
       <use x="1" y="1" xlink:href="#documentIcon" width="48" height="48" fill="red"/>
       <text x="56" y="24" style="font-family: Sans-serif; font-size: 24">Program Settings</text>
-      <text x="56" y="40" style="font-family: Sans-serif; font-size: 13.3; font-style: italic;">Some informative subtext</text>
+      <text x="56" y="41" style="font-family: Sans-serif; font-size: 13.3; font-style: italic;">Some informative subtext</text>
       <g class="textfield" transform="translate(0.5,13.5)">
         <polyline points="18,269 18,52 120,52"/>
         <polyline points="18,269 120,269 120,52"/>
@@ -927,13 +928,13 @@
       </g>
     </svg>
     <svg width="640" height="480"><title>Document Window</title>
-      <rect x="0.5" y="0.5" width="639" height="479" stroke="black" fill="#efefef"/>
+      <rect x="0.5" y="0.5" width="639" height="479" stroke="black" fill="#dddddd"/>
       <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
       <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
       <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
       <use xlink:href="#documentIcon" x="5" y="6" width="40" height="40" fill="white"/>
       <text x="56" y="24" style="font-size: 24">Document Title</text>
-      <text x="56" y="40">plain text</text>
+      <text x="56" y="41">plain text</text>
       <rect x="0.5" y="51.5" width="639" height="428" stroke="black" fill="white"/>
       <polyline class="shadow" points="1.5,50.5 638.5,50.5"/>
       <g class="v-scrollbar" transform="translate(623.5,51.5)">
@@ -985,13 +986,14 @@
       </g>
     </svg>
     <svg width="640" height="480"><title>Project Folder</title>
-      <rect x="0.5" y="0.5" width="639" height="479" stroke="black" fill="#efefef"/>
+      <rect x="0.5" y="0.5" width="639" height="479" stroke="black" fill="#dddddd"/>
       <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
       <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
       <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
-      <use xlink:href="#folderIcon" x="1" y="1" width="48" height="48" fill="#aaaaaa"/>
+      <!-- <use xlink:href="#folderIcon" x="1" y="1" width="48" height="48" fill="#aaaaaa"/> -->
+      <text class="centered" x="25" y="25" style="font-size: 48">🗀</text>
       <text x="56" y="24" style="font-size: 24">Project Folder</text>
-      <text x="56" y="40">Source Code</text>
+      <text x="56" y="41">Source Code</text>
       <rect x="0.5" y="51.5" width="160" height="428" stroke="black" fill="white"/>
       <rect x="160.5" y="51.5" width="463" height="428" stroke="black" fill="white"/>
       <polyline class="shadow" points="1.5,50.5 638.5,50.5"/>
@@ -1044,13 +1046,13 @@
       </g>
     </svg>
     <svg width="640" height="480"><title>Another Document Window</title>
-      <rect x="0.5" y="0.5" width="639" height="479" stroke="black" fill="#efefef"/>
+      <rect x="0.5" y="0.5" width="639" height="479" stroke="black" fill="#dddddd"/>
       <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
       <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
       <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
-      <use x="1" y="1" xlink:href="#documentIcon" width="48" height="48" fill="white"/>
+      <text class="centered" x="25" y="25" style="font-size: 48">🗎</text>
       <text x="56" y="24" style="font-size: 24">Document Title</text>
-      <text x="56" y="40">plain text</text>
+      <text x="56" y="41">plain text</text>
       <rect x="0.5" y="51.5" width="639" height="428" stroke="black" fill="white"/>
       <polyline class="shadow" points="1.5,50.5 638.5,50.5"/>
       <g class="v-scrollbar" transform="translate(623.5,51.5)">
@@ -1101,6 +1103,53 @@
         </g>
       </g>
     </svg>
+    <svg width="640" height="480"><title>Control Console</title>
+      <rect x="0.5" y="0.5" width="639" height="479" stroke="black" fill="#dddddd"/>
+      <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
+      <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
+      <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
+      <text class="centered" x="25" y="25" style="font-size: 48">⚙</text>
+      <text x="56" y="24" style="font-size: 24">Control System</text>
+      <text x="56" y="41">some current status</text>
+      <g class="textfield" transform="translate(160, 50)">
+        <polyline points="0.5,110.5 0.5,0.5 202.5,0.5"/>
+        <polyline points="0.5,110.5 202.5,110.5 202.5,0.5"/>
+        <rect x="1.5" y="1.5" width="200" height="108" style="fill: #efefef"/>
+        <text x="-10" y="89" style="font-size: 96; text-anchor: end;">2θ:</text>
+        <text x="200" y="89" style="font-size: 96; text-anchor: end;">32°</text>
+      </g>
+      <g class="button" transform="translate(372, 51)">
+        <rect x="0.5" y="0.5" width="64" height="54"/>
+        <polyline points="1.5,53.5 63.5,53.5 63.5,1.5"/>
+        <polyline points="1.5,53.5 1.5,1.5 63.5,1.5"/>
+        <use xlink:href="#newArrowUp" width="64" height="54"/>
+      </g>
+      <g class="button" transform="translate(372, 105)">
+        <rect x="0.5" y="0.5" width="64" height="54"/>
+        <polyline points="1.5,53.5 63.5,53.5 63.5,1.5"/>
+        <polyline points="1.5,53.5 1.5,1.5 63.5,1.5"/>
+        <use xlink:href="#newArrowDown" width="64" height="54"/>
+      </g>
+      <g class="textfield" transform="translate(160, 176)">
+        <polyline points="0.5,110.5 0.5,0.5 202.5,0.5"/>
+        <polyline points="0.5,110.5 202.5,110.5 202.5,0.5"/>
+        <rect x="1.5" y="1.5" width="200" height="108" style="fill: #efefef"/>
+        <text x="-10" y="89" style="font-size: 96; text-anchor: end;">θ:</text>
+        <text x="200" y="89" style="font-size: 96; text-anchor: end;">16°</text>
+      </g>
+      <g class="button" transform="translate(372, 177)">
+        <rect x="0.5" y="0.5" width="64" height="54"/>
+        <polyline points="1.5,53.5 63.5,53.5 63.5,1.5"/>
+        <polyline points="1.5,53.5 1.5,1.5 63.5,1.5"/>
+        <use xlink:href="#newArrowUp" width="64" height="54"/>
+      </g>
+      <g class="button" transform="translate(372, 231)">
+        <rect x="0.5" y="0.5" width="64" height="54"/>
+        <polyline points="1.5,53.5 63.5,53.5 63.5,1.5"/>
+        <polyline points="1.5,53.5 1.5,1.5 63.5,1.5"/>
+        <use xlink:href="#newArrowDown" width="64" height="54"/>
+      </g>
+    </svg>
     <svg width="100" height="100"><title>Playground</title>
       <defs>
       </defs>
@@ -1108,5 +1157,34 @@
       <use x="20" y="20" xlink:href="#documentIcon" fill="white" width="16" height="16"/>
       <use x="40" y="40" xlink:href="#folderIcon" fill="red" width="16" height="16"/>
     </svg>
+    <input type="checkbox" id="showbounds" checked><label>Show Text Bounds</label>
+    <script>
+      function drawtextbounds () {
+        var ts = document.getElementsByTagName("text");
+        for (var i=0;i<ts.length;i++) {
+          var box = ts[i].getBBox();
+          var nr = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          nr.setAttribute("x", box.x);
+          nr.setAttribute("y", box.y);
+          nr.setAttribute("width", box.width);
+          nr.setAttribute("height", box.height);
+          nr.setAttribute("style", "fill: #ff000080; stroke:none;");
+          nr.setAttribute("class","textbounds");
+          ts[i].insertAdjacentElement("afterend", nr);
+        }
+      }
+      drawtextbounds();
+      var cb = document.getElementById("showbounds");
+      cb.addEventListener("change", () => {
+        var tbs = document.getElementsByClassName("textbounds");
+        for (var i=0;i<tbs.length;i++) {
+          if(cb.checked) {
+            tbs[i].setAttribute("visibility","visible");
+          } else {
+            tbs[i].setAttribute("visibility","hidden");
+          }
+        }
+      });
+    </script>
   </body>
 </html>
