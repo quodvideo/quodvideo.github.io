@@ -2,16 +2,23 @@
   <head>
     <title>widgets</title>
     <style>
+      :root {
+        --outline-color: black;
+        --highlight-stroke-color: white;
+        --shadow-stroke-color: darkgrey;
+        --live-fill-color: #efefef;
+        --live-active-fill-color: #bbbbbb;
+      }
       .outline {
         stroke: black;
       }
       .highlight {
-        stroke: white;
         fill: none;
+        stroke: var(--highlight-stroke-color);
       }
       .shadow {
-        stroke: darkgrey;
         fill: none;
+        stroke: darkgrey;
       }
       text {
         font-family: Sans-serif;
@@ -24,66 +31,67 @@
         alignment-baseline: central;
       }
       .button rect {
-        fill: #efefef;
-        stroke: black;
+        fill: var(--live-fill-color);
+        stroke: var(--outline-color);
       }
       .button rect + polyline {
-        stroke: darkgrey;
         fill: none;
+        stroke: var(--shadow-stroke-color);
       }
       .button rect + polyline + polyline {
-        stroke: white;
         fill: none;
+        stroke: var(--highlight-stroke-color);
       }
       .button:active rect {
-        fill: #bbbbbb;
-        stroke: black;
+        fill: var(--live-active-fill-color);
+        stroke: var(--outline-color);
       }
       .button:active rect + polyline {
-        stroke: white;
+        stroke: var(--highlight-stroke-color);
       }
-      .button:active rect + polyline +polyline  {
-        stroke: darkgrey;
+      .button:active rect + polyline + polyline  {
+        stroke: var(--shadow-stroke-color);
       }
       rect.trough {
         fill:#bbbbbb;
-        stroke: black;
+        stroke: var(--outline-color);
       }
       rect.trough + polyline {
         fill: none;
-        stroke: darkgrey;
+        stroke: var(--shadow-stroke-color);
       }
       rect.trough + polyline + polyline {
         fill: none;
-        stroke: white;
+        stroke: var(--highlight-stroke-color);
       }
       .slider rect {
-        fill: #efefef;
-        stroke: black;
+        fill: var(--live-fill-color);
+        stroke: var(--outline-color);
       }
       .slider rect + polyline {
-        stroke: darkgrey;
         fill: none;
+        stroke: var(--shadow-stroke-color);
       }
       .slider rect + polyline + polyline {
-        stroke: white;
         fill: none;
+        stroke: var(--highlight-stroke-color);
       }
       .textfield polyline {
         fill: none;
-        stroke: darkgrey;
+        stroke: var(--shadow-stroke-color);
       }
       .textfield polyline + polyline {
         fill: none;
-        stroke: white;
+        stroke: var(--highlight-stroke-color);
       }
       .textfield polyline + polyline + rect {
-        fill: white;
-        stroke: black;
+        fill: var(--highlight-stroke-color);
+        stroke: var(--outline-color);
       }
     </style>
   </head>
   <body>
+    <input type="checkbox" id="showbounds"><label>Show Text Bounds</label>
     <svg width="1" height="1">
       <defs>
         <clipPath id="cornerclip">
@@ -813,6 +821,17 @@
           </svg>
         </td>
       </tr>
+      <tr><th>Corner Grip</th>
+        <td></td>
+        <td>
+          <svg width="200" height="100">
+            <rect x="100.5"y="50.5" width="16" height="16" fill="#cccccc" stroke="black"/> 
+            <use x="100" y="50" width="16" height="16" xlink:href="#newcornergrip"/>
+          </svg>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
     </table>
     <br/>
     <svg width="400" height="300"><title>Open Dialog</title>
@@ -1170,11 +1189,25 @@
           <path fill="#ffffff" stroke="black" d="M0,0 H5 L10,13 H60 L65,0 H180"/>
           <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
         </g>
+        <g id="sheettab-active">
+          <path fill="none" stroke="white" d="M0,0 h70"/>
+          <path fill="white" stroke="black" d="M0,0 h5 l5,13 h50 l5,-13 h5"/>
+          <path fill="none" stroke="none" d="M0,0 h70"/>
+          <text style="font-size: 10;font-family:Sans-serif;text-anchor:middle;" x="35" y="10">label</text>
+        </g>
+        <g id="sheettab-inactive">
+          <path fill="none" stroke="none" d="M0,0 h70"/>
+          <path fill="white" stroke="black" d="M0,0 h5 l5,13 h50 l5,-13 h5"/>
+          <path fill="none" stroke="black" d="M0,0 h70"/>
+          <text style="font-size: 10;font-family:Sans-serif;text-anchor:middle;" x="35" y="10">label</text>
+        </g>
       </defs>
       <rect x="0.5" y="0.5" width="999" height="999" stroke="black" fill="#dddddd"/>
       <use x="20" y="20" xlink:href="#documentIcon" fill="white" width="16" height="16"/>
       <use x="40" y="40" xlink:href="#folderIcon" fill="red" width="16" height="16"/>
       <use x="20.5" y="60.5" xlink:href="#sheetTabGroup" fill="red" width="16" height="16"/>
+      <use x="75.5" y="100.5" xlink:href="#sheettab-inactive" fill="red" width="16" height="16"/>
+      <use x="20.5" y="100.5" xlink:href="#sheettab-active" fill="red" width="16" height="16"/>
       <g class="h-scrollbar" transform="translate (200.5, 60.5)">
         <rect class="trough" width="607" height="16"/>
         <polyline class="shadow" points="1,15 1,1 590,1"/>
@@ -1199,7 +1232,6 @@
         </g>
       </g>
     </svg>
-    <input type="checkbox" id="showbounds" checked><label>Show Text Bounds</label>
     <script>
       function drawtextbounds () {
         var ts = document.getElementsByTagName("text");
@@ -1212,6 +1244,7 @@
           nr.setAttribute("height", box.height);
           nr.setAttribute("style", "fill: #ff000080; stroke:none;");
           nr.setAttribute("class","textbounds");
+          nr.setAttribute("visibility","hidden");
           ts[i].insertAdjacentElement("afterend", nr);
         }
       }

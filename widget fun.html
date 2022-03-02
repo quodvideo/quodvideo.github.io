@@ -6,7 +6,7 @@
 <script>
 
 function draw_raised_rect(ctx,x,y,width,height) {
-  ctx.fillStyle="lightgrey";
+  ctx.fillStyle="#efefef";
   ctx.fillRect(x, y, width, height);
   ctx.strokeStyle="black";
   ctx.strokeRect(x, y, width, height);
@@ -22,12 +22,12 @@ function draw_raised_rect(ctx,x,y,width,height) {
   ctx.moveTo(x+width-1,y+2);
   ctx.lineTo(x+width-1,y+height-1);
   ctx.lineTo(x+2,y+height-1);
-  ctx.strokeStyle="grey";
+  ctx.strokeStyle="darkgrey";
   ctx.stroke();
 };
 
 function draw_pressed_rect(ctx,x,y,width,height) {
-  ctx.fillStyle="darkgrey";
+  ctx.fillStyle="#bbbbbb";
   ctx.fillRect(x, y, width, height);
   ctx.strokeStyle="black";
   ctx.strokeRect(x, y, width, height);
@@ -80,7 +80,7 @@ function draw_button (ctx,x,y,width,height,label,icon,state) {
 var c = document.getElementById("fun");
 var ctx = c.getContext("2d");
 
-ctx.fillStyle="lightgrey";
+ctx.fillStyle="#efefef";
 ctx.fillRect(0,0,800,24);
 
 ctx.beginPath();
