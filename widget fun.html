@@ -75,6 +75,9 @@ function draw_focused_window (ctx, x, y, width, height, title) {
 };
 
 function draw_button (ctx,x,y,width,height,label,icon,state) {
+  var textbb = ctx.measureText(label);
+  var bwidth = (textbb.width+12>64)?textbb.width+12:64;
+  var bheight = (textbb.height+12>22)?textbb.height+12:22;
 };
 
 var c = document.getElementById("fun");

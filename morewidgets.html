@@ -1178,6 +1178,18 @@
     </svg>
     <svg width="1000" height="1000"><title>Playground</title>
       <defs>
+        <g id="sheettab-active">
+          <path fill="none" stroke="white" d="M0.5,0.5 h70"/>
+          <path fill="white" stroke="black" d="M0.5,0.5 h5 l5,13 h50 l5,-13 h5"/>
+          <path fill="none" stroke="none" d="M0.5,0.5 h70"/>
+          <text style="font-size: 10;font-family:Sans-serif;text-anchor:middle;" x="35.5" y="10.5">label</text>
+        </g>
+        <g id="sheettab-inactive">
+          <path fill="none" stroke="none" d="M0.5,0.5 h70"/>
+          <path fill="white" stroke="black" d="M0.5,0.5 h5 l5,13 h50 l5,-13 h5"/>
+          <path fill="none" stroke="black" d="M0.5,0.5 h70"/>
+          <text style="font-size: 10;font-family:Sans-serif;text-anchor:middle;" x="35.5" y="10.5">label</text>
+        </g>
         <g id="sheetTabGroup">
           <!-- old note: Alternative: Let the tabs go to 15 and don't outline the area. -->
           <rect width="180" height="16" fill="none" stroke="black"/>
@@ -1189,25 +1201,16 @@
           <path fill="#ffffff" stroke="black" d="M0,0 H5 L10,13 H60 L65,0 H180"/>
           <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
         </g>
-        <g id="sheettab-active">
-          <path fill="none" stroke="white" d="M0,0 h70"/>
-          <path fill="white" stroke="black" d="M0,0 h5 l5,13 h50 l5,-13 h5"/>
-          <path fill="none" stroke="none" d="M0,0 h70"/>
-          <text style="font-size: 10;font-family:Sans-serif;text-anchor:middle;" x="35" y="10">label</text>
-        </g>
-        <g id="sheettab-inactive">
-          <path fill="none" stroke="none" d="M0,0 h70"/>
-          <path fill="white" stroke="black" d="M0,0 h5 l5,13 h50 l5,-13 h5"/>
-          <path fill="none" stroke="black" d="M0,0 h70"/>
-          <text style="font-size: 10;font-family:Sans-serif;text-anchor:middle;" x="35" y="10">label</text>
-        </g>
+
       </defs>
       <rect x="0.5" y="0.5" width="999" height="999" stroke="black" fill="#dddddd"/>
       <use x="20" y="20" xlink:href="#documentIcon" fill="white" width="16" height="16"/>
       <use x="40" y="40" xlink:href="#folderIcon" fill="red" width="16" height="16"/>
+
       <use x="20.5" y="60.5" xlink:href="#sheetTabGroup" fill="red" width="16" height="16"/>
-      <use x="75.5" y="100.5" xlink:href="#sheettab-inactive" fill="red" width="16" height="16"/>
-      <use x="20.5" y="100.5" xlink:href="#sheettab-active" fill="red" width="16" height="16"/>
+      <use x="75" y="100" xlink:href="#sheettab-inactive" fill="red" width="16" height="16"/>
+      <use x="20" y="100" xlink:href="#sheettab-active" fill="red" width="16" height="16"/>
+
       <g class="h-scrollbar" transform="translate (200.5, 60.5)">
         <rect class="trough" width="607" height="16"/>
         <polyline class="shadow" points="1,15 1,1 590,1"/>
