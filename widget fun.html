@@ -6,21 +6,90 @@
       --outline-color: black;
       --highlight-stroke-color: white;
       --shadow-stroke-color: darkgrey;
-      --live-fill-color: #efefef;
-      --live-active-fill-color: #bbbbbb;
+      --raised-fill-color: #efefef;
+      --recessed-fill-color: #bbbbbb;
+      --text-fill-color: white;
     }
     </style>
 </head>
 <canvas id="fun" width="800" height="600" style="border:1px solid #000000"></canvas>
 <script>
+// var toplevel = new Toplevel();
+// var vbox1 = new vBox();
+/*
+{
+  "title": "Save Dialog",
+  "contains": [
+    {
+      "id": "vbox1",
+      "contains": [
+        {
+          "id": "optionmenu1"
+        },
+        {
+          "id": "listbox1"
+        },
+        {
+          "id": "hbox1",
+          "contains": [
+            {
+              "id": "spring1"
+            },
+            {
+              "id": "cancelbutton1"
+            },
+            {
+              "id": "okbutton1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+*/
 
 function getStyleColor (colorname) {
   return getComputedStyle(document.body).getPropertyValue(colorname);
 }
-
-
+function drawUpTriangle (ctx,x,y,size) {
+   ctx.fillStyle = "black";
+   ctx.beginPath();
+   ctx.moveTo(x+size/4,y+5*size/8);
+   ctx.lineTo(x+3*size/4,y+5*size/8);
+   ctx.lineTo(x+size/2,y+3*size/8);
+   ctx.closePath();
+   ctx.fill();
+}
+function drawDownTriangle (ctx,x,y,size) {
+   ctx.fillStyle = "black";
+   ctx.beginPath();
+   ctx.moveTo(x+size/4,y+3*size/8);
+   ctx.lineTo(x+3*size/4,y+3*size/8);
+   ctx.lineTo(x+size/2,y+5*size/8);
+   ctx.closePath();
+   ctx.fill();
+}
+function drawLeftTriangle (ctx,x,y,size) {
+   ctx.fillStyle = "black";
+   ctx.beginPath();
+   ctx.moveTo(x+5*size/8,y+size/4);
+   ctx.lineTo(x+5*size/8,y+3*size/4);
+   ctx.lineTo(x+3*size/8,y+size/2);
+   ctx.closePath();
+   ctx.fill();
+}
+function drawRightTriangle (ctx,x,y,size) {
+   ctx.fillStyle = "black";
+   ctx.beginPath();
+   ctx.moveTo(x+3*size/8,y+size/4);
+   ctx.lineTo(x+3*size/8,y+3*size/4);
+   ctx.lineTo(x+5*size/8,y+size/2);
+   ctx.closePath();
+   ctx.fill();
+}
 function drawRaisedRectangle(ctx,x,y,width,height) {
-  ctx.fillStyle = getStyleColor("--live-fill-color");
+  ctx.fillStyle = getStyleColor("--raised-fill-color");
   ctx.fillRect(x, y, width, height);
   ctx.strokeStyle = getStyleColor ("--outline-color");
   ctx.strokeRect(x, y, width, height);
@@ -39,9 +108,8 @@ function drawRaisedRectangle(ctx,x,y,width,height) {
   ctx.strokeStyle = getStyleColor("--highlight-stroke-color");
   ctx.stroke();
 };
-
-function drawPresedRectangle(ctx,x,y,width,height) {
-  ctx.fillStyle = getStyleColor("--live-active-fill-color");
+function drawRecessedRectangle(ctx,x,y,width,height) {
+  ctx.fillStyle = getStyleColor("--recessed-fill-color");
   ctx.fillRect(x, y, width, height);
   ctx.strokeStyle = getStyleColor("--outline-color");
   ctx.strokeRect(x, y, width, height);
@@ -60,22 +128,63 @@ function drawPresedRectangle(ctx,x,y,width,height) {
   ctx.strokeStyle = getStyleColor("--highlight-stroke-color");
   ctx.stroke();
 };
+function drawTextRectangle(ctx,x,y,width,height) {
+  ctx.fillStyle = getStyleColor("--text-fill-color");
+  ctx.fillRect(x+1, y+1, width-2, height-2);
+  ctx.strokeStyle = getStyleColor("--outline-color");
+  ctx.strokeRect(x+1, y+1, width-2, height-2);
 
-function draw_vertical_scrollbar (ctx, x, y, height, value, lower, upper) { // also step_increment, page_increment, page_size
-  drawPresedRectangle(ctx,x,y,16,height);
-  drawRaisedRectangle(ctx,x,y,16,16);
-  drawRaisedRectangle(ctx,x,y+height-15,16,16);
-  drawRaisedRectangle(ctx,x,0.5+Math.round(y+15+(value / upper-lower)*(height-47)),16,16);
+  ctx.beginPath();
+  ctx.moveTo(x,y+height);
+  ctx.lineTo(x,y);
+  ctx.lineTo(x+width,y);
+  ctx.strokeStyle = getStyleColor("--shadow-stroke-color");
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(x+width,y);
+  ctx.lineTo(x+width,y+height);
+  ctx.lineTo(x,y+height);
+  ctx.strokeStyle = getStyleColor("--highlight-stroke-color");
+  ctx.stroke();
+}
+function drawUpStepper(ctx,x,y,size) {
+  drawRaisedRectangle(ctx,x,y,size,size);
+  drawUpTriangle(ctx,x,y,size);
+}
+function drawDownStepper(ctx,x,y,size) {
+  drawRaisedRectangle(ctx,x,y,size,size);
+  drawDownTriangle(ctx,x,y,size);
+}
+function drawLeftStepper(ctx,x,y,size) {
+  drawRaisedRectangle(ctx,x,y,size,size);
+  drawLeftTriangle(ctx,x,y,size);
+}
+function drawRightStepper(ctx,x,y,size) {
+  drawRaisedRectangle(ctx,x,y,size,size);
+  drawRightTriangle(ctx,x,y,size);
+}
+function drawVSlider(ctx,x,y,width,height) {
+  drawRaisedRectangle(ctx,x,y,width,height);
+}
+function drawHSlider(ctx,x,y,width,height) {
+  drawRaisedRectangle(ctx,x,y,width,height);
+}
+function drawVerticalScrollbar (ctx, x, y, height, value, lower, upper) { // also step_increment, page_increment, page_size
+  drawRecessedRectangle(ctx,x,y,16,height-31);
+  drawUpStepper(ctx,x,y+height-31,16);
+  drawDownStepper(ctx,x,y+height-15,16);
+  drawRaisedRectangle(ctx,x,0.5+Math.round(y-1+(value / upper-lower)*(height-47)),16,16);
 };
 
-function draw_horizontal_scrollbar (ctx, x, y, width, value, lower, upper) { // also step_increment, page_increment, page_size
-  drawPresedRectangle(ctx,x,y,width,16);
-  drawRaisedRectangle(ctx,x,y,16,16);
-  drawRaisedRectangle(ctx,x+width-15,y,16,16);
-  drawRaisedRectangle(ctx,0.5+Math.round(x+15+(value / upper-lower)*(width-47)),y,16,16);
+function drawHorizontalScrollbar (ctx, x, y, width, value, lower, upper) { // also step_increment, page_increment, page_size
+  drawRecessedRectangle(ctx,x,y,width-31,16);
+  drawLeftStepper(ctx,x+width-31,y,16);
+  drawRightStepper(ctx,x+width-15,y,16);
+  drawRaisedRectangle(ctx,0.5+Math.round(x-1+(value / upper-lower)*(width-47)),y,16,16);
 };
 
-function draw_focused_window (ctx, x, y, width, height, title) {
+function drawFocusedWindow (ctx, x, y, width, height, title) {
   ctx.strokeStyle="black";
   ctx.strokeRect(x, y, width, height);
   drawRaisedRectangle(ctx,x+24,y,width-24,24);
@@ -93,38 +202,42 @@ function draw_button (ctx,x,y,width,height,label,icon,state) {
   var bwidth = (textbb.width+12>64)?textbb.width+12:64;
   var bheight = (textbb.height+12>22)?textbb.height+12:22;
 };
+function drawMenuBar (ctx,width) {
+  var height = 20;
+  ctx.fillStyle = getStyleColor("--raised-fill-color")
+  ctx.fillRect(0,0,width,height);
 
+  ctx.beginPath();
+  ctx.moveTo(0,height+0.5);
+  ctx.lineTo(width,height+0.5);
+  ctx.strokeStyle = getStyleColor("--shadow-stroke-color");
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(0,height+1.5);
+  ctx.lineTo(width,height+1.5);
+  ctx.strokeStyle = getStyleColor("--outline-color");
+  ctx.stroke();
+
+  ctx.fillStyle = "black";
+  ctx.font = "12px Sans-serif";
+  ctx.textBaseline = "middle";
+  ctx.fillText("File  Edit  View  Help", height, height-8);
+}
 var c = document.getElementById("fun");
 var ctx = c.getContext("2d");
 
-ctx.fillStyle="#efefef";
-ctx.fillRect(0,0,800,24);
+drawMenuBar (ctx,800);
+drawVerticalScrollbar (ctx, 40.5,300.5,160,0.5,0,1);
+drawVerticalScrollbar (ctx, 60.5,300.5,160,1,0,1);
+drawVerticalScrollbar (ctx, 80.5,300.5,160,0,0,1);
 
-ctx.beginPath();
-ctx.moveTo(0,24.5);
-ctx.lineTo(800,24.5);
-ctx.strokeStyle="grey";
-ctx.stroke();
+drawHorizontalScrollbar (ctx, 40.5,200.5,160,0.5,0,1);
+drawHorizontalScrollbar (ctx, 40.5,220.5,160,1,0,1);
+drawHorizontalScrollbar (ctx, 40.5,240.5,160,0,0,1);
 
-ctx.beginPath();
-ctx.moveTo(0,25.5);
-ctx.lineTo(800,25.5);
-ctx.strokeStyle="black";
-ctx.stroke();
+drawFocusedWindow (ctx,350.5,100.5,400,300,"Foo");
 
-ctx.fillStyle = "black";
-ctx.font = "12pt sans-serif";
-ctx.textBaseline = "middle";
-ctx.fillText("File  Edit  View  Help", 24, 15);
-
-draw_vertical_scrollbar (ctx, 40.5,300.5,160,0.5,0,1);
-draw_vertical_scrollbar (ctx, 60.5,300.5,160,1,0,1);
-draw_vertical_scrollbar (ctx, 80.5,300.5,160,0,0,1);
-
-draw_horizontal_scrollbar (ctx, 40.5,200.5,160,0.5,0,1);
-draw_horizontal_scrollbar (ctx, 40.5,220.5,160,1,0,1);
-draw_horizontal_scrollbar (ctx, 40.5,240.5,160,0,0,1);
-
-draw_focused_window (ctx,350.5,100.5,400,300,"Foo");
+drawTextRectangle(ctx, 450.5,200.5,100,22)
 </script>
 </html>
