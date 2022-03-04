@@ -1,77 +1,91 @@
 <html>
 <head>
   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300" rel="stylesheet" type="text/css">
+  <style>
+    :root {
+      --outline-color: black;
+      --highlight-stroke-color: white;
+      --shadow-stroke-color: darkgrey;
+      --live-fill-color: #efefef;
+      --live-active-fill-color: #bbbbbb;
+    }
+    </style>
 </head>
 <canvas id="fun" width="800" height="600" style="border:1px solid #000000"></canvas>
 <script>
 
-function draw_raised_rect(ctx,x,y,width,height) {
-  ctx.fillStyle="#efefef";
-  ctx.fillRect(x, y, width, height);
-  ctx.strokeStyle="black";
-  ctx.strokeRect(x, y, width, height);
+function getStyleColor (colorname) {
+  return getComputedStyle(document.body).getPropertyValue(colorname);
+}
 
-  ctx.beginPath();
-  ctx.moveTo(x+1,y+height);
-  ctx.lineTo(x+1,y+1);
-  ctx.lineTo(x+width,y+1);
-  ctx.strokeStyle="white";
-  ctx.stroke();
+
+function drawRaisedRectangle(ctx,x,y,width,height) {
+  ctx.fillStyle = getStyleColor("--live-fill-color");
+  ctx.fillRect(x, y, width, height);
+  ctx.strokeStyle = getStyleColor ("--outline-color");
+  ctx.strokeRect(x, y, width, height);
 
   ctx.beginPath();
   ctx.moveTo(x+width-1,y+2);
   ctx.lineTo(x+width-1,y+height-1);
   ctx.lineTo(x+2,y+height-1);
-  ctx.strokeStyle="darkgrey";
+  ctx.strokeStyle = getStyleColor("--shadow-stroke-color");
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(x+1,y+height);
+  ctx.lineTo(x+1,y+1);
+  ctx.lineTo(x+width,y+1);
+  ctx.strokeStyle = getStyleColor("--highlight-stroke-color");
   ctx.stroke();
 };
 
-function draw_pressed_rect(ctx,x,y,width,height) {
-  ctx.fillStyle="#bbbbbb";
+function drawPresedRectangle(ctx,x,y,width,height) {
+  ctx.fillStyle = getStyleColor("--live-active-fill-color");
   ctx.fillRect(x, y, width, height);
-  ctx.strokeStyle="black";
+  ctx.strokeStyle = getStyleColor("--outline-color");
   ctx.strokeRect(x, y, width, height);
 
   ctx.beginPath();
   ctx.moveTo(x+1,y+height);
   ctx.lineTo(x+1,y+1);
   ctx.lineTo(x+width,y+1);
-  ctx.strokeStyle="grey";
+  ctx.strokeStyle = getStyleColor("--shadow-stroke-color");
   ctx.stroke();
 
   ctx.beginPath();
   ctx.moveTo(x+width-1,y+2);
   ctx.lineTo(x+width-1,y+height-1);
   ctx.lineTo(x+2,y+height-1);
-  ctx.strokeStyle="white";
+  ctx.strokeStyle = getStyleColor("--highlight-stroke-color");
   ctx.stroke();
 };
 
 function draw_vertical_scrollbar (ctx, x, y, height, value, lower, upper) { // also step_increment, page_increment, page_size
-  draw_pressed_rect(ctx,x,y,16,height);
-  draw_raised_rect(ctx,x,y,16,16);
-  draw_raised_rect(ctx,x,y+height-15,16,16);
-  draw_raised_rect(ctx,x,0.5+Math.round(y+15+(value / upper-lower)*(height-47)),16,16);
+  drawPresedRectangle(ctx,x,y,16,height);
+  drawRaisedRectangle(ctx,x,y,16,16);
+  drawRaisedRectangle(ctx,x,y+height-15,16,16);
+  drawRaisedRectangle(ctx,x,0.5+Math.round(y+15+(value / upper-lower)*(height-47)),16,16);
 };
 
 function draw_horizontal_scrollbar (ctx, x, y, width, value, lower, upper) { // also step_increment, page_increment, page_size
-  draw_pressed_rect(ctx,x,y,width,16);
-  draw_raised_rect(ctx,x,y,16,16);
-  draw_raised_rect(ctx,x+width-15,y,16,16);
-  draw_raised_rect(ctx,0.5+Math.round(x+15+(value / upper-lower)*(width-47)),y,16,16);
+  drawPresedRectangle(ctx,x,y,width,16);
+  drawRaisedRectangle(ctx,x,y,16,16);
+  drawRaisedRectangle(ctx,x+width-15,y,16,16);
+  drawRaisedRectangle(ctx,0.5+Math.round(x+15+(value / upper-lower)*(width-47)),y,16,16);
 };
 
 function draw_focused_window (ctx, x, y, width, height, title) {
   ctx.strokeStyle="black";
   ctx.strokeRect(x, y, width, height);
-  draw_raised_rect(ctx,x+24,y,width-24,24);
+  drawRaisedRectangle(ctx,x+24,y,width-24,24);
   ctx.fillStyle = "black";
   ctx.font = "12pt sans-serif";
   ctx.textBaseline = "middle";
   ctx.textAlign = "center";
   ctx.fillText(title,x+width/2,y+13);
-  draw_raised_rect(ctx,x+width-24,y,24,24);
-  draw_raised_rect(ctx,x,y,24,24);
+  drawRaisedRectangle(ctx,x+width-24,y,24,24);
+  drawRaisedRectangle(ctx,x,y,24,24);
 };
 
 function draw_button (ctx,x,y,width,height,label,icon,state) {
