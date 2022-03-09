@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Quod Video</title>
@@ -9,7 +10,7 @@
       }
     </style>
   </head>
-  <body style="margin-left: 20%">
+  <body>
     <h1>What's happening here?</h1>
     <p>Probably the most complete code I've uploaded is <a href="mono/xms.xhtml">a page demonstrating the use of a double crystal monochromator for X-ray absorption spectroscopy</a>. It was written before HTML5 was a thing and uses <a href="https://www.w3.org/TR/XHTMLplusMathMLplusSVG/">an old doctype</a> that was created for combining HTML, SVG, and MathML.</p>
     <p>The <a href="https://github.com/quodvideo/ShuffleWM">Shuffle window manager</a> is a recent hasty creation. I made it to address a longstanding problem with X11 desktop environments: they don't handle click-to-focus very well. There's more explanation on there. Since it's not enough to have a window manager, I've been working on making a widget toolkit. This has been a slow process, especially since my holiday ended.</p>
@@ -20,5 +21,19 @@
     <p>Why not Wayland? I'm not very familiar with it, and I think remote display is cool. Where I work, some of the essential computers are running some version of X on some version of Linux. They aren't computers I use, so I don't know the details. I do know that the lead programmer can check on the computers in the control room from his office by using X. I don't have any idea how many people actually use X remotely, but I know there are some and I don't think they should be abandoned. Moreover, I know my colleagues who use Linux now are disappointed with the interfaces that are on offer. I'd like to give the scientific community a better option than macOS.</p>
     <p>Over the years, I've used many different kinds of interfaces: computational notebooks, 2D and 3D CAD, scientific spreadsheets, SCADA software, specialized analysis software, drawing programs, IDEs, and, of course, "office" software. I want a desktop environment that supports all these things and interactions between them. All of these kinds of programs are available, more or less, as web applications. Whether local, web, or remote X based, I want them all to work together.</p>
     <p>I don't yet know what the complete INDEX system will look like, but I expect it to be very data oriented. </p>
+    <h1>Pretty Pictures?</h1>
+    <p>20 years ago, I thought the desktop should looks something like this:</p>
+    <figure><a href="desktop11.png"><img src="desktop11.png"></a></figure>
+    <p>At the time, that took up most of my 800x600 screen. I think the low-contrast style of OS/2 was my goal at the time, except for those bumpy window frames. The OS/2-style settings panel is there, but the alert and dialog look more like something from a Mac.</p>
+    <p>About 10 years ago, my thinking was more like this:</p>
+    <figure><a href="svgs/vectors.svg"><img src="svgs/vectors.svg" width="800"/></a></figure>
+    <p>My screen have gotten much bigger, but you can see somethings changed and some remained the same. I was trying out the smooth gradients look that has dominated system UI for a while now. There's one menu at the top of the screen, but there's something in the corner and creeping down the side of the screen. Now there are tabs everywhere! You can't tell from a static image, but the idea is that tabs are provided by the system; you can group web page tabs with spreadsheet tabs if you want.</p>
+    <p>I have another image from long ago. It's a bunch of controls, but it's a little weird.</p>
+    <figure><a href="themestuff4.png"><img src="themestuff4.png"/></a></figure>
+    <p>All those red boxes are where the text or icons go. If you can see the pink above and below the red, that's room for font ascenders and descenders. The little bits of cyan are selected text. From the size of the image, I can tell you it about 20 years old; it had to fit on my tiny laptop screen. You can see the Apple Platinum influence there.</p>
+    <h1>What Now?</h1>
+    <p>Despite the time I've spent on pictures, my real interest is interaction. That might seem unlikely, because I've got <a href="morewidgets.html">another page of pictures</a>. I confess: drawing the pictures is a comfort while I think about how to make it all happen. I haven't written much code outside of LabVIEW recently. The Shuffle window manager is pretty basic C code. I realized I should probably put the menu bar in the window manager, so I need menu making code. I need both widgets and interpretation.</p>
+    <p>I need widgets, so objects seem like a good idea. Do I use GObject, which I already know? How about C++? Vala? Rust? Go? JavaScript? CLOS? I've written so little code so far that I'm not really committed to any of these, but I think I'm going with CLOS, or Common Lisp.</p>
+    <p>I also need some way for apps to tell the window manager what menus to display and how to update them. I need both a format and an interpreter of that format. If it's going to work over remote X11 connections, I should probably use X window properties, at least to start; they're easy, if clunky. Common Lisp is nice and dense, but maybe JSON is good enough. The latter has the advantage of being more widely used.</p>
   </body>
 </html>
