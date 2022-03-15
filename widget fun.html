@@ -240,9 +240,16 @@ drawFocusedWindow (ctx,350.5,100.5,400,300,"Foo");
 
 drawTextRectangle(ctx, 450.5,200.5,100,22)
 
-class DxView {
-// has a geometry (x y width height)
-// has a draw(state) method
+class DxResponder {
+  // all the event handlers
+}
+class DxView extends DxResponder {
+  // has a geometry (x y width height)
+  // has a draw(state) method
+}
+
+class DxButton {
+  
 }
 </script>
 </html>
