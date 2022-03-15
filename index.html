@@ -46,9 +46,19 @@
     <p>The first reason usually given for a global menu bar is Fitts's Law. What's more important is that the menu bar should be the last interface you have to use for anything. As the interface of last resort, it shouldn't take up a lot of space. Menu bars in every window make it seem like menus are the first way to do something.
     <h2>Object Permanence</h2>
     <p>tbd: basically making a consistent OOUI</p>
+    <p>One thing that needs to go away is the idea of saving files. Lot of web apps have effectively done this. A user's work should always be preserved. Still, many people are in the habit of periodically pressing Ctrl+S to save their work, and that should do something. "Save" will therefore be interpreted as "Stamp" and a timestamped copy of the user's work will be set aside.</p>
     <h2>User Focus</h2>
-    <p>Working in a lab or with multiple remote workstations, it's very easy to lose track of where you are. Sample have to be changed, people interrupt, machines go wrong. It should be easy to get back on track when you look at a screen, and to know the screen is the right one. Microsoft's <a href="https://en.wikipedia.org/wiki/Metro_(design_language)">Metro design language</a>, with its emphasis on typography, is really good for this.</p>
+    <p>Working in a lab or with multiple remote workstations, it's very easy to lose track of where you are. Samples have to be changed, people interrupt, machines go wrong. It should be easy to get back on track when you look at a screen, and to know the screen is the right one. Microsoft's <a href="https://en.wikipedia.org/wiki/Metro_(design_language)">Metro design language</a>, with its emphasis on typography, is really good for this.</p>
     <h2>Data Interchange</h2>
     <p>tbd: mostly about DnD</p>
+    <h1>Programs?</h1>
+    <h2>OOUI on POSIX</h2>
+    <p>An OOUI isn't necessarily a great fit for a POSIX system with its many file and directories. INDEX will have two characters: one for the user's home folder, and another for everything else. The home folder, containing the user's own files, is an easy fit for an OOUI. </p>
+    <h2>The Window Manager</h2>
+    <p>The INDEX window manager will provide the global menu bar.</p>
+    <h2>The File Manager</h2>
+    <p>The INDEX file manager will be an X selection manager which apps can rely on for file location services.</p>
+    <h2>Applications Generally</h2>
+    <p></p>
   </body>
 </html>
