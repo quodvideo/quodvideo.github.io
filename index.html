@@ -58,6 +58,22 @@
     <p>The INDEX window manager will provide the global menu bar.</p>
     <h2>The File Manager</h2>
     <p>The INDEX file manager will be an X selection manager which apps can rely on for file location services.</p>
+    <figure style="background: lightgrey">
+      <h3>The X File Manager Protocol</h3>
+      <p>To facilitate the presentation and manipulation of files and information about files from both the local system and remote systems, the X File Manager Protocol allows applications and a singular (or host-specific?) file manager to exchange information.</p>
+      <p>A file manager is an X client which owns the manager selection FILE_MANAGER or FILE_MANAGER_HOSTNAME, where HOSTNAME is replaced by the hostname for the filesystem managed. The usual conventions for manager selections apply.</p>
+      <pre><code>
+        FILE_MANAGER
+        FILE_MANAGER_HOSTNAME
+      </code></pre>
+        Targets:
+      <pre><code>
+        OPEN
+        CLOSE
+      </code></pre>
+      <p>Something for apps to say they've opened files?</p>
+      <p>A way to notify that the icon for a file has moved?</p>
+    </figure>
     <h2>Applications Generally</h2>
     <p></p>
   </body>
