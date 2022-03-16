@@ -243,12 +243,17 @@ drawTextRectangle(ctx, 450.5,200.5,100,22)
 class DxResponder {
   // all the event handlers
 }
+class DxApplication extends DxResponder {
+
+}
 class DxView extends DxResponder {
   // has a geometry (x y width height)
   // has a draw(state) method
 }
+class DxWindow extends DxResponder {
 
-class DxButton {
+}
+class DxButton extends DxView {
   
 }
 </script>
