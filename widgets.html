@@ -95,6 +95,8 @@
     <p>There's a text editor, but you never run the editor.  Instead, you double-click the icon representing a text file. To create a new text file, you drag an icon off the text file template and drop it somewhere. By default, this opens the property panel for the text file. From then on, you just double-click the icon to open the text file. You can shift-double-click to open the property panel again. or you can configure it in the text file's window, using the menu bar.</p></p>
     <p>There's an IDE, but you never run it. Instead, you open a project folder and you see the IDE view of the project contents.</p>
     <p>There's a remote desktop application, but you never run the application. Instead, you double-click the icon representing an RDP connection. To create a new RDP connection, you drag an icon off the RDP connection template and drop it somewhere. By default, this opens the property panel for the connection. From then on, you just double-click the icon to open the connection. You can shift-double-click to open the property panel again. or you can configure it in the connection's window, using the menu bar.</p>
+    <p>There's an address book, but . . . I'm not sure here. It can be just a folder with vcards that opens up in a special view, but maybe it should be a special database. In either case, there can be a view that looks like the other one. The tricky part is having the address book as a service and at the same time allowing vcards to be anywhere on the system.</p>
+    <p>So, the address book may be a really good example for how there are objects and views, but no applications.</p>
     <p>The web browser is an exception; it's both an application and an object unto itself.</p>
     <h1>Make Objects. Make Views.</h1><h2>Don't make applications.</h2>
     <p></p>
@@ -990,6 +992,7 @@
       <text x="56" y="41">plain text</text>
       <rect x="0.5" y="51.5" width="639" height="428" stroke="black" fill="white"/>
       <polyline class="shadow" points="1.5,50.5 638.5,50.5"/>
+      <rect x="0.5" y="51.5" width="639" height="26" stroke="black" fill="var(--base-fill-color)" />
       <g class="v-scrollbar" transform="translate(623.5,51.5)">
         <rect class="trough" width="16" height="396"/>
         <polyline class="shadow" points="1,379 1,1 15,1"/>
@@ -1195,6 +1198,7 @@
 
       </svg>
     </div>
+    <div style="border: 1px solid; margin: -1px; width: fit-content;"><div style="border: 1px outset; width: 62px; background-color: lightgray;">OK</div></div>
     <script>
       function drawtextbounds () {
         var ts = document.getElementsByTagName("text");
