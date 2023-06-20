@@ -12,10 +12,6 @@
         --grip-fill-color: #eeeeee;
         --grip-stroke-color: #aaaaaa;
       }
-      .outline {
-        fill: none;
-        stroke: black;
-      }
       .highlight {
         fill: none;
         stroke: var(--highlight-stroke-color);
@@ -286,6 +282,47 @@
             </g>
           </svg>
         </td>
+      </tr>
+      <tr><th>Switch (off)</th>
+        <td></td>
+        <td>
+          <svg width="200" height="100">
+            <g class="switch" transform="translate(68,39)">
+              <rect class="trough" x="0.5" y="0.5" width="64" height="22"/>
+              
+              <polyline points="1.5,22 1.5,1.5 64,1.5"/>
+              <polyline points="1,21.5 63.5,21.5 63.5,1"/>
+              <g class="slider">
+                <rect x="0.5" y="0.5" width="32" height="22"/>
+                <polyline points="1,21.5 31.5,21.5 31.5,1"/>
+                <polyline points="1.5,22 1.5,1.5 31.5,1.5"/>
+              </g>-
+              <text class="centered" x="48" y="11">OFF</text>
+            </g>
+          </svg>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr><th>Switch (on)</th>
+        <td></td>
+        <td>
+          <svg width="200" height="100">
+            <g class="switch" transform="translate(68,39)">
+              <rect class="trough" x="0.5" y="0.5" width="64" height="22"/>
+              <polyline points="1.5,22 1.5,1.5 64,1.5"/>
+              <polyline points="1,21.5 63.5,21.5 63.5,1"/>
+              <g class="slider" transform="translate(32,0)">
+                <rect x="0.5" y="0.5" width="32" height="22"/>
+                <polyline points="1,21.5 31.5,21.5 31.5,1"/>
+                <polyline points="1.5,22 1.5,1.5 31.5,1.5"/>
+              </g>
+              <text class="centered" x="16" y="11">ON</text>
+            </g>
+          </svg>
+        </td>
+        <td></td>
+        <td></td>
       </tr>
       <tr><th>Text Field</th>
         <td><input/></td>
@@ -853,25 +890,25 @@
         <td>
           <svg width="200" height="100">
             <g transform="translate(50,33)">
-              <rect class="outline" x="0.5" y="0.5" width="100" height="3"/>
-              <polyline class="shadow" points="1.5,2.5 1.5,1.5 99.5,1.5"/>
-              <polyline class="highlight" points="1.5,2.5 99.5,2.5 99.5,1.5"/>
-              <g transform="translate(45,-6)">
-                <rect class="outline"  style="fill: var(--raised-fill-color);" x="0.5" y="0.5" width="15" height="15"/>
-                <polyline class="shadow" points="1.5,14.5 14.5,14.5 14.5,1.5"/>
-                <polyline class="highlight" points="1.5,14.5 1.5,1.5 14.5,1.5"/>
+              <rect class="trough" x="0.5" y="0.5" width="100" height="3"/>
+              <polyline points="1.5,2.5 1.5,1.5 99.5,1.5"/>
+              <polyline points="1.5,2.5 99.5,2.5 99.5,1.5"/>
+              <g class="slider" transform="translate(45,-6)">
+                <rect x="0.5" y="0.5" width="15" height="15"/>
+                <polyline points="1.5,14.5 14.5,14.5 14.5,1.5"/>
+                <polyline points="1.5,14.5 1.5,1.5 14.5,1.5"/>
                 <use xlink:href="#hGrippy" x="3" y="3"/>
               </g>
             </g>
             <g transform="translate(50,66)">
-              <rect class="outline" style="fill: var(--recessed-fill-color);" x="0.5" y="0.5" width="100" height="5"/>
-              <polyline class="shadow" points="1.5,4.5 1.5,1.5 99.5,1.5"/>
-              <polyline class="highlight" points="1.5,4.5 99.5,4.5 99.5,1.5"/>
+              <rect class="trough" style="fill: var(--recessed-fill-color);" x="0.5" y="0.5" width="100" height="5"/>
+              <polyline points="1.5,4.5 1.5,1.5 99.5,1.5"/>
+              <polyline points="1.5,4.5 99.5,4.5 99.5,1.5"/>
               <rect fill="black" stroke="none" x="2" y="2" width="45" height="2"/>
-              <g transform="translate(45,-6)">
-                <rect class="outline"  style="fill: var(--raised-fill-color);" x="0.5" y="0.5" width="15" height="15"/>
-                <polyline class="shadow" points="1.5,14.5 14.5,14.5 14.5,1.5"/>
-                <polyline class="highlight" points="1.5,14.5 1.5,1.5 14.5,1.5"/>
+              <g class="slider" transform="translate(45,-6)">
+                <rect x="0.5" y="0.5" width="15" height="15"/>
+                <polyline points="1.5,14.5 14.5,14.5 14.5,1.5"/>
+                <polyline points="1.5,14.5 1.5,1.5 14.5,1.5"/>
                 <use xlink:href="#hGrippy" x="3" y="3"/>
               </g>
             </g>
@@ -1338,6 +1375,7 @@
         }
       });
     </script>
+    <!--
     <script src="https://unpkg.com/vue@3"></script>
 
     <div id="app">{{ message }}</div>
@@ -1352,6 +1390,11 @@
           }
         }
       }).mount('#app')
+    </script>
+  -->
+    <script>
+      foos = document.getElementsByTagName("foo");
+      foos[0].replaceWith();
     </script>
   </body>
 </html>
