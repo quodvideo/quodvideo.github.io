@@ -100,7 +100,7 @@
     <p>The web browser is an exception; it's both an application and an object unto itself.</p>
     <h1>Make Objects. Make Views.</h1><h2>Don't make applications.</h2>
     <p></p>
-    <input type="checkbox" id="showbounds"><label>Show Text Bounds</label>
+    <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
     <svg width="1" height="1"><title>Definitions</title>
       <defs>
         <clipPath id="cornerclip">
@@ -1199,6 +1199,13 @@
       </svg>
     </div>
     <div style="border: 1px solid; margin: -1px; width: fit-content;"><div style="border: 1px outset; width: 62px; background-color: lightgray;">OK</div></div>
+    <div style="border: 1px solid; margin: -1px; width: 100px; height: 14px;">
+      <div style="border: 1px inset; width: 98px; height: 12px; background-color: gray;">
+        <div style="border: 1px solid; width: 14px; height: 14px; margin: -2px; margin-left: 2em">
+          <div style="border: 1px outset; width: 12px; height: 12px; background-color: lightgrey;"></div>
+        </div>
+      </div>
+    </div>
     <script>
       function drawtextbounds () {
         var ts = document.getElementsByTagName("text");
