@@ -28,7 +28,7 @@
       }
       text.centered {
         text-anchor: middle;
-        alignment-baseline: central;
+        dominant-baseline: central;
       }
       .button rect {
         fill: var(--raised-fill-color);
@@ -992,9 +992,11 @@
       <text x="56" y="41">plain text</text>
       <rect x="0.5" y="51.5" width="639" height="428" stroke="black" fill="white"/>
       <polyline class="shadow" points="1.5,50.5 638.5,50.5"/>
-      <rect x="0.5" y="51.5" width="639" height="26" stroke="black" fill="var(--base-fill-color)" />
-      <polyline class="shadow" points="1.5,77.5 638.5,77.5 638.5,27.5"/>
-      <polyline class="highlight" points="1.5,77.5 1.5,27.5 638.5,27.5"/>
+      <g transform="translate(0,51)">
+        <rect x="0.5" y="0.5" width="639" height="26" stroke="black" fill="var(--base-fill-color)" />
+        <polyline class="shadow" points="1.5,25.5 638.5,25.5 638.5,1.5"/>
+        <polyline class="highlight" points="1.5,25.5 1.5,1.5 638.5,1.5"/>
+      </g>
       <g class="v-scrollbar" transform="translate(623.5,77.5)">
         <rect class="trough" width="16" height="370"/>
         <polyline class="shadow" points="1,353 1,1 15,1"/>
