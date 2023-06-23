@@ -89,6 +89,34 @@
         fill: var(--highlight-stroke-color);
         stroke: var(--outline-color);
       }
+      dx-window {
+        display: flex;
+        width: 398;
+        height: 298;
+        background-color: var(--base-fill-color);
+        outline: 1px solid;
+        border: 1px outset;
+      }
+      dx-vbox {
+        display: flex;
+        flex-direction: column;
+      }
+      dx-hbox {
+        display: flex;
+        flex-direction: row;
+      }
+      dx-button {
+        display: flex;
+        outline: 1px solid;
+        border: 1px outset;
+        background-color: var(--raised-fill-color);
+        min-width: 62px;
+        min-height: 20px;
+        align-items: center;
+        justify-content: center;
+        margin-right: 18px;
+      }
+
     </style>
   </head>
   <body>
@@ -102,6 +130,15 @@
     <p>The web browser is an exception; it's both an application and an object unto itself.</p>
     
     <p></p>
+    <dx-window style="font-size: 13.3;">
+      <dx-vbox style="width:100%">
+        <div>Upper Part</div>
+        <dx-hbox style="width: 100%; justify-content: flex-end;">
+          <dx-button>Cancel</dx-button>
+          <dx-button style="outline: 2px solid">OK</dx-button>
+        </dx-hbox>
+      </dx-vbox>
+    </dx-window>
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
     <svg width="1" height="1"><title>Definitions</title>
       <defs>
@@ -1215,8 +1252,9 @@
       </svg>
     </div>
 
-    <div style="outline: 1px solid; border: 1px outset; width: fit-content; min-width: 64px; background-color: lightgray;">OK</div>
-    <div style="outline: 1px solid; border: 1px outset; width: fit-content; min-width: 64px; background-color: lightgray;">OK</div>
+    <span style="outline: 1px solid; border: 1px outset; width: fit-content; padding-left: 1em; padding-right: 1em; min-width: 64px; background-color: lightgray;">OK</span>
+    <span style="outline: 1px solid; border: 1px outset; width: fit-content; min-width: 64px; background-color: lightgray;">OK</span>
+    <p></p>
     <div style="outline: 1px solid; border: 1px inset; background-color: grey; width: 100px; height: 14px;">
       <div style="outline: 1px solid; border: 1px outset; background-color: lightgrey; width: 14px; height: 14px; margin: -1px; margin-left: 2em;"></div>
     </div>
