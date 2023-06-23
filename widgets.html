@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
   <head>
     <title>widgets</title>
     <style>
@@ -120,8 +120,8 @@
     </style>
   </head>
   <body>
-    <header><h1>Make Objects. Make Views.</h1><h2>Don't make applications.</h2></header>
-    <p>Everything is an object.</p>
+    <header><h1>Make Templates. Make Items. Make Views. Make Property Pages</h1><h2>Don't make applications.</h2></header>
+    <p>Everything is an item.</p>
     <p>There's a text editor, but you never run the editor.  Instead, you double-click the icon representing a text file. To create a new text file, you drag an icon off the text file template and drop it somewhere. By default, this opens the property panel for the text file. From then on, you just double-click the icon to open the text file. You can shift-double-click to open the property panel again. or you can configure it in the text file's window, using the menu bar.</p></p>
     <p>There's an IDE, but you never run it. Instead, you open a project folder and you see the IDE view of the project contents.</p>
     <p>There's a remote desktop application, but you never run the application. Instead, you double-click the icon representing an RDP connection. To create a new RDP connection, you drag an icon off the RDP connection template and drop it somewhere. By default, this opens the property panel for the connection. From then on, you just double-click the icon to open the connection. You can shift-double-click to open the property panel again. or you can configure it in the connection's window, using the menu bar.</p>
@@ -143,6 +143,8 @@
     <p>What are normally thought of as applications are combinations of templates and views. Views are what put windows on the screen. Every item has at least one view: the property view.</p>
     <p>Every item has some sort of metadata. Metadata is stored in different ways. It may be in a file representing an item, in the filesystem extended attributes for that file, in a hidden file in the directory containing the file. All of this metadata is put together in the property view of the item.</p>
     <p>Part of the metadata is about the views of an item. There's a datum that what the default view for the item is. Another datum is the last view of the item. For every datum about the views of the item, there is a datum about the location on the screen where the view was last seen. When the user opens an item, this position information is passed on the program responsible for the view of the item so that it can tell the compositor or window manager where the view should be shown. Also passed along, for the use of the view and the compositor, is the screen location of the item's icon and the timestamp of the event responsible for opening the view. This allows animation of the opening view to spring from the icon and, if the timestamps are right, the new window will be activated.</p>
+    <p>The property view is a window with some pages. The pages may be accessed from fixed tabs when few or from a list when many. Changes made in the view are automatic; there's no OK button.</p>
+    <p>Every item created for the system should be a kind of some existing item. A number of primitive items will be provided. Every item has at least a name and an icon, so those properties will appear in every item's General property page. When extending (wc?) an item, a page should be created for new properties. (Changes to system items may change existing pages.) If nothing else, the new page should provide a key-value tree for the new properties. (Maybe there should be a utility for seeing all metadata that way.) Not all properties need to be exposed in the user interface.</p>
     <dx-window style="font-size: 13.3;">
       <dx-vbox style="width:100%">
         <div>Upper Part</div>
@@ -1265,20 +1267,6 @@
       </svg>
     </div>
 
-    <span style="outline: 1px solid; border: 1px outset; width: fit-content; padding-left: 1em; padding-right: 1em; min-width: 64px; background-color: lightgray;">OK</span>
-    <span style="outline: 1px solid; border: 1px outset; width: fit-content; min-width: 64px; background-color: lightgray;">OK</span>
-    <p></p>
-    <div style="outline: 1px solid; border: 1px inset; background-color: grey; width: 100px; height: 14px;">
-      <div style="outline: 1px solid; border: 1px outset; background-color: lightgrey; width: 14px; height: 14px; margin: -1px; margin-left: 2em;"></div>
-    </div>
-    <div style="border: 1px solid; margin: -1px; width: fit-content;"><div style="border: 1px outset; width: 62px; background-color: lightgray;">OK</div></div>
-    <div style="border: 1px solid; margin: -1px; width: 100px; height: 14px;">
-      <div style="border: 1px inset; width: 98px; height: 12px; background-color: gray;">
-        <div style="border: 1px solid; width: 14px; height: 14px; margin: -2px; margin-left: 2em">
-          <div style="border: 1px outset; width: 12px; height: 12px; background-color: lightgrey;"></div>
-        </div>
-      </div>
-    </div>
     <script>
       function drawtextbounds () {
         var ts = document.getElementsByTagName("text");
