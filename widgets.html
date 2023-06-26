@@ -1213,7 +1213,14 @@
           <!-- text -->
           <text class="centered" x="24" y="56" style="fill:white">Templates</text>
         </g>
-        <svg x="120" y="50" width="640" height="480"><title>Templates Folder</title>
+        <svg x="120" y="50" width="660" height="500"><title>Templates Folder</title>
+          <defs>
+            <filter id="f1" x="0" y="0">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+            </filter>
+          </defs>
+          <rect x="0" y="0" width="660" height="500" stroke="none" fill="black" filter="url(#f1)"></rect>
+          <g transform="translate(10,10)">
           <rect x="0.5" y="0.5" width="639" height="479" stroke="black" fill="var(--base-fill-color)"/>
           <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
           <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
@@ -1276,6 +1283,7 @@
               <use x="11" y="3" xlink:href="#hGrippy"/>
             </g>
           </g>
+          </g>
         </svg>
       </svg>
     </div>
@@ -1313,6 +1321,8 @@
           <h1>Make Templates. Make Items. Make Views. Make Property Pages.</h1>
           <h2>Don't make applications.</h2>
         </header>
+        <p>This system is different from what you're used to.</p>
+        <p>The shell provides a graphical user interface to a variety of items. Items are the objects of the graphical user interface. They may correspond to programmatic objects, but they may also be abstractions that unite various parts of the operating system. Every item has at least two views: an icon and a property panel. Property panels allow access to an item's metadata and are divided into a number of pages.</p>
         <dl>
           <dt>Item</dt>
           <dd>A user interface object. It's part of the user's model of what the computer is doing. The implementaion of an item will have multiple parts in the programmer's model. The word "item" is used to be distinct from other kinds of objects that the programmer may use.</dd>
