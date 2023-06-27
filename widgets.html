@@ -1219,11 +1219,11 @@
               <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
             </filter>
           </defs>
-          <rect x="0" y="0" width="660" height="500" stroke="none" fill="lightgrey" filter="url(#f1)"></rect>
+          <rect x="0" y="0" width="660" height="500" stroke="none" fill="lightgrey" filter="url(#f1)" style="display: none;"></rect>
           <g transform="translate(10,10)">
-            <rect x="0.5" y="0.5" width="639" height="479" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
-            <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
-            <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
+            <rect x="-4.5" y="-4.5" width="649" height="489" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
+            <polyline class="shadow" points="-3.5,488.5 648.5,488.5 648.5,-3.5"/>
+            <polyline class="highlight" points="-3.5,488.5 -3.5,-3.5 648.5,-3.5"/>
             <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
             <!-- <use xlink:href="#folderIcon" x="1" y="1" width="48" height="48" fill="#aaaaaa"/> -->
             <text class="centered" x="25" y="25" style="font-size: 48">🗀</text>
@@ -1322,10 +1322,22 @@
           <h2>Don't make applications.</h2>
         </header>
         <p>This system is different from what you're used to.</p>
-        <p>The shell provides a graphical user interface to a variety of items. Items are the objects of the graphical user interface. They may correspond to programmatic objects, but they may also be abstractions that unite various parts of the operating system. Every item has at least two views: an icon and a property panel. Property panels allow access to an item's metadata and are divided into a number of pages.</p>
+        <h3>Items</h3>
+        <p>The shell provides a graphical user interface to a variety of items. Items are the objects of the graphical user interface. They may correspond to programmatic objects, but they may also be abstractions that unite various parts of the operating system. Every item has at least two views: an icon and a property panel. Property panels allow access to an item's metadata. Item metadata includes the item's name, its icon, its media types, screen locations for its views, the files it represents, and more.</p>
+        <h3>Views</h3>
+        <p>Each of the various graphical representations of an item is a view. The item icon is the simplest view. The item property panel is another. Every item has these two views. Most items have more views. Some items may have surprising views. For example, an OpenDocument file has its default view in an office program, but it also has a folder view because its contents are a zipped archive of other files.</p>
+        <h3>Templates</h3>
+        <p>Templates are a special kind of item. When you drag and drop from a template icon, you get a new item of a kind specified by the template. For example, the shell has a folder template. Dragging and dropping from this template creates a new folder. There's a template for almost every kind of item you can create. One exception is a template itself; there's no template template. Templates can be created from existing items by dragging their icons into the template folder.</p>
+        <p>Templates can have content. If you create a template from a word processor document, then new items made from that template will have the same content as the document did when the template was created. This is an easy way to make form letters, for example. If a folder with content is turned into a template, all of the folder's contents will be reproduced by dragging from that template.</p>
+        <h3>Folders</h3>
+        <p>Folders are another kind of item. They contain other items, much like a directory contains files. Simple folders are just graphical representations of directories. More complicated types of folders exist.</p>
+        <h3>Workspaces</h3>
+        <p>A workspace is a special kind of folder. A simple workspace may represent a filesystem directory, but it also has information about the state of items inside it. The views of items in a workspace folder are connected to the folder view of the workspace. If the folder view closes, the item views close too. When the folder view is opened, the previously open items in the workspace reopen. It a simple form of session management.</p>
+        <h3>Desktops</h3>
+        <p>Desktops are special workspaces. When a desktop is opened, its folder view become the background of the shell. Signing on to the system is really just opening your primary desktop, and signing out is closing it. Because the desktop is a workspace, any items that were open when it was last closed will be opened again when it's reopened.</p>
         <dl>
           <dt>Item</dt>
-          <dd>A user interface object. It's part of the user's model of what the computer is doing. The implementaion of an item will have multiple parts in the programmer's model. The word "item" is used to be distinct from other kinds of objects that the programmer may use.</dd>
+          <dd>A user interface object. It's part of the user's model of what the computer is doing. The implementation of an item will have multiple parts in the programmer's model. The word "item" is used to be distinct from other kinds of objects that the programmer may use.</dd>
           <dt>View</dt>
           <dd>A visual representation of an item. Every item has at least two views: the icon and the property panel.</dd>
           <dt>Template</dt>
