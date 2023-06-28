@@ -874,9 +874,11 @@
       <use xlink:href="#documentIcon" x="5" y="6" width="40" height="40" fill="white"/>
       <text x="56" y="24" style="font-size: 24">Document Title</text>
       <text x="56" y="41">plain text</text>
-      <rect x="0.5" y="51.5" width="639" height="428" stroke="var(--outline-color)" fill="white"/>
-      <polyline class="shadow" points="1.5,50.5 638.5,50.5"/>
-      <g class="v-scrollbar" transform="translate(623.5,51.5)">
+      <rect x="4.5" y="51.5" width="631" height="424" stroke="var(--outline-color)" fill="white"/>
+      <rect x="619.5" y="459.5" width="16" height="16" stroke="var(--outline-color)" fill="var(--base-fill-color)" />
+      <polyline class="shadow" points="3.5,476.5, 3.5,50.5 636.5,50.5" />
+      <polyline class="highlight" points="3.5,476.5 620.5,476.5 620.5,460.5 636.5,460.5 636.5,50.5"></polyline>
+      <g class="v-scrollbar" transform="translate(620.5,51.5)">
         <rect class="trough" width="16" height="396"/>
         <polyline class="shadow" points="1,379 1,1 15,1"/>
         <polyline class="highlight" points="1,379 15,379 15,1"/>
@@ -899,8 +901,8 @@
           <use x="3" y="11" xlink:href="#vGrippy"/>
         </g>
       </g>
-      <use x="623" y="463" xlink:href="#newcornergrip"/>
-      <g class="h-scrollbar" transform="translate (0.5, 463.5)">
+      <use x="620" y="460" xlink:href="#newcornergrip"/>
+      <g class="h-scrollbar" transform="translate (4.5, 460.5)">
         <rect class="trough" width="607" height="16"/>
         <polyline class="shadow" points="1,15 1,1 590,1"/>
         <polyline class="highlight" points="1,15 590,15 590,1"/>
@@ -1338,7 +1340,7 @@
     <p>This shell is different from what you're used to. While many elements will be familiar, they may work differently from how they do on other systems. Most graphical shells on Linux can be called thin shells; they strongly resemble the underlying system. This shell is a thick shell. The default is to portray what a casual user expects, which may be different from the underlying system. This kind of abstraction is already familiar if you consider that a text shell in a terminal doesn't tell you anything about the semiconductors in the underlying hardware.</p>
     <p>The principle abstraction of this shell is the item. Items come in a variety of types and new types can be easily created. Items are parts of the user's model of the system.</p>
     <section><h3>Items</h3>
-      <p>The shell provides a graphical user interface to a variety of items. Items are the objects of the graphical user interface. They may correspond to programmatic objects, but they may also be abstractions that unite various parts of the operating system. Every item has at least two views: an icon and a property panel. Property panels allow access to an item's metadata. Item metadata includes the item's name, its icon, its media types, screen locations for its views, the files it represents, and more.</p>
+      <p>The shell provides a graphical user interface to a variety of items. Items are the objects of the graphical user interface. They may correspond to programmatic objects, but they may also be abstractions that unite various parts of the operating system. Every item has metadata. Item metadata includes the item's name, its icon, its media types, screen locations for its views, the files it represents, and more.</p>
     </section>
     <p>The graphics of the shell come in two types: overlays and views.</p>
     <section><h3>Overlays</h3>
@@ -1348,9 +1350,8 @@
       <p>Each of the various graphical representations of an item is a view. The item icon is the simplest view. The item property panel is another. Every item has these two views. Most items have more views. Some items may have surprising views. For example, an OpenDocument file has its default view in an office program, but it also has a folder view because its contents are a zipped archive of other files.</p>
       <p>On other systems, a view might be considered the main interface of an application.</p>
     </section>
-    
     <section><h3>Icons</h3>
-      <p>Every item has an icon view. It is, as the name implies, an icon. The icon view may have indicators of the items status, such as hatch marks indicating another item view is open.</p>
+      <p>Every item has an icon view. It is, as the name implies, an icon. The icon view may have indicators of the item's status, such as hatch marks indicating another item view is open.</p>
     </section>
     <section><h3>Property Panels</h3>
       <p>Every item has a property panel which allows viewing and editing some of the item's metadata. Panels are divided into pages. The "General" page applies to all items as it shows the item icon and name. Additional pages depend on the type of item being viewed.</p>
@@ -1416,5 +1417,12 @@
     <p><strong>The user interface is pulling together multiple sources of information to provide a simple interface of items.</strong> The basic metadata for a Folder may pull in information from the folder's contents, the parent folder's contents, the user's dot files, system files, and user and system databases. This may be very complicated, but it's all hidden from the casual user.</p>
     <p>Some programs may just be programs. A simple calculator is one example. A terminal is another example, but it has an interesting twist. A terminal window always (?) runs some program, typically a shell. The terminal program file will be accessible through a file browser or command line, but the utility item should be a shell. The item may have a Program property page which identifies both the actually terminal program (e.g. "/usr/bin/xterm -hold -e") and the shell to be run. A calculator may be more than simple. Perhaps there's a calculator that keeps a record. It should provide a template for a record of calculations.</p>
     <p>One thing to move away from is "saving" data. The user's work should always be preserved. In other words, auto-save should be the rule, not the exception. There is, however, still a use for those reflexive Mod-s keystrokes. Stamping. While the item in front of the user will be preserved in the place from whence it came, it may be useful to make copies at different stages of development. In other words, a time-stamped, possibly read-only by default, copy.</p>
+    <h2>But I'm a developer!</h2>
+    <p>If you use an IDE, not much changes. An IDE is a view of an item called a project. Your project is likely to be a bunch of files in a directory. That's fine. The shell will recognize the directory as a project and, by default, open it in your IDE. If you need to manipulate the contents of the directory outside of the IDE, you can view the project as a folder. Of course, you can always use a text shell in a terminal too.</p>
+    <p>If you don't use an IDE, the shell can be like an IDE for you. Again, you are working with a bunch of files in a directory, so you can view that as a folder. More importantly, you can set that folder as a workspace. When you open the workspace, your previously opened views will open again. With not much work, you can make sure that all the tools you use are ready for you.</p>
+    <h2>What about git?</h2>
+    <p>It should be possible to make a view for a git repository that recognizes its complexity. Since a repository usually contains a project, an IDE may be the view of choice for working with that repository.</p>
+    <p>However git is integrated with the shell, it is likely that "git repository" will be a new kind of item. A project is a git repository is a folder is an item.</p>
+    <p>The problem with git for the shell is that file metadata may be easily lost, no matter how it's stored. I have no solution for that at this time. It will likely require a special file in the directory containing metadata for a particular version.</p>
   </body>
 </html>
