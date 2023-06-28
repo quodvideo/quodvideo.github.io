@@ -852,6 +852,18 @@
         <text x="23" y="148">General</text>
       </g>
     </svg>
+    <svg width="640" height="480"><title>Basic View</title>
+      <rect x="0.5" y="0.5" width="639" height="479" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
+      <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
+      <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
+      <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
+      <use xlink:href="#documentIcon" x="5" y="6" width="40" height="40" fill="white"/>
+      <text x="56" y="24" style="font-size: 24">Item Name</text>
+      <text x="56" y="41">item view type</text>
+      <rect x="0.5" y="51.5" width="639" height="428" stroke="var(--outline-color)" fill="white"/>
+      <polyline class="shadow" points="1.5,50.5 638.5,50.5"/>
+      <use x="623" y="463" xlink:href="#newcornergrip"/>
+    </svg>
     <svg width="640" height="480"><title>Document Window</title>
       <rect x="0.5" y="0.5" width="639" height="479" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
       <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
@@ -1317,71 +1329,90 @@
         }
       });
     </script>
-        <header>
-          <h1>Make Templates. Make Items. Make Views. Make Property Pages.</h1>
-          <h2>Don't make applications.</h2>
-        </header>
-        <p>This system is different from what you're used to.</p>
-        <h3>Items</h3>
-        <p>The shell provides a graphical user interface to a variety of items. Items are the objects of the graphical user interface. They may correspond to programmatic objects, but they may also be abstractions that unite various parts of the operating system. Every item has at least two views: an icon and a property panel. Property panels allow access to an item's metadata. Item metadata includes the item's name, its icon, its media types, screen locations for its views, the files it represents, and more.</p>
-        <h3>Views</h3>
-        <p>Each of the various graphical representations of an item is a view. The item icon is the simplest view. The item property panel is another. Every item has these two views. Most items have more views. Some items may have surprising views. For example, an OpenDocument file has its default view in an office program, but it also has a folder view because its contents are a zipped archive of other files.</p>
-        <h3>Templates</h3>
-        <p>Templates are a special kind of item. When you drag and drop from a template icon, you get a new item of a kind specified by the template. For example, the shell has a folder template. Dragging and dropping from this template creates a new folder. There's a template for almost every kind of item you can create. One exception is a template itself; there's no template template. Templates can be created from existing items by dragging their icons into the template folder.</p>
-        <p>Templates can have content. If you create a template from a word processor document, then new items made from that template will have the same content as the document did when the template was created. This is an easy way to make form letters, for example. If a folder with content is turned into a template, all of the folder's contents will be reproduced by dragging from that template.</p>
-        <h3>Folders</h3>
-        <p>Folders are another kind of item. They contain other items, much like a directory contains files. Simple folders are just graphical representations of directories. More complicated types of folders exist.</p>
-        <h3>Workspaces</h3>
-        <p>A workspace is a special kind of folder. A simple workspace may represent a filesystem directory, but it also has information about the state of items inside it. The views of items in a workspace folder are connected to the folder view of the workspace. If the folder view closes, the item views close too. When the folder view is opened, the previously open items in the workspace reopen. It a simple form of session management.</p>
-        <h3>Desktops</h3>
-        <p>Desktops are special workspaces. When a desktop is opened, its folder view becomes the background of the shell. Signing on to the system is really just opening your primary desktop, and signing out is closing it. Because the desktop is a workspace, any items that were open when it was last closed will be opened again when it's reopened.</p>
-        <dl>
-          <dt>Item</dt>
-          <dd>A user interface object. It's part of the user's model of what the computer is doing. The implementation of an item will have multiple parts in the programmer's model. The word "item" is used to be distinct from other kinds of objects that the programmer may use.</dd>
-          <dt>View</dt>
-          <dd>A visual representation of an item. Every item has at least two views: the icon and the property panel.</dd>
-          <dt>Template</dt>
-          <dd>An item that produces items. A template has only two views: its icon and its property panel.</dd>
-          <dt>Icon</dt>
-          <dd>The most basic view of an item. A small graphic providing minimal information about an item.</dd>
-          <dt>Property Panel</dt>
-          <dd>A view of an item's metadata. An item's metadata can be pulled from multiple sources.</dd>
-          <dt>Folder</dt>
-          <dd>A container for items. The main view of a folder shows the icons and names of the items it contains.</dd>
-          <dt>Workspace</dt>
-          <dd>A folder which retains stateful information about its items.</dd>
-          <dt>Desktop</dt>
-          <dd>A workspace for which the main view is a field of icons that forms the background of the screen.</dd>
-        </dl>
-        <p>Everything is an item.</p>
-        <p>There's a text editor, but you never run the editor.  Instead, you double-click the icon representing a text file. To create a new text file, you drag an icon off the text file template and drop it somewhere. By default, this opens the property panel for the text file. From then on, you just double-click the icon to open the text file. You can shift-double-click to open the property panel again. or you can configure it in the text file's window, using the menu bar.</p></p>
-        <p>There's an IDE, but you never run it. Instead, you open a project folder and you see the IDE view of the project contents.</p>
-        <p>There's a remote desktop application, but you never run the application. Instead, you double-click the icon representing an RDP connection. To create a new RDP connection, you drag an icon off the RDP connection template and drop it somewhere. By default, this opens the property panel for the connection. From then on, you just double-click the icon to open the connection. You can shift-double-click to open the property panel again. or you can configure it in the connection's window, using the menu bar.</p>
-        <p>There's an address book, but . . . I'm not sure here. It can be just a folder with vcards that opens up in a special view, but maybe it should be a special database. In either case, there can be a view that looks like the other one. The tricky part is having the address book as a service and at the same time allowing vcards to be anywhere on the system.</p>
-        <p>So, the address book may be a really good example for how there are objects and views, but no applications.</p>
-        <p>The web browser is an exception; it's both an application and an object unto itself.</p>
+    <header>
+      <h1>Make Templates. Make Items. Make Views. Make Property Pages.</h1>
+      <h2>Don't make applications.</h2>
+    </header>
+    <p>This shell is different from what you're used to. While many elements will be familiar, they may work differently from how they do on other systems. Most graphical shells on Linux can be called thin shells; they strongly resemble the underlying system. This shell is a thick shell. The default is to portray what a casual user expects, which may be different from the underlying system. This kind of abstraction is already familiar if you consider that a text shell in a terminal doesn't tell you anything about the semiconductors in the underlying hardware.</p>
+    <p>The principle abstraction of this shell is the item. Items come in a variety of types and new types can be easily created. Items are parts of the user's model of the system.</p>
+    <section><h3>Items</h3>
+      <p>The shell provides a graphical user interface to a variety of items. Items are the objects of the graphical user interface. They may correspond to programmatic objects, but they may also be abstractions that unite various parts of the operating system. Every item has at least two views: an icon and a property panel. Property panels allow access to an item's metadata. Item metadata includes the item's name, its icon, its media types, screen locations for its views, the files it represents, and more.</p>
+    </section>
+    <p>The graphics of the shell come in two types: overlays and views.</p>
+    <section><h3>Overlays</h3>
+      <p>Overlays can be regarded as peripheral devices that extend onto the screen. The most obvious of these is the menu bar, which is usually present at the top of the screen. The menu bar also contains some system status indicators. Notifications will also appear in overlays.</p>
+    </section>
+    <section><h3>Views</h3>
+      <p>Each of the various graphical representations of an item is a view. The item icon is the simplest view. The item property panel is another. Every item has these two views. Most items have more views. Some items may have surprising views. For example, an OpenDocument file has its default view in an office program, but it also has a folder view because its contents are a zipped archive of other files.</p>
+      <p>On other systems, a view might be considered the main interface of an application.</p>
+    </section>
+    
+    <section><h3>Icons</h3>
+      <p>Every item has an icon view. It is, as the name implies, an icon. The icon view may have indicators of the items status, such as hatch marks indicating another item view is open.</p>
+    </section>
+    <section><h3>Property Panels</h3>
+      <p>Every item has a property panel which allows viewing and editing some of the item's metadata. Panels are divided into pages. The "General" page applies to all items as it shows the item icon and name. Additional pages depend on the type of item being viewed.</p>
+    </section>
+    <section><h3>Templates</h3>
+      <p>Templates are a special kind of item. When you drag and drop from a template icon, you get a new item of a kind specified by the template. For example, the shell has a folder template. Dragging and dropping from this template creates a new folder. There's a template for almost every kind of item you can create. One exception is a template itself; there's no template template. Templates can be created from existing items by dragging their icons into the template folder.</p>
+      <p>Templates can have content. If you create a template from a word processor document, then new items made from that template will have the same content as the document did when the template was created. This is an easy way to make form letters, for example. If a folder with content is turned into a template, all of the folder's contents will be reproduced by dragging from that template.</p>
+    </section>
+    <section><h3>Folders</h3>
+      <p>Folders are another kind of item. They contain other items, much like a directory contains files. Simple folders are just graphical representations of directories. More complicated types of folders exist.</p>
+    </section>
+    <section><h3>Workspaces</h3>
+      <p>A workspace is a special kind of folder. A simple workspace may represent a filesystem directory, but it also has information about the state of items inside it. The views of items in a workspace folder are connected to the folder view of the workspace. If the folder view closes, the item views close too. When the folder view is opened, the previously open items in the workspace reopen. It a simple form of session management.</p>
+    </section>
+    <section><h3>Desktops</h3>
+      <p>Desktops are special workspaces. When a desktop is opened, its folder view becomes the background of the shell. Signing on to the system is really just opening your primary desktop, and signing out is closing it. Because the desktop is a workspace, any items that were open when it was last closed will be opened again when it's reopened.</p>
+    </section>
+    <dl>
+      <dt>Item</dt>
+      <dd>A user interface object. It's part of the user's model of what the computer is doing. The implementation of an item will have multiple parts in the programmer's model. The word "item" is used to be distinct from other kinds of objects that the programmer may use.</dd>
+      <dt>View</dt>
+      <dd>A visual representation of an item. Every item has at least two views: the icon and the property panel.</dd>
+      <dt>Template</dt>
+      <dd>An item that produces items. A template has only two views: its icon and its property panel.</dd>
+      <dt>Icon</dt>
+      <dd>The most basic view of an item. A small graphic providing minimal information about an item.</dd>
+      <dt>Property Panel</dt>
+      <dd>A view of an item's metadata. An item's metadata can be pulled from multiple sources.</dd>
+      <dt>Folder</dt>
+      <dd>A container for items. The main view of a folder shows the icons and names of the items it contains.</dd>
+      <dt>Workspace</dt>
+      <dd>A folder which retains stateful information about its items.</dd>
+      <dt>Desktop</dt>
+      <dd>A workspace for which the main view is a field of icons that forms the background of the screen.</dd>
+    </dl>
+    <p>Everything is an item.</p>
+    <p>There's a text editor, but you never run the editor.  Instead, you double-click the icon representing a text file. To create a new text file, you drag an icon off the text file template and drop it somewhere. By default, this opens the property panel for the text file. From then on, you just double-click the icon to open the text file. You can shift-double-click to open the property panel again. or you can configure it in the text file's window, using the menu bar.</p></p>
+    <p>There's an IDE, but you never run it. Instead, you open a project folder and you see the IDE view of the project contents.</p>
+    <p>There's a remote desktop application, but you never run the application. Instead, you double-click the icon representing an RDP connection. To create a new RDP connection, you drag an icon off the RDP connection template and drop it somewhere. By default, this opens the property panel for the connection. From then on, you just double-click the icon to open the connection. You can shift-double-click to open the property panel again. or you can configure it in the connection's window, using the menu bar.</p>
+    <p>There's an address book, but . . . I'm not sure here. It can be just a folder with vcards that opens up in a special view, but maybe it should be a special database. In either case, there can be a view that looks like the other one. The tricky part is having the address book as a service and at the same time allowing vcards to be anywhere on the system.</p>
+    <p>So, the address book may be a really good example for how there are objects and views, but no applications.</p>
+    <p>The web browser is an exception; it's both an application and an object unto itself.</p>
         
-        <p>The file manager is a key component. In a sense, it is the whole thing. Once a user has signed in, an object called the desktop is shown. The desktop is a special kind of workspace folder, and a workspace folder is a special kind of folder. A folder is a container for other items which is typically viewed as a field of icons. A workspace folder is a folder with memory; it remembers which items in it are open. A desktop is a workspace folder that is shown underneath everything else, without a frame. A user can have more than one desktop, but one is special as the starting desktop.</p>
-        <p>The menu bar, being at the top of the screen, might seem important, but it's not. It's the interface of last resort and a system status bar. Showing a menu bar in each window would suggest that the menu bar is a big part of interacting with any object, but it shouldn't be. The top of the screen is a convenient place to reach when nothing else is going right.</p>
-        <p>There are some overlay views. There's one that shows all the open objects. Another shows notifications and system status.</p>
-        <p>The desktop is the starting point. It contains a few items. An important one is the Templates folder. It contains templates, and only templates. Anything dropped into the templates folder is received as a template. (The original remains.) What is a template? It's a design for a new object. One of the templates is a folder template. To create a new folder, click and drag from the template as if you were doing a regular drag and drop. Immediately, the dragged icon looks like a regular folder, not like the template icon from which the drag was begun. When the icon is finally dropped somewhere outside the template folder, a new folder will be created in that place. Its name, "Folder", will immediately be selected and receive focus so the new folder can be named. Everything new has at least a default name.</p>
-        <p>There's a template for every kind of object you can create. Everything is an object, but every object starts out as a template. Applications developers might better be called template makers. Because anyone can make a template, anyone can be an application developer. While the program that shows a file might be called "LibreOffice Writer", what the user experiences is a template for an ODT file. If the user already has an ODT file and drops it into the templates folder, then a new template will be created. While the basic ODT template is a blank document, the user-created ODT template will have whatever content the user's file had.</p>
-        <p>If the user drops a folder into the templates folder, then the new template will be for a folder matching the properties and contents of the folder that was dropped. If the user regular works with a certain kind of project, they might make a template folder filled with the things they need for a new project.</p>
-        <p>Templates are not confined to the templates folder. By holding Shift while dragging from a template icon, a copy of the template itself can be made. Frequently used templates can thus be available from wherever they are frequently used. A visual art project folder might have a copy of an image template, so it can be quickly accessed to create a new image.</p>
-        <p>Folders and their contents do not exactly match the filesystem contents, and looking at a directory isn't necessarily looking at a folder. A music collection might be an example of the latter. While the collection may exist as a directory of OGG files in the file system, that directory can be opened in at least two ways: as a regular folder, to work with files as files, and as a music player, for listening to music. On the other hand, a folder might not represent a directory at all. It could, for example, be a view of some sort of database (table?). The Templates folder on the desktop is such a folder. It is a combination of system templates, which may come from a database, and user-generated templates, which may be stored as files in a hidden directory.</p>
-        <p>The file manager, if that's what you want to call it, is responsible for making all of this work.</p>
-        <p>To avoid confusion, maybe it's better to call the things on the system "items" instead of "objects". Everything is an item. A folder is a kind of item that contains other items. A workspace folder is a kind of folder that remembers some of the status of its items. The desktop is a workspace folder that is always open behind all the windows and overlays on the screen. Signing in to the system is the same as opening your main desktop folder.</p>
-        <p>A template is a special kind of item. It's an item that represents a type of item. (Is there a template template?)</p>
-        <p>What are normally thought of as applications are combinations of templates and views. Views are what put windows on the screen. Every item has at least one view: the property view.</p>
-        <p>Every item has some sort of metadata. Metadata is stored in different ways. It may be in a file representing an item, in the filesystem extended attributes for that file, in a hidden file in the directory containing the file. All of this metadata is put together in the property view of the item.</p>
-        <p>Part of the metadata is about the views of an item. There's a datum that what the default view for the item is. Another datum is the last view of the item. For every datum about the views of the item, there is a datum about the location on the screen where the view was last seen. When the user opens an item, this position information is passed on the program responsible for the view of the item so that it can tell the compositor or window manager where the view should be shown. Also passed along, for the use of the view and the compositor, is the screen location of the item's icon and the timestamp of the event responsible for opening the view. This allows animation of the opening view to spring from the icon and, if the timestamps are right, the new window will be activated.</p>
-        <p>The property view is a window with some pages. The pages may be accessed from fixed tabs when few or from a list when many. Changes made in the view are automatic; there's no OK button.</p>
-        <p>Every item created for the system should be a kind of some existing item. A number of primitive items will be provided. Every item has at least a name and an icon, so those properties will appear in every item's General property page. When extending (wc?) an item, a page should be created for new properties. (Changes to system items may change existing pages.) If nothing else, the new page should provide a key-value tree for the new properties. (Maybe there should be a utility for seeing all metadata that way.) Not all properties need to be exposed in the user interface.</p>
-        <p>It is likely that many items will extend the Folder item. The OpenDocument format, for example, consists of a zip archive, which can be viewed as a folder.</p>
-        <p>Actually, objects may be the wrong idea. Interfaces may be more appropriate.</p>
-        <p>The OpenDocument format need not be written as an extension of the Folder item, but the system may nonetheless detect that the file is a zip archive and thus provide the View As Folder option.</p>
-        <p><strong>The user interface is pulling together multiple sources of information to provide a simple interface of items.</strong> The basic metadata for a Folder may pull in information from the folder's contents, the parent folder's contents, the user's dot files, system files, and user and system databases. This may be very complicated, but it's all hidden from the casual user.</p>
-        <p>Some programs may just be programs. A simple calculator is one example. A terminal is another example, but it has an interesting twist. A terminal window always (?) runs some program, typically a shell. The terminal program file will be accessible through a file browser or command line, but the utility item should be a shell. The item may have a Program property page which identifies both the actually terminal program (e.g. "/usr/bin/xterm -hold -e") and the shell to be run. A calculator may be more than simple. Perhaps there's a calculator that keeps a record. It should provide a template for a record of calculations.</p>
-        <p>One thing to move away from is "saving" data. The user's work should always be preserved. In other words, auto-save should be the rule, not the exception. There is, however, still a use for those reflexive Mod-s keystrokes. Stamping. While the item in front of the user will be preserved in the place from whence it came, it may be useful to make copies at different stages of development. In other words, a time-stamped, possibly read-only by default, copy.</p>
+    <p>The file manager is a key component. In a sense, it is the whole thing. Once a user has signed in, an object called the desktop is shown. The desktop is a special kind of workspace folder, and a workspace folder is a special kind of folder. A folder is a container for other items which is typically viewed as a field of icons. A workspace folder is a folder with memory; it remembers which items in it are open. A desktop is a workspace folder that is shown underneath everything else, without a frame. A user can have more than one desktop, but one is special as the starting desktop.</p>
+    <p>The menu bar, being at the top of the screen, might seem important, but it's not. It's the interface of last resort and a system status bar. Showing a menu bar in each window would suggest that the menu bar is a big part of interacting with any object, but it shouldn't be. The top of the screen is a convenient place to reach when nothing else is going right.</p>
+    <p>There are some overlay views. There's one that shows all the open objects. Another shows notifications and system status.</p>
+    <p>The desktop is the starting point. It contains a few items. An important one is the Templates folder. It contains templates, and only templates. Anything dropped into the templates folder is received as a template. (The original remains.) What is a template? It's a design for a new object. One of the templates is a folder template. To create a new folder, click and drag from the template as if you were doing a regular drag and drop. Immediately, the dragged icon looks like a regular folder, not like the template icon from which the drag was begun. When the icon is finally dropped somewhere outside the template folder, a new folder will be created in that place. Its name, "Folder", will immediately be selected and receive focus so the new folder can be named. Everything new has at least a default name.</p>
+    <p>There's a template for every kind of object you can create. Everything is an object, but every object starts out as a template. Applications developers might better be called template makers. Because anyone can make a template, anyone can be an application developer. While the program that shows a file might be called "LibreOffice Writer", what the user experiences is a template for an ODT file. If the user already has an ODT file and drops it into the templates folder, then a new template will be created. While the basic ODT template is a blank document, the user-created ODT template will have whatever content the user's file had.</p>
+    <p>If the user drops a folder into the templates folder, then the new template will be for a folder matching the properties and contents of the folder that was dropped. If the user regular works with a certain kind of project, they might make a template folder filled with the things they need for a new project.</p>
+    <p>Templates are not confined to the templates folder. By holding Shift while dragging from a template icon, a copy of the template itself can be made. Frequently used templates can thus be available from wherever they are frequently used. A visual art project folder might have a copy of an image template, so it can be quickly accessed to create a new image.</p>
+    <p>Folders and their contents do not exactly match the filesystem contents, and looking at a directory isn't necessarily looking at a folder. A music collection might be an example of the latter. While the collection may exist as a directory of OGG files in the file system, that directory can be opened in at least two ways: as a regular folder, to work with files as files, and as a music player, for listening to music. On the other hand, a folder might not represent a directory at all. It could, for example, be a view of some sort of database (table?). The Templates folder on the desktop is such a folder. It is a combination of system templates, which may come from a database, and user-generated templates, which may be stored as files in a hidden directory.</p>
+    <p>The file manager, if that's what you want to call it, is responsible for making all of this work.</p>
+    <p>To avoid confusion, maybe it's better to call the things on the system "items" instead of "objects". Everything is an item. A folder is a kind of item that contains other items. A workspace folder is a kind of folder that remembers some of the status of its items. The desktop is a workspace folder that is always open behind all the windows and overlays on the screen. Signing in to the system is the same as opening your main desktop folder.</p>
+    <p>A template is a special kind of item. It's an item that represents a type of item. (Is there a template template?)</p>
+    <p>What are normally thought of as applications are combinations of templates and views. Views are what put windows on the screen. Every item has at least one view: the property view.</p>
+    <p>Every item has some sort of metadata. Metadata is stored in different ways. It may be in a file representing an item, in the filesystem extended attributes for that file, in a hidden file in the directory containing the file. All of this metadata is put together in the property view of the item.</p>
+    <p>Part of the metadata is about the views of an item. There's a datum that what the default view for the item is. Another datum is the last view of the item. For every datum about the views of the item, there is a datum about the location on the screen where the view was last seen. When the user opens an item, this position information is passed on the program responsible for the view of the item so that it can tell the compositor or window manager where the view should be shown. Also passed along, for the use of the view and the compositor, is the screen location of the item's icon and the timestamp of the event responsible for opening the view. This allows animation of the opening view to spring from the icon and, if the timestamps are right, the new window will be activated.</p>
+    <p>The property view is a window with some pages. The pages may be accessed from fixed tabs when few or from a list when many. Changes made in the view are automatic; there's no OK button.</p>
+    <p>Every item created for the system should be a kind of some existing item. A number of primitive items will be provided. Every item has at least a name and an icon, so those properties will appear in every item's General property page. When extending (wc?) an item, a page should be created for new properties. (Changes to system items may change existing pages.) If nothing else, the new page should provide a key-value tree for the new properties. (Maybe there should be a utility for seeing all metadata that way.) Not all properties need to be exposed in the user interface.</p>
+    <p>It is likely that many items will extend the Folder item. The OpenDocument format, for example, consists of a zip archive, which can be viewed as a folder.</p>
+    <p>Actually, objects may be the wrong idea. Interfaces may be more appropriate.</p>
+    <p>The OpenDocument format need not be written as an extension of the Folder item, but the system may nonetheless detect that the file is a zip archive and thus provide the View As Folder option.</p>
+    <p><strong>The user interface is pulling together multiple sources of information to provide a simple interface of items.</strong> The basic metadata for a Folder may pull in information from the folder's contents, the parent folder's contents, the user's dot files, system files, and user and system databases. This may be very complicated, but it's all hidden from the casual user.</p>
+    <p>Some programs may just be programs. A simple calculator is one example. A terminal is another example, but it has an interesting twist. A terminal window always (?) runs some program, typically a shell. The terminal program file will be accessible through a file browser or command line, but the utility item should be a shell. The item may have a Program property page which identifies both the actually terminal program (e.g. "/usr/bin/xterm -hold -e") and the shell to be run. A calculator may be more than simple. Perhaps there's a calculator that keeps a record. It should provide a template for a record of calculations.</p>
+    <p>One thing to move away from is "saving" data. The user's work should always be preserved. In other words, auto-save should be the rule, not the exception. There is, however, still a use for those reflexive Mod-s keystrokes. Stamping. While the item in front of the user will be preserved in the place from whence it came, it may be useful to make copies at different stages of development. In other words, a time-stamped, possibly read-only by default, copy.</p>
   </body>
 </html>
