@@ -1098,6 +1098,11 @@
           <use x="11" y="3" xlink:href="#hGrippy"/>
         </g>
       </g>
+      <g transform="translate(100.5,200.5)" class="">
+        <rect fill="none" width="400" height="300" stroke="black"/>
+        <path d="M0,24 h10 v-22 h64 v22 H400 M74,3 h64 v20" stroke="black" fill="none" />
+        <path d="M0,25 h11 v-22 h62 v22 H399" stroke="white" fill="none"/>
+      </g>
       <svg id="magicbutton" x="10" y="300">
         <g class="button">
           <rect x="0.5" y="0.5" width="64" height="22"/>
@@ -1272,14 +1277,15 @@
     <section style="margin-left: 20%; margin-right: 20%;"><h3>Items</h3>
       <p>The shell provides a graphical user interface to a variety of items. Items are the objects of the graphical user interface. They may correspond to programmatic objects, but they may also be abstractions that unite various parts of the operating system. Every item has metadata. Item metadata includes the item's name, its icon, its media types, screen locations for its views, the files it represents, and more.</p>
     </section>
-    <p>The graphics of the shell come in two types: overlays and views.</p>
-    <section style="margin-left: 20%; margin-right: 20%;"><h3>Overlays</h3>
-      <p>Overlays can be regarded as peripheral devices that extend onto the screen. The most obvious of these is the menu bar, which is usually present at the top of the screen. The menu bar also contains some system status indicators. Notifications will also appear in overlays.</p>
-    </section>
+    <p>An item is an abstract concept. The shell represents items graphically in views. A few of the shell graphics are not views of items, but are overlays on the screen.</p>
     <section style="margin-left: 20%; margin-right: 20%;"><h3>Views</h3>
       <p>Each of the various graphical representations of an item is a view. The item icon is the simplest view. The item property panel is another. Every item has these two views. Most items have more views. Some items may have surprising views. For example, an OpenDocument file has its default view in an office program, but it also has a folder view because its contents are a zipped archive of other files.</p>
       <p>On other systems, a view might be considered the main interface of an application.</p>
     </section>
+    <section style="margin-left: 20%; margin-right: 20%;"><h3>Overlays</h3>
+      <p>Overlays can be regarded as peripheral devices that extend onto the screen. The most obvious of these is the menu bar, which is usually present at the top of the screen. The menu bar also contains some system status indicators. Notifications will also appear in overlays.</p>
+    </section>
+    <p>Something.</p>
     <section style="margin-left: 20%; margin-right: 20%;"><h3>Icons</h3>
       <p>Every item has an icon view. It is, as the name implies, an icon. The icon view may have indicators of the item's status, such as hatch marks indicating another item view is open.</p>
     </section>
