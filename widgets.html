@@ -98,26 +98,15 @@
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
     <svg width="1" height="1"><title>Definitions</title>
       <defs>
+        <pattern id="pattern0" width="2" height="2" x="0" y="0" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+          <rect height="1" width="2" fill="darkgrey" stroke="none"></rect>
+          <rect y="1" height="1" width="2" fill="white" stroke="none"></rect>
+        </pattern>
         <clipPath id="cornerclip">
-          <path d="M1,16 L16,1 V16 Z"/>
+          <path d="M1,16 L16 1 V16 Z"></path>
         </clipPath>
         <symbol id="newcornergrip">
-          <g clip-path="url(#cornerclip)">
-            <g transform="rotate(-45 9 9)" stroke="darkgrey">
-              <line x1="-10" y1="9" x2="30" y2="9"/>
-              <line x1="-10" y1="11" x2="36" y2="11"/>
-              <line x1="-10" y1="13" x2="36" y2="13"/>
-              <line x1="-10" y1="15" x2="36" y2="15"/>
-              <line x1="-10" y1="17" x2="36" y2="17"/>
-            </g>
-            <g transform="rotate(-45 9 9)" stroke="white">
-              <line x1="-10" y1="10" x2="30" y2="10"/>
-              <line x1="-10" y1="12" x2="36" y2="12"/>
-              <line x1="-10" y1="14" x2="36" y2="14"/>
-              <line x1="-10" y1="16" x2="36" y2="16"/>
-              <line x1="-10" y1="18" x2="36" y2="18"/>
-            </g>
-          </g>
+          <rect width="100" height="100" fill="url(#pattern0)" clip-path="url(#cornerclip)" />
         </symbol>
         <linearGradient id="greylight" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0" stop-color="#f8f8f8"/>
