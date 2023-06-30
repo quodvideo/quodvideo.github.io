@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>widgets</title>
@@ -1307,6 +1308,8 @@
     <section style="margin-left: 20%; margin-right: 20%;"><h3>Desktops</h3>
       <p>Desktops are special workspaces. When a desktop is opened, its folder view becomes the background of the shell. Signing on to the system is really just opening your primary desktop, and signing out is closing it. Because the desktop is a workspace, any items that were open when it was last closed will be opened again when it's reopened.</p>
     </section>
+    <p>(The system sign on screen should perhaps show closed primary desktop folders, to maintain the item-oriented interface.)</p>
+
     <dl>
       <dt>Item</dt>
       <dd>A user interface object. It's part of the user's model of what the computer is doing. The implementation of an item will have multiple parts in the programmer's model. The word "item" is used to be distinct from other kinds of objects that the programmer may use.</dd>
@@ -1353,7 +1356,7 @@
     <p>Actually, objects may be the wrong idea. Interfaces may be more appropriate.</p>
     <p>The OpenDocument format need not be written as an extension of the Folder item, but the system may nonetheless detect that the file is a zip archive and thus provide the View As Folder option.</p>
     <p><strong>The user interface is pulling together multiple sources of information to provide a simple interface of items.</strong> The basic metadata for a Folder may pull in information from the folder's contents, the parent folder's contents, the user's dot files, system files, and user and system databases. This may be very complicated, but it's all hidden from the casual user.</p>
-    <p>Some programs may just be programs. A simple calculator is one example. A terminal is another example, but it has an interesting twist. A terminal window always (?) runs some program, typically a shell. The terminal program file will be accessible through a file browser or command line, but the utility item should be a shell. The item may have a Program property page which identifies both the actually terminal program (e.g. "/usr/bin/xterm -hold -e") and the shell to be run. A calculator may be more than simple. Perhaps there's a calculator that keeps a record. It should provide a template for a record of calculations.</p>
+    <p>Some programs may just be programs. A simple calculator is one example. A terminal is another example, but it has an interesting twist. A terminal window always (?) runs some program, typically a shell. The terminal program file will be accessible through a file browser or command line, but the utility item should be a shell. The item may have a Program property page which identifies both the actual terminal program (e.g. "/usr/bin/xterm -hold -e") and the shell to be run. A calculator may be more than simple. Perhaps there's a calculator that keeps a record. It should provide a template for a record of calculations.</p>
     <p>One thing to move away from is "saving" data. The user's work should always be preserved. In other words, auto-save should be the rule, not the exception. There is, however, still a use for those reflexive Mod-s keystrokes. Stamping. While the item in front of the user will be preserved in the place from whence it came, it may be useful to make copies at different stages of development. In other words, a time-stamped, possibly read-only by default, copy.</p>
     <h2>But I'm a developer!</h2>
     <p>If you use an IDE, not much changes. An IDE is a view of an item called a project. Your project is likely to be a bunch of files in a directory. That's fine. The shell will recognize the directory as a project and, by default, open it in your IDE. If you need to manipulate the contents of the directory outside of the IDE, you can view the project as a folder. Of course, you can always use a text shell in a terminal too.</p>
@@ -1362,5 +1365,9 @@
     <p>It should be possible to make a view for a git repository that recognizes its complexity. Since a repository usually contains a project, an IDE may be the view of choice for working with that repository.</p>
     <p>However git is integrated with the shell, it is likely that "git repository" will be a new kind of item. A project is a git repository is a folder is an item.</p>
     <p>The problem with git for the shell is that file metadata may be easily lost, no matter how it's stored. I have no solution for that at this time. It will likely require a special file in the directory containing metadata for a particular version.</p>
+    <h2>I need a terminal.</h2>
+    <p>There are templates for text shells and they use the terminal program to show the text shells. Once you've created a text shell item, by dragging and dropping from the template, you can configure it to your liking through the property panel. You can change the terminal program used as well as the text shell used in the terminal program. You can set environment variable, initialization files, etc. You can even run non-shell programs in the terminal.</p>
+    <h2>But I like applications!</h2>
+    <p>In that case, I strongly recommend you use a Mac. It provides the best application-oriented experience by far.</p>
   </body>
 </html>
