@@ -1309,7 +1309,26 @@
       <p>Desktops are special workspaces. When a desktop is opened, its folder view becomes the background of the shell. Signing on to the system is really just opening your primary desktop, and signing out is closing it. Because the desktop is a workspace, any items that were open when it was last closed will be opened again when it's reopened.</p>
     </section>
     <p>(The system sign on screen should perhaps show closed primary desktop folders, to maintain the item-oriented interface.)</p>
-
+    <section><h2>Differences from Other GUIs</h2>
+      <p>Some differences from other graphical user interfaces, especially those on Linux, should already be apparent.</p>
+      <p>There are three applications on Linux that are reimagined in this shell: the window manager, the file manager, and the session manager.</p>
+      <p>The window manager does very little in the normal order of things. It keeps overlays, including the menu bar, on top, and it keeps desktops on the bottom. It provides switching between desktops. It does not draw window frames, but it may provide effects like shadows. It does not reparent windows. (Except to make virtual desktops???) It may provide a virtual desktop which is larger than the screen. It provides a window switching overlay. In the event of a window being closed, it ensures the right window has keyboard focus. Mouse-based focus is managed by the windows themselves using the globally active input model of the ICCCM. It may restrict the movement and placement of windows, but it mostly respects what clients give it. (The constraints on movements should suffice to constrain placement, because windows will only ask to be placed where they were before.) Window stacking order has some contraints, to keep overlays and desktops right, but clients are expected to raise their window appropriately.</p>
+      <p>Folders provide screen positions for both icons and views to opening views. These positions are shared with the window manager which may then animate the transition from an icon to another view. If the folder for an item is closed when the non-icon view is still visible, then the animation closing the open view will show it going to the containing folder's icon. If that icon is not visible, it will go to the next containing folder's icon, and so forth down to an icon on the desktop. (How?)</p>
+      <p>A workspace item combines file and session management functions. As a file manager, it displays icons for its contents. As a session manager, it keeps track of other views of its contents.</p>
+    </section>
+    <section><h2>Expectations of Views</h2>
+      <p>Views are responsible for communicating with the window manager and their session manager. To present a window, a view must communicate to the window manager the position information it receives from its container. This information includes icon positions in container window between the view and the desktop. The view will also receive a timestamp corresponding to the event which opened the view and must use this timestamp to set focus when its window is mapped. Focus is not gauranteed! If another view has received focus in between the opening event and the mapping of the window, then it will not receive focus. If and when the window does receive focus, it should ask to be raised.</p>
+      <p>(Default stacking position should be above the container window communicated in the startup info.)</p>
+      <p>A view must communicate updates to its window position to the session manager. (The session manager will set metadata accordingly, probably by communicating with the file manager.)</p>
+      <p>(Should there be a FILE_MANAGER? Is the session manager enough?)</p>
+      <p>If a view contains items which may be opened in other windows, it should act as a folder or workspace. (Which?)</p>
+      <p>A view may use alerts, dialogs, palettes, panels, or other transient windows. They should be marked as such for the window manager.</p>
+      <p>(Palettes should hide on focus loss, but alerts and dialogs should not. What about other panels?)</p>
+      <p>Folder views must provide to . . . </p>
+      <p>Is the property panel another process? Maybe. It should be treated like any other view. How do all the views synchronize?</p>
+      <p>For moving to Wayland, I'll probably need a trace protocol to make the connections between desktops and views.</p>
+      <p>IDK what people are doing for session management these days.</p>
+    </section>>
     <dl>
       <dt>Item</dt>
       <dd>A user interface object. It's part of the user's model of what the computer is doing. The implementation of an item will have multiple parts in the programmer's model. The word "item" is used to be distinct from other kinds of objects that the programmer may use.</dd>
