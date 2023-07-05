@@ -1387,11 +1387,12 @@
       <p>Desktops are special workspaces. When a desktop is opened, its folder view becomes the background of the shell. Signing on to the system is really just opening your primary desktop, and signing out is closing it. Because the desktop is a workspace, any items that were open when it was last closed will be opened again when it's reopened.</p>
     </section>
     <p>(The system sign-on screen should perhaps show closed primary desktop folders, to maintain the item-oriented interface.)</p>
-    <p>The first thing you see on the screen after signing on, aside from the menu bar overlay, is a desktop item. The starting desktop contains one item: the templates folder.</p>
+    <p>The first thing you see on the screen after signing on, aside from the menu bar overlay, is a desktop item. It's a folder that forms the background of the screen. The starting desktop contains a few items: a trash can, something something, and a templates folder.</p>
     <section style="margin-left: 20%; margin-right: 20%;"><h3>Templates</h3>
       <p>Templates are a special kind of item. When you drag and drop from a template icon, you get a new item of a kind specified by the template. For example, the shell has a folder template. Dragging and dropping from this template creates a new folder. There's a template for almost every kind of item you can create. One exception is a template itself; there's no template template. Templates can be created from existing items by dragging their icons into the template folder.</p>
       <p>Templates can have content. If you create a template from a word processor document, then new items made from that template will have the same content as the document did when the template was created. This is an easy way to make form letters, for example. If a folder with content is turned into a template, all of the folder's contents will be reproduced by dragging from that template.</p>
     </section>
+    <p>Perhaps the default templates should be listed.</p>
     <section><h2>Differences from Other GUIs</h2>
       <p>Some differences from other graphical user interfaces, especially those on Linux, should already be apparent.</p>
       <p>There are three applications on Linux that are reimagined in this shell: the window manager, the file manager, and the session manager.</p>
@@ -1401,7 +1402,7 @@
       <p>A workspace item combines file and session management functions. As a file manager, it displays icons for its contents. As a session manager, it keeps track of other views of its contents.</p>
     </section>
     <section><h2>Expectations of Views</h2>
-      <p>Views are responsible for communicating with the window manager and their session manager. To present a window, a view must communicate to the window manager the position information it receives from its container. This information includes icon positions in container window between the view and the desktop. The view will also receive a timestamp corresponding to the event which opened the view and must use this timestamp to set focus when its window is mapped. Focus is not gauranteed! If another view has received focus in between the opening event and the mapping of the window, then it will not receive focus. If and when the window does receive focus, it should ask to be raised.</p>
+      <p>Views are responsible for communicating with the window manager and their session manager. To present a window, a view must communicate to the window manager the position information it receives from its container. This information includes icon positions in container windows between the view and the desktop. The view will also receive a timestamp corresponding to the event which opened the view and must use this timestamp to set focus when its window is mapped. Focus is not guaranteed! If another view has received focus in between the opening event and the mapping of the window, then it will not receive focus. If and when the window does receive focus, it should ask to be raised.</p>
       <p>(Default stacking position should be above the container window communicated in the startup info.)</p>
       <p>A view must communicate updates to its window position to the session manager. (The session manager will set metadata accordingly, probably by communicating with the file manager.)</p>
       <p>(Should there be a FILE_MANAGER? Is the session manager enough?)</p>
@@ -1412,6 +1413,25 @@
       <p>Is the property panel another process? Maybe. It should be treated like any other view. How do all the views synchronize?</p>
       <p>For moving to Wayland, I'll probably need a trace protocol to make the connections between desktops and views.</p>
       <p>IDK what people are doing for session management these days.</p>
+      <p>If a view contains items, it should accept template drops to create new items.</p>
+    </section>
+    <section><h2>Special Programs</h2>
+      <p>There are a few special programs which break the rules of the shell.</p>
+      <section><h3>Terminal</h3>
+        <p>The terminal program is a general purpose view of character data. It is available as an execution parameter for shells, scripts, etc. All of the text shell templates produce files which will open in a terminal.</p>
+      </section>
+      <section><h3>Web Browser</h3>
+        <p>What can be said about this? It's essential, but its contents aren't really part of the shell. Bookmarks, on the other hand, can be filed away; they can be items.</p>
+      </section>
+      <section><h3>Help Browser</h3>
+        <p>The help browser is available from the menu bar.</p>
+      </section>
+      <section><h3>File Browser</h3>
+        <p>The file browser is what's usually called the file manager in other shells. It exists for GUI access to parts of the system which are not represented in the shell.</p>
+      </section>
+      <section><h3>Calculator</h3>
+        <p>The calculator is a simple calculator.</p>
+      </section>
     </section>
     <dl>
       <dt>Item</dt>
