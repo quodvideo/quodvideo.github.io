@@ -92,6 +92,9 @@
       }
     </style>
     <script>
+      function drawHScrollBar () {
+
+      }
     </script>
 
   </head>
@@ -581,7 +584,7 @@
               <rect class="trough" width="160" height="16"/>
               <polyline class="shadow" points="1,15 1,1 127,1"/>
               <polyline class="highlight" points="1,15 127,15 127,1"/>
-              <g class="button" transform="translate(128,0)">
+<!--              <g class="button" transform="translate(128,0)">
                 <rect width="16" height="16"/>
                 <polyline points="1,15 15,15 15,1"/>
                 <polyline points="1,15 1,1 15,1"/>
@@ -593,6 +596,9 @@
                 <polyline points="1,15 1,1 15,1"/>
                 <use xlink:href="#newArrowRight" width="16" height="16"/>
               </g>
+              -->
+              <use xlink:href="scrollbar-stepper-left" x="128" y="0"/>
+              <use xlink:href="scrollbar-stepper-right" x="144" y="0"/>
               <g class="slider" transform="translate(50,0)">
                 <rect width="32" height="16"/>
                 <polyline points="1,15 31,15 31,1"/>
@@ -1046,7 +1052,7 @@
         </g>
       </g>
       <use x="620" y="460" xlink:href="#newcornergrip"/>
-      <use x="4.5" y="459.5" xlink:href="#sheetTabGroup" fill="red" width="16" height="16"/>
+      <use x="4.5" y="459.5" xlink:href="#sheetTabGroup" />
       <g class="h-scrollbar" transform="translate (184.5, 459.5)">
         <rect class="trough" width="403" height="16"/>
         <polyline class="shadow" points="1,15 1,1 402,1"/>
