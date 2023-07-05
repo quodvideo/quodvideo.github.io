@@ -16,17 +16,45 @@
         font-size: 13.3px;
       }
       dx-button {
-        display: inline-block;
+        display: flex;
         outline: 1px solid var(--outline-color);
         border: 1px outset white;
         background-color: var(--raised-fill-color);
         text-align: center;
+        justify-content: center;
+        align-items: center;
+      }
+      dx-window {
+        display: flex;
+        width: 398;
+        height: 298;
+        background-color: var(--base-fill-color);
+        outline: 1px solid;
+        border: 1px outset white;
+      }
+      dx-vbox {
+        display: flex;
+        flex-direction: column;
+      }
+      dx-hbox {
+        display: flex;
+        flex-direction: row;
       }
     </style>
     <script>
     </script>
   </head>
   <body>
+    <dx-window>
+      <dx-vbox style="width:100%">
+        <div>Upper Part</div>
+        <dx-hbox style="width: 100%; justify-content: flex-end;">
+          <dx-button style="min-width: 62px; min-height: 22px; margin-right: 18px; margin-bottom: 18px;">Cancel</dx-button>
+          <dx-button style="min-width: 62px; min-height: 22px; margin-right: 18px; margin-bottom: 18px; outline: 2px solid">OK</dx-button>
+        </dx-hbox>
+      </dx-vbox>
+    </dx-window>
+    <p></p>
     <dx-button style="min-width: 62px; min-height: 22px;">OK</dx-button>
   </body>
 </html>

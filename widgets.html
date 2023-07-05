@@ -191,6 +191,29 @@
           <use xlink:href="#scrollbar-stepper"/>
           <use xlink:href="#newArrowRight"/>
         </g>
+        <g id="sheettab-active">
+          <path fill="none" stroke="white" d="M0.5,0.5 h70"/>
+          <path fill="white" stroke="var(--outline-color)" d="M0.5,0.5 h5 l5,13 h50 l5,-13 h5"/>
+          <path fill="none" stroke="none" d="M0.5,0.5 h70"/>
+          <text style="font-size: 10;font-family:Sans-serif;text-anchor:middle;" x="35.5" y="10.5">label</text>
+        </g>
+        <g id="sheettab-inactive">
+          <path fill="none" stroke="none" d="M0.5,0.5 h70"/>
+          <path fill="white" stroke="var(--outline-color)" d="M0.5,0.5 h5 l5,13 h50 l5,-13 h5"/>
+          <path fill="none" stroke="var(--outline-color)" d="M0.5,0.5 h70"/>
+          <text style="font-size: 10;font-family:Sans-serif;text-anchor:middle;" x="35.5" y="10.5">label</text>
+        </g>
+        <g id="sheetTabGroup">
+          <!-- old note: Alternative: Let the tabs go to 15 and don't outline the area. -->
+          <rect width="180" height="16" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
+          <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H115 L120,13 H170 L175,0 H180"/>
+          <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="141" y="10">3</text>
+          <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H60 L65,13 H115 L120,0 H180"/>
+          <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="86" y="10">2</text>
+          <path d="M1,0 H179" stroke="#ffffff"/>
+          <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H5 L10,13 H60 L65,0 H180"/>
+          <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
+        </g>
       </defs>
     </svg>
     <table style="background-color: var(--base-fill-color)">
@@ -987,6 +1010,67 @@
       <polyline class="shadow" points="3.5,476.5 3.5,50.5 636.5,50.5"/>
       <polyline class="highlight" points="3.5,476.5 620.5,476.5 620.5,460.5 636.5,460.5 636.5,50.5"/>
     </svg>
+    <svg width="640" height="480"><title>Spreadsheet</title>
+      <rect x="0.5" y="0.5" width="639" height="479" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
+      <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
+      <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
+      <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
+      <use xlink:href="#documentIcon" x="5" y="6" width="40" height="40" fill="white"/>
+      <text x="56" y="24" style="font-size: 24">Document Title</text>
+      <text x="56" y="41">spreadsheet</text>
+      <rect x="4.5" y="51.5" width="631" height="424" stroke="var(--outline-color)" fill="white"/>
+      <rect x="619.5" y="459.5" width="16" height="16" stroke="var(--outline-color)" fill="var(--base-fill-color)" />
+      <polyline class="shadow" points="3.5,476.5, 3.5,50.5 636.5,50.5" />
+      <polyline class="highlight" points="3.5,476.5 620.5,476.5 620.5,460.5 636.5,460.5 636.5,50.5"></polyline>
+      <g class="v-scrollbar" transform="translate(619.5,51.5)">
+        <rect class="trough" width="16" height="376"/>
+        <polyline class="shadow" points="1,375 1,1 15,1"/>
+        <polyline class="highlight" points="1,375 15,375 15,1"/>
+        <g class="button" transform="translate(0,376)">
+          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
+          <polyline class="shadow" points="1,15 15,15 15,1"/>
+          <polyline class="highlight" points="1,15 1,1 15,1"/>
+          <use xlink:href="#newArrowUp" width="16" height="16"/>
+        </g>
+        <g class="button" transform="translate(0,392)">
+          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
+          <use xlink:href="#newArrowDown" width="16" height="16"/>
+        </g>
+        <g class="slider" transform="translate(0,100)">
+          <rect width="16" height="32"/>
+          <polyline points="1,31 15,31 15,1"/>
+          <polyline points="1,31 1,1 15,1"/>
+          <use x="3" y="11" xlink:href="#vGrippy"/>
+        </g>
+      </g>
+      <use x="620" y="460" xlink:href="#newcornergrip"/>
+      <use x="4.5" y="459.5" xlink:href="#sheetTabGroup" fill="red" width="16" height="16"/>
+      <g class="h-scrollbar" transform="translate (184.5, 459.5)">
+        <rect class="trough" width="403" height="16"/>
+        <polyline class="shadow" points="1,15 1,1 402,1"/>
+        <polyline class="highlight" points="1,15 402,15 402,1"/>
+        <g class="button" transform="translate(403,0)">
+          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
+          <use xlink:href="#newArrowLeft" width="16" height="16"/>
+        </g>
+        <g class="button" transform="translate(419,0)">
+          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
+          <polyline points="1,15 15,15 15,1"/>
+          <polyline points="1,15 1,1 15,1"/>
+          <use xlink:href="#newArrowRight" width="16" height="16"/>
+        </g>
+        <g class="slider" transform="translate(100,0)">
+          <rect width="32" height="16"/>
+          <polyline points="1,15 31,15 31,1"/>
+          <polyline points="1,15 1,1 31,1"/>
+          <use x="11" y="3" xlink:href="#hGrippy"/>
+        </g>
+      </g>
+    </svg>
     <svg width="640" height="480"><title>Control Console</title>
       <rect x="0.5" y="0.5" width="639" height="479" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
       <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
@@ -1042,32 +1126,6 @@
       </g>
     </svg>
     <svg width="1000" height="1000"><title>Playground</title>
-      <defs>
-        <g id="sheettab-active">
-          <path fill="none" stroke="white" d="M0.5,0.5 h70"/>
-          <path fill="white" stroke="var(--outline-color)" d="M0.5,0.5 h5 l5,13 h50 l5,-13 h5"/>
-          <path fill="none" stroke="none" d="M0.5,0.5 h70"/>
-          <text style="font-size: 10;font-family:Sans-serif;text-anchor:middle;" x="35.5" y="10.5">label</text>
-        </g>
-        <g id="sheettab-inactive">
-          <path fill="none" stroke="none" d="M0.5,0.5 h70"/>
-          <path fill="white" stroke="var(--outline-color)" d="M0.5,0.5 h5 l5,13 h50 l5,-13 h5"/>
-          <path fill="none" stroke="var(--outline-color)" d="M0.5,0.5 h70"/>
-          <text style="font-size: 10;font-family:Sans-serif;text-anchor:middle;" x="35.5" y="10.5">label</text>
-        </g>
-        <g id="sheetTabGroup">
-          <!-- old note: Alternative: Let the tabs go to 15 and don't outline the area. -->
-          <rect width="180" height="16" fill="none" stroke="var(--outline-color)"/>
-          <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H115 L120,13 H170 L175,0 H180"/>
-          <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="141" y="10">3</text>
-          <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H60 L65,13 H115 L120,0 H180"/>
-          <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="86" y="10">2</text>
-          <path d="M1,0 H179" stroke="#ffffff"/>
-          <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H5 L10,13 H60 L65,0 H180"/>
-          <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
-        </g>
-
-      </defs>
       <rect x="0.5" y="0.5" width="999" height="999" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
       <use x="20" y="20" xlink:href="#documentIcon" fill="white" width="16" height="16"/>
       <use x="40" y="40" xlink:href="#folderIcon" fill="red" width="16" height="16"/>
