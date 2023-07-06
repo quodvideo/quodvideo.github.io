@@ -91,6 +91,11 @@
         stroke: var(--outline-color);
       }
     </style>
+  </head>
+  <body>
+    <svg id="testfield" width="400" height="300">
+      <rect width="400" height="300" fill="var(--base-fill-color)" stroke="none"/>
+    </svg>
     <script>
       function drawHScrollBar (parentid,x,y,width,height) {
         var pid = document.getElementById(parentid);
@@ -108,11 +113,6 @@
       drawHScrollBar("testfield",10,10,100,100);
     </script>
 
-  </head>
-  <body>
-    <svg id="testfield" width="400" height="300">
-      <rect width="400" height="300" fill="var(--base-fill-color)" stroke="none"/>
-    </svg>
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
     <svg width="1" height="1"><title>Definitions</title>
       <defs>
