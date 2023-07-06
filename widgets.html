@@ -369,6 +369,7 @@
       }
       function drawSpinButton (parentElement,x,y,width,height) {
         var field = drawInputField(parentElement,x,y,width,height);
+
         var btndn = drawButton(field,x+1,y+1,height-2,height-2);
 
         var minus = document.createElementNS("http://www.w3.org/2000/svg","line");
@@ -381,9 +382,15 @@
         btndn.insertAdjacentElement("beforeend",minus);
 
         var btnup = drawButton(field,x+width-height+2,y+1,height-2,height-2);
-        //btnup.insertAdjacentElement("beforeend",minus);
 
-
+        var plus1 = document.createElementNS("http://www.w3.org/2000/svg","line");
+        plus1.setAttribute("x1",x+4+width-height+2);
+        plus1.setAttribute("y1",y+11);
+        plus1.setAttribute("x2",x+16+width-height+2);
+        plus1.setAttribute("y2",y+11);
+        plus1.setAttribute("stroke-width",2);
+        plus1.setAttribute("stroke","var(--outline-color)");
+        btnup.insertAdjacentElement("beforeend",plus1);
         /*
         <line x1="4.5" y1="10.5" x2="16.5" y2="10.5" stroke-width="2" stroke="black"/>
         <line x1="10.5" y1="4.5" x2="10.5" y2="16.5" stroke-width="2" stroke="black"/>
