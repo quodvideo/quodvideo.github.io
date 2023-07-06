@@ -94,18 +94,25 @@
     <script>
       function drawHScrollBar (parentid,x,y,width,height) {
         var pid = document.getElementsByTagName(parentid);
-        var ne = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        ne.setAttribute("x", x);
-        ne.setAttribute("y", y);
-        ne.setAttribute("width", width);
-        ne.setAttribute("height", height);
-        ne.setAttribute("class","trough");
-        pid.insertAdjacentElement("afterend", ne);
+        var trough = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        //var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        //var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        trough.setAttribute("x", x);
+        trough.setAttribute("y", y);
+        trough.setAttribute("width", width);
+        trough.setAttribute("height", height);
+        trough.setAttribute("class","trough");
+        pid.insertAdjacentElement("beforeend", trough);
+
       }
+      drawHScrollBar("testfield",10,10,100,100);
     </script>
 
   </head>
   <body>
+    <svg id="testfield" width="400" height="300">
+      <rect width="400" height="300" fill="var(--base-fill-color)" stroke="none"/>
+    </svg>
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
     <svg width="1" height="1"><title>Definitions</title>
       <defs>
