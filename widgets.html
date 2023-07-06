@@ -258,7 +258,7 @@
         txt.setAttribute("y",y+height/2);
         btn.insertAdjacentElement("beforeend",txt);
       }
-      function drawHSlider (parentElement,x,y,width,height) {
+      function drawSlider (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         grp.setAttribute("class","slider");
         parentElement.insertAdjacentElement("beforeend", grp);
@@ -278,11 +278,19 @@
         shadow.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+1)+","+(y+1)+" "+(x+width-1)+","+(y+1))
         grp.insertAdjacentElement("beforeend", shadow);
 
+        return grp;
+      }
+      function drawHSlider (parentElement,x,y,width,height) {
+        var slider = drawSlider(parentElement,x,y,width,height);
+        parentElement.insertAdjacentElement("beforeend", slider);
+
         var grip = document.createElementNS("http://www.w3.org/2000/svg","use");
         grip.setAttribute("x",x+width/2-5.5);
         grip.setAttribute("y",y+2.5);
         grip.setAttributeNS("http://www.w3.org/1999/xlink","href","#hGrippy");
         grp.insertAdjacentElement("beforeend", grip);
+
+        return grp;
       }
       function drawHScrollBar (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
