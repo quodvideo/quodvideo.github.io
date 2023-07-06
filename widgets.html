@@ -107,7 +107,7 @@
         trough.setAttribute("class","trough");
         pid.insertAdjacentElement("beforeend", trough);
         var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points",(x+1)+","+y+height-1+" "+x+1+","+y+1+" "+width-1+","+y+1)
+        shadow.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+1)+","+(y+1)+" "+(x+width-1)+","+(y+1))
         pid.insertAdjacentElement("beforeend", shadow);
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         highlight.setAttribute("points",(x+1)+","+y+height-1+" "+x+width-1+","+height-1+" "+x+width-1+","+y+1)
