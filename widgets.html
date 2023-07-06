@@ -360,10 +360,10 @@
         highlight.setAttribute("points",""+x+","+y+height+" "+x+width+","+y+height+" "+x+width+","+y);
         
         var field = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        field.setAttribute("x",""+x+1.5);
-        field.setAttribute("y",""+y+1.5);
-        field.setAttribute("width",""+width-2);
-        field.setAttribute("height",""+height-2);
+        field.setAttribute("x",x+1.5);
+        field.setAttribute("y",y+1.5);
+        field.setAttribute("width",width-2);
+        field.setAttribute("height",height-2);
         
         return grp;
       }
