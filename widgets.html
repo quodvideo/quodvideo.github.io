@@ -97,11 +97,10 @@
       <rect width="400" height="300" fill="var(--base-fill-color)" stroke="none"/>
     </svg>
     <script>
-      function drawButton (parentid,x,y,width,height) {
-        var pid = document.getElementById(parentid);
+      function drawButton (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         grp.setAttribute("class","button");
-        pid.insertAdjacentElement("beforeend", grp);
+        parentElement.insertAdjacentElement("beforeend", grp);
 
         var btn = document.createElementNS("http://www.w3.org/2000/svg","rect");
         btn.setAttribute("x", x);
@@ -109,11 +108,16 @@
         btn.setAttribute("width", width);
         btn.setAttribute("height", height);
         grp.insertAdjacentElement("beforeend", btn);
+        var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        shadow.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+1)+","+(y+1)+" "+(x+width-1)+","+(y+1))
+        grp.insertAdjacentElement("beforeend", shadow);
+        var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        highlight.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+width-1)+","+(y+height-1)+" "+(x+width-1)+","+(y+1))
+        grp.insertAdjacentElement("beforeend", highlight);
       }
-      function drawHScrollBar (parentid,x,y,width,height) {
-        var pid = document.getElementById(parentid);
+      function drawHScrollBar (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
-        pid.insertAdjacentElement("beforeend", grp);
+        parentElement.insertAdjacentElement("beforeend", grp);
         var trough = document.createElementNS("http://www.w3.org/2000/svg","rect");
         trough.setAttribute("x", x);
         trough.setAttribute("y", y);
@@ -127,11 +131,11 @@
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         highlight.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+width-1)+","+(y+height-1)+" "+(x+width-1)+","+(y+1))
         grp.insertAdjacentElement("beforeend", highlight);
-        drawButton(parentid,x+width,y,height,height);
-        drawButton(parentid,x+width+height,y,height,height);
+        drawButton(grp,x+width,y,height,height);
+        drawButton(grp,x+width+height,y,height,height);
 
       }
-      drawHScrollBar("testfield",10.5,10.5,100,50);
+      drawHScrollBar(document.getElementById("testfield"),10.5,10.5,100,50);
     </script>
 
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
