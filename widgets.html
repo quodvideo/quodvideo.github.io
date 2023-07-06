@@ -127,8 +127,8 @@
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         highlight.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+width-1)+","+(y+height-1)+" "+(x+width-1)+","+(y+1))
         grp.insertAdjacentElement("beforeend", highlight);
-        drawButton(grp,x+width,y,height,height);
-        drawButton(grp,x+width+height,y,height,height);
+        drawButton(parentid,x+width,y,height,height);
+        drawButton(parentid,x+width+height,y,height,height);
 
       }
       drawHScrollBar("testfield",10.5,10.5,100,50);
