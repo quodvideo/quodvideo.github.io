@@ -354,14 +354,14 @@
         parentElement.insertAdjacentElement("beforeend",grp);
 
         var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points",""+x+","+y+height+" "+x+","+y+" "+x+width+","+y);
+        shadow.setAttribute("points",""+x+","+(y+height)+" "+x+","+y+" "+(x+width)+","+y);
         grp.insertAdjacentElement("beforeend",shadow);
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        highlight.setAttribute("points",""+x+","+y+height+" "+x+width+","+y+height+" "+x+width+","+y);
+        highlight.setAttribute("points",""+x+","+(y+height)+" "+(x+width)+","+(y+height)+" "+(x+width)+","+y);
         grp.insertAdjacentElement("beforeend",highlight);
         var field = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        field.setAttribute("x",x+1.5);
-        field.setAttribute("y",y+1.5);
+        field.setAttribute("x",x+1);
+        field.setAttribute("y",y+1);
         field.setAttribute("width",width-2);
         field.setAttribute("height",height-2);
         grp.insertAdjacentElement("beforeend",field);
