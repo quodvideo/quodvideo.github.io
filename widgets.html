@@ -276,7 +276,7 @@
         stepper.insertAdjacentElement("beforeend", stepperArrow);
         return stepper;
       }
-      function drawSlider (parentElement,x,y,width,height) {
+      function drawSlider (parentElement,x,y,width,height,dir) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         grp.setAttribute("class","slider");
         parentElement.insertAdjacentElement("beforeend", grp);
@@ -296,6 +296,22 @@
         shadow.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+1)+","+(y+1)+" "+(x+width-1)+","+(y+1))
         grp.insertAdjacentElement("beforeend", shadow);
 
+
+        var grip = document.createElementNS("http://www.w3.org/2000/svg","use");
+        switch (dir) {
+          case "horizontal":
+            grip.setAttribute("x",x+width/2-5.5);
+            grip.setAttribute("y",y+2.5);
+            grip.setAttributeNS("http://www.w3.org/1999/xlink","href","#hGrippy");
+            break;
+          case "vertical":
+            grip.setAttribute("x",x+2.5);
+            grip.setAttribute("y",y+height/2-5.5);
+            grip.setAttributeNS("http://www.w3.org/1999/xlink","href","#vGrippy");
+            break;
+        }
+        grp.insertAdjacentElement("beforeend", grip);
+
         return grp;
       }
       function drawTrough (parentElement,x,y,width,height) {
@@ -314,7 +330,7 @@
         parentElement.insertAdjacentElement("beforeend", highlight);
         return trough;
       }
-      function drawHSlider (parentElement,x,y,width,height) {
+      /*function drawHSlider (parentElement,x,y,width,height) {
         var slider = drawSlider(parentElement,x,y,width,height);
         parentElement.insertAdjacentElement("beforeend", slider);
 
@@ -338,13 +354,14 @@
 
         return slider;
       }
+      */
       function drawHScrollBar (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         parentElement.insertAdjacentElement("beforeend", grp);
         drawTrough(grp,x,y,width-height-height,height);
         drawStepper(grp,x+width-height-height,y,height,height,"left");
         drawStepper(grp,x+width-height,y,height,height,"right");
-        drawHSlider(grp,x+10,y,32,height);
+        drawSlider(grp,x+10,y,32,height,"horizontal");
         return grp;
       }
       function drawVScrollBar (parentElement,x,y,width,height) {
@@ -353,12 +370,12 @@
         drawTrough(grp,x,y,width,height-width-width);
         drawStepper(grp,x,y+height-width-width,width,width,"up");
         drawStepper(grp,x,y+height-width,width,width,"down");
-        drawVSlider(grp,x,y+10,width,32);
+        drawSlider(grp,x,y+10,width,32,"vertical");
         return grp;
       }
 
       drawHScrollBar(document.getElementById("testfield"),10.5,10.5,100,16);
-      drawVScrollBar(document.getElementById("testfield"),100.5,10.5,16,100);
+      drawVScrollBar(document.getElementById("testfield"),120.5,10.5,16,100);
       drawPushButton(document.getElementById("testfield"),10.5,30.5,0,0,"OK");
       drawPushButton(document.getElementById("testfield"),10.5,55.5,0,0,"Cancel");
     </script>
