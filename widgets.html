@@ -100,17 +100,28 @@
       function drawHScrollBar (parentid,x,y,width,height) {
         var pid = document.getElementById(parentid);
         var trough = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        //var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        //var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         trough.setAttribute("x", x);
         trough.setAttribute("y", y);
         trough.setAttribute("width", width);
         trough.setAttribute("height", height);
         trough.setAttribute("class","trough");
         pid.insertAdjacentElement("beforeend", trough);
+        var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        shadow.setAttribute("points",(x+1)+","+y+height-1+" "+x+1+","+y+1+" "+width-1+","+y+1)
+        pid.insertAdjacentElement("beforeend", shadow);
+        var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        highlight.setAttribute("points",(x+1)+","+y+height-1+" "+x+width-1+","+height-1+" "+x+width-1+","+y+1)
+        pid.insertAdjacentElement("beforeend", highlight);
+        
 
       }
       drawHScrollBar("testfield",10,10,100,100);
+
+      <rect class="trough" width="160" height="16"/>
+              <polyline class="shadow" points="1,15 1,1 127,1"/>
+              <polyline class="highlight" points="1,15 127,15 127,1"/>
+
+
     </script>
 
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
