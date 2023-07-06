@@ -244,6 +244,18 @@
         grp.insertAdjacentElement("beforeend", shadow);
         return grp;
       }
+      function drawPushButton (parentElement,x,y,width,height,text) {
+        var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
+        txt.innerHTML = text;
+        txt.setAttribute("class","centered");
+        var box = txt.getBBox();
+        if (width<64) width=64;
+        if (height<22) height=22;
+        if (box.width > width+12) width=box.width+12;
+        if (box.height > height+5) height=box.height+5;
+        var btn = drawButton (parentElement,x,y,width,height);
+        btn.insertAdjacentElement("beforeend",txt);
+      }
       function drawHScrollBar (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         parentElement.insertAdjacentElement("beforeend", grp);
@@ -282,6 +294,7 @@
         return grp;
       }
       drawHScrollBar(document.getElementById("testfield"),10.5,10.5,100,16);
+      drawPushButton(document.getElementById("testfield"),10.5,30.5,0,0,"OK");
     </script>
 
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
