@@ -5,6 +5,7 @@
     <style>
       :root {
         --outline-color: black;
+        --input-field-color: white;
         --highlight-stroke-color: white;
         --shadow-stroke-color: grey;
         --raised-fill-color: #efefef;
@@ -87,7 +88,7 @@
         stroke: var(--highlight-stroke-color);
       }
       .textfield polyline + polyline + rect {
-        fill: var(--highlight-stroke-color);
+        fill: var(--input-field-color);
         stroke: var(--outline-color);
       }
     </style>
@@ -296,7 +297,6 @@
         shadow.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+1)+","+(y+1)+" "+(x+width-1)+","+(y+1))
         grp.insertAdjacentElement("beforeend", shadow);
 
-
         var grip = document.createElementNS("http://www.w3.org/2000/svg","use");
         switch (dir) {
           case "horizontal":
@@ -330,31 +330,6 @@
         parentElement.insertAdjacentElement("beforeend", highlight);
         return trough;
       }
-      /*function drawHSlider (parentElement,x,y,width,height) {
-        var slider = drawSlider(parentElement,x,y,width,height);
-        parentElement.insertAdjacentElement("beforeend", slider);
-
-        var grip = document.createElementNS("http://www.w3.org/2000/svg","use");
-        grip.setAttribute("x",x+width/2-5.5);
-        grip.setAttribute("y",y+2.5);
-        grip.setAttributeNS("http://www.w3.org/1999/xlink","href","#hGrippy");
-        slider.insertAdjacentElement("beforeend", grip);
-
-        return slider;
-      }
-      function drawVSlider (parentElement,x,y,width,height) {
-        var slider = drawSlider(parentElement,x,y,width,height);
-        parentElement.insertAdjacentElement("beforeend", slider);
-
-        var grip = document.createElementNS("http://www.w3.org/2000/svg","use");
-        grip.setAttribute("x",x+2.5);
-        grip.setAttribute("y",y+height/2-5.5);
-        grip.setAttributeNS("http://www.w3.org/1999/xlink","href","#vGrippy");
-        slider.insertAdjacentElement("beforeend", grip);
-
-        return slider;
-      }
-      */
       function drawHScrollBar (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         parentElement.insertAdjacentElement("beforeend", grp);
@@ -373,11 +348,31 @@
         drawSlider(grp,x,y+10,width,32,"vertical");
         return grp;
       }
+      function drawInputField (parentElement,x,y,width,height) {
+        var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
+        grp.setAttribute("class","textfield");
+        parentElement.insertAdjacentElement("beforeend",grp);
 
+        var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        shadow.setAttribute("points",""+x+","+y+height+" "+x+","+y+" "x+width+","+y);
+
+        var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        highlight.setAttribute("points",""+x+","+y+height+" "+x+width+","+y+height+" "x+width+","+y);
+        
+
+        var field = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        field.setAttribute("x",""+x+1.5);
+        field.setAttribute("y",""+y+1.5);
+        field.setAttribute("width",""+width-2);
+        field.setAttribute("height",""+height-2);
+        
+        return grp;
+      }
       drawHScrollBar(document.getElementById("testfield"),10.5,10.5,100,16);
       drawVScrollBar(document.getElementById("testfield"),120.5,10.5,16,100);
       drawPushButton(document.getElementById("testfield"),10.5,30.5,0,0,"OK");
       drawPushButton(document.getElementById("testfield"),10.5,55.5,0,0,"Cancel");
+      drawInputField(document.getElementById("testfield"),10.5,80.5,100,24);
     </script>
 
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
