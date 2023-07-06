@@ -304,9 +304,9 @@
         grip.setAttribute("x",x+width/2-5.5);
         grip.setAttribute("y",y+2.5);
         grip.setAttributeNS("http://www.w3.org/1999/xlink","href","#hGrippy");
-        grp.insertAdjacentElement("beforeend", grip);
+        slider.insertAdjacentElement("beforeend", grip);
 
-        return grp;
+        return slider;
       }
       function drawHScrollBar (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
