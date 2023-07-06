@@ -274,6 +274,7 @@
         }
         stepperArrow.setAttributeNS("http://www.w3.org/1999/xlink","href",arrow);
         stepper.insertAdjacentElement("beforeend", stepperArrow);
+        return stepper;
       }
       function drawSlider (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
@@ -328,30 +329,9 @@
       function drawHScrollBar (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         parentElement.insertAdjacentElement("beforeend", grp);
-
-        drawTrough(grp,x,y,width,height);
-
-        drawStepper(grp,x+width,y,height,height,"left");
-        drawStepper(grp,x+width+height,y,height,height,"right");
-/*
-        var leftStepper = drawButton(grp,x+width,y,height,height);
-        var leftStepperArrow = document.createElementNS("http://www.w3.org/2000/svg","use");
-        leftStepperArrow.setAttribute("x",x+width);
-        leftStepperArrow.setAttribute("y",y);
-        leftStepperArrow.setAttribute("width",16);
-        leftStepperArrow.setAttribute("height",16);
-        leftStepperArrow.setAttributeNS("http://www.w3.org/1999/xlink","href","#newArrowLeft");
-        leftStepper.insertAdjacentElement("beforeend", leftStepperArrow);
-
-        var rightStepper = drawButton(grp,x+width+height,y,height,height);
-        var rightStepperArrow = document.createElementNS("http://www.w3.org/2000/svg","use");
-        rightStepperArrow.setAttribute("x",x+width+height);
-        rightStepperArrow.setAttribute("y",y);
-        rightStepperArrow.setAttribute("width",16);
-        rightStepperArrow.setAttribute("height",16);
-        rightStepperArrow.setAttributeNS("http://www.w3.org/1999/xlink","href","#newArrowRight");
-        rightStepper.insertAdjacentElement("beforeend", rightStepperArrow);
-*/
+        drawTrough(grp,x,y,width-height-height,height);
+        drawStepper(grp,x+width-height-height,y,height,height,"left");
+        drawStepper(grp,x+width-height,y,height,height,"right");
         drawHSlider(grp,x+10,y,32,height);
         return grp;
       }
