@@ -370,7 +370,24 @@
       function drawSpinButton (parentElement,x,y,width,height) {
         var field = drawInputField(parentElement,x,y,width,height);
         var btndn = drawButton(field,x+1,y+1,height-2,height-2);
+
+        var minus = document.createElementNS("http://www.w3.org/2000/svg","line");
+        minus.setAttribute("x1",x+4);
+        minus.setAttribute("y1",10);
+        minus.setAttribute("x2",x+16);
+        minus.setAttribute("y2",10);
+        minus.setAttribute("stroke-width",2);
+        minus.setAttribute("stroke","var(--outline-color)");
+        btndn.insertAdjacentElement("beforeend",minus);
+
         var btnup = drawButton(field,x+width-height+2,y+1,height-2,height-2);
+        btnup.insertAdjacentElement("beforeend",minus);
+
+
+        /*
+        <line x1="4.5" y1="10.5" x2="16.5" y2="10.5" stroke-width="2" stroke="black"/>
+        <line x1="10.5" y1="4.5" x2="10.5" y2="16.5" stroke-width="2" stroke="black"/>
+        */
       }
       drawHScrollBar(document.getElementById("testfield"),10.5,10.5,100,16);
       drawVScrollBar(document.getElementById("testfield"),120.5,10.5,16,100);
