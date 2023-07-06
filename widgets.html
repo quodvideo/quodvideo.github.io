@@ -367,11 +367,17 @@
         grp.insertAdjacentElement("beforeend",field);
         return grp;
       }
+      function drawSpinButton (parentElement,x,y,width,height) {
+        var field = drawInputField(parentElement,x,y,width,height);
+        var btndn = drawButton(field,x+1,y+1,height-2,height-2);
+        var btnup = drawButton(field,x+width-height+2,y+1,height-2,height-2);
+      }
       drawHScrollBar(document.getElementById("testfield"),10.5,10.5,100,16);
       drawVScrollBar(document.getElementById("testfield"),120.5,10.5,16,100);
       drawPushButton(document.getElementById("testfield"),10.5,30.5,0,0,"OK");
       drawPushButton(document.getElementById("testfield"),10.5,55.5,0,0,"Cancel");
-      drawInputField(document.getElementById("testfield"),10.5,80.5,100,24);
+      drawInputField(document.getElementById("testfield"),10.5,80.5,100,22);
+      drawSpinButton(document.getElementById("testfield"),10.5,110.5,100,22);
     </script>
 
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
