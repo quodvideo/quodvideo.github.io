@@ -93,52 +93,6 @@
     </style>
   </head>
   <body>
-    <svg id="testfield" width="400" height="300">
-      <rect width="400" height="300" fill="var(--base-fill-color)" stroke="none"/>
-    </svg>
-    <script>
-      function drawButton (parentElement,x,y,width,height) {
-        var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
-        grp.setAttribute("class","button");
-        parentElement.insertAdjacentElement("beforeend", grp);
-
-        var btn = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        btn.setAttribute("x", x);
-        btn.setAttribute("y", y);
-        btn.setAttribute("width", width);
-        btn.setAttribute("height", height);
-        grp.insertAdjacentElement("beforeend", btn);
-        var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        highlight.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+width-1)+","+(y+height-1)+" "+(x+width-1)+","+(y+1))
-        grp.insertAdjacentElement("beforeend", highlight);
-        var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+1)+","+(y+1)+" "+(x+width-1)+","+(y+1))
-        grp.insertAdjacentElement("beforeend", shadow);
-      }
-      function drawHScrollBar (parentElement,x,y,width,height) {
-        var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
-        parentElement.insertAdjacentElement("beforeend", grp);
-        var trough = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        trough.setAttribute("x", x);
-        trough.setAttribute("y", y);
-        trough.setAttribute("width", width);
-        trough.setAttribute("height", height);
-        trough.setAttribute("class","trough");
-        grp.insertAdjacentElement("beforeend", trough);
-        var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+1)+","+(y+1)+" "+(x+width-1)+","+(y+1))
-        grp.insertAdjacentElement("beforeend", shadow);
-        var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        highlight.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+width-1)+","+(y+height-1)+" "+(x+width-1)+","+(y+1))
-        grp.insertAdjacentElement("beforeend", highlight);
-        drawButton(grp,x+width,y,height,height);
-        drawButton(grp,x+width+height,y,height,height);
-
-      }
-      drawHScrollBar(document.getElementById("testfield"),10.5,10.5,100,16);
-    </script>
-
-    <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
     <svg width="1" height="1"><title>Definitions</title>
       <defs>
         <pattern id="pattern0" width="2" height="2" x="0" y="0" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
@@ -268,6 +222,65 @@
         </g>
       </defs>
     </svg>
+    <svg id="testfield" width="400" height="300">
+      <rect width="400" height="300" fill="var(--base-fill-color)" stroke="none"/>
+    </svg>
+    <script>
+      function drawButton (parentElement,x,y,width,height) {
+        var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
+        grp.setAttribute("class","button");
+        parentElement.insertAdjacentElement("beforeend", grp);
+        var btn = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        btn.setAttribute("x", x);
+        btn.setAttribute("y", y);
+        btn.setAttribute("width", width);
+        btn.setAttribute("height", height);
+        grp.insertAdjacentElement("beforeend", btn);
+        var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        highlight.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+width-1)+","+(y+height-1)+" "+(x+width-1)+","+(y+1))
+        grp.insertAdjacentElement("beforeend", highlight);
+        var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        shadow.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+1)+","+(y+1)+" "+(x+width-1)+","+(y+1))
+        grp.insertAdjacentElement("beforeend", shadow);
+        return grp;
+      }
+      function drawHScrollBar (parentElement,x,y,width,height) {
+        var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
+        parentElement.insertAdjacentElement("beforeend", grp);
+        var trough = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        trough.setAttribute("x", x);
+        trough.setAttribute("y", y);
+        trough.setAttribute("width", width);
+        trough.setAttribute("height", height);
+        trough.setAttribute("class","trough");
+        grp.insertAdjacentElement("beforeend", trough);
+        var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        shadow.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+1)+","+(y+1)+" "+(x+width-1)+","+(y+1))
+        grp.insertAdjacentElement("beforeend", shadow);
+        var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        highlight.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+width-1)+","+(y+height-1)+" "+(x+width-1)+","+(y+1))
+        grp.insertAdjacentElement("beforeend", highlight);
+        
+        var leftStepper = drawButton(grp,x+width,y,height,height);
+        var leftStepperArrow = document.createElementNS("http://www.w3.org/2000/svg","use");
+        leftStepperArrow.setAttribute("width",16);
+        leftStepperArrow.setAttribute("height",16);
+        leftStepperArrow.setAttributeNS("http://www.w3.org/1999/xlink","href","#newArrowLeft");
+        leftStepper.insertAdjacentElement("beforeend", leftStepperArrow);
+
+        var rightStepper = drawButton(grp,x+width+height,y,height,height);
+        rightStepperArrow.setAttribute("width",16);
+        rightStepperArrow.setAttribute("height",16);
+        rightStepperArrow.setAttributeNS("http://www.w3.org/1999/xlink","href","#newArrowRight");
+        rightStepper.insertAdjacentElement("beforeend", rightStepperArrow);
+
+        return grp;
+      }
+      drawHScrollBar(document.getElementById("testfield"),10.5,10.5,100,16);
+    </script>
+
+    <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
+
     <table style="background-color: var(--base-fill-color)">
       <tr>
         <th>Widget</th>
