@@ -326,6 +326,18 @@
 
         return slider;
       }
+      function drawVSlider (parentElement,x,y,width,height) {
+        var slider = drawSlider(parentElement,x,y,width,height);
+        parentElement.insertAdjacentElement("beforeend", slider);
+
+        var grip = document.createElementNS("http://www.w3.org/2000/svg","use");
+        grip.setAttribute("x",x+2.5);
+        grip.setAttribute("y",y+height/2-5.5);
+        grip.setAttributeNS("http://www.w3.org/1999/xlink","href","#vGrippy");
+        slider.insertAdjacentElement("beforeend", grip);
+
+        return slider;
+      }
       function drawHScrollBar (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         parentElement.insertAdjacentElement("beforeend", grp);
@@ -335,7 +347,18 @@
         drawHSlider(grp,x+10,y,32,height);
         return grp;
       }
+      function drawVScrollBar (parentElement,x,y,width,height) {
+        var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
+        parentElement.insertAdjacentElement("beforeend", grp);
+        drawTrough(grp,x,y,width,height-width-width);
+        drawStepper(grp,x,y+height-width-width,width,width,"up");
+        drawStepper(grp,x,y+height-width,width,width,"down");
+        drawVSlider(grp,x,y+10,width,32);
+        return grp;
+      }
+
       drawHScrollBar(document.getElementById("testfield"),10.5,10.5,100,16);
+      drawVScrollBar(document.getElementById("testfield"),100.5,10.5,16,100);
       drawPushButton(document.getElementById("testfield"),10.5,30.5,0,0,"OK");
       drawPushButton(document.getElementById("testfield"),10.5,55.5,0,0,"Cancel");
     </script>
