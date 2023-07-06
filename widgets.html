@@ -260,15 +260,20 @@
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         highlight.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+width-1)+","+(y+height-1)+" "+(x+width-1)+","+(y+1))
         grp.insertAdjacentElement("beforeend", highlight);
-        
+
         var leftStepper = drawButton(grp,x+width,y,height,height);
         var leftStepperArrow = document.createElementNS("http://www.w3.org/2000/svg","use");
+        leftStepperArrow.setAttribute("x",x+width);
+        leftStepperArrow.setAttribute("y",y);
         leftStepperArrow.setAttribute("width",16);
         leftStepperArrow.setAttribute("height",16);
         leftStepperArrow.setAttributeNS("http://www.w3.org/1999/xlink","href","#newArrowLeft");
         leftStepper.insertAdjacentElement("beforeend", leftStepperArrow);
 
         var rightStepper = drawButton(grp,x+width+height,y,height,height);
+        var rightStepperArrow = document.createElementNS("http://www.w3.org/2000/svg","use");
+        rightStepperArrow.setAttribute("x",x+width+height);
+        rightStepperArrow.setAttribute("y",y);
         rightStepperArrow.setAttribute("width",16);
         rightStepperArrow.setAttribute("height",16);
         rightStepperArrow.setAttributeNS("http://www.w3.org/1999/xlink","href","#newArrowRight");
