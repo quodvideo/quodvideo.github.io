@@ -280,6 +280,22 @@
 
         return grp;
       }
+      function drawTrough (parentElement,x,y,width,height) {
+        var trough = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        trough.setAttribute("x", x);
+        trough.setAttribute("y", y);
+        trough.setAttribute("width", width);
+        trough.setAttribute("height", height);
+        trough.setAttribute("class","trough");
+        parentElement.insertAdjacentElement("beforeend", trough);
+        var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        shadow.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+1)+","+(y+1)+" "+(x+width-1)+","+(y+1))
+        parentElement.insertAdjacentElement("beforeend", shadow);
+        var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        highlight.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+width-1)+","+(y+height-1)+" "+(x+width-1)+","+(y+1))
+        parentElement.insertAdjacentElement("beforeend", highlight);
+        return trough;
+      }
       function drawHSlider (parentElement,x,y,width,height) {
         var slider = drawSlider(parentElement,x,y,width,height);
         parentElement.insertAdjacentElement("beforeend", slider);
@@ -295,6 +311,9 @@
       function drawHScrollBar (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         parentElement.insertAdjacentElement("beforeend", grp);
+
+        drawTrough(grp,x,y,width,height);
+        /*
         var trough = document.createElementNS("http://www.w3.org/2000/svg","rect");
         trough.setAttribute("x", x);
         trough.setAttribute("y", y);
@@ -307,7 +326,7 @@
         grp.insertAdjacentElement("beforeend", shadow);
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         highlight.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+width-1)+","+(y+height-1)+" "+(x+width-1)+","+(y+1))
-        grp.insertAdjacentElement("beforeend", highlight);
+        grp.insertAdjacentElement("beforeend", highlight);*/
 
         var leftStepper = drawButton(grp,x+width,y,height,height);
         var leftStepperArrow = document.createElementNS("http://www.w3.org/2000/svg","use");
