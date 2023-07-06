@@ -254,6 +254,8 @@
         if (box.width > width+12) width=box.width+12;
         if (box.height > height+5) height=box.height+5;
         var btn = drawButton (parentElement,x,y,width,height);
+        txt.setAttribute("x",x+width/2);
+        txt.setAttribute("y",y+height/2);
         btn.insertAdjacentElement("beforeend",txt);
       }
       function drawHScrollBar (parentElement,x,y,width,height) {
