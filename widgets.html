@@ -330,17 +330,17 @@
       }
       function drawTrough (parentElement,x,y,width,height) {
         var trough = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        trough.setAttribute("x", x);
-        trough.setAttribute("y", y);
+        trough.setAttribute("x", x+0.5);
+        trough.setAttribute("y", y+0.5);
         trough.setAttribute("width", width);
         trough.setAttribute("height", height);
         trough.setAttribute("class","trough");
         parentElement.insertAdjacentElement("beforeend", trough);
         var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+1)+","+(y+1)+" "+(x+width-1)+","+(y+1))
+        shadow.setAttribute("points",""+(x+1.5)+","+(y+height-0.5)+" "+(x+1.5)+","+(y+1.5)+" "+(x+width-0.5)+","+(y+1.5))
         parentElement.insertAdjacentElement("beforeend", shadow);
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        highlight.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+width-1)+","+(y+height-1)+" "+(x+width-1)+","+(y+1))
+        highlight.setAttribute("points",""+(x+1.5)+","+(y+height-0.5)+" "+(x+width-0.5)+","+(y+height-0.5)+" "+(x+width-0.5)+","+(y+1.5))
         parentElement.insertAdjacentElement("beforeend", highlight);
         return trough;
       }
