@@ -427,35 +427,32 @@
       }
       function drawCheckButton (parentElement,x,y,width,height,text,state) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend",g);
 
         var cb = document.createElementNS("http://www.w3.org/2000/svg","use");
-        cb.setAttribute("x",x);
-        cb.setAttribute("y",y);
         cb.setAttributeNS("http://www.w3.org/1999/xlink","href","#checkbox");
         g.insertAdjacentElement("beforeend",cb);
 
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = text;
-        txt.setAttribute("x",x+16);
-        txt.setAttribute("y",y+10);
+        txt.setAttribute("x",16);
+        txt.setAttribute("y",10);
         g.insertAdjacentElement("beforeend",txt);
 
         switch (state) {
           case "mixed":
             var m = document.createElementNS("http://www.w3.org/2000/svg","line");
-            m.setAttribute("x1",x+1.5);
-            m.setAttribute("y1",y+6);
-            m.setAttribute("x2",x+10.5);
-            m.setAttribute("y2",y+6);
+            m.setAttribute("x1",1.5);
+            m.setAttribute("y1",6);
+            m.setAttribute("x2",10.5);
+            m.setAttribute("y2",6);
             m.setAttribute("stroke-width",2);
             m.setAttribute("stroke","var(--outline-color)");
             g.insertAdjacentElement("beforeend",m);
             break;
           case "on":
             var m = document.createElementNS("http://www.w3.org/2000/svg","use");
-            m.setAttribute("x",x);
-            m.setAttribute("y",y);
             m.setAttributeNS("http://www.w3.org/1999/xlink","href","#checkmark");
             g.insertAdjacentElement("beforeend",m);
             break;
