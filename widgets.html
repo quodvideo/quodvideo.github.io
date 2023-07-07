@@ -394,8 +394,6 @@
 
         var btndn = drawButton(field,1,1,height-2,height-2);
         var minus = document.createElementNS("http://www.w3.org/2000/svg","use");
-        //minus.setAttribute("x",0.5);
-        //minus.setAttribute("y",0.5);
         minus.setAttribute("width",20);
         minus.setAttribute("height",20);
         minus.setAttributeNS("http://www.w3.org/1999/xlink","href","#minusSign");
@@ -403,8 +401,6 @@
 
         var btnup = drawButton(field,width-height+1,1,height-2,height-2);
         var plus = document.createElementNS("http://www.w3.org/2000/svg","use");
-        //plus.setAttribute("x",0.5);
-        //plus.setAttribute("y",0.5);
         plus.setAttribute("width",20);
         plus.setAttribute("height",20);
         plus.setAttributeNS("http://www.w3.org/1999/xlink","href","#plusSign");
@@ -445,6 +441,8 @@
         parentElement.insertAdjacentElement("beforeend",g);
 
         var cb = document.createElementNS("http://www.w3.org/2000/svg","use");
+        cb.setAttribute("x",0.5);
+        cb.setAttribute("y",0.5);
         cb.setAttributeNS("http://www.w3.org/1999/xlink","href","#checkbox");
         g.insertAdjacentElement("beforeend",cb);
 
@@ -566,15 +564,19 @@
       drawVScrollBar(tf,120,10,16,100);
       drawPushButton(tf,10,30,0,0,"OK");
       drawPushButton(tf,10,55,0,0,"Cancel");
-      drawInputField(tf,80,55,100,22);
+      drawInputField(tf,10,80,100,22);
       drawSpinButton(tf,10,110,100,22);
       drawSwitch(tf,10,140,64,22,"off");
       drawSwitch(tf,10,170,64,22,"on");
-      drawCheckButton(tf,10.5,200.5,0,0,"Option","on");
-      drawRadioButton(tf,10.5,230.5,0,0,"Option","on");
-      drawRevealButton(tf,10.5,260.5,0,0,"More","closed");
-      drawRevealButton(tf,10.5,290.5,0,0,"More","turning");
-      drawRevealButton(tf,10.5,320.5,0,0,"More","open");
+      drawCheckButton(tf,10,200,0,0,"Option","on");
+      drawCheckButton(tf,10,230,0,0,"Option","mixed");
+      drawCheckButton(tf,10,260,0,0,"Option","off");
+      drawRadioButton(tf,10.5,290.5,0,0,"Option","on");
+      drawRadioButton(tf,10.5,320.5,0,0,"Option","mixed");
+      drawRadioButton(tf,10.5,350.5,0,0,"Option","off");
+      drawRevealButton(tf,10.5,380.5,0,0,"More","closed");
+      drawRevealButton(tf,10.5,410.5,0,0,"More","turning");
+      drawRevealButton(tf,10.5,440.5,0,0,"More","open");
       drawInputField(tf,170,10,118,118);
       drawHScrollBar(tf,171,111,100,16);
       drawVScrollBar(tf,271,11,16,100);
