@@ -558,8 +558,8 @@
 
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = text;
-        txt.setAttribute("x",16);
-        txt.setAttribute("y",10);
+        txt.setAttribute("x",16.5);
+        txt.setAttribute("y",10.5);
         g.insertAdjacentElement("beforeend",txt);
       }
       drawHScrollBar(tf,10,10,100,16);
@@ -573,12 +573,12 @@
       drawCheckButton(tf,10,200,0,0,"Option","on");
       drawCheckButton(tf,10,230,0,0,"Option","mixed");
       drawCheckButton(tf,10,260,0,0,"Option","off");
-      drawRadioButton(tf,10.5,290.5,0,0,"Option","on");
-      drawRadioButton(tf,10.5,320.5,0,0,"Option","mixed");
-      drawRadioButton(tf,10.5,350.5,0,0,"Option","off");
-      drawRevealButton(tf,10.5,380.5,0,0,"More","closed");
-      drawRevealButton(tf,10.5,410.5,0,0,"More","turning");
-      drawRevealButton(tf,10.5,440.5,0,0,"More","open");
+      drawRadioButton(tf,10,290,0,0,"Option","on");
+      drawRadioButton(tf,10,320,0,0,"Option","mixed");
+      drawRadioButton(tf,10,350,0,0,"Option","off");
+      drawRevealButton(tf,10,380,0,0,"More","closed");
+      drawRevealButton(tf,10,410,0,0,"More","turning");
+      drawRevealButton(tf,10,440,0,0,"More","open");
       drawInputField(tf,170,10,118,118);
       drawHScrollBar(tf,171,111,100,16);
       drawVScrollBar(tf,271,11,16,100);
