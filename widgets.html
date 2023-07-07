@@ -95,6 +95,8 @@
   </head>
   <body>
     <p>These are just drawings for prototyping, not actual widgets. After the drawings, there is some description of the system I want to make.</p>
+    <p>The style of these drawings is meant as a guide. It might be possible to do this without SVG, but I remember some details being hard or impossible to achieve with Gtk 2.x. The way scroll bars join with a text field was one impossibility. Part of the idea is to make it obvious when widgets are not active because they're in a background window or because they just can't be used in the current state. This should all work for various modes like light, dark, high contrast, and low contrast. It should be possible to change the basic colors per widget and with themes. I suspect this basic style can also be adapted to use gradients, blends, patterns, and more.</p>
+    <p>This style is heavy compared to most of today's GUIs. That's on purpose. If a window looks too "chrome-y" with this style, then there's probably a better design.</p>
     <svg width="1" height="1"><title>Definitions</title>
       <defs>
         <pattern id="pattern0" width="2" height="2" x="0" y="0" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
@@ -239,19 +241,22 @@
       function drawButton (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         grp.setAttribute("class","button");
+        grp.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend", grp);
+
         var btn = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        btn.setAttribute("x", x);
-        btn.setAttribute("y", y);
         btn.setAttribute("width", width);
         btn.setAttribute("height", height);
         grp.insertAdjacentElement("beforeend", btn);
+
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        highlight.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+width-1)+","+(y+height-1)+" "+(x+width-1)+","+(y+1))
+        highlight.setAttribute("points","1,"+(height-1)+" "+(width-1)+","+(height-1)+" "+(width-1)+",1");
         grp.insertAdjacentElement("beforeend", highlight);
+
         var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+1)+","+(y+1)+" "+(x+width-1)+","+(y+1))
+        shadow.setAttribute("points","1,"+(height-1)+" 1,1 "+(width-1)+","+(y+1));
         grp.insertAdjacentElement("beforeend", shadow);
+
         return grp;
       }
       function drawPushButton (parentElement,x,y,width,height,text) {
@@ -264,16 +269,14 @@
         if (box.width > width+12) width=box.width+12;
         if (box.height > height+5) height=box.height+5;
         var btn = drawButton (parentElement,x,y,width,height);
-        txt.setAttribute("x",x+width/2);
-        txt.setAttribute("y",y+height/2);
+        txt.setAttribute("x",width/2);
+        txt.setAttribute("y",height/2);
         btn.insertAdjacentElement("beforeend",txt);
         return btn;
       }
       function drawStepper (parentElement,x,y,width,height,dir) {
         var stepper = drawButton(parentElement,x,y,width,height);
         var stepperArrow = document.createElementNS("http://www.w3.org/2000/svg","use");
-        stepperArrow.setAttribute("x",x);
-        stepperArrow.setAttribute("y",y);
         stepperArrow.setAttribute("width",16);
         stepperArrow.setAttribute("height",16);
         var arrow="#none";
@@ -382,8 +385,8 @@
 
         var btndn = drawButton(field,x+1,y+1,height-2,height-2);
         var minus = document.createElementNS("http://www.w3.org/2000/svg","use");
-        minus.setAttribute("x",x+0.5);
-        minus.setAttribute("y",y+0.5);
+        minus.setAttribute("x",0.5);
+        minus.setAttribute("y",0.5);
         minus.setAttribute("width",20);
         minus.setAttribute("height",20);
         minus.setAttributeNS("http://www.w3.org/1999/xlink","href","#minusSign");
@@ -391,8 +394,8 @@
 
         var btnup = drawButton(field,x+width-height+1,y+1,height-2,height-2);
         var plus = document.createElementNS("http://www.w3.org/2000/svg","use");
-        plus.setAttribute("x",x+width-height+0.5);
-        plus.setAttribute("y",y+0.5);
+        plus.setAttribute("x",width-height+0.5);
+        plus.setAttribute("y",0.5);
         plus.setAttribute("width",20);
         plus.setAttribute("height",20);
         plus.setAttributeNS("http://www.w3.org/1999/xlink","href","#plusSign");
