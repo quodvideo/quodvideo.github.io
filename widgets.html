@@ -230,8 +230,8 @@
         </g>
       </defs>
     </svg>
-    <svg id="testfield" width="400" height="300">
-      <rect width="400" height="300" fill="var(--base-fill-color)" stroke="none"/>
+    <svg id="testfield" width="400" height="600">
+      <rect width="400" height="600" fill="var(--base-fill-color)" stroke="none"/>
     </svg>
     <script>
       tf = document.getElementById("testfield");
@@ -502,7 +502,55 @@
         return g;
       }
       function drawRevealButton (parentElement,x,y,width,height,text,state) {
-        
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g.setAttribute("transform","translate("+x+","+y+")");
+        parentElement.insertAdjacentElement("beforeend",g);
+
+        var g2 = document.createElementNS("http://www.w3.org/2000/svg","g");
+        var p1 = document.createElementNS("http://www.w3.org/2000/svg","path");
+        p1.setAttribute("fill","var(--raised-fill-color)");
+        p1.setAttribute("stroke","var(--outline-color)");
+        p1.setAttribute("d","M3,0 V12 H4 L10,6 L4,0 Z");
+        g2.insertAdjacentElement("beforeend",p1);
+
+        var p2 = document.createElementNS("http://www.w3.org/2000/svg","path");
+        p2.setAttribute("class","shadow");
+        var p3 = document.createElementNS("http://www.w3.org/2000/svg","path");
+        p3.setAttribute("class","highlight");
+
+        switch (state) {
+          case "closed":
+            p2.setAttribute("d","M4,11 L9,6");
+            p3.setAttribute("d","M4,11 V1 L9,6");
+            break;
+          case "turning":
+            g2.setAttribute("transform","rotate(45 6 6)");
+            p2.setAttribute("d","M4,11 L9,6 L4,1");
+            p3.setAttribute("d","M4,11 V1");
+            break;
+          case "open":
+            g2.setAttribute("transform","rotate(90 6 6)");
+            p2.setAttribute("d","M9,6 L4,1");
+            p3.setAttribute("d","M 9,6 L4,11 V1");
+            break;
+        }
+
+        g2.insertAdjacentElement("beforeend",p2);
+        g2.insertAdjacentElement("beforeend",p3);
+
+        var p4 = document.createElementNS("http://www.w3.org/2000/svg","path");
+        p4.setAttribute("fill","none");
+        p4.setAttribute("stroke","var(--outline-color)");
+        p4.setAttribute("d","M3,0 V12 H4 L10,6 L4,0 Z");
+        g2.insertAdjacentElement("beforeend",p4);
+
+        g.insertAdjacentElement("beforeend",g2);
+
+        var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
+        txt.innerHTML = text;
+        txt.setAttribute("x",16);
+        txt.setAttribute("y",10);
+        g.insertAdjacentElement("beforeend",txt);
       }
       drawHScrollBar(tf,10.5,10.5,100,16);
       drawVScrollBar(tf,120.5,10.5,16,100);
@@ -514,7 +562,9 @@
       drawSwitch(tf,10.5,170.5,64,22,"on");
       drawCheckButton(tf,10.5,200.5,0,0,"Option","on");
       drawRadioButton(tf,10.5,230.5,0,0,"Option","on");
-
+      drawRevealButton(tf,10.5,260.5,0,0,"More","closed");
+      drawRevealButton(tf,10.5,290.5,0,0,"More","turning");
+      drawRevealButton(tf,10.5,320.5,0,0,"More","open");
       drawInputField(tf,170.5,10.5,118,118);
       drawHScrollBar(tf,171.5,111.5,100,16);
       drawVScrollBar(tf,271.5,11.5,16,100);
@@ -1720,6 +1770,36 @@
       <section><h3>Calculator</h3>
         <p>The calculator is a simple calculator.</p>
       </section>
+    </section>
+    <section><h2>Items and Containers</h2>
+      <ul>
+        <li>Folder</li>
+        <li>Workspace</li>
+        <li>Desktop</li>
+        <li>Shell - which runs in a terminal</li>
+        <li>vCard</li>
+        <li>Address Book - a container for vCards</li>
+        <li>Event</li>
+        <li>Calendar - a container for events</li>
+        <li>Citation</li>
+        <li>Bibliography - a container for citations</li>
+        <li>Feed</li>
+        <li>Formatted Text</li>
+        <li>Slide</li>
+        <li>Presentation - a container for slides</li>
+        <li>Spreadsheet</li>
+        <li>Raster Image</li>
+        <li>Vector Image</li>
+        <li>Photo</li>
+        <li>Notebook - in the sense of note-taking software</li>
+        <li>Computational Notebook</li>
+        <li>Outline</li>
+        <li>Bookmark</li>
+        <li>Help Document</li>
+        <li>Ledger</li>
+        <li>Program</li>
+      </ul>
+      <p>And basically every IANA media type.</p>
     </section>
     <dl>
       <dt>Item</dt>
