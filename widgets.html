@@ -448,17 +448,17 @@
 
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = text;
-        txt.setAttribute("x",16);
-        txt.setAttribute("y",10);
+        txt.setAttribute("x",16.5);
+        txt.setAttribute("y",10.5);
         g.insertAdjacentElement("beforeend",txt);
 
         switch (state) {
           case "mixed":
             var m = document.createElementNS("http://www.w3.org/2000/svg","line");
-            m.setAttribute("x1",1.5);
-            m.setAttribute("y1",6);
-            m.setAttribute("x2",10.5);
-            m.setAttribute("y2",6);
+            m.setAttribute("x1",2);
+            m.setAttribute("y1",6.5);
+            m.setAttribute("x2",11);
+            m.setAttribute("y2",6.5);
             m.setAttribute("stroke-width",2);
             m.setAttribute("stroke","var(--outline-color)");
             g.insertAdjacentElement("beforeend",m);
