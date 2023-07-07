@@ -411,30 +411,31 @@
         btnup.insertAdjacentElement("beforeend",plus);
       }
       function drawSwitch (parentElement,x,y,width,height,state) {
-        var sliderX = x;
-        var textX = x+3*width/4;
+        var sliderX = 0;
+        var textX = 3*width/4;
         var word = "OFF";
         switch (state) {
           case "off":
-            sliderX = x;
-            textX = x+3*width/4;
+            sliderX = 0;
+            textX = 3*width/4;
             word = "OFF";
             break;
           case "on":
-            sliderX = x+width/2;
-            textX = x+width/4;
+            sliderX = width/2;
+            textX = width/4;
             word = "ON";
             break;
         }
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
+        grp.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend",grp);
-        var trough = drawTrough(grp,x,y,width,height);
-        var slider = drawSlider(grp,sliderX,y,width/2,height);
+        var trough = drawTrough(grp,0,0,width,height);
+        var slider = drawSlider(grp,sliderX,0,width/2,height);
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = word;
         txt.setAttribute("class","centered");
         txt.setAttribute("x",textX);
-        txt.setAttribute("y",y+height/2);
+        txt.setAttribute("y",height/2);
         grp.insertAdjacentElement("beforeend",txt);
         return grp;
       }
@@ -567,16 +568,16 @@
       drawPushButton(tf,10,55,0,0,"Cancel");
       drawInputField(tf,10,80,100,22);
       drawSpinButton(tf,10,110,100,22);
-      drawSwitch(tf,10.5,140.5,64,22,"off");
-      drawSwitch(tf,10.5,170.5,64,22,"on");
+      drawSwitch(tf,10,140,64,22,"off");
+      drawSwitch(tf,10,170,64,22,"on");
       drawCheckButton(tf,10.5,200.5,0,0,"Option","on");
       drawRadioButton(tf,10.5,230.5,0,0,"Option","on");
       drawRevealButton(tf,10.5,260.5,0,0,"More","closed");
       drawRevealButton(tf,10.5,290.5,0,0,"More","turning");
       drawRevealButton(tf,10.5,320.5,0,0,"More","open");
-      drawInputField(tf,170.5,10.5,118,118);
-      drawHScrollBar(tf,171.5,111.5,100,16);
-      drawVScrollBar(tf,271.5,11.5,16,100);
+      drawInputField(tf,170,10,118,118);
+      drawHScrollBar(tf,171,111,100,16);
+      drawVScrollBar(tf,271,11,16,100);
 
     </script>
 
