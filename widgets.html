@@ -293,33 +293,32 @@
       function drawSlider (parentElement,x,y,width,height,dir) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         grp.setAttribute("class","slider");
+        grp.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend", grp);
 
         var slider = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        slider.setAttribute("x", x);
-        slider.setAttribute("y", y);
         slider.setAttribute("width", width);
         slider.setAttribute("height", height);
         grp.insertAdjacentElement("beforeend",slider);
 
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        highlight.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+width-1)+","+(y+height-1)+" "+(x+width-1)+","+(y+1))
+        highlight.setAttribute("points","1,"+(height-1)+" "+(width-1)+","+(height-1)+" "+(width-1)+",1")
         grp.insertAdjacentElement("beforeend", highlight);
 
         var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points",""+(x+1)+","+(y+height-1)+" "+(x+1)+","+(y+1)+" "+(x+width-1)+","+(y+1))
+        shadow.setAttribute("points","1,"+(height-1)+" 1,1 "+(width-1)+",1");
         grp.insertAdjacentElement("beforeend", shadow);
 
         var grip = document.createElementNS("http://www.w3.org/2000/svg","use");
         switch (dir) {
           case "horizontal":
-            grip.setAttribute("x",x+width/2-5.5);
-            grip.setAttribute("y",y+2.5);
+            grip.setAttribute("x",width/2-5.5);
+            grip.setAttribute("y",2.5);
             grip.setAttributeNS("http://www.w3.org/1999/xlink","href","#hGrippy");
             break;
           case "vertical":
-            grip.setAttribute("x",x+2.5);
-            grip.setAttribute("y",y+height/2-5.5);
+            grip.setAttribute("x",2.5);
+            grip.setAttribute("y",height/2-5.5);
             grip.setAttributeNS("http://www.w3.org/1999/xlink","href","#vGrippy");
             break;
         }
