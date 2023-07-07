@@ -316,13 +316,13 @@
         var grip = document.createElementNS("http://www.w3.org/2000/svg","use");
         switch (dir) {
           case "horizontal":
-            grip.setAttribute("x",width/2-5.5);
-            grip.setAttribute("y",2.5);
+            grip.setAttribute("x",width/2-5);
+            grip.setAttribute("y",3);
             grip.setAttributeNS("http://www.w3.org/1999/xlink","href","#hGrippy");
             break;
           case "vertical":
-            grip.setAttribute("x",2.5);
-            grip.setAttribute("y",height/2-5.5);
+            grip.setAttribute("x",3);
+            grip.setAttribute("y",height/2-5);
             grip.setAttributeNS("http://www.w3.org/1999/xlink","href","#vGrippy");
             break;
         }
