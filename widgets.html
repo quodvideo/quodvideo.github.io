@@ -143,6 +143,13 @@
         <symbol id="newArrowLeft" viewBox="-5.5 -4 16 16">
           <path d="M4,0 V8 L0,4Z" stroke="none" fill="var(--outline-color)"/>
         </symbol>
+        <symbol id="minusSign" viewbox="0 0 20 20">
+          <line x1="4.5" y1="10.5" x2="16.5" y2="10.5" stroke-width="2" stroke="black"/>
+        </symbol>
+        <symbol id="plusSign" viewbox="0 0 20 20">
+          <line x1="4.5" y1="10.5" x2="16.5" y2="10.5" stroke-width="2" stroke="black"/>
+          <line x1="10.5" y1="4.5" x2="10.5" y2="16.5" stroke-width="2" stroke="black"/>
+        </symbol>
         <symbol id="documentIcon" viewBox="0 0 16 16">
           <path stroke="var(--outline-color)" fill="inherit" vector-effect="non-scaling-stroke"
                 d="M14.5,5.5 H9.5 V0.5 L14.5,5.5 V15.5 H1.5 V0.5 H9.5"/>
@@ -227,6 +234,7 @@
       <rect width="400" height="300" fill="var(--base-fill-color)" stroke="none"/>
     </svg>
     <script>
+      tf = document.getElementById("testfield");
       function drawButton (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         grp.setAttribute("class","button");
@@ -258,6 +266,7 @@
         txt.setAttribute("x",x+width/2);
         txt.setAttribute("y",y+height/2);
         btn.insertAdjacentElement("beforeend",txt);
+        return btn;
       }
       function drawStepper (parentElement,x,y,width,height,dir) {
         var stepper = drawButton(parentElement,x,y,width,height);
@@ -371,37 +380,145 @@
         var field = drawInputField(parentElement,x,y,width,height);
 
         var btndn = drawButton(field,x+1,y+1,height-2,height-2);
-
-        var minus = document.createElementNS("http://www.w3.org/2000/svg","line");
-        minus.setAttribute("x1",x+5);
-        minus.setAttribute("y1",y+11);
-        minus.setAttribute("x2",x+17);
-        minus.setAttribute("y2",y+11);
-        minus.setAttribute("stroke-width",2);
-        minus.setAttribute("stroke","var(--outline-color)");
+        var minus = document.createElementNS("http://www.w3.org/2000/svg","use");
+        minus.setAttribute("x",x+0.5);
+        minus.setAttribute("y",y+0.5);
+        minus.setAttribute("width",20);
+        minus.setAttribute("height",20);
+        minus.setAttributeNS("http://www.w3.org/1999/xlink","href","#minusSign");
         btndn.insertAdjacentElement("beforeend",minus);
 
-        var btnup = drawButton(field,x+width-height+2,y+1,height-2,height-2);
-
-        var plus1 = document.createElementNS("http://www.w3.org/2000/svg","line");
-        plus1.setAttribute("x1",x+4+width-height+2);
-        plus1.setAttribute("y1",y+11);
-        plus1.setAttribute("x2",x+16+width-height+2);
-        plus1.setAttribute("y2",y+11);
-        plus1.setAttribute("stroke-width",2);
-        plus1.setAttribute("stroke","var(--outline-color)");
-        btnup.insertAdjacentElement("beforeend",plus1);
-        /*
-        <line x1="4.5" y1="10.5" x2="16.5" y2="10.5" stroke-width="2" stroke="black"/>
-        <line x1="10.5" y1="4.5" x2="10.5" y2="16.5" stroke-width="2" stroke="black"/>
-        */
+        var btnup = drawButton(field,x+width-height+1,y+1,height-2,height-2);
+        var plus = document.createElementNS("http://www.w3.org/2000/svg","use");
+        plus.setAttribute("x",x+width-height+0.5);
+        plus.setAttribute("y",y+0.5);
+        plus.setAttribute("width",20);
+        plus.setAttribute("height",20);
+        plus.setAttributeNS("http://www.w3.org/1999/xlink","href","#plusSign");
+        btnup.insertAdjacentElement("beforeend",plus);
       }
-      drawHScrollBar(document.getElementById("testfield"),10.5,10.5,100,16);
-      drawVScrollBar(document.getElementById("testfield"),120.5,10.5,16,100);
-      drawPushButton(document.getElementById("testfield"),10.5,30.5,0,0,"OK");
-      drawPushButton(document.getElementById("testfield"),10.5,55.5,0,0,"Cancel");
-      drawInputField(document.getElementById("testfield"),10.5,80.5,100,22);
-      drawSpinButton(document.getElementById("testfield"),10.5,110.5,100,22);
+      function drawSwitch (parentElement,x,y,width,height,state) {
+        var sliderX = x;
+        var textX = x+3*width/4;
+        var word = "OFF";
+        switch (state) {
+          case "off":
+            sliderX = x;
+            textX = x+3*width/4;
+            word = "OFF";
+            break;
+          case "on":
+            sliderX = x+width/2;
+            textX = x+width/4;
+            word = "ON";
+            break;
+        }
+        var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
+        parentElement.insertAdjacentElement("beforeend",grp);
+        var trough = drawTrough(grp,x,y,width,height);
+        var slider = drawSlider(grp,sliderX,y,width/2,height);
+        var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
+        txt.innerHTML = word;
+        txt.setAttribute("class","centered");
+        txt.setAttribute("x",textX);
+        txt.setAttribute("y",y+height/2);
+        grp.insertAdjacentElement("beforeend",txt);
+        return grp;
+      }
+      function drawCheckButton (parentElement,x,y,width,height,text,state) {
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        parentElement.insertAdjacentElement("beforeend",g);
+
+        var cb = document.createElementNS("http://www.w3.org/2000/svg","use");
+        cb.setAttribute("x",x);
+        cb.setAttribute("y",y);
+        cb.setAttributeNS("http://www.w3.org/1999/xlink","href","#checkbox");
+        g.insertAdjacentElement("beforeend",cb);
+
+        var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
+        txt.innerHTML = text;
+        txt.setAttribute("x",x+16);
+        txt.setAttribute("y",y+10);
+        g.insertAdjacentElement("beforeend",txt);
+
+        switch (state) {
+          case "mixed":
+            var m = document.createElementNS("http://www.w3.org/2000/svg","line");
+            m.setAttribute("x1",x+1.5);
+            m.setAttribute("y1",y+6);
+            m.setAttribute("x2",x+10.5);
+            m.setAttribute("y2",y+6);
+            m.setAttribute("stroke-width",2);
+            m.setAttribute("stroke","var(--outline-color)");
+            g.insertAdjacentElement("beforeend",m);
+            break;
+          case "on":
+            var m = document.createElementNS("http://www.w3.org/2000/svg","use");
+            m.setAttribute("x",x);
+            m.setAttribute("y",y);
+            m.setAttributeNS("http://www.w3.org/1999/xlink","href","#checkmark");
+            g.insertAdjacentElement("beforeend",m);
+            break;
+        }
+        return g;
+      }
+      function drawRadioButton (parentElement,x,y,width,height,text,state) {
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        parentElement.insertAdjacentElement("beforeend",g);
+
+        var cb = document.createElementNS("http://www.w3.org/2000/svg","use");
+        cb.setAttribute("x",x);
+        cb.setAttribute("y",y);
+        cb.setAttributeNS("http://www.w3.org/1999/xlink","href","#radioCircle");
+        g.insertAdjacentElement("beforeend",cb);
+
+        var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
+        txt.innerHTML = text;
+        txt.setAttribute("x",x+16);
+        txt.setAttribute("y",y+10);
+        g.insertAdjacentElement("beforeend",txt);
+
+        switch (state) {
+          case "mixed":
+            var m = document.createElementNS("http://www.w3.org/2000/svg","line");
+            m.setAttribute("x1",x+1.5);
+            m.setAttribute("y1",y+6);
+            m.setAttribute("x2",x+10.5);
+            m.setAttribute("y2",y+6);
+            m.setAttribute("stroke-width",2);
+            m.setAttribute("stroke","var(--outline-color)");
+            g.insertAdjacentElement("beforeend",m);
+            break;
+          case "on":
+            var m = document.createElementNS("http://www.w3.org/2000/svg","circle");
+            m.setAttribute("cx",x+6);
+            m.setAttribute("cy",y+6);
+            m.setAttribute("r",2);
+            m.setAttribute("fill","var(--outline-color)");
+            m.setAttribute("stroke","var(--outline-color)");
+            g.insertAdjacentElement("beforeend",m);
+            break;
+        }
+        return g;
+      }
+      function drawRevealButton (parentElement,x,y,width,height,text,state) {
+        
+      }
+      drawHScrollBar(tf,10.5,10.5,100,16);
+      drawVScrollBar(tf,120.5,10.5,16,100);
+      drawPushButton(tf,10.5,30.5,0,0,"OK");
+      drawPushButton(tf,10.5,55.5,0,0,"Cancel");
+      drawInputField(tf,10.5,80.5,100,22);
+      drawSpinButton(tf,10.5,110.5,100,22);
+      drawSwitch(tf,10.5,140.5,64,22,"off");
+      drawSwitch(tf,10.5,170.5,64,22,"on");
+      drawCheckButton(tf,10.5,200.5,0,0,"Option","on");
+      drawRadioButton(tf,10.5,230.5,0,0,"Option","on");
+
+      drawInputField(tf,170.5,10.5,118,118);
+      drawHScrollBar(tf,171.5,111.5,100,16);
+      drawVScrollBar(tf,271.5,11.5,16,100);
+
     </script>
 
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
@@ -471,14 +588,13 @@
           <svg width="200" height="100">
             <g class="switch" transform="translate(68,39)">
               <rect class="trough" x="0.5" y="0.5" width="64" height="22"/>
-              
               <polyline points="1.5,22 1.5,1.5 64,1.5"/>
               <polyline points="1,21.5 63.5,21.5 63.5,1"/>
               <g class="slider">
                 <rect x="0.5" y="0.5" width="32" height="22"/>
                 <polyline points="1,21.5 31.5,21.5 31.5,1"/>
                 <polyline points="1.5,22 1.5,1.5 31.5,1.5"/>
-              </g>-
+              </g>
               <text class="centered" x="48" y="11">OFF</text>
             </g>
           </svg>
@@ -554,15 +670,17 @@
                 <rect x="0.5" y="0.5" width="20" height="20"/>
                 <polyline points="1,19.5 19.5,19.5 19.5,1"/>
                 <polyline points="1.5,20 1.5,1.5 20,1.5"/>
-                <line x1="4.5" y1="10.5" x2="16.5" y2="10.5" stroke-width="2" stroke="black"/>
+                <use xlink:href="#minusSign" width="20" height="20"/>
+                <!--<line x1="4.5" y1="10.5" x2="16.5" y2="10.5" stroke-width="2" stroke="black"/>-->
               </g>
               <text x="110" y="12" text-anchor="end" alignment-baseline="central">1</text>
               <g class="button" transform="translate(122,2)">
                 <rect x="0.5" y="0.5" width="20" height="20"/>
                 <polyline points="1,19.5 19.5,19.5 19.5,1"/>
                 <polyline points="1.5,20 1.5,1.5 20,1.5"/>
-                <line x1="4.5" y1="10.5" x2="16.5" y2="10.5" stroke-width="2" stroke="black"/>
-                <line x1="10.5" y1="4.5" x2="10.5" y2="16.5" stroke-width="2" stroke="black"/>
+                <use xlink:href="#plusSign" width="20" height="20"/>
+                <!--<line x1="4.5" y1="10.5" x2="16.5" y2="10.5" stroke-width="2" stroke="red"/>
+                <line x1="10.5" y1="4.5" x2="10.5" y2="16.5" stroke-width="2" stroke="red"/>-->
               </g>
             </g>
           </svg>
