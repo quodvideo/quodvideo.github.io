@@ -346,20 +346,22 @@
       }
       function drawHScrollBar (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
+        grp.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend", grp);
-        drawTrough(grp,x,y,width-height-height,height);
-        drawStepper(grp,x+width-height-height,y,height,height,"left");
-        drawStepper(grp,x+width-height,y,height,height,"right");
-        drawSlider(grp,x+10,y,32,height,"horizontal");
+        drawTrough(grp,0,0,width-height-height,height);
+        drawStepper(grp,width-height-height,0,height,height,"left");
+        drawStepper(grp,width-height,0,height,height,"right");
+        drawSlider(grp,10,0,32,height,"horizontal");
         return grp;
       }
       function drawVScrollBar (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
+        grp.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend", grp);
-        drawTrough(grp,x,y,width,height-width-width);
-        drawStepper(grp,x,y+height-width-width,width,width,"up");
-        drawStepper(grp,x,y+height-width,width,width,"down");
-        drawSlider(grp,x,y+10,width,32,"vertical");
+        drawTrough(grp,0,0,width,height-width-width);
+        drawStepper(grp,0,height-width-width,width,width,"up");
+        drawStepper(grp,0,height-width,width,width,"down");
+        drawSlider(grp,0,10,width,32,"vertical");
         return grp;
       }
       function drawInputField (parentElement,x,y,width,height) {
@@ -557,8 +559,8 @@
         txt.setAttribute("y",10);
         g.insertAdjacentElement("beforeend",txt);
       }
-      drawHScrollBar(tf,10.5,10.5,100,16);
-      drawVScrollBar(tf,120.5,10.5,16,100);
+      drawHScrollBar(tf,10,10,100,16);
+      drawVScrollBar(tf,120,10,16,100);
       drawPushButton(tf,10,30,0,0,"OK");
       drawPushButton(tf,10,55,0,0,"Cancel");
       drawInputField(tf,10,80,100,22);
