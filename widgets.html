@@ -626,7 +626,14 @@
         drawTrough(g,0,height/2-2,width,4);
         drawSlider(g,10,0,height,height,"horizontal");
         return g;
-
+      }
+      function drawVLevel (parentElement,x,y,width,height) {
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g.setAttribute("transform","translate("+x+","+y+")");
+        parentElement.insertAdjacentElement("beforeend", g);
+        drawTrough(g,width/2-2,0,4,height);
+        drawSlider(g,0,10,width,width,"vertical");
+        return g;
       }
       drawHScrollBar(tf,10,10,100,16);
       drawVScrollBar(tf,120,10,16,100);
@@ -647,6 +654,7 @@
       drawRevealButton(tf,10,440,0,0,"More","open");
       drawOptionButton(tf,10,470,0,0,"Option","open");
       drawHLevel(tf,10,500,100,16)
+      drawVLevel(tf,120,500,16,100)
       drawInputField(tf,170,10,118,118);
       drawHScrollBar(tf,171,111,100,16);
       drawVScrollBar(tf,271,11,16,100);
