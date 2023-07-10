@@ -407,15 +407,15 @@
 
         var btndn = drawButton(field,1,1,height-1,height-1);
         var minus = document.createElementNS("http://www.w3.org/2000/svg","use");
-        minus.setAttribute("width",20);
-        minus.setAttribute("height",20);
+        minus.setAttribute("width",height-1);
+        minus.setAttribute("height",height-1);
         minus.setAttributeNS("http://www.w3.org/1999/xlink","href","#minusSign");
         btndn.insertAdjacentElement("beforeend",minus);
 
         var btnup = drawButton(field,width-height+1,1,height-1,height-1);
         var plus = document.createElementNS("http://www.w3.org/2000/svg","use");
-        plus.setAttribute("width",20);
-        plus.setAttribute("height",20);
+        plus.setAttribute("width",height-1);
+        plus.setAttribute("height",height-1);
         plus.setAttributeNS("http://www.w3.org/1999/xlink","href","#plusSign");
         btnup.insertAdjacentElement("beforeend",plus);
       }
