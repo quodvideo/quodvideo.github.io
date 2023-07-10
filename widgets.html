@@ -386,18 +386,18 @@
         parentElement.insertAdjacentElement("beforeend",g);
 
         var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points","0.5,"+(height)+" 0.5,0.5 "+(width)+",0.5");
+        shadow.setAttribute("points","0.5,"+(height-1)+" 0.5,0.5 "+(width-1)+",0.5");
         g.insertAdjacentElement("beforeend",shadow);
 
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        highlight.setAttribute("points","0,"+(height+0.5)+" "+(width+0.5)+","+(height+0.5)+" "+(width+0.5)+",0");
+        highlight.setAttribute("points","0,"+(height-0.5)+" "+(width-0.5)+","+(height-0.5)+" "+(width-0.5)+",0");
         g.insertAdjacentElement("beforeend",highlight);
 
         var field = document.createElementNS("http://www.w3.org/2000/svg","rect");
         field.setAttribute("x",1.5);
         field.setAttribute("y",1.5);
-        field.setAttribute("width",width-2);
-        field.setAttribute("height",height-2);
+        field.setAttribute("width",width-3);
+        field.setAttribute("height",height-3);
         g.insertAdjacentElement("beforeend",field);
 
         return g;
@@ -652,8 +652,8 @@
       drawVScrollBar(tf,120,10,16,100);
       drawPushButton(tf,10,30,0,0,"OK",true);
       drawPushButton(tf,10,55,0,0,"Cancel");
-      drawInputField(tf,10,80,100,21);
-      drawSpinButton(tf,10,110,100,21);
+      drawInputField(tf,10,80,100,22);
+      drawSpinButton(tf,10,110,100,22);
       drawSwitch(tf,10,140,64,22,"off");
       drawSwitch(tf,10,170,64,22,"on");
       drawCheckButton(tf,10,200,0,0,"Option","on");
