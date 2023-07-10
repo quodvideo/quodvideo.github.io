@@ -563,6 +563,62 @@
         txt.setAttribute("y",10.5);
         g.insertAdjacentElement("beforeend",txt);
       }
+      function drawOptionButton (parentElement,x,y,width,height,text) {
+        var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
+        txt.innerHTML = text;
+        txt.setAttribute("class","centered");
+        var box = txt.getBBox();
+        if (width<64) width=64;
+        if (height<22) height=22;
+        if (box.width > width+12) width=box.width+12;
+        if (box.height > height+5) height=box.height+5;
+
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g.setAttribute("transform","translate("+x+","+y+")");
+        parentElement.insertAdjacentElement("beforeend", g);
+
+        var r = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        r.setAttribute("x", 0.5);
+        r.setAttribute("y", 0.5);
+        r.setAttribute("width", width+height);
+        r.setAttribute("height", height);
+        r.setAttribute("fill","var(--raised-fill-color)");
+        r.setAttribute("stroke","var(--outline-color)");
+        g.insertAdjacentElement("beforeend", r);
+
+        var s1 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        s1.setAttribute("class","shadow");
+        s1.setAttribute("points","1.5,"+(height-0.5)+" "+(width+0.5)+","+(height-0.5)+" "+(width+0.5)+",1.5");
+        g.insertAdjacentElement("beforeend",s1);
+
+        var h1 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        h1.setAttribute("class","highlight");
+        h1.setAttribute("points","1.5,"+(height-0.5)+" 1.5,1.5 "+(width+0.5)+",1.5");
+        g.insertAdjacentElement("beforeend",h1);
+
+        var s2 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        s2.setAttribute("class","shadow");
+        s2.setAttribute("points",(width+1.5)+","+(height-0.5)+" "+(width+height-0.5)+","+(height-0.5)+" "+(width+height-0.5)+",1.5");
+        g.insertAdjacentElement("beforeend",s2);
+
+        var h2 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        h2.setAttribute("class","highlight");
+        h2.setAttribute("points",(width+1.5)+","+(height-0.5)+" "+(width+1.5)+",1.5 "+(width+height-0.5)+",1.5");
+        g.insertAdjacentElement("beforeend",h2);
+
+        var a = document.createElementNS("http://www.w3.org/2000/svg","use");
+        a.setAttribute("x",width+0.5);
+        a.setAttribute("width",height);
+        a.setAttribute("height",height);
+        a.setAttributeNS("http://www.w3.org/1999/xlink","href","#newArrowDown");
+        g.insertAdjacentElement("beforeend",a);
+
+        txt.setAttribute("x",width/2);
+        txt.setAttribute("y",height/2);
+        g.insertAdjacentElement("beforeend",txt);
+
+        return g;
+      }
       drawHScrollBar(tf,10,10,100,16);
       drawVScrollBar(tf,120,10,16,100);
       drawPushButton(tf,10,30,0,0,"OK");
@@ -580,6 +636,7 @@
       drawRevealButton(tf,10,380,0,0,"More","closed");
       drawRevealButton(tf,10,410,0,0,"More","turning");
       drawRevealButton(tf,10,440,0,0,"More","open");
+      drawOptionButton(tf,10,470,0,0,"Option","open");
       drawInputField(tf,170,10,118,118);
       drawHScrollBar(tf,171,111,100,16);
       drawVScrollBar(tf,271,11,16,100);
