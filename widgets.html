@@ -405,14 +405,14 @@
       function drawSpinButton (parentElement,x,y,width,height) {
         var field = drawInputField(parentElement,x,y,width,height);
 
-        var btndn = drawButton(field,1,1,height-1,height-1);
+        var btndn = drawButton(field,1,1,height-2,height-2);
         var minus = document.createElementNS("http://www.w3.org/2000/svg","use");
         minus.setAttribute("width",height-1);
         minus.setAttribute("height",height-1);
         minus.setAttributeNS("http://www.w3.org/1999/xlink","href","#minusSign");
         btndn.insertAdjacentElement("beforeend",minus);
 
-        var btnup = drawButton(field,width-height+1,1,height-1,height-1);
+        var btnup = drawButton(field,width-height,1,height-2,height-2);
         var plus = document.createElementNS("http://www.w3.org/2000/svg","use");
         plus.setAttribute("width",height-1);
         plus.setAttribute("height",height-1);
