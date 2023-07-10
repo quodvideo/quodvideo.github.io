@@ -1500,11 +1500,20 @@
       <polyline class="shadow" points="3.5,476.5, 3.5,50.5 636.5,50.5" />
       <polyline class="highlight" points="3.5,476.5 620.5,476.5 620.5,460.5 636.5,460.5 636.5,50.5"></polyline>
       <use x="620" y="460" xlink:href="#newcornergrip"/>
-      <use x="4.5" y="460.5" xlink:href="#sheetTabGroup" />
+      <g transform="translate(4.5,460.5)">
+        <rect width="180" height="15" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
+        <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H115 L120,13 H170 L175,0 H180"/>
+        <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="141" y="10">3</text>
+        <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H60 L65,13 H115 L120,0 H180"/>
+        <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="86" y="10">2</text>
+        <path d="M1,0 H179" stroke="#ffffff"/>
+        <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H5 L10,13 H60 L65,0 H180"/>
+        <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
+      </g>
       <rect x="4.5" y="51.5" width="631" height="28" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
       <script>
         drawVScrollBar(document.getElementById("spreadsheet"),620,51,16,408);
-        drawHScrollBar(document.getElementById("spreadsheet"),184,459,435,16);
+        drawHScrollBar(document.getElementById("spreadsheet"),184,460,436,16);
       </script>
     </svg>
     <svg width="640" height="480"><title>Control Console</title>
