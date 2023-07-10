@@ -1192,36 +1192,13 @@
       <polyline class="highlight" points="1.5,298.5 1.5,1.5 398.5,1.5"/>
       <use x="382" y="282" xlink:href="#newcornergrip"/>
       <script>
-        drawOptionButton(document.getElementById("openDialog"),18,18,86,22,"$PWD");
+        drawOptionButton(document.getElementById("openDialog"),18,18,0,0,"$PWD");
         drawInputField(document.getElementById("openDialog"),18,58,362,182);
+        drawVScrollBar(document.getElementById("openDialog"),365,59,16,180);
         drawPushButton(document.getElementById("openDialog"),236,260,0,0,"Cancel");
         drawPushButton(document.getElementById("openDialog"),318,260,0,0,"OK");
       </script>
-      <g class="v-scrollbar" transform="translate(365.5,59.5)">
-        <rect class="trough" width="16" height="182"/>
-        <polyline class="shadow" points="1,149 1,1 15,1"/>
-        <polyline class="highlight" points="1,149 15,149 15,1"/>
-        <g class="button" transform="translate(0,150)">
-          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
-          <polyline points="1,15 15,15 15,1"/>
-          <polyline points="1,15 1,1 15,1"/>
-          <use xlink:href="#newArrowUp" width="16" height="16"/>
-        </g>
-        <g class="button" transform="translate(0,166)">
-          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
-          <polyline points="1,15 15,15 15,1"/>
-          <polyline points="1,15 1,1 15,1"/>
-          <use xlink:href="#newArrowDown" width="16" height="16"/>
-        </g>
-        <g class="slider" transform="translate(0,50)">
-          <rect width="16" height="32"/>
-          <polyline points="1,31 15,31 15,1"/>
-          <polyline points="1,31 1,1 15,1"/>
-          <use x="3" y="11" xlink:href="#vGrippy"/>
-        </g>
-      </g>
     </svg>
-
     <svg width="400" height="300"><title>Open Dialog</title>
       <rect x="0.5" y="0.5" width="399" height="299" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
       <polyline class="shadow" points="1.5,298.5 398.5,298.5 398.5,1.5"/>
