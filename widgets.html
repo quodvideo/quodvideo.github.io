@@ -1487,7 +1487,7 @@
       <polyline class="shadow" points="3.5,476.5 3.5,50.5 636.5,50.5"/>
       <polyline class="highlight" points="3.5,476.5 620.5,476.5 620.5,460.5 636.5,460.5 636.5,50.5"/>
     </svg>
-    <svg width="640" height="480"><title>Spreadsheet</title>
+    <svg width="640" height="480" id="spreadsheet"><title>Spreadsheet</title>
       <rect x="0.5" y="0.5" width="639" height="479" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
       <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
       <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
@@ -1548,7 +1548,9 @@
         </g>
       </g>
       <rect x="4.5" y="51.5" width="631" height="28" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
-      
+      <script>
+        drawHScrollBar(document.getElementById("spreadsheet"),184,459,403,16);
+      </script>
     </svg>
     <svg width="640" height="480"><title>Control Console</title>
       <rect x="0.5" y="0.5" width="639" height="479" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
