@@ -363,9 +363,9 @@
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         grp.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend", grp);
-        drawTrough(grp,0,0,width-height-height,height);
-        drawStepper(grp,width-height-height,0,height,height,"left");
-        drawStepper(grp,width-height,0,height,height,"right");
+        drawTrough(grp,0,0,width-height-height+3,height);
+        drawStepper(grp,width-height-height+2,0,height,height,"left");
+        drawStepper(grp,width-height+1,0,height,height,"right");
         drawSlider(grp,10,0,32,height,"horizontal");
         return grp;
       }
@@ -669,8 +669,8 @@
       drawHLevel(tf,10,500,100,16)
       drawVLevel(tf,120,470,16,100)
       drawInputField(tf,170,10,118,118);
-      drawHScrollBar(tf,171,111,100,16);
-      drawVScrollBar(tf,271,11,16,100);
+      drawHScrollBar(tf,171,112,100,16);
+      drawVScrollBar(tf,271,12,16,100);
 
     </script>
 
