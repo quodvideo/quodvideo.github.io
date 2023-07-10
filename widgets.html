@@ -623,7 +623,7 @@
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
         g.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend", g);
-        drawTrough(g,0,height/2-1,width,2);
+        drawTrough(g,0,height/2-2,width,4);
         drawSlider(g,10,0,height,height,"horizontal");
         return g;
 
