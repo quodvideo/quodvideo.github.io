@@ -289,8 +289,8 @@
       function drawStepper (parentElement,x,y,width,height,dir) {
         var stepper = drawButton(parentElement,x,y,width,height);
         var stepperArrow = document.createElementNS("http://www.w3.org/2000/svg","use");
-        stepperArrow.setAttribute("width",16);
-        stepperArrow.setAttribute("height",16);
+        stepperArrow.setAttribute("width",width);
+        stepperArrow.setAttribute("height",height);
         var arrow="#none";
         switch (dir) {
           case "up": arrow="#newArrowUp"; break;
@@ -311,16 +311,16 @@
         var slider = document.createElementNS("http://www.w3.org/2000/svg","rect");
         slider.setAttribute("x", 0.5);
         slider.setAttribute("y", 0.5);
-        slider.setAttribute("width", width);
-        slider.setAttribute("height", height);
+        slider.setAttribute("width", width-1);
+        slider.setAttribute("height", height-1);
         grp.insertAdjacentElement("beforeend",slider);
 
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        highlight.setAttribute("points","1,"+(height-0.5)+" "+(width-0.5)+","+(height-0.5)+" "+(width-0.5)+",1")
+        highlight.setAttribute("points","1,"+(height-1.5)+" "+(width-1.5)+","+(height-1.5)+" "+(width-1.5)+",1")
         grp.insertAdjacentElement("beforeend", highlight);
 
         var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points","1.5,"+height+" 1.5,1.5 "+width+",1.5");
+        shadow.setAttribute("points","1.5,"+(height-1)+" 1.5,1.5 "+(width-1)+",1.5");
         grp.insertAdjacentElement("beforeend", shadow);
 
         var grip = document.createElementNS("http://www.w3.org/2000/svg","use");
@@ -344,16 +344,19 @@
         var trough = document.createElementNS("http://www.w3.org/2000/svg","rect");
         trough.setAttribute("x", x+0.5);
         trough.setAttribute("y", y+0.5);
-        trough.setAttribute("width", width);
-        trough.setAttribute("height", height);
+        trough.setAttribute("width", width-1);
+        trough.setAttribute("height", height-1);
         trough.setAttribute("class","trough");
         parentElement.insertAdjacentElement("beforeend", trough);
+
         var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points",""+(x+1.5)+","+(y+height-0.5)+" "+(x+1.5)+","+(y+1.5)+" "+(x+width-0.5)+","+(y+1.5))
+        shadow.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+1.5)+","+(y+1.5)+" "+(x+width-1.5)+","+(y+1.5))
         parentElement.insertAdjacentElement("beforeend", shadow);
+        
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        highlight.setAttribute("points",""+(x+1.5)+","+(y+height-0.5)+" "+(x+width-0.5)+","+(y+height-0.5)+" "+(x+width-0.5)+","+(y+1.5))
+        highlight.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+1.5))
         parentElement.insertAdjacentElement("beforeend", highlight);
+        
         return trough;
       }
       function drawHScrollBar (parentElement,x,y,width,height) {
