@@ -1496,7 +1496,7 @@
       <text x="56" y="24" style="font-size: 24">Document Title</text>
       <text x="56" y="41">spreadsheet</text>
       <rect x="4.5" y="51.5" width="631" height="424" stroke="var(--outline-color)" fill="white"/>
-      <rect x="620.5" y="460.5" width="15" height="15" stroke="var(--outline-color)" fill="var(--base-fill-color)" />
+      <rect x="620.5" y="460.5" width="16" height="16" stroke="none" fill="var(--base-fill-color)" />
       <polyline class="shadow" points="3.5,476.5, 3.5,50.5 636.5,50.5" />
       <polyline class="highlight" points="3.5,476.5 621.5,476.5 621.5,461.5 636.5,461.5 636.5,50.5"></polyline>
       <use x="622" y="462" xlink:href="#newcornergrip"/>
@@ -1510,9 +1510,13 @@
         <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H5 L10,13 H60 L65,0 H180"/>
         <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
       </g>
-      <rect x="4.5" y="51.5" width="631" height="28" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
+      <g transform="translate(4,51)">
+        <rect x="0.5" y="0.5" width="631" height="28" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
+        <polyline class="shadow" points="1,78.5 629.5,78.5 629.5,1"/>
+        <polyline class="highlight" points="1.5,78 1.5,1.5 630,1.5"/>
+      </g>
       <script>
-        drawVScrollBar(document.getElementById("spreadsheet"),620,51,16,409);
+        drawVScrollBar(document.getElementById("spreadsheet"),620,79,16,381);
         drawHScrollBar(document.getElementById("spreadsheet"),184,460,436,16);
       </script>
     </svg>
