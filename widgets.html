@@ -380,27 +380,27 @@
         return grp;
       }
       function drawInputField (parentElement,x,y,width,height) {
-        var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
-        grp.setAttribute("class","textfield");
-        grp.setAttribute("transform","translate("+x+","+y+")");
-        parentElement.insertAdjacentElement("beforeend",grp);
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g.setAttribute("class","textfield");
+        g.setAttribute("transform","translate("+x+","+y+")");
+        parentElement.insertAdjacentElement("beforeend",g);
 
         var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         shadow.setAttribute("points","0.5,"+(height)+" 0.5,0.5 "+(width)+",0.5");
-        grp.insertAdjacentElement("beforeend",shadow);
+        g.insertAdjacentElement("beforeend",shadow);
 
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         highlight.setAttribute("points","0,"+(height+0.5)+" "+(width+0.5)+","+(height+0.5)+" "+(width+0.5)+",0");
-        grp.insertAdjacentElement("beforeend",highlight);
+        g.insertAdjacentElement("beforeend",highlight);
 
         var field = document.createElementNS("http://www.w3.org/2000/svg","rect");
         field.setAttribute("x",1.5);
         field.setAttribute("y",1.5);
         field.setAttribute("width",width-2);
         field.setAttribute("height",height-2);
-        grp.insertAdjacentElement("beforeend",field);
+        g.insertAdjacentElement("beforeend",field);
 
-        return grp;
+        return g;
       }
       function drawSpinButton (parentElement,x,y,width,height) {
         var field = drawInputField(parentElement,x,y,width,height);
@@ -652,8 +652,8 @@
       drawVScrollBar(tf,120,10,16,100);
       drawPushButton(tf,10,30,0,0,"OK",true);
       drawPushButton(tf,10,55,0,0,"Cancel");
-      drawInputField(tf,10,80,100,23);
-      drawSpinButton(tf,10,110,100,23);
+      drawInputField(tf,10,80,100,22);
+      drawSpinButton(tf,10,110,100,22);
       drawSwitch(tf,10,140,64,22,"off");
       drawSwitch(tf,10,170,64,22,"on");
       drawCheckButton(tf,10,200,0,0,"Option","on");
