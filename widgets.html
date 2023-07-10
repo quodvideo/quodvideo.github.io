@@ -373,9 +373,9 @@
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         grp.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend", grp);
-        drawTrough(grp,0,0,width,height-width-width);
-        drawStepper(grp,0,height-width-width,width,width,"up");
-        drawStepper(grp,0,height-width,width,width,"down");
+        drawTrough(grp,0,0,width,height-width-width+3);
+        drawStepper(grp,0,height-width-width+2,width,width,"up");
+        drawStepper(grp,0,height-width+1,width,width,"down");
         drawSlider(grp,0,10,width,32,"vertical");
         return grp;
       }
