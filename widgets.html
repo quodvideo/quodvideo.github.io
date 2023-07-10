@@ -593,36 +593,36 @@
         var r = document.createElementNS("http://www.w3.org/2000/svg", "rect");
         r.setAttribute("x", 0.5);
         r.setAttribute("y", 0.5);
-        r.setAttribute("width", width+height);
-        r.setAttribute("height", height);
+        r.setAttribute("width", width+height-1);
+        r.setAttribute("height", height-1);
         r.setAttribute("fill","var(--raised-fill-color)");
         r.setAttribute("stroke","var(--outline-color)");
         g.insertAdjacentElement("beforeend", r);
 
         var s1 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         s1.setAttribute("class","shadow");
-        s1.setAttribute("points","1.5,"+(height-0.5)+" "+(width+0.5)+","+(height-0.5)+" "+(width+0.5)+",1.5");
+        s1.setAttribute("points","1.5,"+(height-1.5)+" "+(width-0.5)+","+(height-1.5)+" "+(width-0.5)+",1.5");
         g.insertAdjacentElement("beforeend",s1);
 
         var h1 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         h1.setAttribute("class","highlight");
-        h1.setAttribute("points","1.5,"+(height-0.5)+" 1.5,1.5 "+(width+0.5)+",1.5");
+        h1.setAttribute("points","1.5,"+(height-1.5)+" 1.5,1.5 "+(width-0.5)+",1.5");
         g.insertAdjacentElement("beforeend",h1);
 
         var s2 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         s2.setAttribute("class","shadow");
-        s2.setAttribute("points",(width+1.5)+","+(height-0.5)+" "+(width+height-0.5)+","+(height-0.5)+" "+(width+height-0.5)+",1.5");
+        s2.setAttribute("points",(width+0.5)+","+(height-1.5)+" "+(width+height-1.5)+","+(height-1.5)+" "+(width+height-1.5)+",1.5");
         g.insertAdjacentElement("beforeend",s2);
 
         var h2 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         h2.setAttribute("class","highlight");
-        h2.setAttribute("points",(width+1.5)+","+(height-0.5)+" "+(width+1.5)+",1.5 "+(width+height-0.5)+",1.5");
+        h2.setAttribute("points",(width+0.5)+","+(height-1.5)+" "+(width+0.5)+",1.5 "+(width+height-1.5)+",1.5");
         g.insertAdjacentElement("beforeend",h2);
 
         var a = document.createElementNS("http://www.w3.org/2000/svg","use");
         a.setAttribute("x",width+0.5);
-        a.setAttribute("width",height);
-        a.setAttribute("height",height);
+        a.setAttribute("width",height-1);
+        a.setAttribute("height",height-1);
         a.setAttributeNS("http://www.w3.org/1999/xlink","href","#newArrowDown");
         g.insertAdjacentElement("beforeend",a);
 
