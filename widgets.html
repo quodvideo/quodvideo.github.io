@@ -247,24 +247,24 @@
         var btn = document.createElementNS("http://www.w3.org/2000/svg","rect");
         btn.setAttribute("x", 0.5);
         btn.setAttribute("y", 0.5);
-        btn.setAttribute("width", width);
-        btn.setAttribute("height", height);
+        btn.setAttribute("width", width-1);
+        btn.setAttribute("height", height-1);
         grp.insertAdjacentElement("beforeend", btn);
 
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        highlight.setAttribute("points","1,"+(height-0.5)+" "+(width-0.5)+","+(height-0.5)+" "+(width-0.5)+",1");
+        highlight.setAttribute("points","1,"+(height-1.5)+" "+(width-1.5)+","+(height-1.5)+" "+(width-1.5)+",1");
         grp.insertAdjacentElement("beforeend", highlight);
 
         var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points","1.5,"+height+" 1.5,1.5 "+width+",1.5");
+        shadow.setAttribute("points","1.5,"+(height-1)+" 1.5,1.5 "+(width-1)+",1.5");
         grp.insertAdjacentElement("beforeend", shadow);
 
         if (isDefault) {
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
           r.setAttribute("x", -0.5);
           r.setAttribute("y", -0.5);
-          r.setAttribute("width", width+2);
-          r.setAttribute("height", height+2);
+          r.setAttribute("width", width+1);
+          r.setAttribute("height", height+1);
           r.setAttribute("style","fill: none; stroke: black;");
           grp.insertAdjacentElement("beforeend", r);          
         }
