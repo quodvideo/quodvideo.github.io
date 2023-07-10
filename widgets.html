@@ -619,6 +619,15 @@
 
         return g;
       }
+      function drawHLevel (parentElement,x,y,width,height) {
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g.setAttribute("transform","translate("+x+","+y+")");
+        parentElement.insertAdjacentElement("beforeend", g);
+        drawTrough(g,0,height/2-1,width,2);
+        drawSlider(g,10,0,height,height,"horizontal");
+        return g;
+
+      }
       drawHScrollBar(tf,10,10,100,16);
       drawVScrollBar(tf,120,10,16,100);
       drawPushButton(tf,10,30,0,0,"OK");
@@ -637,6 +646,7 @@
       drawRevealButton(tf,10,410,0,0,"More","turning");
       drawRevealButton(tf,10,440,0,0,"More","open");
       drawOptionButton(tf,10,470,0,0,"Option","open");
+      drawHLevel(tf,10,500,100,16)
       drawInputField(tf,170,10,118,118);
       drawHScrollBar(tf,171,111,100,16);
       drawVScrollBar(tf,271,11,16,100);
@@ -1193,7 +1203,7 @@
       <use x="382" y="282" xlink:href="#newcornergrip"/>
       <script>
         drawOptionButton(document.getElementById("openDialog"),18,18,0,0,"$PWD");
-        drawInputField(document.getElementById("openDialog"),18,58,362,182);
+        drawInputField(document.getElementById("openDialog"),18,58,364,182);
         drawVScrollBar(document.getElementById("openDialog"),365,59,16,180);
         drawPushButton(document.getElementById("openDialog"),236,260,0,0,"Cancel");
         drawPushButton(document.getElementById("openDialog"),318,260,0,0,"OK");
