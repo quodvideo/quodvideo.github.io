@@ -441,13 +441,13 @@
         g.insertAdjacentElement("beforeend",p);
 
         var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        s.class = "shadow";
+        s.setAttribute("class","shadow");
         s.setAttribute("points","0.5,"+(height-0.5)+" 0.5,0.5 "+(width-0.5)+",0.5");
         g.insertAdjacentElement("beforeend",s);
 
         var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        h.class = "highlight";
-        h.setAttribute("points","0.5,(height-0.5) (),() (),() (),() (width-0.5),0.5");
+        h.setAttribute("class","highlight");
+        h.setAttribute("points","0.5,"+(height-0.5)+" "+(width-15.5)+","+(height-0.5)+" "+(width-15.5)+","+(height-15.5)+" "+(width-0.5)+","+(height-15.5)+" "+(width-0.5)+",0.5");
         g.insertAdjacentElement("beforeend",h);
 
         if (showVScrollbar) {
