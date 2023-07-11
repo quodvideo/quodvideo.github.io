@@ -1281,10 +1281,8 @@
         <text x="23" y="148">General</text>
       </g>
     </svg>
-    <svg width="640" height="480"><title>Basic View</title>
-      <rect x="0.5" y="0.5" width="639" height="479" stroke="var(--outline-color)" fill="var(--base-fill-color)" />
-      <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5" />
-      <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5" />
+    <svg width="640" height="480" id="basicView"><title>Basic View</title>
+      <script>drawBaseWindow(document.getElementById("basicView"),0,0,640,480);</script>
       <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none" />
       <use xlink:href="#documentIcon" x="5" y="6" width="40" height="40" fill="white" />
       <text x="56" y="24" style="font-size: 24">Item Name</text>
@@ -1295,12 +1293,9 @@
       <polyline fill="none" stroke="var(--outline-color)" points="620.5,475.5 620.5,460.5 636.5,460.5"/>
       <polyline class="shadow" points="3.5,476.5, 3.5,50.5 636.5,50.5" />
       <polyline class="highlight" points="3.5,476.5 621.5,476.5 621.5,461.5 636.5,461.5 636.5,50.5"></polyline>
-      <use x="622" y="462" xlink:href="#newcornergrip"/>
     </svg>
-    <svg width="640" height="480"><title>Document Window</title>
-      <rect x="0.5" y="0.5" width="639" height="479" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
-      <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
-      <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
+    <svg width="640" height="480" id="documentView"><title>Document Window</title>
+      <script>drawBaseWindow(document.getElementById("documentView"),0,0,640,480);</script>
       <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
       <use xlink:href="#documentIcon" x="5" y="6" width="40" height="40" fill="white"/>
       <text x="56" y="24" style="font-size: 24">Document Title</text>
@@ -1332,7 +1327,6 @@
           <use x="3" y="11" xlink:href="#vGrippy"/>
         </g>
       </g>
-      <use x="620" y="460" xlink:href="#newcornergrip"/>
       <g class="h-scrollbar" transform="translate (4.5, 459.5)">
         <rect class="trough" width="583" height="16"/>
         <polyline class="shadow" points="1,15 1,1 582,1"/>
@@ -1357,11 +1351,8 @@
         </g>
       </g>
     </svg>
-    <svg width="640" height="480"><title>Project Folder</title>
-      <rect x="0.5" y="0.5" width="639" height="479" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
-      <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
-      <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
-      
+    <svg width="640" height="480" id="projectFolder"><title>Project Folder</title>
+      <script>drawBaseWindow(document.getElementById("projectFolder"),0,0,640,480);</script>
       <rect x="4.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
       <!-- <use xlink:href="#folderIcon" x="1" y="1" width="48" height="48" fill="#aaaaaa"/> -->
       <text class="centered" x="29" y="25" style="font-size: 48">🗀</text>
@@ -1401,7 +1392,6 @@
           <use x="3" y="11" xlink:href="#vGrippy"/>
         </g>
       </g>
-      <use x="619" y="459" xlink:href="#newcornergrip"/>
       <g class="h-scrollbar" transform="translate (160.5, 459.5)">
         <rect class="trough" width="427" height="16"/>
         <polyline class="shadow" points="1,15 1,1 426,1"/>
