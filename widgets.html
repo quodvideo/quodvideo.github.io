@@ -1320,61 +1320,14 @@
       <text x="56" y="41">item view type</text>
     </svg>
     <svg width="640" height="480" id="documentView"><title>Document Window</title>
-      <script>drawBaseWindow(document.getElementById("documentView"),0,0,640,480);</script>
+      <script>
+        drawBaseWindow(document.getElementById("documentView"),0,0,640,480);
+        drawCutawayField(document.getElementById("documentView"),3,50,634,427,true,true);
+      </script>
       <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
       <use xlink:href="#documentIcon" x="5" y="6" width="40" height="40" fill="white"/>
       <text x="56" y="24" style="font-size: 24">Document Title</text>
       <text x="56" y="41">plain text</text>
-      <rect x="4.5" y="51.5" width="631" height="424" stroke="var(--outline-color)" fill="white"/>
-      <rect x="619.5" y="459.5" width="16" height="16" stroke="var(--outline-color)" fill="var(--base-fill-color)" />
-      <polyline class="shadow" points="3.5,476.5, 3.5,50.5 636.5,50.5" />
-      <polyline class="highlight" points="3.5,476.5 620.5,476.5 620.5,460.5 636.5,460.5 636.5,50.5"></polyline>
-      <g class="v-scrollbar" transform="translate(619.5,51.5)">
-        <rect class="trough" width="16" height="376"/>
-        <polyline class="shadow" points="1,375 1,1 15,1"/>
-        <polyline class="highlight" points="1,375 15,375 15,1"/>
-        <g class="button" transform="translate(0,376)">
-          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
-          <polyline class="shadow" points="1,15 15,15 15,1"/>
-          <polyline class="highlight" points="1,15 1,1 15,1"/>
-          <use xlink:href="#newArrowUp" width="16" height="16"/>
-        </g>
-        <g class="button" transform="translate(0,392)">
-          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
-          <polyline points="1,15 15,15 15,1"/>
-          <polyline points="1,15 1,1 15,1"/>
-          <use xlink:href="#newArrowDown" width="16" height="16"/>
-        </g>
-        <g class="slider" transform="translate(0,100)">
-          <rect width="16" height="32"/>
-          <polyline points="1,31 15,31 15,1"/>
-          <polyline points="1,31 1,1 15,1"/>
-          <use x="3" y="11" xlink:href="#vGrippy"/>
-        </g>
-      </g>
-      <g class="h-scrollbar" transform="translate (4.5, 459.5)">
-        <rect class="trough" width="583" height="16"/>
-        <polyline class="shadow" points="1,15 1,1 582,1"/>
-        <polyline class="highlight" points="1,15 582,15 582,1"/>
-        <g class="button" transform="translate(583,0)">
-          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
-          <polyline points="1,15 15,15 15,1"/>
-          <polyline points="1,15 1,1 15,1"/>
-          <use xlink:href="#newArrowLeft" width="16" height="16"/>
-        </g>
-        <g class="button" transform="translate(599,0)">
-          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
-          <polyline points="1,15 15,15 15,1"/>
-          <polyline points="1,15 1,1 15,1"/>
-          <use xlink:href="#newArrowRight" width="16" height="16"/>
-        </g>
-        <g class="slider" transform="translate(100,0)">
-          <rect width="32" height="16"/>
-          <polyline points="1,15 31,15 31,1"/>
-          <polyline points="1,15 1,1 31,1"/>
-          <use x="11" y="3" xlink:href="#hGrippy"/>
-        </g>
-      </g>
     </svg>
     <svg width="640" height="480" id="projectFolder"><title>Project Folder</title>
       <script>drawBaseWindow(document.getElementById("projectFolder"),0,0,640,480);</script>
