@@ -443,9 +443,12 @@
         var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         s.class = "shadow";
         s.setAttribute("points","0.5,"+(height-0.5)+" 0.5,0.5 "+(width-0.5)+",0.5");
+        g.insertAdjacentElement("beforeend",s);
+
         var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         h.class = "highlight";
         h.setAttribute("points","0.5,(height-0.5) (),() (),() (),() (width-0.5),0.5");
+        g.insertAdjacentElement("beforeend",h);
 
         if (showVScrollbar) {
           drawVScrollBar(g,width-17,1,16,height-18);
