@@ -431,13 +431,13 @@
       }
       function drawCutawayField (parentElement,x,y,width,height,showVScrollbar,showHScrollbar) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        g.setAttribute("transform","translate(x,y)");
+        g.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend",g);
 
         var p = document.createElementNS("http://www.w3.org/2000/svg","path");
         p.setAttribute("fill","var(--input-field-color)");
         p.setAttribute("stroke","var(--outline-color)");
-        p.setAttribute("d","M1.5,1.5 V height-1.5 H width-17.5 V height-17.5 H width-1.5 V 1.5 Z");
+        p.setAttribute("d","M1.5,1.5 V "+(height-1.5)+" H "+(width-17.5)+" V "+(height-17.5)+" H "+(width-1.5)+" V 1.5 Z");
         g.insertAdjacentElement("beforeend",p);
 
         if (showVScrollbar) {
