@@ -1730,6 +1730,7 @@
       <p>Templates can have content. If you create a template from a word processor document, then new items made from that template will have the same content as the document did when the template was created. This is an easy way to make form letters, for example. If a folder with content is turned into a template, all of the folder's contents will be reproduced by dragging from that template.</p>
     </section>
     <p>Perhaps the default templates should be listed.</p>
+    <p>Items, Views, Overlays, Icons, Property Panels, Folders, Workspaces, Desktops, Templates: Those are the basis of the entire system.</p>
     <section><h2>Differences from Other GUIs</h2>
       <p>Some differences from other graphical user interfaces, especially those on Linux, should already be apparent.</p>
       <p>There are three applications on Linux that are reimagined in this shell: the window manager, the file manager, and the session manager.</p>
@@ -1743,7 +1744,7 @@
     </section>
     <section><h2>Expectations of Views</h2>
       <p>Views are responsible for communicating with the window manager and their session manager. To present a window, a view must communicate to the window manager the position information it receives when opened. This information includes icon positions in container windows between the view and the desktop. The view will also receive a timestamp corresponding to the event which opened the view and must use this timestamp to set focus when its window is mapped. Focus is not guaranteed! If another view has received focus in between the opening event and the mapping of the window, then it will not receive focus. If and when the window does receive focus, it should ask to be raised.</p>
-      <p>(Default stacking position should be above the container window communicated in the startup info.)</p>
+      <p>(Default stacking position, controlled by the window manager, should be above the container window communicated in the startup info.)</p>
       <p>A view must communicate updates to its window position to the session manager. (The session manager will set metadata accordingly, probably by communicating with the file manager.)</p>
       <p>(Should there be a FILE_MANAGER? Is the session manager enough?)</p>
       <p>If a view contains items which may be opened in other windows, it should act as a folder or workspace. (Which?)</p>
@@ -1754,6 +1755,13 @@
       <p>For moving to Wayland, I'll probably need a trace protocol to make the connections between desktops and views.</p>
       <p>IDK what people are doing for session management these days.</p>
       <p>If a view contains items, it should accept template drops to create new items.</p>
+    </section>
+    <section><h2>Some Implementation Thoughts</h2>
+      <p>I'll probably implement folders in a small app called <code>folder</code>. The app will do a bit of desktop integration and then use a library called <code>libfolder</code> which provides most of the code for the field of icons view. I imagine there will be one <code>folder</code> process for each folder view. Workspaces and desktops will do much the same using <code>libfolder</code>, but they need more code to do session management. The main argument to <code>folder</code> is a URL for something which can be viewed as a folder. If the URL is for anything other than a simple directory, it will probably be handled by another program instead. A program called <code>archive</code>, for example, might handle gzipped directories. This program will also use <code>libfolder</code>, so the archive will act like a folder.</p>
+      <p>OS/2 had the System Object Model which allowed for extensibility like with <code>archive</code> and <code>folder</code>. I don't know that anything that complicated is really necessary. There might be a better way now with something like DBus or flatpak portals.</p>
+      <p>The trickiest thing may be the property panels. Every view of an item may need to add or add to a property panel page.</p>
+      <p>Closely related to panel extensibility is context menu extensibility. (We <code>View as . . .</code>, we don't <code>Open with . . .</code>.) It may be useful to add menu items in addition to those on the <code>View as . . .</code> submenu.</p>
+      <p>Does dbusmenu (whatever it's called) actually work for our menu bar?</p>
     </section>
     <section><h2>Special Programs</h2>
       <p>There are a few special programs which break the rules of the shell.</p>
