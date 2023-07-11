@@ -440,6 +440,13 @@
         p.setAttribute("d","M1.5,1.5 V "+(height-1.5)+" H "+(width-16.5)+" V "+(height-16.5)+" H "+(width-1.5)+" V 1.5 Z");
         g.insertAdjacentElement("beforeend",p);
 
+        var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        s.class = "shadow";
+        s.setAttribute("points","0.5,"+(height-0.5)+" 0.5,0.5 "+(width-0.5)+",0.5");
+        var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        h.class = "highlight";
+        h.setAttribute("points","0.5,(height-0.5) (),() (),() (),() (width-0.5),0.5");
+
         if (showVScrollbar) {
           drawVScrollBar(g,width-17,1,16,height-18);
         }
