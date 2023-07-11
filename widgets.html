@@ -238,6 +238,33 @@
     </svg>
     <script>
       tf = document.getElementById("testfield");
+      function drawBaseWindow (parentElement,x,y,width,height) {
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g.setAttribute("transform","translate("+x+","+y+")")
+        parentElement.insertAdjacentElement("beforeend",g);
+        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        r.setAttribute("x", 0.5);
+        r.setAttribute("y", 0.5);
+        r.setAttribute("width", width-1);
+        r.setAttribute("height", height-1);
+        r.setAttribute("fill","var(--base-fill-color)");
+        r.setAttribute("stroke","var(--outline-color)");
+        g.insertAdjacentElement("beforeend",r);
+        var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        s.setAttribute("class","shadow");
+        s.setAttribute("points","1.5,"+(height-1.5)+" "+(width-1.5)+","+(height-1.5)+" "+(width-1.5)+",1.5");
+        g.insertAdjacentElement("beforeend",s);
+        var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        h.setAttribute("class","highlight");
+        h.setAttribute("points","1.5,"+(height-1.5)+" 1.5,1.5 "+(width-1.5)+",1.5");
+        g.insertAdjacentElement("beforeend",h);
+        var u = document.createElementNS("http://www.w3.org/2000/svg","use");
+        u.setAttribute("x",width-18);
+        u.setAttribute("y",height-18);
+        u.setAttributeNS("http://www.w3.org/1999/xlink","href","#newcornergrip");
+        g.insertAdjacentElement("beforeend",u);
+        return g;
+      }
       function drawButton (parentElement,x,y,width,height,isDefault) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         grp.setAttribute("class","button");
@@ -1218,16 +1245,13 @@
     </table>
     <br/>
     <svg width="400" height="300" id="openDialog"><title>Open Dialog</title>
-      <rect x="0.5" y="0.5" width="399" height="299" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
-      <polyline class="shadow" points="1.5,298.5 398.5,298.5 398.5,1.5"/>
-      <polyline class="highlight" points="1.5,298.5 1.5,1.5 398.5,1.5"/>
-      <use x="382" y="282" xlink:href="#newcornergrip"/>
       <script>
+        drawBaseWindow(document.getElementById("openDialog"),0,0,400,300);
         drawOptionButton(document.getElementById("openDialog"),18,18,0,0,"$PWD");
-        drawInputField(document.getElementById("openDialog"),18,58,364,182);
+        drawInputField(document.getElementById("openDialog"),18,58,364,183);
         drawVScrollBar(document.getElementById("openDialog"),365,59,16,180);
         drawPushButton(document.getElementById("openDialog"),236,260,0,0,"Cancel");
-        drawPushButton(document.getElementById("openDialog"),318,260,0,0,"OK",true);
+        drawPushButton(document.getElementById("openDialog"),318,260,0,0,"Open",true);
       </script>
     </svg>
     <svg width="400" height="300"><title>Open Dialog</title>
@@ -1285,11 +1309,8 @@
         <text class="centered" x="32" y="11">Open</text>
       </g>
     </svg>
-    <svg width="400" height="300"><title>Save Dialog</title>
-      <rect x="0.5" y="0.5" width="399" height="299" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
-      <polyline class="shadow" points="1.5,298.5 398.5,298.5 398.5,1.5"/>
-      <polyline class="highlight" points="1.5,298.5 1.5,1.5 398.5,1.5"/>
-      <use x="382" y="282" xlink:href="#newcornergrip"/>
+    <svg width="400" height="300" id="saveDialog"><title>Save Dialog</title>
+      <script>drawBaseWindow(document.getElementById("saveDialog"),0,0,400,300);</script>
       <g transform="translate(18,18)">
         <rect x="0.5" y="0.5" width="86" height="22" fill="var(--raised-fill-color)" stroke="var(--outline-color)"/>
         <polyline class="shadow" points="1.5,21.5 64.5,21.5 64.5,1.5"/>
@@ -1322,11 +1343,8 @@
         <text class="centered" x="32" y="11">Save</text>
       </g>
     </svg>
-    <svg width="400" height="300"><title>Program Settings Panel</title>
-      <rect x="0.5" y="0.5" width="399" height="299" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
-      <polyline class="shadow" points="1.5,298.5 398.5,298.5 398.5,1.5"/>
-      <polyline class="highlight" points="1.5,298.5 1.5,1.5 398.5,1.5"/>
-      <use x="382" y="282" xlink:href="#newcornergrip"/>
+    <svg width="400" height="300" id="programSettingsPanel"><title>Program Settings Panel</title>
+      <script>drawBaseWindow(document.getElementById("programSettingsPanel"),0,0,400,300);</script>
       <rect x="2.5" y="2.5" width="48" height="48" stroke="none" fill="none"/>
       <use x="1" y="1" xlink:href="#documentIcon" width="48" height="48" fill="red"/>
       <text x="56" y="24" style="font-family: Sans-serif; font-size: 24">Program Settings</text>
@@ -1350,11 +1368,13 @@
       <use xlink:href="#documentIcon" x="5" y="6" width="40" height="40" fill="white" />
       <text x="56" y="24" style="font-size: 24">Item Name</text>
       <text x="56" y="41">item view type</text>
-      <rect x="4.5" y="51.5" width="631" height="424" stroke="var(--outline-color)" fill="white" />
-      <rect x="619.5" y="459.5" width="16" height="16" stroke="var(--outline-color)" fill="var(--base-fill-color)" />
+
+      <rect x="4.5" y="51.5" width="631" height="424" stroke="var(--outline-color)" fill="white"/>
+      <rect x="620.5" y="460.5" width="16" height="16" stroke="none" fill="var(--base-fill-color)" />
+      <polyline fill="none" stroke="var(--outline-color)" points="620.5,475.5 620.5,460.5 636.5,460.5"/>
       <polyline class="shadow" points="3.5,476.5, 3.5,50.5 636.5,50.5" />
-      <polyline class="highlight" points="3.5,476.5 620.5,476.5 620.5,460.5 636.5,460.5 636.5,50.5"></polyline>
-      <use x="620" y="460" xlink:href="#newcornergrip"></use>
+      <polyline class="highlight" points="3.5,476.5 621.5,476.5 621.5,461.5 636.5,461.5 636.5,50.5"></polyline>
+      <use x="622" y="462" xlink:href="#newcornergrip"/>
     </svg>
     <svg width="640" height="480"><title>Document Window</title>
       <rect x="0.5" y="0.5" width="639" height="479" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
@@ -1524,10 +1544,8 @@
         drawButton(document.getElementById("spreadsheet"),58,54,22,22);
       </script>
     </svg>
-    <svg width="640" height="480"><title>Control Console</title>
-      <rect x="0.5" y="0.5" width="639" height="479" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
-      <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
-      <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
+    <svg width="640" height="480" id="controlConsole"><title>Control Console</title>
+      <script>drawBaseWindow(document.getElementById("controlConsole"),0,0,640,480);</script>
       <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
       <text class="centered" x="25" y="25" style="font-size: 48">⚙</text>
       <text x="56" y="24" style="font-size: 24">Control System</text>
