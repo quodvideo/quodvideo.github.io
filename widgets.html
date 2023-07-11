@@ -429,6 +429,24 @@
 
         return g;
       }
+      function drawCutawayField (parentElement,x,y,width,height,showVScrollbar,showHScrollbar) {
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g.setAttribute("transform","translate(x,y)");
+        parentElement.insertAdjacentElement("beforeend",g);
+
+        var p = document.createElementNS("http://www.w3.org/2000/svg","path");
+        p.setAttribute("fill","var(--input-field-color)");
+        p.setAttribute("stroke","var(--outline-color)");
+        p.setAttribute("d","M1.5,1.5 V height-1.5 H width-17.5 V height-17.5 H width-1.5 V 1.5 Z");
+        g.insertAdjacentElement("beforeend",p);
+
+        if (showVScrollbar) {
+          drawVScrollBar(g,width-17,1,16,height-18);
+        }
+        if (showHScrollbar) {
+          drawHScrollBar(g,1,height-17,width-18,16);
+        }
+      }
       function drawSpinButton (parentElement,x,y,width,height) {
         var field = drawInputField(parentElement,x,y,width,height);
 
@@ -698,7 +716,7 @@
       drawInputField(tf,170,10,118,118);
       drawHScrollBar(tf,171,111,100,16);
       drawVScrollBar(tf,271,11,16,100);
-
+      drawCutawayField(tf,300,10,118,118,true,true);
     </script>
 
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
@@ -1757,6 +1775,9 @@
       <p>There are three applications on Linux that are reimagined in this shell: the window manager, the file manager, and the session manager.</p>
       <p>The window manager does very little in the normal order of things. It keeps overlays, including the menu bar, on top, and it keeps desktops on the bottom. It provides switching between desktops and keyboard-based switching between windows. It does not draw window frames, but it may provide effects like shadows. It does not reparent windows. It may provide a virtual desktop which is larger than the screen. It provides a window switching overlay. In the event of a window being closed, it ensures the right window has keyboard focus. Mouse-based focus is managed by the windows themselves using the globally active input model of the ICCCM. It may restrict the movement and placement of windows, but it mostly respects what clients give it. (The constraints on movements should suffice to constrain placement, because windows will only ask to be placed where they were before.) Window stacking order has some contraints, to keep overlays and desktops right, but clients are expected to raise their window appropriately.</p>
       <p>The file manager is mostly replaced by folders. Browsing the file system, as with most modern file managers, is relegated to a utility which most users won't need. The user model of items and folders is preferred by the GUI over the programmer's model of files and directories.</p>
+      <p>Folders should tend to be shallow. They're for the user's work, not for viewing the entirety of a unix filesystem. Some of the natural depth should be swept into projects which open into project views instead of folder views.</p>
+      <p>Folders should tend to be small. Folders containing lots of similar items should probably have another view which manages the size of folder.</p>
+      <p>When folders get large or deep, there's may be a need for a new kind of view.</p>
       <p>Folders provide screen positions for both icons and views to opening views. These positions are shared with the window manager which may then animate the transition from an icon to another view. If the folder for an item is closed when the non-icon view is still visible, then the animation closing the open view will show it going to the containing folder's icon. If that icon is not visible, it will go to the next containing folder's icon, and so forth down to an icon on the desktop. (How?)</p>
       <p>A workspace item combines file and session management functions. As a file manager, it displays icons for its contents. As a session manager, it keeps track of other views of its contents.</p>
     </section>
