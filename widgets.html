@@ -1310,7 +1310,10 @@
       </g>
     </svg>
     <svg width="640" height="480" id="basicView"><title>Basic View</title>
-      <script>drawBaseWindow(document.getElementById("basicView"),0,0,640,480);</script>
+      <script>
+        drawBaseWindow(document.getElementById("basicView"),0,0,640,480);
+        drawCutawayField(document.getElementById("basicView"),3,50,630,423,false,false);
+      </script>
       <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none" />
       <use xlink:href="#documentIcon" x="5" y="6" width="40" height="40" fill="white" />
       <text x="56" y="24" style="font-size: 24">Item Name</text>
