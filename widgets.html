@@ -467,9 +467,10 @@
         fr.setAttribute("class","focusring");
         g.insertAdjacentElement("beforeend",fr);
 
-        var t = document.createElementNS("http://www.w3.org/2000/svg",text);
+        var t = document.createElementNS("http://www.w3.org/2000/svg","text");
         g.insertAdjacentElement("beforeend",t);
-          return g;
+
+        return g;
       }
       function drawCutawayField (parentElement,x,y,width,height,showVScrollbar,showHScrollbar) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
