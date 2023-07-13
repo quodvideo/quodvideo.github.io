@@ -495,16 +495,20 @@
         }
       }
       function drawSpinButton (parentElement,x,y,width,height) {
-        var field = drawInputField(parentElement,x,y,width,height);
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g.setAttribute("transform","translate("+x+","+y+")");
+        parentElement.insertAdjacentElement("beforeend",g);
 
-        var btndn = drawButton(parentElement,1,1,height-2,height-2,false,false);
+        var field = drawInputField(g,0,0,width,height);
+
+        var btndn = drawButton(g,1,1,height-2,height-2,false,false);
         var minus = document.createElementNS("http://www.w3.org/2000/svg","use");
         minus.setAttribute("width",height-2);
         minus.setAttribute("height",height-2);
         minus.setAttributeNS("http://www.w3.org/1999/xlink","href","#minusSign");
         btndn.insertAdjacentElement("beforeend",minus);
 
-        var btnup = drawButton(parentElement,width-height+1,1,height-2,height-2,false,false);
+        var btnup = drawButton(g,width-height+1,1,height-2,height-2,false,false);
         var plus = document.createElementNS("http://www.w3.org/2000/svg","use");
         plus.setAttribute("width",height-2);
         plus.setAttribute("height",height-2);
