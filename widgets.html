@@ -709,6 +709,35 @@
         drawSlider(g,0,10,width,width,"vertical");
         return g;
       }
+      function drawHeaderBar (parentElement,x,y,width,height,icon,title,subtitle) {
+          var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+          g.setAttribute("transform","translate("+x+","+y+")");
+          parentElement.insertAdjacentElement("beforeend",g);
+
+          var i = document.createElementNS("http://www.w3.org/2000/svg","use");
+          i.setAttribute("x",5);
+          i.setAttribute("y",6);
+          i.setAttribute("width",40);
+          i.setAttribute("height",40);
+          i.setAttribute("fill","white");
+          i.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
+          g.insertAdjacentElement("beforeend",i);
+
+          var t = document.createElementNS("http://www.w3.org/2000/svg","text");
+          t.setAttribute("x",56);
+          t.setAttribute("y",24);
+          t.setAttribute("style","font-size: 24;");
+          t.innerHTML = title;
+          g.insertAdjacentElement("beforeend",t);
+
+          var s = document.createElementNS("http://www.w3.org/2000/svg","text");
+          s.setAttribute("x",56);
+          s.setAttribute("y",41);
+          s.innerHTML = subtitle;
+          g.insertAdjacentElement("beforeend",s);
+
+          return g;
+        }
       drawHScrollBar(tf,10,10,100,16);
       drawVScrollBar(tf,120,10,16,100);
       drawPushButton(tf,10,30,0,0,"OK",true);
@@ -729,10 +758,7 @@
       drawOptionButton(tf,10,470,0,0,"Option","open");
       drawHLevel(tf,10,500,100,16)
       drawVLevel(tf,120,470,16,100)
-      drawInputField(tf,170,10,118,118);
-      drawHScrollBar(tf,171,111,100,16);
-      drawVScrollBar(tf,271,11,16,100);
-      drawCutawayField(tf,300,10,118,118,true,true);
+      drawCutawayField(tf,170,10,118,118,true,true);
     </script>
 
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
@@ -1403,10 +1429,7 @@
       <polyline class="highlight" points="3.5,476.5 620.5,476.5 620.5,460.5 636.5,460.5 636.5,50.5"/>
     </svg>
     <svg width="640" height="480" id="spreadsheet"><title>Spreadsheet</title>
-      <rect x="0.5" y="0.5" width="639" height="479" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
-      <polyline class="shadow" points="1.5,478.5 638.5,478.5 638.5,1.5"/>
-      <polyline class="highlight" points="1.5,478.5 1.5,1.5 638.5,1.5"/>
-      <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
+      <script>drawBaseWindow(document.getElementById("spreadsheet"),0,0,640,480);</script>
       <use xlink:href="#documentIcon" x="5" y="6" width="40" height="40" fill="white"/>
       <text x="56" y="24" style="font-size: 24">Document Title</text>
       <text x="56" y="41">spreadsheet</text>
@@ -1439,6 +1462,41 @@
         drawButton(document.getElementById("spreadsheet"),58,54,22,22);
       </script>
     </svg>
+    <svg width="640" height="480" id="spreadsheet2"><title>Spreadsheet</title>
+      <script>
+        drawBaseWindow(document.getElementById("spreadsheet2"),0,0,640,480);
+        drawHeaderBar(document.getElementById("spreadsheet2"),0,0,0,0,"#documentIcon","Document Title","spreadsheet");
+      </script>
+      <rect x="4.5" y="51.5" width="631" height="424" stroke="var(--outline-color)" fill="white"/>
+      <rect x="620.5" y="460.5" width="16" height="16" stroke="none" fill="var(--base-fill-color)" />
+      <polyline class="shadow" points="3.5,476.5, 3.5,50.5 636.5,50.5" />
+      <polyline class="highlight" points="3.5,476.5 621.5,476.5 621.5,461.5 636.5,461.5 636.5,50.5"></polyline>
+      <use x="622" y="462" xlink:href="#newcornergrip"/>
+      <g transform="translate(4.5,460.5)"> <!-- tabs -->
+        <rect width="180" height="15" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
+        <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H115 L120,13 H170 L175,0 H180"/>
+        <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="141" y="10">3</text>
+        <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H60 L65,13 H115 L120,0 H180"/>
+        <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="86" y="10">2</text>
+        <path d="M1,0 H179" stroke="#ffffff"/>
+        <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H5 L10,13 H60 L65,0 H180"/>
+        <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
+      </g>
+      <g transform="translate(4,51)">
+        <rect x="0.5" y="0.5" width="631" height="27" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
+        <polyline class="shadow" points="1,26.5 630.5,26.5 630.5,1"/>
+        <polyline class="highlight" points="1.5,27 1.5,1.5 631,1.5"/>
+      </g>
+      <script>
+        drawVScrollBar(document.getElementById("spreadsheet2"),620,78,16,382);
+        drawHScrollBar(document.getElementById("spreadsheet2"),184,460,436,16);
+        drawInputField(document.getElementById("spreadsheet2"),82,54,500,22);
+        drawButton(document.getElementById("spreadsheet2"),10,54,22,22);
+        drawButton(document.getElementById("spreadsheet2"),34,54,22,22);
+        drawButton(document.getElementById("spreadsheet2"),58,54,22,22);
+      </script>
+    </svg>
+    
     <svg width="640" height="480" id="controlConsole"><title>Control Console</title>
       <script>drawBaseWindow(document.getElementById("controlConsole"),0,0,640,480);</script>
       <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
@@ -1704,7 +1762,7 @@
       <p>The shell provides a graphical user interface to a variety of items. Items are the objects of the graphical user interface. They may correspond to programmatic objects, but they may also be abstractions that unite various parts of the operating system. Every item has metadata. Item metadata includes the item's name, its icon, its media types, screen locations for its views, the files it represents, and more.</p>
     </section>
     <p>Some items are containers of other items. More on those later.</p>
-    <p>An item is an abstract concept. The shell represents items graphically in views. A few of the shell graphics are not views of items, but are overlays on the screen.</p>
+    <p>An item is an abstract concept. The shell represents items graphically in views, which allow items to be manipulated and changed. A few of the shell graphics are not views of items, but are overlays on the screen.</p>
     <section style="margin-left: 20%; margin-right: 20%;"><h3>Views</h3>
       <p>Each of the various graphical representations of an item is a view. The item icon is the simplest view. The item property panel is another. Every item has these two views. Most items have more views. Some items may have surprising views. For example, an OpenDocument file has its default view in an office program, but it also has a folder view because its contents are a zipped archive of other files.</p>
       <p>On other systems, a view might be considered the main interface of an application.</p>
@@ -1802,6 +1860,7 @@
         <dt>Bibdtography - a container for citations</dt>
         <dt>Feed</dt>
         <dt>Formatted Text</dt>
+        <dt>Binder - a container for formatted text</dt>
         <dt>Slide</dt>
         <dt>Presentation - a container for slides</dt>
         <dt>Spreadsheet</dt>
