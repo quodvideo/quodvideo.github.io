@@ -282,11 +282,11 @@
         g.insertAdjacentElement("beforeend",u);
         return g;
       }
-      function drawButton (parentElement,x,y,width,height,isDefault) {
+      function drawButton (parentElement,x,y,width,height,isDefault,isFocusable) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         grp.setAttribute("class","button");
         grp.setAttribute("transform","translate("+x+","+y+")");
-        grp.setAttribute("tabindex",0);
+        if (isFocusable) grp.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend", grp);
 
         var btn = document.createElementNS("http://www.w3.org/2000/svg","rect");
@@ -304,14 +304,15 @@
         shadow.setAttribute("points","1.5,"+(height-1)+" 1.5,1.5 "+(width-1)+",1.5");
         grp.insertAdjacentElement("beforeend", shadow);
 
-        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        fr.setAttribute("x",-1.5);
-        fr.setAttribute("y",-1.5);
-        fr.setAttribute("width",width+3);
-        fr.setAttribute("height",height+3);
-        fr.setAttribute("class","focusring");
-        grp.insertAdjacentElement("beforeend", fr);
-
+        if (isFocusable) {
+          var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          fr.setAttribute("x",-1.5);
+          fr.setAttribute("y",-1.5);
+          fr.setAttribute("width",width+3);
+          fr.setAttribute("height",height+3);
+          fr.setAttribute("class","focusring");
+          grp.insertAdjacentElement("beforeend", fr);
+        }
         if (isDefault) {
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
           r.setAttribute("x", -0.5);
@@ -333,14 +334,14 @@
         if (height<22) height=22;
         if (box.width > width+12) width=box.width+12;
         if (box.height > height+5) height=box.height+5;
-        var btn = drawButton (parentElement,x,y,width,height,isDefault);
+        var btn = drawButton (parentElement,x,y,width,height,isDefault,true);
         txt.setAttribute("x",width/2);
         txt.setAttribute("y",height/2);
         btn.insertAdjacentElement("beforeend",txt);
         return btn;
       }
       function drawStepper (parentElement,x,y,width,height,dir) {
-        var stepper = drawButton(parentElement,x,y,width,height);
+        var stepper = drawButton(parentElement,x,y,width,height,false,false);
         var stepperArrow = document.createElementNS("http://www.w3.org/2000/svg","use");
         stepperArrow.setAttribute("width",width);
         stepperArrow.setAttribute("height",height);
@@ -495,14 +496,14 @@
       function drawSpinButton (parentElement,x,y,width,height) {
         var field = drawInputField(parentElement,x,y,width,height);
 
-        var btndn = drawButton(field,1,1,height-2,height-2);
+        var btndn = drawButton(field,1,1,height-2,height-2,false,false);
         var minus = document.createElementNS("http://www.w3.org/2000/svg","use");
         minus.setAttribute("width",height-2);
         minus.setAttribute("height",height-2);
         minus.setAttributeNS("http://www.w3.org/1999/xlink","href","#minusSign");
         btndn.insertAdjacentElement("beforeend",minus);
 
-        var btnup = drawButton(field,width-height+1,1,height-2,height-2);
+        var btnup = drawButton(field,width-height+1,1,height-2,height-2,false,false);
         var plus = document.createElementNS("http://www.w3.org/2000/svg","use");
         plus.setAttribute("width",height-2);
         plus.setAttribute("height",height-2);
