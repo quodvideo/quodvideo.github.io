@@ -319,7 +319,7 @@
           r.setAttribute("y", -0.5);
           r.setAttribute("width", width+1);
           r.setAttribute("height", height+1);
-          r.setAttribute("style","fill: none; stroke: black;");
+          r.setAttribute("style","fill: none; stroke: var(--outline-color);");
           grp.insertAdjacentElement("beforeend", r);          
         }
 
@@ -329,6 +329,7 @@
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = text;
         txt.setAttribute("class","centered");
+        txt.setAttribute("pointer-events","none");
         var box = txt.getBBox();
         if (width<64) width=64;
         if (height<22) height=22;
