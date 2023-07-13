@@ -100,6 +100,9 @@
         fill: var(--input-field-color);
         stroke: var(--outline-color);
       }
+      .textfield text::after {
+        content: "Foo";
+      }
       rect.focusring {
         fill: none;
         stroke: none;
@@ -464,7 +467,9 @@
         fr.setAttribute("class","focusring");
         g.insertAdjacentElement("beforeend",fr);
 
-        return g;
+        var t = document.createElementNS("http://www.w3.org/2000/svg",text);
+        g.insertAdjacentElement("beforeend",t);
+          return g;
       }
       function drawCutawayField (parentElement,x,y,width,height,showVScrollbar,showHScrollbar) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
