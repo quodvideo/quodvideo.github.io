@@ -39,26 +39,26 @@
       .button {
         cursor: default;
       }
-      .button rect {
+      .button rect:first-child {
         fill: var(--raised-fill-color);
         stroke: var(--outline-color);
       }
-      .button rect + polyline {
+      .button rect:first-child + polyline {
         fill: none;
         stroke: var(--shadow-stroke-color);
       }
-      .button rect + polyline + polyline {
+      .button rect:first-child + polyline + polyline {
         fill: none;
         stroke: var(--highlight-stroke-color);
       }
-      .button:active rect {
+      .button:active rect:first-child {
         fill: var(--recessed-fill-color);
         stroke: var(--outline-color);
       }
-      .button:active rect + polyline {
+      .button:active rect:first-child + polyline {
         stroke: var(--highlight-stroke-color);
       }
-      .button:active rect + polyline + polyline  {
+      .button:active rect:first-child + polyline + polyline  {
         stroke: var(--shadow-stroke-color);
       }
       rect.trough {
@@ -304,7 +304,7 @@
         shadow.setAttribute("points","1.5,"+(height-1)+" 1.5,1.5 "+(width-1)+",1.5");
         grp.insertAdjacentElement("beforeend", shadow);
 
-        if (isFocusable) {
+        //if (isFocusable) {
           var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
           fr.setAttribute("x",-1.5);
           fr.setAttribute("y",-1.5);
@@ -312,7 +312,7 @@
           fr.setAttribute("height",height+3);
           fr.setAttribute("class","focusring");
           grp.insertAdjacentElement("beforeend", fr);
-        }
+        //}
         if (isDefault) {
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
           r.setAttribute("x", -0.5);
@@ -1513,6 +1513,10 @@
         <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H5 L10,13 H60 L65,0 H180"/>
         <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
       </g>
+      <script>
+        drawVScrollBar(document.getElementById("spreadsheet2"),620,78,16,382);
+        drawHScrollBar(document.getElementById("spreadsheet2"),184,460,436,16);
+      </script>
       <g id="spreadsheet2-toolbar" transform="translate(4,51)">
         <rect x="0.5" y="0.5" width="631" height="27" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
         <polyline class="shadow" points="1,26.5 630.5,26.5 630.5,1"/>
@@ -1524,10 +1528,7 @@
           drawInputField(document.getElementById("spreadsheet2-toolbar"),76,3,500,22);
         </script>
       </g>
-      <script>
-        drawVScrollBar(document.getElementById("spreadsheet2"),620,78,16,382);
-        drawHScrollBar(document.getElementById("spreadsheet2"),184,460,436,16);
-      </script>
+      
     </svg>
     
     <svg width="640" height="480" id="controlConsole"><title>Control Console</title>
