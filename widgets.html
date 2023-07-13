@@ -304,7 +304,7 @@
         shadow.setAttribute("points","1.5,"+(height-1)+" 1.5,1.5 "+(width-1)+",1.5");
         grp.insertAdjacentElement("beforeend", shadow);
 
-        if (isFocusable) {
+        //if (isFocusable) {
           var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
           fr.setAttribute("x",-1.5);
           fr.setAttribute("y",-1.5);
@@ -312,7 +312,7 @@
           fr.setAttribute("height",height+3);
           fr.setAttribute("class","focusring");
           grp.insertAdjacentElement("beforeend", fr);
-        }
+        //}
         if (isDefault) {
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
           r.setAttribute("x", -0.5);
