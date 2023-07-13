@@ -412,7 +412,7 @@
         drawSlider(grp,0,10,width,32,"vertical");
         return grp;
       }
-      function drawInputField (parentElement,x,y,width,height) {
+      function drawInputField (parentElement,x,y,width,height,isFocused) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
         g.setAttribute("class","textfield");
         g.setAttribute("transform","translate("+x+","+y+")");
@@ -432,6 +432,17 @@
         field.setAttribute("width",width-3);
         field.setAttribute("height",height-3);
         g.insertAdjacentElement("beforeend",field);
+
+        if (isFocused) {
+          var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          fr.setAttribute("x",0.5);
+          fr.setAttribute("y",0.5);
+          fr.setAttribute("width",width-1);
+          fr.setAttribute("height",height-1);
+          fr.setAttribute("fill","none");
+          fr.setAttribute("stroke","var(--outline-color)");
+          g.insertAdjacentElement("beforeend",fr);
+        }
 
         return g;
       }
@@ -1482,10 +1493,16 @@
         <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H5 L10,13 H60 L65,0 H180"/>
         <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
       </g>
-      <g transform="translate(4,51)">
+      <g id="spreadsheet2-toolbar" transform="translate(4,51)">
         <rect x="0.5" y="0.5" width="631" height="27" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
         <polyline class="shadow" points="1,26.5 630.5,26.5 630.5,1"/>
         <polyline class="highlight" points="1.5,27 1.5,1.5 631,1.5"/>
+        <script>
+          drawButton(document.getElementById("spreadsheet2-toolbar"),4,3,22,22);
+          drawButton(document.getElementById("spreadsheet2-toolbar"),28,3,22,22);
+          drawButton(document.getElementById("spreadsheet2-toolbar"),52,3,22,22);
+          drawInputField(document.getElementById("spreadsheet2-toolbar"),76,3,500,22);
+        </script>
       </g>
       <script>
         drawVScrollBar(document.getElementById("spreadsheet2"),620,78,16,382);
