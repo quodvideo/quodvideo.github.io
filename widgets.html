@@ -97,6 +97,14 @@
         fill: var(--input-field-color);
         stroke: var(--outline-color);
       }
+      rect.focusring {
+        fill: none;
+        stroke: none;
+      }
+      rect.focusring:focus {
+        fill: none;
+        stroke: var(--outline-color);
+      }
     </style>
   </head>
   <body>
@@ -433,16 +441,13 @@
         field.setAttribute("height",height-3);
         g.insertAdjacentElement("beforeend",field);
 
-        if (isFocused) {
-          var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
-          fr.setAttribute("x",0.5);
-          fr.setAttribute("y",0.5);
-          fr.setAttribute("width",width-1);
-          fr.setAttribute("height",height-1);
-          fr.setAttribute("fill","none");
-          fr.setAttribute("stroke","var(--outline-color)");
-          g.insertAdjacentElement("beforeend",fr);
-        }
+        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        fr.setAttribute("x",0.5);
+        fr.setAttribute("y",0.5);
+        fr.setAttribute("width",width-1);
+        fr.setAttribute("height",height-1);
+        fr.setAttribute("fill","focusring");
+        g.insertAdjacentElement("beforeend",fr);
 
         return g;
       }
@@ -1507,10 +1512,6 @@
       <script>
         drawVScrollBar(document.getElementById("spreadsheet2"),620,78,16,382);
         drawHScrollBar(document.getElementById("spreadsheet2"),184,460,436,16);
-        drawInputField(document.getElementById("spreadsheet2"),80,54,500,22);
-        drawButton(document.getElementById("spreadsheet2"),8,54,22,22);
-        drawButton(document.getElementById("spreadsheet2"),32,54,22,22);
-        drawButton(document.getElementById("spreadsheet2"),56,54,22,22);
       </script>
     </svg>
     
