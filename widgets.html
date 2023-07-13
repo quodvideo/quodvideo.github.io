@@ -15,6 +15,9 @@
         --grip-stroke-color: #aaaaaa;
         font-family: sans-serif;
       }
+      :focus {
+        outline: none;
+      }
       .highlight {
         fill: none;
         stroke: var(--highlight-stroke-color);
@@ -101,7 +104,7 @@
         fill: none;
         stroke: none;
       }
-      rect.focusring:focus {
+      :focus rect.focusring {
         fill: none;
         stroke: var(--outline-color);
       }
@@ -420,10 +423,11 @@
         drawSlider(grp,0,10,width,32,"vertical");
         return grp;
       }
-      function drawInputField (parentElement,x,y,width,height,isFocused) {
+      function drawInputField (parentElement,x,y,width,height) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
         g.setAttribute("class","textfield");
         g.setAttribute("transform","translate("+x+","+y+")");
+        g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
 
         var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
