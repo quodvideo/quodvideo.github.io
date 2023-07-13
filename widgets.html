@@ -304,7 +304,7 @@
         shadow.setAttribute("points","1.5,"+(height-1)+" 1.5,1.5 "+(width-1)+",1.5");
         grp.insertAdjacentElement("beforeend", shadow);
 
-        //if (isFocusable) {
+        if (isFocusable) {
           var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
           fr.setAttribute("x",-1.5);
           fr.setAttribute("y",-1.5);
@@ -312,7 +312,7 @@
           fr.setAttribute("height",height+3);
           fr.setAttribute("class","focusring");
           grp.insertAdjacentElement("beforeend", fr);
-        //}
+        }
         if (isDefault) {
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
           r.setAttribute("x", -0.5);
@@ -497,14 +497,14 @@
       function drawSpinButton (parentElement,x,y,width,height) {
         var field = drawInputField(parentElement,x,y,width,height);
 
-        var btndn = drawButton(field,1,1,height-2,height-2,false,false);
+        var btndn = drawButton(parentElement,1,1,height-2,height-2,false,false);
         var minus = document.createElementNS("http://www.w3.org/2000/svg","use");
         minus.setAttribute("width",height-2);
         minus.setAttribute("height",height-2);
         minus.setAttributeNS("http://www.w3.org/1999/xlink","href","#minusSign");
         btndn.insertAdjacentElement("beforeend",minus);
 
-        var btnup = drawButton(field,width-height+1,1,height-2,height-2,false,false);
+        var btnup = drawButton(parentElement,width-height+1,1,height-2,height-2,false,false);
         var plus = document.createElementNS("http://www.w3.org/2000/svg","use");
         plus.setAttribute("width",height-2);
         plus.setAttribute("height",height-2);
