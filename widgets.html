@@ -258,6 +258,23 @@
     </svg>
     <script>
       tf = document.getElementById("testfield");
+      function drawRaisedRect (parentElement,x,y,width,height) {
+        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        r.setAttribute("x", x+0.5);
+        r.setAttribute("y", y+0.5);
+        r.setAttribute("width", width-1);
+        r.setAttribute("height", height-1);
+        g.insertAdjacentElement("beforeend", r);
+
+        var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        s.setAttribute("points","1,"+(height-1.5)+" "+(width-1.5)+","+(height-1.5)+" "+(width-1.5)+",1");
+        g.insertAdjacentElement("beforeend", s);
+
+        var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        h.setAttribute("points","1.5,"+(height-1)+" 1.5,1.5 "+(width-1)+",1.5");
+        g.insertAdjacentElement("beforeend", h);
+
+      }
       function drawTroughRect (parentElement,x,y,width,height) {
         var trough = document.createElementNS("http://www.w3.org/2000/svg","rect");
         trough.setAttribute("x", x+0.5);
@@ -821,7 +838,7 @@
       drawRevealButton(tf,10,380,0,0,"More","closed");
       drawRevealButton(tf,10,410,0,0,"More","turning");
       drawRevealButton(tf,10,440,0,0,"More","open");
-      drawOptionButton(tf,10,470,0,0,"Option","open");
+      drawOptionButton(tf,10,470,0,0,"Option");
       drawHLevel(tf,10,500,100,16)
       drawVLevel(tf,120,470,16,100)
       drawCutawayField(tf,170,10,118,118,true,true);
