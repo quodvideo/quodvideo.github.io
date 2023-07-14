@@ -258,6 +258,35 @@
     </svg>
     <script>
       tf = document.getElementById("testfield");
+      function drawTroughRect (parentElement,x,y,width,height) {
+        var trough = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        trough.setAttribute("x", x+0.5);
+        trough.setAttribute("y", y+0.5);
+        trough.setAttribute("width", width-1);
+        trough.setAttribute("height", height-1);
+        trough.setAttribute("class","trough");
+        parentElement.insertAdjacentElement("beforeend", trough);
+
+        var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        shadow.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+1.5)+","+(y+1.5)+" "+(x+width-1.5)+","+(y+1.5))
+        parentElement.insertAdjacentElement("beforeend", shadow);
+        
+        var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        highlight.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+1.5))
+        parentElement.insertAdjacentElement("beforeend", highlight);
+        
+        return trough;
+      }
+      function drawFocusRingRect (parentElement,x,y,width,height) {
+        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        r.setAttribute("x",x+0.5);
+        r.setAttribute("y",y+0.5);
+        r.setAttribute("width",width-1);
+        r.setAttribute("height",height-1);
+        r.setAttribute("class","focusring");
+        parentElement.insertAdjacentElement("beforeend",r);
+        return r;
+      }
       function drawBaseWindow (parentElement,x,y,width,height) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
         g.setAttribute("transform","translate("+x+","+y+")")
@@ -307,15 +336,8 @@
         shadow.setAttribute("points","1.5,"+(height-1)+" 1.5,1.5 "+(width-1)+",1.5");
         grp.insertAdjacentElement("beforeend", shadow);
 
-        //if (isFocusable) {
-          var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
-          fr.setAttribute("x",-1.5);
-          fr.setAttribute("y",-1.5);
-          fr.setAttribute("width",width+3);
-          fr.setAttribute("height",height+3);
-          fr.setAttribute("class","focusring");
-          grp.insertAdjacentElement("beforeend", fr);
-        //}
+        drawFocusRingRect(grp,-2,-2,width+4,height+4);
+
         if (isDefault) {
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
           r.setAttribute("x", -0.5);
@@ -398,30 +420,11 @@
 
         return grp;
       }
-      function drawTrough (parentElement,x,y,width,height) {
-        var trough = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        trough.setAttribute("x", x+0.5);
-        trough.setAttribute("y", y+0.5);
-        trough.setAttribute("width", width-1);
-        trough.setAttribute("height", height-1);
-        trough.setAttribute("class","trough");
-        parentElement.insertAdjacentElement("beforeend", trough);
-
-        var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+1.5)+","+(y+1.5)+" "+(x+width-1.5)+","+(y+1.5))
-        parentElement.insertAdjacentElement("beforeend", shadow);
-        
-        var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        highlight.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+1.5))
-        parentElement.insertAdjacentElement("beforeend", highlight);
-        
-        return trough;
-      }
       function drawHScrollBar (parentElement,x,y,width,height) {
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         grp.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend", grp);
-        drawTrough(grp,0,0,width-height-height+3,height);
+        drawTroughRect(grp,0,0,width-height-height+3,height);
         drawStepper(grp,width-height-height+2,0,height,height,"left");
         drawStepper(grp,width-height+1,0,height,height,"right");
         drawSlider(grp,10,0,32,height,"horizontal");
@@ -431,7 +434,7 @@
         var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
         grp.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend", grp);
-        drawTrough(grp,0,0,width,height-width-width+3);
+        drawTroughRect(grp,0,0,width,height-width-width+3);
         drawStepper(grp,0,height-width-width+2,width,width,"up");
         drawStepper(grp,0,height-width+1,width,width,"down");
         drawSlider(grp,0,10,width,32,"vertical");
@@ -459,14 +462,8 @@
         field.setAttribute("height",height-3);
         g.insertAdjacentElement("beforeend",field);
 
-        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        fr.setAttribute("x",0.5);
-        fr.setAttribute("y",0.5);
-        fr.setAttribute("width",width-1);
-        fr.setAttribute("height",height-1);
-        fr.setAttribute("class","focusring");
-        g.insertAdjacentElement("beforeend",fr);
-
+        drawFocusRingRect(grp,0,0,width,height);
+        
         var t = document.createElementNS("http://www.w3.org/2000/svg","text");
         g.insertAdjacentElement("beforeend",t);
 
@@ -541,7 +538,7 @@
         g.setAttribute("transform","translate("+x+","+y+")");
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
-        var trough = drawTrough(g,0,0,width,height);
+        var trough = drawTroughRect(g,0,0,width,height);
         var slider = drawSlider(g,sliderX,0,width/2,height);
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = word;
@@ -550,13 +547,7 @@
         txt.setAttribute("y",height/2);
         g.insertAdjacentElement("beforeend",txt);
 
-        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        fr.setAttribute("x",-1.5);
-        fr.setAttribute("y",-1.5);
-        fr.setAttribute("width",width+3);
-        fr.setAttribute("height",height+3);
-        fr.setAttribute("class","focusring");
-        g.insertAdjacentElement("beforeend",fr);
+        drawFocusRingRect(grp,-2,-2,width+4,height+4);
 
         return g;
       }
@@ -596,13 +587,7 @@
             break;
         }
 
-        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        fr.setAttribute("x",-2.5);
-        fr.setAttribute("y",-2.5);
-        fr.setAttribute("width",txt.getBBox().width + 24);
-        fr.setAttribute("height",18);
-        fr.setAttribute("class","focusring");
-        g.insertAdjacentElement("beforeend",fr);
+        drawFocusRingRect(grp,-3,-3,txt.getBBox().width + 25,19);
 
         return g;
       }
@@ -645,14 +630,8 @@
             g.insertAdjacentElement("beforeend",m);
             break;
         }
-
-        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        fr.setAttribute("x",-2.5);
-        fr.setAttribute("y",-2.5);
-        fr.setAttribute("width",txt.getBBox().width + 24);
-        fr.setAttribute("height",18);
-        fr.setAttribute("class","focusring");
-        g.insertAdjacentElement("beforeend",fr);
+        
+        drawFocusRingRect(grp,-3,-3,txt.getBBox().width + 25,19);
         
         return g;
       }
@@ -709,13 +688,7 @@
         txt.setAttribute("y",10.5);
         g.insertAdjacentElement("beforeend",txt);
 
-        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        fr.setAttribute("x",-2.5);
-        fr.setAttribute("y",-2.5);
-        fr.setAttribute("width",txt.getBBox().width + 24);
-        fr.setAttribute("height",18);
-        fr.setAttribute("class","focusring");
-        g.insertAdjacentElement("beforeend",fr);
+        drawFocusRingRect(grp,-3,-3,txt.getBBox().width + 25,19);
 
         return g;
       }
@@ -774,13 +747,7 @@
         txt.setAttribute("y",height/2);
         g.insertAdjacentElement("beforeend",txt);
 
-        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        fr.setAttribute("x",-1.5);
-        fr.setAttribute("y",-1.5);
-        fr.setAttribute("width",width+height+3);
-        fr.setAttribute("height",height+3);
-        fr.setAttribute("class","focusring");
-        g.insertAdjacentElement("beforeend",fr);
+        drawFocusRingRect(grp,-2,-2,width+height+4,height+4);
 
         return g;
       }
@@ -790,16 +757,10 @@
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend", g);
 
-        drawTrough(g,0,height/2-2,width,4);
+        drawTroughRect(g,0,height/2-2,width,4);
         drawSlider(g,10,0,height,height,"horizontal");
-        
-        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        fr.setAttribute("x",-1.5);
-        fr.setAttribute("y",-1.5);
-        fr.setAttribute("width",width+3);
-        fr.setAttribute("height",height+3);
-        fr.setAttribute("class","focusring");
-        g.insertAdjacentElement("beforeend",fr);
+        drawFocusRingRect(grp,-2,-2,width+4,height+4);
+
         return g;
       }
       function drawVLevel (parentElement,x,y,width,height) {
@@ -808,16 +769,10 @@
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend", g);
 
-        drawTrough(g,width/2-2,0,4,height);
+        drawTroughRect(g,width/2-2,0,4,height);
         drawSlider(g,0,10,width,width,"vertical");
-        
-        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        fr.setAttribute("x",-1.5);
-        fr.setAttribute("y",-1.5);
-        fr.setAttribute("width",width+3);
-        fr.setAttribute("height",height+3);
-        fr.setAttribute("class","focusring");
-        g.insertAdjacentElement("beforeend",fr);
+        drawFocusRingRect(grp,-2,-2,width+4,height+4);
+
         return g;
       }
       function drawHeaderBar (parentElement,x,y,width,height,icon,title,subtitle) {
@@ -1607,7 +1562,6 @@
       </g>
       
     </svg>
-    
     <svg width="640" height="480" id="controlConsole"><title>Control Console</title>
       <script>drawBaseWindow(document.getElementById("controlConsole"),0,0,640,480);</script>
       <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
@@ -1937,6 +1891,10 @@
       <p>The trickiest thing may be the property panels. Every view of an item may need to add or add to a property panel page.</p>
       <p>Closely related to panel extensibility is context menu extensibility. (We <code>View as . . .</code>, we don't <code>Open with . . .</code>.) It may be useful to add menu items in addition to those on the <code>View as . . .</code> submenu.</p>
       <p>Does dbusmenu (whatever it's called) actually work for our menu bar?</p>
+      <h3>Positioning Views</h3>
+      <p>Positioning views on X is easy, but Wayland doesn't allow client-dictated absolute positioning. There might be a way to have window manager/compositor-dictated positioning that preserves view positions. The views would have to advertise themselves as displaying a URI as a particular type of view. The wm/compositor would use that information to retrieve item metadata from somewhere and store it to somewhere.</p>
+      <p>My original thought was that position metadata would be stored either in special files or in extended attributes (EA). Clients would look up their own info and request their positions. It might be possible to have the wm/compositor maintain, or at least use, some database of URI, view type, and view position data. For local views, this can still be done in special files or EAs.</p>
+      <p>Not having the position data in EAs seems a good way to lose it, in the event that a file is moved. There would have to be some system level control of files that updates the position database.</p>
     </section>
     <section><h2>Special Programs</h2>
       <p>There are a few special programs which break the rules of the shell.</p>
