@@ -315,28 +315,28 @@
         return g;
       }
       function drawButton (parentElement,x,y,width,height,isDefault,isFocusable) {
-        var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
-        grp.setAttribute("class","button");
-        grp.setAttribute("transform","translate("+x+","+y+")");
-        if (isFocusable) grp.setAttribute("tabindex",0);
-        parentElement.insertAdjacentElement("beforeend", grp);
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g.setAttribute("class","button");
+        g.setAttribute("transform","translate("+x+","+y+")");
+        if (isFocusable) g.setAttribute("tabindex",0);
+        parentElement.insertAdjacentElement("beforeend", g);
 
         var btn = document.createElementNS("http://www.w3.org/2000/svg","rect");
         btn.setAttribute("x", 0.5);
         btn.setAttribute("y", 0.5);
         btn.setAttribute("width", width-1);
         btn.setAttribute("height", height-1);
-        grp.insertAdjacentElement("beforeend", btn);
+        g.insertAdjacentElement("beforeend", btn);
 
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         highlight.setAttribute("points","1,"+(height-1.5)+" "+(width-1.5)+","+(height-1.5)+" "+(width-1.5)+",1");
-        grp.insertAdjacentElement("beforeend", highlight);
+        g.insertAdjacentElement("beforeend", highlight);
 
         var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         shadow.setAttribute("points","1.5,"+(height-1)+" 1.5,1.5 "+(width-1)+",1.5");
-        grp.insertAdjacentElement("beforeend", shadow);
+        g.insertAdjacentElement("beforeend", shadow);
 
-        drawFocusRingRect(grp,-2,-2,width+4,height+4);
+        drawFocusRingRect(g,-2,-2,width+4,height+4);
 
         if (isDefault) {
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
@@ -345,10 +345,10 @@
           r.setAttribute("width", width+1);
           r.setAttribute("height", height+1);
           r.setAttribute("style","fill: none; stroke: var(--outline-color);");
-          grp.insertAdjacentElement("beforeend", r);          
+          g.insertAdjacentElement("beforeend", r);          
         }
 
-        return grp;
+        return g;
       }
       function drawPushButton (parentElement,x,y,width,height,text,isDefault) {
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
@@ -383,25 +383,25 @@
         return stepper;
       }
       function drawSlider (parentElement,x,y,width,height,dir) {
-        var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
-        grp.setAttribute("class","slider");
-        grp.setAttribute("transform","translate("+x+","+y+")");
-        parentElement.insertAdjacentElement("beforeend", grp);
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g.setAttribute("class","slider");
+        g.setAttribute("transform","translate("+x+","+y+")");
+        parentElement.insertAdjacentElement("beforeend", g);
 
         var slider = document.createElementNS("http://www.w3.org/2000/svg","rect");
         slider.setAttribute("x", 0.5);
         slider.setAttribute("y", 0.5);
         slider.setAttribute("width", width-1);
         slider.setAttribute("height", height-1);
-        grp.insertAdjacentElement("beforeend",slider);
+        g.insertAdjacentElement("beforeend",slider);
 
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         highlight.setAttribute("points","1,"+(height-1.5)+" "+(width-1.5)+","+(height-1.5)+" "+(width-1.5)+",1")
-        grp.insertAdjacentElement("beforeend", highlight);
+        g.insertAdjacentElement("beforeend", highlight);
 
         var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         shadow.setAttribute("points","1.5,"+(height-1)+" 1.5,1.5 "+(width-1)+",1.5");
-        grp.insertAdjacentElement("beforeend", shadow);
+        g.insertAdjacentElement("beforeend", shadow);
 
         var grip = document.createElementNS("http://www.w3.org/2000/svg","use");
         switch (dir) {
@@ -416,29 +416,29 @@
             grip.setAttributeNS("http://www.w3.org/1999/xlink","href","#vGrippy");
             break;
         }
-        grp.insertAdjacentElement("beforeend", grip);
+        g.insertAdjacentElement("beforeend", grip);
 
-        return grp;
+        return g;
       }
       function drawHScrollBar (parentElement,x,y,width,height) {
-        var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
-        grp.setAttribute("transform","translate("+x+","+y+")");
-        parentElement.insertAdjacentElement("beforeend", grp);
-        drawTroughRect(grp,0,0,width-height-height+3,height);
-        drawStepper(grp,width-height-height+2,0,height,height,"left");
-        drawStepper(grp,width-height+1,0,height,height,"right");
-        drawSlider(grp,10,0,32,height,"horizontal");
-        return grp;
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g.setAttribute("transform","translate("+x+","+y+")");
+        parentElement.insertAdjacentElement("beforeend", g);
+        drawTroughRect(g,0,0,width-height-height+3,height);
+        drawStepper(g,width-height-height+2,0,height,height,"left");
+        drawStepper(g,width-height+1,0,height,height,"right");
+        drawSlider(g,10,0,32,height,"horizontal");
+        return g;
       }
       function drawVScrollBar (parentElement,x,y,width,height) {
-        var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
-        grp.setAttribute("transform","translate("+x+","+y+")");
-        parentElement.insertAdjacentElement("beforeend", grp);
-        drawTroughRect(grp,0,0,width,height-width-width+3);
-        drawStepper(grp,0,height-width-width+2,width,width,"up");
-        drawStepper(grp,0,height-width+1,width,width,"down");
-        drawSlider(grp,0,10,width,32,"vertical");
-        return grp;
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g.setAttribute("transform","translate("+x+","+y+")");
+        parentElement.insertAdjacentElement("beforeend", g);
+        drawTroughRect(g,0,0,width,height-width-width+3);
+        drawStepper(g,0,height-width-width+2,width,width,"up");
+        drawStepper(g,0,height-width+1,width,width,"down");
+        drawSlider(g,0,10,width,32,"vertical");
+        return g;
       }
       function drawInputField (parentElement,x,y,width,height) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
@@ -462,7 +462,7 @@
         field.setAttribute("height",height-3);
         g.insertAdjacentElement("beforeend",field);
 
-        drawFocusRingRect(grp,0,0,width,height);
+        drawFocusRingRect(g,0,0,width,height);
         
         var t = document.createElementNS("http://www.w3.org/2000/svg","text");
         g.insertAdjacentElement("beforeend",t);
@@ -547,7 +547,7 @@
         txt.setAttribute("y",height/2);
         g.insertAdjacentElement("beforeend",txt);
 
-        drawFocusRingRect(grp,-2,-2,width+4,height+4);
+        drawFocusRingRect(g,-2,-2,width+4,height+4);
 
         return g;
       }
@@ -587,7 +587,7 @@
             break;
         }
 
-        drawFocusRingRect(grp,-3,-3,txt.getBBox().width + 25,19);
+        drawFocusRingRect(g,-3,-3,txt.getBBox().width + 25,19);
 
         return g;
       }
@@ -631,7 +631,7 @@
             break;
         }
         
-        drawFocusRingRect(grp,-3,-3,txt.getBBox().width + 25,19);
+        drawFocusRingRect(g,-3,-3,txt.getBBox().width + 25,19);
         
         return g;
       }
@@ -688,7 +688,7 @@
         txt.setAttribute("y",10.5);
         g.insertAdjacentElement("beforeend",txt);
 
-        drawFocusRingRect(grp,-3,-3,txt.getBBox().width + 25,19);
+        drawFocusRingRect(g,-3,-3,txt.getBBox().width + 25,19);
 
         return g;
       }
@@ -747,7 +747,7 @@
         txt.setAttribute("y",height/2);
         g.insertAdjacentElement("beforeend",txt);
 
-        drawFocusRingRect(grp,-2,-2,width+height+4,height+4);
+        drawFocusRingRect(g,-2,-2,width+height+4,height+4);
 
         return g;
       }
@@ -759,7 +759,7 @@
 
         drawTroughRect(g,0,height/2-2,width,4);
         drawSlider(g,10,0,height,height,"horizontal");
-        drawFocusRingRect(grp,-2,-2,width+4,height+4);
+        drawFocusRingRect(g,-2,-2,width+4,height+4);
 
         return g;
       }
@@ -771,7 +771,7 @@
 
         drawTroughRect(g,width/2-2,0,4,height);
         drawSlider(g,0,10,width,width,"vertical");
-        drawFocusRingRect(grp,-2,-2,width+4,height+4);
+        drawFocusRingRect(g,-2,-2,width+4,height+4);
 
         return g;
       }
