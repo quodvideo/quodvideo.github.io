@@ -537,18 +537,28 @@
             word = "ON";
             break;
         }
-        var grp = document.createElementNS("http://www.w3.org/2000/svg","g");
-        grp.setAttribute("transform","translate("+x+","+y+")");
-        parentElement.insertAdjacentElement("beforeend",grp);
-        var trough = drawTrough(grp,0,0,width,height);
-        var slider = drawSlider(grp,sliderX,0,width/2,height);
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g.setAttribute("transform","translate("+x+","+y+")");
+        g.setAttribute("tabindex",0);
+        parentElement.insertAdjacentElement("beforeend",g);
+        var trough = drawTrough(g,0,0,width,height);
+        var slider = drawSlider(g,sliderX,0,width/2,height);
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = word;
         txt.setAttribute("class","centered");
         txt.setAttribute("x",textX);
         txt.setAttribute("y",height/2);
-        grp.insertAdjacentElement("beforeend",txt);
-        return grp;
+        g.insertAdjacentElement("beforeend",txt);
+
+        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        fr.setAttribute("x",-1.5);
+        fr.setAttribute("y",-1.5);
+        fr.setAttribute("width",width+3);
+        fr.setAttribute("height",height+3);
+        fr.setAttribute("class","focusring");
+        g.insertAdjacentElement("beforeend",fr);
+
+        return g;
       }
       function drawCheckButton (parentElement,x,y,width,height,text,state) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
@@ -777,33 +787,37 @@
       function drawHLevel (parentElement,x,y,width,height) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
         g.setAttribute("transform","translate("+x+","+y+")");
-        parentElement.insertAdjacentElement("beforeend", g);
-        drawTrough(g,0,height/2-2,width,4);
-        var s = drawSlider(g,10,0,height,height,"horizontal");
         g.setAttribute("tabindex",0);
+        parentElement.insertAdjacentElement("beforeend", g);
+
+        drawTrough(g,0,height/2-2,width,4);
+        drawSlider(g,10,0,height,height,"horizontal");
+        
         var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        fr.setAttribute("x",-1);
-        fr.setAttribute("y",-1);
-        fr.setAttribute("width",height+2);
-        fr.setAttribute("height",height+2);
+        fr.setAttribute("x",-1.5);
+        fr.setAttribute("y",-1.5);
+        fr.setAttribute("width",width+3);
+        fr.setAttribute("height",height+3);
         fr.setAttribute("class","focusring");
-        s.insertAdjacentElement("beforeend",fr);
+        g.insertAdjacentElement("beforeend",fr);
         return g;
       }
       function drawVLevel (parentElement,x,y,width,height) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
         g.setAttribute("transform","translate("+x+","+y+")");
-        parentElement.insertAdjacentElement("beforeend", g);
-        drawTrough(g,width/2-2,0,4,height);
-        var s = drawSlider(g,0,10,width,width,"vertical");
         g.setAttribute("tabindex",0);
+        parentElement.insertAdjacentElement("beforeend", g);
+
+        drawTrough(g,width/2-2,0,4,height);
+        drawSlider(g,0,10,width,width,"vertical");
+        
         var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        fr.setAttribute("x",-1);
-        fr.setAttribute("y",-1);
-        fr.setAttribute("width",width+2);
-        fr.setAttribute("height",width+2);
+        fr.setAttribute("x",-1.5);
+        fr.setAttribute("y",-1.5);
+        fr.setAttribute("width",width+3);
+        fr.setAttribute("height",height+3);
         fr.setAttribute("class","focusring");
-        s.insertAdjacentElement("beforeend",fr);
+        g.insertAdjacentElement("beforeend",fr);
         return g;
       }
       function drawHeaderBar (parentElement,x,y,width,height,icon,title,subtitle) {
