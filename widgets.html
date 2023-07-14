@@ -553,6 +553,7 @@
       function drawCheckButton (parentElement,x,y,width,height,text,state) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
         g.setAttribute("transform","translate("+x+","+y+")");
+        g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
 
         var cb = document.createElementNS("http://www.w3.org/2000/svg","use");
@@ -584,11 +585,21 @@
             g.insertAdjacentElement("beforeend",m);
             break;
         }
+
+        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        fr.setAttribute("x",-2.5);
+        fr.setAttribute("y",-2.5);
+        fr.setAttribute("width",txt.getBBox().width + 24);
+        fr.setAttribute("height",18);
+        fr.setAttribute("class","focusring");
+        g.insertAdjacentElement("beforeend",fr);
+
         return g;
       }
       function drawRadioButton (parentElement,x,y,width,height,text,state) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
         g.setAttribute("transform","translate("+x+","+y+")");
+        g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
 
         var cb = document.createElementNS("http://www.w3.org/2000/svg","use");
@@ -624,11 +635,21 @@
             g.insertAdjacentElement("beforeend",m);
             break;
         }
+
+        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        fr.setAttribute("x",-2.5);
+        fr.setAttribute("y",-2.5);
+        fr.setAttribute("width",txt.getBBox().width + 24);
+        fr.setAttribute("height",18);
+        fr.setAttribute("class","focusring");
+        g.insertAdjacentElement("beforeend",fr);
+        
         return g;
       }
       function drawRevealButton (parentElement,x,y,width,height,text,state) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
         g.setAttribute("transform","translate("+x+","+y+")");
+        g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
 
         var g2 = document.createElementNS("http://www.w3.org/2000/svg","g");
@@ -677,6 +698,16 @@
         txt.setAttribute("x",16.5);
         txt.setAttribute("y",10.5);
         g.insertAdjacentElement("beforeend",txt);
+
+        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        fr.setAttribute("x",-2.5);
+        fr.setAttribute("y",-2.5);
+        fr.setAttribute("width",txt.getBBox().width + 24);
+        fr.setAttribute("height",18);
+        fr.setAttribute("class","focusring");
+        g.insertAdjacentElement("beforeend",fr);
+
+        return g;
       }
       function drawOptionButton (parentElement,x,y,width,height,text) {
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
@@ -690,6 +721,7 @@
 
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
         g.setAttribute("transform","translate("+x+","+y+")");
+        g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend", g);
 
         var r = document.createElementNS("http://www.w3.org/2000/svg", "rect");
@@ -732,6 +764,14 @@
         txt.setAttribute("y",height/2);
         g.insertAdjacentElement("beforeend",txt);
 
+        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        fr.setAttribute("x",-1.5);
+        fr.setAttribute("y",-1.5);
+        fr.setAttribute("width",width+height+3);
+        fr.setAttribute("height",height+3);
+        fr.setAttribute("class","focusring");
+        g.insertAdjacentElement("beforeend",fr);
+
         return g;
       }
       function drawHLevel (parentElement,x,y,width,height) {
@@ -739,7 +779,15 @@
         g.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend", g);
         drawTrough(g,0,height/2-2,width,4);
-        drawSlider(g,10,0,height,height,"horizontal");
+        var s = drawSlider(g,10,0,height,height,"horizontal");
+        g.setAttribute("tabindex",0);
+        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        fr.setAttribute("x",-1);
+        fr.setAttribute("y",-1);
+        fr.setAttribute("width",height+2);
+        fr.setAttribute("height",height+2);
+        fr.setAttribute("class","focusring");
+        s.insertAdjacentElement("beforeend",fr);
         return g;
       }
       function drawVLevel (parentElement,x,y,width,height) {
@@ -747,7 +795,15 @@
         g.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend", g);
         drawTrough(g,width/2-2,0,4,height);
-        drawSlider(g,0,10,width,width,"vertical");
+        var s = drawSlider(g,0,10,width,width,"vertical");
+        g.setAttribute("tabindex",0);
+        var fr = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        fr.setAttribute("x",-1);
+        fr.setAttribute("y",-1);
+        fr.setAttribute("width",width+2);
+        fr.setAttribute("height",width+2);
+        fr.setAttribute("class","focusring");
+        s.insertAdjacentElement("beforeend",fr);
         return g;
       }
       function drawHeaderBar (parentElement,x,y,width,height,icon,title,subtitle) {
@@ -834,11 +890,11 @@
         <td>
           <svg width="200" height="100">
             <g class="button" transform="translate(68,39)">
-              <rect x="-0.5" y="-0.5" width="66" height="24"/>
               <rect x="0.5" y="0.5" width="64" height="22"/>
               <polyline points="1,21.5 63.5,21.5 63.5,1"/>
               <polyline points="1.5,22 1.5,1.5 64,1.5"/>
               <text class="centered" x="32" y="11">OK</text>
+              <rect x="-0.5" y="-0.5" width="66" height="24" fill="none" stroke="black"/>
             </g>
           </svg>
         </td>
@@ -1182,9 +1238,6 @@
                 <polyline points="1,15 1,1 15,1"/>
                 <use xlink:href="#newArrowRight" width="16" height="16"/>
               </g>
-<!--              <use xlink:href="#scrollbar-stepper-left" x="128" y="0"/>
-              <use xlink:href="#scrollbar-stepper-right" x="144" y="0"/>
--->
               <g class="slider" transform="translate(50,0)">
                 <rect width="32" height="16"/>
                 <polyline points="1,15 31,15 31,1"/>
