@@ -28,7 +28,7 @@
       }
       text {
         font-family: Sans-serif;
-        font-size: 13.3px;
+        font-size: 12px; /* 13.3px; */
         stroke: none;
         fill: black;
       }
@@ -264,16 +264,17 @@
         r.setAttribute("y", y+0.5);
         r.setAttribute("width", width-1);
         r.setAttribute("height", height-1);
-        g.insertAdjacentElement("beforeend", r);
+        parentElement.insertAdjacentElement("beforeend", r);
 
         var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        s.setAttribute("points","1,"+(height-1.5)+" "+(width-1.5)+","+(height-1.5)+" "+(width-1.5)+",1");
-        g.insertAdjacentElement("beforeend", s);
+        s.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+1.5));
+        parentElement.insertAdjacentElement("beforeend", s);
 
         var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        h.setAttribute("points","1.5,"+(height-1)+" 1.5,1.5 "+(width-1)+",1.5");
-        g.insertAdjacentElement("beforeend", h);
+        h.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+1.5)+","+(y+1.5)+" "+(x+width-1.5)+","+(y+1.5));
+        parentElement.insertAdjacentElement("beforeend", h);
 
+        return r;
       }
       function drawTroughRect (parentElement,x,y,width,height) {
         var trough = document.createElementNS("http://www.w3.org/2000/svg","rect");
@@ -338,21 +339,7 @@
         if (isFocusable) g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend", g);
 
-        var btn = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        btn.setAttribute("x", 0.5);
-        btn.setAttribute("y", 0.5);
-        btn.setAttribute("width", width-1);
-        btn.setAttribute("height", height-1);
-        g.insertAdjacentElement("beforeend", btn);
-
-        var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        highlight.setAttribute("points","1,"+(height-1.5)+" "+(width-1.5)+","+(height-1.5)+" "+(width-1.5)+",1");
-        g.insertAdjacentElement("beforeend", highlight);
-
-        var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points","1.5,"+(height-1)+" 1.5,1.5 "+(width-1)+",1.5");
-        g.insertAdjacentElement("beforeend", shadow);
-
+        drawRaisedRect(g,0,0,width,height);
         drawFocusRingRect(g,-2,-2,width+4,height+4);
 
         if (isDefault) {
@@ -405,20 +392,7 @@
         g.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend", g);
 
-        var slider = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        slider.setAttribute("x", 0.5);
-        slider.setAttribute("y", 0.5);
-        slider.setAttribute("width", width-1);
-        slider.setAttribute("height", height-1);
-        g.insertAdjacentElement("beforeend",slider);
-
-        var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        highlight.setAttribute("points","1,"+(height-1.5)+" "+(width-1.5)+","+(height-1.5)+" "+(width-1.5)+",1")
-        g.insertAdjacentElement("beforeend", highlight);
-
-        var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points","1.5,"+(height-1)+" 1.5,1.5 "+(width-1)+",1.5");
-        g.insertAdjacentElement("beforeend", shadow);
+        drawRaisedRect(g,0,0,width,height);
 
         var grip = document.createElementNS("http://www.w3.org/2000/svg","use");
         switch (dir) {
@@ -816,6 +790,7 @@
           var s = document.createElementNS("http://www.w3.org/2000/svg","text");
           s.setAttribute("x",56);
           s.setAttribute("y",41);
+          s.setAttribute("style","font-style: italic; font-size:13.3");
           s.innerHTML = subtitle;
           g.insertAdjacentElement("beforeend",s);
 
@@ -1405,11 +1380,10 @@
       </script>
     </svg>
     <svg width="400" height="300" id="programSettingsPanel"><title>Program Settings Panel</title>
-      <script>drawBaseWindow(document.getElementById("programSettingsPanel"),0,0,400,300);</script>
-      <rect x="2.5" y="2.5" width="48" height="48" stroke="none" fill="none"/>
-      <use x="1" y="1" xlink:href="#documentIcon" width="48" height="48" fill="red"/>
-      <text x="56" y="24" style="font-family: Sans-serif; font-size: 24">Program Settings</text>
-      <text x="56" y="41" style="font-family: Sans-serif; font-size: 13.3; font-style: italic;">Some informative subtext</text>
+      <script>
+        drawBaseWindow(document.getElementById("programSettingsPanel"),0,0,400,300);
+        drawHeaderBar(document.getElementById("programSettingsPanel"),0,0,400,300,"#documentIcon","Program Settings","Some informative subtext");
+      </script>
       <g class="textfield" transform="translate(0.5,13.5)">
         <polyline points="18,269 18,52 120,52"/>
         <polyline points="18,269 120,269 120,52"/>
@@ -1424,30 +1398,23 @@
     <svg width="640" height="480" id="basicView"><title>Basic View</title>
       <script>
         drawBaseWindow(document.getElementById("basicView"),0,0,640,480);
+        drawHeaderBar(document.getElementById("basicView"),0,0,640,480,"#documentIcon","Item Name","item view type");
         drawCutawayField(document.getElementById("basicView"),3,50,634,427,false,false);
       </script>
-      <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none" />
-      <use xlink:href="#documentIcon" x="5" y="6" width="40" height="40" fill="white" />
-      <text x="56" y="24" style="font-size: 24">Item Name</text>
-      <text x="56" y="41">item view type</text>
     </svg>
     <svg width="640" height="480" id="documentView"><title>Document Window</title>
       <script>
         drawBaseWindow(document.getElementById("documentView"),0,0,640,480);
+        drawHeaderBar(document.getElementById("documentView"),0,0,640,480,"#documentIcon","Document Title","plain text");
         drawCutawayField(document.getElementById("documentView"),3,50,634,427,true,true);
       </script>
-      <rect x="1.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
-      <use xlink:href="#documentIcon" x="5" y="6" width="40" height="40" fill="white"/>
-      <text x="56" y="24" style="font-size: 24">Document Title</text>
-      <text x="56" y="41">plain text</text>
     </svg>
     <svg width="640" height="480" id="projectFolder"><title>Project Folder</title>
-      <script>drawBaseWindow(document.getElementById("projectFolder"),0,0,640,480);</script>
-      <rect x="4.5" y="1.5" width="48" height="48" stroke="none" fill="none"/>
-      <!-- <use xlink:href="#folderIcon" x="1" y="1" width="48" height="48" fill="#aaaaaa"/> -->
-      <text class="centered" x="29" y="25" style="font-size: 48">🗀</text>
-      <text x="60" y="24" style="font-size: 24">Project Folder</text>
-      <text x="60" y="41">Source Code</text>
+      <script>
+        drawBaseWindow(document.getElementById("projectFolder"),0,0,640,480);
+        drawHeaderBar(document.getElementById("projectFolder"),0,0,640,480,"#folderIcon","Project Title","source code");
+      </script>
+      <!-- <text class="centered" x="29" y="25" style="font-size: 48">🗀</text> -->
       <g transform="translate(4,51)">
         <rect x="0.5" y="0.5" width="160" height="424" stroke="var(--outline-color)" fill="white"/>
         <text x="1.5" y="13.5">🗀 doc</text>
@@ -1509,10 +1476,10 @@
       <polyline class="highlight" points="3.5,476.5 620.5,476.5 620.5,460.5 636.5,460.5 636.5,50.5"/>
     </svg>
     <svg width="640" height="480" id="spreadsheet"><title>Spreadsheet</title>
-      <script>drawBaseWindow(document.getElementById("spreadsheet"),0,0,640,480);</script>
-      <use xlink:href="#documentIcon" x="5" y="6" width="40" height="40" fill="white"/>
-      <text x="56" y="24" style="font-size: 24">Document Title</text>
-      <text x="56" y="41">spreadsheet</text>
+      <script>
+        drawBaseWindow(document.getElementById("spreadsheet"),0,0,640,480);
+        drawHeaderBar(document.getElementById("spreadsheet"),0,0,640,480,"#documentIcon","Document Title","spreadsheet");
+      </script>
       <rect x="4.5" y="51.5" width="631" height="424" stroke="var(--outline-color)" fill="white"/>
       <rect x="620.5" y="460.5" width="16" height="16" stroke="none" fill="var(--base-fill-color)" />
       <polyline class="shadow" points="3.5,476.5, 3.5,50.5 636.5,50.5" />
