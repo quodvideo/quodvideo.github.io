@@ -1531,7 +1531,7 @@
         drawVScrollBar(document.getElementById("spreadsheet2"),620,51,16,382);
         drawHScrollBar(document.getElementById("spreadsheet2"),184,433,436,16);
       </script>
-      <g id="spreadsheet2-toolbar" transform="translate(4,448)">
+      <g id="spreadsheet2-toolbar" transform="translate(0,450)">
         <script>
           drawButton(document.getElementById("spreadsheet2-toolbar"),4,3,22,22);
           drawButton(document.getElementById("spreadsheet2-toolbar"),28,3,22,22);
@@ -1801,44 +1801,46 @@
       <p>Don't make applications.</p>
     </header>
     <p>This shell is different from what you're used to. While many elements will be familiar, they may work differently from how they do on other systems. Most graphical shells on Linux can be called thin shells; they strongly resemble the underlying system. This shell is a thick shell. The default is to portray what a casual user expects, which may be different from the underlying system. This kind of abstraction is already familiar if you consider that a text shell in a terminal doesn't tell you anything about the semiconductors in the underlying hardware.</p>
-    <p>The principle abstraction of this shell is the item. Items come in a variety of types and new types can be easily created. Items are parts of the user's model of the system.</p>
-    <section style="margin-left: 20%; margin-right: 20%;"><h3>Items</h3>
-      <p>The shell provides a graphical user interface to a variety of items. Items are the objects of the graphical user interface. They may correspond to programmatic objects, but they may also be abstractions that unite various parts of the operating system. Every item has metadata. Item metadata includes the item's name, its icon, its media types, screen locations for its views, the files it represents, and more.</p>
+    <section><h2>Parts of the Shell</h2>
+      <p>The principle abstraction of this shell is the item. Items come in a variety of types and new types can be easily created. Items are parts of the user's model of the system.</p>
+      <section style="margin-left: 20%; margin-right: 20%;"><h3>Items</h3>
+        <p>The shell provides a graphical user interface to a variety of items. Items are the objects of the graphical user interface. They may correspond to programmatic objects, but they may also be abstractions that unite various parts of the operating system. Every item has metadata. Item metadata includes the item's name, its icon, its media types, screen locations for its views, the files it represents, and more.</p>
+      </section>
+      <p>Some items are containers of other items. More on those later.</p>
+      <p>An item is an abstract concept. The shell represents items graphically in views, which allow items to be manipulated and changed. A few of the shell graphics are not views of items, but are overlays on the screen.</p>
+      <section style="margin-left: 20%; margin-right: 20%;"><h3>Views</h3>
+        <p>Each of the various graphical representations of an item is a view. The item icon is the simplest view. The item property panel is another. Every item has these two views. Most items have more views. Some items may have surprising views. For example, an OpenDocument file has its default view in an office program, but it also has a folder view because its contents are a zipped archive of other files.</p>
+        <p>On other systems, a view might be considered the main interface of an application.</p>
+      </section>
+      <section style="margin-left: 20%; margin-right: 20%;"><h3>Overlays</h3>
+        <p>Overlays can be regarded as peripheral devices that extend onto the screen. The most obvious of these is the menu bar, which is usually present at the top of the screen. The menu bar also contains some system status indicators. Notifications will also appear in overlays.</p>
+      </section>
+      <p>Every item has at least two views: its icon and its property panel.</p>
+      <section style="margin-left: 20%; margin-right: 20%;"><h3>Icons</h3>
+        <p>Every item has an icon view. It is, as the name implies, an icon. The icon view may have indicators of the item's status, such as hatch marks indicating another item view is open.</p>
+      </section>
+      <section style="margin-left: 20%; margin-right: 20%;"><h3>Property Panels</h3>
+        <p>Every item has a property panel which allows viewing and editing some of the item's metadata. Panels are divided into pages. The "General" page applies to all items as it shows the item icon and name. Additional pages depend on the type of item being viewed.</p>
+      </section>
+      <p>Some items contain other items. The most basic container is a folder.</p>
+      <section style="margin-left: 20%; margin-right: 20%;"><h3>Folders</h3>
+        <p>Folders are items that contain other items, much like a directory contains files. Simple folders are just graphical representations of directories. More complicated types of folders exist.</p>
+      </section>
+      <section style="margin-left: 20%; margin-right: 20%;"><h3>Workspaces</h3>
+        <p>A workspace is a special kind of folder. A simple workspace may represent a filesystem directory, but it also has information about the state of items inside it. The views of items in a workspace folder are connected to the folder view of the workspace. If the folder view closes, the item views close too. When the folder view is opened, the previously open items in the workspace reopen. It's a simple form of session management.</p>
+      </section>
+      <section style="margin-left: 20%; margin-right: 20%;"><h3>Desktops</h3>
+        <p>Desktops are special workspaces. When a desktop is opened, its folder view becomes the background of the shell. Signing on to the system is really just opening your primary desktop, and signing out is closing it. Because the desktop is a workspace, any items that were open when it was last closed will be opened again when it's reopened.</p>
+      </section>
+      <p>(The system sign-on screen should perhaps show closed primary desktop folders, to maintain the item-oriented interface.)</p>
+      <p>The first thing you see on the screen after signing on, aside from the menu bar overlay, is a desktop item. It's a folder that forms the background of the screen. The starting desktop contains a few items: a trash can, something something, and a templates folder.</p>
+      <section style="margin-left: 20%; margin-right: 20%;"><h3>Templates</h3>
+        <p>Templates are a special kind of item. When you drag and drop from a template icon, you get a new item of a kind specified by the template. For example, there is a folder template. Dragging and dropping from this template creates a new folder. There's a template for almost every kind of item you can create. One exception is a template itself; there's no template template. Templates can be created from existing items by dragging their icons into the template folder.</p>
+        <p>Templates can have content. If you create a template from a word processor document, then new items made from that template will have the same content as the document did when the template was created. This is an easy way to make form letters, for example. If a folder with content is turned into a template, all of the folder's contents will be reproduced by dragging from that template.</p>
+      </section>
+      <p>Perhaps the default templates should be listed.</p>
+      <p>Items, Views, Overlays, Icons, Property Panels, Folders, Workspaces, Desktops, Templates: Those are the basis of the entire system.</p>
     </section>
-    <p>Some items are containers of other items. More on those later.</p>
-    <p>An item is an abstract concept. The shell represents items graphically in views, which allow items to be manipulated and changed. A few of the shell graphics are not views of items, but are overlays on the screen.</p>
-    <section style="margin-left: 20%; margin-right: 20%;"><h3>Views</h3>
-      <p>Each of the various graphical representations of an item is a view. The item icon is the simplest view. The item property panel is another. Every item has these two views. Most items have more views. Some items may have surprising views. For example, an OpenDocument file has its default view in an office program, but it also has a folder view because its contents are a zipped archive of other files.</p>
-      <p>On other systems, a view might be considered the main interface of an application.</p>
-    </section>
-    <section style="margin-left: 20%; margin-right: 20%;"><h3>Overlays</h3>
-      <p>Overlays can be regarded as peripheral devices that extend onto the screen. The most obvious of these is the menu bar, which is usually present at the top of the screen. The menu bar also contains some system status indicators. Notifications will also appear in overlays.</p>
-    </section>
-    <p>Every item has at least two views: its icon and its property panel.</p>
-    <section style="margin-left: 20%; margin-right: 20%;"><h3>Icons</h3>
-      <p>Every item has an icon view. It is, as the name implies, an icon. The icon view may have indicators of the item's status, such as hatch marks indicating another item view is open.</p>
-    </section>
-    <section style="margin-left: 20%; margin-right: 20%;"><h3>Property Panels</h3>
-      <p>Every item has a property panel which allows viewing and editing some of the item's metadata. Panels are divided into pages. The "General" page applies to all items as it shows the item icon and name. Additional pages depend on the type of item being viewed.</p>
-    </section>
-    <p>Some items contain other items. The most basic container is a folder.</p>
-    <section style="margin-left: 20%; margin-right: 20%;"><h3>Folders</h3>
-      <p>Folders are items that contain other items, much like a directory contains files. Simple folders are just graphical representations of directories. More complicated types of folders exist.</p>
-    </section>
-    <section style="margin-left: 20%; margin-right: 20%;"><h3>Workspaces</h3>
-      <p>A workspace is a special kind of folder. A simple workspace may represent a filesystem directory, but it also has information about the state of items inside it. The views of items in a workspace folder are connected to the folder view of the workspace. If the folder view closes, the item views close too. When the folder view is opened, the previously open items in the workspace reopen. It's a simple form of session management.</p>
-    </section>
-    <section style="margin-left: 20%; margin-right: 20%;"><h3>Desktops</h3>
-      <p>Desktops are special workspaces. When a desktop is opened, its folder view becomes the background of the shell. Signing on to the system is really just opening your primary desktop, and signing out is closing it. Because the desktop is a workspace, any items that were open when it was last closed will be opened again when it's reopened.</p>
-    </section>
-    <p>(The system sign-on screen should perhaps show closed primary desktop folders, to maintain the item-oriented interface.)</p>
-    <p>The first thing you see on the screen after signing on, aside from the menu bar overlay, is a desktop item. It's a folder that forms the background of the screen. The starting desktop contains a few items: a trash can, something something, and a templates folder.</p>
-    <section style="margin-left: 20%; margin-right: 20%;"><h3>Templates</h3>
-      <p>Templates are a special kind of item. When you drag and drop from a template icon, you get a new item of a kind specified by the template. For example, there is a folder template. Dragging and dropping from this template creates a new folder. There's a template for almost every kind of item you can create. One exception is a template itself; there's no template template. Templates can be created from existing items by dragging their icons into the template folder.</p>
-      <p>Templates can have content. If you create a template from a word processor document, then new items made from that template will have the same content as the document did when the template was created. This is an easy way to make form letters, for example. If a folder with content is turned into a template, all of the folder's contents will be reproduced by dragging from that template.</p>
-    </section>
-    <p>Perhaps the default templates should be listed.</p>
-    <p>Items, Views, Overlays, Icons, Property Panels, Folders, Workspaces, Desktops, Templates: Those are the basis of the entire system.</p>
     <section><h2>Differences from Other GUIs</h2>
       <p>Some differences from other graphical user interfaces, especially those on Linux, should already be apparent.</p>
       <p>There are three applications on Linux that are reimagined in this shell: the window manager, the file manager, and the session manager.</p>
@@ -1847,10 +1849,10 @@
       <p>Folders should tend to be shallow. They're for the user's work, not for viewing the entirety of a unix filesystem. Some of the natural depth should be swept into projects which open into project views instead of folder views.</p>
       <p>Folders should tend to be small. Folders containing lots of similar items should probably have another view which manages the size of folder.</p>
       <p>When folders get large or deep, there's may be a need for a new kind of view.</p>
-      <p>Folders provide screen positions for both icons and views to opening views. These positions are shared with the window manager which may then animate the transition from an icon to another view. If the folder for an item is closed when the non-icon view is still visible, then the animation closing the open view will show it going to the containing folder's icon. If that icon is not visible, it will go to the next containing folder's icon, and so forth down to an icon on the desktop. (How?)</p>
-      <p>A workspace item combines file and session management functions. As a file manager, it displays icons for its contents. As a session manager, it keeps track of other views of its contents.</p>
     </section>
     <section><h2>Expectations of Views</h2>
+      <p>Folders provide screen positions for both icons and views to opening views. These positions are shared with the window manager which may then animate the transition from an icon to another view. If the folder for an item is closed when the non-icon view is still visible, then the animation closing the open view will show it going to the containing folder's icon. If that icon is not visible, it will go to the next containing folder's icon, and so forth down to an icon on the desktop. (How?)</p>
+      <p>A workspace item combines file and session management functions. As a file manager, it displays icons for its contents. As a session manager, it keeps track of other views of its contents.</p>
       <p>Views are responsible for communicating with the window manager and their session manager. To present a window, a view must communicate to the window manager the position information it receives when opened. This information includes icon positions in container windows between the view and the desktop. The view will also receive a timestamp corresponding to the event which opened the view and must use this timestamp to set focus when its window is mapped. Focus is not guaranteed! If another view has received focus in between the opening event and the mapping of the window, then it will not receive focus. If and when the window does receive focus, it should ask to be raised.</p>
       <p>(Default stacking position, controlled by the window manager, should be above the container window communicated in the startup info.)</p>
       <p>A view must communicate updates to its window position to the session manager. (The session manager will set metadata accordingly, probably by communicating with the file manager.)</p>
@@ -1865,15 +1867,23 @@
       <p>If a view contains items, it should accept template drops to create new items.</p>
     </section>
     <section><h2>Some Implementation Thoughts</h2>
-      <p>I'll probably implement folders in a small app called <code>folder</code>. The app will do a bit of desktop integration and then use a library called <code>libfolder</code> which provides most of the code for the field of icons view. I imagine there will be one <code>folder</code> process for each folder view. Workspaces and desktops will do much the same using <code>libfolder</code>, but they need more code to do session management. The main argument to <code>folder</code> is a URL for something which can be viewed as a folder. If the URL is for anything other than a simple directory, it will probably be handled by another program instead. A program called <code>archive</code>, for example, might handle gzipped directories. This program will also use <code>libfolder</code>, so the archive will act like a folder.</p>
-      <p>OS/2 had the System Object Model which allowed for extensibility like with <code>archive</code> and <code>folder</code>. I don't know that anything that complicated is really necessary. There might be a better way now with something like DBus or flatpak portals.</p>
-      <p>The trickiest thing may be the property panels. Every view of an item may need to add or add to a property panel page.</p>
-      <p>Closely related to panel extensibility is context menu extensibility. (We <code>View as . . .</code>, we don't <code>Open with . . .</code>.) It may be useful to add menu items in addition to those on the <code>View as . . .</code> submenu.</p>
-      <p>Does dbusmenu (whatever it's called) actually work for our menu bar?</p>
-      <h3>Positioning Views</h3>
-      <p>Positioning views on X is easy, but Wayland doesn't allow client-dictated absolute positioning. There might be a way to have window manager/compositor-dictated positioning that preserves view positions. The views would have to advertise themselves as displaying a URI as a particular type of view. The wm/compositor would use that information to retrieve item metadata from somewhere and store it to somewhere.</p>
-      <p>My original thought was that position metadata would be stored either in special files or in extended attributes (EA). Clients would look up their own info and request their positions. It might be possible to have the wm/compositor maintain, or at least use, some database of URI, view type, and view position data. For local views, this can still be done in special files or EAs.</p>
-      <p>Not having the position data in EAs seems a good way to lose it, in the event that a file is moved. There would have to be some system level control of files that updates the position database.</p>
+      <section><h3>Folders</h3>
+        <p>I'll probably implement folders in a small app called <code>folder</code>. The app will do a bit of desktop integration and then use a library called <code>libfolder</code> which provides most of the code for the field of icons view. I imagine there will be one <code>folder</code> process for each folder view. Workspaces and desktops will do much the same using <code>libfolder</code>, but they need more code to do session management. The main argument to <code>folder</code> is a URL for something which can be viewed as a folder. If the URL is for anything other than a simple directory, it will probably be handled by another program instead. A program called <code>archive</code>, for example, might handle gzipped directories. This program will also use <code>libfolder</code>, so the archive will act like a folder.</p>
+        <p>OS/2 had the System Object Model which allowed for extensibility like with <code>archive</code> and <code>folder</code>. I don't know that anything that complicated is really necessary. There might be a better way now with something like DBus or flatpak portals.</p>
+      </section>
+      <section><h3>Property Panels</h3>
+        <p>The trickiest thing may be the property panels. Every view of an item may need to add or add to a property panel page.</p>
+      </section>
+      <section><h3>Context menus</h3>
+        <p>Closely related to panel extensibility is context menu extensibility. (Do we <code>View as . . .</code> or <code>Open as . . .</code>?) It may be useful to add menu items in addition to those on the <code>View as . . .</code> submenu.</p>
+        <p>Does dbusmenu (whatever it's called) actually work for our menu bar?</p>
+      </section>
+      <section><h3>Positioning Views</h3>
+        <p>Positioning views on X is easy, but Wayland doesn't allow client-dictated absolute positioning. There might be a way to have window manager/compositor-dictated positioning that preserves view positions. The views would have to advertise themselves as displaying a URI as a particular type of view. The wm/compositor would use that information to retrieve item metadata from somewhere and store it to somewhere.</p>
+        <p>My original thought was that position metadata would be stored either in special files or in extended attributes (EA). Clients would look up their own info and request their positions. It might be possible to have the wm/compositor maintain, or at least use, some database of URI, view type, and view position data. For local views, this can still be done in special files or EAs.</p>
+        <p>Not having the position data in EAs seems a good way to lose it, in the event that a file is moved. There would have to be some system level control of files that updates the position database.</p>
+        <p>Another problem with the window manager looking up position data is that it will be complicated for remote clients.</p>
+      </section>
     </section>
     <section><h2>Special Programs</h2>
       <p>There are a few special programs which break the rules of the shell.</p>
