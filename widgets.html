@@ -13,6 +13,7 @@
         --base-fill-color: #dddddd;
         --grip-fill-color: #eeeeee;
         --grip-stroke-color: #aaaaaa;
+        /* Consider adding colors for when a button is actively being pushed and not just in the ON state. */
         font-family: sans-serif;
       }
       :focus {
@@ -354,6 +355,11 @@
 
         return g;
       }
+      function drawToggleButton (parentElement,x,y,width,height,isFocusable,state) {
+        var g = drawButton(parentElement,x,y,width,height,false,isFocusable);
+        g.setAttribute("class","togglebutton");
+        return g;
+      }
       function drawPushButton (parentElement,x,y,width,height,text,isDefault) {
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = text;
@@ -364,9 +370,9 @@
         if (height<22) height=22;
         if (box.width > width+12) width=box.width+12;
         if (box.height > height+5) height=box.height+5;
-        var btn = drawButton (parentElement,x,y,width,height,isDefault,true);
         txt.setAttribute("x",width/2);
         txt.setAttribute("y",height/2);
+        var btn = drawButton (parentElement,x,y,width,height,isDefault,true);
         btn.insertAdjacentElement("beforeend",txt);
         return btn;
       }
