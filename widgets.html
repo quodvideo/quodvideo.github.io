@@ -92,18 +92,18 @@
       }
       .textfield {
         cursor: text;
-      }
-      .textfield rect:first-child {
-        fill: var(--input-field-color);
-        stroke: var(--outline-color);
-      }
-      .textfield polyline {
-        fill: none;
-        stroke: var(--shadow-stroke-color);
-      }
-      .textfield polyline + polyline {
-        fill: none;
-        stroke: var(--highlight-stroke-color);
+        & rect:first-child {
+          fill: var(--input-field-color);
+          stroke: var(--outline-color);
+          + polyline {
+            fill: none;
+            stroke: var(--shadow-stroke-color);
+            + polyline {
+              fill: none;
+              stroke: var(--highlight-stroke-color);
+            }
+          }
+        }
       }
       rect.focusring {
         fill: none;
