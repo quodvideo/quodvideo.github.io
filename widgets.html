@@ -89,6 +89,10 @@
       .textfield {
         cursor: text;
       }
+      .textfield rect:first-child {
+        fill: var(--input-field-color);
+        stroke: var(--outline-color);
+      }
       .textfield polyline {
         fill: none;
         stroke: var(--shadow-stroke-color);
@@ -101,9 +105,7 @@
         fill: var(--input-field-color);
         stroke: var(--outline-color);
       }
-      .textfield text::after {
-        content: "Foo";
-      }
+
       rect.focusring {
         fill: none;
         stroke: none;
@@ -257,6 +259,16 @@
     <svg id="testfield" width="800" height="600">
       <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
     </svg>
+    <!--
+        <g class=widget>
+          <rect class=base>
+          <polyline class=shadow>
+          <polyline class=highlight>
+          <text>
+          <rect class=focusring>
+          <rect class=defaultmarker>
+        </g>
+    -->
     <script>
       tf = document.getElementById("testfield");
       function drawRaisedRect (parentElement,x,y,width,height) {
