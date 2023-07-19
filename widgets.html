@@ -164,13 +164,9 @@
         </symbol>
         <g id="hGrippy">
           <rect width="10" height="10" fill="url(#patternh)"/>
-          <!--<rect width="10" height="10" style="stroke: none; fill: var(--grip-fill-color);"/>
-          <path d="M1,0 v10 M3,0 v10 M5,0 v10 M7,0 v10 M9,0 v10" style="stroke: var(--grip-stroke-color); fill: none;"/>-->
         </g>
         <g id="vGrippy">
           <rect width="10" height="10" fill="url(#patternv)"/>
-          <!--<rect width="10" height="10" style="stroke: none; fill: var(--grip-fill-color);"/>
-          <path d="M0,1 h10 M0,3 h10 M0,5 h10 M0,7 h10 M0,9 h10" style="stroke: var(--grip-stroke-color); fill: none;"/>-->
         </g>
         <clipPath id="circle-slice">
           <polyline points="-2,14 14,-2 -2,-2 -2,14"/>
@@ -1849,15 +1845,37 @@
     <section><h2>Differences from Other GUIs</h2>
       <p>Some differences from other graphical user interfaces, especially those on Linux, should already be apparent.</p>
       <p>There are three applications on Linux that are reimagined in this shell: the window manager, the file manager, and the session manager.</p>
-      <p>The window manager does very little in the normal order of things. It keeps overlays, including the menu bar, on top, and it keeps desktops on the bottom. It provides switching between desktops and keyboard-based switching between windows. It does not draw window frames, but it may provide effects like shadows. It does not reparent windows. It may provide a virtual desktop which is larger than the screen. It provides a window switching overlay. In the event of a window being closed, it ensures the right window has keyboard focus. Mouse-based focus is managed by the windows themselves using the globally active input model of the ICCCM. It may restrict the movement and placement of windows, but it mostly respects what clients give it. (The constraints on movements should suffice to constrain placement, because windows will only ask to be placed where they were before.) Window stacking order has some contraints, to keep overlays and desktops right, but clients are expected to raise their window appropriately.</p>
+      <p>The window manager does very little in the normal order of things. It keeps overlays, including the menu bar, on top, and it keeps desktops on the bottom. It provides switching between desktops and keyboard-based switching between windows. It does not draw window frames, but it may provide effects like shadows. It does not reparent windows. It may provide a virtual desktop which is larger than the screen. It provides a window switching overlay. In the event of a window being closed, it ensures the right window has keyboard focus. Mouse-based focus is managed by the windows themselves using the globally active input model of the ICCCM. It may restrict the movement and placement of windows, but it mostly respects what clients give it. (The constraints on movements should suffice to constrain placement, because windows will only ask to be placed where they were before.) Window stacking order has some contraints, to keep overlays and desktops right, but clients are expected to raise their windows appropriately.</p>
       <p>The file manager is mostly replaced by folders. Browsing the file system, as with most modern file managers, is relegated to a utility which most users won't need. The user model of items and folders is preferred by the GUI over the programmer's model of files and directories.</p>
+    </section>
+    <section><h2>Notes on Folders</h2>
       <p>Folders should tend to be shallow. They're for the user's work, not for viewing the entirety of a unix filesystem. Some of the natural depth should be swept into projects which open into project views instead of folder views.</p>
       <p>Folders should tend to be small. Folders containing lots of similar items should probably have another view which manages the size of folder.</p>
       <p>When folders get large or deep, there may be a need for a new kind of view.</p>
-    </section>
-    <section><h2>Expectations of Views</h2>
       <p>Folders provide screen positions for both icons and views to opening views. These positions are shared with the window manager which may then animate the transition from an icon to another view. If the folder for an item is closed when the non-icon view is still visible, then the animation closing the open view will show it going to the containing folder's icon. If that icon is not visible, it will go to the next containing folder's icon, and so forth down to an icon on the desktop. (How?)</p>
       <p>A workspace item combines file and session management functions. As a file manager, it displays icons for its contents. As a session manager, it keeps track of other views of its contents.</p>
+    </section>
+    <section><h2>Expectations of Views</h2>
+      <ul>
+        <li>(Registration?)</li>
+        <li>Opening
+          <ul>
+            <li>Will receive timestamp</li>
+            <li>Will receive icon position</li>
+            <li>Communicate with session manager</li>
+            <li>Communicate with window manager</li>
+            <li>Request focus using timestamp</li>
+          </ul>
+        </li>
+        <li>Presenting
+          <ul>
+            <li>Raise window if focussed</li>
+            <li>Move and resize or tell WM to move and resize?</li>
+            <li>Draw controls to match state.</li>
+          </ul>
+        </li>
+        <li>Closing</li>
+      </ul>
       <p>Views are responsible for communicating with the window manager and their session manager. To present a window, a view must communicate to the window manager the position information it receives when opened. This information includes icon positions in container windows between the view and the desktop. The view will also receive a timestamp corresponding to the event which opened the view and must use this timestamp to set focus when its window is mapped. Focus is not guaranteed! If another view has received focus in between the opening event and the mapping of the window, then it will not receive focus. If and when the window does receive focus, it should ask to be raised.</p>
       <p>(Default stacking position, controlled by the window manager, should be above the container window communicated in the startup info.)</p>
       <p>A view must communicate updates to its window position to the session manager. (The session manager will set metadata accordingly, probably by communicating with the file manager.)</p>
