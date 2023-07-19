@@ -37,6 +37,7 @@
         text-anchor: middle;
         dominant-baseline: central;
       }
+      /*
       .button {
         cursor: default;
       }
@@ -51,6 +52,23 @@
       .button rect:first-child + polyline + polyline {
         fill: none;
         stroke: var(--highlight-stroke-color);
+      }
+      */
+      .button {
+        cursor: default;
+        & rect:first-child {
+          fill: var(--raised-fill-color);
+          stroke: var(--outline-color);
+          + polyline {
+            fill: none;
+            stroke: var(--shadow-stroke-color);
+            + polyline {
+              fill: none;
+              stroke: var(--highlight-stroke-color);
+            }
+          }
+        }
+
       }
       .button:active rect:first-child {
         fill: var(--recessed-fill-color);
@@ -1863,18 +1881,24 @@
             <li>Will receive timestamp</li>
             <li>Will receive icon position</li>
             <li>Communicate with session manager</li>
-            <li>Communicate with window manager</li>
-            <li>Request focus using timestamp</li>
+            <li>Communicate with window manager. Icon position should be provided before mapping.</li>
+            <li>Request focus using timestamp. Focus is not guaranteed.</li>
           </ul>
         </li>
         <li>Presenting
           <ul>
-            <li>Raise window if focussed</li>
+            <li>Raise window if focused and show and raise secondary windows as needed.</li>
             <li>Move and resize or tell WM to move and resize?</li>
-            <li>Draw controls to match state.</li>
+            <li>Draw controls to match state. Background window controls should be disabled if they do not process the click that grants focus.</li>
+            <li>Update view geometry metadata.</li>
           </ul>
         </li>
-        <li>Closing</li>
+        <li>Closing
+          <ul>
+            <li>Update view geometry metadata.</li>
+            <li>Communicate with session manager.</li>
+          </ul>
+        </li>
       </ul>
       <p>Views are responsible for communicating with the window manager and their session manager. To present a window, a view must communicate to the window manager the position information it receives when opened. This information includes icon positions in container windows between the view and the desktop. The view will also receive a timestamp corresponding to the event which opened the view and must use this timestamp to set focus when its window is mapped. Focus is not guaranteed! If another view has received focus in between the opening event and the mapping of the window, then it will not receive focus. If and when the window does receive focus, it should ask to be raised.</p>
       <p>(Default stacking position, controlled by the window manager, should be above the container window communicated in the startup info.)</p>
