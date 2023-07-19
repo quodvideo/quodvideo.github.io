@@ -101,11 +101,6 @@
         fill: none;
         stroke: var(--highlight-stroke-color);
       }
-      .textfield polyline + polyline + rect {
-        fill: var(--input-field-color);
-        stroke: var(--outline-color);
-      }
-
       rect.focusring {
         fill: none;
         stroke: none;
@@ -456,6 +451,13 @@
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
 
+        var field = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        field.setAttribute("x",1.5);
+        field.setAttribute("y",1.5);
+        field.setAttribute("width",width-3);
+        field.setAttribute("height",height-3);
+        g.insertAdjacentElement("beforeend",field);
+
         var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         shadow.setAttribute("points","0.5,"+(height-1)+" 0.5,0.5 "+(width-1)+",0.5");
         g.insertAdjacentElement("beforeend",shadow);
@@ -463,13 +465,6 @@
         var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         highlight.setAttribute("points","0,"+(height-0.5)+" "+(width-0.5)+","+(height-0.5)+" "+(width-0.5)+",0");
         g.insertAdjacentElement("beforeend",highlight);
-
-        var field = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        field.setAttribute("x",1.5);
-        field.setAttribute("y",1.5);
-        field.setAttribute("width",width-3);
-        field.setAttribute("height",height-3);
-        g.insertAdjacentElement("beforeend",field);
 
         drawFocusRingRect(g,0,0,width,height);
         
