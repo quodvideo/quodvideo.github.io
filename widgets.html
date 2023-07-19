@@ -51,7 +51,7 @@
             }
           }
         }
-        :active {
+        &:active {
           & rect:first-child {
             fill: var(--recessed-fill-color);
             stroke: var(--outline-color);
@@ -67,26 +67,28 @@
       rect.trough {
         fill: var(--recessed-fill-color);
         stroke: var(--outline-color);
+        + polyline {
+          fill: none;
+          stroke: var(--shadow-stroke-color);
+          + polyline {
+            fill: none;
+            stroke: var(--highlight-stroke-color);
+          }
+        }
       }
-      rect.trough + polyline {
-        fill: none;
-        stroke: var(--shadow-stroke-color);
-      }
-      rect.trough + polyline + polyline {
-        fill: none;
-        stroke: var(--highlight-stroke-color);
-      }
-      .slider rect {
-        fill: var(--raised-fill-color);
-        stroke: var(--outline-color);
-      }
-      .slider rect + polyline {
-        fill: none;
-        stroke: var(--shadow-stroke-color);
-      }
-      .slider rect + polyline + polyline {
-        fill: none;
-        stroke: var(--highlight-stroke-color);
+      .slider {
+        & rect {
+          fill: var(--raised-fill-color);
+          stroke: var(--outline-color);
+          + polyline {
+            fill: none;
+            stroke: var(--shadow-stroke-color);
+            + polyline {
+              fill: none;
+              stroke: var(--highlight-stroke-color);
+            }
+          }
+        }
       }
       .textfield {
         cursor: text;
