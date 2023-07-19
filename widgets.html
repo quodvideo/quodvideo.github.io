@@ -205,27 +205,6 @@
           <polyline class="shadow" points="-1,13 -1,-1 13,-1"/>
           <polyline class="highlight" points="-1,13 13,13 13,-1"/>
         </g>
-        <g id="scrollbar-stepper" class="button">
-          <rect width="16" height="16" stroke="var(--outline-color)" fill="inherit"/>
-          <polyline class="shadow" points="1,15 15,15 15,1"/>
-          <polyline class="highlight" points="1,15 1,1 15,1"/>
-        </g>
-        <g id="scrollbar-stepper-up">
-          <use xlink:href="#scrollbar-stepper"/>
-          <use xlink:href="#newArrowUp" width="16" height="16"/>
-        </g>
-        <g id="scrollbar-stepper-down">
-          <use xlink:href="#scrollbar-stepper"/>
-          <use xlink:href="#newArrowDown" width="16" height="16"/>
-        </g>
-        <g id="scrollbar-stepper-left" class="button">
-          <use xlink:href="#scrollbar-stepper" fill="inherit" class="button"/>
-          <use xlink:href="#newArrowLeft" width="16" height="16"/>
-        </g>
-        <g id="scrollbar-stepper-right">
-          <use xlink:href="#scrollbar-stepper"/>
-          <use xlink:href="#newArrowRight" width="16" height="16"/>
-        </g>
         <g id="sheettab-active">
           <path fill="none" stroke="white" d="M0.5,0.5 h70"/>
           <path fill="white" stroke="var(--outline-color)" d="M0.5,0.5 h5 l5,13 h50 l5,-13 h5"/>
@@ -1853,6 +1832,10 @@
       </section>
       <p>Perhaps the default templates should be listed.</p>
       <p>Items, Views, Overlays, Icons, Property Panels, Folders, Workspaces, Desktops, Templates: Those are the basis of the entire system.</p>
+      <table>
+        <tr><th colspan="3">Items</th><th colspan="3">Views</th><th colspan="2">Overlays</th></tr>
+        <tr><td>Types</td><td>Folders</td><td>Templates</td><td>Icons</td><td>Property Panels</td><td>Other</td><td>Menu Bar</td><td>Zoom Out</td></tr>
+      </table>
     </section>
     <section><h2>Differences from Other GUIs</h2>
       <p>Some differences from other graphical user interfaces, especially those on Linux, should already be apparent.</p>
@@ -1861,7 +1844,7 @@
       <p>The file manager is mostly replaced by folders. Browsing the file system, as with most modern file managers, is relegated to a utility which most users won't need. The user model of items and folders is preferred by the GUI over the programmer's model of files and directories.</p>
       <p>Folders should tend to be shallow. They're for the user's work, not for viewing the entirety of a unix filesystem. Some of the natural depth should be swept into projects which open into project views instead of folder views.</p>
       <p>Folders should tend to be small. Folders containing lots of similar items should probably have another view which manages the size of folder.</p>
-      <p>When folders get large or deep, there's may be a need for a new kind of view.</p>
+      <p>When folders get large or deep, there may be a need for a new kind of view.</p>
     </section>
     <section><h2>Expectations of Views</h2>
       <p>Folders provide screen positions for both icons and views to opening views. These positions are shared with the window manager which may then animate the transition from an icon to another view. If the folder for an item is closed when the non-icon view is still visible, then the animation closing the open view will show it going to the containing folder's icon. If that icon is not visible, it will go to the next containing folder's icon, and so forth down to an icon on the desktop. (How?)</p>
