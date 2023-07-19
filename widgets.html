@@ -37,23 +37,6 @@
         text-anchor: middle;
         dominant-baseline: central;
       }
-      /*
-      .button {
-        cursor: default;
-      }
-      .button rect:first-child {
-        fill: var(--raised-fill-color);
-        stroke: var(--outline-color);
-      }
-      .button rect:first-child + polyline {
-        fill: none;
-        stroke: var(--shadow-stroke-color);
-      }
-      .button rect:first-child + polyline + polyline {
-        fill: none;
-        stroke: var(--highlight-stroke-color);
-      }
-      */
       .button {
         cursor: default;
         & rect:first-child {
@@ -68,17 +51,18 @@
             }
           }
         }
-
-      }
-      .button:active rect:first-child {
-        fill: var(--recessed-fill-color);
-        stroke: var(--outline-color);
-      }
-      .button:active rect:first-child + polyline {
-        stroke: var(--highlight-stroke-color);
-      }
-      .button:active rect:first-child + polyline + polyline  {
-        stroke: var(--shadow-stroke-color);
+        :active {
+          & rect:first-child {
+            fill: var(--recessed-fill-color);
+            stroke: var(--outline-color);
+            + polyline {
+              stroke: var(--highlight-stroke-color);              
+              + polyline {
+                stroke: var(--shadow-stroke-color);
+              }
+            }
+          }
+        }
       }
       rect.trough {
         fill: var(--recessed-fill-color);
