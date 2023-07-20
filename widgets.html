@@ -1601,6 +1601,18 @@
         </g>
       </g>
       <g transform="translate(100,200)">
+        <script>
+          function drawTabs(parentElement,x,y,width,height,labels,activeIndex) {
+            textLabels = labels.map(function (label) {
+              var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
+              txt.innerHTML = label;
+              txt.setAttribute("class","centered");
+              txt.setAttribute("pointer-events","none");
+              return txt;
+            });
+            
+          }
+        </script>
         <rect fill="none" x="0.5" y="0.5" width="239" height="79" stroke="var(--outline-color)"/>
 
         <path d="M0.5,24.5 h10 v-22 h63 v22 H239.5" stroke="var(--outline-color)" fill="var(--raised-fill-color)" />
