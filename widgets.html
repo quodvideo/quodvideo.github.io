@@ -1627,10 +1627,10 @@
             var currentX = 0;
 
             var l = document.createElementNS("http://www.w3.org/2000/svg","rect");
-            l.setAttribute("x",0.5);
-            l.setAttribute("y",minh+1.5);
+            l.setAttribute("x",x+0.5);
+            l.setAttribute("y",y+minh+1.5);
             l.setAttribute("width",width);
-            l.setAttribute("height",height-minh-1.5);
+            l.setAttribute("height",height-minh-1);
             l.setAttribute("fill","var(--base-fill-color)");
             l.setAttribute("stroke","var(--outline-color)");
             parentElement.insertAdjacentElement("beforeend",l);
