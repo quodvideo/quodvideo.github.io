@@ -1634,6 +1634,8 @@
               r.setAttribute("y", (i==activeIndex)?0.5:1.5);
               r.setAttribute("width",whs[i][0]-1);
               r.setAttribute("height",whs[i][1]-1);
+              r.setAttribute("fill", (i==activeIndex)?"var(--base-fill-color)":"var(--recessed-fill-color)");
+              r.setAttribute("stroke","var(--outline-color)");
               g.insertAdjacentElement("beforeend",r);
               tl.setAttribute("x",whs[i][0]/2);
               tl.setAttribute("y",whs[i][1]/2);
