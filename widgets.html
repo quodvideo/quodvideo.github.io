@@ -1629,18 +1629,33 @@
               var g = document.createElementNS("http://www.w3.org/2000/svg","g");
               g.setAttribute("transform","translate("+(x+currentX)+","+y+")");
               parentElement.insertAdjacentElement("beforeend",g);
+
+              var localY = (i==activeIndex)?0.5:1.5;
+
               var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
               r.setAttribute("x",0.5);
-              r.setAttribute("y", (i==activeIndex)?0.5:1.5);
+              r.setAttribute("y", localY);
               r.setAttribute("width",whs[i][0]-1);
               r.setAttribute("height",whs[i][1]-1);
               r.setAttribute("fill", (i==activeIndex)?"var(--base-fill-color)":"var(--recessed-fill-color)");
               r.setAttribute("stroke","var(--outline-color)");
               g.insertAdjacentElement("beforeend",r);
+
+              var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+              s.setAttribute("class","shadow");
+              s.setAttribute("points",""+(whs[i][0]-0.5)+","+(localY+whs[i][1])+" "+(whs[i][0]-0.5)+","+localY);
+              g.insertAdjacentElement("beforeend",s);
+
+              var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+              h.setAttribute("class","highlight");
+              h.setAttribute("points",""+0.5+","+(localY+whs[i][1])+" "+0.5+","+localY+" "+(whs[i][0]-0.5)+","+localY);
+              g.insertAdjacentElement("beforeend",h);
+
               tl.setAttribute("x",whs[i][0]/2);
               tl.setAttribute("y",whs[i][1]/2);
               g.insertAdjacentElement("beforeend",tl);
-              currentX = currentX+whs[i][0];
+
+              currentX = currentX+whs[i][0]-1;
             });
           }
           drawTabs(document.getElementById("tabset1"),0,0,100,200,["a","b","c"],0);
