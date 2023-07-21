@@ -1641,6 +1641,23 @@
             l.setAttribute("stroke","var(--outline-color)");
             parentElement.insertAdjacentElement("beforeend",l);
 
+            var os = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+            os.setAttribute("class","shadow");
+            os.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+minh+1.5));
+            parentElement.insertAdjacentElement("beforeend",os);
+
+            var oh = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+            oh.setAttribute("class","highlight");
+            oh.setAttribute("points",""+(x+1.5)+","+(y+height-1)+" "+(x+1.5)+","+(y+minh+1.5)+" "+(x+width-1)+","+(y+minh+1.5));
+            parentElement.insertAdjacentElement("beforeend",oh);
+            /*
+            (x+1.5),(y+height-1)
+            (x+1.5),(y+minh+1.5)
+
+
+
+            (x+width-1),(y+minh+1.5)
+            */
 
             currentX = 0;
             textLabels.forEach(function(tl,i,a) {
@@ -1690,23 +1707,7 @@
               currentX = currentX+whs[i][0]-1;
             });
 
-            var os = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-            os.setAttribute("class","shadow");
-            os.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+minh+1.5));
-            parentElement.insertAdjacentElement("beforeend",os);
-
-            var oh = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-            oh.setAttribute("class","highlight");
-            oh.setAttribute("points",""+(x+1.5)+","+(y+height-1)+" "+(x+1.5)+","+(y+minh+1.5)+" "+(x+width-1)+","+(y+minh+1.5));
-            /*
-            (x+1.5),(y+height-1)
-            (x+1.5),(y+minh+1.5)
-
-
-
-            (x+width-1),(y+minh+1.5)
-            */
-            parentElement.insertAdjacentElement("beforeend",oh);
+            
 
             if (0) {
               var rb = document.createElementNS("http://www.w3.org/2000/svg","rect");
