@@ -1624,20 +1624,21 @@
               wh[1]=minh;
               if (i==activeIndex) wh[i]=minh+1;
             });
+            var currentX = 0;
             textLabels.forEach(function(tl,i,a) {
               var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-              g.setAttribute("transform","translate()");
+              g.setAttribute("transform","translate("+(x+currentX)+","+y+")");
               parentElement.insertAdjacentElement("beforeend",g);
-
               var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
               r.setAttribute("x",0.5);
               r.setAttribute("y", (i==activeIndex)?0.5:1.5);
-              r.setAttribute("width",whs[i][0]);
-              r.setAttribute("height",whs[i][1]);
+              r.setAttribute("width",whs[i][0]-1);
+              r.setAttribute("height",whs[i][1]-1);
               g.insertAdjacentElement("beforeend",r);
               tl.setAttribute("x",whs[i][0]/2);
               tl.setAttribute("y",whs[i][1]/2);
               g.insertAdjacentElement("beforeend",tl);
+              currentX = currentX+whs[i][0];
             });
             drawTabs(document.getElementById("tabset1"),0,0,100,200,["a","b","c"],0);
             
