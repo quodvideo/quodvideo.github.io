@@ -1702,16 +1702,21 @@
                               + " H"+corners[7][0]
                               + " Z");
             parentElement.insertAdjacentElement("beforeend",tsp);
-            /*
+
             var tsps = document.createElementNS("http://www.w3.org/2000/svg","path");
             tsps.setAttribute("fill","none");
             tsps.setAttribute("stroke","var(--shadow-stroke-color)");
-            tsps.setAttribute("d","M"(sheetbottomleft)
-                               + " H"(sheetbottomright-1)
-                               + " V"(sheettopright-1)
-                               + " M"(tabbottomright)
-                               + " V"(tabtopright-1));
-            var tsph = document.createElementNS("http://www.w3.org/2000/svg","path");
+            tsps.setAttribute("d","M"+(corners[0][0]+1)+","+(corners[0][1]+1)
+                               + " H"+(corners[1][0]-1)
+                               + " V"+(corners[2][1]+1)
+                               + " H"+(corners[3][0]-1)
+                               + " V"+(corners[4][1]-1)
+                               + " H"+(corners[5][0]+1)
+                               + " V"+(corners[6][1]+1)
+                               + " H"+(corners[7][0]+1)
+                               + " Z");
+            parentElement.insertAdjacentElement("beforeend",tsps);
+/*            var tsph = document.createElementNS("http://www.w3.org/2000/svg","path");
             tsph.setAttribute("fill","none");
             tsph.setAttribute("stroke","var(--highlight-stroke-color)");
             tsph.setAttribute("d","M"(sheetbottomleft)
