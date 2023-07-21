@@ -1670,12 +1670,12 @@
 
             var os = document.createElementNS("http://www.w3.org/2000/svg","polyline");
             os.setAttribute("class","shadow");
-            os.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+width-2.5)+","+(y+height-1.5)+" "+(x+width-2.5)+","+(y+minh+0.5));
+            os.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+minh+1.5));
             parentElement.insertAdjacentElement("beforeend",os);
 
             var oh = document.createElementNS("http://www.w3.org/2000/svg","polyline");
             oh.setAttribute("class","highlight");
-            oh.setAttribute("points",""+(a)+","+(b)+" "+(c)+","+(d)+" "+(e)+","+(f));
+            oh.setAttribute("points",""+(x+1.5)+","+(y+height-1)+" "+(x+1.5)+","+(y+minh+1.5)+" "+(x+width-1.5)+","+(y+minh+1.5));
             parentElement.insertAdjacentElement("beforeend",oh);
 
             if (0) {
