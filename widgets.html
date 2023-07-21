@@ -1701,7 +1701,7 @@
 
 
               tl.setAttribute("x",whs[i][0]/2);
-              tl.setAttribute("y",whs[i][1]/2 + (i==activeIndex)?0:1);
+              tl.setAttribute("y",(whs[i][1]/2) + ((i==activeIndex)?0:1));
               g.insertAdjacentElement("beforeend",tl);
 
               currentX = currentX+whs[i][0]-1;
