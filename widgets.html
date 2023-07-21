@@ -1689,36 +1689,23 @@
               if (i==activeIndex) {
                 var p1 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
                 p1.setAttribute("fill","none");
-                p1.setAttribute("stroke", "red"); //"var(--base-fill-color)");
+                p1.setAttribute("stroke", "var(--base-fill-color)");
                 p1.setAttribute("points","1.5,"+(localY+whs[i][1]-1)+" "+(whs[i][0]-1)+","+(localY+whs[i][1]-1));
                 g.insertAdjacentElement("beforeend",p1);
                 var p2 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
                 p2.setAttribute("fill","none");
-                p2.setAttribute("stroke", "blue"); // "var(--base-fill-color)");
+                p2.setAttribute("stroke", "var(--base-fill-color)");
                 p2.setAttribute("points","1.5,"+(localY+whs[i][1])+" "+(whs[i][0]-1)+","+(localY+whs[i][1]));
                 g.insertAdjacentElement("beforeend",p2);
               }
 
 
               tl.setAttribute("x",whs[i][0]/2);
-              tl.setAttribute("y",whs[i][1]/2);
+              tl.setAttribute("y",whs[i][1]/2 + (i==activeIndex)?0:1);
               g.insertAdjacentElement("beforeend",tl);
 
               currentX = currentX+whs[i][0]-1;
             });
-
-            
-
-            if (0) {
-              var rb = document.createElementNS("http://www.w3.org/2000/svg","rect");
-              rb.setAttribute("x",x+0.5);
-              rb.setAttribute("y",y+0.5);
-              rb.setAttribute("width",width-1);
-              rb.setAttribute("height",height-1);
-              rb.setAttribute("fill","#ffff0080");
-              rb.setAttribute("stroke","#ff000080");
-              parentElement.insertAdjacentElement("beforeend",rb);
-            }
           }
           drawTabs(document.getElementById("tabset1"),0,0,240,28,["a","b","c"],0);
           drawTabs(document.getElementById("tabset1"),0,30,240,28,["a","b","c"],1);
