@@ -1600,7 +1600,7 @@
           <use x="11" y="3" xlink:href="#hGrippy"/>
         </g>
       </g>
-      <g transform="translate(100,200)">
+      <g transform="translate(100,200)" id="tabset1">
         <script>
           function drawTabs(parentElement,x,y,width,height,labels,activeIndex) {
             textLabels = labels.map(function (label) {
@@ -1610,6 +1610,36 @@
               txt.setAttribute("pointer-events","none");
               return txt;
             });
+            var minh = 22;
+            whs = textLabels.map(function(tl) {
+              var w = 64;
+              var h = 22;
+              var box = tl.getBBox();
+              if (box.width > w+12) w=box.width+12;
+              if (box.height > h+5) h=box.height+5;
+              if (h>minh) minh=h;
+              return [w,h];
+            });
+            whs.forEach(function(wh,i,a){
+              wh[1]=minh;
+              if (i==activeIndex) wh[i]=minh+1;
+            });
+            textLabels.forEach(function(tl,i,a) {
+              var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+              g.setAttribute("transform","translate()");
+              parentElement.insertAdjacentElement("beforeend",g);
+
+              var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+              r.setAttribute("x",0.5);
+              r.setAttribute("y", (i==activeIndex)?0.5:1.5);
+              r.setAttribute("width",whs[i][0]);
+              r.setAttribute("height",whs[i][1]);
+              g.insertAdjacentElement("beforeend",r);
+              tl.setAttribute("x",whs[i][0]/2);
+              tl.setAttribute("y",whs[i][1]/2);
+              g.insertAdjacentElement("beforeend",tl);
+            });
+            drawTabs(document.getElementById("tabset1"),0,0,100,200,["a","b","c"],0);
             
           }
         </script>
