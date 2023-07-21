@@ -1718,10 +1718,10 @@
             parentElement.insertAdjacentElement("beforeend",tsps);
             var tsph = document.createElementNS("http://www.w3.org/2000/svg","path");
             tsph.setAttribute("fill","none");
-            tsph.setAttribute("stroke","var(--highlight-stroke-color)");
+            tsph.setAttribute("stroke","green");//"var(--highlight-stroke-color)");
             tsph.setAttribute("d","M"+(corners[0][0]+1)+","+(corners[0][1]+1)
                                + " H"+(corners[1][0]-1)
-                               + " M"+(corners[2][0]+1)+","+(corners[2][1]+1)
+                               + " M"+(corners[2][0]-1)+","+(corners[2][1]+1)
                                + " H"+(corners[3][0]-1)
                                + " M"+(corners[4][0]-1)+","+(corners[4][1]+1)
                                + " M"+(corners[5][0]+1)+","+(corners[5][1]+1)
