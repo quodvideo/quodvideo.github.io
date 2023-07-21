@@ -1602,12 +1602,11 @@
             var currentX = 0;
 
             xywhs = whs.map(function(wh,i,a) {
-              var localY = (i==activeIndex)?0.5:1.5;
+              var localY = (i==activeIndex)?0:1;
               var lastX = currentX;
               currentX = currentX+wh[0]-1;
               return [lastX,localY,wh[0],wh[1]];
             });
-            
             console.log(xywhs);
 
             var l = document.createElementNS("http://www.w3.org/2000/svg","rect");
@@ -1677,19 +1676,33 @@
               currentX = currentX+whs[i][0]-1;
             });
 
+            var xywh = xywhs[activeIndex];
+            var corners = [
+              [x+xywh[0]+0.5,         y+xywh[1]+0.5],         // tabtopleft
+              [x+xywh[0]+xywh[2]-0.5, y+xywh[1]+0.5],         // tabtopright
+              [x+xywh[0]+xywh[2]-0.5, y+xywh[1]+xywh[3]-1.5], // tabbottomright
+              [x+width-0.5,           y+xywh[1]+xywh[3]-1.5], //sheettopright
+              [x+width-0.5,           y+height-0.5],          //sheetbottomright
+              [x+0.5,                 y+height-0.5],          //sheetbottomleft
+              [x+0.5,                 y+xywh[1]+xywh[3]-1.5], //sheettopleft
+              [x+xywh[0]+0.5,         y+xywh[1]+xywh[3]-1.5]  //tabbottomleft
+            ]
+
             /* Draw tabbed sheet. Draw side "buttons". */
             var tsp = document.createElementNS("http://www.w3.org/2000/svg","path");
             tsp.setAttribute("fill","var(--base-fill-color)");
-            tsp.setAttribute("stroke","var(--outline-color)");
-            tsp.setAttribute("d","M"(tabtopleft)
-                              + " H"(tabtopright)
-                              + " V"(tabbottomright)
-                              + " H"(sheettopright)
-                              + " V"(sheetbottomright)
-                              + " H"(sheetbottomleft)
-                              + " V"(sheettopleft)
-                              + " H"(tabbottomleft)
+            tsp.setAttribute("stroke", "red"); //"var(--outline-color)");
+            tsp.setAttribute("d","M"+corners[0][0]+","+corners[0][1]
+                              + " H"+corners[1][0]
+                              + " V"+corners[2][1]
+                              + " H"+corners[3][0]
+                              + " V"+corners[4][1]
+                              + " H"+corners[5][0]
+                              + " V"+corners[6][1]
+                              + " H"+corners[7][0]
                               + " Z");
+            parentElement.insertAdjacentElement("beforeend",tsp);
+            /*
             var tsps = document.createElementNS("http://www.w3.org/2000/svg","path");
             tsps.setAttribute("fill","none");
             tsps.setAttribute("stroke","var(--shadow-stroke-color)");
@@ -1707,7 +1720,7 @@
                                + " V"(tabtopleft-1)
                                + " H"(tabtopright-1)
                                + " M"(tabbottomright)
-                               + " H"(sheettopright-1));
+                               + " H"(sheettopright-1));*/
           }
           drawTabs(document.getElementById("tabset1"),0,0,240,28,["a","b","c"],0);
           drawTabs(document.getElementById("tabset1"),0,30,240,28,["a","b","c"],1);
