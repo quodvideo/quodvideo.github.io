@@ -1629,7 +1629,7 @@
             var l = document.createElementNS("http://www.w3.org/2000/svg","rect");
             l.setAttribute("x",x+0.5);
             l.setAttribute("y",y+minh+0.5);
-            l.setAttribute("width",width);
+            l.setAttribute("width",width-1);
             l.setAttribute("height",height-minh-1);
             l.setAttribute("fill","var(--base-fill-color)");
             l.setAttribute("stroke","var(--outline-color)");
@@ -1667,14 +1667,27 @@
 
               currentX = currentX+whs[i][0]-1;
             });
-            var rb = document.createElementNS("http://www.w3.org/2000/svg","rect");
-            rb.setAttribute("x",x+0.5);
-            rb.setAttribute("y",y+0.5);
-            rb.setAttribute("width",width-1);
-            rb.setAttribute("height",height-1);
-            rb.setAttribute("fill","#ffff0080");
-            rb.setAttribute("stroke","#ff000080");
-            parentElement.insertAdjacentElement("beforeend",rb);
+
+            var os = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+            os.setAttribute("class","shadow");
+            os.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+width-2.5)+","+(y+height-1.5)+" "+(x+width-2.5)+","+(y+minh+0.5));
+            parentElement.insertAdjacentElement("beforeend",os);
+
+            var oh = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+            oh.setAttribute("class","highlight");
+            oh.setAttribute("points",""+(a)+","+(b)+" "+(c)+","+(d)+" "+(e)+","+(f));
+            parentElement.insertAdjacentElement("beforeend",oh);
+
+            if (0) {
+              var rb = document.createElementNS("http://www.w3.org/2000/svg","rect");
+              rb.setAttribute("x",x+0.5);
+              rb.setAttribute("y",y+0.5);
+              rb.setAttribute("width",width-1);
+              rb.setAttribute("height",height-1);
+              rb.setAttribute("fill","#ffff0080");
+              rb.setAttribute("stroke","#ff000080");
+              parentElement.insertAdjacentElement("beforeend",rb);
+            }
           }
           drawTabs(document.getElementById("tabset1"),0,0,240,28,["a","b","c"],0);
           drawTabs(document.getElementById("tabset1"),0,30,240,28,["a","b","c"],1);
