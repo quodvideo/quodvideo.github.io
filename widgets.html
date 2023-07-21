@@ -1577,29 +1577,6 @@
       <use x="75" y="100" xlink:href="#sheettab-inactive" fill="red" width="16" height="16"/>
       <use x="20" y="100" xlink:href="#sheettab-active" fill="red" width="16" height="16"/>
 
-      <g class="h-scrollbar" transform="translate (200.5, 60.5)">
-        <rect class="trough" width="607" height="16"/>
-        <polyline class="shadow" points="1,15 1,1 590,1"/>
-        <polyline class="highlight" points="1,15 590,15 590,1"/>
-        <g class="button" transform="translate(591,0)">
-          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
-          <polyline points="1,15 15,15 15,1"/>
-          <polyline points="1,15 1,1 15,1"/>
-          <use xlink:href="#newArrowLeft" width="16" height="16"/>
-        </g>
-        <g class="button" transform="translate(607,0)">
-          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
-          <polyline points="1,15 15,15 15,1"/>
-          <polyline points="1,15 1,1 15,1"/>
-          <use xlink:href="#newArrowRight" width="16" height="16"/>
-        </g>
-        <g class="slider" transform="translate(100,0)">
-          <rect width="32" height="16"/>
-          <polyline points="1,15 31,15 31,1"/>
-          <polyline points="1,15 1,1 31,1"/>
-          <use x="11" y="3" xlink:href="#hGrippy"/>
-        </g>
-      </g>
       <g transform="translate(100,200)" id="tabset1">
         <script>
           function drawTabs(parentElement,x,y,width,height,labels,activeIndex) {
@@ -1626,11 +1603,10 @@
 
             xywhs = whs.map(function(wh,i,a) {
               var localY = (i==activeIndex)?0.5:1.5;
+              var lastX = currentX;
               currentX = currentX+wh[0]-1;
-              return [currentX,localY,wh[0],wh[1]];
+              return [lastX,localY,wh[0],wh[1]];
             });
-
-            
 
             var l = document.createElementNS("http://www.w3.org/2000/svg","rect");
             l.setAttribute("x",x+0.5);
@@ -1650,14 +1626,6 @@
             oh.setAttribute("class","highlight");
             oh.setAttribute("points",""+(x+1.5)+","+(y+height-1)+" "+(x+1.5)+","+(y+minh+1.5)+" "+(x+width-1)+","+(y+minh+1.5));
             parentElement.insertAdjacentElement("beforeend",oh);
-            /*
-            (x+1.5),(y+height-1)
-            (x+1.5),(y+minh+1.5)
-
-
-
-            (x+width-1),(y+minh+1.5)
-            */
 
             currentX = 0;
             textLabels.forEach(function(tl,i,a) {
@@ -1706,6 +1674,38 @@
 
               currentX = currentX+whs[i][0]-1;
             });
+
+            /* Draw tabbed sheet. Draw side "buttons". */
+            var tsp = document.createElementNS("http://www.w3.org/2000/svg","path");
+            tsp.setAttribute("fill","var(--base-fill-color)");
+            tsp.setAttribute("stroke","var(--outline-color)");
+            tsp.setAttribute("d","M"(tabtopleft)
+                              + " H"(tabtopright)
+                              + " V"(tabbottomright)
+                              + " H"(sheettopright)
+                              + " V"(sheetbottomright)
+                              + " H"(sheetbottomleft)
+                              + " V"(sheettopleft)
+                              + " H"(tabbottomleft)
+                              + " Z");
+            var tsps = document.createElementNS("http://www.w3.org/2000/svg","path");
+            tsps.setAttribute("fill","none");
+            tsps.setAttribute("stroke","var(--shadow-stroke-color)");
+            tsps.setAttribute("d","M"(sheetbottomleft)
+                               + " H"(sheetbottomright-1)
+                               + " V"(sheettopright-1)
+                               + " M"(tabbottomright)
+                               + " V"(tabtopright-1));
+            var tsph = document.createElementNS("http://www.w3.org/2000/svg","path");
+            tsph.setAttribute("fill","none");
+            tsph.setAttribute("stroke","var(--highlight-stroke-color)");
+            tsph.setAttribute("d","M"(sheetbottomleft)
+                               + " V"(sheettopleft-1)
+                               + " H"(tabbottomleft+1)
+                               + " V"(tabtopleft-1)
+                               + " H"(tabtopright-1)
+                               + " M"(tabbottomright)
+                               + " H"(sheettopright-1));
           }
           drawTabs(document.getElementById("tabset1"),0,0,240,28,["a","b","c"],0);
           drawTabs(document.getElementById("tabset1"),0,30,240,28,["a","b","c"],1);
