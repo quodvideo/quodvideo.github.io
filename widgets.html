@@ -1620,11 +1620,17 @@
               if (h>minh) minh=h;
               return [w,h];
             });
-            whs.forEach(function(wh,i,a){
-              wh[1]=minh;
-              if (i==activeIndex) wh[1]=minh+1;
-            });
+            whs.forEach(function(wh,i,a) { wh[1] = (i==activeIndex)?minh+1:minh; });
+
             var currentX = 0;
+
+            xywhs = whs.map(function(wh,i,a) {
+              var localY = (i==activeIndex)?0.5:1.5;
+              currentX = currentX+wh[0]-1;
+              return [currentX,localY,wh[0],wh[1]];
+            });
+
+            
 
             var l = document.createElementNS("http://www.w3.org/2000/svg","rect");
             l.setAttribute("x",x+0.5);
@@ -1635,6 +1641,8 @@
             l.setAttribute("stroke","var(--outline-color)");
             parentElement.insertAdjacentElement("beforeend",l);
 
+
+            currentX = 0;
             textLabels.forEach(function(tl,i,a) {
               var g = document.createElementNS("http://www.w3.org/2000/svg","g");
               g.setAttribute("transform","translate("+(x+currentX)+","+y+")");
@@ -1661,6 +1669,20 @@
               h.setAttribute("points",""+1.5+","+(localY+whs[i][1]-1.5)+" "+1.5+","+(localY+1)+" "+(whs[i][0]-1)+","+(localY+1));
               g.insertAdjacentElement("beforeend",h);
 
+              if (i==activeIndex) {
+                var p1 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+                p1.setAttribute("fill","none");
+                p1.setAttribute("stroke", "red"); //"var(--base-fill-color)");
+                p1.setAttribute("points","1.5,"+(localY+whs[i][1]-1.5)+" "+(whs[i][0]-1)+","+(localY+whs[i][1]-1.5));
+                g.insertAdjacentElement("beforeend",p1);
+                var p2 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+                p2.setAttribute("fill","none");
+                p2.setAttribute("stroke", "blue"); // "var(--base-fill-color)");
+                p2.setAttribute("points","1.5,"+(localY+whs[i][1]-0.5)+" "+(whs[i][0]-1)+","+(localY+whs[i][1]-0.5));
+                g.insertAdjacentElement("beforeend",p2);
+              }
+
+
               tl.setAttribute("x",whs[i][0]/2);
               tl.setAttribute("y",whs[i][1]/2);
               g.insertAdjacentElement("beforeend",tl);
@@ -1676,6 +1698,14 @@
             var oh = document.createElementNS("http://www.w3.org/2000/svg","polyline");
             oh.setAttribute("class","highlight");
             oh.setAttribute("points",""+(x+1.5)+","+(y+height-1)+" "+(x+1.5)+","+(y+minh+1.5)+" "+(x+width-1)+","+(y+minh+1.5));
+            /*
+            (x+1.5),(y+height-1)
+            (x+1.5),(y+minh+1.5)
+
+
+
+            (x+width-1),(y+minh+1.5)
+            */
             parentElement.insertAdjacentElement("beforeend",oh);
 
             if (0) {
