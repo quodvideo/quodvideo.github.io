@@ -1716,16 +1716,18 @@
                                + " H"+(corners[7][0]+1)
                                + " Z");
             parentElement.insertAdjacentElement("beforeend",tsps);
-/*            var tsph = document.createElementNS("http://www.w3.org/2000/svg","path");
+            var tsph = document.createElementNS("http://www.w3.org/2000/svg","path");
             tsph.setAttribute("fill","none");
             tsph.setAttribute("stroke","var(--highlight-stroke-color)");
-            tsph.setAttribute("d","M"(sheetbottomleft)
-                               + " V"(sheettopleft-1)
-                               + " H"(tabbottomleft+1)
-                               + " V"(tabtopleft-1)
-                               + " H"(tabtopright-1)
-                               + " M"(tabbottomright)
-                               + " H"(sheettopright-1));*/
+            tsph.setAttribute("d","M"+(corners[0][0]+1)+","+(corners[0][1]+1)
+                               + " H"+(corners[1][0]-1)
+                               + " M"+(corners[2][0]+1)+","+(corners[2][1]+1)
+                               + " H"+(corners[3][0]-1)
+                               + " M"+(corners[4][0]-1)+","+(corners[4][1]+1)
+                               + " M"+(corners[5][0]+1)+","+(corners[5][1]+1)
+                               + " V"+(corners[6][1]+1)
+                               + " H"+(corners[7][0]+1)
+                               + " Z");
           }
           drawTabs(document.getElementById("tabset1"),0,0,240,28,["a","b","c"],0);
           drawTabs(document.getElementById("tabset1"),0,30,240,28,["a","b","c"],1);
