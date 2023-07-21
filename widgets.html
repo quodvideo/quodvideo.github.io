@@ -1628,7 +1628,7 @@
 
             var l = document.createElementNS("http://www.w3.org/2000/svg","rect");
             l.setAttribute("x",x+0.5);
-            l.setAttribute("y",y+minh+1.5);
+            l.setAttribute("y",y+minh+0.5);
             l.setAttribute("width",width);
             l.setAttribute("height",height-minh-1);
             l.setAttribute("fill","var(--base-fill-color)");
@@ -1667,11 +1667,18 @@
 
               currentX = currentX+whs[i][0]-1;
             });
-         
+            var rb = document.createElementNS("http://www.w3.org/2000/svg","rect");
+            rb.setAttribute("x",x+0.5);
+            rb.setAttribute("y",y+0.5);
+            rb.setAttribute("width",width-1);
+            rb.setAttribute("height",height-1);
+            rb.setAttribute("fill","#ffff0080");
+            rb.setAttribute("stroke","#ff000080");
+            parentElement.insertAdjacentElement("beforeend",rb);
           }
-          drawTabs(document.getElementById("tabset1"),0,0,100,28,["a","b","c"],0);
-          drawTabs(document.getElementById("tabset1"),0,30,100,28,["a","b","c"],1);
-          drawTabs(document.getElementById("tabset1"),0,60,100,28,["a","b","c"],2);
+          drawTabs(document.getElementById("tabset1"),0,0,240,28,["a","b","c"],0);
+          drawTabs(document.getElementById("tabset1"),0,30,240,28,["a","b","c"],1);
+          drawTabs(document.getElementById("tabset1"),0,60,240,28,["a","b","c"],2);
         </script>
         <!-- <rect fill="none" x="0.5" y="0.5" width="239" height="79" stroke="var(--outline-color)"/>
 
