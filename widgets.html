@@ -1625,6 +1625,16 @@
               if (i==activeIndex) wh[1]=minh+1;
             });
             var currentX = 0;
+
+            var l = document.createElementNS("http://www.w3.org/2000/svg","rect");
+            l.setAttribute("x",0.5);
+            l.setAttribute("y",minh+1.5);
+            l.setAttribute("width",width);
+            l.setAttribute("height",height-minh-1.5);
+            l.setAttribute("fill","var(--base-fill-color)");
+            l.setAttribute("stroke","var(--outline-color)");
+            parentElement.insertAdjacentElement("beforeend",l);
+
             textLabels.forEach(function(tl,i,a) {
               var g = document.createElementNS("http://www.w3.org/2000/svg","g");
               g.setAttribute("transform","translate("+(x+currentX)+","+y+")");
@@ -1657,10 +1667,11 @@
 
               currentX = currentX+whs[i][0]-1;
             });
+         
           }
-          drawTabs(document.getElementById("tabset1"),0,0,100,200,["a","b","c"],0);
-          drawTabs(document.getElementById("tabset1"),0,30,100,200,["a","b","c"],1);
-          drawTabs(document.getElementById("tabset1"),0,60,100,200,["a","b","c"],2);
+          drawTabs(document.getElementById("tabset1"),0,0,100,28,["a","b","c"],0);
+          drawTabs(document.getElementById("tabset1"),0,30,100,28,["a","b","c"],1);
+          drawTabs(document.getElementById("tabset1"),0,60,100,28,["a","b","c"],2);
         </script>
         <!-- <rect fill="none" x="0.5" y="0.5" width="239" height="79" stroke="var(--outline-color)"/>
 
