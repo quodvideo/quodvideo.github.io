@@ -303,13 +303,12 @@
         return g;
       }
       function drawButton (parentElement,x,y,width,height,isDefault,isFocusable) {
-        //var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        //var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("class","button");
-        //g.setAttribute("transform","translate("+x+","+y+")");
-        g.setAttribute("x",x);
-        g.setAttribute("y",y);
-        g.setAttribute("viewBox","-1 -1 "+(width)+" "+(height));
+        g.setAttribute("transform","translate("+x+","+y+")");
+        //g.setAttribute("x",x);
+        //g.setAttribute("y",y);
         if (isFocusable) g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend", g);
 
