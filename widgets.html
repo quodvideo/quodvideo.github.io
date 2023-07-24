@@ -303,9 +303,12 @@
         return g;
       }
       function drawButton (parentElement,x,y,width,height,isDefault,isFocusable) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        //var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("class","button");
-        g.setAttribute("transform","translate("+x+","+y+")");
+        //g.setAttribute("transform","translate("+x+","+y+")");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
         if (isFocusable) g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend", g);
 
@@ -1616,21 +1619,6 @@
         drawHeaderBar(document.getElementById("spreadsheet2"),0,0,0,0,"#documentIcon","Document Title","spreadsheet");
       </script>
       <rect x="4.5" y="51.5" width="616" height="382" stroke="var(--outline-color)" fill="url(#sheetgrid)"/>
-      <!-- <g transform="translate(4.5,51.5)">
-        <line x1="0.5" y1="16" x2="615.5" y2="16" stroke="var(--recessed-fill-color)" />
-        <line x1="0.5" y1="32" x2="615.5" y2="32" stroke="var(--recessed-fill-color)" />
-        <line x1="0.5" y1="48" x2="615.5" y2="48" stroke="var(--recessed-fill-color)" />
-        <line x1="0.5" y1="64" x2="615.5" y2="64" stroke="var(--recessed-fill-color)" />
-        <line x1="0.5" y1="80" x2="615.5" y2="80" stroke="var(--recessed-fill-color)" />
-        <line x1="0.5" y1="96" x2="615.5" y2="96" stroke="var(--recessed-fill-color)" />
-
-        <line x1="64"  y1="0.5" x2="64"  y2="381.5" stroke="var(--recessed-fill-color)" />
-        <line x1="128" y1="0.5" x2="128" y2="381.5" stroke="var(--recessed-fill-color)" />
-        <line x1="192" y1="0.5" x2="192" y2="381.5" stroke="var(--recessed-fill-color)" />
-        <line x1="256" y1="0.5" x2="256" y2="381.5" stroke="var(--recessed-fill-color)" />
-        <line x1="320" y1="0.5" x2="320" y2="381.5" stroke="var(--recessed-fill-color)" />
-        <line x1="384" y1="0.5" x2="384" y2="381.5" stroke="var(--recessed-fill-color)" />
-      </g>-->
       <polyline class="shadow" points="3.5,449.5, 3.5,50.5 636.5,50.5" />
       <polyline class="highlight" points="3.5,449.5 621.5,449.5 621.5,434.5 636.5,434.5 636.5,50.5" />
       <g transform="translate(4.5,433.5)"> <!-- tabs -->
@@ -1884,6 +1872,7 @@
         <p>The shell provides a graphical user interface to a variety of items. Items are the objects of the graphical user interface. They may correspond to programmatic objects, but they may also be abstractions that unite various parts of the operating system. Every item has metadata. Item metadata includes the item's name, its icon, its media types, screen locations for its views, the files it represents, and more.</p>
       </section>
       <p>Some items are containers of other items. More on those later.</p>
+      <p>Items are distinct from other objects because they are part of the user's model of the system.</p>
       <p>An item is an abstract concept. The shell represents items graphically in views, which allow items to be manipulated and changed. A few of the shell graphics are not views of items, but are overlays on the screen.</p>
       <section style="margin-left: 20%; margin-right: 20%;"><h3>Views</h3>
         <p>Each of the various graphical representations of an item is a view. The item icon is the simplest view. The item property panel is another. Every item has these two views. Most items have more views. Some items may have surprising views. For example, an OpenDocument file has its default view in an office program, but it also has a folder view because its contents are a zipped archive of other files.</p>
@@ -1899,6 +1888,7 @@
       <section style="margin-left: 20%; margin-right: 20%;"><h3>Property Panels</h3>
         <p>Every item has a property panel which allows viewing and editing some of the item's metadata. Panels are divided into pages. The "General" page applies to all items as it shows the item icon and name. Additional pages depend on the type of item being viewed.</p>
       </section>
+      <p>When an item as additional views, one of them is designated the main view.</p>
       <p>Some items contain other items. The most basic container is a folder.</p>
       <section style="margin-left: 20%; margin-right: 20%;"><h3>Folders</h3>
         <p>Folders are items that contain other items, much like a directory contains files. Simple folders are just graphical representations of directories. More complicated types of folders exist.</p>
@@ -1909,8 +1899,8 @@
       <section style="margin-left: 20%; margin-right: 20%;"><h3>Desktops</h3>
         <p>Desktops are special workspaces. When a desktop is opened, its folder view becomes the background of the shell. Signing on to the system is really just opening your primary desktop, and signing out is closing it. Because the desktop is a workspace, any items that were open when it was last closed will be opened again when it's reopened.</p>
       </section>
-      <p>(The system sign-on screen should perhaps show closed primary desktop folders, to maintain the item-oriented interface.)</p>
-      <p>The first thing you see on the screen after signing on, aside from the menu bar overlay, is a desktop item. It's a folder that forms the background of the screen. The starting desktop contains a few items: a trash can, something something, and a templates folder.</p>
+      <p>The icon view of the primary desktop is on the sign-on screen.</p>
+      <p>The first thing you see on the screen after signing on, aside from the menu bar overlay, is the main view of the primary desktop. It's a folder that forms the background of the screen. The starting desktop contains a few items: a trash can, something something, and a templates folder.</p>
       <section style="margin-left: 20%; margin-right: 20%;"><h3>Templates</h3>
         <p>Templates are a special kind of item. When you drag and drop from a template icon, you get a new item of a kind specified by the template. For example, there is a folder template. Dragging and dropping from this template creates a new folder. There's a template for almost every kind of item you can create. One exception is a template itself; there's no template template. Templates can be created from existing items by dragging their icons into the template folder.</p>
         <p>Templates can have content. If you create a template from a word processor document, then new items made from that template will have the same content as the document did when the template was created. This is an easy way to make form letters, for example. If a folder with content is turned into a template, all of the folder's contents will be reproduced by dragging from that template.</p>
@@ -1947,6 +1937,10 @@
           </ul>
         </li>
       </ul>
+    </section>
+    <section><h2>Permanence</h2>
+      <p>Items have permanence, and so do their views. Icons on the desktop don't move around or disappear unless the user moves or removes them. Where a property panel first opens is arbitrary, but when it opens a subsequent time, it appears where it was when it was closed the previous time. All the views of an item reappear from where they disappeared.</p>
+      <p>Except for icon views, which have fixed places in their folders, views appear from somewhere and disappear to somewhere. If the item's icon view is on the screen, the item appears from it and disappears to it. If the item's icon view is not on the screen, then the item appears from and disappears to the nearest containing folder's icon view.</p>
     </section>
     <section><h2>Differences from Other GUIs</h2>
       <p>Some differences from other graphical user interfaces, especially those on Linux, should already be apparent.</p>
@@ -2072,24 +2066,6 @@
       </dl>
       <p>And basically every IANA media type.</p>
     </section>
-    <dl>
-      <dt>Item</dt>
-      <dd>A user interface object. It's part of the user's model of what the computer is doing. The implementation of an item will have multiple parts in the programmer's model. The word "item" is used to be distinct from other kinds of objects that the programmer may use.</dd>
-      <dt>View</dt>
-      <dd>A visual representation of an item. Every item has at least two views: the icon and the property panel.</dd>
-      <dt>Template</dt>
-      <dd>An item that produces items. A template has only two views: its icon and its property panel.</dd>
-      <dt>Icon</dt>
-      <dd>The most basic view of an item. A small graphic providing minimal information about an item.</dd>
-      <dt>Property Panel</dt>
-      <dd>A view of an item's metadata. An item's metadata can be pulled from multiple sources.</dd>
-      <dt>Folder</dt>
-      <dd>A container for items. The main view of a folder shows the icons and names of the items it contains.</dd>
-      <dt>Workspace</dt>
-      <dd>A folder which retains stateful information about its items.</dd>
-      <dt>Desktop</dt>
-      <dd>A workspace for which the main view is a field of icons that forms the background of the screen.</dd>
-    </dl>
     <p>Everything is an item.</p>
     <p>There's a text editor, but you never run the editor.  Instead, you double-click the icon representing a text file. To create a new text file, you drag an icon off the text file template and drop it somewhere. By default, this opens the property panel for the text file. From then on, you just double-click the icon to open the text file. You can shift-double-click to open the property panel again. or you can configure it in the text file's window, using the menu bar.</p></p>
     <p>There's an IDE, but you never run it. Instead, you open a project folder and you see the IDE view of the project contents.</p>
@@ -2097,7 +2073,6 @@
     <p>There's an address book, but . . . I'm not sure here. It can be just a folder with vcards that opens up in a special view, but maybe it should be a special database. In either case, there can be a view that looks like the other one. The tricky part is having the address book as a service and at the same time allowing vcards to be anywhere on the system.</p>
     <p>So, the address book may be a really good example for how there are objects and views, but no applications.</p>
     <p>The web browser is an exception; it's both an application and an object unto itself.</p>
-        
     <p>The file manager is a key component. In a sense, it is the whole thing. Once a user has signed in, an object called the desktop is shown. The desktop is a special kind of workspace folder, and a workspace folder is a special kind of folder. A folder is a container for other items which is typically viewed as a field of icons. A workspace folder is a folder with memory; it remembers which items in it are open. A desktop is a workspace folder that is shown underneath everything else, without a frame. A user can have more than one desktop, but one is special as the starting desktop.</p>
     <p>The menu bar, being at the top of the screen, might seem important, but it's not. It's the interface of last resort and a system status bar. Showing a menu bar in each window would suggest that the menu bar is a big part of interacting with any object, but it shouldn't be. The top of the screen is a convenient place to reach when nothing else is going right.</p>
     <p>There are some overlay views. There's one that shows all the open objects. Another shows notifications and system status.</p>
