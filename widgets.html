@@ -327,11 +327,6 @@
 
         return g;
       }
-      function drawToggleButton (parentElement,x,y,width,height,isFocusable,state) {
-        var g = drawButton(parentElement,x,y,width,height,false,isFocusable);
-        g.setAttribute("class","togglebutton");
-        return g;
-      }
       function drawPushButton (parentElement,x,y,width,height,text,isDefault) {
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = text;
@@ -1939,8 +1934,8 @@
       </ul>
     </section>
     <section><h2>Permanence</h2>
-      <p>Items have permanence, and so do their views. Icons on the desktop don't move around or disappear unless the user moves or removes them. Where a property panel first opens is arbitrary, but when it opens a subsequent time, it appears where it was when it was closed the previous time. All the views of an item reappear from where they disappeared.</p>
-      <p>Except for icon views, which have fixed places in their folders, views appear from somewhere and disappear to somewhere. If the item's icon view is on the screen, the item appears from it and disappears to it. If the item's icon view is not on the screen, then the item appears from and disappears to the nearest containing folder's icon view.</p>
+      <p>Items have permanence, and so do their views. Icons on the desktop don't move around or disappear unless the user moves or removes them. Where a property panel first opens is arbitrary, but when it opens a subsequent time, it appears where it was when it was closed the previous time. All the views of an item reappear where they disappeared.</p>
+      <p>Views appear from somewhere and disappear to somewhere. Icons, which have fixed places in their folders, are an exception to this. If the item's icon view is on the screen, the other views of an item appear from it and disappear to it. If the item's icon view is not on the screen, then the other views of the item appear from and disappear to the nearest containing folder's icon view.</p>
     </section>
     <section><h2>Differences from Other GUIs</h2>
       <p>Some differences from other graphical user interfaces, especially those on Linux, should already be apparent.</p>
@@ -2032,40 +2027,55 @@
         <p>The calculator is a simple calculator.</p>
       </section>
     </section>
-    <section><h2>Items and Containers</h2>
-      <dl>
-        <dt>Folder</dt>
-        <dt>Workspace</dt>
-        <dt>Desktop</dt>
-        <dt>Archive</dt>
-        <dt>Shell - which runs in a terminal</dt>
-        <dt>vCard</dt>
-        <dt>Address Book - a container for vCards</dt>
-        <dt>Event</dt>
-        <dt>Calendar - a container for events</dt>
-        <dt>Citation</dt>
-        <dt>Bibdtography - a container for citations</dt>
-        <dt>Feed</dt>
-        <dt>Formatted Text</dt>
-        <dt>Binder - a container for formatted text</dt>
-        <dt>Slide</dt>
-        <dt>Presentation - a container for slides</dt>
-        <dt>Spreadsheet</dt>
-        <dt>Raster Image</dt>
-        <dt>Vector Image</dt>
-        <dt>Photo</dt>
-        <dt>Notebook - in the sense of note-taking software</dt>
-        <dt>Computational Notebook</dt>
-        <dt>Outline</dt>
-        <dt>Bookmark</dt>
-        <dt>Help Document</dt>
-        <dt>Ledger</dt>
-        <dt>Program</dt>
-        <dt>Project</dt>
-        <dt>Library - in the sense of a group of items particular to a kind of project, like parts for CAD</dt>
-      </dl>
-      <p>And basically every IANA media type.</p>
+    <section><h2>Containers and Items</h2>
+      <section><h3>Folders</h3></section>
+      <section><h3>Workspaces</h3></section>
+      <section><h3>Desktops</h3></section>
+      <section><h3>Archives</h3>
+        <p>An archive is a kind of folder.</p>
+      </section>
+      <section><h3>Terminals and Shells</h3></section>
+      <section><h3>Address Books and vCards</h3></section>
+      <section><h3>Calenders and Events</h3></section>
+      <section><h3>Bibliographies and Citations</h3></section>
+      <section><h3>Feeds</h3></section>
+      <section><h3>Binders and Formatted Text</h3></section>
+      <section><h3>Presentations and Slides</h3></section>
+      <section><h3>Spreadsheets</h3></section>
+      <section><h3>Albums and Photographs</h3></section>
+      <section><h3>Slideshows and Photographs</h3></section>
+      <section><h3>Albums and Music</h3></section>
+      <section><h3>Playlists and Music</h3></section>
+      <section><h3>Stations and Music</h3></section>
+      <section><h3>Notebooks and Notes</h3></section>
+      <section><h3>Notebooks and Computations</h3></section>
+      <section><h3>Outlines</h3></section>
+      <section><h3>Bookmarks</h3></section>
+      <section><h3>Documentation</h3></section>
+      <section><h3>Ledgers</h3></section>
+      <section><h3>Programs</h3></section>
+      <section><h3>Projects</h3></section>
+      <section><h3>Portfolios</h3></section>
+      <section><h3>Libraries and their contents</h3></section>
+      <section><h3>Raster and Vector Images</h3></section>
+      <section><h3>Other Media Types</h3></section>
     </section>
+    <section><h2>But I'm a developer!</h2>
+      <p>If you use an IDE, not much changes. An IDE is a view of an item called a project. Your project is likely to be a bunch of files in a directory. That's fine. The shell will recognize the directory as a project and, by default, open it in your IDE. If you need to manipulate the contents of the directory outside of the IDE, you can view the project as a folder. Of course, you can always use a text shell in a terminal too.</p>
+      <p>If you don't use an IDE, the shell can be like an IDE for you. Again, you are working with a bunch of files in a directory, so you can view that as a folder. More importantly, you can set that folder as a workspace. When you open the workspace, your previously opened views will open again. With not much work, you can make sure that all the tools you use are ready for you.</p>
+    </section>
+    <section><h2>What about git?</h2>
+      <p>It should be possible to make a view for a git repository that recognizes its complexity. Since a repository usually contains a project, an IDE may be the view of choice for working with that repository.</p>
+      <p>However git is integrated with the shell, it is likely that "git repository" will be a new kind of item. A project is a git repository is a folder is an item.</p>
+      <p>The problem with git for the shell is that file metadata may be easily lost, no matter how it's stored. I have no solution for that at this time. It will likely require a special file in the directory containing metadata for a particular version.</p>
+    </section>
+    <section><h2>I need a terminal.</h2>
+      <p>There are templates for text shells and they use the terminal program to show the text shells. Once you've created a text shell item, by dragging and dropping from the template, you can configure it to your liking through the property panel. You can change the terminal program used as well as the text shell used in the terminal program. You can set environment variable, initialization files, etc. You can even run non-shell programs in the terminal.</p>
+    </section>
+    <section><h2>But I like applications!</h2>
+      <p>In that case, I strongly recommend you use a Mac. It provides the best application-oriented experience by far.</p>
+    </section>
+
     <p>Everything is an item.</p>
     <p>There's a text editor, but you never run the editor.  Instead, you double-click the icon representing a text file. To create a new text file, you drag an icon off the text file template and drop it somewhere. By default, this opens the property panel for the text file. From then on, you just double-click the icon to open the text file. You can shift-double-click to open the property panel again. or you can configure it in the text file's window, using the menu bar.</p></p>
     <p>There's an IDE, but you never run it. Instead, you open a project folder and you see the IDE view of the project contents.</p>
@@ -2095,16 +2105,6 @@
     <p><strong>The user interface is pulling together multiple sources of information to provide a simple interface of items.</strong> The basic metadata for a Folder may pull in information from the folder's contents, the parent folder's contents, the user's dot files, system files, and user and system databases. This may be very complicated, but it's all hidden from the casual user.</p>
     <p>Some programs may just be programs. A simple calculator is one example. A terminal is another example, but it has an interesting twist. A terminal window always (?) runs some program, typically a shell. The terminal program file will be accessible through a file browser or command line, but the utility item should be a shell. The item may have a Program property page which identifies both the actual terminal program (e.g. "/usr/bin/xterm -hold -e") and the shell to be run. A calculator may be more than simple. Perhaps there's a calculator that keeps a record. It should provide a template for a record of calculations.</p>
     <p>One thing to move away from is "saving" data. The user's work should always be preserved. In other words, auto-save should be the rule, not the exception. There is, however, still a use for those reflexive Mod-s keystrokes. Stamping. While the item in front of the user will be preserved in the place from whence it came, it may be useful to make copies at different stages of development. In other words, a time-stamped, possibly read-only by default, copy.</p>
-    <h2>But I'm a developer!</h2>
-    <p>If you use an IDE, not much changes. An IDE is a view of an item called a project. Your project is likely to be a bunch of files in a directory. That's fine. The shell will recognize the directory as a project and, by default, open it in your IDE. If you need to manipulate the contents of the directory outside of the IDE, you can view the project as a folder. Of course, you can always use a text shell in a terminal too.</p>
-    <p>If you don't use an IDE, the shell can be like an IDE for you. Again, you are working with a bunch of files in a directory, so you can view that as a folder. More importantly, you can set that folder as a workspace. When you open the workspace, your previously opened views will open again. With not much work, you can make sure that all the tools you use are ready for you.</p>
-    <h2>What about git?</h2>
-    <p>It should be possible to make a view for a git repository that recognizes its complexity. Since a repository usually contains a project, an IDE may be the view of choice for working with that repository.</p>
-    <p>However git is integrated with the shell, it is likely that "git repository" will be a new kind of item. A project is a git repository is a folder is an item.</p>
-    <p>The problem with git for the shell is that file metadata may be easily lost, no matter how it's stored. I have no solution for that at this time. It will likely require a special file in the directory containing metadata for a particular version.</p>
-    <h2>I need a terminal.</h2>
-    <p>There are templates for text shells and they use the terminal program to show the text shells. Once you've created a text shell item, by dragging and dropping from the template, you can configure it to your liking through the property panel. You can change the terminal program used as well as the text shell used in the terminal program. You can set environment variable, initialization files, etc. You can even run non-shell programs in the terminal.</p>
-    <h2>But I like applications!</h2>
-    <p>In that case, I strongly recommend you use a Mac. It provides the best application-oriented experience by far.</p>
+
   </body>
 </html>
