@@ -385,29 +385,42 @@
         return g;
       }
       function drawHScrollBar (parentElement,x,y,width,height) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        g.setAttribute("transform","translate("+x+","+y+")");
+        //var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        //g.setAttribute("transform","translate("+x+","+y+")");
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
+        //g.setAttribute("width",width);
+        //g.setAttribute("height",height);
         parentElement.insertAdjacentElement("beforeend", g);
-        drawTroughRect(g,0,0,width-height-height+3,height);
-        drawStepper(g,width-height-height+2,0,height,height,"left");
-        drawStepper(g,width-height+1,0,height,height,"right");
+        drawTroughRect(g,0,0,width-height-height+2,height);
+        drawStepper(g,width-height-height+1,0,height,height,"left");
+        drawStepper(g,width-height,0,height,height,"right");
         drawSlider(g,10,0,32,height,"horizontal");
         return g;
       }
       function drawVScrollBar (parentElement,x,y,width,height) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        g.setAttribute("transform","translate("+x+","+y+")");
+        //var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        //g.setAttribute("transform","translate("+x+","+y+")");
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
+        //g.setAttribute("width",width);
+        //g.setAttribute("height",height);
         parentElement.insertAdjacentElement("beforeend", g);
-        drawTroughRect(g,0,0,width,height-width-width+3);
-        drawStepper(g,0,height-width-width+2,width,width,"up");
-        drawStepper(g,0,height-width+1,width,width,"down");
+        drawTroughRect(g,0,0,width,height-width-width+2);
+        drawStepper(g,0,height-width-width+1,width,width,"up");
+        drawStepper(g,0,height-width,width,width,"down");
         drawSlider(g,0,10,width,32,"vertical");
         return g;
       }
       function drawInputField (parentElement,x,y,width,height) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        //var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("class","textfield");
-        g.setAttribute("transform","translate("+x+","+y+")");
+        //g.setAttribute("transform","translate("+x+","+y+")");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
 
@@ -455,10 +468,10 @@
         g.insertAdjacentElement("beforeend",h);
 
         if (showVScrollbar) {
-          drawVScrollBar(g,width-17,1,16,height-18);
+          drawVScrollBar(g,width-17,1,16,height-17);
         }
         if (showHScrollbar) {
-          drawHScrollBar(g,1,height-17,width-18,16);
+          drawHScrollBar(g,1,height-17,width-17,16);
         }
       }
       function drawSpinButton (parentElement,x,y,width,height) {
@@ -1456,7 +1469,7 @@
         drawBaseWindow(document.getElementById("openDialog"),0,0,400,300);
         drawOptionButton(document.getElementById("openDialog"),18,18,0,0,"$PWD");
         drawInputField(document.getElementById("openDialog"),18,58,364,183);
-        drawVScrollBar(document.getElementById("openDialog"),365,59,16,180);
+        drawVScrollBar(document.getElementById("openDialog"),365,59,16,181);
         drawPushButton(document.getElementById("openDialog"),236,260,0,0,"Cancel");
         drawPushButton(document.getElementById("openDialog"),318,260,0,0,"Open",true);
       </script>
@@ -1593,8 +1606,8 @@
         <polyline class="highlight" points="1.5,27 1.5,1.5 631,1.5"/>
       </g>
       <script>
-        drawVScrollBar(document.getElementById("spreadsheet"),620,78,16,382);
-        drawHScrollBar(document.getElementById("spreadsheet"),184,460,436,16);
+        drawVScrollBar(document.getElementById("spreadsheet"),620,78,16,383);
+        drawHScrollBar(document.getElementById("spreadsheet"),184,460,437,16);
         drawInputField(document.getElementById("spreadsheet"),82,54,500,22);
         drawButton(document.getElementById("spreadsheet"),10,54,22,22);
         drawButton(document.getElementById("spreadsheet"),34,54,22,22);
@@ -1627,8 +1640,8 @@
         <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
       </g>
       <script>
-        drawVScrollBar(document.getElementById("spreadsheet2"),620,51,16,382);
-        drawHScrollBar(document.getElementById("spreadsheet2"),184,433,436,16);
+        drawVScrollBar(document.getElementById("spreadsheet2"),620,51,16,383);
+        drawHScrollBar(document.getElementById("spreadsheet2"),184,433,437,16);
       </script>
       <g id="spreadsheet2-toolbar" transform="translate(0,450)">
         <script>
@@ -1701,7 +1714,15 @@
       <use x="75" y="100" xlink:href="#sheettab-inactive" fill="red" width="16" height="16"/>
       <use x="20" y="100" xlink:href="#sheettab-active" fill="red" width="16" height="16"/>
     </svg>
-
+    <div style="background-color: black; padding: 10px; width: fit-content">
+      <svg width="800" height="600"><title>Sign On Screen</title>
+        <rect width="800" height="600" fill="#808080"/>
+        <foreignObject x="300" y="200" width="200" height="200">
+          <h1>Hello, World!</h1>
+          <p>Some HTML.</p>
+        </foreignObject>
+      </svg>
+    </div>
     <div style="background-color: black; padding: 10px; width: fit-content">
       <svg width="800" height="600"><title>Desktop 0</title>
         <rect width="800" height="600" fill="#5d1803"/>
@@ -1936,6 +1957,11 @@
     <section><h2>Permanence</h2>
       <p>Items have permanence, and so do their views. Icons on the desktop don't move around or disappear unless the user moves or removes them. Where a property panel first opens is arbitrary, but when it opens a subsequent time, it appears where it was when it was closed the previous time. All the views of an item reappear where they disappeared.</p>
       <p>Views appear from somewhere and disappear to somewhere. Icons, which have fixed places in their folders, are an exception to this. If the item's icon view is on the screen, the other views of an item appear from it and disappear to it. If the item's icon view is not on the screen, then the other views of the item appear from and disappear to the nearest containing folder's icon view.</p>
+    </section>
+    <section><h2>The Menu Bar</h2>
+      <p>The shell has one menu bar at the top of the screen. The menu bar changes according to which view is active. Users should be able to do their work without using the menu bar, but it's there for less frequent commands. It also provides a space for some system status information.</p>
+      <p>If every view had its own menu bar, it would seem that menus are really important. They would take up a lot of screen real estate.</p>
+      <p>The menu bar is at the top of the screen where it can be easily reached and easily seen, but stays out of the way.</p>
     </section>
     <section><h2>Differences from Other GUIs</h2>
       <p>Some differences from other graphical user interfaces, especially those on Linux, should already be apparent.</p>
