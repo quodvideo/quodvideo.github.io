@@ -276,8 +276,10 @@
         return r;
       }
       function drawBaseWindow (parentElement,x,y,width,height) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        g.setAttribute("transform","translate("+x+","+y+")")
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        //g.setAttribute("transform","translate("+x+","+y+")")
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
         parentElement.insertAdjacentElement("beforeend",g);
         var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
         r.setAttribute("x", 0.5);
@@ -303,7 +305,7 @@
         return g;
       }
       function drawButton (parentElement,x,y,width,height,isDefault,isFocusable) {
-        if (0) {
+        if (1) {
           var g = document.createElementNS("http://www.w3.org/2000/svg","g");
           g.setAttribute("transform","translate("+x+","+y+")");
         } else {
@@ -537,6 +539,9 @@
       function drawCheckButton (parentElement,x,y,width,height,text,state) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","g");
         g.setAttribute("transform","translate("+x+","+y+")");
+        //var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        //g.setAttribute("x",x);
+        //g.setAttribute("y",y);
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
 
