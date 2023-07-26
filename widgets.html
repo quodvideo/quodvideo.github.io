@@ -137,7 +137,7 @@
           <path d="M1,16 L16 1 V16 Z" />
         </clipPath>
         <symbol id="newcornergrip">
-          <rect width="100" height="100" fill="url(#pattern0)" clip-path="url(#cornerclip)" />
+          <rect width="16" height="16" fill="url(#pattern0)" clip-path="url(#cornerclip)" />
         </symbol>
         <symbol id="newArrowDown" viewBox="-4 -6.5 16 16">
           <path d="M0,0 H8 L4,4Z" stroke="none" fill="var(--outline-color)"/>
@@ -277,9 +277,10 @@
       }
       function drawBaseWindow (parentElement,x,y,width,height) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
-        //g.setAttribute("transform","translate("+x+","+y+")")
         g.setAttribute("x",x);
         g.setAttribute("y",y);
+        g.setAttribute("width",width);
+        g.setAttribute("height",height);
         parentElement.insertAdjacentElement("beforeend",g);
         var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
         r.setAttribute("x", 0.5);
