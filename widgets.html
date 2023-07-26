@@ -303,17 +303,23 @@
         return g;
       }
       function drawButton (parentElement,x,y,width,height,isDefault,isFocusable) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        //var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        if (0) {
+          var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+          g.setAttribute("transform","translate("+x+","+y+")");
+        } else {
+          var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+          g.setAttribute("x",x);
+          g.setAttribute("y",y);
+        }
         g.setAttribute("class","button");
-        g.setAttribute("transform","translate("+x+","+y+")");
-        //g.setAttribute("x",x);
-        //g.setAttribute("y",y);
-        if (isFocusable) g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend", g);
 
         drawRaisedRect(g,0,0,width,height);
-        drawFocusRingRect(g,-2,-2,width+4,height+4);
+
+        if (isFocusable) {
+          g.setAttribute("tabindex",0);
+          drawFocusRingRect(g,-2,-2,width+4,height+4);
+        }
 
         if (isDefault) {
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
