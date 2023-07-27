@@ -315,14 +315,20 @@
         return g;
       }
       function drawPushButton (parentElement,x,y,width,height,text,isDefault) {
-        var tmpsvg = document.createElementNS("http://www.w3.org/2000/svg","svg");
-        parentElement.insertAdjacentElement("beforeend",tmpsvg);
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
+        g.setAttribute("class","button");
+        g.setAttribute("tabindex",0);
+        parentElement.insertAdjacentElement("beforeend", g);
+
+        drawRaisedRect(g,2,2,width,height);
 
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = text;
         txt.setAttribute("class","centered");
         txt.setAttribute("pointer-events","none");
-        tmpsvg.insertAdjacentElement("beforeend",txt);
+        g.insertAdjacentElement("beforeend",txt);
 
         var box = txt.getBBox();
         if (width<64) width=64;
@@ -330,14 +336,10 @@
         if (box.width+12 > width) width=Math.ceil(box.width)+12;
         if (box.height+5 > height) height=Math.ceil(box.height)+5;
         
-        txt.setAttribute("x",width/2);
-        txt.setAttribute("y",height/2);
+        txt.setAttribute("x",2+width/2);
+        txt.setAttribute("y",2+height/2);
 
-        var btn = drawButton (parentElement,x+2,y+2,width,height);
-        btn.insertAdjacentElement("beforeend",txt);
-
-        btn.setAttribute("tabindex",0);
-        drawFocusRingRect(btn,0,0,width+4,height+4);
+        drawFocusRingRect(g,0,0,width+4,height+4);
 
         if (isDefault) {
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
@@ -346,11 +348,9 @@
           r.setAttribute("width", width+1);
           r.setAttribute("height", height+1);
           r.setAttribute("style","fill: none; stroke: var(--outline-color);");
-          btn.insertAdjacentElement("beforeend", r);          
+          g.insertAdjacentElement("beforeend", r);          
         }
-        tmpsvg.remove();
-
-        return btn;
+        return g;
       }
       function drawStepper (parentElement,x,y,width,height,dir) {
         var stepper = drawButton(parentElement,x,y,width,height);
