@@ -322,8 +322,6 @@
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend", g);
 
-        drawRaisedRect(g,2,2,width,height);
-
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = text;
         txt.setAttribute("class","centered");
@@ -340,6 +338,7 @@
         txt.setAttribute("y",2+height/2);
 
         drawFocusRingRect(g,0,0,width+4,height+4);
+        drawRaisedRect(g,2,2,width,height);
 
         if (isDefault) {
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
