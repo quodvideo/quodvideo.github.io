@@ -35,6 +35,21 @@
         text-anchor: middle;
         dominant-baseline: central;
       }
+      .textfield {
+        cursor: text;
+        & rect:first-child {
+          fill: var(--input-field-color);
+          stroke: var(--outline-color);
+          + polyline {
+            fill: none;
+            stroke: var(--shadow-stroke-color);
+            + polyline {
+              fill: none;
+              stroke: var(--highlight-stroke-color);
+            }
+          }
+        }
+      }
       .button {
         cursor: default;
         & rect:first-child {
@@ -88,21 +103,7 @@
           }
         }
       }
-      .textfield {
-        cursor: text;
-        & rect:first-child {
-          fill: var(--input-field-color);
-          stroke: var(--outline-color);
-          + polyline {
-            fill: none;
-            stroke: var(--shadow-stroke-color);
-            + polyline {
-              fill: none;
-              stroke: var(--highlight-stroke-color);
-            }
-          }
-        }
-      }
+
       rect.focusring {
         fill: none;
         stroke: none;
