@@ -303,7 +303,7 @@
         g.insertAdjacentElement("beforeend",u);
         return g;
       }
-      function drawButton (parentElement,x,y,width,height,isFocusable) {
+      function drawButton (parentElement,x,y,width,height) {
         if (1) {
           var g = document.createElementNS("http://www.w3.org/2000/svg","g");
           g.setAttribute("transform","translate("+x+","+y+")");
@@ -316,11 +316,6 @@
         parentElement.insertAdjacentElement("beforeend", g);
 
         drawRaisedRect(g,0,0,width,height);
-
-        if (isFocusable) {
-          g.setAttribute("tabindex",0);
-          drawFocusRingRect(g,-2,-2,width+4,height+4);
-        }
 
         return g;
       }
@@ -343,8 +338,11 @@
         txt.setAttribute("x",width/2);
         txt.setAttribute("y",height/2);
 
-        var btn = drawButton (parentElement,x,y,width,height,true);
+        var btn = drawButton (parentElement,x,y,width,height);
         btn.insertAdjacentElement("beforeend",txt);
+
+        btn.setAttribute("tabindex",0);
+        drawFocusRingRect(btn,-2,-2,width+4,height+4);
 
         if (isDefault) {
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
@@ -356,11 +354,11 @@
           btn.insertAdjacentElement("beforeend", r);          
         }
         tmpsvg.remove();
-        
+
         return btn;
       }
       function drawStepper (parentElement,x,y,width,height,dir) {
-        var stepper = drawButton(parentElement,x,y,width,height,false);
+        var stepper = drawButton(parentElement,x,y,width,height);
         var stepperArrow = document.createElementNS("http://www.w3.org/2000/svg","use");
         stepperArrow.setAttribute("width",width);
         stepperArrow.setAttribute("height",height);
@@ -492,14 +490,14 @@
 
         var field = drawInputField(g,0,0,width,height);
 
-        var btndn = drawButton(g,1,1,height-2,height-2,false);
+        var btndn = drawButton(g,1,1,height-2,height-2);
         var minus = document.createElementNS("http://www.w3.org/2000/svg","use");
         minus.setAttribute("width",height-2);
         minus.setAttribute("height",height-2);
         minus.setAttributeNS("http://www.w3.org/1999/xlink","href","#minusSign");
         btndn.insertAdjacentElement("beforeend",minus);
 
-        var btnup = drawButton(g,width-height+1,1,height-2,height-2,false);
+        var btnup = drawButton(g,width-height+1,1,height-2,height-2);
         var plus = document.createElementNS("http://www.w3.org/2000/svg","use");
         plus.setAttribute("width",height-2);
         plus.setAttribute("height",height-2);
@@ -925,7 +923,7 @@
       drawHScrollBar(tf,10,10,100,16);
       drawVScrollBar(tf,120,10,16,100);
       drawPushButton(tf,10,30,0,0,"OK",true);
-      drawPushButton(tf,10,55,0,0,".......Cancel...........");
+      drawPushButton(tf,10,55,0,0,"Cancel");
       drawInputField(tf,10,80,100,22);
       drawSpinButton(tf,10,110,100,22);
       drawSwitch(tf,10,140,64,22,"off");
@@ -1132,9 +1130,9 @@
       </script>
       <g id="spreadsheet2-toolbar" transform="translate(0,450)">
         <script>
-          drawButton(document.getElementById("spreadsheet2-toolbar"),4,3,22,22,true);
-          drawButton(document.getElementById("spreadsheet2-toolbar"),28,3,22,22,true);
-          drawButton(document.getElementById("spreadsheet2-toolbar"),52,3,22,22,true);
+          drawButton(document.getElementById("spreadsheet2-toolbar"),4,3,22,22);
+          drawButton(document.getElementById("spreadsheet2-toolbar"),28,3,22,22);
+          drawButton(document.getElementById("spreadsheet2-toolbar"),52,3,22,22);
           drawInputField(document.getElementById("spreadsheet2-toolbar"),76,3,500,22);
         </script>
       </g>
