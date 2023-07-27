@@ -747,26 +747,28 @@
         return g;
       }
       function drawHLevel (parentElement,x,y,width,height) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        g.setAttribute("transform","translate("+x+","+y+")");
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend", g);
 
-        drawTroughRect(g,0,height/2-2,width,4);
-        drawSlider(g,10,0,height,height,"horizontal");
-        drawFocusRingRect(g,-2,-2,width+4,height+4);
+        drawTroughRect(g,2,height/2,width,4);
+        drawSlider(g,12,2,height,height,"horizontal");
+        drawFocusRingRect(g,0,0,width+4,height+4);
 
         return g;
       }
       function drawVLevel (parentElement,x,y,width,height) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        g.setAttribute("transform","translate("+x+","+y+")");
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend", g);
 
-        drawTroughRect(g,width/2-2,0,4,height);
-        drawSlider(g,0,10,width,width,"vertical");
-        drawFocusRingRect(g,-2,-2,width+4,height+4);
+        drawTroughRect(g,width/2,2,4,height);
+        drawSlider(g,2,12,width,width,"vertical");
+        drawFocusRingRect(g,0,0,width+4,height+4);
 
         return g;
       }
