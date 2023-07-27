@@ -630,7 +630,6 @@
         parentElement.insertAdjacentElement("beforeend",g);
 
         var g2 = document.createElementNS("http://www.w3.org/2000/svg","g");
-        g2.setAttribute("transform","translate(3,3)");
 
         var p1 = document.createElementNS("http://www.w3.org/2000/svg","path");
         p1.setAttribute("fill","var(--raised-fill-color)");
@@ -645,17 +644,17 @@
 
         switch (state) {
           case "closed":
-            g2.setAttribute("transform","translate(0.5,0.5)");
+            g2.setAttribute("transform","translate(3.5,3.5)");
             p2.setAttribute("d","M4,11 L9,6");
             p3.setAttribute("d","M4,11 V1 L9,6");
             break;
           case "turning":
-            g2.setAttribute("transform","rotate(45 6 6) translate(0.5,0.5)");
+            g2.setAttribute("transform"," translate(3.5,3.5) rotate(45 6 6)");
             p2.setAttribute("d","M4,11 L9,6 L4,1");
             p3.setAttribute("d","M4,11 V1");
             break;
           case "open":
-            g2.setAttribute("transform","rotate(90 6 6) translate(0.5,0.5)");
+            g2.setAttribute("transform","translate(3.5,3.5) rotate(90 6 6)");
             p2.setAttribute("d","M9,6 L4,1");
             p3.setAttribute("d","M 9,6 L4,11 V1");
             break;
