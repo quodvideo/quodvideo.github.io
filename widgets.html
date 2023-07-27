@@ -536,45 +536,45 @@
         return g;
       }
       function drawCheckButton (parentElement,x,y,width,height,text,state) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        g.setAttribute("transform","translate("+x+","+y+")");
-        //var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
-        //g.setAttribute("x",x);
-        //g.setAttribute("y",y);
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
 
         var cb = document.createElementNS("http://www.w3.org/2000/svg","use");
-        cb.setAttribute("x",0.5);
-        cb.setAttribute("y",0.5);
+        cb.setAttribute("x",3.5);
+        cb.setAttribute("y",3.5);
         cb.setAttributeNS("http://www.w3.org/1999/xlink","href","#checkbox");
         g.insertAdjacentElement("beforeend",cb);
 
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = text;
-        txt.setAttribute("x",16.5);
-        txt.setAttribute("y",10.5);
+        txt.setAttribute("x",19.5);
+        txt.setAttribute("y",13.5);
         g.insertAdjacentElement("beforeend",txt);
 
         switch (state) {
           case "mixed":
             var m = document.createElementNS("http://www.w3.org/2000/svg","line");
-            m.setAttribute("x1",2);
-            m.setAttribute("y1",6.5);
-            m.setAttribute("x2",11);
-            m.setAttribute("y2",6.5);
+            m.setAttribute("x1",5);
+            m.setAttribute("y1",9.5);
+            m.setAttribute("x2",14);
+            m.setAttribute("y2",9.5);
             m.setAttribute("stroke-width",2);
             m.setAttribute("stroke","var(--outline-color)");
             g.insertAdjacentElement("beforeend",m);
             break;
           case "on":
             var m = document.createElementNS("http://www.w3.org/2000/svg","use");
+            m.setAttribute("x",3);
+            m.setAttribute("y",3);
             m.setAttributeNS("http://www.w3.org/1999/xlink","href","#checkmark");
             g.insertAdjacentElement("beforeend",m);
             break;
         }
 
-        drawFocusRingRect(g,-3,-3,txt.getBBox().width + 25,19);
+        drawFocusRingRect(g,0,0,txt.getBBox().width + 25,19);
 
         return g;
       }
