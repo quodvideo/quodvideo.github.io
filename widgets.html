@@ -686,8 +686,9 @@
         return g;
       }
       function drawOptionButton (parentElement,x,y,width,height,text) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        g.setAttribute("transform","translate("+x+","+y+")");
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend", g);
 
@@ -703,8 +704,8 @@
         if (box.height+5 > height) height=Math.ceil(box.height)+5;
 
         var r = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        r.setAttribute("x", 0.5);
-        r.setAttribute("y", 0.5);
+        r.setAttribute("x", 2.5);
+        r.setAttribute("y", 2.5);
         r.setAttribute("width", width+height-1);
         r.setAttribute("height", height-1);
         r.setAttribute("fill","var(--raised-fill-color)");
@@ -713,36 +714,37 @@
 
         var s1 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         s1.setAttribute("class","shadow");
-        s1.setAttribute("points","1.5,"+(height-1.5)+" "+(width-0.5)+","+(height-1.5)+" "+(width-0.5)+",1.5");
+        s1.setAttribute("points","3.5,"+(2+height-1.5)+" "+(2+width-0.5)+","+(2+height-1.5)+" "+(2+width-0.5)+",3.5");
         g.insertAdjacentElement("beforeend",s1);
 
         var h1 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         h1.setAttribute("class","highlight");
-        h1.setAttribute("points","1.5,"+(height-1.5)+" 1.5,1.5 "+(width-0.5)+",1.5");
+        h1.setAttribute("points","3.5,"+(2+height-1.5)+" 3.5,3.5 "+(2+width-0.5)+",3.5");
         g.insertAdjacentElement("beforeend",h1);
 
         var s2 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         s2.setAttribute("class","shadow");
-        s2.setAttribute("points",(width+0.5)+","+(height-1.5)+" "+(width+height-1.5)+","+(height-1.5)+" "+(width+height-1.5)+",1.5");
+        s2.setAttribute("points",(2+width+0.5)+","+(2+height-1.5)+" "+(2+width+height-1.5)+","+(2+height-1.5)+" "+(2+width+height-1.5)+",3.5");
         g.insertAdjacentElement("beforeend",s2);
 
         var h2 = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         h2.setAttribute("class","highlight");
-        h2.setAttribute("points",(width+0.5)+","+(height-1.5)+" "+(width+0.5)+",1.5 "+(width+height-1.5)+",1.5");
+        h2.setAttribute("points",(2+width+0.5)+","+(2+height-1.5)+" "+(2+width+0.5)+",3.5 "+(2+width+height-1.5)+",3.5");
         g.insertAdjacentElement("beforeend",h2);
 
         var a = document.createElementNS("http://www.w3.org/2000/svg","use");
-        a.setAttribute("x",width+0.5);
+        a.setAttribute("x",width+2.5);
+        a.setAttribute("y",2);
         a.setAttribute("width",height-1);
         a.setAttribute("height",height-1);
         a.setAttributeNS("http://www.w3.org/1999/xlink","href","#newArrowDown");
         g.insertAdjacentElement("beforeend",a);
 
-        txt.setAttribute("x",width/2);
-        txt.setAttribute("y",height/2);
+        txt.setAttribute("x",2+width/2);
+        txt.setAttribute("y",2+height/2);
         g.insertAdjacentElement("beforeend",txt);
 
-        drawFocusRingRect(g,-2,-2,width+height+4,height+4);
+        drawFocusRingRect(g,0,0,width+height+4,height+4);
 
         return g;
       }
@@ -919,8 +921,8 @@
       }
       drawHScrollBar(tf,10,10,100,16);
       drawVScrollBar(tf,120,10,16,100);
-      drawPushButton(tf,10,30,0,0,"OK",true);
-      drawPushButton(tf,10,55,0,0,"Cancel");
+      drawPushButton(tf,10,27,0,0,"OK",true);
+      drawPushButton(tf,10,53,0,0,"Cancel");
       drawInputField(tf,10,80,100,22);
       drawSpinButton(tf,10,110,100,22);
       drawSwitch(tf,10,140,64,22,"off");
