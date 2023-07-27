@@ -304,14 +304,9 @@
         return g;
       }
       function drawButton (parentElement,x,y,width,height) {
-        if (0) {
-          var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-          g.setAttribute("transform","translate("+x+","+y+")");
-        } else {
-          var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
-          g.setAttribute("x",x);
-          g.setAttribute("y",y);
-        }
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
         g.setAttribute("class","button");
         parentElement.insertAdjacentElement("beforeend", g);
 
@@ -338,16 +333,16 @@
         txt.setAttribute("x",width/2);
         txt.setAttribute("y",height/2);
 
-        var btn = drawButton (parentElement,x,y,width,height);
+        var btn = drawButton (parentElement,x+2,y+2,width,height);
         btn.insertAdjacentElement("beforeend",txt);
 
         btn.setAttribute("tabindex",0);
-        drawFocusRingRect(btn,-2,-2,width+4,height+4);
+        drawFocusRingRect(btn,0,0,width+4,height+4);
 
         if (isDefault) {
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
-          r.setAttribute("x", -0.5);
-          r.setAttribute("y", -0.5);
+          r.setAttribute("x", 1.5);
+          r.setAttribute("y", 1.5);
           r.setAttribute("width", width+1);
           r.setAttribute("height", height+1);
           r.setAttribute("style","fill: none; stroke: var(--outline-color);");
