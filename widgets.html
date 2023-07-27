@@ -623,12 +623,15 @@
         return g;
       }
       function drawRevealButton (parentElement,x,y,width,height,text,state) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        g.setAttribute("transform","translate("+x+","+y+")");
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
 
         var g2 = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g2.setAttribute("transform","translate(3,3)");
+
         var p1 = document.createElementNS("http://www.w3.org/2000/svg","path");
         p1.setAttribute("fill","var(--raised-fill-color)");
         p1.setAttribute("stroke","var(--outline-color)");
@@ -671,11 +674,11 @@
 
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = text;
-        txt.setAttribute("x",16.5);
-        txt.setAttribute("y",10.5);
+        txt.setAttribute("x",19.5);
+        txt.setAttribute("y",13.5);
         g.insertAdjacentElement("beforeend",txt);
 
-        drawFocusRingRect(g,-3,-3,txt.getBBox().width + 25,19);
+        drawFocusRingRect(g,0,0,txt.getBBox().width + 25,19);
 
         return g;
       }
