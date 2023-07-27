@@ -337,8 +337,11 @@
         txt.setAttribute("x",2+width/2);
         txt.setAttribute("y",2+height/2);
 
-        drawFocusRingRect(g,0,0,width+4,height+4);
         drawRaisedRect(g,2,2,width,height);
+
+        g.insertAdjacentElement("beforeend",txt);
+
+        drawFocusRingRect(g,0,0,width+4,height+4);
 
         if (isDefault) {
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
