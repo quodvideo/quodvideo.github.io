@@ -303,7 +303,7 @@
         g.insertAdjacentElement("beforeend",u);
         return g;
       }
-      function drawButton (parentElement,x,y,width,height,isDefault,isFocusable) {
+      function drawButton (parentElement,x,y,width,height,isFocusable) {
         if (1) {
           var g = document.createElementNS("http://www.w3.org/2000/svg","g");
           g.setAttribute("transform","translate("+x+","+y+")");
@@ -322,16 +322,6 @@
           drawFocusRingRect(g,-2,-2,width+4,height+4);
         }
 
-        if (isDefault) {
-          var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
-          r.setAttribute("x", -0.5);
-          r.setAttribute("y", -0.5);
-          r.setAttribute("width", width+1);
-          r.setAttribute("height", height+1);
-          r.setAttribute("style","fill: none; stroke: var(--outline-color);");
-          g.insertAdjacentElement("beforeend", r);          
-        }
-
         return g;
       }
       function drawPushButton (parentElement,x,y,width,height,text,isDefault) {
@@ -339,19 +329,33 @@
         txt.innerHTML = text;
         txt.setAttribute("class","centered");
         txt.setAttribute("pointer-events","none");
+        
         var box = txt.getBBox();
         if (width<64) width=64;
         if (height<22) height=22;
         if (box.width+12 > width) width=Math.ceil(box.width)+12;
-        if (box.height+5 > height) height=(box.height)+5;
+        if (box.height+5 > height) height=Math.ceil(box.height)+5;
+        
         txt.setAttribute("x",width/2);
         txt.setAttribute("y",height/2);
-        var btn = drawButton (parentElement,x,y,width,height,isDefault,true);
+
+        var btn = drawButton (parentElement,x,y,width,height,true);
         btn.insertAdjacentElement("beforeend",txt);
+
+        if (isDefault) {
+          var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          r.setAttribute("x", -0.5);
+          r.setAttribute("y", -0.5);
+          r.setAttribute("width", width+1);
+          r.setAttribute("height", height+1);
+          r.setAttribute("style","fill: none; stroke: var(--outline-color);");
+          btn.insertAdjacentElement("beforeend", r);          
+        }
+
         return btn;
       }
       function drawStepper (parentElement,x,y,width,height,dir) {
-        var stepper = drawButton(parentElement,x,y,width,height,false,false);
+        var stepper = drawButton(parentElement,x,y,width,height,false);
         var stepperArrow = document.createElementNS("http://www.w3.org/2000/svg","use");
         stepperArrow.setAttribute("width",width);
         stepperArrow.setAttribute("height",height);
@@ -392,33 +396,29 @@
         return g;
       }
       function drawHScrollBar (parentElement,x,y,width,height) {
-        //var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        //g.setAttribute("transform","translate("+x+","+y+")");
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
-        //g.setAttribute("width",width);
-        //g.setAttribute("height",height);
         parentElement.insertAdjacentElement("beforeend", g);
+
         drawTroughRect(g,0,0,width-height-height+2,height);
         drawStepper(g,width-height-height+1,0,height,height,"left");
         drawStepper(g,width-height,0,height,height,"right");
         drawSlider(g,10,0,32,height,"horizontal");
+
         return g;
       }
       function drawVScrollBar (parentElement,x,y,width,height) {
-        //var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        //g.setAttribute("transform","translate("+x+","+y+")");
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
-        //g.setAttribute("width",width);
-        //g.setAttribute("height",height);
         parentElement.insertAdjacentElement("beforeend", g);
+
         drawTroughRect(g,0,0,width,height-width-width+2);
         drawStepper(g,0,height-width-width+1,width,width,"up");
         drawStepper(g,0,height-width,width,width,"down");
         drawSlider(g,0,10,width,32,"vertical");
+
         return g;
       }
       function drawInputField (parentElement,x,y,width,height) {
@@ -487,14 +487,14 @@
 
         var field = drawInputField(g,0,0,width,height);
 
-        var btndn = drawButton(g,1,1,height-2,height-2,false,false);
+        var btndn = drawButton(g,1,1,height-2,height-2,false);
         var minus = document.createElementNS("http://www.w3.org/2000/svg","use");
         minus.setAttribute("width",height-2);
         minus.setAttribute("height",height-2);
         minus.setAttributeNS("http://www.w3.org/1999/xlink","href","#minusSign");
         btndn.insertAdjacentElement("beforeend",minus);
 
-        var btnup = drawButton(g,width-height+1,1,height-2,height-2,false,false);
+        var btnup = drawButton(g,width-height+1,1,height-2,height-2,false);
         var plus = document.createElementNS("http://www.w3.org/2000/svg","use");
         plus.setAttribute("width",height-2);
         plus.setAttribute("height",height-2);
@@ -920,7 +920,7 @@
       drawHScrollBar(tf,10,10,100,16);
       drawVScrollBar(tf,120,10,16,100);
       drawPushButton(tf,10,30,0,0,"OK",true);
-      drawPushButton(tf,10,55,0,0,"Cancel");
+      drawPushButton(tf,10,55,0,0,".......Cancel...........");
       drawInputField(tf,10,80,100,22);
       drawSpinButton(tf,10,110,100,22);
       drawSwitch(tf,10,140,64,22,"off");
@@ -1127,9 +1127,9 @@
       </script>
       <g id="spreadsheet2-toolbar" transform="translate(0,450)">
         <script>
-          drawButton(document.getElementById("spreadsheet2-toolbar"),4,3,22,22,false,true);
-          drawButton(document.getElementById("spreadsheet2-toolbar"),28,3,22,22,false,true);
-          drawButton(document.getElementById("spreadsheet2-toolbar"),52,3,22,22,false,true);
+          drawButton(document.getElementById("spreadsheet2-toolbar"),4,3,22,22,true);
+          drawButton(document.getElementById("spreadsheet2-toolbar"),28,3,22,22,true);
+          drawButton(document.getElementById("spreadsheet2-toolbar"),52,3,22,22,true);
           drawInputField(document.getElementById("spreadsheet2-toolbar"),76,3,500,22);
         </script>
       </g>
