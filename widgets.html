@@ -325,11 +325,15 @@
         return g;
       }
       function drawPushButton (parentElement,x,y,width,height,text,isDefault) {
+        var tmpsvg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        parentElement.insertAdjacentElement("beforeend",tmpsvg);
+
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = text;
         txt.setAttribute("class","centered");
         txt.setAttribute("pointer-events","none");
-        
+        tmpsvg.insertAdjacentElement("beforeend",txt);
+
         var box = txt.getBBox();
         if (width<64) width=64;
         if (height<22) height=22;
@@ -351,7 +355,8 @@
           r.setAttribute("style","fill: none; stroke: var(--outline-color);");
           btn.insertAdjacentElement("beforeend", r);          
         }
-
+        tmpsvg.remove();
+        
         return btn;
       }
       function drawStepper (parentElement,x,y,width,height,dir) {
