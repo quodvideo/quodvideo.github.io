@@ -518,20 +518,24 @@
             word = "ON";
             break;
         }
-        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        g.setAttribute("transform","translate("+x+","+y+")");
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
-        var trough = drawTroughRect(g,0,0,width,height);
-        var slider = drawSlider(g,sliderX,0,width/2,height);
+
+        var trough = drawTroughRect(g,2,2,width,height);
+
+        var slider = drawSlider(g,2+sliderX,2,width/2,height);
+
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = word;
         txt.setAttribute("class","centered");
-        txt.setAttribute("x",textX);
-        txt.setAttribute("y",height/2);
+        txt.setAttribute("x",2+textX);
+        txt.setAttribute("y",2+height/2);
         g.insertAdjacentElement("beforeend",txt);
 
-        drawFocusRingRect(g,-2,-2,width+4,height+4);
+        drawFocusRingRect(g,0,0,width+4,height+4);
 
         return g;
       }
