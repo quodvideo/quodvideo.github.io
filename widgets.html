@@ -112,9 +112,9 @@
         fill: none;
         stroke: var(--outline-color);
       }
-      section:has(+ h3) {
-        margin-left: 20%;
-        margin-right: 20%;
+      section {
+        margin-left: 10%;
+        margin-right: 10%;
       }
     </style>
   </head>
@@ -959,8 +959,8 @@
         drawOptionButton(document.getElementById("openDialog"),18,18,0,0,"$PWD");
         drawInputField(document.getElementById("openDialog"),18,58,364,183);
         drawVScrollBar(document.getElementById("openDialog"),365,59,16,181);
-        drawPushButton(document.getElementById("openDialog"),236,260,0,0,"Cancel");
-        drawPushButton(document.getElementById("openDialog"),318,260,0,0,"Open",true);
+        drawPushButton(document.getElementById("openDialog"),233,257,0,0,"Cancel");
+        drawPushButton(document.getElementById("openDialog"),315,257,0,0,"Open",true);
       </script>
     </svg>
     <svg width="400" height="300" id="saveDialog"><title>Save Dialog</title>
@@ -969,8 +969,8 @@
         drawOptionButton(document.getElementById("saveDialog"),18,18,0,0,"$PWD");
         drawInputField(document.getElementById("saveDialog"),18,58,364,142);
         drawInputField(document.getElementById("saveDialog"),18,220,364,22);
-        drawPushButton(document.getElementById("saveDialog"),236,260,0,0,"Cancel");
-        drawPushButton(document.getElementById("saveDialog"),318,260,0,0,"Save",true);
+        drawPushButton(document.getElementById("saveDialog"),233,257,0,0,"Cancel");
+        drawPushButton(document.getElementById("saveDialog"),315,257,0,0,"Save",true);
       </script>
     </svg>
     <svg width="400" height="300" id="programSettingsPanel"><title>Program Settings Panel</title>
@@ -1212,6 +1212,12 @@
             <p>Some HTML.</p>
           </div>
         </foreignObject>
+        <use xlink:href="#folderIcon" x="12" y="420" width="48" height="48"/>
+        <text x="72" y="444">Alice</text>
+        <use xlink:href="#folderIcon" x="12" y="480" width="48" height="48"/>
+        <text x="72" y="504">Bob</text>
+        <use xlink:href="#folderIcon" x="12" y="540" width="48" height="48"/>
+        <text x="72" y="564">Carol</text>
       </svg>
     </div>
     <div style="background-color: black; padding: 10px; width: fit-content">
@@ -1448,6 +1454,7 @@
     <section><h2>Permanence</h2>
       <p>Items have permanence, and so do their views. Icons on the desktop don't move around or disappear unless the user moves or removes them. Where a property panel first opens is arbitrary, but when it opens a subsequent time, it appears where it was when it was closed the previous time. All the views of an item reappear where they disappeared.</p>
       <p>Views appear from somewhere and disappear to somewhere. Icons, which have fixed places in their folders, are an exception to this. If the item's icon view is on the screen, the other views of an item appear from it and disappear to it. If the item's icon view is not on the screen, then the other views of the item appear from and disappear to the nearest containing folder's icon view.</p>
+      <p>How can there be permanence on impermanent displays? Perhaps with more metadata.</p>
     </section>
     <section><h2>Overlays</h2>
       <section><h3>The Menu Bar</h3>
@@ -1466,7 +1473,6 @@
         <p>The notification center shows a log of recent notifications, as well as a calendar and some other controls.</p>
       </section>
     </section>
-    
     <section><h2>Differences from Other GUIs</h2>
       <p>Some differences from other graphical user interfaces, especially those on Linux, should already be apparent.</p>
       <p>There are three applications on Linux that are reimagined in this shell: the window manager, the file manager, and the session manager.</p>
@@ -1561,9 +1567,11 @@
       <p>A few containers are special in that they tend to be large and unique. They may also be used by many programs.</p>
       <section><h3>Address Book</h3>
         <p>The address book is a container for contacts, and contacts may be used in many different ways. An item's metadata may indicate a contact as the author or sender of the item. Contacts should be available for email and also for event planning.</p>
+        <p>Every contact should appear in the main address book. The contact template should make sure this happens. What if a type of contact is created? How does the template for the new type ensure the behavior of adding to the main address book?</p>
       </section>
       <section><h3>Calendar</h3>
         <p>The calendar is a container for events, and events happen all the time. something something integrated activity journal</p>
+        <p>As with the address book, all events should appear on the main calendar. Same problems here.</p>
       </section>
       <section><h3>Mail Boxes</h3>
         <p>The mail boxes are containers for messages. ???</p>
