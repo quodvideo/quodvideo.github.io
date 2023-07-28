@@ -112,6 +112,10 @@
         fill: none;
         stroke: var(--outline-color);
       }
+      section:has(+ h3) {
+        margin-left: 20%;
+        margin-right: 20%;
+      }
     </style>
   </head>
   <body>
@@ -942,7 +946,7 @@
       drawVLevel(tf,120,470,16,100)
       drawCutawayField(tf,170,10,118,118,true,true);
       drawTabs(tf,170,140,240,28,["a","b","c"],0);
-      drawTabs(tf,170,170,240,28,["a","blahblahblah","c"],1);
+      drawTabs(tf,170,170,240,28,["a","b","c"],1);
       drawTabs(tf,170,200,240,28,["a","b","c"],2);
 
     </script>
@@ -1445,11 +1449,24 @@
       <p>Items have permanence, and so do their views. Icons on the desktop don't move around or disappear unless the user moves or removes them. Where a property panel first opens is arbitrary, but when it opens a subsequent time, it appears where it was when it was closed the previous time. All the views of an item reappear where they disappeared.</p>
       <p>Views appear from somewhere and disappear to somewhere. Icons, which have fixed places in their folders, are an exception to this. If the item's icon view is on the screen, the other views of an item appear from it and disappear to it. If the item's icon view is not on the screen, then the other views of the item appear from and disappear to the nearest containing folder's icon view.</p>
     </section>
-    <section><h2>The Menu Bar</h2>
-      <p>The shell has one menu bar at the top of the screen. The menu bar changes according to which view is active. Users should be able to do their work without using the menu bar, but it's there for less frequent commands. It also provides a space for some system status information.</p>
-      <p>If every view had its own menu bar, it would seem that menus are really important. They would take up a lot of screen real estate.</p>
-      <p>The menu bar is at the top of the screen where it can be easily reached and easily seen, but stays out of the way.</p>
+    <section><h2>Overlays</h2>
+      <section><h3>The Menu Bar</h3>
+        <p>The shell has one menu bar at the top of the screen. The menu bar changes according to which view is active. Users should be able to do their work without using the menu bar, but it's there for less frequent commands. It also provides a space for some system status information.</p>
+        <p>If every view had its own menu bar, it would seem that menus are really important. They would take up a lot of screen real estate.</p>
+        <p>The menu bar is at the top of the screen where it can be easily reached and easily seen, but stays out of the way.</p>
+      </section>
+      <section><h3>Zoom Out</h3>
+        <p>The zoom out overlay brings all open views onto the screen.</p>
+      </section>
+      <section><h3>Notifications</h3>
+        <p>Some notifications may briefly appear in small overlays.</p>
+      </section>
+      <section><h3>Notification Center</h3>
+        <p>Rename this?</p>
+        <p>The notification center shows a log of recent notifications, as well as a calendar and some other controls.</p>
+      </section>
     </section>
+    
     <section><h2>Differences from Other GUIs</h2>
       <p>Some differences from other graphical user interfaces, especially those on Linux, should already be apparent.</p>
       <p>There are three applications on Linux that are reimagined in this shell: the window manager, the file manager, and the session manager.</p>
