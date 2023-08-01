@@ -116,6 +116,10 @@
         margin-left: 10%;
         margin-right: 10%;
       }
+      rum {
+        display: inline;
+        font-style: italic;
+      }
     </style>
   </head>
   <body>
@@ -1498,16 +1502,24 @@
       <p>Folders should tend to be shallow. They're for the user's work, not for viewing the entirety of a unix filesystem. Some of the natural depth should be swept into projects which open into project views instead of folder views.</p>
       <p>Folders should tend to be small. Folders containing lots of similar items should probably have another view which manages the size of folder.</p>
       <p>When folders get large or deep, there may be a need for a new kind of view.</p>
+      <p><strong>A deep folder suggests a need for project management.</strong> For example, source code should by default open in an IDE.</p>
+      <p><strong>A large folder suggests a need for catalogue management.</strong> For example, the special containers described elsewhere.</p>
+      <p>Developers should look for opportunities to manage folder depth and size. Users should complain when things get out of hand. A dialog between users and developers should help the system grow.</p>
       <p>Folders provide screen positions for both icons and views to opening views. These positions are shared with the window manager which may then animate the transition from an icon to another view. If the folder for an item is closed when the non-icon view is still visible, then the animation closing the open view will show it going to the containing folder's icon. If that icon is not visible, it will go to the next containing folder's icon, and so forth down to an icon on the desktop. (How?)</p>
       <p>A workspace item combines file and session management functions. As a file manager, it displays icons for its contents. As a session manager, it keeps track of other views of its contents.</p>
     </section>
     <section><h2>Expectations of Views</h2>
       <ul>
-        <li>(Registration?)</li>
+        <li>Registration
+          <ul>
+            <li>Views must register <rum>(Where?)</rum> to handle item types.</li>
+          </ul>
+        </li>
         <li>Opening
           <ul>
             <li>Will receive timestamp</li>
             <li>Will receive icon position</li>
+            <li>Will receive session manager data</li>
             <li>Communicate with session manager</li>
             <li>Communicate with window manager. Icon position should be provided before mapping.</li>
             <li>Request focus using timestamp. Focus is not guaranteed.</li>
@@ -1529,16 +1541,16 @@
         </li>
       </ul>
       <p>Views are responsible for communicating with the window manager and their session manager. To present a window, a view must communicate to the window manager the position information it receives when opened. This information includes icon positions in container windows between the view and the desktop. The view will also receive a timestamp corresponding to the event which opened the view and must use this timestamp to set focus when its window is mapped. Focus is not guaranteed! If another view has received focus in between the opening event and the mapping of the window, then it will not receive focus. If and when the window does receive focus, it should ask to be raised.</p>
-      <p>(Default stacking position, controlled by the window manager, should be above the container window communicated in the startup info.)</p>
+      <p><rum>Default stacking position, controlled by the window manager, should be above the container window communicated in the startup info.</rum></p>
       <p>A view must communicate updates to its window position to the session manager. (The session manager will set metadata accordingly, probably by communicating with the file manager.)</p>
-      <p>(Should there be a FILE_MANAGER? Is the session manager enough?)</p>
-      <p>If a view contains items which may be opened in other windows, it should act as a folder or workspace. (Which?)</p>
+      <p><rum>Should there be a FILE_MANAGER? Is the session manager enough?</rum></p>
+      <p>If a view contains items which may be opened in other windows, it should act as a folder or workspace. <rum>Which?</rum></p>
       <p>A view may use alerts, dialogs, palettes, panels, or other transient windows. They should be marked as such for the window manager.</p>
-      <p>(Palettes should hide on focus loss, but alerts and dialogs should not. What about other panels?)</p>
+      <p><rum>Palettes should hide on focus loss, but alerts and dialogs should not. What about other panels?</rum></p>
       <p>Folder views must provide to . . . </p>
-      <p>Is the property panel another process? Maybe. It should be treated like any other view. How do all the views synchronize?</p>
-      <p>For moving to Wayland, I'll probably need a trace protocol to make the connections between desktops and views.</p>
-      <p>IDK what people are doing for session management these days.</p>
+      <p><rum>Is the property panel another process? Maybe. It should be treated like any other view. How do all the views synchronize?</rum></p>
+      <p><rum>For moving to Wayland, I'll probably need a trace protocol to make the connections between desktops and views.</rum></p>
+      <p><rum>IDK what people are doing for session management these days.</rum></p>
       <p>If a view contains items, it should accept template drops to create new items.</p>
     </section>
     <section><h2>Some Implementation Thoughts</h2>
