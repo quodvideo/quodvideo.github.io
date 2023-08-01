@@ -77,6 +77,19 @@
           }
         }
       }
+      .activetoggle {
+        cursor: default;
+        & rect:first-child {
+          fill: var(--recessed-fill-color);
+          stroke: var(--outline-color);
+          + polyline {
+            stroke: var(--highlight-stroke-color);              
+            + polyline {
+              stroke: var(--shadow-stroke-color);
+            }
+          }
+        }
+      }
       rect.trough {
         fill: var(--recessed-fill-color);
         stroke: var(--outline-color);
@@ -362,6 +375,10 @@
           g.insertAdjacentElement("beforeend", r);          
         }
         return g;
+      }
+      function drawToggledButton (parentElement,x,y,width,height,text) {
+        var b = drawPushButton(parentElement,x,y,width,height,text,false);
+        b.setAttribute("class","activetoggle");
       }
       function drawStepper (parentElement,x,y,width,height,dir) {
         var stepper = drawButton(parentElement,x,y,width,height);
@@ -947,7 +964,7 @@
       drawTabs(tf,170,140,240,28,["a","b","c"],0);
       drawTabs(tf,170,170,240,28,["a","b","c"],1);
       drawTabs(tf,170,200,240,28,["a","b","c"],2);
-
+      drawToggledButton(tf,170,230,64,22,"Blush");
     </script>
     <br/>
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
