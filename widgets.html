@@ -1471,8 +1471,28 @@
     <section><h2>Differences from Other GUIs</h2>
       <p>Some differences from other graphical user interfaces, especially those on Linux, should already be apparent.</p>
       <p>There are three applications on Linux that are reimagined in this shell: the window manager, the file manager, and the session manager.</p>
-      <p>The window manager does very little in the normal order of things. It keeps overlays, including the menu bar, on top, and it keeps desktops on the bottom. It provides switching between desktops and keyboard-based switching between windows. It does not draw window frames, but it may provide effects like shadows. It does not reparent windows. It may provide a virtual desktop which is larger than the screen. It provides a window switching overlay. In the event of a window being closed, it ensures the right window has keyboard focus. Mouse-based focus is managed by the windows themselves using the globally active input model of the ICCCM. It may restrict the movement and placement of windows, but it mostly respects what clients give it. (The constraints on movements should suffice to constrain placement, because windows will only ask to be placed where they were before.) Window stacking order has some contraints, to keep overlays and desktops right, but clients are expected to raise their windows appropriately.</p>
-      <p>The file manager is mostly replaced by folders. Browsing the file system, as with most modern file managers, is relegated to a utility which most users won't need. The user model of items and folders is preferred by the GUI over the programmer's model of files and directories.</p>
+      <section><h3>The Window Manager</h3>
+        <p>The window manager does very little in the normal order of things.</p>
+        <ul>
+          <li>It keeps overlays, including the menu bar, on top.</li>
+          <li>It keeps desktops on the bottom.</li>
+          <li>It provides switching between desktops and keyboard-based switching between windows.</li>
+          <li>It does not draw window frames, but it may provide effects like shadows.</li>
+          <li>It does not reparent windows.</li>
+          <li>It may provide a virtual desktop which is larger than the screen.</li>
+          <li>It provides a window switching overlay.</li>
+          <li>In the event of a window being closed, it ensures the right window has keyboard focus.</li>
+          <li>It may restrict the movement and placement of windows, but it mostly respects what clients give it. (The constraints on movements should suffice to constrain placement, because windows will only ask to be placed where they were before.)</li>
+        </ul>
+        <p>Mouse-based focus is managed by the windows themselves using the globally active input model of the ICCCM. Window stacking order has some contraints, to keep overlays and desktops right, but clients are expected to raise their windows appropriately. This means that if a client receives input focus on a window, it should raise that window and any of its transients to the top of the stack, calling <code>XRaiseWindow</code>. If the focussed window is a transient for another client window, i.e. a dialog for a parent window, then both windows should be raised and stacked transient over parent.</p>
+      </section>
+      <section><h3>The File Manager</h3>
+        <p>The file manager is mostly replaced by folders. Browsing the file system, as with most modern file managers, is relegated to a utility which most users won't need. The user model of items and folders is preferred by the GUI over the programmer's model of files and directories.</p>
+        <p>Users are free to arrange for the file browser to be the default view for any folder.</p>
+      </section>
+      <section><h3>The Session Manager</h3>
+        <p>The session manager is replaced by workspace folders. The principle user session is tied to the user's primary desktop, which is a workspace folder. Subsessions are created when other workspace folders, including other desktops, are opened.</p>
+      </section>
     </section>
     <section><h2>Notes on Folders</h2>
       <p>Folders should tend to be shallow. They're for the user's work, not for viewing the entirety of a unix filesystem. Some of the natural depth should be swept into projects which open into project views instead of folder views.</p>
