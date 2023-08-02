@@ -1005,8 +1005,10 @@
       drawTabs(tf,170,170,240,28,["a","b","c"],1);
       drawTabs(tf,170,200,240,28,["a","b","c"],2);
       drawToggledButton(tf,170,230,64,22,"Blush");
-      var ins = drawPushButton(tf,170,260,64,22,"OK",true);
-      ins.setAttribute("class","button insensitive");
+      var insb = drawPushButton(tf,170,260,64,22,"OK",true);
+      insb.setAttribute("class","button insensitive");
+      var inst = drawInputField(tf,170,290,100,22);
+      inst.setAttribute("class","textfield insensitive");
     </script>
     <br/>
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
