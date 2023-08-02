@@ -87,6 +87,16 @@
             }
           }
         }
+        &.insensitive {
+          & rect:first-child {
+            + polyline {
+              stroke: none;
+              + polyline {
+                stroke: none;
+              }
+            }
+          }
+        }
       }
       .activetoggle {
         cursor: default;
