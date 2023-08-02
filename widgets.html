@@ -157,6 +157,14 @@
         fill: none;
         stroke: var(--outline-color);
       }
+      rect.defaultIndicator {
+        fill: none;
+        stroke: var(--outline-color);
+      }
+      .insensitive rect.defaultIndicator {
+        fill: none;
+        stroke: #808080;
+      }
       section {
         margin-left: 10%;
         margin-right: 10%;
@@ -403,7 +411,7 @@
           r.setAttribute("y", 1.5);
           r.setAttribute("width", width+1);
           r.setAttribute("height", height+1);
-          r.setAttribute("style","fill: none; stroke: var(--outline-color);");
+          r.setAttribute("class","defaultIndicator");
           g.insertAdjacentElement("beforeend", r);          
         }
         return g;
