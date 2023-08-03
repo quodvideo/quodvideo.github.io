@@ -1009,6 +1009,8 @@
       insb.setAttribute("class","button insensitive");
       var inst = drawInputField(tf,170,290,100,22);
       inst.setAttribute("class","textfield insensitive");
+      var inss = drawSpinButton(tf,170,320,100,22);
+      inss.setAttribute("class","textfield insensitive");
     </script>
     <br/>
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
@@ -1514,7 +1516,7 @@
     <section><h2>Permanence</h2>
       <p>Items have permanence, and so do their views. Icons on the desktop don't move around or disappear unless the user moves or removes them. Where a property panel first opens is arbitrary, but when it opens a subsequent time, it appears where it was when it was closed the previous time. All the views of an item reappear where they disappeared.</p>
       <p>Views appear from somewhere and disappear to somewhere. Icons, which have fixed places in their folders, are an exception to this. If the item's icon view is on the screen, the other views of an item appear from it and disappear to it. If the item's icon view is not on the screen, then the other views of the item appear from and disappear to the nearest containing folder's icon view.</p>
-      <p>How can there be permanence on impermanent displays? Perhaps with more metadata.</p>
+      <p><rum>How can there be permanence on impermanent displays? Perhaps with more metadata.</rum></p>
     </section>
     <section><h2>Overlays</h2>
       <section><h3>The Menu Bar</h3>
@@ -1553,7 +1555,8 @@
       </section>
       <section><h3>The File Manager</h3>
         <p>The file manager is mostly replaced by folders. Browsing the file system, as with most modern file managers, is relegated to a utility which most users won't need. The user model of items and folders is preferred by the GUI over the programmer's model of files and directories.</p>
-        <p>Users are free to arrange for the file browser to be the default view for any folder.</p>
+        <p>Users are free to arrange for a file browser to be the default view for any folder.</p>
+        <p>The system as a whole is an item manager. Items may be files, and they may also be database objects. For example, an address book can be a directory full of vCards or a database of contacts.</p>
       </section>
       <section><h3>The Session Manager</h3>
         <p>The session manager is replaced by workspace folders. The principle user session is tied to the user's primary desktop, which is a workspace folder. Subsessions are created when other workspace folders, including other desktops, are opened.</p>
@@ -1655,7 +1658,7 @@
       <p>A few containers are special in that they tend to be large and unique. They may also be used by many programs.</p>
       <section><h3>Address Book</h3>
         <p>The address book is a container for contacts, and contacts may be used in many different ways. An item's metadata may indicate a contact as the author or sender of the item. Contacts should be available for email and also for event planning.</p>
-        <p>Every contact should appear in the main address book. The contact template should make sure this happens. What if a type of contact is created? How does the template for the new type ensure the behavior of adding to the main address book?</p>
+        <p>Every contact should appear in the main address book. The contact template should make sure this happens. <rum>What if a type of contact is created? How does the template for the new type ensure the behavior of adding to the main address book?</rum></p>
       </section>
       <section><h3>Calendar</h3>
         <p>The calendar is a container for events, and events happen all the time. something something integrated activity journal</p>
@@ -1672,6 +1675,9 @@
     </section>
     <section><h2>Containers and Items</h2>
       <section><h3>Folders, Workspaces, Desktops</h3></section>
+      <section><h3>Connections</h3>
+        <p>There's a remote desktop application, but you never run the application. Instead, you double-click the icon representing an RDP connection. To create a new RDP connection, you drag an icon off the RDP connection template and drop it somewhere. By default, this opens the property panel for the connection. From then on, you just double-click the icon to open the connection. You can shift-double-click to open the property panel again. or you can configure it in the connection's window, using the menu bar.</p>
+      </section>
       <section><h3>Archives</h3>
         <p>An archive is a kind of folder.</p>
       </section>
@@ -1695,7 +1701,9 @@
       <section><h3>Documentation</h3></section>
       <section><h3>Ledgers</h3></section>
       <section><h3>Programs</h3></section>
-      <section><h3>Projects</h3></section>
+      <section><h3>Projects and Solutions</h3>
+        <p>The default view of a project or a solution is an IDE.</p>
+      </section>
       <section><h3>Portfolios</h3></section>
       <section><h3>Libraries and their contents</h3></section>
       <section><h3>Raster and Vector Images</h3></section>
@@ -1725,14 +1733,6 @@
 <hr />
     <p>Everything is an item.</p>
     <p>There's a text editor, but you never run the editor.  Instead, you double-click the icon representing a text file. To create a new text file, you drag an icon off the text file template and drop it somewhere. By default, this opens the property panel for the text file. From then on, you just double-click the icon to open the text file. You can shift-double-click to open the property panel again. or you can configure it in the text file's window, using the menu bar.</p></p>
-    <p>There's an IDE, but you never run it. Instead, you open a project folder and you see the IDE view of the project contents.</p>
-    <p>There's a remote desktop application, but you never run the application. Instead, you double-click the icon representing an RDP connection. To create a new RDP connection, you drag an icon off the RDP connection template and drop it somewhere. By default, this opens the property panel for the connection. From then on, you just double-click the icon to open the connection. You can shift-double-click to open the property panel again. or you can configure it in the connection's window, using the menu bar.</p>
-    <p>There's an address book, but . . . I'm not sure here. It can be just a folder with vcards that opens up in a special view, but maybe it should be a special database. In either case, there can be a view that looks like the other one. The tricky part is having the address book as a service and at the same time allowing vcards to be anywhere on the system.</p>
-    <p>So, the address book may be a really good example for how there are objects and views, but no applications.</p>
-    <p>The web browser is an exception; it's both an application and an object unto itself.</p>
-    <p>The file manager is a key component. In a sense, it is the whole thing. Once a user has signed in, an object called the desktop is shown. The desktop is a special kind of workspace folder, and a workspace folder is a special kind of folder. A folder is a container for other items which is typically viewed as a field of icons. A workspace folder is a folder with memory; it remembers which items in it are open. A desktop is a workspace folder that is shown underneath everything else, without a frame. A user can have more than one desktop, but one is special as the starting desktop.</p>
-    <p>The menu bar, being at the top of the screen, might seem important, but it's not. It's the interface of last resort and a system status bar. Showing a menu bar in each window would suggest that the menu bar is a big part of interacting with any object, but it shouldn't be. The top of the screen is a convenient place to reach when nothing else is going right.</p>
-    <p>There are some overlay views. There's one that shows all the open objects. Another shows notifications and system status.</p>
     <p>The desktop is the starting point. It contains a few items. An important one is the Templates folder. It contains templates, and only templates. Anything dropped into the templates folder is received as a template. (The original remains.) What is a template? It's a design for a new object. One of the templates is a folder template. To create a new folder, click and drag from the template as if you were doing a regular drag and drop. Immediately, the dragged icon looks like a regular folder, not like the template icon from which the drag was begun. When the icon is finally dropped somewhere outside the template folder, a new folder will be created in that place. Its name, "Folder", will immediately be selected and receive focus so the new folder can be named. Everything new has at least a default name.</p>
     <p>There's a template for every kind of object you can create. Everything is an object, but every object starts out as a template. Applications developers might better be called template makers. Because anyone can make a template, anyone can be an application developer. While the program that shows a file might be called "LibreOffice Writer", what the user experiences is a template for an ODT file. If the user already has an ODT file and drops it into the templates folder, then a new template will be created. While the basic ODT template is a blank document, the user-created ODT template will have whatever content the user's file had.</p>
     <p>If the user drops a folder into the templates folder, then the new template will be for a folder matching the properties and contents of the folder that was dropped. If the user regular works with a certain kind of project, they might make a template folder filled with the things they need for a new project.</p>
