@@ -88,23 +88,6 @@
           }
         }
       }
-      /*.activetoggle {
-        cursor: default;
-        & rect:first-child {
-          fill: var(--recessed-fill-color);
-          stroke: var(--outline-color);
-          + polyline {
-            fill: none;
-            stroke: var(--highlight-stroke-color);
-            stroke-linecap: square;
-            + polyline {
-              fill: none;
-              stroke: var(--shadow-stroke-color);
-              stroke-linecap: square;
-            }
-          }
-        }
-      }*/
       rect.trough {
         fill: var(--recessed-fill-color);
         stroke: var(--outline-color);
@@ -146,10 +129,6 @@
       rect.defaultIndicator {
         fill: none;
         stroke: var(--outline-color);
-      }
-      .insensitive rect.defaultIndicator {
-        fill: none;
-        stroke: #808080;
       }
       .insensitive {
         --outline-color: #808080;
@@ -412,6 +391,7 @@
       function drawToggledButton (parentElement,x,y,width,height,text) {
         var b = drawPushButton(parentElement,x,y,width,height,text,false);
         b.setAttribute("class","button activetoggle");
+        return b;
       }
       function drawStepper (parentElement,x,y,width,height,dir) {
         var stepper = drawButton(parentElement,x,y,width,height);
@@ -1009,6 +989,8 @@
       inst.setAttribute("class","textfield insensitive");
       var inss = drawSpinButton(tf,170,320,100,22);
       inss.setAttribute("class","textfield insensitive");
+      var instb = drawToggledButton(tf,170,350,64,22,"Blush");
+      instb.setAttribute("class","button activetoggle insensitive");
     </script>
     <br/>
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
