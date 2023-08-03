@@ -213,7 +213,7 @@
           <circle cx="6" cy="6" r="6" fill="var(--input-field-color)" stroke="var(--outline-color)"/>
         </g>
         <symbol id="checkmark">
-          <path d="M1,6.5 L5,10.5 L11,1.5" stroke="#000" stroke-width="2" fill="none"/>
+          <path d="M1,6.5 L5,10.5 L11,1.5" stroke="var(--label-color)" stroke-width="2" fill="none"/>
         </symbol>
         <g id="checkbox">
           <rect width="12" height="12" fill="var(--input-field-color)" stroke="var(--outline-color)"/>
@@ -994,14 +994,10 @@
       drawTabs(tf,170,170,240,28,["a","b","c"],1);
       drawTabs(tf,170,200,240,28,["a","b","c"],2);
       drawToggledButton(tf,170,230,64,22,"Blush");
-      var insb = drawPushButton(tf,170,260,64,22,"OK",true);
-      insb.setAttribute("class","button insensitive");
-      var inst = drawInputField(tf,170,290,100,22);
-      inst.setAttribute("class","textfield insensitive");
-      var inss = drawSpinButton(tf,170,320,100,22);
-      inss.setAttribute("class","textfield insensitive");
-      var instb = drawToggledButton(tf,170,350,64,22,"Blush");
-      instb.setAttribute("class","button activetoggle insensitive");
+      drawPushButton(tf,170,260,64,22,"OK",true).setAttribute("class","button insensitive");
+      drawInputField(tf,170,290,100,22).setAttribute("class","textfield insensitive");
+      drawSpinButton(tf,170,320,100,22).setAttribute("class","textfield insensitive");
+      drawToggledButton(tf,170,350,64,22,"Blush").setAttribute("class","button activetoggle insensitive");
     </script>
     <br/>
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
