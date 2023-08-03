@@ -54,11 +54,6 @@
             }
           }
         }
-        /*&.insensitive {
-          & rect:first-child {
-            fill: var(--raised-fill-color);
-          }
-        }*/
       }
       .button {
         cursor: default;
@@ -76,7 +71,7 @@
             }
           }
         }
-        &:active {
+        &:active, &.activetoggle {
           & rect:first-child {
             fill: var(--recessed-fill-color);
             stroke: var(--outline-color);
@@ -91,23 +86,9 @@
               }
             }
           }
-        }/*
-        &.insensitive {
-          & rect:first-child {
-            stroke: #808080;
-            + polyline {
-              stroke: none;
-              + polyline {
-                stroke: none;
-              }
-            }
-          }
-          & text {
-            fill: #808080;
-          }
-        }*/
+        }
       }
-      .activetoggle {
+      /*.activetoggle {
         cursor: default;
         & rect:first-child {
           fill: var(--recessed-fill-color);
@@ -123,7 +104,7 @@
             }
           }
         }
-      }
+      }*/
       rect.trough {
         fill: var(--recessed-fill-color);
         stroke: var(--outline-color);
