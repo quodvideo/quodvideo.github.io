@@ -565,6 +565,8 @@
         plus.setAttribute("height",height-2);
         plus.setAttributeNS("http://www.w3.org/1999/xlink","href","#plusSign");
         btnup.insertAdjacentElement("beforeend",plus);
+
+        return field;
       }
       function drawSwitch (parentElement,x,y,width,height,state) {
         var sliderX = 0;
