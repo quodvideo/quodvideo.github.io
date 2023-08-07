@@ -968,18 +968,20 @@
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
+        g.setAttribute("width",3*size);
         g.setAttribute("style","user-select: all;");
         parentElement.insertAdjacentElement("beforeend",g);
 
         var i = document.createElementNS("http://www.w3.org/2000/svg","use");
         i.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
         i.setAttribute("fill",fillColor);
+        i.setAttribute("x",size);
         i.setAttribute("width",size);
         i.setAttribute("height",size);
         g.insertAdjacentElement("beforeend",i);
 
         var l = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        l.setAttribute("x",size/2);
+        l.setAttribute("x",3*size/2);
         l.setAttribute("y",size+8);
         l.setAttribute("class","centered label");
         l.innerHTML = label;
@@ -1092,7 +1094,7 @@
         drawToggledButton(document.getElementById("someFolder"),450,24,64,22,"Field");
         drawPushButton(document.getElementById("someFolder"),513,24,64,22,"List");
         drawFieldIcon(document.getElementById("someFolder"),16,54,48,"white","#documentIcon","Some File");
-        drawFieldIcon(document.getElementById("someFolder"),70,54,48,"white","#documentIcon","Some Other File");
+        drawFieldIcon(document.getElementById("someFolder"),100,54,48,"white","#documentIcon","Some Other File");
       </script>
     </svg>
     <svg width="640" height="480" id="projectFolder"><title>Project Folder</title>
