@@ -1063,9 +1063,11 @@
     </svg>
     <svg width="640" height="480" id="someFolder"><title>Some Folder</title>
       <script>
-        drawBaseWindow(document.getElementById("documentView"),0,0,640,480);
-        drawHeaderBar(document.getElementById("documentView"),0,0,640,480,"#folderIcon","Some Folder","regular folder");
-        drawCutawayField(document.getElementById("documentView"),3,50,634,427,false,false);
+        drawBaseWindow(document.getElementById("someFolder"),0,0,640,480);
+        drawHeaderBar(document.getElementById("someFolder"),0,0,640,480,"#folderIcon","Some Folder","regular folder");
+        drawCutawayField(document.getElementById("someFolder"),3,50,634,427,false,false);
+        drawToggledButton(document.getElementById("someFolder"),450,10,64,22,"Field");
+        drawPushButton(document.getElementById("someFolder"),514,10,64,22,"List");
       </script>
     </svg>
     <svg width="640" height="480" id="projectFolder"><title>Project Folder</title>
