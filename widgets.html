@@ -982,7 +982,7 @@
         l.setAttribute("x",size/2);
         l.setAttribute("y",size+8);
         l.setAttribute("class","centered label");
-        l.innerHTML(label);
+        l.innerHTML = label;
         g.insertAdjacentElement("beforeend",l);
 
         return g;
