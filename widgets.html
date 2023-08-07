@@ -964,6 +964,28 @@
         tl.setAttribute("y",corners[0][1]+(corners[2][1]-corners[1][1])/2);
         parentElement.insertAdjacentElement("beforeend",tl);
       }
+      function drawFieldIcon(parentElement,x,y,size,fillColor,icon,label) {
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
+        g.setAttribute("style","user-select: all;");
+        parentElement.insertAdjacentElement("beforeend",g);
+
+        var i = document.createElementNS("http://www.w3.org/2000/svg","use");
+        i.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
+        i.setAttribute("fill",fillColor);
+        i.setAttribute("width",size);
+        i.setAttribute("height",size);
+        g.insertAdjacentElement("beforeend",i);
+
+        var l = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        l.setAttribute("x",size/2);
+        l.setAttribute("y",size+8);
+        l.setAttribute("class","centered label");
+        g.insertAdjacentElement("beforeend",l);
+
+        return g;
+      }
       drawHScrollBar(tf,10,10,100,16);
       drawVScrollBar(tf,120,10,16,100);
       drawPushButton(tf,10,27,0,0,"OK",true);
@@ -1066,8 +1088,9 @@
         drawBaseWindow(document.getElementById("someFolder"),0,0,640,480);
         drawHeaderBar(document.getElementById("someFolder"),0,0,640,480,"#folderIcon","Some Folder","regular folder");
         drawCutawayField(document.getElementById("someFolder"),3,50,634,427,false,false);
-        drawToggledButton(document.getElementById("someFolder"),450,10,64,22,"Field");
-        drawPushButton(document.getElementById("someFolder"),514,10,64,22,"List");
+        drawToggledButton(document.getElementById("someFolder"),450,24,64,22,"Field");
+        drawPushButton(document.getElementById("someFolder"),513,24,64,22,"List");
+        drawFieldIcon(document.getElementById("somefolder"),12,54,48,"white","#documentIcon","Some File");
       </script>
     </svg>
     <svg width="640" height="480" id="projectFolder"><title>Project Folder</title>
