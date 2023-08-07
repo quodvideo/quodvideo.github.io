@@ -970,7 +970,10 @@
         g.setAttribute("y",y);
         g.setAttribute("width",3*size);
         g.setAttribute("style","user-select: all;");
+        g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
+
+        drawFocusRingRect(g,0,0,3*size,2*size);
 
         var i = document.createElementNS("http://www.w3.org/2000/svg","use");
         i.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
