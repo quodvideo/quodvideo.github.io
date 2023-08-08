@@ -202,6 +202,10 @@
           <path stroke="var(--outline-color)" fill="inherit" vector-effect="non-scaling-stroke"
                 d="M8.5,3.5 L6.5,5.5 H0.5 V3.5 L2.5,1.5 H6.5 L8.5,3.5 H15.5 V14.5 H0.5 V5.5"/>
         </symbol>
+        <symbol id="addressbookIcon" viewbox="0 0 16 16">
+          <path stroke="var(--outline-color)" fill="inherit" vector-effect="non-scaling-stroke"
+                d="M1,1 H13 A 2 2 90 0 1 15 3 V13 A 2 2 90 0 1 13 15 H1 V1 M3,1 V15 M9,3 A 2 2 180 1 1 9 7 A 2 2 180 1 1 9 3 M5 13 H13 A 4 4 180 1 0 5 13 Z"/>
+        </symbol>
         <g id="hGrippy">
           <rect width="10" height="10" fill="var(--highlight-stroke-color)"/>
           <path stroke="var(--shadow-stroke-color)" d="M1.5,0 V10 M3.5,0 V10 M5.5,0 V10 M7.5,0 V10 M9.5,0 V10" />
@@ -1320,7 +1324,7 @@
       </svg>
     </div>
     <div style="background-color: black; padding: 10px; width: fit-content">
-      <svg width="800" height="600"><title>Desktop 0</title>
+      <svg width="800" height="600" id="desktop0"><title>Desktop 0</title>
         <rect width="800" height="600" fill="#5d1803"/>
         <rect width="800" height="22" fill="var(--raised-fill-color)"/>
         <text x="6" y="16" >⚙&nbsp;&nbsp;&nbsp;File&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;View&nbsp;&nbsp;&nbsp;Help</text>
@@ -1329,13 +1333,13 @@
           <!-- icon -->
           <use xlink:href="#folderIcon" fill="#c7a534" width="48" height="48"/>
           <!-- text -->
-          <text class="centered" x="24" y="56" style="fill:white">Some Folder</text>
+          <text class="centered" x="24" y="56" style="fill:#A2E7FC">Some Folder</text>
         </g>
         <g transform="translate(100,200)">
           <!-- icon -->
-          <use xlink:href="#documentIcon" fill="white" width="48" height="48"/>
+          <use xlink:href="#addressbookIcon" fill="white" width="48" height="48"/>
           <!-- text -->
-          <text class="centered" x="24" y="56" style="fill:white">Some File</text>
+          <text class="centered" x="24" y="56" style="fill:white">Address Book</text>
         </g>
         <g transform="translate(24,520)">
           <!-- icon -->
@@ -1769,7 +1773,7 @@
         <p><rum>What else is on the sign-on screen? Accessibility features? Menu bar? Clock?</rum></p>
       </section>
       <section><h3>Finding an Item</h3>
-        <p>...</p>
+        <p>Use the search item on the menu bar. <rum>Open both the item and it's parent folder?</rum></p>
       </section>
       <section><h3>Starting Something New</h3>
         <p>How many steps does it take to start something new, once you are signed on? One thing needs to be visible: a folder. The desktop folder will do. Exposing part of the desktop may add a step.</p>
@@ -1778,10 +1782,11 @@
         <p>The <kbd>File&rarr;New</kbd> menu item should only be used by programs that contain multiple items to add an item among the others. A simple text editor should not have a <kbd>File&rarr;New</kbd> menu item. (Or should it? Just to copy everyone else?)</p>
       </section>
       <section><h3>Creating a Project in an IDE or Similar Environment</h3>
-        <p>...</p>
+        <p>Open the Templates folder on the desktop. Drag from the project's template type to any folder to create a new project in that folder. Double-click the new project's icon to open the IDE.</p>
       </section>
       <section><h3>Creating a Project as a Workspace</h3>
-        <p>...</p>
+        <p>Open the Templates folder on the deskstop. Drag from the workspace folder template to any folder to create a workspace folder. Double-click the folder's icon to open the workspace folder. Use other templates to add files to the project.</p>
+        <p>An existing folder can be turned into a project by checking the Workspace option in the folder's property panel.</p>
       </section>
       <section><h3>Resuming Work on a Project</h3>
         <p>To resume work on a project, the project's icon must be found. It may be on the desktop, in a folder on the desktop, or in a folder in a folder on the desktop. If the project is buried deeper than that, the reason should be explored.</p>
