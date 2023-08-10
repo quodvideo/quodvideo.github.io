@@ -157,7 +157,8 @@
     <p>This style is heavy compared to most of today's GUIs. That's on purpose. If a window looks too "chrome-y" with this style, then there's probably a better design.</p>
     <p>The art is also primitive. That's because I can't draw.</p>
     <p>Almost everything here is greyscale. There are some other colors while I'm playing around with things.</p>
-    <p>The default graphics will be greyscale.</p>
+    <p>The default graphics will be greyscale. There are three reasons for this. First, the system should work in greyscale. Second, I've heard some artists prefer a greyscale GUI because a colorful one would affect their sense of color in their work. Third, leaving color to a customization provides an avenue for users to explore customizing the GUI; they can start small, by changing the accent color, which is used to mark selections.</p>
+    <p>I believe this default theme should also work as a high-contrast theme. I'll also try a dark mode theme.</p>
     <svg width="1" height="1"><title>Definitions</title>
       <defs>
         <pattern id="pattern0" width="2" height="2" x="0" y="0" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
@@ -444,6 +445,29 @@
             break;
         }
         g.insertAdjacentElement("beforeend", grip);
+
+        return g;
+      }
+      function drawArrowSlider (parentElement,x,y,width,height,dir) {
+        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        g.setAttribute("class","slider");
+        g.setAttribute("transform","translate("+x+","+y+")");
+        parentElement.insertAdjacentElement("beforeend", g);
+
+        var o = document.createElementNS("http://www.w3.org/2000/svg","path");
+        var s = document.createElementNS("http://www.w3.org/2000/svg","path");
+        var h = document.createElementNS("http://www.w3.org/2000/svg","path");
+        
+        switch (dir) {
+          case "left":
+            break;
+          case "right":
+            break;
+          case "up":
+            break;
+          case "down":
+            break;
+        }
 
         return g;
       }
