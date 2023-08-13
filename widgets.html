@@ -1763,7 +1763,7 @@
       </section>
       <p>Every item has at least two views: its icon and its property panel.</p>
       <section><h3>Icons</h3>
-        <p>Every item has an icon view. It is, as the name implies, an icon. The icon view may have indicators of the item's status, such as hatch marks indicating another item view is open, or badges denoting som status.</p>
+        <p>Every item has an icon view. It is, as the name implies, an icon. The icon view may have indicators of the item's status, such as hatch marks indicating another item view is open, or badges denoting some status.</p>
       </section>
       <section><h3>Property Panels</h3>
         <p>Every item has a property panel which allows viewing and editing some of the item's metadata. Panels are divided into pages. The "General" page applies to all items as it shows the item icon and name. Additional pages depend on the type of item being viewed.</p>
@@ -1858,7 +1858,7 @@
           <li>In the event of a window being closed, it ensures the right window has keyboard focus.</li>
           <li>It may restrict the movement and placement of windows, but it mostly respects what clients give it. (The constraints on movements should suffice to constrain placement, because windows will only ask to be placed where they were before.)</li>
         </ul>
-        <p>Mouse-based focus is managed by the windows themselves using the globally active input model of the ICCCM. Window stacking order has some contraints, to keep overlays and desktops right, but clients are expected to raise their windows appropriately. This means that if a client receives input focus on a window, it should raise that window and any of its transients to the top of the stack, calling <code>XRaiseWindow</code>. If the focussed window is a transient for another client window, i.e. a dialog for a parent window, then both windows should be raised and stacked transient over parent.</p>
+        <p>Mouse-based focus is managed by the windows themselves using the globally active input model of the ICCCM. Window stacking order has some contraints, to keep overlays and desktops right, but clients are expected to raise their windows appropriately. This means that if a client receives input focus on a window, it should raise that window and any of its transients to the top of the stack, calling <code>XRaiseWindow</code>. If the focused window is a transient for another client window, i.e. a dialog for a parent window, then both windows should be raised and stacked transient over parent.</p>
       </section>
       <section><h3>The File Manager</h3>
         <p>The file manager is mostly replaced by folders. Browsing the file system, as with most modern file managers, is relegated to a utility which most users won't need. The user model of items and folders is preferred by the GUI over the programmer's model of files and directories.</p>
