@@ -462,18 +462,19 @@
                       "#notebook3Icon",
                       "#shellIcon",
                       "#terminalIcon"];
-        var sizes = [[48,450],[36,500],[24,650],[16,570]];
+        var sizes = [48,36,24,16];
+        var poses = [450,500,540,570]
         icons.forEach( (icon,i) => {
-          var u = document.createElementNS("http://www.w3.org/2000/svg","use");
-          u.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
-          u.setAttribute("fill","white");
-          sizes.forEach((size) => {
-            u.setAttribute("x",size[1]);
+          sizes.forEach((size,j) => {
+            var u = document.createElementNS("http://www.w3.org/2000/svg","use");
+            u.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
+            u.setAttribute("fill","white");
+            u.setAttribute("x",poses[j]);
             u.setAttribute("y",10+50*i);
-            u.setAttribute("width",size[0]);
-            u.setAttribute("height",size[0]);
-          })
-          tf.insertAdjacentElement("beforeend",u);
+            u.setAttribute("width",size);
+            u.setAttribute("height",size);
+            tf.insertAdjacentElement("beforeend",u);
+          });
         });
       </script>
       <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
