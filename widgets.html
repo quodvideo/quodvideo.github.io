@@ -468,7 +468,11 @@
         var sizes = [48,36,24,16];
         var poses = [[450,500,540,570],[600,650,690,720]]
 
-        foo.forEach( (icon,i) => { //icons.forEach( (icon,i) => {
+        for (var it; it<foo.length;it++) {
+          icon[it] = "#"+foo.item(it).id;
+        }
+
+        icons.forEach( (icon,i) => {
           sizes.forEach((size,j) => {
             var u = document.createElementNS("http://www.w3.org/2000/svg","use");
             var x = poses[0][j];
@@ -479,7 +483,7 @@
               y = 10+50*(i-11)
             }
 
-            u.setAttributeNS("http://www.w3.org/1999/xlink","href","#"+icon.id);
+            u.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
             u.setAttribute("fill","white");
             u.setAttribute("x",x);
             u.setAttribute("y",y);
