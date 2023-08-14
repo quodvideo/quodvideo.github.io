@@ -472,7 +472,7 @@
             var x = poses[0][j];
             var y = 10+50*i;
 
-            if (y+size >= 600) {
+            if (i >= 12) {
               x = poses[1][j];
               y = 10+50*(i-12)
             }
@@ -565,16 +565,6 @@
       <use xlink:href="#terminalIcon"     fill="white" x="720" y="310" width="16" height="16"/>
       -->
     </svg>
-    <!--
-        <g class=widget>
-          <rect class=base>
-          <polyline class=shadow>
-          <polyline class=highlight>
-          <text>
-          <rect class=focusring>
-          <rect class=defaultmarker>
-        </g>
-    -->
     <script>
       tf = document.getElementById("testfield");
       function drawRaisedRect (parentElement,x,y,width,height) {
