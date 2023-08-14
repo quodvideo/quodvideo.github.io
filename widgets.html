@@ -447,7 +447,7 @@
         var tf = document.getElementById("testfield");
         var foo = document.getElementsByTagNameNS("http://www.w3.org/2000/svg","symbol");
         console.log(foo);
-        var icons = [ "folderIcon",
+        var icons = [ "#folderIcon",
                       "#addressbookIcon",
                       "#calendarIcon",
                       "#templateIcon",
@@ -465,6 +465,9 @@
                       "#notebook3Icon",
                       "#shellIcon",
                       "#terminalIcon"];
+icons = foo.map((item)=> {
+  return "#"+item.id;
+})
         var sizes = [48,36,24,16];
         var poses = [[450,500,540,570],[600,650,690,720]]
 
