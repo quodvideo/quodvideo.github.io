@@ -465,13 +465,10 @@
                       "#notebook3Icon",
                       "#shellIcon",
                       "#terminalIcon"];
-icons = foo.map((item)=> {
-  return "#"+item.id;
-})
         var sizes = [48,36,24,16];
         var poses = [[450,500,540,570],[600,650,690,720]]
 
-        icons.forEach( (icon,i) => {
+        foo.forEach( (icon,i) => { //icons.forEach( (icon,i) => {
           sizes.forEach((size,j) => {
             var u = document.createElementNS("http://www.w3.org/2000/svg","use");
             var x = poses[0][j];
@@ -482,7 +479,7 @@ icons = foo.map((item)=> {
               y = 10+50*(i-11)
             }
 
-            u.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
+            u.setAttributeNS("http://www.w3.org/1999/xlink","href","#"+icon.id);
             u.setAttribute("fill","white");
             u.setAttribute("x",x);
             u.setAttribute("y",y);
