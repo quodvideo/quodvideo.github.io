@@ -445,6 +445,8 @@
       <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
       <script>
         var tf = document.getElementById("testfield");
+        var foo = document.getElementsByClassName("symbol");
+        console.log(foo[0].id);
         var icons = [ "#folderIcon",
                       "#addressbookIcon",
                       "#calendarIcon",
@@ -472,7 +474,7 @@
             var x = poses[0][j];
             var y = 10+50*i;
 
-            if (i >= 12) {
+            if (i >= 11) {
               x = poses[1][j];
               y = 10+50*(i-12)
             }
@@ -487,83 +489,6 @@
           });
         });
       </script>
-      
-      <!--<use xlink:href="#folderIcon"       fill="white" x="450" y="10" width="48" height="48"/>
-      <use xlink:href="#addressbookIcon"  fill="white" x="450" y="60" width="48" height="48"/>
-      <use xlink:href="#calendarIcon"     fill="white" x="450" y="110" width="48" height="48"/>
-      <use xlink:href="#templateIcon"     fill="white" x="450" y="160" width="48" height="48"/>
-      <use xlink:href="#documentIcon"     fill="white" x="450" y="210" width="48" height="48"/>
-      <use xlink:href="#bibliographyIcon" fill="white" x="450" y="260" width="48" height="48"/>
-      <use xlink:href="#jukeboxIcon"      fill="white" x="450" y="310" width="48" height="48"/>
-      <use xlink:href="#photoAlbumIcon"   fill="white" x="450" y="360" width="48" height="48"/>
-      <use xlink:href="#spreadsheetIcon"  fill="white" x="450" y="410" width="48" height="48"/>
-      <use xlink:href="#slideshowIcon"    fill="white" x="450" y="460" width="48" height="48"/>
-      <use xlink:href="#mailboxIcon"      fill="white" x="450" y="510" width="48" height="48"/>
-      <use xlink:href="#mailbox2Icon"     fill="white" x="600" y="10" width="48" height="48"/>
-      <use xlink:href="#notebookIcon"     fill="white" x="600" y="60" width="48" height="48"/>
-      <use xlink:href="#computationalNotebookIcon" fill="white" x="600" y="110" width="48" height="48"/>
-      <use xlink:href="#notebook2Icon"    fill="white" x="600" y="160" width="48" height="48"/>
-      <use xlink:href="#notebook3Icon"    fill="white" x="600" y="210" width="48" height="48"/>
-      <use xlink:href="#shellIcon"        fill="white" x="600" y="260" width="48" height="48"/>
-      <use xlink:href="#terminalIcon"     fill="white" x="600" y="310" width="48" height="48"/>
-
-      <use xlink:href="#folderIcon"       fill="white" x="500" y="10" width="36" height="36"/>
-      <use xlink:href="#addressbookIcon"  fill="white" x="500" y="60" width="36" height="36"/>
-      <use xlink:href="#calendarIcon"     fill="white" x="500" y="110" width="36" height="36"/>
-      <use xlink:href="#templateIcon"     fill="white" x="500" y="160" width="36" height="36"/>
-      <use xlink:href="#documentIcon"     fill="white" x="500" y="210" width="36" height="36"/>
-      <use xlink:href="#bibliographyIcon" fill="white" x="500" y="260" width="36" height="36"/>
-      <use xlink:href="#jukeboxIcon"      fill="white" x="500" y="310" width="36" height="36"/>
-      <use xlink:href="#photoAlbumIcon"   fill="white" x="500" y="360" width="36" height="36"/>
-      <use xlink:href="#spreadsheetIcon"  fill="white" x="500" y="410" width="36" height="36"/>
-      <use xlink:href="#slideshowIcon"    fill="white" x="500" y="460" width="36" height="36"/>
-      <use xlink:href="#mailboxIcon"      fill="white" x="500" y="510" width="36" height="36"/>
-      <use xlink:href="#mailbox2Icon"     fill="white" x="650" y="10" width="36" height="36"/>
-      <use xlink:href="#notebookIcon"     fill="white" x="650" y="60" width="36" height="36"/>
-      <use xlink:href="#computationalNotebookIcon" fill="white" x="650" y="110" width="36" height="36"/>
-      <use xlink:href="#notebook2Icon"    fill="white" x="650" y="160" width="36" height="36"/>
-      <use xlink:href="#notebook3Icon"    fill="white" x="650" y="210" width="36" height="36"/>
-      <use xlink:href="#shellIcon"        fill="white" x="650" y="260" width="36" height="36"/>
-      <use xlink:href="#terminalIcon"     fill="white" x="650" y="310" width="36" height="36"/>
-
-      <use xlink:href="#folderIcon"       fill="white" x="540" y="10" width="24" height="24"/>
-      <use xlink:href="#addressbookIcon"  fill="white" x="540" y="60" width="24" height="24"/>
-      <use xlink:href="#calendarIcon"     fill="white" x="540" y="110" width="24" height="24"/>
-      <use xlink:href="#templateIcon"     fill="white" x="540" y="160" width="24" height="24"/>
-      <use xlink:href="#documentIcon"     fill="white" x="540" y="210" width="24" height="24"/>
-      <use xlink:href="#bibliographyIcon" fill="white" x="540" y="260" width="24" height="24"/>
-      <use xlink:href="#jukeboxIcon"      fill="white" x="540" y="310" width="24" height="24"/>
-      <use xlink:href="#photoAlbumIcon"   fill="white" x="540" y="360" width="24" height="24"/>
-      <use xlink:href="#spreadsheetIcon"  fill="white" x="540" y="410" width="24" height="24"/>
-      <use xlink:href="#slideshowIcon"    fill="white" x="540" y="460" width="24" height="24"/>
-      <use xlink:href="#mailboxIcon"      fill="white" x="540" y="510" width="24" height="24"/>
-      <use xlink:href="#mailbox2Icon"     fill="white" x="690" y="10" width="24" height="24"/>
-      <use xlink:href="#notebookIcon"     fill="white" x="690" y="60" width="24" height="24"/>
-      <use xlink:href="#computationalNotebookIcon" fill="white" x="690" y="110" width="24" height="24"/>
-      <use xlink:href="#notebook2Icon"    fill="white" x="690" y="160" width="24" height="24"/>
-      <use xlink:href="#notebook3Icon"    fill="white" x="690" y="210" width="24" height="24"/>
-      <use xlink:href="#shellIcon"        fill="white" x="690" y="260" width="24" height="24"/>
-      <use xlink:href="#terminalIcon"     fill="white" x="690" y="310" width="24" height="24"/>
-
-      <use xlink:href="#folderIcon"       fill="white" x="570" y="10" width="16" height="16"/>
-      <use xlink:href="#addressbookIcon"  fill="white" x="570" y="60" width="16" height="16"/>
-      <use xlink:href="#calendarIcon"     fill="white" x="570" y="110" width="16" height="16"/>
-      <use xlink:href="#templateIcon"     fill="white" x="570" y="160" width="16" height="16"/>
-      <use xlink:href="#documentIcon"     fill="white" x="570" y="210" width="16" height="16"/>
-      <use xlink:href="#bibliographyIcon" fill="white" x="570" y="260" width="16" height="16"/>
-      <use xlink:href="#jukeboxIcon"      fill="white" x="570" y="310" width="16" height="16"/>
-      <use xlink:href="#photoAlbumIcon"   fill="white" x="570" y="360" width="16" height="16"/>
-      <use xlink:href="#spreadsheetIcon"  fill="white" x="570" y="410" width="16" height="16"/>
-      <use xlink:href="#slideshowIcon"    fill="white" x="570" y="460" width="16" height="16"/>
-      <use xlink:href="#mailboxIcon"      fill="white" x="570" y="510" width="16" height="16"/>
-      <use xlink:href="#mailbox2Icon"     fill="white" x="720" y="10" width="16" height="16"/>
-      <use xlink:href="#notebookIcon"     fill="white" x="720" y="60" width="16" height="16"/>
-      <use xlink:href="#computationalNotebookIcon" fill="white" x="720" y="110" width="16" height="16"/>
-      <use xlink:href="#notebook2Icon"    fill="white" x="720" y="160" width="16" height="16"/>
-      <use xlink:href="#notebook3Icon"    fill="white" x="720" y="210" width="16" height="16"/>
-      <use xlink:href="#shellIcon"        fill="white" x="720" y="260" width="16" height="16"/>
-      <use xlink:href="#terminalIcon"     fill="white" x="720" y="310" width="16" height="16"/>
-      -->
     </svg>
     <script>
       tf = document.getElementById("testfield");
