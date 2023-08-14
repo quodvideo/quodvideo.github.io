@@ -445,7 +445,7 @@
       <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
       <script>
         var tf = document.getElementById("testfield");
-        var foo = document.getElementsByClassName("symbol");
+        var foo = document.getElementsByTagNameNS("http://www.w3.org/2000/svg","symbol");
         console.log(foo);
         var icons = [ "#folderIcon",
                       "#addressbookIcon",
