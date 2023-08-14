@@ -463,8 +463,7 @@
                       "#shellIcon",
                       "#terminalIcon"];
         var sizes = [[48,450],[36,500],[24,650],[16,570]];
-        var i=0;
-        icons.forEach( (icon) => {
+        icons.forEach( (icon,i) => {
           var u = document.createElementNS("http://www.w3.org/2000/svg","use");
           u.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
           u.setAttribute("fill","white");
@@ -474,12 +473,11 @@
             u.setAttribute("width",size[0]);
             u.setAttribute("height",size[0]);
           })
-          i++;
           tf.insertAdjacentElement("beforeend",u);
         });
       </script>
       <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
-      <use xlink:href="#folderIcon"       fill="white" x="450" y="10" width="48" height="48"/>
+      <!--<use xlink:href="#folderIcon"       fill="white" x="450" y="10" width="48" height="48"/>
       <use xlink:href="#addressbookIcon"  fill="white" x="450" y="60" width="48" height="48"/>
       <use xlink:href="#calendarIcon"     fill="white" x="450" y="110" width="48" height="48"/>
       <use xlink:href="#templateIcon"     fill="white" x="450" y="160" width="48" height="48"/>
@@ -554,7 +552,7 @@
       <use xlink:href="#notebook3Icon"    fill="white" x="720" y="210" width="16" height="16"/>
       <use xlink:href="#shellIcon"        fill="white" x="720" y="260" width="16" height="16"/>
       <use xlink:href="#terminalIcon"     fill="white" x="720" y="310" width="16" height="16"/>
-
+      -->
     </svg>
     <!--
         <g class=widget>
