@@ -1256,7 +1256,7 @@
         icons.forEach( (icon,i) => {
           sizes.forEach((size,j) => {
             var u = document.createElementNS("http://www.w3.org/2000/svg","use");
-            var x = poses[Math.round(i/11)][j];
+            var x = poses[Math.floor(i/11)][j];
             var y = 10+50*(i%11);
 
 
