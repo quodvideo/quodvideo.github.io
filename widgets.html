@@ -442,6 +442,42 @@
       </defs>
     </svg>
     <svg id="testfield" width="800" height="600">
+      <script>
+        var tf = document.getElementById("testfield");
+        var icons = [ "#folderIcon",
+                      "#addressbookIcon",
+                      "#calendarIcon",
+                      "#templateIcon",
+                      "#documentIcon",
+                      "#bibliographyIcon",
+                      "#jukeboxIcon",
+                      "#photoAlbumIcon",
+                      "#spreadsheetIcon",
+                      "#slideshowIcon",
+                      "#mailboxIcon",
+                      "#mailbox2Icon",
+                      "#notebookIcon",
+                      "#computationalNotebookIcon",
+                      "#notebook2Icon",
+                      "#notebook3Icon",
+                      "#shellIcon",
+                      "#terminalIcon"];
+        var sizes = [[48,450],[36,500],[24,650],[16,570]];
+        var i=0;
+        icons.forEach( (icon) => {
+          var u = document.createElementNS("http://www.w3.org/2000/svg","use");
+          u.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
+          u.setAttribute("fill","white");
+          sizes.forEach((size) => {
+            u.setAttribute("x",size[1]);
+            u.setAttribute("y",10+50*i);
+            u.setAttribute("width",size[0]);
+            u.setAttribute("height",size[0]);
+          })
+          i++;
+          tf.insertAdjacentElement("beforeend",u);
+        });
+      </script>
       <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
       <use xlink:href="#folderIcon"       fill="white" x="450" y="10" width="48" height="48"/>
       <use xlink:href="#addressbookIcon"  fill="white" x="450" y="60" width="48" height="48"/>
