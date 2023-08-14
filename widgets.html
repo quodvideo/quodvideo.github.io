@@ -443,56 +443,6 @@
     </svg>
     <svg id="testfield" width="800" height="600">
       <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
-      <script>
-        var tf = document.getElementById("testfield");
-        var foo = document.getElementsByTagNameNS("http://www.w3.org/2000/svg","symbol");
-        console.log(foo);
-        var icons = [ "#folderIcon",
-                      "#addressbookIcon",
-                      "#calendarIcon",
-                      "#templateIcon",
-                      "#documentIcon",
-                      "#bibliographyIcon",
-                      "#jukeboxIcon",
-                      "#photoAlbumIcon",
-                      "#spreadsheetIcon",
-                      "#slideshowIcon",
-                      "#mailboxIcon",
-                      "#mailbox2Icon",
-                      "#notebookIcon",
-                      "#computationalNotebookIcon",
-                      "#notebook2Icon",
-                      "#notebook3Icon",
-                      "#shellIcon",
-                      "#terminalIcon"];
-        var sizes = [48,36,24,16];
-        var poses = [[450,500,540,570],[600,650,690,720]]
-
-        for (let it=0; it < foo.length;it++) {
-          icons[it] = "#"+foo.item(it).id;
-        }
-
-        icons.forEach( (icon,i) => {
-          sizes.forEach((size,j) => {
-            var u = document.createElementNS("http://www.w3.org/2000/svg","use");
-            var x = poses[0][j];
-            var y = 10+50*i;
-
-            if (i >= 11) {
-              x = poses[1][j];
-              y = 10+50*(i-11)
-            }
-
-            u.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
-            u.setAttribute("fill","white");
-            u.setAttribute("x",x);
-            u.setAttribute("y",y);
-            u.setAttribute("width",size);
-            u.setAttribute("height",size);
-            tf.insertAdjacentElement("beforeend",u);
-          });
-        });
-      </script>
     </svg>
     <script>
       tf = document.getElementById("testfield");
@@ -1289,6 +1239,39 @@
       drawToggledButton(tf,170,350,64,22,"Blush").setAttribute("class","button activetoggle insensitive");
       drawOptionButton(tf,170,380,0,0,"Option").setAttribute("class","insensitive");
     </script>
+    <svg id="iconfield" width="800" height="600">
+      <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
+      <script>
+        var f = document.getElementById("iconfield");
+        var foo = document.getElementsByTagNameNS("http://www.w3.org/2000/svg","symbol");
+        console.log(foo);
+        var icons = [];
+        var sizes = [48,36,24,16];
+        var poses = [[10,60,100,130],[150,200,240,270],[290,340,380,400]]
+
+        for (let it=0; it < foo.length;it++) {
+          icons[it] = "#"+foo.item(it).id;
+        }
+
+        icons.forEach( (icon,i) => {
+          sizes.forEach((size,j) => {
+            var u = document.createElementNS("http://www.w3.org/2000/svg","use");
+            var x = poses[Math.round(i/11)][j];
+            var y = 10+50*(i%11);
+
+
+            u.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
+            u.setAttribute("fill","white");
+            u.setAttribute("x",x);
+            u.setAttribute("y",y);
+            u.setAttribute("width",size);
+            u.setAttribute("height",size);
+            f.insertAdjacentElement("beforeend",u);
+          });
+        });
+      </script>
+    </svg>
+
     <br/>
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
     <br/>
