@@ -210,6 +210,53 @@
           <line x1="4.5" y1="10.5" x2="16.5" y2="10.5" stroke-width="2" stroke="var(--label-color)"/>
           <line x1="10.5" y1="4.5" x2="10.5" y2="16.5" stroke-width="2" stroke="var(--label-color)"/>
         </symbol>
+        <g id="hGrippy">
+          <rect width="10" height="10" fill="var(--highlight-stroke-color)"/>
+          <path stroke="var(--shadow-stroke-color)" d="M1.5,0 V10 M3.5,0 V10 M5.5,0 V10 M7.5,0 V10 M9.5,0 V10" />
+        </g>
+        <g id="vGrippy">
+          <rect width="10" height="10" fill="var(--highlight-stroke-color)"/>
+          <path stroke="var(--shadow-stroke-color)" d="M0,1.5 H10 M0,3.5 H10 M0,5.5 H10 M0,7.5 H10 M0,9.5 H10" />
+        </g>
+        <clipPath id="circle-slice">
+          <polyline points="-2,14 14,-2 -2,-2 -2,14"/>
+        </clipPath>
+        <g id="radioCircle">
+          <circle cx="6" cy="6" r="7" fill="var(--highlight-stroke-color)" stroke="var(--highlight-stroke-color)"/>
+          <circle cx="6" cy="6" r="7" fill="var(--shadow-stroke-color)" stroke="var(--shadow-stroke-color)" clip-path="url(#circle-slice)"/>
+          <circle cx="6" cy="6" r="6" fill="var(--input-field-color)" stroke="var(--outline-color)"/>
+        </g>
+        <symbol id="checkmark">
+          <path d="M1,6.5 L5,10.5 L11,1.5" stroke="var(--label-color)" stroke-width="2" fill="none"/>
+        </symbol>
+        <g id="checkbox">
+          <rect width="12" height="12" fill="var(--input-field-color)" stroke="var(--outline-color)"/>
+          <polyline class="shadow" points="-1,13 -1,-1 13,-1"/>
+          <polyline class="highlight" points="-1,13 13,13 13,-1"/>
+        </g>
+        <g id="sheettab-active">
+          <path fill="none" stroke="white" d="M0.5,0.5 h70"/>
+          <path fill="white" stroke="var(--outline-color)" d="M0.5,0.5 h5 l5,13 h50 l5,-13 h5"/>
+          <path fill="none" stroke="none" d="M0.5,0.5 h70"/>
+          <text style="font-size: 10;font-family:Sans-serif;text-anchor:middle;" x="35.5" y="10.5">label</text>
+        </g>
+        <g id="sheettab-inactive">
+          <path fill="none" stroke="none" d="M0.5,0.5 h70"/>
+          <path fill="white" stroke="var(--outline-color)" d="M0.5,0.5 h5 l5,13 h50 l5,-13 h5"/>
+          <path fill="none" stroke="var(--outline-color)" d="M0.5,0.5 h70"/>
+          <text style="font-size: 10;font-family:Sans-serif;text-anchor:middle;" x="35.5" y="10.5">label</text>
+        </g>
+        <g id="sheetTabGroup">
+          <!-- old note: Alternative: Let the tabs go to 15 and don't outline the area. -->
+          <rect width="180" height="16" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
+          <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H115 L120,13 H170 L175,0 H180"/>
+          <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="141" y="10">3</text>
+          <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H60 L65,13 H115 L120,0 H180"/>
+          <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="86" y="10">2</text>
+          <path d="M1,0 H179" stroke="#ffffff"/>
+          <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H5 L10,13 H60 L65,0 H180"/>
+          <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
+        </g>
         <symbol id="documentIcon" viewBox="0 0 16 16">
           <path stroke="var(--outline-color)" fill="inherit" vector-effect="non-scaling-stroke"
                 d="M1.5,0.5 H9.5 L14.5,5.5 V15.5 H1.5 Z"/>
@@ -392,53 +439,6 @@
           <path fill="none" stroke="white" vector-effect="non-scaling-stroke" d="M 3.5 4.5 L 7 8 L 3.5 11.5"/>
           <path fill="none" stroke="white" vector-effect="non-scaling-stroke" d="M 8.5 11.5 H12.5"/>
         </symbol>
-        <g id="hGrippy">
-          <rect width="10" height="10" fill="var(--highlight-stroke-color)"/>
-          <path stroke="var(--shadow-stroke-color)" d="M1.5,0 V10 M3.5,0 V10 M5.5,0 V10 M7.5,0 V10 M9.5,0 V10" />
-        </g>
-        <g id="vGrippy">
-          <rect width="10" height="10" fill="var(--highlight-stroke-color)"/>
-          <path stroke="var(--shadow-stroke-color)" d="M0,1.5 H10 M0,3.5 H10 M0,5.5 H10 M0,7.5 H10 M0,9.5 H10" />
-        </g>
-        <clipPath id="circle-slice">
-          <polyline points="-2,14 14,-2 -2,-2 -2,14"/>
-        </clipPath>
-        <g id="radioCircle">
-          <circle cx="6" cy="6" r="7" fill="var(--highlight-stroke-color)" stroke="var(--highlight-stroke-color)"/>
-          <circle cx="6" cy="6" r="7" fill="var(--shadow-stroke-color)" stroke="var(--shadow-stroke-color)" clip-path="url(#circle-slice)"/>
-          <circle cx="6" cy="6" r="6" fill="var(--input-field-color)" stroke="var(--outline-color)"/>
-        </g>
-        <symbol id="checkmark">
-          <path d="M1,6.5 L5,10.5 L11,1.5" stroke="var(--label-color)" stroke-width="2" fill="none"/>
-        </symbol>
-        <g id="checkbox">
-          <rect width="12" height="12" fill="var(--input-field-color)" stroke="var(--outline-color)"/>
-          <polyline class="shadow" points="-1,13 -1,-1 13,-1"/>
-          <polyline class="highlight" points="-1,13 13,13 13,-1"/>
-        </g>
-        <g id="sheettab-active">
-          <path fill="none" stroke="white" d="M0.5,0.5 h70"/>
-          <path fill="white" stroke="var(--outline-color)" d="M0.5,0.5 h5 l5,13 h50 l5,-13 h5"/>
-          <path fill="none" stroke="none" d="M0.5,0.5 h70"/>
-          <text style="font-size: 10;font-family:Sans-serif;text-anchor:middle;" x="35.5" y="10.5">label</text>
-        </g>
-        <g id="sheettab-inactive">
-          <path fill="none" stroke="none" d="M0.5,0.5 h70"/>
-          <path fill="white" stroke="var(--outline-color)" d="M0.5,0.5 h5 l5,13 h50 l5,-13 h5"/>
-          <path fill="none" stroke="var(--outline-color)" d="M0.5,0.5 h70"/>
-          <text style="font-size: 10;font-family:Sans-serif;text-anchor:middle;" x="35.5" y="10.5">label</text>
-        </g>
-        <g id="sheetTabGroup">
-          <!-- old note: Alternative: Let the tabs go to 15 and don't outline the area. -->
-          <rect width="180" height="16" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
-          <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H115 L120,13 H170 L175,0 H180"/>
-          <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="141" y="10">3</text>
-          <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H60 L65,13 H115 L120,0 H180"/>
-          <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="86" y="10">2</text>
-          <path d="M1,0 H179" stroke="#ffffff"/>
-          <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H5 L10,13 H60 L65,0 H180"/>
-          <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
-        </g>
       </defs>
     </svg>
     <svg id="testfield" width="800" height="600">
