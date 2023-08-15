@@ -188,9 +188,7 @@
         <clipPath id="cornerclip">
           <path d="M1,16 L16 1 V16 Z" />
         </clipPath>
-        <symbol id="newcornergrip">
-          <rect width="16" height="16" fill="url(#pattern0)" clip-path="url(#cornerclip)" style="cursor: nwse-resize;"/>
-        </symbol>
+        <rect id="newcornergrip" width="16" height="16" fill="url(#pattern0)" clip-path="url(#cornerclip)" style="cursor: nwse-resize;"/>
         <symbol id="newArrowDown" viewBox="-4 -6.5 16 16">
           <path d="M0,0 H8 L4,4Z" stroke="none" fill="var(--outline-color)"/>
         </symbol>
@@ -226,7 +224,7 @@
           <circle cx="6" cy="6" r="7" fill="var(--shadow-stroke-color)" stroke="var(--shadow-stroke-color)" clip-path="url(#circle-slice)"/>
           <circle cx="6" cy="6" r="6" fill="var(--input-field-color)" stroke="var(--outline-color)"/>
         </g>
-        <symbol id="checkmark">
+        <symbol id="checkmark" viewbox="0 0 16 16">
           <path d="M1,6.5 L5,10.5 L11,1.5" stroke="var(--label-color)" stroke-width="2" fill="none"/>
         </symbol>
         <g id="checkbox">
@@ -363,12 +361,6 @@
           <rect x="0.5" y="7.5" width="11" height="7" fill="inherit"  stroke="var(--outline-color)" vector-effect="non-scaling-stroke"/>
           <path fill="none"  stroke="var(--outline-color)" vector-effect="non-scaling-stroke" d="M0.5,7.5 L6,10.5 L11.5,7.5"/>
         </symbol>
-        <symbol id="mailbox2Icon" viewbox="0 0 16 16">
-          <rect width="16" height="16" fill="red"/>
-          <path fill="inherit"  stroke="var(--outline-color)" vector-effect="non-scaling-stroke" d="M0.5,11.5 V7.5 A 3 3 180 1 1 6.5 7.5 V11.5 Z"/>
-          <path fill="inherit"  stroke="var(--outline-color)" vector-effect="non-scaling-stroke" d="M3.5,4.5 H12.5 A 3 3 90 0 1 15.5 7.5 V11.5 H6.5 V7.5 A 3 3 90 0 0 3.5 4.5"/>
-          <path fill="inherit"  stroke="var(--outline-color)" vector-effect="non-scaling-stroke" d=""/>
-        </symbol>
         <symbol id="notebookIcon" viewbox="0 0 16 16">
           <path stroke="var(--outline-color)" fill="inherit" vector-effect="non-scaling-stroke"
                 d="M1.5,1.5 H13.5 A 2 2 90 0 1 15.5 3.5 V13.5 A 2 2 90 0 1 13.5 15.5 H1.5 V1.5 Z M3.5,1.5 V15.5"/>
@@ -433,7 +425,6 @@
           <line x1="11" y1="9"   x2="12.5" y2="4"   stroke="var(--outline-color)" vector-effect="non-scaling-stroke"/>
         </symbol>
         <symbol id="terminalIcon" viewbox="0 0 16 16">
-          <rect width="16" height="16" fill="red"/>
           <rect x="0.5" y="1.5" rx="2" ry="2" width="15" height="13" fill="var(--base-fill-color)" stroke="var(--outline-color)" vector-effect="non-scaling-stroke"/>
           <rect x="2.5" y="3.5" width="11" height="9" fill="var(--outline-color)" stroke="var(--outline-color)" vector-effect="non-scaling-stroke"/>
           <path fill="none" stroke="white" vector-effect="non-scaling-stroke" d="M 3.5 4.5 L 7 8 L 3.5 11.5"/>
@@ -819,6 +810,8 @@
             var m = document.createElementNS("http://www.w3.org/2000/svg","use");
             m.setAttribute("x",3);
             m.setAttribute("y",3);
+            m.setAttribute("width",16);
+            m.setAttribute("height",16);
             m.setAttributeNS("http://www.w3.org/1999/xlink","href","#checkmark");
             g.insertAdjacentElement("beforeend",m);
             break;
@@ -1245,7 +1238,6 @@
       <script>
         var f = document.getElementById("iconfield");
         var foo = document.getElementsByTagNameNS("http://www.w3.org/2000/svg","symbol");
-        console.log(foo);
         var icons = [];
         var sizes = [48,36,24,16];
         var poses = [[10,60,100,130],[160,210,250,280],[310,360,400,430]]
@@ -1254,13 +1246,11 @@
           icons[it] = "#"+foo.item(it).id;
         }
 
-        icons.forEach( (icon,i) => {
+        icons.forEach((icon,i) => {
           sizes.forEach((size,j) => {
             var u = document.createElementNS("http://www.w3.org/2000/svg","use");
             var x = poses[Math.floor(i/11)][j];
             var y = 10+50*(i%11);
-
-
             u.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
             u.setAttribute("fill","white");
             u.setAttribute("x",x);
