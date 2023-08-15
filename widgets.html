@@ -149,6 +149,9 @@
         display: inline;
         font-style: italic;
       }
+      symbol {
+        vector-effect: non-scaling-stroke;
+      }
     </style>
   </head>
   <body>
@@ -190,23 +193,23 @@
         </clipPath>
         <rect id="newcornergrip" width="16" height="16" fill="url(#pattern0)" clip-path="url(#cornerclip)" style="cursor: nwse-resize;"/>
         <symbol id="newArrowDown" viewBox="-4 -6.5 16 16">
-          <path d="M0,0 H8 L4,4Z" stroke="none" fill="var(--outline-color)"/>
+          <path d="M0,0 H8 L4,4Z" stroke="none" fill="var(--outline-color)" style="vector-effect: none;"/>
         </symbol>
         <symbol id="newArrowUp" viewBox="-4 -5.5 16 16">
-          <path d="M0,4 H8 L4,0Z" stroke="none" fill="var(--outline-color)"/>
+          <path d="M0,4 H8 L4,0Z" stroke="none" fill="var(--outline-color)" style="vector-effect: none;"/>
         </symbol>
         <symbol id="newArrowRight" viewBox="-6.5 -4 16 16">
-          <path d="M0,0 V8 L4,4Z" stroke="none" fill="var(--outline-color)"/>
+          <path d="M0,0 V8 L4,4Z" stroke="none" fill="var(--outline-color)" style="vector-effect: none;"/>
         </symbol>
         <symbol id="newArrowLeft" viewBox="-5.5 -4 16 16">
-          <path d="M4,0 V8 L0,4Z" stroke="none" fill="var(--outline-color)"/>
+          <path d="M4,0 V8 L0,4Z" stroke="none" fill="var(--outline-color)" style="vector-effect: none;"/>
         </symbol>
         <symbol id="minusSign" viewbox="0 0 20 20">
-          <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke="var(--label-color)"/>
+          <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke="var(--label-color)" style="vector-effect: none;"/>
         </symbol>
         <symbol id="plusSign" viewbox="0 0 20 20">
-          <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke="var(--label-color)"/>
-          <line x1="10" y1="4" x2="10" y2="16" stroke-width="2" stroke="var(--label-color)"/>
+          <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke="var(--label-color)" style="vector-effect: none;"/>
+          <line x1="10" y1="4" x2="10" y2="16" stroke-width="2" stroke="var(--label-color)" style="vector-effect: none;"/>
         </symbol>
         <g id="hGrippy">
           <rect width="10" height="10" fill="var(--highlight-stroke-color)"/>
@@ -225,7 +228,7 @@
           <circle cx="6" cy="6" r="6" fill="var(--input-field-color)" stroke="var(--outline-color)"/>
         </g>
         <symbol id="checkmark" viewbox="0 0 16 16">
-          <path d="M1,6.5 L5,10.5 L11,1.5" stroke="var(--label-color)" stroke-width="2" fill="none"/>
+          <path d="M1,6.5 L5,10.5 L11,1.5" stroke="var(--label-color)" stroke-width="2" fill="none" style="vector-effect: none;"/>
         </symbol>
         <g id="checkbox">
           <rect width="12" height="12" fill="var(--input-field-color)" stroke="var(--outline-color)"/>
@@ -310,7 +313,7 @@
         <symbol id="contact2Icon" viewbox="0 0 16 16">
           <rect x="2.5" y="0.5" width="12" height="15" fill="inherit" stroke="var(--outline-color)" vector-effect="non-scaling-stroke"/>
           <text x="4" y="8.5" style="font-size: 9px;">@</text>
-          <path stroke="black" fill="none" vector-effect="non-scaling-stroke" d="M 4.5 13.5 H 12.5 A 3 3 90 0 0 8.5 10.5 H6.5 A 3 3 90 0 0 4.5 13.5 Z"/>
+          <path stroke="black" fill="none" vector-effect="non-scaling-stroke" d="M 4.5 13.5 H 12.5 A 3 3 90 0 0 10.5 10.5 H6.5 A 3 3 90 0 0 4.5 13.5 Z"/>
         </symbol>
         <symbol id="calendarIcon" viewbox="0 0 16 16">
           <rect x="0.5" y="0.5" rx="2" ry="2" width="15" height="15" vector-effect="non-scaling-stroke" fill="inherit" stroke="var(--outline-color)"/>
@@ -359,13 +362,16 @@
             <path d="M3.5,11.5 V0.5 H7.5  V2.5 H15.5 V11.5 Z" stroke="var(--outline-color)" fill="inherit" vector-effect="non-scaling-stroke"/>
           </g>
         </symbol>
+        <symbol id="citationIcon" viewbox="0 0 16 16">
+          <rect x="0.5" y="1.5" width="15" height="13" fill="inherit" stroke="var(--outline-color)" vector-effect="non-scaling-stroke"/>
+        </symbol>
         <symbol id="jukeboxIcon" viewbox="0 0 16 16">
           <circle cx="9.5" cy="6.5" r="6" vector-effect="non-scaling-stroke" fill="inherit" stroke="var(--outline-color)"/>
           <circle cx="8.5" cy="7.5" r="6" vector-effect="non-scaling-stroke" fill="inherit" stroke="var(--outline-color)"/>
           <circle cx="7.5" cy="8.5" r="6" vector-effect="non-scaling-stroke" fill="inherit" stroke="var(--outline-color)"/>
           <circle cx="6.5" cy="9.5" r="6" vector-effect="non-scaling-stroke" fill="inherit" stroke="var(--outline-color)"/>
           <ellipse cx="6.5" cy="11.5" rx="2.5" ry="1.5" transform="rotate(-20 6.5 11.5)" vector-effect="non-scaling-stroke" fill="var(--outline-color)" stroke="none"/>
-          <line x1="8.5" y1="11.5" x2="8.5" y2="5" stroke="var(--outline-color)"/>
+          <line x1="8.5" y1="11.5" x2="8.5" y2="5" stroke="var(--outline-color)" style="vector-effect: none;"/>
         </symbol>
         <symbol id="photoAlbumIcon" viewbox="0 0 16 16">
           <rect x="0.5" y="0.5" width="15" height="15" fill="inherit" stroke="var(--outline-color)" vector-effect="non-scaling-stroke"/>
