@@ -155,7 +155,7 @@
     <p>These are just drawings for prototyping, not actual widgets. After the drawings, there is some description of the system I want to make.</p>
     <p>The style of these drawings is meant as a guide. It might be possible to do this without SVG, but I remember some details being hard or impossible to achieve with Gtk 2.x. The way scroll bars join with a text field was one impossibility. Part of the idea is to make it obvious when widgets are not active because they're in a background window or because they just can't be used in the current state. This should all work for various modes like light, dark, high contrast, and low contrast. It should be possible to change the basic colors per widget and with themes. I suspect this basic style can also be adapted to use gradients, blends, patterns, and more.</p>
     <p>This style is heavy compared to most of today's GUIs. That's on purpose. If a window looks too "chrome-y" with this style, then there's probably a better design.</p>
-    <p>The art is primitive. That's because I can't draw. The icons have been made in SVG to have decent 16x16 rasters that scale up to at least 48x48.</p>
+    <p>The art is primitive. That's because I can't draw. I also think icons should be iconic. The icons have been made in SVG to have decent 16x16 rasters that scale up to at least 48x48. I've no objection to people customizing their icons. In fact, I encourage it.</p>
     <p>Almost everything here is greyscale. There are some other colors while I'm playing around with things.</p>
     <p>The default graphics will be greyscale. There are three reasons for this. First, the system should work in greyscale. Second, I've heard some artists prefer a greyscale GUI because a colorful one would affect their sense of color in their work. Third, leaving color to a customization provides an avenue for users to explore customizing the GUI; they can start small, by changing the accent color, which is used to mark selections.</p>
     <p>I believe this default theme should also work as a high-contrast theme. I'll also try a dark mode theme.</p>
@@ -202,11 +202,11 @@
           <path d="M4,0 V8 L0,4Z" stroke="none" fill="var(--outline-color)"/>
         </symbol>
         <symbol id="minusSign" viewbox="0 0 20 20">
-          <line x1="4.5" y1="10.5" x2="16.5" y2="10.5" stroke-width="2" stroke="var(--label-color)"/>
+          <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke="var(--label-color)"/>
         </symbol>
         <symbol id="plusSign" viewbox="0 0 20 20">
-          <line x1="4.5" y1="10.5" x2="16.5" y2="10.5" stroke-width="2" stroke="var(--label-color)"/>
-          <line x1="10.5" y1="4.5" x2="10.5" y2="16.5" stroke-width="2" stroke="var(--label-color)"/>
+          <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke="var(--label-color)"/>
+          <line x1="10" y1="4" x2="10" y2="16" stroke-width="2" stroke="var(--label-color)"/>
         </symbol>
         <g id="hGrippy">
           <rect width="10" height="10" fill="var(--highlight-stroke-color)"/>
