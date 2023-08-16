@@ -1990,10 +1990,16 @@
     <section><h2>Special Containers</h2>
       <p>A few containers are special in that they tend to be large and unique. They may also be used by many programs.</p>
       <section><h3>Address Book</h3>
-        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#addressbookIcon"/></svg>
-        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#contactIcon"/></svg>
-        <p>The address book is a container for contacts, and contacts may be used in many different ways. An item's metadata may indicate a contact as the author or sender of the item. Contacts should be available for email and also for event planning.</p>
-        <p>Every contact should appear in the main address book. The contact template should make sure this happens. <rum>What if a type of contact is created? How does the template for the new type ensure the behavior of adding to the main address book?</rum></p>
+        <div style="display: flex;">
+          <div style="flex-direction: column;">
+            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#addressbookIcon"/></svg>
+            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#contactIcon"/></svg>
+          </div>
+          <div style="flex-direction: column;">
+            <p>The address book is a container for contacts, and contacts may be used in many different ways. An item's metadata may indicate a contact as the author or sender of the item. Contacts should be available for email and also for event planning.</p>
+            <p>Every contact should appear in the main address book. The contact template should make sure this happens. <rum>What if a type of contact is created? How does the template for the new type ensure the behavior of adding to the main address book?</rum></p>
+          </div>
+        </div>
       </section>
       <section><h3>Calendar</h3>
         <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#calendarIcon"/></svg>
