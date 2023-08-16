@@ -169,6 +169,7 @@
     </style>
   </head>
   <body>
+    <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
     <p>These are just drawings for prototyping, not actual widgets. After the drawings, there is some description of the system I want to make.</p>
     <p>The style of these drawings is meant as a guide. It might be possible to do this without SVG, but I remember some details being hard or impossible to achieve with Gtk 2.x. The way scroll bars join with a text field was one impossibility. Part of the idea is to make it obvious when widgets are not active because they're in a background window or because they just can't be used in the current state. This should all work for various modes like light, dark, high contrast, and low contrast. It should be possible to change the basic colors per widget and with themes. I suspect this basic style can also be adapted to use gradients, blends, patterns, and more.</p>
     <p>This style is heavy compared to most of today's GUIs. That's on purpose. If a window looks too "chrome-y" with this style, then there's probably a better design.</p>
@@ -178,15 +179,15 @@
     <p>I believe this default theme should also work as a high-contrast theme. I'll also try a dark mode theme.</p>
     <table>
       <tr><th colspan="2">Colors</th></tr>
-      <tr style="background-color: var(--outline-color); color: white;"><td>--outline-color</td><td>black</td></tr>
-      <tr style="background-color: var(--focus-ring-color); color: white;"><td>--focus-ring-color</td><td>black</td></tr>
-      <tr style="background-color: var(--label-color); color: white;"><td>--label-color</td><td>black</td></tr>
-      <tr><td>--input-field-color</td><td>white</td></tr>
-      <tr><td>--highlight-stroke-color</td><td>white</td></tr>
-      <tr style="background-color: var(--shadow-stroke-color); color: white;"><td>--shadow-stroke-color</td><td>grey</td></tr>
-      <tr style="background-color: var(--raised-fill-color)"><td>--raised-fill-color</td><td>#efefef</td></tr>
-      <tr style="background-color: var(--recessed-fill-color);"><td>--recessed-fill-color</td><td>#bbbbbb</td></tr>
-      <tr style="background-color: var(--base-fill-color);"><td>--base-fill-color</td><td>#dddddd</td></tr>
+      <tr style="background-color: var(--input-field-color);">                  <td>--input-field-color</td>     <td>white</td></tr>
+      <tr style="background-color: var(--highlight-stroke-color);">             <td>--highlight-stroke-color</td><td>white</td></tr>
+      <tr style="background-color: var(--raised-fill-color);">                  <td>--raised-fill-color</td>     <td>#efefef</td></tr>
+      <tr style="background-color: var(--recessed-fill-color);">                <td>--recessed-fill-color</td>   <td>#bbbbbb</td></tr>
+      <tr style="background-color: var(--base-fill-color);">                    <td>--base-fill-color</td>       <td>#dddddd</td></tr>
+      <tr style="background-color: var(--shadow-stroke-color); color: white;"><td>--shadow-stroke-color</td>   <td>grey</td></tr>
+      <tr style="background-color: var(--outline-color); color: white;">      <td>--outline-color</td>         <td>black</td></tr>
+      <tr style="background-color: var(--focus-ring-color); color: white;">   <td>--focus-ring-color</td>      <td>black</td></tr>
+      <tr style="background-color: var(--label-color); color: white;">        <td>--label-color</td>           <td>black</td></tr>
     </table>
     <svg width="1" height="1"><title>Definitions</title>
       <defs>
@@ -1243,35 +1244,46 @@
 
         return g;
       }
+
+      drawPushButton(tf,10,10,0,0,"Cancel");
+      drawPushButton(tf,120,10,0,0,"Cancel").setAttribute("class","button insensitive");
+      drawPushButton(tf,10,40,0,0,"OK",true);
+      drawPushButton(tf,120,40,64,22,"OK",true).setAttribute("class","button insensitive");
+      drawSwitch(tf,10,70,64,22,"off");
+      drawSwitch(tf,120,70,64,22,"off").setAttribute("class","insensitive");
+      drawSwitch(tf,10,100,64,22,"on");
+      drawSwitch(tf,120,100,64,22,"on").setAttribute("class","insensitive");
+      drawToggledButton(tf,10,130,64,22,"Blush");
+      drawToggledButton(tf,120,130,64,22,"Blush").setAttribute("class","button activetoggle insensitive");
+
+      drawCheckButton(tf,10,170,0,0,"Option","on");
+      drawCheckButton(tf,10,200,0,0,"Option","mixed");
+      drawCheckButton(tf,10,230,0,0,"Option","off");
+      drawRadioButton(tf,10,260,0,0,"Option","on");
+      drawRadioButton(tf,10,290,0,0,"Option","mixed");
+      drawRadioButton(tf,10,320,0,0,"Option","off");
+      drawRevealButton(tf,10,350,0,0,"More","closed");
+      drawRevealButton(tf,10,380,0,0,"More","turning");
+      drawRevealButton(tf,10,410,0,0,"More","open");
+      drawOptionButton(tf,10,440,0,0,"Option");
+      drawCheckButton(tf,120,170,0,0,"Option","on").setAttribute("class","insensitive");
+      drawCheckButton(tf,120,200,0,0,"Option","mixed").setAttribute("class","insensitive");
+      drawCheckButton(tf,120,230,0,0,"Option","off").setAttribute("class","insensitive");
+      drawRadioButton(tf,120,260,0,0,"Option","on").setAttribute("class","insensitive");
+      drawRadioButton(tf,120,290,0,0,"Option","mixed").setAttribute("class","insensitive");
+      drawRadioButton(tf,120,320,0,0,"Option","off").setAttribute("class","insensitive");
+      drawRevealButton(tf,120,350,0,0,"More","closed").setAttribute("class","insensitive");
+      drawRevealButton(tf,120,380,0,0,"More","turning").setAttribute("class","insensitive");
+      drawRevealButton(tf,120,410,0,0,"More","open").setAttribute("class","insensitive");
+      drawOptionButton(tf,120,440,0,0,"Option").setAttribute("class","insensitive");
+      drawInputField(tf,10,470,100,22);
+      drawInputField(tf,120,470,100,22).setAttribute("class","textfield insensitive");
+      drawSpinButton(tf,10,500,100,22);
+      drawSpinButton(tf,120,500,100,22).setAttribute("class","textfield insensitive");
+
+/*
       drawHScrollBar(tf,10,10,100,16);
       drawVScrollBar(tf,120,10,16,100);
-      drawPushButton(tf,10,27,0,0,"OK",true);
-      drawPushButton(tf,10,53,0,0,"Cancel");
-      drawInputField(tf,10,80,100,22);
-      drawSpinButton(tf,10,110,100,22);
-      drawSwitch(tf,10,140,64,22,"off");
-      drawSwitch(tf,10,170,64,22,"on");
-      drawSwitch(tf,90,140,64,22,"off").setAttribute("class","insensitive");
-      drawSwitch(tf,90,170,64,22,"on").setAttribute("class","insensitive");
-      drawCheckButton(tf,10,200,0,0,"Option","on");
-      drawCheckButton(tf,10,230,0,0,"Option","mixed");
-      drawCheckButton(tf,10,260,0,0,"Option","off");
-      drawRadioButton(tf,10,290,0,0,"Option","on");
-      drawRadioButton(tf,10,320,0,0,"Option","mixed");
-      drawRadioButton(tf,10,350,0,0,"Option","off");
-      drawRevealButton(tf,10,380,0,0,"More","closed");
-      drawRevealButton(tf,10,410,0,0,"More","turning");
-      drawRevealButton(tf,10,440,0,0,"More","open");
-      drawCheckButton(tf,90,200,0,0,"Option","on").setAttribute("class","insensitive");
-      drawCheckButton(tf,90,230,0,0,"Option","mixed").setAttribute("class","insensitive");
-      drawCheckButton(tf,90,260,0,0,"Option","off").setAttribute("class","insensitive");
-      drawRadioButton(tf,90,290,0,0,"Option","on").setAttribute("class","insensitive");
-      drawRadioButton(tf,90,320,0,0,"Option","mixed").setAttribute("class","insensitive");
-      drawRadioButton(tf,90,350,0,0,"Option","off").setAttribute("class","insensitive");
-      drawRevealButton(tf,90,380,0,0,"More","closed").setAttribute("class","insensitive");
-      drawRevealButton(tf,90,410,0,0,"More","turning").setAttribute("class","insensitive");
-      drawRevealButton(tf,90,440,0,0,"More","open").setAttribute("class","insensitive");
-      drawOptionButton(tf,10,470,0,0,"Option");
       drawHLevel(tf,10,500,100,16)
       drawVLevel(tf,120,470,16,100)
       drawHLevel(tf,10,520,100,16).setAttribute("class","insensitive");
@@ -1280,12 +1292,12 @@
       drawTabs(tf,170,140,240,28,["a","b","c"],0);
       drawTabs(tf,170,170,240,28,["a","b","c"],1);
       drawTabs(tf,170,200,240,28,["a","b","c"],2);
-      drawToggledButton(tf,170,230,64,22,"Blush");
-      drawPushButton(tf,170,260,64,22,"OK",true).setAttribute("class","button insensitive");
-      drawInputField(tf,170,290,100,22).setAttribute("class","textfield insensitive");
-      drawSpinButton(tf,170,320,100,22).setAttribute("class","textfield insensitive");
-      drawToggledButton(tf,170,350,64,22,"Blush").setAttribute("class","button activetoggle insensitive");
-      drawOptionButton(tf,170,380,0,0,"Option").setAttribute("class","insensitive");
+    */  
+      
+      
+      
+      
+      
     </script>
     <svg id="iconfield" width="800" height="600">
       <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
@@ -1316,9 +1328,6 @@
         });
       </script>
     </svg>
-
-    <br/>
-    <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
     <br/>
     <svg width="400" height="300" id="openDialog"><title>Open Dialog</title>
       <script>
