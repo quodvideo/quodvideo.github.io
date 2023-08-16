@@ -426,7 +426,7 @@
         </symbol>
         <symbol class="icon" id="messageIcon" viewbox="0 0 16 16">
           <rect x="0.5" y="3.5" width="15" height="9" />
-          <path d="M 1 12.5 L 1 4.5 L 8.5 8 L 15 4.5 L 15 12.5" stroke-width="2" style="fill: none;"/>
+          <path d="M 0.5 3.5 L 8 8 L 15.5 3.5" style="fill: none;"/>
         </symbol>
         <symbol class="icon" id="notebookIcon" viewbox="0 0 16 16">
           <path d="M1.5,1.5 H13.5 A 2 2 90 0 1 15.5 3.5 V13.5 A 2 2 90 0 1 13.5 15.5 H1.5 V1.5 Z M3.5,1.5 V15.5"/>
@@ -1995,7 +1995,7 @@
       <p>A few containers are special in that they tend to be large and unique. They may also be used by many programs.</p>
       <section><h3>Address Book</h3>
         <div style="display: flex;">
-          <div style="flex-direction: column;">
+          <div style="flex-direction: column; margin-right: 20px;">
             <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#addressbookIcon"/></svg>
             <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#contactIcon"/></svg>
           </div>
@@ -2006,27 +2006,58 @@
         </div>
       </section>
       <section><h3>Calendar</h3>
-        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#calendarIcon"/></svg>
-        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#eventIcon"/></svg>
-        <p>The calendar is a container for events, and events happen all the time. something something integrated activity journal</p>
-        <p>As with the address book, all events should appear on the main calendar. Same problems here.</p>
+        <div style="display: flex;">
+          <div style="flex-direction: column; margin-right: 20px;">
+            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#calendarIcon"/></svg>
+            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#eventIcon"/></svg>
+          </div>
+          <div style="flex-direction: column;">
+            <p>The calendar is a container for events, and events happen all the time. something something integrated activity journal</p>
+            <p>As with the address book, all events should appear on the main calendar. Same problems here.</p>
+          </div>
+        </div>
       </section>
       <section><h3>Mail Boxes</h3>
-        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#mailboxIcon"/></svg>
-        <p>The mail boxes are containers for messages. ???</p>
+        <div style="display: flex;">
+          <div style="flex-direction: column; margin-right: 20px;">
+            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#mailboxIcon"/></svg>
+            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#messageIcon"/></svg>
+          </div>
+          <div style="flex-direction: column;">
+            <p>The mail boxes are containers for messages. ???</p>
+          </div>
+        </div>
       </section>
       <section><h3>Bibliography</h3>
-        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#bibliographyIcon"/></svg>
-        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#citationIcon"/></svg>
-        <p>The bibliography is a container for references which may be used for citations. References include not only citation information, but also user's notes and possibly copies of the referenced material.</p>
+        <div style="display: flex;">
+          <div style="flex-direction: column; margin-right: 20px;">
+            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#bibliographyIcon"/></svg>
+            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#citationIcon"/></svg>
+          </div>
+          <div>
+            <p>The bibliography is a container for references which may be used for citations. References include not only citation information, but also user's notes and possibly copies of the referenced material.</p>
+          </div>
+        </div>
       </section>
       <section><h3>Music Library</h3>
-        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#jukeboxIcon"/></svg>
-        <p></p>
+        <div style="display: flex;">
+          <div style="flex-direction: column; margin-right: 20px;">
+            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#jukeboxIcon"/></svg>
+          </div>
+          <div style="flex-direction: column;">
+            <p></p>
+          </div>
+        </div>
       </section>
       <section><h3>Photo Gallery</h3>
-        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#photoAlbumIcon"/></svg>
-        <p></p>
+        <div style="display: flex;">
+          <div style="flex-direction: column; margin-right: 20px;">
+            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#photoAlbumIcon"/></svg>
+          </div>
+          <div style="flex-direction: column;">
+            <p></p>
+          </div>
+        </div>
       </section>
     </section>
     <section><h2>Containers and Items</h2>
