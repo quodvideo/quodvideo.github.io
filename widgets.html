@@ -4,17 +4,42 @@
     <title>widgets</title>
     <style>
       :root {
-        --outline-color: black;
-        --focus-ring-color: black;
-        --label-color: black;
-        --input-field-color: white;
+        --input-field-color:      white;
         --highlight-stroke-color: white;
-        --shadow-stroke-color: grey;
-        --raised-fill-color: #efefef;
-        --recessed-fill-color: #bbbbbb;
-        --base-fill-color: #dddddd;
+        --raised-fill-color:      #efefef;
+        --base-fill-color:        #dddddd;
+        --recessed-fill-color:    #bbbbbb;
+        --shadow-stroke-color:    grey;
+        --outline-color:          black;
+        --focus-ring-color:       black;
+        --label-color:            black;
         /* Consider adding colors for when a button is actively being pushed and not just in the ON state. */
         font-family: sans-serif;
+      }
+      .insensitive {
+        --input-field-color:      #efefef;
+        --highlight-stroke-color: #ff000000;
+        --shadow-stroke-color:    #00ff0000;
+        --outline-color:          #808080;
+        --label-color:            #808080;
+      }
+      .darkmode {
+        --input-field-color:      #808080;
+        --highlight-stroke-color: #808080;
+        --raised-fill-color:      #333333;
+        --base-fill-color:        #121212;
+        --recessed-fill-color:    #080808;
+        --shadow-stroke-color:    #000000;
+        --outline-color:          #bbbbbb;
+        --focus-ring-color:       #e6e6e6;
+        --label-color:            #e6e6e6;
+      }
+      .darkmode .insensitive {
+        --input-field-color:      #333333;
+        --highlight-stroke-color: #ff000000;
+        --shadow-stroke-color:    #00ff0000;
+        --outline-color:          #bbbbbb;
+        --label-color:            #bbbbbb;
       }
       :focus {
         outline: none;
@@ -134,24 +159,7 @@
         fill: none;
         stroke: var(--outline-color);
       }
-      .insensitive {
-        --outline-color: #808080;
-        --input-field-color: #efefef;
-        --label-color: #808080;
-        --highlight-stroke-color: #ff000000;
-        --shadow-stroke-color: #00ff0000;
-      }
-      .darkmode {
-        --input-field-color:      #808080; /* white; */
-        --highlight-stroke-color: #808080; /* white; */
-        --raised-fill-color:      #333333; /* #efefef; */
-        --base-fill-color:        #121212; /* #dddddd; */
-        --recessed-fill-color:    #080808; /* #bbbbbb; */
-        --shadow-stroke-color:    #000000; /* grey */
-        --outline-color:          #bbbbbb; /* black; */
-        --focus-ring-color:       #e6e6e6; /* black; */
-        --label-color:            #e6e6e6; /* black;*/
-      }
+
       section {
         margin-left: 10%;
         margin-right: 10%;
