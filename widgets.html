@@ -1189,25 +1189,25 @@
           parentElement.insertAdjacentElement("beforeend",g);
 
           var i = document.createElementNS("http://www.w3.org/2000/svg","use");
-          i.setAttribute("x",5);
+          i.setAttribute("x",6);
           i.setAttribute("y",6);
-          i.setAttribute("width",40);
-          i.setAttribute("height",40);
+          i.setAttribute("width",36);
+          i.setAttribute("height",36);
           i.setAttribute("fill","white");
           i.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
           g.insertAdjacentElement("beforeend",i);
 
           var t = document.createElementNS("http://www.w3.org/2000/svg","text");
-          t.setAttribute("x",56);
+          t.setAttribute("x",48);
           t.setAttribute("y",24);
-          t.setAttribute("style","font-size: 24;");
+          t.setAttribute("style","font-size: 18px;");
           t.innerHTML = title;
           g.insertAdjacentElement("beforeend",t);
 
           var s = document.createElementNS("http://www.w3.org/2000/svg","text");
-          s.setAttribute("x",56);
-          s.setAttribute("y",41);
-          s.setAttribute("style","font-style: italic; font-size:13.3");
+          s.setAttribute("x",48);
+          s.setAttribute("y",39);
+          s.setAttribute("style","font-style: italic; font-size: 12px");
           s.innerHTML = subtitle;
           g.insertAdjacentElement("beforeend",s);
 
