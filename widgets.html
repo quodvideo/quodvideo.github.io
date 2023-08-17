@@ -135,9 +135,9 @@
         stroke: var(--outline-color);
       }
       .insensitive {
-        --outline-color: #808080;
+        --outline-color: grey;
         --input-field-color: #efefef;
-        --label-color: #808080;
+        --label-color: grey;
         --highlight-stroke-color: #ff000000;
         --shadow-stroke-color: #00ff0000;
       }
@@ -180,15 +180,15 @@
     <table>
       <tr><th colspan="2">Colors</th></tr>
       <tr><th>Name</th><th>Regular</th><th>Insensitive</th></tr>
-      <tr style="background-color: var(--input-field-color);">                  <td>--input-field-color</td>     <td>white</td><td class="insensitive" style="background-color: var(--input-field-color);"></td></tr>
-      <tr style="background-color: var(--highlight-stroke-color);">             <td>--highlight-stroke-color</td><td>white</td><td class="insensitive" style="background-color: var(--highlight-stroke-color);"></td></tr>
-      <tr style="background-color: var(--raised-fill-color);">                  <td>--raised-fill-color</td>     <td>#efefef</td><td class="insensitive" style="background-color: var(--raised-fill-color);"></td></tr>
-      <tr style="background-color: var(--base-fill-color);">                    <td>--base-fill-color</td>       <td>#dddddd</td><td class="insensitive" style="background-color: var(--base-fill-color);"></td></tr>
-      <tr style="background-color: var(--recessed-fill-color);">                <td>--recessed-fill-color</td>   <td>#bbbbbb</td><td class="insensitive" style="background-color: var(--recessed-fill-color);"></td></tr>
-      <tr style="background-color: var(--shadow-stroke-color); color: white;"><td>--shadow-stroke-color</td>   <td>grey</td><td class="insensitive" style="background-color: var(--shadow-stroke-color); color: white;"></td></tr>
-      <tr style="background-color: var(--outline-color); color: white;">      <td>--outline-color</td>         <td>black</td><td class="insensitive" style="background-color: var(--outline-color); color: white;"></td></tr>
-      <tr style="background-color: var(--focus-ring-color); color: white;">   <td>--focus-ring-color</td>      <td>black</td><td class="insensitive" style="background-color: var(--focus-ring-color); color: white;"></td></tr>
-      <tr style="background-color: var(--label-color); color: white;">        <td>--label-color</td>           <td>black</td><td class="insensitive" style="background-color: var(--label-color); color: white;"></td></tr>
+      <tr style="background-color: var(--input-field-color);">                  <td>--input-field-color</td>     <td>white</td>  <td class="insensitive" style="background-color: var(--input-field-color);">#efefef</td></tr>
+      <tr style="background-color: var(--highlight-stroke-color);">             <td>--highlight-stroke-color</td><td>white</td>  <td class="insensitive" style="background-color: var(--highlight-stroke-color);">none</td></tr>
+      <tr style="background-color: var(--raised-fill-color);">                  <td>--raised-fill-color</td>     <td>#efefef</td><td class="insensitive" style="background-color: var(--raised-fill-color);">#efefef</td></tr>
+      <tr style="background-color: var(--base-fill-color);">                    <td>--base-fill-color</td>       <td>#dddddd</td><td class="insensitive" style="background-color: var(--base-fill-color);">#dddddd</td></tr>
+      <tr style="background-color: var(--recessed-fill-color);">                <td>--recessed-fill-color</td>   <td>#bbbbbb</td><td class="insensitive" style="background-color: var(--recessed-fill-color);">#bbbbbb</td></tr>
+      <tr style="background-color: var(--shadow-stroke-color); color: white;"><td>--shadow-stroke-color</td>   <td>grey</td>   <td class="insensitive" style="background-color: var(--shadow-stroke-color); color: white;">none</td></tr>
+      <tr style="background-color: var(--outline-color); color: white;">      <td>--outline-color</td>         <td>black</td>  <td class="insensitive" style="background-color: var(--outline-color); color: white;">grey</td></tr>
+      <tr style="background-color: var(--focus-ring-color); color: white;">   <td>--focus-ring-color</td>      <td>black</td>  <td class="insensitive" style="background-color: var(--focus-ring-color); color: white;">black</td></tr>
+      <tr style="background-color: var(--label-color); color: white;">        <td>--label-color</td>           <td>black</td>  <td class="insensitive" style="background-color: var(--label-color); color: white;">grey</td></tr>
     </table>
     <svg width="1" height="1"><title>Definitions</title>
       <defs>
