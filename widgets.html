@@ -24,22 +24,22 @@
         --label-color:            #808080;
       }
       .darkmode {
-        --input-field-color:      #808080;
-        --highlight-stroke-color: #808080;
-        --raised-fill-color:      #333333;
-        --base-fill-color:        #121212;
-        --recessed-fill-color:    #080808;
-        --shadow-stroke-color:    #000000;
-        --outline-color:          #bbbbbb;
-        --focus-ring-color:       #e6e6e6;
-        --label-color:            #e6e6e6;
+        --input-field-color:      hsl(0, 0%, 50%);
+        --highlight-stroke-color: hsl(0, 0%, 50%);
+        --raised-fill-color:      hsl(0, 0%, 33%);
+        --base-fill-color:        hsl(0, 0%, 27%);
+        --recessed-fill-color:    hsl(0, 0%, 20%);
+        --shadow-stroke-color:    hsl(0, 0%, 7%);
+        --outline-color:          hsl(0, 0%, 73%);
+        --focus-ring-color:       hsl(0, 0%, 90%);
+        --label-color:            hsl(0, 0%, 90%);
       }
-      .darkmode.insensitive {
-        --input-field-color:      #333333;
+      .darkmode.insensitive, .darkmode .insensitive {
+        --input-field-color:      hsl(0, 0%, 33%);
         --highlight-stroke-color: #ff000000;
         --shadow-stroke-color:    #00ff0000;
-        --outline-color:          #bbbbbb;
-        --label-color:            #bbbbbb;
+        --outline-color:          hsl(0, 0%, 60%);
+        --label-color:            hsl(0, 0%, 60%);
       }
       :focus {
         outline: none;
@@ -433,6 +433,7 @@
           </g>
         </symbol>
         <symbol class="icon" id="bibliography2Icon" viewBox="0 0 16 16">
+          <path d="M 0.5 6.5 L3.5 0.5 V11.5 L 0.5 15.5 Z" style="stroke: var(--outline-color); fill: var(--shadow-stroke-color)"/>
           <path d="M4.5,11.5 V2.5 H11.5 V0.5 H15.5 V11.5 Z"/>
           <path d="M4.5,11.5 V2.5 H7.5  V0.5 H11.5 V2.5 H15.5 V11.5 Z"/>
           <path d="M3.5,11.5 V0.5 H7.5  V2.5 H15.5 V11.5 Z"/>
@@ -465,12 +466,16 @@
           <circle cx="7.5" cy="8.5" r="6"/>
           <circle cx="6.5" cy="9.5" r="6"/>
           <ellipse cx="6.5" cy="11.5" rx="2.5" ry="1.5" transform="rotate(-20 6.5 11.5)" style="stroke: none; fill: var(--outline-color);"/>
-          <line x1="8.5" y1="11.5" x2="8.5" y2="5" style="vector-effect: none;"/>
+          <line x1="8.4" y1="11" x2="8.5" y2="5" style="vector-effect: none;"/>
         </symbol>
         <symbol class="icon" id="musicIcon" viewbox="0 0 16 16">
           <circle cx="8" cy="8" r="7.5"/>
-          <ellipse cx="6.5" cy="11.5" rx="2.5" ry="1.5" transform="rotate(-20 6.5 11.5)" style="stroke: none; fill: var(--outline-color);"/>
-          <line x1="8.5" y1="11.5" x2="8.5" y2="5" style="vector-effect: none;"/>
+          <ellipse cx="4.5" cy="11.5" rx="2" ry="1" transform="rotate(-20 4.5 11.5)" style="stroke: none; fill: var(--outline-color);"/>
+          <!--<line x1="6" y1="11.5" x2="6" y2="5" style="vector-effect: none;"/>-->
+          <ellipse cx="10.5" cy="10.5" rx="2" ry="1" transform="rotate(-20 10.5 10.5)" style="stroke: none; fill: var(--outline-color);"/>
+          <!--<line x1="12" y1="10.5" x2="12" y2="4" style="vector-effect: none;"/>-->
+          <path d="M 5.9 11 V 5 L 11.9 4 V 10 M 5.9 6.5 L 11.9 5.5" style="vector-effect: none; fill: none;">
+
         </symbol>
         <symbol class="icon" id="photoAlbumIcon" viewbox="0 0 16 16">
           <rect x="0.5" y="0.5" width="15" height="15"/>
@@ -604,6 +609,8 @@
 
       </defs>
     </svg>
+    <br/>
+    <input type="checkbox" id="darkMode"><label for="darkMode">Dark Mode</label>
     <br/>
     <svg id="testfield" width="800" height="600">
       <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
@@ -1439,6 +1446,19 @@
         });
       </script>
     </svg>
+    <script>
+      document.getElementById("darkMode").addEventListener("change", () => {
+        var t = document.getElementById("testfield");
+        var i = document.getElementById("iconfield");
+        if(document.getElementById("darkMode").checked) {
+          t.setAttribute("class","darkmode");
+          i.setAttribute("class","darkmode");
+        } else {
+          t.setAttribute("class","");
+          i.setAttribute("class","");
+        }
+      });
+    </script>
     <br/>
     <svg width="400" height="150" id="messageAlert"><title>Message Alert</title>
       <script>
@@ -1484,14 +1504,17 @@
         drawBaseWindow(document.getElementById("programSettingsPanel"),0,0,400,300);
         drawHeaderBar(document.getElementById("programSettingsPanel"),0,0,400,300,"#terminalIcon","Program Settings","Some informative subtext");
         drawInputField(document.getElementById("programSettingsPanel"),3,44,100,253);
+        drawButton(document.getElementById("programSettingsPanel"),380,4,16,16)
       </script>
-      <g transform="translate(6.5,58.5)">
+      <g transform="translate(10.5,62.5)">
         <text y="0">Program</text>
-        <text y="20">Session</text>
-        <text y="40">Association</text>
-        <text y="60">Window</text>
-        <text y="80">General</text>
+        <text y="22">Session</text>
+        <text y="44">Association</text>
+        <text y="66">Window</text>
+        <text y="88">General</text>
       </g>
+      <line x1="384" y1="16" x2="392" y2="8" stroke="black" stroke-width="2"/>
+      <line x1="384" y1="8" x2="392" y2="16" stroke="black" stroke-width="2"/>
     </svg>
     <svg width="640" height="480" id="basicView"><title>Basic View</title>
       <script>
