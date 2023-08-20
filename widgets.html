@@ -24,22 +24,22 @@
         --label-color:            #808080;
       }
       .darkmode {
-        --input-field-color:      hsl(0, 0%, 50%);
-        --highlight-stroke-color: hsl(0, 0%, 50%);
-        --raised-fill-color:      hsl(0, 0%, 33%);
-        --base-fill-color:        hsl(0, 0%, 27%);
-        --recessed-fill-color:    hsl(0, 0%, 20%);
-        --shadow-stroke-color:    hsl(0, 0%, 7%);
-        --outline-color:          hsl(0, 0%, 73%);
-        --focus-ring-color:       hsl(0, 0%, 90%);
-        --label-color:            hsl(0, 0%, 90%);
+        --input-field-color:      #595959;
+        --highlight-stroke-color: #595959;
+        --raised-fill-color:      #4A4A4A;
+        --base-fill-color:        #454545;
+        --recessed-fill-color:    #333333;
+        --shadow-stroke-color:    #121212;
+        --outline-color:          #bababa;
+        --focus-ring-color:       #e6e6e6;
+        --label-color:            #e6e6e6;
       }
       .darkmode.insensitive, .darkmode .insensitive {
-        --input-field-color:      hsl(0, 0%, 33%);
+        --input-field-color:      #4A4A4A;
         --highlight-stroke-color: #ff000000;
         --shadow-stroke-color:    #00ff0000;
-        --outline-color:          hsl(0, 0%, 60%);
-        --label-color:            hsl(0, 0%, 60%);
+        --outline-color:          #999999;
+        --label-color:            #999999;
       }
       :focus {
         outline: none;
@@ -191,64 +191,64 @@
         <td>--input-field-color</td>
         <td style="background-color: var(--input-field-color);">white</td>
         <td class="insensitive" style="background-color: var(--input-field-color);">#efefef</td>
-        <td class="darkmode" style="background-color: var(--input-field-color);">#efefef</td>
-        <td class="darkmode insensitive" style="background-color: var(--input-field-color);">#efefef</td>
+        <td class="darkmode" style="background-color: var(--input-field-color); color: white;">#595959</td>
+        <td class="darkmode insensitive" style="background-color: var(--input-field-color); color: white;">#4A4A4A</td>
       </tr>
       <tr>
         <td>--highlight-stroke-color</td>
         <td style="background-color: var(--highlight-stroke-color);">white</td>
         <td class="insensitive" style="background-color: var(--highlight-stroke-color);">none</td>
-        <td class="darkmode" style="background-color: var(--highlight-stroke-color);">none</td>
+        <td class="darkmode" style="background-color: var(--highlight-stroke-color); color: white;">#595959</td>
         <td class="darkmode insensitive" style="background-color: var(--highlight-stroke-color);">none</td>
       </tr>
       <tr>
         <td>--raised-fill-color</td>
         <td style="background-color: var(--raised-fill-color);">#efefef</td>
         <td class="insensitive" style="background-color: var(--raised-fill-color);">#efefef</td>
-        <td class="darkmode" style="background-color: var(--raised-fill-color);">#efefef</td>
-        <td class="darkmode insensitive" style="background-color: var(--raised-fill-color);">#efefef</td>
+        <td class="darkmode" style="background-color: var(--raised-fill-color); color: white;">#4A4A4A</td>
+        <td class="darkmode insensitive" style="background-color: var(--raised-fill-color); color: white;">#4A4A4A</td>
       </tr>
       <tr>
         <td>--base-fill-color</td>
         <td style="background-color: var(--base-fill-color);">#dddddd</td>
         <td class="insensitive" style="background-color: var(--base-fill-color);">#dddddd</td>
-        <td class="darkmode" style="background-color: var(--base-fill-color);">#dddddd</td>
-        <td class="darkmode insensitive" style="background-color: var(--base-fill-color);">#dddddd</td>
+        <td class="darkmode" style="background-color: var(--base-fill-color); color: white;">#454545</td>
+        <td class="darkmode insensitive" style="background-color: var(--base-fill-color); color: white;">#454545</td>
       </tr>
       <tr>
         <td>--recessed-fill-color</td>
         <td style="background-color: var(--recessed-fill-color);">#bbbbbb</td>
         <td class="insensitive" style="background-color: var(--recessed-fill-color);">#bbbbbb</td>
-        <td class="darkmode" style="background-color: var(--recessed-fill-color);">#bbbbbb</td>
-        <td class="darkmode insensitive" style="background-color: var(--recessed-fill-color);">#bbbbbb</td>
+        <td class="darkmode" style="background-color: var(--recessed-fill-color); color: white;">#333333</td>
+        <td class="darkmode insensitive" style="background-color: var(--recessed-fill-color); color: white;">#333333</td>
       </tr>
       <tr>
         <td>--shadow-stroke-color</td>
         <td style="background-color: var(--shadow-stroke-color); color: white;">grey</td>
         <td class="insensitive" style="background-color: var(--shadow-stroke-color);">none</td>
-        <td class="darkmode" style="background-color: var(--shadow-stroke-color);">none</td>
+        <td class="darkmode" style="background-color: var(--shadow-stroke-color); color: white;">#121212</td>
         <td class="darkmode insensitive" style="background-color: var(--shadow-stroke-color);">none</td>
       </tr>
       <tr>
         <td>--outline-color</td>
         <td style="background-color: var(--outline-color); color: white;">black</td>
         <td class="insensitive" style="background-color: var(--outline-color); color: white;">grey</td>
-        <td class="darkmode" style="background-color: var(--outline-color); color: white;">grey</td>
-        <td class="darkmode insensitive" style="background-color: var(--outline-color); color: white;">grey</td>
+        <td class="darkmode" style="background-color: var(--outline-color);">#bababa</td>
+        <td class="darkmode insensitive" style="background-color: var(--outline-color); color: white;">#999999</td>
       </tr>
       <tr>
         <td>--focus-ring-color</td>
         <td style="background-color: var(--focus-ring-color); color: white;">black</td>
         <td class="insensitive" style="background-color: var(--focus-ring-color); color: white;">black</td>
-        <td class="darkmode" style="background-color: var(--focus-ring-color); color: white;">black</td>
-        <td class="darkmode insensitive" style="background-color: var(--focus-ring-color); color: white;">black</td>
+        <td class="darkmode" style="background-color: var(--focus-ring-color);">#e6e6e6</td>
+        <td class="darkmode insensitive" style="background-color: var(--focus-ring-color);">#e6e6e6</td>
       </tr>
       <tr>
         <td>--label-color</td>
         <td style="background-color: var(--label-color); color: white;">black</td>
         <td class="insensitive" style="background-color: var(--label-color); color: white;">grey</td>
-        <td class="darkmode" style="background-color: var(--label-color); color: white;">grey</td>
-        <td class="darkmode insensitive" style="background-color: var(--label-color); color: white;">grey</td>
+        <td class="darkmode" style="background-color: var(--label-color);">#e6e6e6</td>
+        <td class="darkmode insensitive" style="background-color: var(--label-color); color: white;">#999999</td>
       </tr>
     </table>
     <svg width="1" height="1"><title>Definitions</title>
