@@ -1247,7 +1247,15 @@
           <ellipse cx="10.5" cy="10.5" rx="2" ry="1" transform="rotate(-20 10.5 10.5)" style="stroke: none; fill: var(--outline-color);"/>
           <!--<line x1="12" y1="10.5" x2="12" y2="4" style="vector-effect: none;"/>-->
           <path d="M 5.9 11 V 5 L 11.9 4 V 10 M 5.9 6.5 L 11.9 5.5" style="vector-effect: none; fill: none;">
-
+        </symbol>
+        <symbol class="icon" id="albumIcon" viewbox="0 0 16 16">
+          <rect x="0.5" y="0.5" width="15" height="15"/>
+          <circle cx="8" cy="8" r="7.5"/>
+          <ellipse cx="4.5" cy="11.5" rx="2" ry="1" transform="rotate(-20 4.5 11.5)" style="stroke: none; fill: var(--outline-color);"/>
+          <!--<line x1="6" y1="11.5" x2="6" y2="5" style="vector-effect: none;"/>-->
+          <ellipse cx="10.5" cy="10.5" rx="2" ry="1" transform="rotate(-20 10.5 10.5)" style="stroke: none; fill: var(--outline-color);"/>
+          <!--<line x1="12" y1="10.5" x2="12" y2="4" style="vector-effect: none;"/>-->
+          <path d="M 5.9 11 V 5 L 11.9 4 V 10 M 5.9 6.5 L 11.9 5.5" style="vector-effect: none; fill: none;">
         </symbol>
         <symbol class="icon" id="photoAlbumIcon" viewbox="0 0 16 16">
           <rect x="0.5" y="0.5" width="15" height="15"/>
@@ -1383,6 +1391,22 @@
           <line x1="4.5" y1="12.5" x2="8.5" y2="12.5"/>
           <path style="stroke: grey; fill: lightgrey;" d="M7.5 12.5 V11.5 L13.5 5.5 L14.5 6.5 L8.5 12.5 Z"/>
         </symbol>
+        <symbol class="icon" id="notebook4Icon" viewbox="0 0 16 16">
+          <path d="M 0.5 1.5 H 15.5 V 13.5 A 2 2 90 0 1 13.5 15.5 H 3.5 A 2 2 90 0 1 0.5 13.5 Z"/>
+          <rect x="1.5" y="1.5" width="2" height="14" style="fill: white; stroke: black;"/>
+          <line x1="3.5" y1="0.5" x2="3.5" y2="2.5"/>
+          <line x1="5.5" y1="0.5" x2="5.5" y2="2.5"/>
+          <line x1="7.5" y1="0.5" x2="7.5" y2="2.5"/>
+          <line x1="9.5" y1="0.5" x2="9.5" y2="2.5"/>
+          <line x1="11.5" y1="0.5" x2="11.5" y2="2.5"/>
+          <line x1="13.5" y1="0.5" x2="13.5" y2="2.5"/>
+
+          <line x1="4.5" y1="3.5" x2="14.5" y2="3.5"/>
+          <line x1="4.5" y1="6.5" x2="14.5" y2="6.5"/>
+          <line x1="4.5" y1="9.5" x2="14.5" y2="9.5"/>
+          <line x1="4.5" y1="12.5" x2="8.5" y2="12.5"/>
+          <path style="stroke: grey; fill: lightgrey;" d="M7.5 12.5 V11.5 L13.5 5.5 L14.5 6.5 L8.5 12.5 Z"/>
+        </symbol>
         <symbol class="icon" id="shellIcon" viewbox="0 0 16 16">
           <path d="M 8 15.5
                    S 0.5 15.5 3.5 14.5
@@ -1431,9 +1455,12 @@
           <rect x="11.5" y="12.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
         </symbol>
         <symbol class="icon" id="queryIcon" viewbox="0 0 16 16">
-          <rect width="16" height="16" style="fill: red; stroke: none;"/>
-          <path d="M 0.5  4 A 7.5 2.5 180 0 0 15.5 4 A 7.5 2.5 180 0 0 0.5 4 V 13 A 7.5 2.5 180 0 0 15.5 13 V 4
-                   M 0.5  7 A 7.5 2.5 180 0 0 15.5 7
+          <path d="M 0.5  4 A 7.5 2.5 180 0 0 15.5  4
+                            A 7.5 2.5 180 0 0  0.5  4
+                   V 13
+                            A 7.5 2.5 180 0 0 15.5 13
+                   V 4
+                   M 0.5  7 A 7.5 2.5 180 0 0 15.5  7
                    M 0.5 10 A 7.5 2.5 180 0 0 15.5 10"/>
         </symbol>
       </defs>
@@ -2339,12 +2366,28 @@
         <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#photoAlbumIcon"/></svg>
         <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#photoIcon"/></svg>
       </section>
-      <section><h3>Slideshows and Photographs</h3></section>
-      <section><h3>Albums and Music</h3></section>
-      <section><h3>Playlists and Music</h3></section>
-      <section><h3>Stations and Music</h3></section>
-      <section><h3>Notebooks and Notes</h3></section>
-      <section><h3>Notebooks and Computations</h3></section>
+      <section><h3>Slideshows and Photographs</h3>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#slideshowIcon"/></svg>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#photoIcon"/></svg>
+      </section>
+      <section><h3>Albums and Music</h3>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#albumIcon"/></svg>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#musicIcon"/></svg>
+      </section>
+      <section><h3>Playlists and Music</h3>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#jukeboxIcon"/></svg>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#musicIcon"/></svg>
+      </section>
+      <section><h3>Stations and Music</h3>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#jukeboxIcon"/></svg>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#musicIcon"/></svg>
+      </section>
+      <section><h3>Notebooks and Notes</h3>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#notebook3Icon"/></svg>
+      </section>
+      <section><h3>Notebooks and Computations</h3>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#computationalNotebookIcon"/></svg>
+      </section>
       <section><h3>Outlines</h3></section>
       <section><h3>Bookmarks</h3></section>
       <section><h3>Documentation</h3></section>
@@ -2356,7 +2399,9 @@
       <section><h3>Portfolios</h3></section>
       <section><h3>Libraries and their contents</h3></section>
       <section><h3>Raster and Vector Images</h3></section>
-      <section><h3>Database Queries</h3></section>
+      <section><h3>Database Queries</h3>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#queryIcon"/></svg>
+      </section>
       <section><h3>Other Media Types</h3></section>
     </section>
     <section><h2>But I'm a developer!</h2>
