@@ -956,7 +956,7 @@
     <p>The art is primitive. That's because I can't draw. I also think icons should be iconic. The icons have been made in SVG to have decent 16x16 rasters that scale up to at least 48x48. I've no objection to people customizing their icons. In fact, I encourage it.</p>
     <p>Almost everything here is greyscale. There are some other colors while I'm playing around with things.</p>
     <p>The default graphics will be greyscale. There are three reasons for this. First, the system should work in greyscale. Second, I've heard some artists prefer a greyscale GUI because a colorful one would affect their sense of color in their work. Third, leaving color to a customization provides an avenue for users to explore customizing the GUI; they can start small, by changing the accent color, which is used to mark selections.</p>
-    <p>I believe this default theme should also work as a high-contrast theme. I'll also try a dark mode theme.</p>
+    <p>I believe this default theme should also work as a high-contrast theme. There is also a dark mode theme.</p>
     <table>
       <tr><th colspan="5">Colors</th></tr>
       <tr><th>Name</th><th>Regular</th><th>Insensitive</th><th>Dark</th><th>Dark Ins.</th></tr>
@@ -2221,12 +2221,17 @@
       <p>If a view contains items, it should accept template drops to create new items.</p>
     </section>
     <section><h2>Some Implementation Thoughts</h2>
+      <section><h3>One View, One Process?</h3>
+        <p>I suspect each view will be its own process.</p>
+      </section>
       <section><h3>Folders</h3>
         <p>I'll probably implement folders in a small app called <code>folder</code>. The app will do a bit of desktop integration and then use a library called <code>libfolder</code> which provides most of the code for the field of icons view. I imagine there will be one <code>folder</code> process for each folder view. Workspaces and desktops will do much the same using <code>libfolder</code>, but they need more code to do session management. The main argument to <code>folder</code> is a URL for something which can be viewed as a folder. If the URL is for anything other than a simple directory, it will probably be handled by another program instead. A program called <code>archive</code>, for example, might handle gzipped directories. This program will also use <code>libfolder</code>, so the archive will act like a folder.</p>
         <p>OS/2 had the System Object Model which allowed for extensibility like with <code>archive</code> and <code>folder</code>. I don't know that anything that complicated is really necessary. There might be a better way now with something like DBus or flatpak portals.</p>
+        <p>With each folder being a separate process, inter-process communication is obviously going to be very important.</p>
       </section>
       <section><h3>Property Panels</h3>
         <p>The trickiest thing may be the property panels. Every view of an item may need to add or add to a property panel page.</p>
+        <p>Again, I expect the panel to be another program.</p>
       </section>
       <section><h3>Context menus</h3>
         <p>Closely related to panel extensibility is context menu extensibility. (Do we <code>View as . . .</code> or <code>Open as . . .</code>?) It may be useful to add menu items in addition to those on the <code>View as . . .</code> submenu.</p>
