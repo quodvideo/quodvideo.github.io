@@ -1467,10 +1467,29 @@
                    M 0.5  7 A 7.5 2.5 180 0 0 15.5  7
                    M 0.5 10 A 7.5 2.5 180 0 0 15.5 10"/>
         </symbol>
-        <symbol class="icon" id="outlineIcon" viewBox="0 0 16 16">
+        <symbol class="icon" id="outlineIcon" viewbox="0 0 16 16">
           <path d="M1.5,0.5 H9.5 L14.5,5.5 V15.5 H1.5 Z"/>
           <path style="fill: none;" d="M9.5,0.5 V5.5 H14.5"/>
           <path style="fill: none;" d="M 3.5 2.5 h 3 h -3 v 2 h 3 v 2 h 2 h-2 v 2 h3 h-3 v-4 h-3 v6 h6 h-3 v2 h3"/>
+        </symbol>
+        <symbol class="icon" id="bookmarkIcon" viewbox="0 0 16 16">
+          <path d="M 0.5 12.5 L 12.5 0.5 L 15.5 3.5 L 3.5 15.5 V 12.5 Z"/>
+        </symbol>
+        <symbol class="icon" id="bookmark2Icon" viewbox="0 0 16 16">
+          <path d="M 0.5 3.5 L 3.5 0.5 L 15.5 12.5 H 12.5 V 15.5 Z"/>
+        </symbol>
+        <symbol class="icon" id="documentationIcon" viewbox="0 0 16 16">
+          <rect width="16" height="16" style="fill: grey; stroke: none;"/>
+          <path d="M 2.5 6.5
+                   A 5.5 5.5 90 0 1 13.5 6.5
+                   A 5 5 120 0 1  9.5 9.5
+                   V 11.5
+                   H 6.5
+                   V 9.5
+                   A 5 5 45 0 1 8.5 8
+                   A 5 5 45 0 0 10.5 6.5
+                   A 2.5 2.5 90 0 0 5.5 6.5 Z"/>
+          <rect x="6.5" y="12.5" width="3" height="3"/>
         </symbol>
       </defs>
     </svg>
@@ -2397,8 +2416,13 @@
       <section><h3>Notebooks and Computations</h3>
         <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#computationalNotebookIcon"/></svg>
       </section>
-      <section><h3>Outlines</h3></section>
-      <section><h3>Bookmarks</h3></section>
+      <section><h3>Outlines</h3>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#outlineIcon"/></svg>
+      </section>
+      <section><h3>Bookmarks</h3>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#bookmarkIcon"/></svg>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#bookmark2Icon"/></svg>
+      </section>
       <section><h3>Documentation</h3></section>
       <section><h3>Ledgers</h3></section>
       <section><h3>Programs</h3></section>
