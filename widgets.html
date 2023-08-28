@@ -1240,6 +1240,25 @@
           <ellipse cx="6.5" cy="11.5" rx="2.5" ry="1.5" transform="rotate(-20 6.5 11.5)" style="stroke: none; fill: var(--outline-color);"/>
           <line x1="8.4" y1="11" x2="8.5" y2="5" style="vector-effect: none;"/>
         </symbol>
+        <clipPath id="breakuptransmission">
+          <rect x="0" y="0" width="7" height="7"/>
+          <rect x="0" y="9" width="7" height="7"/>
+          <rect x="9" y="0" width="7" height="7"/>
+          <rect x="9" y="9" width="7" height="7"/>
+        </clipPath>
+        <symbol class="icon" id="playlistIcon" viewbox="0 0 16 16">
+          <circle cx="8" cy="8" r="7" style="fill:none; vector-effect: none;" clip-path="url(#breakuptransmission)"/>
+          <circle cx="8" cy="8" r="5" style="fill:none; vector-effect: none;" clip-path="url(#breakuptransmission)"/>
+          <circle cx="8" cy="8" r="3"/>
+          <g transform="translate(4.5 3.5) scale(0.5 0.5)">
+            <ellipse cx="6.5" cy="11.5" rx="2.5" ry="1.5" transform="rotate(-20 6.5 11.5)" style="stroke: none; fill: var(--outline-color);"/>
+            <line x1="8.4" y1="11" x2="8.5" y2="5" style="vector-effect: none;"/>
+          </g>
+
+          <!--<path d="M 2.5 3.5 A 10 10 90 0 1 12.5 13.5" style="fill: none;stroke-width: 2; vector-effect: none;"/>
+          <path d="M 2.5 7.5 A 6 6 90 0 1 8.5 13.5" style="fill: none; stroke-width: 2; vector-effect: none;"/> -->
+
+        </symbol>
         <symbol class="icon" id="musicIcon" viewbox="0 0 16 16">
           <circle cx="8" cy="8" r="7.5"/>
           <ellipse cx="4.5" cy="11.5" rx="2" ry="1" transform="rotate(-20 4.5 11.5)" style="stroke: none; fill: var(--outline-color);"/>
@@ -1274,16 +1293,16 @@
           <line x1="15.5" y1="14.5" x2="13.5" y2="12.5" style="stroke: var(--outline-color);"/>
         </symbol>
         <symbol class="icon" id="spreadsheetIcon" viewbox="0 0 16 16">
-          <rect x="0.5" y="1.5" width="15" height="13"/>
-          <rect x="0.5" y="1.5" width="15" height="3" style="fill: var(--base-fill-color);"/>
-          <rect x="0.5" y="1.5" width="4" height="13" style="fill: var(--base-fill-color);"/>
+          <rect x="0.5" y="2.5" width="15" height="12"/>
+          <rect x="0.5" y="2.5" width="15" height="2" style="fill: var(--base-fill-color);"/>
+          <rect x="0.5" y="2.5" width="4" height="12" style="fill: var(--base-fill-color);"/>
           <line x1="0.5"  y1="4.5"  x2="15.5" y2="4.5"/>
           <line x1="0.5"  y1="6.5"  x2="15.5" y2="6.5"/>
           <line x1="0.5"  y1="8.5"  x2="15.5" y2="8.5"/>
           <line x1="0.5"  y1="10.5" x2="15.5" y2="10.5"/>
           <line x1="0.5"  y1="12.5" x2="15.5" y2="12.5"/>
-          <line x1="8.5"  y1="1.5"  x2="8.5"  y2="14.5"/>
-          <line x1="12.5" y1="1.5"  x2="12.5" y2="14.5"/>
+          <line x1="8.5"  y1="2.5"  x2="8.5"  y2="14.5"/>
+          <line x1="12.5" y1="2.5"  x2="12.5" y2="14.5"/>
         </symbol>
         <symbol class="icon" id="slideshowIcon" viewbox="0 0 16 16">
           <g transform="translate(4,-4)">
@@ -1559,6 +1578,16 @@
           <line x1="6.5" y1="10.5" x2="9.5" y2="10.5"/>
           <line x1="6.5" y1="12.5" x2="9.5" y2="12.5"/>
           <rect x="12" y="6.5" width="2" height="2" style="stroke: var(--outline-color); fill: var(--outline-color);"/>
+        </symbol>
+        <symbol class="icon" id="ledgerIcon" viewbox="0 0 16 16">
+          <rect x="0.5" y="0.5" width="15" height="12"/>
+          <rect x="12.5" y="2.5" width="3" height="10" style="fill: var(--base-fill-color)"/>
+          <rect x="9.5" y="2.5" width="3" height="10" style="fill: var(--base-fill-color)"/>
+          <line x1="0.5" y1="2.5" x2="15.5" y2="2.5"/>
+          <line x1="0.5" y1="4.5" x2="15.5" y2="4.5"/>
+          <line x1="0.5" y1="6.5" x2="15.5" y2="6.5"/>
+          <line x1="0.5" y1="8.5" x2="15.5" y2="8.5"/>
+          <line x1="0.5" y1="10.5" x2="15.5" y2="10.5"/>
         </symbol>
       </defs>
     </svg>
@@ -2538,7 +2567,7 @@
         <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#musicIcon"/></svg>
       </section>
       <section><h3>Playlists and Music</h3>
-        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#jukeboxIcon"/></svg>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#playlistIcon"/></svg>
         <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#musicIcon"/></svg>
       </section>
       <section><h3>Stations and Music</h3>
@@ -2557,9 +2586,12 @@
       <section><h3>Bookmarks</h3>
         <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#bookmarkIcon"/></svg>
         <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#bookmark2Icon"/></svg>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#bookmark3Icon"/></svg>
       </section>
       <section><h3>Documentation</h3></section>
-      <section><h3>Ledgers</h3></section>
+      <section><h3>Ledgers</h3>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#ledgerIcon"/></svg>
+      </section>
       <section><h3>Programs</h3></section>
       <section><h3>Projects and Solutions</h3>
         <p>The default view of a project or a solution is an IDE.</p>
