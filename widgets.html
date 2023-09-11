@@ -1039,6 +1039,11 @@
           <rect height="2" width="1" fill="var(--highlight-stroke-color)" stroke="none" />
           <rect x="1" height="2" width="1" fill="var(--shadow-stroke-color)" stroke="none" />
         </pattern>
+        <pattern id="gripper" width="3" height="3" patternUnits="userSpaceOnUse">
+          <rect x="0" y="0"" width="2" height="2" fill="var(--recessed-fill-color)" stroke="none"/>
+          <rect x="0" y="0"" width="1" height="1" fill="var(--shadow-stroke-color)" stroke="none"/>
+          <rect x="1" y="1"" width="1" height="1" fill="var(--highlight-stroke-color)" stroke="none"/>
+        </pattern>
         <clipPath id="cornerclip">
           <path d="M1,16 L16 1 V16 Z" />
         </clipPath>
@@ -1809,7 +1814,8 @@
         drawBaseWindow(document.getElementById("basicView2"),0,0,640,480);
         drawCutawayField(document.getElementById("basicView2"),3,30,634,447,false,false);
       </script>
-      <use xlink:href="#documentIcon" x="3" y="3" width="24" height="24" />
+      <use xlink:href="#documentIcon" fill="white" x="3" y="3" width="24" height="24" />
+      <rect x="30" y="3" width="600" height="24" fill="url(#gripper)"/>
     </svg>
     <svg width="640" height="480" id="documentView"><title>Document Window</title>
       <script>
