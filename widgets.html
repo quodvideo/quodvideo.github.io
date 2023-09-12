@@ -1818,18 +1818,23 @@
       <script>
         drawBaseWindow(document.getElementById("basicView2"),0,0,640,480);
         drawCutawayField(document.getElementById("basicView2"),3,30,634,447,false,false);
+        drawButton(document.getElementById("basicView2"),566,6,20,20)
         drawButton(document.getElementById("basicView2"),590,6,20,20)
         drawButton(document.getElementById("basicView2"),614,6,20,20)
       </script>
       <use xlink:href="#documentIcon" fill="white" x="3" y="3" width="24" height="24" />
       <text x="30" y="22" style="font-size: 18px;">Item Name</text>
       <rect x="123" y="6" width="465" height="21" fill="url(#gripper)" style="cursor: move;"/>
-      <g transform="translate(590 6)">
+      <g transform="translate(566 6)">
         <rect x="8.5" y="8.5" width="3" height="3" style="fill: var(--outline-color); stroke: var(--outline-color);"/>
       </g>
-      <g transform="translate(614 6)">
+      <g transform="translate(590 6)">
         <rect x="4.5" y="4.5" width="11" height="11" style="fill: none; stroke: var(--outline-color);"/>
         <rect x="4.5" y="4.5" width="11" height="2" style="fill: var(--outline-color); stroke: var(--outline-color);"/>
+      </g>
+      <g transform="translate(614 6)">
+        <line x1="4.5" y1="4.5" x2="15.5" y2="15.5" stroke="var(--outline-color)" stroke-width="2"/>
+        <line x1="4.5" y1="15.5" x2="15.5" y2="4.5" stroke="var(--outline-color)" stroke-width="2"/>
       </g>
 
 
