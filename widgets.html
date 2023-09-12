@@ -1795,7 +1795,7 @@
         drawBaseWindow(document.getElementById("programSettingsPanel"),0,0,400,300);
         drawHeaderBar(document.getElementById("programSettingsPanel"),0,0,400,300,"#terminalIcon","Program Settings","Some informative subtext");
         drawInputField(document.getElementById("programSettingsPanel"),3,44,100,253);
-        drawButton(document.getElementById("programSettingsPanel"),380,4,16,16)
+        drawButton(document.getElementById("programSettingsPanel"),374,6,20,20)
       </script>
       <g transform="translate(10.5,62.5)">
         <text y="0">Program</text>
@@ -1804,8 +1804,10 @@
         <text y="66">Window</text>
         <text y="88">General</text>
       </g>
-      <line x1="384" y1="16" x2="392" y2="8" stroke="var(--outline-color)" stroke-width="2"/>
-      <line x1="384" y1="8" x2="392" y2="16" stroke="var(--outline-color)" stroke-width="2"/>
+      <g transform="translate(374 4)">
+        <line x1="4.5" y1="4.5" x2="15.5" y2="15.5" stroke="var(--outline-color)" stroke-width="2"/>
+        <line x1="4.5" y1="15.5" x2="15.5" y2="4.5" stroke="var(--outline-color)" stroke-width="2"/>
+      </g>
     </svg>
     <svg width="640" height="480" id="basicView"><title>Basic View</title>
       <script>
