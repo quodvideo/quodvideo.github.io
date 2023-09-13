@@ -265,6 +265,12 @@
 
         return g;
       }
+      function drawDecalButton (parentElement,x,y,width,height,decal) {
+        var g = drawButton(parentElement,x,y,width,height);
+        u = document.createElementNS("http://www.w3.org/2000/svg","use");
+        u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
+        g.insertAdjacentElement("beforeend",u);
+      }
       function drawPushButton (parentElement,x,y,width,height,text,isDefault) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
@@ -1831,17 +1837,13 @@
       <script>
         drawBaseWindow(document.getElementById("basicView2"),0,0,640,480);
         drawCutawayField(document.getElementById("basicView2"),3,30,634,447,false,false);
-        drawButton(document.getElementById("basicView2"),566,6,20,20)
-        drawButton(document.getElementById("basicView2"),590,6,20,20)
-        drawButton(document.getElementById("basicView2"),614,6,20,20)
+        drawDecalButton(document.getElementById("basicView2"),566,6,20,20,"#iconifyDecal")
+        drawDecalButton(document.getElementById("basicView2"),590,6,20,20,"#maximizeDecal")
+        drawDecalButton(document.getElementById("basicView2"),614,6,20,20,"#closeDecal")
       </script>
       <use xlink:href="#documentIcon" fill="white" x="3" y="3" width="24" height="24" />
       <text x="30" y="22" style="font-size: 18px;">Item Name</text>
       <rect x="123" y="6" width="441" height="21" fill="url(#gripper)" style="cursor: move;"/>
-      <use xlink:href="#iconifyDecal"  x="566" y="6" width="20" height="20"/>
-      <use xlink:href="#maximizeDecal" x="590" y="6" width="20" height="20"/>
-      <use xlink:href="#closeDecal"    x="614" y="6" width="20" height="20"/>
-
     </svg>
     <svg width="640" height="480" id="documentView"><title>Document Window</title>
       <script>
