@@ -269,6 +269,8 @@
         var g = drawButton(parentElement,x,y,width,height);
         u = document.createElementNS("http://www.w3.org/2000/svg","use");
         u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
+        u.setAttribute("width",width);
+        u.setAttribute("height",height);
         g.insertAdjacentElement("beforeend",u);
       }
       function drawPushButton (parentElement,x,y,width,height,text,isDefault) {
