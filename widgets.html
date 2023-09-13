@@ -811,7 +811,7 @@
           r.setAttribute("y", 0.5);
           r.setAttribute("width",xywhs[i][2]-1);
           r.setAttribute("height",xywhs[i][3]-1);
-          r.setAttribute("fill", (i==activeIndex)?"var(--base-fill-color)":"var(--recessed-fill-color)");
+          r.setAttribute("fill", (i==activeIndex)?"var(--base-fill-color)":"var(--raised-fill-color)");
           r.setAttribute("stroke","var(--outline-color)");
           g.insertAdjacentElement("beforeend",r);
 
@@ -917,6 +917,22 @@
         g.insertAdjacentElement("beforeend",l);
 
         return g;
+      }
+      function drawSimpleWindow(parentElement,x,y,width,height,iconId,itemName,focused) {
+        var w = drawBaseWindow(parentElement,x,y,width,height);
+
+
+        drawDecalButton(w,width-74,6,20,20,"#iconifyDecal");
+        drawDecalButton(w,width-50,6,20,20,"#maximizeDecal");
+        drawDecalButton(w,width-26,6,20,20,"#closeDecal");
+        drawCutawayField(w,3,30,width-6,height-33,false,false);
+
+/*      <use xlink:href="#documentIcon" fill="white" x="3" y="3" width="24" height="24" />
+      <text x="30" y="22" style="font-size: 18px;">Item Name</text>
+      <rect x="123" y="6" width="441" height="21" fill="url(#gripper)" style="cursor: move;"/>
+*/
+
+        return w;
       }
       function drawtextbounds () {
         var ts = document.getElementsByTagName("text");
@@ -1796,7 +1812,7 @@
         drawBaseWindow(document.getElementById("programSettingsPanel"),0,0,400,300);
         drawHeaderBar(document.getElementById("programSettingsPanel"),0,0,400,300,"#terminalIcon","Program Settings","Some informative subtext");
         drawInputField(document.getElementById("programSettingsPanel"),3,44,100,253);
-        drawButton(document.getElementById("programSettingsPanel"),374,6,20,20)
+        drawDecalButton(document.getElementById("programSettingsPanel"),374,6,20,20,"#closeDecal")
       </script>
       <g transform="translate(10.5,62.5)">
         <text y="0">Program</text>
@@ -1804,10 +1820,6 @@
         <text y="44">Association</text>
         <text y="66">Window</text>
         <text y="88">General</text>
-      </g>
-      <g transform="translate(374 6)">
-        <line x1="4.5" y1="4.5" x2="15.5" y2="15.5" stroke="var(--outline-color)" stroke-width="2"/>
-        <line x1="4.5" y1="15.5" x2="15.5" y2="4.5" stroke="var(--outline-color)" stroke-width="2"/>
       </g>
     </svg>
     <svg width="640" height="480" id="basicView"><title>Basic View</title>
@@ -1821,9 +1833,9 @@
       <script>
         drawBaseWindow(document.getElementById("basicView2"),0,0,640,480);
         drawCutawayField(document.getElementById("basicView2"),3,30,634,447,false,false);
-        drawDecalButton(document.getElementById("basicView2"),566,6,20,20,"#iconifyDecal")
-        drawDecalButton(document.getElementById("basicView2"),590,6,20,20,"#maximizeDecal")
-        drawDecalButton(document.getElementById("basicView2"),614,6,20,20,"#closeDecal")
+        drawDecalButton(document.getElementById("basicView2"),566,6,20,20,"#iconifyDecal");
+        drawDecalButton(document.getElementById("basicView2"),590,6,20,20,"#maximizeDecal");
+        drawDecalButton(document.getElementById("basicView2"),614,6,20,20,"#closeDecal");
       </script>
       <use xlink:href="#documentIcon" fill="white" x="3" y="3" width="24" height="24" />
       <text x="30" y="22" style="font-size: 18px;">Item Name</text>
