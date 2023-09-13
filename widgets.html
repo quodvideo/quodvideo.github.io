@@ -319,10 +319,6 @@
         return b;
       }
       function drawStepper (parentElement,x,y,width,height,dir) {
-        var stepper = drawButton(parentElement,x,y,width,height);
-        var stepperArrow = document.createElementNS("http://www.w3.org/2000/svg","use");
-        stepperArrow.setAttribute("width",width);
-        stepperArrow.setAttribute("height",height);
         var arrow="#none";
         switch (dir) {
           case "up": arrow="#newArrowUp"; break;
@@ -330,8 +326,7 @@
           case "left": arrow="#newArrowLeft"; break;
           case "right": arrow="#newArrowRight"; break;
         }
-        stepperArrow.setAttributeNS("http://www.w3.org/1999/xlink","href",arrow);
-        stepper.insertAdjacentElement("beforeend", stepperArrow);
+        var stepper = drawDecalButton(parentElement,x,y,width,height,arrow);
         return stepper;
       }
       function drawSlider (parentElement,x,y,width,height,dir) {
@@ -468,21 +463,8 @@
       }
       function drawSpinButton (parentElement,x,y,width,height) {
         var field = drawInputField(parentElement,x,y,width,height);
-
-        var btndn = drawButton(field,1,1,height-2,height-2);
-        var minus = document.createElementNS("http://www.w3.org/2000/svg","use");
-        minus.setAttribute("width",height-2);
-        minus.setAttribute("height",height-2);
-        minus.setAttributeNS("http://www.w3.org/1999/xlink","href","#minusSign");
-        btndn.insertAdjacentElement("beforeend",minus);
-
-        var btnup = drawButton(field,width-height+1,1,height-2,height-2);
-        var plus = document.createElementNS("http://www.w3.org/2000/svg","use");
-        plus.setAttribute("width",height-2);
-        plus.setAttribute("height",height-2);
-        plus.setAttributeNS("http://www.w3.org/1999/xlink","href","#plusSign");
-        btnup.insertAdjacentElement("beforeend",plus);
-
+        var btndn = drawDecalButton(field,1,1,height-2,height-2,"#minusSign");
+        var btnup = drawDecalButton(field,width-height+1,1,height-2,height-2,"#plusSign");
         return field;
       }
       function drawSwitch (parentElement,x,y,width,height,state) {
