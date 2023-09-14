@@ -918,7 +918,7 @@
 
         return g;
       }
-      function drawSimpleWindow(parentElement,x,y,width,height,iconId,itemName,focused) {
+      function drawSimpleWindow(parentElement,x,y,width,height,iconId,itemName,focused=true) {
         var w = drawBaseWindow(parentElement,x,y,width,height);
         drawDecalButton(w,width-74,6,20,20,"#iconifyDecal");
         drawDecalButton(w,width-50,6,20,20,"#maximizeDecal");
@@ -946,7 +946,7 @@
         var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
         r.setAttribute("x", box.x + box.width + 6);
         r.setAttribute("y",6);
-        r.setAttribute("width", width - 74 - (box.x + box.width + 6));
+        r.setAttribute("width", width - 74 - (box.x + box.width + 6) - 4);
         r.setAttribute("height",21);
         r.setAttribute("fill","url(#gripper)");
         r.setAttribute("style","cursor: move;");
