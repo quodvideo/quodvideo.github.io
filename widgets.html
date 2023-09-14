@@ -811,7 +811,7 @@
           r.setAttribute("y", 0.5);
           r.setAttribute("width",xywhs[i][2]-1);
           r.setAttribute("height",xywhs[i][3]-1);
-          r.setAttribute("fill", (i==activeIndex)?"var(--base-fill-color)":"var(--raised-fill-color)");
+          r.setAttribute("fill", (i==activeIndex)?"var(--base-fill-color)":"var(--raised-fill-color)"); // or recessed???
           r.setAttribute("stroke","var(--outline-color)");
           g.insertAdjacentElement("beforeend",r);
 
@@ -920,17 +920,37 @@
       }
       function drawSimpleWindow(parentElement,x,y,width,height,iconId,itemName,focused) {
         var w = drawBaseWindow(parentElement,x,y,width,height);
-
-
         drawDecalButton(w,width-74,6,20,20,"#iconifyDecal");
         drawDecalButton(w,width-50,6,20,20,"#maximizeDecal");
         drawDecalButton(w,width-26,6,20,20,"#closeDecal");
         drawCutawayField(w,3,30,width-6,height-33,false,false);
 
-/*      <use xlink:href="#documentIcon" fill="white" x="3" y="3" width="24" height="24" />
-      <text x="30" y="22" style="font-size: 18px;">Item Name</text>
-      <rect x="123" y="6" width="441" height="21" fill="url(#gripper)" style="cursor: move;"/>
-*/
+        var u = document.createElementNS("http://www.w3.org/2000/svg","use");
+        u.setAttributeNS("http://www.w3.org/1999/xlink","href",iconId);
+        u.setAttribute("x",3);
+        u.setAttribute("y",3);
+        u.setAttribute("width",24);
+        u.setAttribute("height",24);
+        u.setAttribute("fill","white");
+        w.insertAdjacentElement("beforeend", u);
+
+        var t = document.createElementNS("http://www.w3.org/2000/svg","text");
+        t.setAttribute("x",30);
+        t.setAttribute("y",22);
+        t.setAttribute("style","font-size: 18px;");
+        t.innerHTML = itemName;
+        w.insertAdjacentElement("beforeend",t);
+
+        var box = t.getBBox();
+
+        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        r.setAttribute("x", box.x + box.width + 6);
+        r.setAttribute("y",6);
+        r.setAttribute("width", width - 74 - (box.x + box.width + 6));
+        r.setAttribute("height",21);
+        r.setAttribute("fill","url(#gripper)");
+        r.setAttribute("style","cursor: move;");
+        w.insertAdjacentElement("beforeend",r);
 
         return w;
       }
@@ -1840,6 +1860,11 @@
       <use xlink:href="#documentIcon" fill="white" x="3" y="3" width="24" height="24" />
       <text x="30" y="22" style="font-size: 18px;">Item Name</text>
       <rect x="123" y="6" width="441" height="21" fill="url(#gripper)" style="cursor: move;"/>
+    </svg>
+    <svg width="640" height="480" id="basicView3"><title>Basic View 3</title>
+      <script>
+        drawSimpleWindow(document.getElementById("basicView3"),0,0,640,480,"#documentIcon","Item Name");
+      </script>
     </svg>
     <svg width="640" height="480" id="documentView"><title>Document Window</title>
       <script>
