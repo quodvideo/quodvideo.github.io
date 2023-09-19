@@ -2383,7 +2383,7 @@
           <li>It may restrict the movement and placement of windows, but it mostly respects what clients give it. (The constraints on movements should suffice to constrain placement, because windows will only ask to be placed where they were before.)</li>
         </ul>
         <p>Mouse-based focus is managed by the windows themselves using the globally active input model of the ICCCM. Window stacking order has some contraints, to keep overlays and desktops right, but clients are expected to raise their windows appropriately. This means that if a client receives input focus on a window, it should raise that window and any of its transients to the top of the stack, calling <code>XRaiseWindow</code>. If the focused window is a transient for another client window, i.e. a dialog for a parent window, then both windows should be raised and stacked transient over parent.</p>
-        <p>The ICCCM states that,
+        <p>The ICCCM states that,</p>
           <blockquote>In general, the object of the X Version 11 design is that clients should, as far as possible, do exactly what they would do in the absence of a window manager, except for the following:
           <ul>
           <li>Hinting to the window manager about the resources they would like to obtain</li>
@@ -2391,7 +2391,7 @@
           <li>Being prepared for resource allocations to change at any time</li>
           </ul>
           </blockquote>
-        Despite this, it has often been assumed that focus and stacking should be left entirely to the window manager. The same has been assumed for what are often called "decorations", though the ICCCM does later state that window managers should display window titles. Those "decorations" are, in fact, controls, and clients can be expected to provide such controls themselves.</p>
+        <p>Despite this, it has often been assumed that focus and stacking should be left entirely to the window manager. The same has been assumed for what are often called "decorations", though the ICCCM does later state that window managers should display window titles. Those "decorations" are, in fact, controls, and clients can be expected to provide such controls themselves.</p>
       </section>
       <section><h3>The File Manager</h3>
         <p>The file manager is mostly replaced by folders. Browsing the file system, as with most modern file managers, is relegated to a utility which most users won't need. The user model of items and folders is preferred by the GUI over the programmer's model of files and directories.</p>
