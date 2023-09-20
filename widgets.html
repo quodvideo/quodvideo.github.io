@@ -2348,6 +2348,7 @@
       <p>Items have permanence, and so do their views. Icons on the desktop don't move around or disappear unless the user moves or removes them. Where a property panel first opens is arbitrary, but when it opens a subsequent time, it appears where it was when it was closed the previous time. All the views of an item reappear where they disappeared.</p>
       <p>Views appear from somewhere and disappear to somewhere. Icons, which have fixed places in their folders, are an exception to this. If the item's icon view is on the screen, the other views of an item appear from it and disappear to it. If the item's icon view is not on the screen, then the other views of the item appear from and disappear to the nearest containing folder's icon view. <rum>How does that work?</rum></p>
       <p><rum>How can there be permanence on impermanent displays? Perhaps with more metadata.</rum></p>
+      <p>Workspaces go a step further. They keep track of their open items so they can reopen them when they are reopened.</p>
     </section>
     <section><h2>Overlays</h2>
       <section><h3>The Menu Bar</h3>
@@ -2724,6 +2725,10 @@
         <p>The sign-on screen presents desktop folder icons for users. Double-clicking one opens a password dialog. An animation shows the password dialog emerging from the icon. If the entered password is incorrect, the dialog shakes<rum>(?)</rum> and the user can try again. If it is correct, an animation returns the dialog to the icon, then an animation from the icon takes over the whole screen, showing the user's primary desktop.</p>
         <p><rum>What else is on the sign-on screen? Accessibility features? Menu bar? Clock?</rum></p>
       </section>
+      <section><h3>Signing Off</h3>
+        <p>The system menu, in the top left corner, presents the command to sign off.</p>
+        <p>There should not be any need for any sort of dialog in response to this command. The state of everything at sign off should be restored at sign on.</p>
+      </section>
       <section><h3>Finding an Item</h3>
         <p>Use the search item on the menu bar. <rum>Open both the item and it's parent folder?</rum></p>
       </section>
@@ -2750,6 +2755,25 @@
         <p><strong>Really?</strong></p>
         <p>That's the plan.</p>
       </section>
+      <section><h3>Moving or Copying an Item</h3>
+        <p>Most items can be moved or copied by simple drag and drop. In keeping with the convention on other systems <rum>(Check them.)</rum> Move is the default when the source and target are on the same physical device and Copy is the default when they are not. Pressing <kbd>Shift</kbd> will change a Copy to Move. <rum>(and a move to a copy?)</rum>. Pressing <kbd>Alt</kbd> will create a link.</p>
+        <p>Templates are the exception. The default when dragging from a template is to create a new copy of the template contents. <rum>Something has to be done to allow moving templates and creating copies of templates.</rum></p>
+        <p>Dragging an item from a background window does not bring the window to the foreground.</p>
+      </section>
+      <section><h3>Moving of Copying Multiple Items</h3>
+        <p>If a group of items is already selected, it can be moved by simple drag and drop. As long as the selection is not entirely templates, any selected templates will be moved or copied as the other items are. A selection of only templates follows the rules for moving or copying a single template.</p>
+        <p>Dragging a selection from a background window does not bring the window to the foreground.</p>
+      </section>
+      <section><h3>Renaming an Item</h3>
+        <p>Clicking the name of a selected item put it into an edit mode. There must be enough time between a selection click and a name click to distinguish it from a double-click.</p>
+      </section>
+    </section>
+    <section><h2>Keyboards, Mice, Pads, Touchscreens, Pens, etc.</h2>
+      <p>Almost everything should be doable with a keyboard and a single-button mouse. A long first button press can be interpreted as a second button press.</p>
+      <p>Holding down a key should present alternative characters, rather than repeating the key.</p>
+    </section>
+    <section><h2>Accessibility</h2>
+      <p></p>
     </section>
     <hr />
     <p>Everything is an item.</p>
