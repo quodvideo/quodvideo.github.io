@@ -137,7 +137,7 @@
       .menuitem {
         & rect:first-child {
           fill: var(--raised-fill-color);
-          stroke: var(--outline-color);
+          stroke: none;
           + line {
             fill: none;
             stroke: var(--shadow-stroke-color);
@@ -1050,6 +1050,7 @@
           var t = document.createElementNS("http://www.w3.org/2000/svg","text");
           t.setAttribute("x",x+3);
           t.setAttribute("y",ly+19);
+          t.innerHTML = item;
           g.insertAdjacentElement("beforeend",t);
         })
       }
