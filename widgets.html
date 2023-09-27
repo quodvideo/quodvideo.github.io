@@ -117,6 +117,38 @@
           }
         }
       }
+      .menuitem {
+        & rect:first-child {
+          fill: var(--raised-fill-color);
+          stroke: var(--outline-color);
+          + line {
+            fill: none;
+            stroke: var(--shadow-stroke-color);
+            stroke-linecap: square;
+            + line {
+              fill: none;
+              stroke: var(--highlight-stroke-color);
+              stroke-linecap: square;
+            }
+          }
+        }
+        &:hover {
+          & rect:first-child {
+            fill: var(--recessed-fill-color);
+            stroke: var(--outline-color);
+            + line {
+              fill: none;
+              stroke: var(--highlight-stroke-color);              
+              stroke-linecap: square;
+              + line {
+                fill: none;
+                stroke: var(--shadow-stroke-color);
+                stroke-linecap: square;
+              }
+            }
+          }
+        }
+      }
       rect.trough {
         fill: var(--recessed-fill-color);
         stroke: var(--outline-color);
@@ -953,6 +985,55 @@
         w.insertAdjacentElement("beforeend",r);
 
         return w;
+      }
+      function drawSimpleMenu(parentElement,x,y,items) {
+        var height = 6+22*items.length;
+        var width = 0;
+
+        items.forEach((item,i) => {
+          var t = document.createElementNS("http://www.w3.org/2000/svg","text");
+          t.innerHTML = item;
+          parentElement.insertAdjacentElement("beforeend",t);
+          var w = t.getBBox().width;
+          if (w>width) width=w;
+          t.remove();
+        })
+        width = Math.ceil(width) + 6;
+
+        var m = document.createElementNS("http://www.w3.org/2000/svg","g");
+        parentElement.insertAdjacentElement("beforeend",m);
+
+        drawRaisedRect(parentElement,x,y,width,height);
+        items.forEach((item,i) => {
+          var lx = x;
+          var ly = y+3+i*22;
+
+          var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+          g.setAttribute("class","menuitem");
+          m.insertAdjacentElement("beforeend",g);
+          var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          r.setAttribute("x",lx);
+          r.setAttribute("y",ly);
+          r.setAttribute("width",width);
+          r.setAttribute("height",22);
+          g.insertAdjacentElement("beforeend",r);
+          var h = document.createElementNS("http://www.w3.org/2000/svg","line");
+          h.setAttribute("x1",x);
+          h.setAttribute("y1",ly);
+          h.setAttribute("x2",x);
+          h.setAttribute("y2",ly+22);
+          g.insertAdjacentElement("beforeend",h);
+          var s = document.createElementNS("http://www.w3.org/2000/svg","line");
+          s.setAttribute("x1",x+width-1);
+          s.setAttribute("y1",ly);
+          s.setAttribute("x2",x+width-1);
+          s.setAttribute("y2",ly+22);
+          g.insertAdjacentElement("beforeend",s);
+          var t = document.createElementNS("http://www.w3.org/2000/svg","text");
+          t.setAttribute("x",x+3);
+          t.setAttribute("y",ly+19);
+          g.insertAdjacentElement("beforeend",t);
+        })
       }
       function drawtextbounds () {
         var ts = document.getElementsByTagName("text");
@@ -2133,7 +2214,6 @@
           <!-- text -->
           <text class="centered" x="24" y="56" style="fill:white">Template</text>
         </g>
-
         <g transform="translate(24,520)">
           <!-- icon -->
           <use xlink:href="#folderIcon" fill="#c7a534" width="48" height="48"/>
@@ -2143,7 +2223,49 @@
       </svg>
     </div>
     <div style="background-color: black; padding: 10px; width: fit-content">
-      <svg width="800" height="600"><title>Desktop 1</title>
+      <svg width="800" height="600" id="desktop1"><title>Desktop 1</title>
+        <rect width="800" height="600" fill="#5d1803"/>
+        <rect width="800" height="22" fill="var(--raised-fill-color)"/>
+        <text x="6" y="16" >⚙&nbsp;&nbsp;&nbsp;File&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;View&nbsp;&nbsp;&nbsp;Help</text>
+        <text x="730" y="16" >12:00 PM</text>
+        <g transform="translate(100,100)">
+          <!-- icon -->
+          <use xlink:href="#folderIcon" fill="#c7a534" width="48" height="48"/>
+          <!-- text -->
+          <text class="centered" x="24" y="56" style="fill:#A2E7FC">Some Folder</text>
+        </g>
+        <g transform="translate(100,200)">
+          <!-- icon -->
+          <use xlink:href="#addressbookIcon" fill="white" width="48" height="48"/>
+          <!-- text -->
+          <text class="centered" x="24" y="56" style="fill:white">Address Book</text>
+        </g>
+        <g transform="translate(100,300)">
+          <!-- icon -->
+          <use xlink:href="#calendarIcon" fill="white" width="48" height="48"/>
+          <!-- text -->
+          <text class="centered" x="24" y="56" style="fill:white">Calendar</text>
+        </g>
+        <g transform="translate(100,400)">
+          <!-- icon -->
+          <use xlink:href="#templateIcon" fill="white" width="48" height="48"/>
+          <!-- text -->
+          <text class="centered" x="24" y="56" style="fill:white">Template</text>
+        </g>
+        <g transform="translate(24,520)">
+          <!-- icon -->
+          <use xlink:href="#folderIcon" fill="#c7a534" width="48" height="48"/>
+          <!-- text -->
+          <text class="centered" x="24" y="56" style="fill:white">Templates</text>
+        </g>
+        <script>
+          drawSimpleMenu(document.getElementById("desktop1"),6,38,["Foo","Bar"]);
+        </script>
+
+      </svg>
+    </div>
+    <div style="background-color: black; padding: 10px; width: fit-content">
+      <svg width="800" height="600"><title>Desktop 2</title>
         <rect width="800" height="600" fill="#5d1803"/>
         <rect width="800" height="22" fill="var(--raised-fill-color)"/>
         <text x="6" y="16" >⚙&nbsp;&nbsp;&nbsp;File&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;View&nbsp;&nbsp;&nbsp;Help</text>
