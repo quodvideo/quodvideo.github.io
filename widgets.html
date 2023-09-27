@@ -1026,7 +1026,7 @@
 
         drawRaisedRect(m,x,y,width,height);
         items.forEach((item,i) => {
-          var lx = x+0.5;
+          var lx = x+1.5;
           var ly = y+3.5+i*22;
 
           var g = document.createElementNS("http://www.w3.org/2000/svg","g");
@@ -1035,7 +1035,7 @@
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
           r.setAttribute("x",lx);
           r.setAttribute("y",ly);
-          r.setAttribute("width",width);
+          r.setAttribute("width",width-2);
           r.setAttribute("height",21);
           g.insertAdjacentElement("beforeend",r);
           var h = document.createElementNS("http://www.w3.org/2000/svg","line");
@@ -1045,9 +1045,9 @@
           h.setAttribute("y2",ly+21);
           g.insertAdjacentElement("beforeend",h);
           var s = document.createElementNS("http://www.w3.org/2000/svg","line");
-          s.setAttribute("x1",lx+width-1);
+          s.setAttribute("x1",lx+width-2);
           s.setAttribute("y1",ly);
-          s.setAttribute("x2",lx+width-1);
+          s.setAttribute("x2",lx+width-2);
           s.setAttribute("y2",ly+21);
           g.insertAdjacentElement("beforeend",s);
           var t = document.createElementNS("http://www.w3.org/2000/svg","text");
