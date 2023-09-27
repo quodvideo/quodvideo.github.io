@@ -117,6 +117,23 @@
           }
         }
       }
+      .menu {
+        cursor: default;
+        & rect:first-child {
+          fill: var(--raised-fill-color);
+          stroke: var(--outline-color);
+          + polyline {
+            fill: none;
+            stroke: var(--shadow-stroke-color);
+            stroke-linecap: square;
+            + polyline {
+              fill: none;
+              stroke: var(--highlight-stroke-color);
+              stroke-linecap: square;
+            }
+          }
+        }
+      }
       .menuitem {
         & rect:first-child {
           fill: var(--raised-fill-color);
@@ -1001,9 +1018,10 @@
         width = Math.ceil(width) + 6;
 
         var m = document.createElementNS("http://www.w3.org/2000/svg","g");
+        m.setAttribute("class","menu");
         parentElement.insertAdjacentElement("beforeend",m);
 
-        drawRaisedRect(parentElement,x,y,width,height);
+        drawRaisedRect(m,x,y,width,height);
         items.forEach((item,i) => {
           var lx = x;
           var ly = y+3+i*22;
