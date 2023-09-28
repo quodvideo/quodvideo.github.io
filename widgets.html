@@ -138,33 +138,13 @@
         & rect:first-child {
           fill: var(--raised-fill-color);
           stroke: none;
-          + line {
-            fill: none;
-            stroke: var(--shadow-stroke-color);
-            stroke-linecap: square;
-            + line {
-              fill: none;
-              stroke: var(--highlight-stroke-color);
-              stroke-linecap: square;
-            }
-          }
         }
         &:hover {
           & rect:first-child {
             fill: black;
             stroke: none;
-            + line {
-              fill: none;
-              stroke: #595959;              
-              stroke-linecap: square;
-              + line {
-                fill: none;
-                stroke: #121212;
-                stroke-linecap: square;
-                + text {
-                  fill: white;
-                }
-              }
+            + text {
+              fill: white;
             }
           }
         }
@@ -1007,7 +987,7 @@
         return w;
       }
       function drawSimpleMenu(parentElement,x,y,items) {
-        var height = 6+22*items.length;
+        var height = 6+21*items.length;
         var width = 0;
 
         items.forEach((item,i) => {
@@ -1018,7 +998,7 @@
           if (w>width) width=w;
           t.remove();
         })
-        width = Math.ceil(width) + 8;
+        width = Math.ceil(width) + 10;
 
         var m = document.createElementNS("http://www.w3.org/2000/svg","g");
         m.setAttribute("class","menu");
@@ -1027,7 +1007,7 @@
         drawRaisedRect(m,x,y,width,height);
         items.forEach((item,i) => {
           var lx = x+1.5;
-          var ly = y+3.5+i*22;
+          var ly = y+3.5+i*21;
 
           var g = document.createElementNS("http://www.w3.org/2000/svg","g");
           g.setAttribute("class","menuitem");
@@ -1035,24 +1015,12 @@
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
           r.setAttribute("x",lx);
           r.setAttribute("y",ly);
-          r.setAttribute("width",width-3);
+          r.setAttribute("width",width-4);
           r.setAttribute("height",21);
           g.insertAdjacentElement("beforeend",r);
-          var s = document.createElementNS("http://www.w3.org/2000/svg","line");
-          s.setAttribute("x1",lx+width-3);
-          s.setAttribute("y1",ly);
-          s.setAttribute("x2",lx+width-3);
-          s.setAttribute("y2",ly+21);
-          g.insertAdjacentElement("beforeend",s);
-          var h = document.createElementNS("http://www.w3.org/2000/svg","line");
-          h.setAttribute("x1",lx);
-          h.setAttribute("y1",ly);
-          h.setAttribute("x2",lx);
-          h.setAttribute("y2",ly+21);
-          g.insertAdjacentElement("beforeend",h);
           var t = document.createElementNS("http://www.w3.org/2000/svg","text");
           t.setAttribute("x",lx+3);
-          t.setAttribute("y",ly+16);
+          t.setAttribute("y",ly+14);
           t.innerHTML = item;
           g.insertAdjacentElement("beforeend",t);
         })
@@ -2281,7 +2249,7 @@
           <text class="centered" x="24" y="56" style="fill:white">Templates</text>
         </g>
         <script>
-          drawSimpleMenu(document.getElementById("desktop1"),6,38,["Foo","Bar"]);
+          drawSimpleMenu(document.getElementById("desktop1"),6,22,["Address Book","Bibliography","Calculator","Calendar","Command Shell","Feeds","Help","Mail","Music","Photos","Settings","Web Browser"]);
         </script>
 
       </svg>
