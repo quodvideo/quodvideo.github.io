@@ -1023,11 +1023,12 @@
           r.setAttribute("height",21);
           g.insertAdjacentElement("beforeend",r);
           var icon = document.createElementNS("http://www.w3.org/2000/svg","rect");
-          icon.setAttribute("x",lx+3);
-          icon.setAttribute("y",ly+3);
+          icon.setAttribute("x",lx+2.5);
+          icon.setAttribute("y",ly+2.5);
           icon.setAttribute("width",16);
           icon.setAttribute("height",16);
           icon.setAttribute("fill","red");
+          icon.setAttribute("stroke","none");
           g.insertAdjacentElement("beforeend",icon);
           var t = document.createElementNS("http://www.w3.org/2000/svg","text");
           t.setAttribute("x",lx+22);
