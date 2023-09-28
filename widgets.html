@@ -998,7 +998,7 @@
           if (w>width) width=w;
           t.remove();
         })
-        width = Math.ceil(width) + 10;
+        width = Math.ceil(width) + 30;
 
         var m = document.createElementNS("http://www.w3.org/2000/svg","svg");
         m.setAttribute("class","menu");
@@ -1022,9 +1022,15 @@
           r.setAttribute("width",width-4);
           r.setAttribute("height",21);
           g.insertAdjacentElement("beforeend",r);
+          var icon = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          icon.setAttribute("x",3);
+          icon.setAttribute("y",3);
+          icon.setAttribute("width",16);
+          icon.setAttribute("height",16);
+          g.insertAdjacentElement("beforeend",icon);
           var t = document.createElementNS("http://www.w3.org/2000/svg","text");
-          t.setAttribute("x",lx+3);
-          t.setAttribute("y",ly+14);
+          t.setAttribute("x",lx+22);
+          t.setAttribute("y",ly+15);
           t.innerHTML = item;
           g.insertAdjacentElement("beforeend",t);
         })
