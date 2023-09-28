@@ -992,7 +992,7 @@
 
         items.forEach((item,i) => {
           var t = document.createElementNS("http://www.w3.org/2000/svg","text");
-          t.innerHTML = item;
+          t.innerHTML = item[0];
           parentElement.insertAdjacentElement("beforeend",t);
           var w = t.getBBox().width;
           if (w>width) width=w;
@@ -1022,18 +1022,18 @@
           r.setAttribute("width",width-4);
           r.setAttribute("height",21);
           g.insertAdjacentElement("beforeend",r);
-          var icon = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          var icon = document.createElementNS("http://www.w3.org/2000/svg","use");
+          icon.setAttributeNS("http://www.w3.org/1999/xlink","href",item[1])
           icon.setAttribute("x",lx+2.5);
           icon.setAttribute("y",ly+2.5);
           icon.setAttribute("width",16);
           icon.setAttribute("height",16);
-          icon.setAttribute("fill","red");
-          icon.setAttribute("stroke","none");
+          icon.setAttribute("fill","white");
           g.insertAdjacentElement("beforeend",icon);
           var t = document.createElementNS("http://www.w3.org/2000/svg","text");
           t.setAttribute("x",lx+22);
           t.setAttribute("y",ly+15);
-          t.innerHTML = item;
+          t.innerHTML = item[0];
           g.insertAdjacentElement("beforeend",t);
         })
       }
@@ -2261,7 +2261,20 @@
           <text class="centered" x="24" y="56" style="fill:white">Templates</text>
         </g>
         <script>
-          drawSimpleMenu(document.getElementById("desktop1"),6,22,["Address Book","Bibliography","Calculator","Calendar","Command Shell","Feeds","Help","Mail","Music","Photos","Settings","Web Browser"]);
+          drawSimpleMenu(document.getElementById("desktop1"),6,22,
+            [["Address Book","#addressbookIcon"],
+             ["Bibliography","#bibliographyIcon"],
+             ["Calculator","#calculatorIcon"],
+             ["Calendar","#calendarIcon"],
+             ["Command Shell","#shellIcon"],
+             ["Feeds","#feedIcon"],
+             ["Help","#documentationIcon"],
+             ["Mail","#mailbox2Icon"],
+             ["Music","#musicIcon"],
+             ["Photos","#photoIcon"],
+             ["Settings",""],
+             ["Web Browser","#browserIcon"]
+            ]);
         </script>
       </svg>
     </div>
