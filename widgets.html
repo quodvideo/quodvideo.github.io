@@ -1000,14 +1000,18 @@
         })
         width = Math.ceil(width) + 10;
 
-        var m = document.createElementNS("http://www.w3.org/2000/svg","g");
+        var m = document.createElementNS("http://www.w3.org/2000/svg","svg");
         m.setAttribute("class","menu");
+        m.setAttribute("x",x);
+        m.setAttribute("y",y);
+        m.setAttribute("width",width);
+        m.setAttribute("height",height);
         parentElement.insertAdjacentElement("beforeend",m);
 
-        drawRaisedRect(m,x,y,width,height);
+        drawRaisedRect(m,0,0,width,height);
         items.forEach((item,i) => {
-          var lx = x+1.5;
-          var ly = y+3.5+i*21;
+          var lx = 1.5;
+          var ly = 3.5+i*21;
 
           var g = document.createElementNS("http://www.w3.org/2000/svg","g");
           g.setAttribute("class","menuitem");
@@ -2251,7 +2255,6 @@
         <script>
           drawSimpleMenu(document.getElementById("desktop1"),6,22,["Address Book","Bibliography","Calculator","Calendar","Command Shell","Feeds","Help","Mail","Music","Photos","Settings","Web Browser"]);
         </script>
-
       </svg>
     </div>
     <div style="background-color: black; padding: 10px; width: fit-content">
