@@ -986,6 +986,39 @@
 
         return w;
       }
+      function drawSimplePanel(parentElement,x,y,width,height,iconId,itemName,focused=true) {
+        var w = drawBaseWindow(parentElement,x,y,width,height);
+        drawDecalButton(w,width-26,6,20,20,"#closeDecal");
+
+        var u = document.createElementNS("http://www.w3.org/2000/svg","use");
+        u.setAttributeNS("http://www.w3.org/1999/xlink","href",iconId);
+        u.setAttribute("x",3);
+        u.setAttribute("y",3);
+        u.setAttribute("width",24);
+        u.setAttribute("height",24);
+        u.setAttribute("fill","white");
+        w.insertAdjacentElement("beforeend", u);
+
+        var t = document.createElementNS("http://www.w3.org/2000/svg","text");
+        t.setAttribute("x",30);
+        t.setAttribute("y",22);
+        t.setAttribute("style","font-size: 18px;");
+        t.innerHTML = itemName;
+        w.insertAdjacentElement("beforeend",t);
+
+        var box = t.getBBox();
+
+        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        r.setAttribute("x", box.x + box.width + 6);
+        r.setAttribute("y",6);
+        r.setAttribute("width", width - 74 - (box.x + box.width + 6) - 4);
+        r.setAttribute("height",21);
+        r.setAttribute("fill","url(#gripper)");
+        r.setAttribute("style","cursor: move;");
+        w.insertAdjacentElement("beforeend",r);
+
+        return w;
+      }
       function drawSimpleMenu(parentElement,x,y,items) {
         var height = 6+21*items.length;
         var width = 0;
@@ -1927,7 +1960,7 @@
     </svg>
     <svg width="400" height="300" id="fileSettingsPanel"><title>File Settings Panel</title>
       <script>
-        drawSimpleWindow(document.getElementById("fileSettingsPanel"),0,0,400,300,"#documentIcon","Item Name - Properties");
+        drawSimplePanel(document.getElementById("fileSettingsPanel"),0,0,400,300,"#documentIcon","Item Name - Properties");
         drawInputField(document.getElementById("fileSettingsPanel"),3,44,100,253);
       </script>
     </svg>
