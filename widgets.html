@@ -149,6 +149,21 @@
           }
         }
       }
+      .listitem {
+        & rect:first-child {
+          fill: var(--input-field-color);
+          stroke: none;
+        }
+        &:hover {
+          & rect:first-child {
+            fill: black;
+            stroke: none;
+          }
+          & text {
+            fill:white;
+          }
+        }
+      }
       rect.trough {
         fill: var(--recessed-fill-color);
         stroke: var(--outline-color);
@@ -1018,6 +1033,28 @@
         w.insertAdjacentElement("beforeend",r);
 
         return w;
+      }
+      function drawSimpleList(parentElement,x,y,width,height,items) {
+        var f = drawInputField(parentElement,x,y,width,height);
+        items.forEach((item,i) => {
+          var lx = 2;
+          var ly = 3+i*21;
+
+          var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+          g.setAttribute("class","listitem");
+          f.insertAdjacentElement("beforeend",g);
+          var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          r.setAttribute("x",lx);
+          r.setAttribute("y",ly);
+          r.setAttribute("width",width-4);
+          r.setAttribute("height",21);
+          g.insertAdjacentElement("beforeend",r);
+          var t = document.createElementNS("http://www.w3.org/2000/svg","text");
+          t.setAttribute("x",lx+3);
+          t.setAttribute("y",ly+15);
+          t.innerHTML = item;
+          g.insertAdjacentElement("beforeend",t);
+        })
       }
       function drawSimpleMenu(parentElement,x,y,items) {
         var height = 6+21*items.length;
