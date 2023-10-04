@@ -154,7 +154,7 @@
           fill: var(--input-field-color);
           stroke: none;
         }
-        &:hover {
+        &.selected {
           & rect:first-child {
             fill: black;
             stroke: none;
@@ -1034,14 +1034,18 @@
 
         return w;
       }
-      function drawSimpleList(parentElement,x,y,width,height,items) {
+      function drawSimpleList(parentElement,x,y,width,height,items,selected) {
         var f = drawInputField(parentElement,x,y,width,height);
         items.forEach((item,i) => {
           var lx = 2;
           var ly = 3+i*21;
 
           var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-          g.setAttribute("class","listitem");
+          if (i==selected) {
+            g.setAttribute("class","listitem selected");
+          } else {
+            g.setAttribute("class","listitem");
+          }
           f.insertAdjacentElement("beforeend",g);
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
           r.setAttribute("x",lx);
@@ -1991,7 +1995,7 @@
     <svg width="400" height="300" id="fileSettingsPanel"><title>File Settings Panel</title>
       <script>
         drawSimplePanel(document.getElementById("fileSettingsPanel"),0,0,400,300,"#documentIcon","Item Name - Properties");
-        drawSimpleList(document.getElementById("fileSettingsPanel"),3,32,100,265,["General","Permissions","Checksums","Details"]);
+        drawSimpleList(document.getElementById("fileSettingsPanel"),3,32,100,265,["General","Permissions","Checksums","Details"],0);
       </script>
       <svg x="104" y="32" width="293" height="265">
         <rect x="0.5" y="0.5" width="292" height="264" fill="red" stroke="blue"/>
