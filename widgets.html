@@ -2015,8 +2015,20 @@
         drawSimplePanel(document.getElementById("fileSettingsPanel2"),0,0,400,300,"#documentIcon","Item Name - Properties");
         drawSimpleList(document.getElementById("fileSettingsPanel2"),3,32,100,265,["General","Permissions","Checksums","Details"],2);
       </script>
-      <svg x="104" y="32" width="293" height="265">
+      <svg id="fileSettingsPanel2-panel" x="104" y="32" width="293" height="265">
+        <script>
+          drawInputField(document.getElementById("fileSettingsPanel2-panel"),3,3,100,22).setAttribute("class","textfield insensitive");
+          drawInputField(document.getElementById("fileSettingsPanel2-panel"),3,28,100,22).setAttribute("class","textfield insensitive");
+          drawInputField(document.getElementById("fileSettingsPanel2-panel"),3,53,100,22).setAttribute("class","textfield insensitive");
+          drawInputField(document.getElementById("fileSettingsPanel2-panel"),3,81,100,22).setAttribute("class","textfield insensitive");
+          drawInputField(document.getElementById("fileSettingsPanel2-panel"),3,106,100,22).setAttribute("class","textfield insensitive");
+        </script>
         <rect x="0.5" y="0.5" width="292" height="264" fill="red" stroke="blue"/>
+        <text>CRC-32</text>
+        <text>MD-5</text>
+        <text>SHA-1</text>
+        <text>SHA-256</text>
+        <text>SHA-512</text>
       </svg>
     </svg>
     <svg width="400" height="300" id="fileSettingsPanel3"><title>File Settings Panel</title>
