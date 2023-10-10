@@ -1137,7 +1137,7 @@
     <p>The style of these drawings is meant as a guide. It might be possible to do this without SVG, but I remember some details being hard or impossible to achieve with Gtk 2.x. The way scroll bars join with a text field was one impossibility. Part of the idea is to make it obvious when widgets are not active because they're in a background window or because they just can't be used in the current state. This should all work for various modes like light, dark, high contrast, and low contrast. It should be possible to change the basic colors per widget and with themes. I suspect this basic style can also be adapted to use gradients, blends, patterns, and more.</p>
     <p>This style is heavy compared to most of today's GUIs. That's on purpose. If a window looks too "chrome-y" with this style, then there's probably a better design.</p>
     <p>The art is primitive. That's because I can't draw. I also think icons should be iconic. The icons have been made in SVG to have decent 16x16 rasters that scale up to at least 48x48. I've no objection to people customizing their icons. In fact, I encourage it.</p>
-    <p>Almost everything here is greyscale. There are some other colors while I'm playing around with things.</p>
+    <p>Almost everything here is greyscale. There are some other colors while I'm playing around with things. A red rectangle is often a placeholder.</p>
     <p>The default graphics will be greyscale. There are three reasons for this. First, the system should work in greyscale. Second, I've heard some artists prefer a greyscale GUI because a colorful one would affect their sense of color in their work. Third, leaving color to a customization provides an avenue for users to explore customizing the GUI; they can start small, by changing the accent color, which is used to mark selections.</p>
     <p>I believe this default theme should also work as a high-contrast theme. There is also a dark mode theme.</p>
     <p><rum>Remember <a href="https://accessiblepalette.com/">Accessible Palette</a>.</rum></p>
@@ -2736,6 +2736,16 @@
     </section>
     <section><h2>Special Programs</h2>
       <p>A few programs are themselves items.</p>
+      <section><h3>Calculator</h3>
+        <div style="display: flex;">
+          <div style="flex-direction: column; margin-right: 20px;">
+            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#calculatorIcon"/></svg>
+          </div>
+          <div style="flex-direction: column;">
+            <p>The calculator is a simple calculator.</p>
+          </div>
+        </div>
+      </section>
       <section><h3>Terminal</h3>
         <div style="display: flex;">
           <div style="flex-direction: column; margin-right: 20px;">
@@ -2776,16 +2786,6 @@
           </div>
         </div>
       </section>
-      <section><h3>Calculator</h3>
-        <div style="display: flex;">
-          <div style="flex-direction: column; margin-right: 20px;">
-            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#calculatorIcon"/></svg>
-          </div>
-          <div style="flex-direction: column;">
-            <p>The calculator is a simple calculator.</p>
-          </div>
-        </div>
-      </section>
     </section>
     <section><h2>Special Containers</h2>
       <p>A few containers are special in that they tend to be large and unique. They may also be used by many programs.</p>
@@ -2801,6 +2801,17 @@
           </div>
         </div>
       </section>
+      <section><h3>Bibliography</h3>
+        <div style="display: flex;">
+          <div style="flex-direction: column; margin-right: 20px;">
+            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#bibliographyIcon"/></svg>
+            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#citationIcon"/></svg>
+          </div>
+          <div>
+            <p>The bibliography is a container for references which may be used for citations. References include not only citation information, but also user's notes and possibly copies of the referenced material.</p>
+          </div>
+        </div>
+      </section>
       <section><h3>Calendar</h3>
         <div style="display: flex;">
           <div style="flex-direction: column; margin-right: 20px;">
@@ -2813,6 +2824,16 @@
           </div>
         </div>
       </section>
+      <section><h3>Feeds</h3>
+        <div style="display: flex;">
+          <div style="flex-direction: column; margin-right: 20px;">
+            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#feedIcon"/></svg>
+          </div>
+          <div style="flex-direction: column;">
+            <p></p>
+          </div>
+        </div>
+      </section>
       <section><h3>Mail Boxes</h3>
         <div style="display: flex;">
           <div style="flex-direction: column; margin-right: 20px;">
@@ -2821,17 +2842,6 @@
           </div>
           <div style="flex-direction: column;">
             <p>The mail boxes are containers for messages. ???</p>
-          </div>
-        </div>
-      </section>
-      <section><h3>Bibliography</h3>
-        <div style="display: flex;">
-          <div style="flex-direction: column; margin-right: 20px;">
-            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#bibliographyIcon"/></svg>
-            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#citationIcon"/></svg>
-          </div>
-          <div>
-            <p>The bibliography is a container for references which may be used for citations. References include not only citation information, but also user's notes and possibly copies of the referenced material.</p>
           </div>
         </div>
       </section>
@@ -2851,16 +2861,6 @@
           <div style="flex-direction: column; margin-right: 20px;">
             <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#photoAlbumIcon"/></svg>
             <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#photoIcon"/></svg>
-          </div>
-          <div style="flex-direction: column;">
-            <p></p>
-          </div>
-        </div>
-      </section>
-      <section><h3>Aggregated Feeds</h3>
-        <div style="display: flex;">
-          <div style="flex-direction: column; margin-right: 20px;">
-            <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#feedIcon"/></svg>
           </div>
           <div style="flex-direction: column;">
             <p></p>
