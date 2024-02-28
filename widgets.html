@@ -2290,12 +2290,21 @@
           <script>
             drawBaseWindow(document.getElementById("unfocusedView"),0,0,640,480);
             drawCutawayField(document.getElementById("unfocusedView"),3,30,634,447,false,false);
-            drawDecalButton(document.getElementById("unfocusedView"),566,6,20,20,"#iconifyDecal");
-            drawDecalButton(document.getElementById("unfocusedView"),590,6,20,20,"#maximizeDecal");
-            drawDecalButton(document.getElementById("unfocusedView"),614,6,20,20,"#closeDecal");
           </script>
           <use xlink:href="#documentIcon" fill="white" x="3" y="3" width="24" height="24" />
           <text x="30" y="22" style="font-size: 18px;">Item Name</text>
+        </svg>
+        <svg x="300" y="200" width="640" height="480" id="focusedView"><title>Focused View</title>
+          <script>
+            drawBaseWindow(document.getElementById("focusedView"),0,0,640,480);
+            drawCutawayField(document.getElementById("focusedView"),3,30,634,447,false,false);
+            drawDecalButton(document.getElementById("focusedView"),566,6,20,20,"#iconifyDecal");
+            drawDecalButton(document.getElementById("focusedView"),590,6,20,20,"#maximizeDecal");
+            drawDecalButton(document.getElementById("focusedView"),614,6,20,20,"#closeDecal");
+          </script>
+          <use xlink:href="#documentIcon" fill="white" x="3" y="3" width="24" height="24" />
+          <text x="30" y="22" style="font-size: 18px;">Item Name</text>
+          <rect x="123" y="6" width="441" height="21" fill="url(#gripper)" style="cursor: move;"/>
         </svg>
       </svg>
     </div>
