@@ -220,6 +220,12 @@
         stroke: var(--outline-color);
         fill: inherit;
       }
+      .toplevel.focused+.base { fill: red; }
+      .toplevel.focused+.shadow {}
+      .toplevel.focused+.highlight {}
+      .toplevel.unfocused+.base { fill: blue;}
+      .toplevel.unfocused+.shadow {}
+      .toplevel.unfocused+.highlight {}
     </style>
     <script>
       function drawRaisedRect (parentElement,x,y,width,height) {
@@ -275,6 +281,7 @@
         g.setAttribute("y",y);
         g.setAttribute("width",width);
         g.setAttribute("height",height);
+        g.setAttribute("class","toplevel");
         parentElement.insertAdjacentElement("beforeend",g);
         var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
         r.setAttribute("x", 0.5);
@@ -967,7 +974,11 @@
       }
       function drawSimpleWindow(parentElement,x,y,width,height,iconId,itemName,focused=true) {
         var w = drawBaseWindow(parentElement,x,y,width,height,focused);
-        
+        if (focused) {
+          w.setAttribute("class","toplevel focused");
+        } else {
+          w.setAttribute("class","toplevel unfocused");
+        }
         if (focused) {
           drawDecalButton(w,width-74,6,20,20,"#iconifyDecal");
           drawDecalButton(w,width-50,6,20,20,"#maximizeDecal");
