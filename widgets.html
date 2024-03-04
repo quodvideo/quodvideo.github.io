@@ -1151,8 +1151,6 @@
   <body>
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
     <br/>
-    <input type="checkbox" id="darkMode"><label for="darkMode">Dark Mode</label>
-    <br/>
     <p>These are just drawings for prototyping, not actual widgets. After the drawings, there is some description of the system I want to make.</p>
     <p>The style of these drawings is meant as a guide. It might be possible to do this without SVG, but I remember some details being hard or impossible to achieve with Gtk 2.x. The way scroll bars join with a text field was one impossibility. Part of the idea is to make it obvious when widgets are not active because they're in a background window or because they just can't be used in the current state. This should all work for various modes like light, dark, high contrast, and low contrast. It should be possible to change the basic colors per widget and with themes. I suspect this basic style can also be adapted to use gradients, blends, patterns, and more.</p>
     <p>This style is heavy compared to most of today's GUIs. That's on purpose. If a window looks too "chrome-y" with this style, then there's probably a better design.</p>
@@ -2005,46 +2003,6 @@
       </script>
     </svg>
     <br/>
-    <svg width="800" height="600">
-      <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
-      <use x="10" y="10" width="16" height="16" fill="white" xlink:href="#documentIcon"/>
-      <use x="10" y="30" width="16" height="16" fill="white" xlink:href="#mailboxIcon"/>
-      <use x="10" y="50" width="16" height="16" fill="white" xlink:href="#mailbox2Icon"/>
-      <use x="10" y="70" width="16" height="16" fill="white" xlink:href="#messageIcon"/>
-      <use x="10" y="90" width="16" height="16" fill="white" xlink:href="#spreadsheetIcon"/>
-      <use x="10" y="110" width="16" height="16" fill="white" xlink:href="#slideshowIcon"/>
-      <use x="10" y="130" width="16" height="16" fill="white" xlink:href="#meeting2Icon"/>
-      <use x="10" y="150" width="16" height="16" fill="white" xlink:href="#notebook3Icon"/>
-      <use x="10" y="170" width="16" height="16" fill="white" xlink:href="#browserIcon"/>
-      <use x="10" y="190" width="16" height="16" fill="white" xlink:href="#messagesIcon"/>
-      <use x="10" y="210" width="16" height="16" fill="white" xlink:href="#phonecallIcon"/>
-
-      <use x="70" y="10" width="48" height="48" fill="white" xlink:href="#documentIcon"/>
-      <use x="70" y="60" width="48" height="48" fill="white" xlink:href="#mailboxIcon"/>
-      <use x="70" y="110" width="48" height="48" fill="white" xlink:href="#mailbox2Icon"/>
-      <use x="70" y="160" width="48" height="48" fill="white" xlink:href="#messageIcon"/>
-      <use x="70" y="210" width="48" height="48" fill="white" xlink:href="#spreadsheetIcon"/>
-      <use x="70" y="260" width="48" height="48" fill="white" xlink:href="#slideshowIcon"/>
-      <use x="70" y="310" width="48" height="48" fill="white" xlink:href="#meeting2Icon"/>
-      <use x="70" y="360" width="48" height="48" fill="white" xlink:href="#notebook3Icon"/>
-      <use x="70" y="410" width="48" height="48" fill="white" xlink:href="#browserIcon"/>
-      <use x="70" y="460" width="48" height="48" fill="white" xlink:href="#messagesIcon"/>
-      <use x="70" y="510" width="48" height="48" fill="white" xlink:href="#phonecallIcon"/>
-
-      <use x="200" y="5" width="96" height="96" fill="white" xlink:href="#documentIcon"/>
-      <use x="200" y="105" width="96" height="96" fill="white" xlink:href="#mailboxIcon"/>
-      <use x="200" y="205" width="96" height="96" fill="white" xlink:href="#mailbox2Icon"/>
-      <use x="200" y="305" width="96" height="96" fill="white" xlink:href="#messageIcon"/>
-      <use x="200" y="405" width="96" height="96" fill="white" xlink:href="#spreadsheetIcon"/>
-      <use x="200" y="505" width="96" height="96" fill="white" xlink:href="#slideshowIcon"/>
-      <use x="310" y="5" width="96" height="96" fill="white" xlink:href="#meeting2Icon"/>
-      <use x="310" y="105" width="96" height="96" fill="white" xlink:href="#notebook3Icon"/>
-      <use x="310" y="205" width="96" height="96" fill="white" xlink:href="#browserIcon"/>
-      <use x="310" y="305" width="96" height="96" fill="white" xlink:href="#messagesIcon"/>
-      <use x="310" y="405" width="96" height="96" fill="white" xlink:href="#phonecallIcon"/>
-
-    </svg>
-    <br/>
     <svg width="400" height="150" id="messageAlert"><title>Message Alert</title>
       <script>
         drawBaseWindow(document.getElementById("messageAlert"),0,0,400,150,false);
@@ -2554,17 +2512,6 @@
           } else {
             tbs[i].setAttribute("visibility","hidden");
           }
-        }
-      });
-      document.getElementById("darkMode").addEventListener("change", () => {
-        var t = document.getElementById("testfield");
-        var i = document.getElementById("iconfield");
-        if(document.getElementById("darkMode").checked) {
-          t.setAttribute("class","darkmode");
-          i.setAttribute("class","darkmode");
-        } else {
-          t.setAttribute("class","");
-          i.setAttribute("class","");
         }
       });
     </script>
