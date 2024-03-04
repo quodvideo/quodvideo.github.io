@@ -1223,14 +1223,14 @@
           <rect x="1" height="2" width="1" fill="var(--shadow-stroke-color)" stroke="none" />
         </pattern>
         <pattern id="gripper" width="3" height="3" patternUnits="userSpaceOnUse">
-          <rect x="0" y="0"" width="2" height="2" fill="var(--recessed-fill-color)" stroke="none"/>
-          <rect x="0" y="0"" width="1" height="1" fill="var(--shadow-stroke-color)" stroke="none"/>
-          <rect x="1" y="1"" width="1" height="1" fill="var(--highlight-stroke-color)" stroke="none"/>
+          <rect x="0" y="0" width="2" height="2" fill="var(--recessed-fill-color)" stroke="none"/>
+          <rect x="0" y="0" width="1" height="1" fill="var(--shadow-stroke-color)" stroke="none"/>
+          <rect x="1" y="1" width="1" height="1" fill="var(--highlight-stroke-color)" stroke="none"/>
         </pattern>
         <pattern id="gripper2" width="4" height="4" patternUnits="userSpaceOnUse">
-          <rect x="0" y="0"" width="2" height="2" fill="var(--recessed-fill-color)" stroke="none"/>
-          <rect x="0" y="0"" width="1" height="1" fill="var(--shadow-stroke-color)" stroke="none"/>
-          <rect x="1" y="1"" width="1" height="1" fill="var(--highlight-stroke-color)" stroke="none"/>
+          <rect x="0" y="0" width="2" height="2" fill="var(--recessed-fill-color)" stroke="none"/>
+          <rect x="0" y="0" width="1" height="1" fill="var(--shadow-stroke-color)" stroke="none"/>
+          <rect x="1" y="1" width="1" height="1" fill="var(--highlight-stroke-color)" stroke="none"/>
         </pattern>
         <clipPath id="cornerclip">
           <path d="M1,16 L16 1 V16 Z" />
@@ -2087,67 +2087,10 @@
       <script>
         drawBaseWindow(document.getElementById("projectFolder"),0,0,640,480);
         drawHeaderBar(document.getElementById("projectFolder"),0,0,640,480,"#folderIcon","Project Title","source code");
+        drawCutawayField(document.getElementById("projectFolder"),160,50,477,427,true,true);
+        drawSimpleList(document.getElementById("projectFolder"),3,50,156,427,["🗀 doc","🗀 include","🗀 some folder","🗀 src"," 🗎 README"],4);
       </script>
-      <!-- <text class="centered" x="29" y="25" style="font-size: 48">🗀</text> -->
-      <g transform="translate(4,51)">
-        <rect x="0.5" y="0.5" width="160" height="424" stroke="var(--outline-color)" fill="white"/>
-        <text x="1.5" y="13.5">🗀 doc</text>
-        <text x="1.5" y="33.5">🗀 include</text>
-        <text x="1.5" y="53.5">🗀 some folder</text>
-        <text x="1.5" y="73.5">🗀 src</text>
-        <rect x="0.5" y="79.5" width="160" height="20" fill="black" stroke="none"/>
-        <text x="1.5" y="93.5" style="fill: white"> 🗎 README</text>
-      </g>
-      <rect x="160.5" y="51.5" width="459" height="424" stroke="var(--outline-color)" fill="white"/>
       <text x="165.5" y="71.5">Lorem ipsum dolor sit amet.</text>
-      <g class="v-scrollbar" transform="translate(619.5,51.5)">
-        <rect class="trough" width="16" height="376"/>
-        <polyline class="shadow" points="1,375 1,1 15,1"/>
-        <polyline class="highlight" points="1,375 15,375 15,1"/>
-        <g class="button" transform="translate(0,376)">
-          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
-          <polyline points="1,15 15,15 15,1"/>
-          <polyline points="1,15 1,1 15,1"/>
-          <use xlink:href="#newArrowUp" width="16" height="16"/>
-        </g>
-        <g class="button" transform="translate(0,392)">
-          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
-          <polyline points="1,15 15,15 15,1"/>
-          <polyline points="1,15 1,1 15,1"/>
-          <use xlink:href="#newArrowDown" width="16" height="16"/>
-        </g>
-        <g class="slider" transform="translate(0,100)">
-          <rect width="16" height="32"/>
-          <polyline points="1,31 15,31 15,1"/>
-          <polyline points="1,31 1,1 15,1"/>
-          <use x="3" y="11" xlink:href="#vGrippy"/>
-        </g>
-      </g>
-      <g class="h-scrollbar" transform="translate (160.5, 459.5)">
-        <rect class="trough" width="427" height="16"/>
-        <polyline class="shadow" points="1,15 1,1 426,1"/>
-        <polyline class="highlight" points="1,15 426,15 426,1"/>
-        <g class="button" transform="translate(427,0)">
-          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
-          <polyline points="1,15 15,15 15,1"/>
-          <polyline points="1,15 1,1 15,1"/>
-          <use xlink:href="#newArrowLeft" width="16" height="16"/>
-        </g>
-        <g class="button" transform="translate(443,0)">
-          <rect width="16" height="16" stroke="var(--outline-color)" fill="var(--raised-fill-color)"/>
-          <polyline points="1,15 15,15 15,1"/>
-          <polyline points="1,15 1,1 15,1"/>
-          <use xlink:href="#newArrowRight" width="16" height="16"/>
-        </g>
-        <g class="slider" transform="translate(100,0)">
-          <rect width="32" height="16"/>
-          <polyline points="1,15 31,15 31,1"/>
-          <polyline points="1,15 1,1 31,1"/>
-          <use x="11" y="3" xlink:href="#hGrippy"/>
-        </g>
-      </g>
-      <polyline class="shadow" points="3.5,476.5 3.5,50.5 636.5,50.5"/>
-      <polyline class="highlight" points="3.5,476.5 620.5,476.5 620.5,460.5 636.5,460.5 636.5,50.5"/>
     </svg>
     <svg width="640" height="480" id="spreadsheet"><title>Spreadsheet</title>
       <script>
@@ -2274,8 +2217,8 @@
         <path d="M280.5,55.5 h5 a 10 10 90 0,1 10 10 v55 m 0 21 v55 a 10 10 90 0,1 -10 10 h -5" stroke="var(--outline-color)" fill="none"/>
       </g>
     </svg>
-    <svg width="1000" height="1000"><title>Playground</title>
-      <rect x="0.5" y="0.5" width="999" height="999" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
+    <svg width="500" height="500"><title>Playground</title>
+      <rect x="0.5" y="0.5" width="499" height="499" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
       <use x="20" y="20" xlink:href="#documentIcon" fill="white" width="16" height="16"/>
       <use x="40" y="40" xlink:href="#folderIcon" fill="red" width="16" height="16"/>
 
@@ -2288,7 +2231,7 @@
         <rect width="800" height="600" fill="#808080"/>
         <svg x="30" y="40" width="640" height="480" id="unfocusedView"><title>Unfocused View</title>
           <script>
-            drawBaseWindow(document.getElementById("unfocusedView"),0,0,640,480);
+            drawBaseWindow(document.getElementById("unfocusedView"),0,0,640,480,false);
             drawCutawayField(document.getElementById("unfocusedView"),3,30,634,447,false,false);
           </script>
           <use xlink:href="#documentIcon" fill="white" x="3" y="3" width="24" height="24" />
