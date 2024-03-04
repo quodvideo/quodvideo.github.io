@@ -220,12 +220,12 @@
         stroke: var(--outline-color);
         fill: inherit;
       }
-      .toplevel.focused+.base { fill: red; }
-      .toplevel.focused+.shadow {}
-      .toplevel.focused+.highlight {}
-      .toplevel.unfocused+.base { fill: blue;}
-      .toplevel.unfocused+.shadow {}
-      .toplevel.unfocused+.highlight {}
+      .toplevel.focused .base { fill: red; }
+      .toplevel.focused .shadow {}
+      .toplevel.focused .highlight {}
+      .toplevel.unfocused .base { fill: blue;}
+      .toplevel.unfocused .shadow {}
+      .toplevel.unfocused .highlight {}
     </style>
     <script>
       function drawRaisedRect (parentElement,x,y,width,height) {
