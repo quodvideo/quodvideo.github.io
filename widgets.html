@@ -223,9 +223,11 @@
       .toplevel.focused .base { fill: var(--base-fill-color); }
       .toplevel.focused .shadow {}
       .toplevel.focused .highlight {}
+      .toplevel.focused .windowTitle { fill: #000000; }
       .toplevel.unfocused .base { fill: var(--raised-fill-color); stroke: grey; }
       .toplevel.unfocused .shadow { stroke: none; }
       .toplevel.unfocused .highlight { stroke: none; }
+      .toplevel.unfocused .windowTitle { fill: #808080; }
     </style>
     <script>
       function drawRaisedRect (parentElement,x,y,width,height) {
@@ -1000,6 +1002,7 @@
         var t = document.createElementNS("http://www.w3.org/2000/svg","text");
         t.setAttribute("x",30);
         t.setAttribute("y",22);
+        t.setAttribute("class","windowTitle");
         t.setAttribute("style","font-size: 18px;");
         t.innerHTML = itemName;
         w.insertAdjacentElement("beforeend",t);
