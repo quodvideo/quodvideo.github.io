@@ -967,9 +967,13 @@
       }
       function drawSimpleWindow(parentElement,x,y,width,height,iconId,itemName,focused=true) {
         var w = drawBaseWindow(parentElement,x,y,width,height);
-        drawDecalButton(w,width-74,6,20,20,"#iconifyDecal");
-        drawDecalButton(w,width-50,6,20,20,"#maximizeDecal");
-        drawDecalButton(w,width-26,6,20,20,"#closeDecal");
+        
+        if (focused) {
+          drawDecalButton(w,width-74,6,20,20,"#iconifyDecal");
+          drawDecalButton(w,width-50,6,20,20,"#maximizeDecal");
+          drawDecalButton(w,width-26,6,20,20,"#closeDecal");
+        }
+        
         drawCutawayField(w,3,30,width-6,height-33,false,false);
 
         var u = document.createElementNS("http://www.w3.org/2000/svg","use");
@@ -990,14 +994,16 @@
 
         var box = t.getBBox();
 
-        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        r.setAttribute("x", box.x + box.width + 6);
-        r.setAttribute("y",6);
-        r.setAttribute("width", width - 74 - (box.x + box.width + 6) - 4);
-        r.setAttribute("height",21);
-        r.setAttribute("fill","url(#gripper)");
-        r.setAttribute("style","cursor: move;");
-        w.insertAdjacentElement("beforeend",r);
+        if (focused) {
+          var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          r.setAttribute("x", box.x + box.width + 6);
+          r.setAttribute("y",6);
+          r.setAttribute("width", width - 74 - (box.x + box.width + 6) - 4);
+          r.setAttribute("height",21);
+          r.setAttribute("fill","url(#gripper)");
+          r.setAttribute("style","cursor: move;");
+          w.insertAdjacentElement("beforeend",r);
+        }
 
         return w;
       }
@@ -2227,28 +2233,12 @@
       <use x="20" y="100" xlink:href="#sheettab-active" fill="red" width="16" height="16"/>
     </svg>
     <div style="background-color: black; padding: 10px; width: fit-content">
-      <svg width="800" height="600"><title>Window States</title>
+      <svg width="800" height="600" id="windowStates"><title>Window States</title>
         <rect width="800" height="600" fill="#808080"/>
-        <svg x="30" y="40" width="640" height="480" id="unfocusedView"><title>Unfocused View</title>
-          <script>
-            drawBaseWindow(document.getElementById("unfocusedView"),0,0,640,480,false);
-            drawCutawayField(document.getElementById("unfocusedView"),3,30,634,447,false,false);
-          </script>
-          <use xlink:href="#documentIcon" fill="white" x="3" y="3" width="24" height="24" />
-          <text x="30" y="22" style="font-size: 18px;">Item Name</text>
-        </svg>
-        <svg x="150" y="100" width="640" height="480" id="focusedView"><title>Focused View</title>
-          <script>
-            drawBaseWindow(document.getElementById("focusedView"),0,0,640,283);
-            drawCutawayField(document.getElementById("focusedView"),3,30,634,250,false,false);
-            drawDecalButton(document.getElementById("focusedView"),566,6,20,20,"#iconifyDecal");
-            drawDecalButton(document.getElementById("focusedView"),590,6,20,20,"#maximizeDecal");
-            drawDecalButton(document.getElementById("focusedView"),614,6,20,20,"#closeDecal");
-          </script>
-          <use xlink:href="#documentIcon" fill="white" x="3" y="3" width="24" height="24" />
-          <text x="30" y="22" style="font-size: 18px;">Item Name</text>
-          <rect x="123" y="6" width="441" height="21" fill="url(#gripper)" style="cursor: move;"/>
-        </svg>
+        <script>
+          drawSimpleWindow(document.getElementById("windowStates"),30,40,640,480,"#documentIcon","Item Name",false);
+          drawSimpleWindow(document.getElementById("windowStates"),150,100,640,283,"#documentIcon","Item Name",true);
+        </script>
       </svg>
     </div>
     <div style="background-color: black; padding: 10px; width: fit-content">
