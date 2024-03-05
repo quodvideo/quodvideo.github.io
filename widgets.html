@@ -42,8 +42,8 @@
         --label-color:            #999999;
       }
       :focus { outline: none; }
-      .highlight { fill: none; stroke: var(--highlight-stroke-color); }
-      .shadow { fill: none; stroke: var(--shadow-stroke-color); }
+      .highlight { fill: none; stroke: var(--highlight-stroke-color); stroke-linecap: square; }
+      .shadow { fill: none; stroke: var(--shadow-stroke-color); stroke-linecap: square; }
       svg { cursor: default; }
       text {
         font-family: Sans-serif;
@@ -70,7 +70,7 @@
       }
       .button {
         cursor: default;
-        & rect:first-child {
+/*        & rect:first-child {
           fill: var(--raised-fill-color);
           stroke: var(--outline-color);
           + polyline {
@@ -83,7 +83,7 @@
               stroke-linecap: square;
             }
           }
-        }
+        }*/
         &:active, &.activetoggle {
           & rect:first-child {
             fill: var(--recessed-fill-color);
