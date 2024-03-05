@@ -57,7 +57,7 @@
         cursor: text;
         & rect:first-child {
           fill: var(--input-field-color);
-          stroke: var(--outline-color);
+          stroke: var(--outline-color);/*
           + polyline {
             fill: none;
             stroke: var(--shadow-stroke-color);
@@ -65,27 +65,8 @@
               fill: none;
               stroke: var(--highlight-stroke-color);
             }
-          }
+          }*/
         }
-      }
-      .button {
-        cursor: default; /*
-        &:active, &.activetoggle {
-          & rect:first-child {
-            fill: var(--recessed-fill-color);
-            stroke: var(--outline-color);
-            + polyline {
-              fill: none;
-              stroke: var(--highlight-stroke-color);              
-              stroke-linecap: square;
-              + polyline {
-                fill: none;
-                stroke: var(--shadow-stroke-color);
-                stroke-linecap: square;
-              }
-            }
-          }
-        } */
       }
       .button:active .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
       .button:active .highlight { stroke: var(--shadow-stroke-color); }
@@ -141,36 +122,7 @@
         }
       }
       rect.butte { fill: var(--raised-fill-color); stroke: var(--outline-color); }
-      rect.trough {
-        fill: var(--recessed-fill-color);
-        stroke: var(--outline-color);
-        + polyline {
-          fill: none;
-          stroke: var(--shadow-stroke-color);
-          stroke-linecap: square;
-          + polyline {
-            fill: none;
-            stroke: var(--highlight-stroke-color);
-            stroke-linecap: square;
-          }
-        }
-      }
-      .slider {
-        & rect {
-          fill: var(--raised-fill-color);
-          stroke: var(--outline-color);
-          + polyline {
-            fill: none;
-            stroke: var(--shadow-stroke-color);
-            stroke-linecap: square;
-            + polyline {
-              fill: none;
-              stroke: var(--highlight-stroke-color);
-              stroke-linecap: square;
-            }
-          }
-        }
-      }
+      rect.trough { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
       rect.focusring { fill: none; stroke: none; }
       :focus rect.focusring { fill: none; stroke: var(--focus-ring-color); }
       rect.defaultIndicator { fill: none; stroke: var(--outline-color); }
@@ -349,9 +301,10 @@
         return stepper;
       }
       function drawSlider (parentElement,x,y,width,height,dir) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
         g.setAttribute("class","slider");
-        g.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend", g);
 
         drawRaisedRect(g,0,0,width,height);
@@ -430,20 +383,22 @@
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
 
-        var field = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        field.setAttribute("x",1.5);
-        field.setAttribute("y",1.5);
-        field.setAttribute("width",width-3);
-        field.setAttribute("height",height-3);
-        g.insertAdjacentElement("beforeend",field);
+        var f = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        f.setAttribute("x",1.5);
+        f.setAttribute("y",1.5);
+        f.setAttribute("width",width-3);
+        f.setAttribute("height",height-3);
+        g.insertAdjacentElement("beforeend",f);
 
-        var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points","0.5,"+(height-1)+" 0.5,0.5 "+(width-1)+",0.5");
-        g.insertAdjacentElement("beforeend",shadow);
+        var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        s.setAttribute("points","0.5,"+(height-1)+" 0.5,0.5 "+(width-1)+",0.5");
+        s.setAttribute("class","shadow");
+        g.insertAdjacentElement("beforeend",s);
 
-        var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        highlight.setAttribute("points","0,"+(height-0.5)+" "+(width-0.5)+","+(height-0.5)+" "+(width-0.5)+",0");
-        g.insertAdjacentElement("beforeend",highlight);
+        var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        h.setAttribute("points","0,"+(height-0.5)+" "+(width-0.5)+","+(height-0.5)+" "+(width-0.5)+",0");
+        h.setAttribute("class","highlight");
+        g.insertAdjacentElement("beforeend",h);
 
         drawFocusRingRect(g,0,0,width,height);
         
