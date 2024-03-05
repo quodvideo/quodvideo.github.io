@@ -41,34 +41,18 @@
         --outline-color:          #999999;
         --label-color:            #999999;
       }
-      :focus {
-        outline: none;
-      }
-      .highlight {
-        fill: none;
-        stroke: var(--highlight-stroke-color);
-      }
-      .shadow {
-        fill: none;
-        stroke: var(--shadow-stroke-color);
-      }
-      svg {
-        cursor: default;
-      }
+      :focus { outline: none; }
+      .highlight { fill: none; stroke: var(--highlight-stroke-color); }
+      .shadow { fill: none; stroke: var(--shadow-stroke-color); }
+      svg { cursor: default; }
       text {
         font-family: Sans-serif;
         font-size: 12px; /* 13.3px; */
         stroke: none;
         fill: black;
       }
-      text.label {
-        fill: var(--label-color);
-        user-select: none;
-      }
-      text.centered {
-        text-anchor: middle;
-        dominant-baseline: central;
-      }
+      text.label { fill: var(--label-color); user-select: none; }
+      text.centered { text-anchor: middle; dominant-baseline: central; }
       .textfield {
         cursor: text;
         & rect:first-child {
@@ -194,32 +178,12 @@
           }
         }
       }
-      rect.focusring {
-        fill: none;
-        stroke: none;
-      }
-      :focus rect.focusring {
-        fill: none;
-        stroke: var(--focus-ring-color);
-      }
-      rect.defaultIndicator {
-        fill: none;
-        stroke: var(--outline-color);
-      }
-
-      section {
-        margin-left: 10%;
-        margin-right: 10%;
-      }
-      rum {
-        display: inline;
-        font-style: italic;
-      }
-      symbol.icon * {
-        vector-effect: non-scaling-stroke;
-        stroke: var(--outline-color);
-        fill: inherit;
-      }
+      rect.focusring { fill: none; stroke: none; }
+      :focus rect.focusring { fill: none; stroke: var(--focus-ring-color); }
+      rect.defaultIndicator { fill: none; stroke: var(--outline-color); }
+      section { margin-left: 10%; margin-right: 10%; }
+      rum { display: inline; font-style: italic; }
+      symbol.icon * { vector-effect: non-scaling-stroke; stroke: var(--outline-color); fill: inherit; }
       .toplevel.focused .base { fill: var(--base-fill-color); }
       .toplevel.focused .shadow { fill: none; stroke: var(--shadow-stroke-color); }
       .toplevel.focused .highlight { fill: none; stroke: var(--highlight-stroke-color); }
