@@ -148,6 +148,7 @@
           }
         }
       }
+      rect.butte { fill: var(--raised-fill-color); stroke: var(--outline-color); }
       rect.trough {
         fill: var(--recessed-fill-color);
         stroke: var(--outline-color);
@@ -200,36 +201,41 @@
         r.setAttribute("y", y+0.5);
         r.setAttribute("width", width-1);
         r.setAttribute("height", height-1);
+        r.setAttribute("class","butte")
         parentElement.insertAdjacentElement("beforeend", r);
 
         var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         s.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+1.5));
+        s.setAttribute("class","shadow");
         parentElement.insertAdjacentElement("beforeend", s);
 
         var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         h.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+1.5)+","+(y+1.5)+" "+(x+width-1.5)+","+(y+1.5));
+        h.setAttribute("class","highlight");
         parentElement.insertAdjacentElement("beforeend", h);
 
         return r;
       }
       function drawTroughRect (parentElement,x,y,width,height) {
-        var trough = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        trough.setAttribute("x", x+0.5);
-        trough.setAttribute("y", y+0.5);
-        trough.setAttribute("width", width-1);
-        trough.setAttribute("height", height-1);
-        trough.setAttribute("class","trough");
-        parentElement.insertAdjacentElement("beforeend", trough);
+        var t = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        t.setAttribute("x", x+0.5);
+        t.setAttribute("y", y+0.5);
+        t.setAttribute("width", width-1);
+        t.setAttribute("height", height-1);
+        t.setAttribute("class","trough");
+        parentElement.insertAdjacentElement("beforeend", t);
 
-        var shadow = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        shadow.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+1.5)+","+(y+1.5)+" "+(x+width-1.5)+","+(y+1.5))
-        parentElement.insertAdjacentElement("beforeend", shadow);
+        var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        s.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+1.5)+","+(y+1.5)+" "+(x+width-1.5)+","+(y+1.5))
+        s.setAttribute("class","shadow");
+        parentElement.insertAdjacentElement("beforeend", s);
         
-        var highlight = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        highlight.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+1.5))
-        parentElement.insertAdjacentElement("beforeend", highlight);
+        var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+        h.setAttribute("points",""+(x+1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+height-1.5)+" "+(x+width-1.5)+","+(y+1.5))
+        h.setAttribute("class","highlight");
+        parentElement.insertAdjacentElement("beforeend", h);
         
-        return trough;
+        return t;
       }
       function drawFocusRingRect (parentElement,x,y,width,height) {
         var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
