@@ -55,23 +55,6 @@
       .button.activetoggle .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
       .button.activetoggle .highlight { stroke: var(--shadow-stroke-color); }
       .button.activetoggle .shadow { stroke: var(--highlight-stroke-color); }
-      /*.menu {
-        cursor: default;
-        & rect:first-child {
-          fill: var(--raised-fill-color);
-          stroke: var(--outline-color);
-          + polyline {
-            fill: none;
-            stroke: var(--shadow-stroke-color);
-            stroke-linecap: square;
-            + polyline {
-              fill: none;
-              stroke: var(--highlight-stroke-color);
-              stroke-linecap: square;
-            }
-          }
-        }
-      }*/
       .menuitem {
         & rect:first-child {
           fill: var(--raised-fill-color);
@@ -2132,10 +2115,10 @@
       <text x="56" y="41">some current status</text>
       <g transform="translate(160,80)">
         <g>
-          <g class="textfield">
-            <rect x="1.5" y="1.5" width="200" height="108" style="fill: var(--raised-fill-color)"/>
-            <polyline points="0.5,110.5 0.5,0.5 202.5,0.5"/>
-            <polyline points="0.5,110.5 202.5,110.5 202.5,0.5"/>
+          <g class="inputfield">
+            <rect class="textfield" x="1.5" y="1.5" width="200" height="108" style="fill: var(--raised-fill-color)"/>
+            <polyline class="shadow" points="0.5,110.5 0.5,0.5 202.5,0.5"/>
+            <polyline class="highlight" points="0.5,110.5 202.5,110.5 202.5,0.5"/>
             <text x="1.5" y="-5.5" style="font-size: 24;">Detector Angle (2<tspan style="font-style:italic;">θ</tspan>)</text>
             <text x="200" y="89" style="font-size: 96; text-anchor: end;">32°</text>
           </g>
@@ -2153,10 +2136,10 @@
           </g>
         </g>
         <g transform="translate(0, 151)">
-          <g class="textfield">
-            <rect x="1.5" y="1.5" width="200" height="108" style="fill: var(--raised-fill-color)"/>
-            <polyline points="0.5,110.5 0.5,0.5 202.5,0.5"/>
-            <polyline points="0.5,110.5 202.5,110.5 202.5,0.5"/>
+          <g class="inputfield">
+            <rect class="textfield" x="1.5" y="1.5" width="200" height="108" style="fill: var(--raised-fill-color)"/>
+            <polyline class="shadow" points="0.5,110.5 0.5,0.5 202.5,0.5"/>
+            <polyline class="highlight" points="0.5,110.5 202.5,110.5 202.5,0.5"/>
             <text x="1.5" y="-5.5" style="font-size: 24;">Sample Angle (<tspan style="font-style:italic;">θ</tspan>)</text>
             <text x="200" y="89" style="font-size: 96; text-anchor: end;">16°</text>
           </g>
