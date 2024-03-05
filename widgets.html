@@ -55,7 +55,7 @@
       .button.activetoggle .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
       .button.activetoggle .highlight { stroke: var(--shadow-stroke-color); }
       .button.activetoggle .shadow { stroke: var(--highlight-stroke-color); }
-      .menu {
+      /*.menu {
         cursor: default;
         & rect:first-child {
           fill: var(--raised-fill-color);
@@ -71,7 +71,7 @@
             }
           }
         }
-      }
+      }*/
       .menuitem {
         & rect:first-child {
           fill: var(--raised-fill-color);
@@ -1003,6 +1003,7 @@
         parentElement.insertAdjacentElement("beforeend",m);
 
         drawRaisedRect(m,0,0,width,height);
+
         items.forEach((item,i) => {
           var lx = 2;
           var ly = 3+i*21;
