@@ -69,21 +69,7 @@
         }
       }
       .button {
-        cursor: default;
-/*        & rect:first-child {
-          fill: var(--raised-fill-color);
-          stroke: var(--outline-color);
-          + polyline {
-            fill: none;
-            stroke: var(--shadow-stroke-color);
-            stroke-linecap: square;
-            + polyline {
-              fill: none;
-              stroke: var(--highlight-stroke-color);
-              stroke-linecap: square;
-            }
-          }
-        }*/
+        cursor: default; /*
         &:active, &.activetoggle {
           & rect:first-child {
             fill: var(--recessed-fill-color);
@@ -99,8 +85,14 @@
               }
             }
           }
-        }
+        } */
       }
+      button:active .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color);};
+      button:active .highlight { stroke: var(--shadow-stroke-color); }
+      button:active .shadow { stroke: var(--highlight-stroke-color); }
+      button:activetoggle .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color);};
+      button.activetoggle .highlight { stroke: var(--shadow-stroke-color); }
+      button:activetoggle .shadow { stroke: var(--highlight-stroke-color); }
       .menu {
         cursor: default;
         & rect:first-child {
