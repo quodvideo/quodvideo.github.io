@@ -2318,7 +2318,7 @@
             </filter>
           </defs>
           <rect x="0" y="0" width="660" height="500" stroke="none" fill="lightgrey" filter="url(#f1)" style="display: none;"></rect>
-          <g transform="translate(10,10)">
+          <g id="someNonsense" transform="translate(10,10)">
             <rect x="-4.5" y="-4.5" width="649" height="489" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
             <polyline class="shadow" points="-3.5,483.5 643.5,483.5 643.5,-3.5"/>
             <polyline class="highlight" points="-3.5,483.5 -3.5,-3.5 643.5,-3.5"/>
@@ -2334,6 +2334,10 @@
             </g>
             <rect x="160.5" y="51.5" width="463" height="428" stroke="var(--outline-color)" fill="white"/>
             <polyline class="shadow" points="1.5,50.5 638.5,50.5"/>
+            <script>
+              drawVScrollBar(document.getElementById("someNonsense"),623,51,16,396);
+              drawHScrollBar(document.getElementById("someNonsense"),160,463,447,16);
+            </script><!--
             <g class="v-scrollbar" transform="translate(623.5,51.5)">
             <rect class="trough" width="16" height="396"/>
             <polyline class="shadow" points="1,379 1,1 15,1"/>
@@ -2356,8 +2360,8 @@
               <polyline points="1,31 1,1 15,1"/>
               <use x="3" y="11" xlink:href="#vGrippy"/>
             </g>
-            </g>
-            <use x="623" y="463" xlink:href="#newcornergrip"/>
+            </g>-->
+            <use x="623" y="463" xlink:href="#newcornergrip"/><!--
             <g class="h-scrollbar" transform="translate (160.5, 463.5)">
             <rect class="trough" width="447" height="16"/>
             <polyline class="shadow" points="1,15 1,1 430,1"/>
@@ -2380,7 +2384,7 @@
               <polyline points="1,15 1,1 31,1"/>
               <use x="11" y="3" xlink:href="#hGrippy"/>
             </g>
-            </g>
+            </g>-->
           </g>
         </svg>
       </svg>
