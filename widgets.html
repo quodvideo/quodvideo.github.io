@@ -2113,8 +2113,8 @@
       <text class="centered" x="25" y="25" style="font-size: 48">⚙</text>
       <text x="56" y="24" style="font-size: 24">Control System</text>
       <text x="56" y="41">some current status</text>
-      <g id="uniqueNonsense" transform="translate(160,80)">
-        <g>
+      <g transform="translate(160,80)">
+        <g id="uniqueNonsense">
           <g class="inputfield">
             <rect class="textfield" x="1.5" y="1.5" width="200" height="108" style="fill: var(--raised-fill-color)"/>
             <polyline class="shadow" points="0.5,110.5 0.5,0.5 202.5,0.5"/>
@@ -2125,21 +2125,9 @@
           <script>
             drawDecalButton(document.getElementById("uniqueNonsense"),212,1,64,54,"#newArrowUp");
             drawDecalButton(document.getElementById("uniqueNonsense"),212,55,64,54,"#newArrowDown");
-          </script><!--
-          <g class="button" transform="translate(212, 1)">
-            <rect x="0.5" y="0.5" width="64" height="54"/>
-            <polyline points="1.5,53.5 63.5,53.5 63.5,1.5"/>
-            <polyline points="1.5,53.5 1.5,1.5 63.5,1.5"/>
-            <use xlink:href="#newArrowUp" width="64" height="54"/>
-          </g>
-          <g class="button" transform="translate(212, 55)">
-            <rect x="0.5" y="0.5" width="64" height="54"/>
-            <polyline points="1.5,53.5 63.5,53.5 63.5,1.5"/>
-            <polyline points="1.5,53.5 1.5,1.5 63.5,1.5"/>
-            <use xlink:href="#newArrowDown" width="64" height="54"/>
-          </g>-->
+          </script>
         </g>
-        <g transform="translate(0, 151)">
+        <g id="uniqueNonsense2" transform="translate(0, 151)">
           <g class="inputfield">
             <rect class="textfield" x="1.5" y="1.5" width="200" height="108" style="fill: var(--raised-fill-color)"/>
             <polyline class="shadow" points="0.5,110.5 0.5,0.5 202.5,0.5"/>
@@ -2147,20 +2135,13 @@
             <text x="1.5" y="-5.5" style="font-size: 24;">Sample Angle (<tspan style="font-style:italic;">θ</tspan>)</text>
             <text x="200" y="89" style="font-size: 96; text-anchor: end;">16°</text>
           </g>
-          <g class="button" transform="translate(212, 1)">
-            <rect x="0.5" y="0.5" width="64" height="54"/>
-            <polyline points="1.5,53.5 63.5,53.5 63.5,1.5"/>
-            <polyline points="1.5,53.5 1.5,1.5 63.5,1.5"/>
-            <use xlink:href="#newArrowUp" width="64" height="54"/>
-          </g>
-          <g class="button" transform="translate(212, 55)">
-            <rect x="0.5" y="0.5" width="64" height="54"/>
-            <polyline points="1.5,53.5 63.5,53.5 63.5,1.5"/>
-            <polyline points="1.5,53.5 1.5,1.5 63.5,1.5"/>
-            <use xlink:href="#newArrowDown" width="64" height="54"/>
-          </g>
+          <script>
+            drawDecalButton(document.getElementById("uniqueNonsense2"),212,1,64,54,"#newArrowUp");
+            drawDecalButton(document.getElementById("uniqueNonsense2"),212,55,64,54,"#newArrowDown");
+          </script>
         </g>
         <path d="M280.5,55.5 h5 a 10 10 90 0,1 10 10 v55 m 0 21 v55 a 10 10 90 0,1 -10 10 h -5" stroke="var(--outline-color)" fill="none"/>
+        <path d="M295.5,121.5 v19" stroke="var(--outline-color)" fill="none"/>
       </g>
     </svg>
     <svg width="500" height="500"><title>Playground</title>
