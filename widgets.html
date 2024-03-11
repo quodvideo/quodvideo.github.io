@@ -830,7 +830,7 @@
         tl.setAttribute("y",corners[0][1]+(corners[2][1]-corners[1][1])/2);
         parentElement.insertAdjacentElement("beforeend",tl);
       }
-      function drawFieldIcon(parentElement,x,y,size,fillColor,icon,label) {
+      function drawLabeledIcon(parentElement,x,y,size,fillColor,icon,label) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -2019,10 +2019,10 @@
         drawCutawayField(document.getElementById("someFolder"),3,50,634,427,false,false);
         drawToggledButton(document.getElementById("someFolder"),450,24,64,22,"Field");
         drawPushButton(document.getElementById("someFolder"),513,24,64,22,"List");
-        drawFieldIcon(document.getElementById("someFolder"),16,54,48,"white","#documentIcon","Some File");
-        drawFieldIcon(document.getElementById("someFolder"),112,54,48,"white","#documentIcon","Some Other File");
-        drawFieldIcon(document.getElementById("someFolder"),208,54,48,"red","#documentIcon","Something Else");
-        drawFieldIcon(document.getElementById("someFolder"),304,54,48,"lightblue","#documentIcon","Yet Another File");
+        drawLabeledIcon(document.getElementById("someFolder"),16,54,48,"white","#documentIcon","Some File");
+        drawLabeledIcon(document.getElementById("someFolder"),112,54,48,"white","#documentIcon","Some Other File");
+        drawLabeledIcon(document.getElementById("someFolder"),208,54,48,"red","#documentIcon","Something Else");
+        drawLabeledIcon(document.getElementById("someFolder"),304,54,48,"lightblue","#documentIcon","Yet Another File");
       </script>
     </svg>
     <svg width="640" height="480" id="projectFolder"><title>Project Folder</title>
