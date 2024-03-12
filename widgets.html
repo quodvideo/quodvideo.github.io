@@ -374,6 +374,16 @@
           f.setAttribute("class","textfield");
           g.insertAdjacentElement("beforeend",f);
 
+          var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          s.setAttribute("class","shadow");
+          s.setAttribute("points","0.5,"+(height-0.5)+" 0.5,0.5 "+(width-0.5)+",0.5");
+          g.insertAdjacentElement("beforeend",s);
+
+          var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          h.setAttribute("class","highlight");
+          h.setAttribute("points","0.5,"+(height-0.5)+" "+(width-15.5)+","+(height-0.5)+" "+(width-15.5)+","+(height-15.5)+" "+(width-0.5)+","+(height-15.5)+" "+(width-0.5)+",0.5");
+          g.insertAdjacentElement("beforeend",h);
+
           if (showVScrollbar) { drawVScrollBar(g,width-17,1,16,height-17); }
           if (showHScrollbar) { drawHScrollBar(g,1,height-17,width-17,16); }
         } else {
