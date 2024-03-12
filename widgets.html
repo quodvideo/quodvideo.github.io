@@ -360,7 +360,7 @@
 
         return g;
       }
-      function drawInputField (parentElement,x,y,width,height,showVScrollbar=false,showHScrollbar=false) {
+      function drawInputField (parentElement,x,y,width,height,showVScrollbar=false,showHScrollbar=false,notch=false) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("class","inputfield");
         g.setAttribute("x",x);
@@ -368,26 +368,38 @@
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
 
-        var f = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        f.setAttribute("x",1.5);
-        f.setAttribute("y",1.5);
-        f.setAttribute("width",width-3);
-        f.setAttribute("height",height-3);
-        f.setAttribute("class","textfield");
-        g.insertAdjacentElement("beforeend",f);
+        if (notch) {
+          var f = document.createElementNS("http://www.w3.org/2000/svg","path");
+          f.setAttribute("class","textfield");
+          g.insertAdjacentElement("beforeend",f);
 
-        var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        s.setAttribute("points","0.5,"+(height-1)+" 0.5,0.5 "+(width-1)+",0.5");
-        s.setAttribute("class","shadow");
-        g.insertAdjacentElement("beforeend",s);
+          if (showVScrollbar) { drawVScrollBar(g,width-17,1,16,height-17); }
+          if (showHScrollbar) { drawHScrollBar(g,1,height-17,width-17,16); }
+        } else {
+          var f = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          f.setAttribute("x",1.5);
+          f.setAttribute("y",1.5);
+          f.setAttribute("width",width-3);
+          f.setAttribute("height",height-3);
+          f.setAttribute("class","textfield");
+          g.insertAdjacentElement("beforeend",f);
 
-        var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        h.setAttribute("points","0,"+(height-0.5)+" "+(width-0.5)+","+(height-0.5)+" "+(width-0.5)+",0");
-        h.setAttribute("class","highlight");
-        g.insertAdjacentElement("beforeend",h);
+          var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          s.setAttribute("points","0.5,"+(height-1)+" 0.5,0.5 "+(width-1)+",0.5");
+          s.setAttribute("class","shadow");
+          g.insertAdjacentElement("beforeend",s);
 
-        drawFocusRingRect(g,0,0,width,height);
-        
+          var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          h.setAttribute("points","0,"+(height-0.5)+" "+(width-0.5)+","+(height-0.5)+" "+(width-0.5)+",0");
+          h.setAttribute("class","highlight");
+          g.insertAdjacentElement("beforeend",h);
+
+          drawFocusRingRect(g,0,0,width,height);
+
+          if (showVScrollbar) { drawVScrollBar(g,width-17,1,16,height-17); }
+          if (showHScrollbar) { drawHScrollBar(g,1,height-17,width-17,16); }
+        }
+
         var t = document.createElementNS("http://www.w3.org/2000/svg","text");
         g.insertAdjacentElement("beforeend",t);
 
@@ -1793,6 +1805,7 @@
         drawCutawayField(tf,230,290,118,118,true,true);
         drawCutawayField(tf,400,290,118,118,true,false);
         drawCutawayField(tf,550,290,118,118,false,true);
+        drawInputField(tf,230,400,120,120);
         drawTabs(tf,450,10,240,28,["a","b","c"],0);
         drawTabs(tf,450,40,240,28,["a","b","c"],1);
         drawTabs(tf,450,70,240,28,["a","b","c"],2);
