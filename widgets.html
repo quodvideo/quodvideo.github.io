@@ -370,6 +370,7 @@
 
         if (notch || showVScrollbar && showHScrollbar) {
           var f = document.createElementNS("http://www.w3.org/2000/svg","path");
+          f.setAttribute("d","M1.5,1.5 V "+(height-1.5)+" H "+(width-16.5)+" V "+(height-16.5)+" H "+(width-1.5)+" V 1.5 Z");
           f.setAttribute("class","textfield");
           g.insertAdjacentElement("beforeend",f);
 
