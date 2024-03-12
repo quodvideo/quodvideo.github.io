@@ -68,8 +68,8 @@
       rect.butte { fill: var(--raised-fill-color); stroke: var(--outline-color); }
       rect.trough { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
       .textfield { fill: var(--input-field-color); stroke: var(--outline-color); }
-      rect.focusring { fill: none; stroke: none; }
-      :focus rect.focusring { fill: none; stroke: var(--focus-ring-color); }
+      .focusring { fill: none; stroke: none; }
+      :focus .focusring { fill: none; stroke: var(--focus-ring-color); }
       rect.defaultIndicator { fill: none; stroke: var(--outline-color); }
       text { font-family: Sans-serif; font-size: 12px; /* 13.3px; */ stroke: none; fill: black; }
       text.label { fill: var(--label-color); user-select: none; }
@@ -360,7 +360,7 @@
 
         return g;
       }
-      function drawInputField (parentElement,x,y,width,height,notch=false) {
+      function drawInputField (parentElement,x,y,width,height,showVScrollbar=false,showHScrollbar=false) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("class","inputfield");
         g.setAttribute("x",x);
@@ -1791,8 +1791,8 @@
         drawHScrollBar(tf,230,150,100,16);
         drawVScrollBar(tf,230,180,16,100);
         drawCutawayField(tf,230,290,118,118,true,true);
-        drawCutawayField2(tf,400,290,118,118,true,true);
-        drawCutawayField2(tf,550,290,118,118,false,true);
+        drawCutawayField(tf,400,290,118,118,true,false);
+        drawCutawayField(tf,550,290,118,118,false,true);
         drawTabs(tf,450,10,240,28,["a","b","c"],0);
         drawTabs(tf,450,40,240,28,["a","b","c"],1);
         drawTabs(tf,450,70,240,28,["a","b","c"],2);
