@@ -384,6 +384,11 @@
           h.setAttribute("points","0.5,"+(height-0.5)+" "+(width-15.5)+","+(height-0.5)+" "+(width-15.5)+","+(height-15.5)+" "+(width-0.5)+","+(height-15.5)+" "+(width-0.5)+",0.5");
           g.insertAdjacentElement("beforeend",h);
 
+          var r = document.createElementNS("http://www.w3.org/2000/svg","path");
+          f.setAttribute("d","M0.5,0.5 V "+(height-1.5)+" H "+(width-16.5)+" V "+(height-16.5)+" H "+(width-1.5)+" V 1.5 Z");
+          r.setAttribute("class","focusring");
+          g.insertAdjacentElement("beforeend",r);
+
           if (showVScrollbar) { drawVScrollBar(g,width-17,1,16,height-17); }
           if (showHScrollbar) { drawHScrollBar(g,1,height-17,width-17,16); }
         } else {
