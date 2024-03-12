@@ -67,7 +67,7 @@
       .shadow { fill: none; stroke: var(--shadow-stroke-color); stroke-linecap: square; }
       rect.butte { fill: var(--raised-fill-color); stroke: var(--outline-color); }
       rect.trough { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
-      rect.textfield { fill: var(--input-field-color); stroke: var(--outline-color); }
+      .textfield { fill: var(--input-field-color); stroke: var(--outline-color); }
       rect.focusring { fill: none; stroke: none; }
       :focus rect.focusring { fill: none; stroke: var(--focus-ring-color); }
       rect.defaultIndicator { fill: none; stroke: var(--outline-color); }
@@ -360,7 +360,7 @@
 
         return g;
       }
-      function drawInputField (parentElement,x,y,width,height) {
+      function drawInputField (parentElement,x,y,width,height,notch=false) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("class","inputfield");
         g.setAttribute("x",x);
@@ -399,8 +399,7 @@
         parentElement.insertAdjacentElement("beforeend",g);
 
         var p = document.createElementNS("http://www.w3.org/2000/svg","path");
-        p.setAttribute("fill","var(--input-field-color)");
-        p.setAttribute("stroke","var(--outline-color)");
+        p.setAttribute("class","textfield");
         p.setAttribute("d","M1.5,1.5 V "+(height-1.5)+" H "+(width-16.5)+" V "+(height-16.5)+" H "+(width-1.5)+" V 1.5 Z");
         g.insertAdjacentElement("beforeend",p);
 
@@ -418,7 +417,7 @@
         if (showHScrollbar) { drawHScrollBar(g,1,height-17,width-17,16); }
       }
       function drawCutawayField2 (parentElement,x,y,width,height,showVScrollbar,showHScrollbar) {
-        var g = drawInputField(parentElement,x,y,width-15,height-15)
+        var g = drawInputField(parentElement,x,y,width-15,height-15);
         if (showVScrollbar) { drawVScrollBar(g,width-17,1,16,height-17); }
         if (showHScrollbar) { drawHScrollBar(g,1,height-17,width-17,16); }
       }
