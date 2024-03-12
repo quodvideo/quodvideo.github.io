@@ -1802,13 +1802,20 @@
         drawVLevel(tf,340,40,16,100).setAttribute("class","insensitive")
         drawHScrollBar(tf,230,150,100,16);
         drawVScrollBar(tf,230,180,16,100);
-        drawCutawayField(tf,230,290,118,118,true,true);
+        /* drawCutawayField(tf,230,290,118,118,true,true);
         drawCutawayField(tf,400,290,118,118,true,false);
-        drawCutawayField(tf,550,290,118,118,false,true);
-        drawInputField(tf,230,470,120,120);
+        drawCutawayField(tf,550,290,118,118,false,true); */
+
+        drawInputField(tf,230,340,120,120,false,false,true);
+        drawInputField(tf,360,340,120,120,true,false,true);
+        drawInputField(tf,490,340,120,120,false,true,true);
+        drawInputField(tf,620,340,120,120,true,true,true);
+
+        drawInputField(tf,230,470,120,120,false,false,false);
         drawInputField(tf,360,470,120,120,true,false,false);
         drawInputField(tf,490,470,120,120,false,true,false);
         drawInputField(tf,620,470,120,120,true,true,false);
+
         drawTabs(tf,450,10,240,28,["a","b","c"],0);
         drawTabs(tf,450,40,240,28,["a","b","c"],1);
         drawTabs(tf,450,70,240,28,["a","b","c"],2);
