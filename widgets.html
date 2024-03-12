@@ -414,21 +414,13 @@
         h.setAttribute("points","0.5,"+(height-0.5)+" "+(width-15.5)+","+(height-0.5)+" "+(width-15.5)+","+(height-15.5)+" "+(width-0.5)+","+(height-15.5)+" "+(width-0.5)+",0.5");
         g.insertAdjacentElement("beforeend",h);
 
-        if (showVScrollbar) {
-          drawVScrollBar(g,width-17,1,16,height-17);
-        }
-        if (showHScrollbar) {
-          drawHScrollBar(g,1,height-17,width-17,16);
-        }
+        if (showVScrollbar) { drawVScrollBar(g,width-17,1,16,height-17); }
+        if (showHScrollbar) { drawHScrollBar(g,1,height-17,width-17,16); }
       }
       function drawCutawayField2 (parentElement,x,y,width,height,showVScrollbar,showHScrollbar) {
         var g = drawInputField(parentElement,x,y,width-15,height-15)
-        if (showVScrollbar) {
-          drawVScrollBar(g,width-17,1,16,height-17);
-        }
-        if (showHScrollbar) {
-          drawHScrollBar(g,1,height-17,width-17,16);
-        }
+        if (showVScrollbar) { drawVScrollBar(g,width-17,1,16,height-17); }
+        if (showHScrollbar) { drawHScrollBar(g,1,height-17,width-17,16); }
       }
       function drawSpinButton (parentElement,x,y,width,height) {
         var field = drawInputField(parentElement,x,y,width,height);
@@ -1801,6 +1793,7 @@
         drawVScrollBar(tf,230,180,16,100);
         drawCutawayField(tf,230,290,118,118,true,true);
         drawCutawayField2(tf,400,290,118,118,true,true);
+        drawCutawayField2(tf,550,290,118,118,false,true);
         drawTabs(tf,450,10,240,28,["a","b","c"],0);
         drawTabs(tf,450,40,240,28,["a","b","c"],1);
         drawTabs(tf,450,70,240,28,["a","b","c"],2);
