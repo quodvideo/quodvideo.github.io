@@ -23,7 +23,8 @@
         --outline-color:          #808080;
         --label-color:            #808080;
       }
-      .darkmode {
+      @media (prefers-color-scheme: dark) {
+      :root {
         --input-field-color:      #595959;
         --highlight-stroke-color: #595959;
         --raised-fill-color:      #4A4A4A;
@@ -34,17 +35,24 @@
         --focus-ring-color:       #e6e6e6;
         --label-color:            #e6e6e6;
       }
-      .darkmode.insensitive, .darkmode .insensitive {
+      .insensitive {
         --input-field-color:      #4A4A4A;
         --highlight-stroke-color: #ff000000;
         --shadow-stroke-color:    #00ff0000;
         --outline-color:          #999999;
         --label-color:            #999999;
       }
+      }
       :focus { outline: none; }
+      svg { cursor: default; }
       .highlight { fill: none; stroke: var(--highlight-stroke-color); stroke-linecap: square; }
       .shadow { fill: none; stroke: var(--shadow-stroke-color); stroke-linecap: square; }
-      svg { cursor: default; }
+      rect.butte { fill: var(--raised-fill-color); stroke: var(--outline-color); }
+      rect.trough { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
+      rect.textfield { fill: var(--input-field-color); stroke: var(--outline-color); }
+      rect.focusring { fill: none; stroke: none; }
+      :focus rect.focusring { fill: none; stroke: var(--focus-ring-color); }
+      rect.defaultIndicator { fill: none; stroke: var(--outline-color); }
       text { font-family: Sans-serif; font-size: 12px; /* 13.3px; */ stroke: none; fill: black; }
       text.label { fill: var(--label-color); user-select: none; }
       text.centered { text-anchor: middle; dominant-baseline: central; }
@@ -85,12 +93,6 @@
           }
         }
       }
-      rect.butte { fill: var(--raised-fill-color); stroke: var(--outline-color); }
-      rect.trough { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
-      rect.textfield { fill: var(--input-field-color); stroke: var(--outline-color); }
-      rect.focusring { fill: none; stroke: none; }
-      :focus rect.focusring { fill: none; stroke: var(--focus-ring-color); }
-      rect.defaultIndicator { fill: none; stroke: var(--outline-color); }
       section { margin-left: 10%; margin-right: 10%; }
       rum { display: inline; font-style: italic; }
       symbol.icon * { vector-effect: non-scaling-stroke; stroke: var(--outline-color); fill: inherit; }
@@ -1776,7 +1778,37 @@
         drawTabs(tf,450,70,240,28,["a","b","c"],2);
       </script>
     </svg>
-    <svg id="testfielddark" class="darkmode" width="800" height="600">
+    <svg id="iconfield" width="800" height="600">
+      <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
+      <script>
+        var f = document.getElementById("iconfield");
+        // var foo = document.getElementsByTagNameNS("http://www.w3.org/2000/svg","symbol");
+        var foo = document.getElementsByClassName("icon");
+        var icons = [];
+        var sizes = [48,36,24,16];
+        var poses = [[10,60,100,130],[160,210,250,280],[310,360,400,430],[460,510,550,580],[610,660,700,730]]
+
+        for (let it=0; it < foo.length;it++) {
+          icons[it] = "#"+foo.item(it).id;
+        }
+
+        icons.forEach((icon,i) => {
+          sizes.forEach((size,j) => {
+            var u = document.createElementNS("http://www.w3.org/2000/svg","use");
+            var x = poses[Math.floor(i/11)][j];
+            var y = 10+50*(i%11);
+            u.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
+            u.setAttribute("fill","var(--input-field-color)");
+            u.setAttribute("x",x);
+            u.setAttribute("y",y);
+            u.setAttribute("width",size);
+            u.setAttribute("height",size);
+            f.insertAdjacentElement("beforeend",u);
+          });
+        });
+      </script>
+    </svg>
+    <svg id="testfielddark" class="darkmode" style="color-scheme: dark" width="800" height="600">
       <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
       <script>
         tf = document.getElementById("testfielddark");
@@ -1826,37 +1858,7 @@
         drawTabs(tf,450,70,240,28,["a","b","c"],2);
       </script>
     </svg>
-    <svg id="iconfield" width="800" height="600">
-      <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
-      <script>
-        var f = document.getElementById("iconfield");
-        // var foo = document.getElementsByTagNameNS("http://www.w3.org/2000/svg","symbol");
-        var foo = document.getElementsByClassName("icon");
-        var icons = [];
-        var sizes = [48,36,24,16];
-        var poses = [[10,60,100,130],[160,210,250,280],[310,360,400,430],[460,510,550,580],[610,660,700,730]]
-
-        for (let it=0; it < foo.length;it++) {
-          icons[it] = "#"+foo.item(it).id;
-        }
-
-        icons.forEach((icon,i) => {
-          sizes.forEach((size,j) => {
-            var u = document.createElementNS("http://www.w3.org/2000/svg","use");
-            var x = poses[Math.floor(i/11)][j];
-            var y = 10+50*(i%11);
-            u.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
-            u.setAttribute("fill","var(--input-field-color)");
-            u.setAttribute("x",x);
-            u.setAttribute("y",y);
-            u.setAttribute("width",size);
-            u.setAttribute("height",size);
-            f.insertAdjacentElement("beforeend",u);
-          });
-        });
-      </script>
-    </svg>
-    <svg id="iconfielddark" class="darkmode" width="800" height="600">
+    <svg id="iconfielddark" class="darkmode" style="color-scheme: dark" width="800" height="600">
       <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
       <script>
         var f = document.getElementById("iconfielddark");

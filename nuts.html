@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Playing with stuff</title>
+  <style>
+    :root {
+      --input-field-color: white;
+      --highlight-stroke-color: white;
+      --raised-fill-color: #efefef;
+      --base-fill-color: #dddddd;
+      --recessed-fill-color: #bbbbbb;
+      --shadow-stroke-color: grey;
+      --outline-color: black;
+      --focus-ring-color: black;
+      --label-color: black;
+      /* Consider adding colors for when a button is actively being pushed and not just in the ON state. */
+      font-family: sans-serif;
+    }
+
+    .insensitive {
+      --input-field-color: #efefef;
+      --highlight-stroke-color: #ff000000;
+      --shadow-stroke-color: #00ff0000;
+      --outline-color: #808080;
+      --label-color: #808080;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --input-field-color: #595959;
+        --highlight-stroke-color: #595959;
+        --raised-fill-color: #4A4A4A;
+        --base-fill-color: #454545;
+        --recessed-fill-color: #333333;
+        --shadow-stroke-color: #121212;
+        --outline-color: #bababa;
+        --focus-ring-color: #e6e6e6;
+        --label-color: #e6e6e6;
+      }
+
+      .insensitive {
+        --input-field-color: #4A4A4A;
+        --highlight-stroke-color: #ff000000;
+        --shadow-stroke-color: #00ff0000;
+        --outline-color: #999999;
+        --label-color: #999999;
+      }
+    }
+
+    :focus {
+      outline: none;
+    }
+
+    .highlight {
+      fill: none;
+      stroke: var(--highlight-stroke-color);
+      stroke-linecap: square;
+    }
+
+    .shadow {
+      fill: none;
+      stroke: var(--shadow-stroke-color);
+      stroke-linecap: square;
+    }
+
+    svg {
+      cursor: default;
+    }
+
+    text {
+      font-family: Sans-serif;
+      font-size: 12px;
+      /* 13.3px; */
+      stroke: none;
+      fill: black;
+    }
+
+    text.label {
+      fill: var(--label-color);
+      user-select: none;
+    }
+
+    text.centered {
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+
+    .inputfield {
+      cursor: text;
+    }
+
+    .button:active .butte {
+      fill: var(--recessed-fill-color);
+      stroke: var(--outline-color);
+    }
+
+    .button:active .highlight {
+      stroke: var(--shadow-stroke-color);
+    }
+
+    .button:active .shadow {
+      stroke: var(--highlight-stroke-color);
+    }
+
+    .button.activetoggle .butte {
+      fill: var(--recessed-fill-color);
+      stroke: var(--outline-color);
+    }
+
+    .button.activetoggle .highlight {
+      stroke: var(--shadow-stroke-color);
+    }
+
+    .button.activetoggle .shadow {
+      stroke: var(--highlight-stroke-color);
+    }
+
+    .menuitem {
+      & rect:first-child {
+        fill: var(--raised-fill-color);
+        stroke: none;
+      }
+
+      &:hover {
+        & rect:first-child {
+          fill: black;
+          stroke: none;
+        }
+
+        & text {
+          fill: white;
+        }
+      }
+    }
+
+    .listitem {
+      & rect:first-child {
+        fill: var(--input-field-color);
+        stroke: none;
+      }
+
+      &.selected {
+        & rect:first-child {
+          fill: black;
+          stroke: none;
+        }
+
+        & text {
+          fill: white;
+        }
+      }
+    }
+
+    rect.butte {
+      fill: var(--raised-fill-color);
+      stroke: var(--outline-color);
+    }
+
+    rect.trough {
+      fill: var(--recessed-fill-color);
+      stroke: var(--outline-color);
+    }
+
+    rect.textfield {
+      fill: var(--input-field-color);
+      stroke: var(--outline-color);
+    }
+
+    rect.focusring {
+      fill: none;
+      stroke: none;
+    }
+
+    :focus rect.focusring {
+      fill: none;
+      stroke: var(--focus-ring-color);
+    }
+
+    rect.defaultIndicator {
+      fill: none;
+      stroke: var(--outline-color);
+    }
+
+    section {
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+
+    rum {
+      display: inline;
+      font-style: italic;
+    }
+
+    symbol.icon * {
+      vector-effect: non-scaling-stroke;
+      stroke: var(--outline-color);
+      fill: inherit;
+    }
+
+    .toplevel.focused .base {
+      fill: var(--base-fill-color);
+    }
+
+    .toplevel.focused .shadow {
+      fill: none;
+      stroke: var(--shadow-stroke-color);
+    }
+
+    .toplevel.focused .highlight {
+      fill: none;
+      stroke: var(--highlight-stroke-color);
+    }
+
+    .toplevel.focused .windowTitle {
+      fill: #000000;
+    }
+
+    .toplevel.unfocused .base {
+      fill: var(--raised-fill-color);
+      stroke: grey;
+    }
+
+    .toplevel.unfocused .shadow {
+      fill: none;
+      stroke: none;
+    }
+
+    .toplevel.unfocused .highlight {
+      fill: none;
+      stroke: none;
+    }
+
+    .toplevel.unfocused .windowTitle {
+      fill: #808080;
+    }
+  </style>
+</head>
+
+<body>
+
+</body>
