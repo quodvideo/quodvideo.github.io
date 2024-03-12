@@ -389,8 +389,16 @@
           r.setAttribute("class","focusring");
           g.insertAdjacentElement("beforeend",r);
 
-          if (showVScrollbar) { drawVScrollBar(g,width-17,1,16,height-17); }
-          if (showHScrollbar) { drawHScrollBar(g,1,height-17,width-17,16); }
+          if (showVScrollbar) {
+            drawVScrollBar(g,width-17,1,16,height-17);
+          } else {
+            drawVScrollBar(g,width-17,1,16,height-17).setAttribute("class","insensitive");
+          }
+          if (showHScrollbar) {
+            drawHScrollBar(g,1,height-17,width-17,16);
+          } else {
+            drawHScrollBar(g,1,height-17,width-17,16).setAttribute("class","insensitive");
+          }
         } else {
           var f = document.createElementNS("http://www.w3.org/2000/svg","rect");
           f.setAttribute("x",1.5);
