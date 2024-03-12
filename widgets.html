@@ -368,7 +368,7 @@
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
 
-        if (notch) {
+        if (notch || showVScrollbar && showHScrollbar) {
           var f = document.createElementNS("http://www.w3.org/2000/svg","path");
           f.setAttribute("class","textfield");
           g.insertAdjacentElement("beforeend",f);
@@ -1808,6 +1808,7 @@
         drawInputField(tf,230,470,120,120);
         drawInputField(tf,360,470,120,120,true,false,false);
         drawInputField(tf,490,470,120,120,false,true,false);
+        drawInputField(tf,620,470,120,120,true,true,false);
         drawTabs(tf,450,10,240,28,["a","b","c"],0);
         drawTabs(tf,450,40,240,28,["a","b","c"],1);
         drawTabs(tf,450,70,240,28,["a","b","c"],2);
