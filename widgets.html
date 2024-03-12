@@ -422,7 +422,8 @@
         return g;
       }
       function drawCutawayField (parentElement,x,y,width,height,showVScrollbar,showHScrollbar) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+        drawInputField(parentElement,x,y,width,height,showVScrollbar,showHScrollbar,true);
+        /*var g = document.createElementNS("http://www.w3.org/2000/svg","g");
         g.setAttribute("transform","translate("+x+","+y+")");
         parentElement.insertAdjacentElement("beforeend",g);
 
@@ -442,13 +443,9 @@
         g.insertAdjacentElement("beforeend",h);
 
         if (showVScrollbar) { drawVScrollBar(g,width-17,1,16,height-17); }
-        if (showHScrollbar) { drawHScrollBar(g,1,height-17,width-17,16); }
+        if (showHScrollbar) { drawHScrollBar(g,1,height-17,width-17,16); } */
       }
-      function drawCutawayField2 (parentElement,x,y,width,height,showVScrollbar,showHScrollbar) {
-        var g = drawInputField(parentElement,x,y,width-15,height-15);
-        if (showVScrollbar) { drawVScrollBar(g,width-17,1,16,height-17); }
-        if (showHScrollbar) { drawHScrollBar(g,1,height-17,width-17,16); }
-      }
+
       function drawSpinButton (parentElement,x,y,width,height) {
         var field = drawInputField(parentElement,x,y,width,height);
         var btndn = drawDecalButton(field,1,1,height-2,height-2,"#minusSign");
