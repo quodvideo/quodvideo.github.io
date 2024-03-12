@@ -423,29 +423,7 @@
       }
       function drawCutawayField (parentElement,x,y,width,height,showVScrollbar,showHScrollbar) {
         drawInputField(parentElement,x,y,width,height,showVScrollbar,showHScrollbar,true);
-        /*var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        g.setAttribute("transform","translate("+x+","+y+")");
-        parentElement.insertAdjacentElement("beforeend",g);
-
-        var p = document.createElementNS("http://www.w3.org/2000/svg","path");
-        p.setAttribute("class","textfield");
-        p.setAttribute("d","M1.5,1.5 V "+(height-1.5)+" H "+(width-16.5)+" V "+(height-16.5)+" H "+(width-1.5)+" V 1.5 Z");
-        g.insertAdjacentElement("beforeend",p);
-
-        var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        s.setAttribute("class","shadow");
-        s.setAttribute("points","0.5,"+(height-0.5)+" 0.5,0.5 "+(width-0.5)+",0.5");
-        g.insertAdjacentElement("beforeend",s);
-
-        var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-        h.setAttribute("class","highlight");
-        h.setAttribute("points","0.5,"+(height-0.5)+" "+(width-15.5)+","+(height-0.5)+" "+(width-15.5)+","+(height-15.5)+" "+(width-0.5)+","+(height-15.5)+" "+(width-0.5)+",0.5");
-        g.insertAdjacentElement("beforeend",h);
-
-        if (showVScrollbar) { drawVScrollBar(g,width-17,1,16,height-17); }
-        if (showHScrollbar) { drawHScrollBar(g,1,height-17,width-17,16); } */
       }
-
       function drawSpinButton (parentElement,x,y,width,height) {
         var field = drawInputField(parentElement,x,y,width,height);
         var btndn = drawDecalButton(field,1,1,height-2,height-2,"#minusSign");
@@ -1815,9 +1793,6 @@
         drawVLevel(tf,340,40,16,100).setAttribute("class","insensitive")
         drawHScrollBar(tf,230,150,100,16);
         drawVScrollBar(tf,230,180,16,100);
-        /* drawCutawayField(tf,230,290,118,118,true,true);
-        drawCutawayField(tf,400,290,118,118,true,false);
-        drawCutawayField(tf,550,290,118,118,false,true); */
 
         drawInputField(tf,230,340,120,120,false,false,true);
         drawInputField(tf,360,340,120,120,true,false,true);
@@ -1968,8 +1943,8 @@
       <script>
         drawBaseWindow(document.getElementById("openDialog"),0,0,400,300);
         drawOptionButton(document.getElementById("openDialog"),18,18,0,0,"$PWD");
-        drawInputField(document.getElementById("openDialog"),18,58,364,183);
-        drawVScrollBar(document.getElementById("openDialog"),365,59,16,181);
+        drawInputField(document.getElementById("openDialog"),18,58,364,183,true,false,false);
+        /* drawVScrollBar(document.getElementById("openDialog"),365,59,16,181); */
         drawPushButton(document.getElementById("openDialog"),233,257,0,0,"Cancel");
         drawPushButton(document.getElementById("openDialog"),315,257,0,0,"Open",true);
       </script>
