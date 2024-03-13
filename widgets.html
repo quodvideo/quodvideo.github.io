@@ -899,7 +899,52 @@
           drawDecalButton(w,width-26,6,20,20,"#closeDecal");
         }
         
+        var u = document.createElementNS("http://www.w3.org/2000/svg","use");
+        u.setAttributeNS("http://www.w3.org/1999/xlink","href",iconId);
+        u.setAttribute("x",3);
+        u.setAttribute("y",3);
+        u.setAttribute("width",24);
+        u.setAttribute("height",24);
+        u.setAttribute("fill","white");
+        w.insertAdjacentElement("beforeend", u);
+
+        var t = document.createElementNS("http://www.w3.org/2000/svg","text");
+        t.setAttribute("x",30);
+        t.setAttribute("y",22);
+        t.setAttribute("class","windowTitle");
+        t.setAttribute("style","font-size: 18px;");
+        t.innerHTML = itemName;
+        w.insertAdjacentElement("beforeend",t);
+
+        if (focused) {
+          var box = t.getBBox();
+
+          var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          r.setAttribute("x", box.x + box.width + 6);
+          r.setAttribute("y",6);
+          r.setAttribute("width", width - 74 - (box.x + box.width + 6) - 4);
+          r.setAttribute("height",21);
+          r.setAttribute("fill","url(#gripper)");
+          r.setAttribute("style","cursor: move;");
+          w.insertAdjacentElement("beforeend",r);
+        }
+
         drawInputField(w,3,30,width-6,height-33,false,false,true);
+
+        return w;
+      }
+      function drawTabbedWindow(parentElement,x,y,width,height,iconId,itemName,focused=true,tabLabels,activeTab) {
+        var w = drawBaseWindow(parentElement,x,y,width,height,focused);
+        if (focused) {
+          w.setAttribute("class","toplevel focused");
+        } else {
+          w.setAttribute("class","toplevel unfocused");
+        }
+        if (focused) {
+          drawDecalButton(w,width-74,6,20,20,"#iconifyDecal");
+          drawDecalButton(w,width-50,6,20,20,"#maximizeDecal");
+          drawDecalButton(w,width-26,6,20,20,"#closeDecal");
+        }
 
         var u = document.createElementNS("http://www.w3.org/2000/svg","use");
         u.setAttributeNS("http://www.w3.org/1999/xlink","href",iconId);
