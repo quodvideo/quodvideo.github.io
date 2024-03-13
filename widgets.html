@@ -429,9 +429,6 @@
 
         return g;
       }
-      function drawCutawayField (parentElement,x,y,width,height,showVScrollbar,showHScrollbar) {
-        drawInputField(parentElement,x,y,width,height,showVScrollbar,showHScrollbar,true);
-      }
       function drawSpinButton (parentElement,x,y,width,height) {
         var field = drawInputField(parentElement,x,y,width,height);
         var btndn = drawDecalButton(field,1,1,height-2,height-2,"#minusSign");
@@ -902,7 +899,7 @@
           drawDecalButton(w,width-26,6,20,20,"#closeDecal");
         }
         
-        drawCutawayField(w,3,30,width-6,height-33,false,false);
+        drawInputField(w,3,30,width-6,height-33,false,false,true);
 
         var u = document.createElementNS("http://www.w3.org/2000/svg","use");
         u.setAttributeNS("http://www.w3.org/1999/xlink","href",iconId);
@@ -2034,13 +2031,13 @@
       <script>
         drawBaseWindow(document.getElementById("basicView"),0,0,640,480);
         drawHeaderBar(document.getElementById("basicView"),0,0,640,480,"#documentIcon","Item Name","item view type");
-        drawCutawayField(document.getElementById("basicView"),3,50,634,427,false,false);
+        drawInputField(document.getElementById("basicView"),3,50,634,427,false,false,true);
       </script>
     </svg>
     <svg width="640" height="480" id="basicView2"><title>Basic View 2</title>
       <script>
         drawBaseWindow(document.getElementById("basicView2"),0,0,640,480);
-        drawCutawayField(document.getElementById("basicView2"),3,30,634,447,false,false);
+        drawInputField(document.getElementById("basicView2"),3,30,634,447,false,false,true);
         drawDecalButton(document.getElementById("basicView2"),566,6,20,20,"#iconifyDecal");
         drawDecalButton(document.getElementById("basicView2"),590,6,20,20,"#maximizeDecal");
         drawDecalButton(document.getElementById("basicView2"),614,6,20,20,"#closeDecal");
@@ -2058,14 +2055,14 @@
       <script>
         drawBaseWindow(document.getElementById("documentView"),0,0,640,480);
         drawHeaderBar(document.getElementById("documentView"),0,0,640,480,"#documentIcon","Document Title","plain text");
-        drawCutawayField(document.getElementById("documentView"),3,50,634,427,true,true);
+        drawInputField(document.getElementById("documentView"),3,50,634,427,true,true,true);
       </script>
     </svg>
     <svg width="640" height="480" id="someFolder"><title>Some Folder</title>
       <script>
         drawBaseWindow(document.getElementById("someFolder"),0,0,640,480);
         drawHeaderBar(document.getElementById("someFolder"),0,0,640,480,"#folderIcon","Some Folder","regular folder");
-        drawCutawayField(document.getElementById("someFolder"),3,50,634,427,false,false);
+        drawInputField(document.getElementById("someFolder"),3,50,634,427,false,false,true);
         drawToggledButton(document.getElementById("someFolder"),450,24,64,22,"Field");
         drawPushButton(document.getElementById("someFolder"),513,24,64,22,"List");
         drawLabeledIcon(document.getElementById("someFolder"),16,54,48,"white","#documentIcon","Some File");
@@ -2078,7 +2075,7 @@
       <script>
         drawBaseWindow(document.getElementById("projectFolder"),0,0,640,480);
         drawHeaderBar(document.getElementById("projectFolder"),0,0,640,480,"#folderIcon","Project Title","source code");
-        drawCutawayField(document.getElementById("projectFolder"),160,50,477,427,true,true);
+        drawInputField(document.getElementById("projectFolder"),160,50,477,427,true,true,true);
         drawSimpleList(document.getElementById("projectFolder"),3,50,156,427,["🗀 doc","🗀 include","🗀 some folder","🗀 src"," 🗎 README"],4);
       </script>
       <text x="165.5" y="71.5">Lorem ipsum dolor sit amet.</text>
