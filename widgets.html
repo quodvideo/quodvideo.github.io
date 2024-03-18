@@ -2432,10 +2432,10 @@
         drawButton(g,0,0,24,16);
 
         for (var i=1;i < 30;i++) {
-          let b = drawButton(g,0,i*15,24,16);
+          let b = drawButton(g,0,i*15,32,16);
           let t = document.createElementNS("http://www.w3.org/2000/svg","text");
           t.innerHTML = i;
-          t.setAttribute("x",12);
+          t.setAttribute("x",16);
           t.setAttribute("y",8);
           t.setAttribute("class","label centered");
           t.setAttribute("pointer-events","none");
@@ -2445,6 +2445,15 @@
         }
         for (var i=1;i < 26;i++) {
           let b = drawButton(g,i*63,0,64,16);
+          let t = document.createElementNS("http://www.w3.org/2000/svg","text");
+          t.innerHTML = String.fromCharCode(i);
+          t.setAttribute("x",32);
+          t.setAttribute("y",8);
+          t.setAttribute("class","label centered");
+          t.setAttribute("pointer-events","none");
+          t.setAttribute("style","font-size: 10px;")
+          b.insertAdjacentElement("beforeend",t);
+
         }
       </script>
     </svg>
