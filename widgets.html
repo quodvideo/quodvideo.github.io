@@ -114,14 +114,14 @@
       section { margin-left: 10%; margin-right: 10%; }
       rum { display: inline; font-style: italic; }
       symbol.icon * { vector-effect: non-scaling-stroke; stroke: var(--outline-color); fill: inherit; }
-      .toplevel.focused .base { fill: var(--base-fill-color); }
-      .toplevel.focused .shadow { fill: none; stroke: var(--shadow-stroke-color); }
-      .toplevel.focused .highlight { fill: none; stroke: var(--highlight-stroke-color); }
-      .toplevel.focused .windowTitle { fill: #000000; }
-      .toplevel.unfocused .base { fill: var(--raised-fill-color); stroke: grey; }
-      .toplevel.unfocused .shadow { fill: none; stroke: none; }
-      .toplevel.unfocused .highlight { fill: none; stroke: none; }
-      .toplevel.unfocused .windowTitle { fill: #808080; }
+      .toplevel.focused > .base { fill: var(--base-fill-color); }
+      .toplevel.focused > .shadow { fill: none; stroke: var(--shadow-stroke-color); }
+      .toplevel.focused > .highlight { fill: none; stroke: var(--highlight-stroke-color); }
+      .toplevel.focused > .windowTitle { fill: #000000; }
+      .toplevel.unfocused > .base { fill: var(--raised-fill-color); stroke: grey; }
+      .toplevel.unfocused > .shadow { fill: none; stroke: none; }
+      .toplevel.unfocused > .highlight { fill: none; stroke: none; }
+      .toplevel.unfocused > .windowTitle { fill: #808080; }
     </style>
     <script>
       function drawRaisedRect (parentElement,x,y,width,height) {
