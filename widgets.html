@@ -75,12 +75,12 @@
       text.label { fill: var(--label-color); user-select: none; }
       text.centered { text-anchor: middle; dominant-baseline: central; }
       .inputfield { cursor: text; }
-      .button:active .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
-      .button:active .highlight { stroke: var(--shadow-stroke-color); }
-      .button:active .shadow { stroke: var(--highlight-stroke-color); }
-      .button.activetoggle .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
-      .button.activetoggle .highlight { stroke: var(--shadow-stroke-color); }
-      .button.activetoggle .shadow { stroke: var(--highlight-stroke-color); }
+      svg.button:active .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
+      svg.button:active .highlight { stroke: var(--shadow-stroke-color); }
+      svg.button:active .shadow { stroke: var(--highlight-stroke-color); }
+      svg.button.activetoggle .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
+      svg.button.activetoggle .highlight { stroke: var(--shadow-stroke-color); }
+      svg.button.activetoggle .shadow { stroke: var(--highlight-stroke-color); }
       .menuitem {
         & rect:first-child {
           fill: var(--raised-fill-color);
@@ -2429,10 +2429,10 @@
         g.setAttribute("height",404);
         document.getElementById("spreadsheet3").insertAdjacentElement("beforeend",g);
 
-        for (var i=0;i < 100;i++) {
+        for (var i=0;i < 30;i++) {
           let b = drawButton(g,0,i*15,64,16);
         }
-        for (var i=1;i < 100;i++) {
+        for (var i=1;i < 26;i++) {
           let b = drawButton(g,i*63,0,64,16);
         }
       </script>
