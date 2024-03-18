@@ -267,6 +267,7 @@
           r.setAttribute("class","defaultIndicator");
           g.insertAdjacentElement("beforeend", r);          
         }
+
         return g;
       }
       function drawToggledButton (parentElement,x,y,width,height,text) {
@@ -744,12 +745,17 @@
           return g;
         }
       function drawTabs(parentElement,x,y,width,height,labels,activeIndex) {
+        var tg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        tg.setAttribute("x",x);
+        tg.setAttribute("y",y);
+        parentElement.insertAdjacentElement("beforeend",tg);
+
         var textLabels = labels.map(function (label) {
           var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
           txt.innerHTML = label;
           txt.setAttribute("class","label centered");
           txt.setAttribute("pointer-events","none");
-          parentElement.insertAdjacentElement("beforeend",txt);
+          tg.insertAdjacentElement("beforeend",txt);
           return txt;
         });
         var minh = 22;
@@ -771,8 +777,8 @@
 
         textLabels.forEach(function(tl,i,a) {
           var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-          g.setAttribute("transform","translate("+(x+xywhs[i][0])+","+(y+xywhs[i][1])+")");
-          parentElement.insertAdjacentElement("beforeend",g);
+          g.setAttribute("transform","translate("+(xywhs[i][0])+","+(xywhs[i][1])+")");
+          tg.insertAdjacentElement("beforeend",g);
 
           var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
           r.setAttribute("x",0.5);
@@ -800,14 +806,14 @@
 
         var xywh = xywhs[activeIndex];
         var corners = [
-          [x+xywh[0]+0.5,         y+xywh[1]+0.5],         // tabtopleft
-          [x+xywh[0]+xywh[2]-0.5, y+xywh[1]+0.5],         // tabtopright
-          [x+xywh[0]+xywh[2]-0.5, y+xywh[1]+xywh[3]-1.5], // tabbottomright
-          [x+width-0.5,           y+xywh[1]+xywh[3]-1.5], // sheettopright
-          [x+width-0.5,           y+height-0.5],          // sheetbottomright
-          [x+0.5,                 y+height-0.5],          // sheetbottomleft
-          [x+0.5,                 y+xywh[1]+xywh[3]-1.5], // sheettopleft
-          [x+xywh[0]+0.5,         y+xywh[1]+xywh[3]-1.5]  // tabbottomleft
+          [xywh[0]+0.5,         xywh[1]+0.5],         // tabtopleft
+          [xywh[0]+xywh[2]-0.5, xywh[1]+0.5],         // tabtopright
+          [xywh[0]+xywh[2]-0.5, xywh[1]+xywh[3]-1.5], // tabbottomright
+          [width-0.5,           xywh[1]+xywh[3]-1.5], // sheettopright
+          [width-0.5,           height-0.5],          // sheetbottomright
+          [0.5,                 height-0.5],          // sheetbottomleft
+          [0.5,                 xywh[1]+xywh[3]-1.5], // sheettopleft
+          [xywh[0]+0.5,         xywh[1]+xywh[3]-1.5]  // tabbottomleft
         ]
             
         /* Draw tabbed sheet. */
@@ -823,7 +829,7 @@
                           + " V"+corners[6][1]
                           + " H"+corners[7][0]
                           + " Z");
-        parentElement.insertAdjacentElement("beforeend",tsp);
+        tg.insertAdjacentElement("beforeend",tsp);
 
         var tsps = document.createElementNS("http://www.w3.org/2000/svg","path");
         tsps.setAttribute("fill","none");
@@ -837,7 +843,7 @@
                             + " V"+(corners[6][1]+1)
                             + " H"+(corners[7][0]+1)
                             + " Z");
-        parentElement.insertAdjacentElement("beforeend",tsps);
+        tg.insertAdjacentElement("beforeend",tsps);
 
         var tsph = document.createElementNS("http://www.w3.org/2000/svg","path");
         tsph.setAttribute("fill","none");
@@ -851,12 +857,137 @@
                             + " V"+(corners[6][1]+1)
                             + " H"+(corners[7][0]+1)
                             + " L"+(corners[0][0]+1)+","+(corners[0][1]+0.5));
-        parentElement.insertAdjacentElement("beforeend",tsph);
+        tg.insertAdjacentElement("beforeend",tsph);
 
         var tl = textLabels[activeIndex];
         tl.setAttribute("x",corners[0][0]+(corners[1][0]-corners[0][0])/2);
         tl.setAttribute("y",corners[0][1]+(corners[2][1]-corners[1][1])/2);
-        parentElement.insertAdjacentElement("beforeend",tl);
+        tg.insertAdjacentElement("beforeend",tl);
+
+        return tg;
+      }
+      function drawWindowTabs(parentElement,x,y,width,height,labels,activeIndex) {
+        var tg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        tg.setAttribute("x",x);
+        tg.setAttribute("y",y);
+        parentElement.insertAdjacentElement("beforeend",tg);
+
+        var textLabels = labels.map(function (label) {
+          var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
+          txt.innerHTML = label;
+          txt.setAttribute("class","label centered");
+          txt.setAttribute("pointer-events","none");
+          txt.setAttribute("style","font-size: 18px;");
+          tg.insertAdjacentElement("beforeend",txt);
+          return txt;
+        });
+        var minh = 22;
+        var currentX = 3;
+
+        var xywhs = textLabels.map(function(tl,i,a) {
+          var lastX = currentX;
+          var localY = (i==activeIndex)?0:1;
+          var w = 64;
+          var h = 28;
+          var box = tl.getBBox();
+          if (box.width+12 > w) w=Math.ceil(box.width)+12;
+          if (box.height+5 > h) h=Math.ceil(box.height)+5;
+          if (h>minh) minh=h;
+          currentX += w-1;
+          return [lastX,localY,w,h];
+        });
+        xywhs.forEach(function(xywh,i,a) { xywh[3] = (i==activeIndex)?minh+1:minh; });
+
+        textLabels.forEach(function(tl,i,a) {
+          var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+          g.setAttribute("transform","translate("+(xywhs[i][0])+","+(xywhs[i][1])+")");
+          tg.insertAdjacentElement("beforeend",g);
+
+          var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          r.setAttribute("x",0.5);
+          r.setAttribute("y",0.5);
+          r.setAttribute("width",xywhs[i][2]-1);
+          r.setAttribute("height",xywhs[i][3]-1);
+          r.setAttribute("fill", (i==activeIndex)?"var(--base-fill-color)":"var(--raised-fill-color)"); // or recessed???
+          r.setAttribute("stroke","var(--outline-color)");
+          g.insertAdjacentElement("beforeend",r);
+
+          var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          s.setAttribute("class","shadow");
+          s.setAttribute("points",""+(xywhs[i][2]-1.5)+","+(xywhs[i][3]-1)+" "+(xywhs[i][2]-1.5)+",1.5");
+          g.insertAdjacentElement("beforeend",s);
+
+          var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          h.setAttribute("class","highlight");
+          h.setAttribute("points","1.5,"+(xywhs[i][3]-1)+" 1.5,1.5 "+(xywhs[i][2]-1)+",1.5");
+          g.insertAdjacentElement("beforeend",h);
+
+          tl.setAttribute("x",xywhs[i][2]/2);
+          tl.setAttribute("y",(xywhs[i][3]/2) + ((i==activeIndex)?0:1));
+          g.insertAdjacentElement("beforeend",tl);
+        });
+
+        var xywh = xywhs[activeIndex];
+        var corners = [
+          [xywh[0]+0.5,         xywh[1]+0.5],         // tabtopleft
+          [xywh[0]+xywh[2]-0.5, xywh[1]+0.5],         // tabtopright
+          [xywh[0]+xywh[2]-0.5, xywh[1]+xywh[3]-1.5], // tabbottomright
+          [width-0.5,           xywh[1]+xywh[3]-1.5], // sheettopright
+          [width-0.5,           height-0.5],          // sheetbottomright
+          [0.5,                 height-0.5],          // sheetbottomleft
+          [0.5,                 xywh[1]+xywh[3]-1.5], // sheettopleft
+          [xywh[0]+0.5,         xywh[1]+xywh[3]-1.5]  // tabbottomleft
+        ]
+            
+        /* Draw tabbed sheet. */
+        var tsp = document.createElementNS("http://www.w3.org/2000/svg","path");
+        tsp.setAttribute("fill","var(--base-fill-color)");
+        tsp.setAttribute("stroke", "var(--outline-color)");
+        tsp.setAttribute("d","M"+corners[0][0]+","+corners[0][1]
+                          + " H"+corners[1][0]
+                          + " V"+corners[2][1]
+                          + " H"+corners[3][0]
+                          + " V"+corners[4][1]
+                          + " H"+corners[5][0]
+                          + " V"+corners[6][1]
+                          + " H"+corners[7][0]
+                          + " Z");
+        tg.insertAdjacentElement("beforeend",tsp);
+
+        var tsps = document.createElementNS("http://www.w3.org/2000/svg","path");
+        tsps.setAttribute("fill","none");
+        tsps.setAttribute("stroke","var(--shadow-stroke-color)");
+        tsps.setAttribute("d","M"+(corners[0][0]+1)+","+(corners[0][1]+1)
+                            + " H"+(corners[1][0]-1)
+                            + " V"+(corners[2][1]+1)
+                            + " H"+(corners[3][0]-1)
+                            + " V"+(corners[4][1]-1)
+                            + " H"+(corners[5][0]+1)
+                            + " V"+(corners[6][1]+1)
+                            + " H"+(corners[7][0]+1)
+                            + " Z");
+        tg.insertAdjacentElement("beforeend",tsps);
+
+        var tsph = document.createElementNS("http://www.w3.org/2000/svg","path");
+        tsph.setAttribute("fill","none");
+        tsph.setAttribute("stroke", "var(--highlight-stroke-color)");
+        tsph.setAttribute("d","M"+(corners[0][0]+1)+","+(corners[0][1]+1)
+                            + " H"+(corners[1][0]-0.5)
+                            + " M"+(corners[2][0]-1.5)+","+(corners[2][1]+1)
+                            + " H"+(corners[3][0]-0.5)
+                            + " M"+(corners[4][0]-1)+","+(corners[4][1]+1)
+                            + " M"+(corners[5][0]+1)+","+(corners[5][1]-0.5)
+                            + " V"+(corners[6][1]+1)
+                            + " H"+(corners[7][0]+1)
+                            + " L"+(corners[0][0]+1)+","+(corners[0][1]+0.5));
+        tg.insertAdjacentElement("beforeend",tsph);
+
+        var tl = textLabels[activeIndex];
+        tl.setAttribute("x",corners[0][0]+(corners[1][0]-corners[0][0])/2);
+        tl.setAttribute("y",corners[0][1]+(corners[2][1]-corners[1][1])/2);
+        tg.insertAdjacentElement("beforeend",tl);
+
+        return tg;
       }
       function drawLabeledIcon(parentElement,x,y,size,fillColor,icon,label) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
@@ -1054,6 +1185,98 @@
           g.insertAdjacentElement("beforeend",t);
         })
       }
+      function drawTabbedInputField (parentElement,x,y,width,height,tabLabels,activeIndex) {
+          var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+          g.setAttribute("class","inputfield");
+          g.setAttribute("x",x);
+          g.setAttribute("y",y);
+          g.setAttribute("tabindex",0);
+          parentElement.insertAdjacentElement("beforeend",g);
+  
+          var f = document.createElementNS("http://www.w3.org/2000/svg","path");
+          f.setAttribute("d","M1.5,1.5 V "+(height-1.5)+" H "+(width-16.5)+" V "+(height-16.5)+" H "+(width-1.5)+" V 1.5 Z");
+          f.setAttribute("stroke","var(--outline-color)");
+          f.setAttribute("fill","var(--base-fill-color)");
+          g.insertAdjacentElement("beforeend",f);
+  
+          var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          s.setAttribute("class","shadow");
+          s.setAttribute("points","0.5,"+(height-0.5)+" 0.5,0.5 "+(width-0.5)+",0.5");
+          g.insertAdjacentElement("beforeend",s);
+  
+          var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          h.setAttribute("class","highlight");
+          h.setAttribute("points","0.5,"+(height-0.5)+" "+(width-15.5)+","+(height-0.5)+" "+(width-15.5)+","+(height-15.5)+" "+(width-0.5)+","+(height-15.5)+" "+(width-0.5)+",0.5");
+          g.insertAdjacentElement("beforeend",h);
+  
+          var r = document.createElementNS("http://www.w3.org/2000/svg","path");
+          r.setAttribute("d","M0.5,0.5 V "+(height-0.5)+" H "+(width-15.5)+" V "+(height-15.5)+" H "+(width-0.5)+" V 0.5 Z");
+          r.setAttribute("class","focusring");
+          g.insertAdjacentElement("beforeend",r);
+
+          var textLabels = tabLabels.map(function (label) {
+            var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
+            txt.innerHTML = label;
+            txt.setAttribute("class","label centered");
+            txt.setAttribute("pointer-events","none");
+            txt.setAttribute("style","font-size: 10px;")
+            g.insertAdjacentElement("beforeend",txt);
+            return txt;
+          });
+          var minh = 22;
+          var currentX = 5+76;
+  
+          var xywhs = textLabels.map(function(tl,i,a) {
+            var lastX = currentX;
+            var localY = 0
+            var width = 64;
+            var height = 22;
+            var box = tl.getBBox();
+            if (box.width+12 > width) w=Math.ceil(box.width)+12;
+            if (box.height+5 > height) h=Math.ceil(box.height)+5;
+            if (height>minh) minh=height;
+            currentX += width;
+            return [lastX,localY,width,height];
+          });
+
+          var drawtabsheet = function (xywh,i,a) {
+            var tp = document.createElementNS("http://www.w3.org/2000/svg","path");
+            tp.setAttribute("d","M1.5,1.5 V "+(height-16.5)
+                                +" H"+xywh[0]
+                                +" L"+(5+xywh[0])+","+(height-1.5)
+                                +" H"+(xywh[0]+xywh[2])
+                                +" L"+(5+xywh[0]+xywh[2])+","+(height-16.5)
+                                +" H"+(width-16.5)
+                                +" V 1.5 Z");
+            tp.setAttribute("stroke","var(--outline-color)");
+            tp.setAttribute("fill","var(--input-field-color)");
+            g.insertAdjacentElement("beforeend",tp);
+          }
+          xywhs.reverse();
+
+          var scrollbarStart = xywhs[0][0]+xywhs[0][2]+10
+
+          xywhs.map(drawtabsheet);
+          xywhs.reverse();
+
+          drawtabsheet(xywhs[activeIndex],0,0);
+
+          textLabels.map(function(tl,i,a) {
+            tl.setAttribute("x",xywhs[i][0]+xywhs[i][2]/2);
+            tl.setAttribute("y",height-10);
+            g.insertAdjacentElement("beforeend",tl);
+          });
+
+          drawVScrollBar(g,width-17,1,16,height-17);
+          drawHScrollBar(g,scrollbarStart,height-17,width-16-scrollbarStart,16);
+          drawDecalButton(g,1,height-17,16,16,"#doubleArrowLeft");
+          drawDecalButton(g,16,height-17,16,16,"#newArrowLeft");
+          drawDecalButton(g,31,height-17,16,16,"#newArrowRight");
+          drawDecalButton(g,46,height-17,16,16,"#doubleArrowRight");
+          drawDecalButton(g,61,height-17,16,16,"#plusSign");
+          return g;
+  
+        }
       function drawtextbounds () {
         var ts = document.getElementsByTagName("text");
         for (var i=0;i<ts.length;i++) {
@@ -1189,6 +1412,14 @@
         <symbol id="newArrowLeft" viewBox="-5.5 -4 16 16">
           <path d="M4,0 V8 L0,4Z" stroke="none" fill="var(--outline-color)"/>
         </symbol>
+        <symbol id="doubleArrowLeft" viewBox="-5.5 -4 16 16">
+          <path d="M2,0 V8 L-2,4Z" stroke="none" fill="var(--outline-color)"/>
+          <path d="M6,0 V8 L2,4Z" stroke="none" fill="var(--outline-color)"/>
+        </symbol>
+        <symbol id="doubleArrowRight" viewBox="-6.5 -4 16 16">
+          <path d="M-2,0 V8 L2,4Z" stroke="none" fill="var(--outline-color)"/>
+          <path d="M2,0 V8 L6,4Z" stroke="none" fill="var(--outline-color)"/>
+        </symbol>
         <symbol id="minusSign" viewbox="0 0 20 20">
           <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke="var(--label-color)"/>
         </symbol>
@@ -1206,6 +1437,17 @@
         <symbol id="closeDecal" viewbox="0 0 20 20">
           <line x1="4.5" y1="4.5" x2="15.5" y2="15.5" stroke="var(--outline-color)" stroke-width="2"/>
           <line x1="4.5" y1="15.5" x2="15.5" y2="4.5" stroke="var(--outline-color)" stroke-width="2"/>
+        </symbol>
+        <symbol id="backArrowDecal" viewBox="0 0 16 16">
+          <path d="M4,8 H12 M8,4 L4,8 L8,12" stroke-width="2" stroke="var(--outline-color)" fill="none"/>
+        </symbol>
+        <symbol id="forwardArrowDecal" viewBox="0 0 16 16">
+          <path d="M4,8 H12 M8,4 L12,8 L8,12" stroke-width="2" stroke="var(--outline-color)" fill="none"/>
+        </symbol>
+        <symbol id="reloadDecal" viewBox="0 0 16 16">
+          <circle cx="8" cy="8" r="4" stroke-width="2" stroke="var(--outline-color)" fill="none"/>
+          <path d="M6,2 L8,4 L6,6" stroke-width="2" stroke="var(--outline-color)" fill="none"/>
+          <path d="M10,14 L8,12 L10,10" stroke-width="2" stroke="var(--outline-color)" fill="none"/>
         </symbol>
         <g id="hGrippy">
           <rect width="10" height="10" fill="var(--highlight-stroke-color)"/>
@@ -1806,7 +2048,7 @@
         drawHLevel(tf,230,10,100,16);
         drawHLevel(tf,340,10,100,16).setAttribute("class","insensitive");
         drawVLevel(tf,230,40,16,100);
-        drawVLevel(tf,340,40,16,100).setAttribute("class","insensitive")
+        drawVLevel(tf,340,40,16,100).setAttribute("class","insensitive");
         drawHScrollBar(tf,230,150,100,16);
         drawVScrollBar(tf,230,180,16,100);
 
@@ -1823,6 +2065,11 @@
         drawTabs(tf,450,10,240,28,["a","b","c"],0);
         drawTabs(tf,450,40,240,28,["a","b","c"],1);
         drawTabs(tf,450,70,240,28,["a","b","c"],2);
+
+        drawTabs(tf,450,110,240,28,["a","b","c"],0).setAttribute("class","insensitive");
+        drawTabs(tf,450,140,240,28,["a","b","c"],1).setAttribute("class","insensitive");
+        drawTabs(tf,450,170,240,28,["a","b","c"],2).setAttribute("class","insensitive");
+
       </script>
     </svg>
     <svg id="iconfield" width="800" height="600">
@@ -2125,7 +2372,7 @@
         drawButton(document.getElementById("spreadsheet"),58,54,22,22);
       </script>
     </svg>
-    <svg width="640" height="480" id="spreadsheet2"><title>Spreadsheet</title>
+    <svg width="640" height="480" id="spreadsheet2"><title>Spreadsheet 2</title>
       <defs>
         <pattern id="sheetgrid" width="64" height="16" x="0" y="0" patternUnits="userSpaceOnUse">
           <rect x="0" y="0" width="64" height="16" stroke="none" fill="white"/>
@@ -2162,12 +2409,88 @@
           drawInputField(document.getElementById("spreadsheet2-toolbar"),76,3,500,22);
         </script>
       </g>
-      
+    </svg>
+    <svg width="640" height="480" id="spreadsheet3"><title>Spreadsheet 3</title>
+      <script>
+        var w = drawItemWindow(document.getElementById("spreadsheet3"),0,0,640,480,"#spreadsheetIcon","Spreadsheet Name");
+
+        drawTabbedInputField(w,3,30,634,422,["Sheet 1","Sheet 2","Sheet 3"],0);
+        drawInputField(w,76,454,630-84,22,false,false,false);
+        drawDecalButton(w,4,454,22,22,"");
+        drawDecalButton(w,28,454,22,22,"");
+        drawDecalButton(w,52,454,22,22,"");
+      </script>
+      <rect x="5" y="32" width="615" height="403" stroke="none" fill="url(#sheetgrid)"/>
+      <script>
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",4);
+        g.setAttribute("y",31);
+        g.setAttribute("width",616);
+        g.setAttribute("height",404);
+        document.getElementById("spreadsheet3").insertAdjacentElement("beforeend",g);
+
+        for (var i=0;i < 100;i++) {
+          let b = drawButton(g,0,i*15,64,16);
+        }
+        for (var i=1;i < 100;i++) {
+          let b = drawButton(g,i*63,0,64,16);
+        }
+      </script>
     </svg>
     <svg width="640" height="480" id="tabbedWindow"><title>Tabbed Window</title>
       <script>
         drawItemWindow(document.getElementById("tabbedWindow"),0,0,640,480,"#documentIcon","Some Items",false);
-        drawTabs(document.getElementById("tabbedWindow"),0,30,640,450,["a","b","c"],0);
+        drawTabs(document.getElementById("tabbedWindow"),0,30,640,450,["a","b","c"],0).setAttribute("class","insensitive");
+      </script>
+    </svg>
+    <svg width="640" height="480" id="tabbedWindow2"><title>Tabbed Window 2</title>
+      <script>
+        var w = drawBaseWindow(document.getElementById("tabbedWindow2"),0,0,640,480,true);
+        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        r.setAttribute("x",197);
+        r.setAttribute("y",6);
+        r.setAttribute("width", 640-84-191);
+        r.setAttribute("height",21);
+        r.setAttribute("fill","url(#gripper)");
+        r.setAttribute("style","cursor: move;");
+        w.insertAdjacentElement("beforeend",r);
+        drawDecalButton(w,640-74,6,20,20,"#iconifyDecal");
+        drawDecalButton(w,640-50,6,20,20,"#maximizeDecal");
+        drawDecalButton(w,640-26,6,20,20,"#closeDecal");
+        drawWindowTabs(w,0,3,640,477,["Item 1","Item 2","Item 3"],0);
+        drawInputField(w,3,33,634,444,true,true,true);
+      </script>
+    </svg>
+    <svg width="640" height="480" id="browserWindow"><title>Browser Window</title>
+      <script>
+        var w = drawBaseWindow(document.getElementById("browserWindow"),0,0,640,480,true);
+        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        r.setAttribute("x",197);
+        r.setAttribute("y",6);
+        r.setAttribute("width", 640-84-191);
+        r.setAttribute("height",21);
+        r.setAttribute("fill","url(#gripper)");
+        r.setAttribute("style","cursor: move;");
+        w.insertAdjacentElement("beforeend",r);
+        drawDecalButton(w,640-74,6,20,20,"#iconifyDecal");
+        drawDecalButton(w,640-50,6,20,20,"#maximizeDecal");
+        drawDecalButton(w,640-26,6,20,20,"#closeDecal");
+
+        drawWindowTabs(w,0,3,640,477,["Site 1","Site 2","Site 3"],0);
+
+        drawInputField(w,3,33,634,419,true,true,true);
+
+        drawInputField(w,76,454,630-84,22,false,false,false);
+
+        drawDecalButton(w,4,454,22,22,"#backArrowDecal");
+        drawDecalButton(w,28,454,22,22,"#forwardArrowDecal");
+        drawDecalButton(w,52,454,22,22,"#reloadDecal");
+
+        var u = document.createElementNS("http://www.w3.org/2000/svg","use");
+        u.setAttribute("x",640-18);
+        u.setAttribute("y",480-18);
+        u.setAttributeNS("http://www.w3.org/1999/xlink","href","#newcornergrip");
+        w.insertAdjacentElement("beforeend",u);
       </script>
     </svg>
     <svg width="640" height="480" id="controlConsole"><title>Control Console</title>
