@@ -2435,12 +2435,13 @@
           let b = drawButton(g,0,i*15,64,16);
           let t = document.createElementNS("http://www.w3.org/2000/svg","text");
           t.innerHTML = i;
-          t.setAttribute("class","label centered");
-          t.setAttribute("pointer-events","none");
-          b.insertAdjacentElement("beforeend",t);
-          
           t.setAttribute("x",34);
           t.setAttribute("y",10);
+          t.setAttribute("class","label centered");
+          t.setAttribute("pointer-events","none");
+          t.setAttribute("style","font-size: 10px;")
+          b.insertAdjacentElement("beforeend",t);
+          
 
 
         }
