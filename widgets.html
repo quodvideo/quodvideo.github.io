@@ -2429,7 +2429,7 @@
         g.setAttribute("height",404);
         document.getElementById("spreadsheet3").insertAdjacentElement("beforeend",g);
 
-        drawButton(g,0,0,24,16);
+        drawButton(g,0,0,48,16);
 
         for (var i=1;i < 30;i++) {
           let b = drawButton(g,0,i*15,48,16);
@@ -2441,7 +2441,11 @@
           t.setAttribute("pointer-events","none");
           t.setAttribute("style","font-size: 10px;")
           b.insertAdjacentElement("beforeend",t);
-
+          let l = document.createElementNS("http://www.w3.org/2000/svg","path");
+          l.setAttribute("d","M48,16 h616");
+          l.setAttribute("fill","none");
+          l.setAttribute("stroke","var(--recessed-fill-color)");
+          g.insertAdjacentElement("beforeend",l);
         }
         for (var i=1;i < 26;i++) {
           let b = drawButton(g,i*63 - 16,0,64,16);
