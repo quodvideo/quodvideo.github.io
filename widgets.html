@@ -373,12 +373,12 @@
           if (showVScrollbar) {
             drawVScrollBar(g,width-17,1,16,height-17);
           } else {
-            drawVScrollBar(g,width-17,1,16,height-17).setAttribute("class","insensitive");
+            drawVScrollBar(g,width-17,1,16,height-17).classList.add("insensitive");
           }
           if (showHScrollbar) {
             drawHScrollBar(g,1,height-17,width-17,16);
           } else {
-            drawHScrollBar(g,1,height-17,width-17,16).setAttribute("class","insensitive");
+            drawHScrollBar(g,1,height-17,width-17,16).classList.add("insensitive");
           }
         } else {
           var f = document.createElementNS("http://www.w3.org/2000/svg","rect");
