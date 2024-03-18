@@ -81,6 +81,7 @@
       svg.button.activetoggle .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
       svg.button.activetoggle .highlight { stroke: var(--shadow-stroke-color); }
       svg.button.activetoggle .shadow { stroke: var(--highlight-stroke-color); }
+      svg.scrollbar.insensitive .slider { visibility: hidden; };
       .menuitem {
         & rect:first-child {
           fill: var(--raised-fill-color);
@@ -312,33 +313,11 @@
 
         return g;
       }
-      function drawArrowSlider (parentElement,x,y,width,height,dir) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-        g.setAttribute("class","slider");
-        g.setAttribute("transform","translate("+x+","+y+")");
-        parentElement.insertAdjacentElement("beforeend", g);
-
-        var o = document.createElementNS("http://www.w3.org/2000/svg","path");
-        var s = document.createElementNS("http://www.w3.org/2000/svg","path");
-        var h = document.createElementNS("http://www.w3.org/2000/svg","path");
-        
-        switch (dir) {
-          case "left":
-            break;
-          case "right":
-            break;
-          case "up":
-            break;
-          case "down":
-            break;
-        }
-
-        return g;
-      }
       function drawHScrollBar (parentElement,x,y,width,height) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
+        g.setAttribute("class","scrollbar");
         parentElement.insertAdjacentElement("beforeend", g);
 
         drawTroughRect(g,0,0,width-height-height+2,height);
@@ -352,6 +331,7 @@
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
+        g.setAttribute("class","scrollbar");
         parentElement.insertAdjacentElement("beforeend", g);
 
         drawTroughRect(g,0,0,width,height-width-width+2);
