@@ -2274,26 +2274,7 @@
     </svg>
     <svg width="640" height="480" id="basicView2"><title>Basic View 2</title>
       <script>
-        drawBaseWindow(document.getElementById("basicView2"),0,0,640,480);
-        drawInputField(document.getElementById("basicView2"),3,30,634,447,false,false,true);
-        drawDecalButton(document.getElementById("basicView2"),566,6,20,20,"#iconifyDecal");
-        drawDecalButton(document.getElementById("basicView2"),590,6,20,20,"#maximizeDecal");
-        drawDecalButton(document.getElementById("basicView2"),614,6,20,20,"#closeDecal");
-      </script>
-      <use xlink:href="#documentIcon" fill="white" x="3" y="3" width="24" height="24" />
-      <text x="30" y="22" style="font-size: 18px;">Item Name</text>
-      <rect x="123" y="6" width="441" height="21" fill="url(#gripper)" style="cursor: move;"/>
-    </svg>
-    <svg width="640" height="480" id="basicView3"><title>Basic View 3</title>
-      <script>
-        drawSimpleWindow(document.getElementById("basicView3"),0,0,640,480,"#documentIcon","Item Name");
-      </script>
-    </svg>
-    <svg width="640" height="480" id="documentView"><title>Document Window</title>
-      <script>
-        drawBaseWindow(document.getElementById("documentView"),0,0,640,480);
-        drawHeaderBar(document.getElementById("documentView"),0,0,640,480,"#documentIcon","Document Title","plain text");
-        drawInputField(document.getElementById("documentView"),3,50,634,427,true,true,true);
+        drawSimpleWindow(document.getElementById("basicView2"),0,0,640,480,"#documentIcon","Item Name");
       </script>
     </svg>
     <svg width="640" height="480" id="someFolder"><title>Some Folder</title>
@@ -2320,79 +2301,7 @@
     </svg>
     <svg width="640" height="480" id="spreadsheet"><title>Spreadsheet</title>
       <script>
-        drawBaseWindow(document.getElementById("spreadsheet"),0,0,640,480);
-        drawHeaderBar(document.getElementById("spreadsheet"),0,0,640,480,"#documentIcon","Document Title","spreadsheet");
-      </script>
-      <rect x="4.5" y="51.5" width="631" height="424" stroke="var(--outline-color)" fill="white"/>
-      <rect x="620.5" y="460.5" width="16" height="16" stroke="none" fill="var(--base-fill-color)" />
-      <polyline class="shadow" points="3.5,476.5, 3.5,50.5 636.5,50.5" />
-      <polyline class="highlight" points="3.5,476.5 621.5,476.5 621.5,461.5 636.5,461.5 636.5,50.5"></polyline>
-      <use x="622" y="462" xlink:href="#newcornergrip"/>
-      <g transform="translate(4.5,460.5)"> <!-- tabs -->
-        <rect width="180" height="15" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
-        <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H115 L120,13 H170 L175,0 H180"/>
-        <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="141" y="10">3</text>
-        <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H60 L65,13 H115 L120,0 H180"/>
-        <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="86" y="10">2</text>
-        <path d="M1,0 H179" stroke="#ffffff"/>
-        <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H5 L10,13 H60 L65,0 H180"/>
-        <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
-      </g>
-      <g transform="translate(4,51)">
-        <rect x="0.5" y="0.5" width="631" height="27" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
-        <polyline class="shadow" points="1,26.5 630.5,26.5 630.5,1"/>
-        <polyline class="highlight" points="1.5,27 1.5,1.5 631,1.5"/>
-      </g>
-      <script>
-        drawVScrollBar(document.getElementById("spreadsheet"),620,78,16,383);
-        drawHScrollBar(document.getElementById("spreadsheet"),184,460,437,16);
-        drawInputField(document.getElementById("spreadsheet"),82,54,500,22);
-        drawButton(document.getElementById("spreadsheet"),10,54,22,22);
-        drawButton(document.getElementById("spreadsheet"),34,54,22,22);
-        drawButton(document.getElementById("spreadsheet"),58,54,22,22);
-      </script>
-    </svg>
-    <svg width="640" height="480" id="spreadsheet2"><title>Spreadsheet 2</title>
-      <defs>
-        <pattern id="sheetgrid" width="64" height="16" x="0" y="0" patternUnits="userSpaceOnUse">
-          <rect x="0" y="0" width="64" height="16" stroke="none" fill="white"/>
-          <line x1="0" y1="16" x2="64" y2="16" stroke="var(--recessed-fill-color)"/>
-          <line x1="64" y1="0" x2="64" y2="16" stroke="var(--recessed-fill-color)"/>
-        </pattern>
-      </defs>
-      <script>
-        drawBaseWindow(document.getElementById("spreadsheet2"),0,0,640,480);
-        drawHeaderBar(document.getElementById("spreadsheet2"),0,0,0,0,"#documentIcon","Document Title","spreadsheet");
-      </script>
-      <rect x="4.5" y="51.5" width="616" height="382" stroke="var(--outline-color)" fill="url(#sheetgrid)"/>
-      <polyline class="shadow" points="3.5,449.5, 3.5,50.5 636.5,50.5" />
-      <polyline class="highlight" points="3.5,449.5 621.5,449.5 621.5,434.5 636.5,434.5 636.5,50.5" />
-      <g transform="translate(4.5,433.5)"> <!-- tabs -->
-        <rect width="180" height="15" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
-        <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H115 L120,13 H170 L175,0 H180"/>
-        <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="141" y="10">3</text>
-        <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H60 L65,13 H115 L120,0 H180"/>
-        <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="86" y="10">2</text>
-        <path d="M1,0 H179" stroke="#ffffff"/>
-        <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H5 L10,13 H60 L65,0 H180"/>
-        <text style="font-size: 10; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
-      </g>
-      <script>
-        drawVScrollBar(document.getElementById("spreadsheet2"),620,51,16,383);
-        drawHScrollBar(document.getElementById("spreadsheet2"),184,433,437,16);
-      </script>
-      <g id="spreadsheet2-toolbar" transform="translate(0,450)">
-        <script>
-          drawButton(document.getElementById("spreadsheet2-toolbar"),4,3,22,22);
-          drawButton(document.getElementById("spreadsheet2-toolbar"),28,3,22,22);
-          drawButton(document.getElementById("spreadsheet2-toolbar"),52,3,22,22);
-          drawInputField(document.getElementById("spreadsheet2-toolbar"),76,3,500,22);
-        </script>
-      </g>
-    </svg>
-    <svg width="640" height="480" id="spreadsheet3"><title>Spreadsheet 3</title>
-      <script>
-        var w = drawItemWindow(document.getElementById("spreadsheet3"),0,0,640,480,"#spreadsheetIcon","Spreadsheet Name");
+        var w = drawItemWindow(document.getElementById("spreadsheet"),0,0,640,480,"#spreadsheetIcon","Spreadsheet Name");
 
         drawTabbedInputField(w,3,30,634,422,["Sheet 1","Sheet 2","Sheet 3"],0);
         drawInputField(w,76,454,630-84,22,false,false,false);
@@ -2405,7 +2314,7 @@
         g.setAttribute("y",31);
         g.setAttribute("width",616);
         g.setAttribute("height",404);
-        document.getElementById("spreadsheet3").insertAdjacentElement("beforeend",g);
+        w.insertAdjacentElement("beforeend",g);
 
         drawButton(g,0,0,48,16);
 
