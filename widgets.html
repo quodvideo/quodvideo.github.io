@@ -2138,6 +2138,10 @@
         drawTabs(tf,450,10,240,28,["a","b","c"],0);
         drawTabs(tf,450,40,240,28,["a","b","c"],1);
         drawTabs(tf,450,70,240,28,["a","b","c"],2);
+        drawTabs(tf,450,110,240,28,["a","b","c"],0).setAttribute("class","insensitive");
+        drawTabs(tf,450,140,240,28,["a","b","c"],1).setAttribute("class","insensitive");
+        drawTabs(tf,450,170,240,28,["a","b","c"],2).setAttribute("class","insensitive");
+
       </script>
     </svg>
     <svg id="iconfielddark" class="darkmode" style="color-scheme: dark" width="800" height="600">
@@ -2195,7 +2199,6 @@
         drawBaseWindow(document.getElementById("openDialog"),0,0,400,300);
         drawOptionButton(document.getElementById("openDialog"),18,18,0,0,"$PWD");
         drawInputField(document.getElementById("openDialog"),18,58,364,183,true,false,false);
-        /* drawVScrollBar(document.getElementById("openDialog"),365,59,16,181); */
         drawPushButton(document.getElementById("openDialog"),233,257,0,0,"Cancel");
         drawPushButton(document.getElementById("openDialog"),315,257,0,0,"Open",true);
       </script>
