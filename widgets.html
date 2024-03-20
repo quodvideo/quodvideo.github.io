@@ -919,8 +919,8 @@
         [width-0.5,           0.5],                 // sheet top right
         [width-0.5,           height-0.5],          // sheet bottom right
         [xywh[0]+xywh[2]-0.5, height-0.5],          // sheet bottom left
-        [xywh[0]+xywh[2]-0.5, xywh[1]+xywh[3]-1.5], // tab bottom right
-        [0.5,                 xywh[1]+xywh[3]-1.5]  // tab bottom left
+        [xywh[0]+xywh[2]-0.5, xywh[1]+xywh[3]-0.5], // tab bottom right
+        [0.5,                 xywh[1]+xywh[3]-0.5]  // tab bottom left
         ]
         /*
         var corners = [
@@ -953,28 +953,27 @@
         tsps.setAttribute("fill","none");
         tsps.setAttribute("stroke","var(--shadow-stroke-color)");
         tsps.setAttribute("d","M"+(corners[0][0]+1)+","+(corners[0][1]+1)
-                            + " H"+(corners[1][0]-1)
-                            + " V"+(corners[2][1]+1)
-                            + " H"+(corners[3][0]-1)
-                            + " V"+(corners[4][1]-1)
-                            + " H"+(corners[5][0]+1)
-                            + " V"+(corners[6][1]+1)
-                            + " H"+(corners[7][0]+1)
-                            + " Z");
-        //tg.insertAdjacentElement("beforeend",tsps);
+                           + " L"+(corners[1][0]+1)+","+(corners[1][1]+1)
+                           + " L"+(corners[2][0]+1)+","+(corners[2][1]-1)
+                           + " L"+(corners[3][0]-1)+","+(corners[3][1]-1)
+                           + " L"+(corners[4][0]-1)+","+(corners[4][1]-1)
+                           + " L"+(corners[5][0]+1)+","+(corners[5][1]-1)
+                           + " L"+(corners[6][0]+1)+","+(corners[6][1]-1)
+                           + " L"+(corners[7][0]+1)+","+(corners[7][1]-1)
+                           + " Z");
+        tg.insertAdjacentElement("beforeend",tsps);
 
         var tsph = document.createElementNS("http://www.w3.org/2000/svg","path");
         tsph.setAttribute("fill","none");
         tsph.setAttribute("stroke", "var(--highlight-stroke-color)");
         tsph.setAttribute("d","M"+(corners[0][0]+1)+","+(corners[0][1]+1)
-                            + " H"+(corners[1][0]-0.5)
-                            + " M"+(corners[2][0]-1.5)+","+(corners[2][1]+1)
-                            + " H"+(corners[3][0]-0.5)
-                            + " M"+(corners[4][0]-1)+","+(corners[4][1]+1)
-                            + " M"+(corners[5][0]+1)+","+(corners[5][1]-0.5)
-                            + " V"+(corners[6][1]+1)
-                            + " H"+(corners[7][0]+1)
-                            + " L"+(corners[0][0]+1)+","+(corners[0][1]+0.5));
+                           + " L"+(corners[1][0]+1)+","+(corners[1][1]+1)
+                           + " L"+(corners[2][0]+1)+","+(corners[2][1]-1)
+                           + " L"+(corners[3][0]-1)+","+(corners[3][1]-1)
+                           + " L"+(corners[4][0]-1)+","+(corners[4][1]-1)
+                           + " L"+(corners[5][0]+1)+","+(corners[5][1]-1)
+                           + " L"+(corners[6][0]+1)+","+(corners[6][1]-1)
+                           + " L"+(corners[7][0]+1)+","+(corners[7][1]-1));
         //tg.insertAdjacentElement("beforeend",tsph);
 
         var tl = textLabels[activeIndex];
