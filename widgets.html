@@ -846,6 +846,133 @@
 
         return tg;
       }
+      function drawLeftSideTabs(parentElement,x,y,width,height,labels,activeIndex) {
+        var tg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        tg.setAttribute("x",x);
+        tg.setAttribute("y",y);
+        parentElement.insertAdjacentElement("beforeend",tg);
+
+        var textLabels = labels.map(function (label) {
+          var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
+          txt.innerHTML = label;
+          txt.setAttribute("class","label centered");
+          txt.setAttribute("pointer-events","none");
+          tg.insertAdjacentElement("beforeend",txt);
+          return txt;
+        });
+
+        var minw = 64;
+        var minh = 22;
+        var currentX = 0;
+        var currentY = 0;
+
+        var xywhs = textLabels.map(function(tl,i,a) {
+          var lastX = (i==activeIndex)?0:1;
+          var lastY = CurrentY;
+          var w = 64;
+          var h = 22;
+          var box = tl.getBBox();
+          if (box.width+12 > w) w=Math.ceil(box.width)+12;
+          if (box.height+5 > h) h=Math.ceil(box.height)+5;
+          if (w>minw) minw=w;
+          if (h>minh) minh=h;
+          currentY += h-1;
+          return [lastX,lastY,w,h];
+        });
+        xywhs.forEach(function(xywh,i,a) { xywh[2] = (i==activeIndex)?minw+1:minw; });
+
+        textLabels.forEach(function(tl,i,a) {
+          var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+          g.setAttribute("transform","translate("+(xywhs[i][0])+","+(xywhs[i][1])+")");
+          tg.insertAdjacentElement("beforeend",g);
+
+          var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          r.setAttribute("x",0.5);
+          r.setAttribute("y", 0.5);
+          r.setAttribute("width",xywhs[i][2]-1);
+          r.setAttribute("height",xywhs[i][3]-1);
+          r.setAttribute("fill", (i==activeIndex)?"var(--base-fill-color)":"var(--raised-fill-color)"); // or recessed???
+          r.setAttribute("stroke","var(--outline-color)");
+          g.insertAdjacentElement("beforeend",r);
+
+          var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          s.setAttribute("class","shadow");
+          s.setAttribute("points",""+(xywhs[i][2]-1.5)+","+(xywhs[i][3]-1)+" "+(xywhs[i][2]-1.5)+",1.5");
+          g.insertAdjacentElement("beforeend",s);
+
+          var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          h.setAttribute("class","highlight");
+          h.setAttribute("points","1.5,"+(xywhs[i][3]-1)+" 1.5,1.5 "+(xywhs[i][2]-1)+",1.5");
+          g.insertAdjacentElement("beforeend",h);
+
+          tl.setAttribute("x",xywhs[i][2]/2);
+          tl.setAttribute("y",(xywhs[i][3]/2) + ((i==activeIndex)?0:1));
+          g.insertAdjacentElement("beforeend",tl);
+        });
+
+        var xywh = xywhs[activeIndex];
+        var corners = [
+          [xywh[0]+0.5,         xywh[1]+0.5],         // tabtopleft
+          [xywh[0]+xywh[2]-0.5, xywh[1]+0.5],         // tabtopright
+          [xywh[0]+xywh[2]-0.5, xywh[1]+xywh[3]-1.5], // tabbottomright
+          [width-0.5,           xywh[1]+xywh[3]-1.5], // sheettopright
+          [width-0.5,           height-0.5],          // sheetbottomright
+          [0.5,                 height-0.5],          // sheetbottomleft
+          [0.5,                 xywh[1]+xywh[3]-1.5], // sheettopleft
+          [xywh[0]+0.5,         xywh[1]+xywh[3]-1.5]  // tabbottomleft
+        ]
+            
+        /* Draw tabbed sheet. */
+        var tsp = document.createElementNS("http://www.w3.org/2000/svg","path");
+        tsp.setAttribute("fill","var(--base-fill-color)");
+        tsp.setAttribute("stroke", "var(--outline-color)");
+        tsp.setAttribute("d","M"+corners[0][0]+","+corners[0][1]
+                          + " H"+corners[1][0]
+                          + " V"+corners[2][1]
+                          + " H"+corners[3][0]
+                          + " V"+corners[4][1]
+                          + " H"+corners[5][0]
+                          + " V"+corners[6][1]
+                          + " H"+corners[7][0]
+                          + " Z");
+        tg.insertAdjacentElement("beforeend",tsp);
+
+        var tsps = document.createElementNS("http://www.w3.org/2000/svg","path");
+        tsps.setAttribute("fill","none");
+        tsps.setAttribute("stroke","var(--shadow-stroke-color)");
+        tsps.setAttribute("d","M"+(corners[0][0]+1)+","+(corners[0][1]+1)
+                            + " H"+(corners[1][0]-1)
+                            + " V"+(corners[2][1]+1)
+                            + " H"+(corners[3][0]-1)
+                            + " V"+(corners[4][1]-1)
+                            + " H"+(corners[5][0]+1)
+                            + " V"+(corners[6][1]+1)
+                            + " H"+(corners[7][0]+1)
+                            + " Z");
+        tg.insertAdjacentElement("beforeend",tsps);
+
+        var tsph = document.createElementNS("http://www.w3.org/2000/svg","path");
+        tsph.setAttribute("fill","none");
+        tsph.setAttribute("stroke", "var(--highlight-stroke-color)");
+        tsph.setAttribute("d","M"+(corners[0][0]+1)+","+(corners[0][1]+1)
+                            + " H"+(corners[1][0]-0.5)
+                            + " M"+(corners[2][0]-1.5)+","+(corners[2][1]+1)
+                            + " H"+(corners[3][0]-0.5)
+                            + " M"+(corners[4][0]-1)+","+(corners[4][1]+1)
+                            + " M"+(corners[5][0]+1)+","+(corners[5][1]-0.5)
+                            + " V"+(corners[6][1]+1)
+                            + " H"+(corners[7][0]+1)
+                            + " L"+(corners[0][0]+1)+","+(corners[0][1]+0.5));
+        tg.insertAdjacentElement("beforeend",tsph);
+
+        var tl = textLabels[activeIndex];
+        tl.setAttribute("x",corners[0][0]+(corners[1][0]-corners[0][0])/2);
+        tl.setAttribute("y",corners[0][1]+(corners[2][1]-corners[1][1])/2);
+        tg.insertAdjacentElement("beforeend",tl);
+
+        return tg;
+      }
+
       function drawWindowTabs(parentElement,x,y,width,height,labels,activeIndex) {
         var tg = document.createElementNS("http://www.w3.org/2000/svg","svg");
         tg.setAttribute("x",x);
@@ -2049,6 +2176,11 @@
         drawTabs(tf,450,110,240,28,["a","b","c"],0).setAttribute("class","insensitive");
         drawTabs(tf,450,140,240,28,["a","b","c"],1).setAttribute("class","insensitive");
         drawTabs(tf,450,170,240,28,["a","b","c"],2).setAttribute("class","insensitive");
+
+        drawLeftSideTabs(tf,450,210,240,28,["a","b","c"],0);
+        drawLeftSideTabs(tf,520,210,240,28,["a","b","c"],1);
+        drawLeftSideTabs(tf,590,210,240,28,["a","b","c"],2);
+
 
       </script>
     </svg>
