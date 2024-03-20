@@ -911,6 +911,18 @@
         });
 
         var xywh = xywhs[activeIndex];
+        
+        var corners = [
+        [xywh[0]+0.5,         xywh[1]+0.5],         // tab top left
+        [xywh[0]+xywh[2]-0.5, xywh[1]+0.5],         // tab top right
+        [xywh[0]+xywh[2]-0.5, 0.5],                 // sheet top left
+        [width-0.5,           0.5],                 // sheet top right
+        [width-0.5,           height-0.5],          // sheet bottom right
+        [xywh[0]+xywh[2]-0.5, height-0.5],          // sheet bottom left
+        [xywh[0]+xywh[2]-0.5, xywh[1]+xwyh[3]-1.5], // tab bottom right
+        [0.5,                 xywh[1]+xwyh[3]-1.5], // tab bottom left
+        ]
+        /*
         var corners = [
           [xywh[0]+0.5,         xywh[1]+0.5],         // tabtopleft
           [xywh[0]+xywh[2]-0.5, xywh[1]+0.5],         // tabtopright
@@ -921,19 +933,19 @@
           [0.5,                 xywh[1]+xywh[3]-1.5], // sheettopleft
           [xywh[0]+0.5,         xywh[1]+xywh[3]-1.5]  // tabbottomleft
         ]
-            
+        */    
         /* Draw tabbed sheet. */
         var tsp = document.createElementNS("http://www.w3.org/2000/svg","path");
         tsp.setAttribute("fill","var(--base-fill-color)");
         tsp.setAttribute("stroke", "var(--outline-color)");
         tsp.setAttribute("d","M"+corners[0][0]+","+corners[0][1]
-                          + " H"+corners[1][0]
-                          + " V"+corners[2][1]
-                          + " H"+corners[3][0]
-                          + " V"+corners[4][1]
-                          + " H"+corners[5][0]
-                          + " V"+corners[6][1]
-                          + " H"+corners[7][0]
+                          + " L"+corners[1][0]+","+corners[1][1]
+                          + " L"+corners[2][0]+","+corners[2][1]
+                          + " L"+corners[3][0]+","+corners[3][1]
+                          + " L"+corners[4][0]+","+corners[4][1]
+                          + " L"+corners[5][0]+","+corners[5][1]
+                          + " L"+corners[6][0]+","+corners[6][1]
+                          + " L"+corners[7][0]+","+corners[7][1]
                           + " Z");
         tg.insertAdjacentElement("beforeend",tsp);
 
@@ -949,7 +961,7 @@
                             + " V"+(corners[6][1]+1)
                             + " H"+(corners[7][0]+1)
                             + " Z");
-        tg.insertAdjacentElement("beforeend",tsps);
+        //tg.insertAdjacentElement("beforeend",tsps);
 
         var tsph = document.createElementNS("http://www.w3.org/2000/svg","path");
         tsph.setAttribute("fill","none");
@@ -963,7 +975,7 @@
                             + " V"+(corners[6][1]+1)
                             + " H"+(corners[7][0]+1)
                             + " L"+(corners[0][0]+1)+","+(corners[0][1]+0.5));
-        tg.insertAdjacentElement("beforeend",tsph);
+        //tg.insertAdjacentElement("beforeend",tsph);
 
         var tl = textLabels[activeIndex];
         tl.setAttribute("x",corners[0][0]+(corners[1][0]-corners[0][0])/2);
