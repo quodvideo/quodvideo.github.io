@@ -950,8 +950,7 @@
         tg.insertAdjacentElement("beforeend",tsp);
 
         var tsps = document.createElementNS("http://www.w3.org/2000/svg","path");
-        tsps.setAttribute("fill","none");
-        tsps.setAttribute("stroke","var(--shadow-stroke-color)");
+        tsps.setAttribute("class","shadow");
         tsps.setAttribute("d","M"+(corners[0][0]+1)+","+(corners[0][1]+1)
                            + " L"+(corners[1][0]+1)+","+(corners[1][1]+1)
                            + " L"+(corners[2][0]+1)+","+(corners[2][1]+1)
@@ -964,8 +963,7 @@
         tg.insertAdjacentElement("beforeend",tsps);
 
         var tsph = document.createElementNS("http://www.w3.org/2000/svg","path");
-        tsph.setAttribute("fill","none");
-        tsph.setAttribute("stroke", "var(--highlight-stroke-color)");
+        tsph.setAttribute("class","highlight");
         tsph.setAttribute("d","M"+(corners[0][0]+1)+","+(corners[0][1]+1)
                            + " L"+(corners[1][0]+1)+","+(corners[1][1]+1)
                            + " L"+(corners[2][0]+1)+","+(corners[2][1]+1)
