@@ -895,10 +895,8 @@
           r.setAttribute("stroke","var(--outline-color)");
           g.insertAdjacentElement("beforeend",r);
 
-          //var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
           var s = document.createElementNS("http://www.w3.org/2000/svg","rect");
           s.setAttribute("class","shadow");
-          //s.setAttribute("points",""+(xywhs[i][2]-1.5)+","+(xywhs[i][3]-1)+" "+(xywhs[i][2]-1.5)+",1.5");
           s.setAttribute("x",1.5);
           s.setAttribute("y",1.5);
           s.setAttribute("width",xywhs[i][2]-2);
@@ -918,27 +916,16 @@
         var xywh = xywhs[activeIndex];
         
         var corners = [
-        [xywh[0]+0.5,         xywh[1]+0.5],         // tab top left
-        [xywh[0]+xywh[2]-0.5, xywh[1]+0.5],         // tab top right
-        [xywh[0]+xywh[2]-0.5, 0.5],                 // sheet top left
-        [width-0.5,           0.5],                 // sheet top right
-        [width-0.5,           height-0.5],          // sheet bottom right
-        [xywh[0]+xywh[2]-0.5, height-0.5],          // sheet bottom left
-        [xywh[0]+xywh[2]-0.5, xywh[1]+xywh[3]-0.5], // tab bottom right
-        [0.5,                 xywh[1]+xywh[3]-0.5]  // tab bottom left
+          [xywh[0]+0.5,         xywh[1]+0.5],         // tab top left
+          [xywh[0]+xywh[2]-0.5, xywh[1]+0.5],         // tab top right
+          [xywh[0]+xywh[2]-0.5, 0.5],                 // sheet top left
+          [width-0.5,           0.5],                 // sheet top right
+          [width-0.5,           height-0.5],          // sheet bottom right
+          [xywh[0]+xywh[2]-0.5, height-0.5],          // sheet bottom left
+          [xywh[0]+xywh[2]-0.5, xywh[1]+xywh[3]-0.5], // tab bottom right
+          [0.5,                 xywh[1]+xywh[3]-0.5]  // tab bottom left
         ]
-        /*
-        var corners = [
-          [xywh[0]+0.5,         xywh[1]+0.5],         // tabtopleft
-          [xywh[0]+xywh[2]-0.5, xywh[1]+0.5],         // tabtopright
-          [xywh[0]+xywh[2]-0.5, xywh[1]+xywh[3]-1.5], // tabbottomright
-          [width-0.5,           xywh[1]+xywh[3]-1.5], // sheettopright
-          [width-0.5,           height-0.5],          // sheetbottomright
-          [0.5,                 height-0.5],          // sheetbottomleft
-          [0.5,                 xywh[1]+xywh[3]-1.5], // sheettopleft
-          [xywh[0]+0.5,         xywh[1]+xywh[3]-1.5]  // tabbottomleft
-        ]
-        */    
+  
         /* Draw tabbed sheet. */
         var tsp = document.createElementNS("http://www.w3.org/2000/svg","path");
         tsp.setAttribute("fill","var(--base-fill-color)");
@@ -977,8 +964,7 @@
                            + " M"+(corners[5][0]+1)+","+(corners[5][1]-1)
                            + " L"+(corners[6][0]+1)+","+(corners[6][1]-1)
                            + " M"+(corners[7][0]+1)+","+(corners[7][1]-1)
-                           + " L"+(corners[0][0]+1)+","+(corners[0][1]+1)
-                           + " Z");
+                           + " L"+(corners[0][0]+1)+","+(corners[0][1]+1));
         tg.insertAdjacentElement("beforeend",tsph);
 
         var tl = textLabels[activeIndex];
