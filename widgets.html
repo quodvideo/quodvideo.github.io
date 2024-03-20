@@ -895,9 +895,14 @@
           r.setAttribute("stroke","var(--outline-color)");
           g.insertAdjacentElement("beforeend",r);
 
-          var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          //var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          var s = document.createElementNS("http://www.w3.org/2000/svg","rect");
           s.setAttribute("class","shadow");
-          s.setAttribute("points",""+(xywhs[i][2]-1.5)+","+(xywhs[i][3]-1)+" "+(xywhs[i][2]-1.5)+",1.5");
+          //s.setAttribute("points",""+(xywhs[i][2]-1.5)+","+(xywhs[i][3]-1)+" "+(xywhs[i][2]-1.5)+",1.5");
+          s.setAttribute("x",1.5);
+          s.setAttribute("y",1.5);
+          s.setAttribute("width",xywhs[i][2]-2);
+          s.setAttribute("height",xywhs[i][3]-2);
           g.insertAdjacentElement("beforeend",s);
 
           var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
