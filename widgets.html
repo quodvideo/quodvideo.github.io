@@ -920,7 +920,7 @@
         [width-0.5,           height-0.5],          // sheet bottom right
         [xywh[0]+xywh[2]-0.5, height-0.5],          // sheet bottom left
         [xywh[0]+xywh[2]-0.5, xywh[1]+xywh[3]-1.5], // tab bottom right
-        [0.5,                 xywh[1]+xywh[3]-1.5], // tab bottom left
+        [0.5,                 xywh[1]+xywh[3]-1.5]  // tab bottom left
         ]
         /*
         var corners = [
@@ -979,7 +979,7 @@
 
         var tl = textLabels[activeIndex];
         tl.setAttribute("x",corners[0][0]+(corners[1][0]-corners[0][0])/2);
-        tl.setAttribute("y",corners[0][1]+(corners[2][1]-corners[1][1])/2);
+        tl.setAttribute("y",corners[0][1]+(corners[6][1]-corners[1][1])/2);
         tg.insertAdjacentElement("beforeend",tl);
 
         return tg;
