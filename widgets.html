@@ -65,6 +65,7 @@
       svg { cursor: default; }
       .highlight { fill: none; stroke: var(--highlight-stroke-color); stroke-linecap: square; }
       .shadow { fill: none; stroke: var(--shadow-stroke-color); stroke-linecap: square; }
+      rect.flat { fill: var(--base-fill-color); stroke: var(--outline-color); }
       rect.butte { fill: var(--raised-fill-color); stroke: var(--outline-color); }
       rect.trough { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
       .textfield { fill: var(--input-field-color); stroke: var(--outline-color); }
@@ -219,6 +220,27 @@
         parentElement.insertAdjacentElement("beforeend", g);
 
         drawRaisedRect(g,0,0,width,height);
+
+        return g;
+      }
+      function drawHeaderButton (parentElement,x,y,width,height,label,state) {
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
+        g.setAttribute("class","button");
+        parentElement.insertAdjacentElement("beforeend", g);
+
+        var r = drawRaisedRect(g,0,0,width,height);
+        if (state=="selected") { r.setAttribute("class","flat"); }
+
+        let t = document.createElementNS("http://www.w3.org/2000/svg","text");
+        t.innerHTML = label;
+        t.setAttribute("x",width/2);
+        t.setAttribute("y",height/2);
+        t.setAttribute("class","label centered");
+        t.setAttribute("pointer-events","none");
+        t.setAttribute("style","font-size: 10px;")
+        g.insertAdjacentElement("beforeend",t);
 
         return g;
       }
@@ -974,7 +996,6 @@
 
         return tg;
       }
-
       function drawWindowTabs(parentElement,x,y,width,height,labels,activeIndex) {
         var tg = document.createElementNS("http://www.w3.org/2000/svg","svg");
         tg.setAttribute("x",x);
@@ -2179,9 +2200,9 @@
         drawTabs(tf,450,140,240,28,["a","b","c"],1).setAttribute("class","insensitive");
         drawTabs(tf,450,170,240,28,["a","b","c"],2).setAttribute("class","insensitive");
 
-        drawLeftSideTabs(tf,450,210,80,100,["a","b","c"],0);
-        drawLeftSideTabs(tf,540,210,80,100,["a","b","c"],1);
-        drawLeftSideTabs(tf,650,210,80,100,["a","b","c"],2);
+        drawLeftSideTabs(tf,450,210,70,100,["a","b","c"],0);
+        drawLeftSideTabs(tf,525,210,70,100,["a","b","c"],1);
+        drawLeftSideTabs(tf,600,210,70,100,["a","b","c"],2);
 
 
       </script>
@@ -2457,39 +2478,31 @@
         drawButton(g,0,0,48,16);
 
         for (var i=1;i < 30;i++) {
-          let b = drawButton(g,0,i*15,48,16);
-          let t = document.createElementNS("http://www.w3.org/2000/svg","text");
-          t.innerHTML = i;
-          t.setAttribute("x",24);
-          t.setAttribute("y",8);
-          t.setAttribute("class","label centered");
-          t.setAttribute("pointer-events","none");
-          t.setAttribute("style","font-size: 10px;")
-          b.insertAdjacentElement("beforeend",t);
+          let b = drawHeaderButton(g,0,i*15,48,16,i,i==2?"selected":"");
           let l = document.createElementNS("http://www.w3.org/2000/svg","path");
           l.setAttribute("d","M48,"+(15.5+i*15)+" h616");
           l.setAttribute("fill","none");
-          l.setAttribute("stroke","var(--recessed-fill-color)");
+          l.setAttribute("stroke","var(--base-fill-color)");
           g.insertAdjacentElement("beforeend",l);
         }
         for (var i=1;i < 26;i++) {
-          let b = drawButton(g,i*63 - 16,0,64,16);
-          let t = document.createElementNS("http://www.w3.org/2000/svg","text");
-          t.innerHTML = String.fromCharCode(64+i);
-          t.setAttribute("x",32);
-          t.setAttribute("y",8);
-          t.setAttribute("class","label centered");
-          t.setAttribute("pointer-events","none");
-          t.setAttribute("style","font-size: 10px;")
-          b.insertAdjacentElement("beforeend",t);
+          let b = drawHeaderButton(g,i*63 - 16,0,64,16,String.fromCharCode(64+i),i==2?"selected":"");
           let l = document.createElementNS("http://www.w3.org/2000/svg","path");
           l.setAttribute("d","M"+(47.5+i*63)+",16 v404");
           l.setAttribute("fill","none");
-          l.setAttribute("stroke","var(--recessed-fill-color)");
+          l.setAttribute("stroke","var(--base-fill-color)");
           g.insertAdjacentElement("beforeend",l);
-
         }
+        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        r.setAttribute("x",110.5);
+        r.setAttribute("y",30.5);
+        r.setAttribute("width",64-1);
+        r.setAttribute("height",16-1);
+        r.setAttribute("fill","none");
+        r.setAttribute("stroke","var(--outline-color");
+        g.insertAdjacentElement("beforeend",r);
       </script>
+      <text x="10" y="470">B2</text>
     </svg>
     <svg width="640" height="480" id="tabbedWindow"><title>Tabbed Window</title>
       <script>
