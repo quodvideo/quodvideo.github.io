@@ -75,6 +75,8 @@
       text { font-family: Sans-serif; font-size: 12px; /* 13.3px; */ stroke: none; fill: black; }
       text.label { fill: var(--label-color); user-select: none; }
       text.centered { text-anchor: middle; dominant-baseline: central; }
+      text.centered-x { text-anchor: middle; }
+      text.centered-y { dominant-baseline: central; }
       .inputfield { cursor: text; }
       svg.button:active .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
       svg.button:active .highlight { stroke: var(--shadow-stroke-color); }
@@ -237,7 +239,7 @@
         t.innerHTML = label;
         t.setAttribute("x",width/2);
         t.setAttribute("y",height/2);
-        t.setAttribute("class","label centered");
+        t.setAttribute("class","label centered-x centered-y");
         t.setAttribute("pointer-events","none");
         t.setAttribute("style","font-size: 10px;")
         g.insertAdjacentElement("beforeend",t);
@@ -262,7 +264,7 @@
 
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = text;
-        txt.setAttribute("class","label centered");
+        txt.setAttribute("class","label centered-x");
         txt.setAttribute("pointer-events","none");
         g.insertAdjacentElement("beforeend",txt);
 
@@ -273,7 +275,7 @@
         if (box.height+5 > height) height=Math.ceil(box.height)+5;
         
         txt.setAttribute("x",2+width/2);
-        txt.setAttribute("y",2+height/2);
+        txt.setAttribute("y",17);
 
         drawRaisedRect(g,2,2,width,height);
 
@@ -363,7 +365,7 @@
 
         return g;
       }
-      function drawInputField (parentElement,x,y,width,height,showVScrollbar=false,showHScrollbar=false,notch=false) {
+      function drawInputField (parentElement,x,y,width,height,showVScrollbar=false,showHScrollbar=false,notch=false,text="") {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("class","inputfield");
         g.setAttribute("x",x);
@@ -428,6 +430,9 @@
         }
 
         var t = document.createElementNS("http://www.w3.org/2000/svg","text");
+        t.innerHTML = text;
+        t.setAttribute("x",5);
+        t.setAttribute("y",15);
         g.insertAdjacentElement("beforeend",t);
 
         return g;
@@ -466,9 +471,10 @@
 
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = word;
-        txt.setAttribute("class","label centered");
+        txt.setAttribute("class","label centered-x");
         txt.setAttribute("x",2+textX);
         txt.setAttribute("y",2+height/2);
+        txt.setAttribute("y",17);
         g.insertAdjacentElement("beforeend",txt);
 
         drawFocusRingRect(g,0,0,width+4,height+4);
@@ -636,7 +642,7 @@
 
         var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
         txt.innerHTML = text;
-        txt.setAttribute("class","label centered");
+        txt.setAttribute("class","label centered-x");
         g.insertAdjacentElement("beforeend",txt);
 
         var box = txt.getBBox();
@@ -684,6 +690,7 @@
 
         txt.setAttribute("x",2+width/2);
         txt.setAttribute("y",2+height/2);
+        txt.setAttribute("y",17);
         g.insertAdjacentElement("beforeend",txt);
 
         drawFocusRingRect(g,0,0,width+height+4,height+4);
@@ -2171,8 +2178,8 @@
         drawRevealButton(tf,120,410,0,0,"More","open").setAttribute("class","insensitive");
         drawOptionButton(tf,10,440,0,0,"Option");
         drawOptionButton(tf,120,440,0,0,"Option").setAttribute("class","insensitive");
-        drawInputField(tf,10,470,100,22);
-        drawInputField(tf,120,470,100,22).setAttribute("class","textfield insensitive");
+        drawInputField(tf,10,470,100,22,false,false,false,"Placeholder");
+        drawInputField(tf,120,470,100,22,false,false,false,"Placeholder").setAttribute("class","textfield insensitive");
         drawSpinButton(tf,10,500,100,22);
         drawSpinButton(tf,120,500,100,22).setAttribute("class","textfield insensitive");
         drawHLevel(tf,230,10,100,16);
@@ -2271,8 +2278,8 @@
         drawRevealButton(tf,120,410,0,0,"More","open").setAttribute("class","insensitive");
         drawOptionButton(tf,10,440,0,0,"Option");
         drawOptionButton(tf,120,440,0,0,"Option").setAttribute("class","insensitive");
-        drawInputField(tf,10,470,100,22);
-        drawInputField(tf,120,470,100,22).setAttribute("class","textfield insensitive");
+        drawInputField(tf,10,470,100,22,false,false,false,"Placeholder");
+        drawInputField(tf,120,470,100,22,false,false,false,"Placeholder").setAttribute("class","textfield insensitive");
         drawSpinButton(tf,10,500,100,22);
         drawSpinButton(tf,120,500,100,22).setAttribute("class","textfield insensitive");
         drawHLevel(tf,230,10,100,16);
