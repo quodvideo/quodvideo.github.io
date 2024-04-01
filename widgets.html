@@ -2604,6 +2604,17 @@
         <path d="M295.5,126.5 v9" stroke="var(--outline-color)" fill="none"/>
       </g>
     </svg>
+    <svg width="640" height="480" id="dbManager"><title>Database Manager</title>
+      <script>
+        var w = drawItemWindow(document.getElementById("dbManager"),0,0,640,480,"#queryIcon","Database Manager",true);
+        var dbt = drawInputField(w,3,30,150,447,false,false,false);
+        var qf = drawInputField(w,154,30,483,247,false,false,false);
+        var outf = drawInputField(w,154,278,483,199,true,true,true);
+        drawRevealButton(dbt,5,5,70,20,"Big Database","open");
+        drawRevealButton(dbt,21,25,70,20,"Tables","closed");
+        drawRevealButton(dbt,21,45,70,20,"Views","closed");
+      </script>
+    </svg>
     <svg width="500" height="500"><title>Playground</title>
       <rect x="0.5" y="0.5" width="499" height="499" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
       <use x="20" y="20" xlink:href="#documentIcon" fill="white" width="16" height="16"/>
