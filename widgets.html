@@ -441,6 +441,17 @@
 
         return g;
       }
+      function drawMulticolumnList (parentElement,x,y,width,height,labels) {
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("class","inputfield");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
+        g.setAttribute("width",width);
+        g.setAttribute("height",height);
+        g.setAttribute("tabindex",0);
+        parentElement.insertAdjacentElement("beforeend",g);
+        return g;
+      }
       function drawSpinButton (parentElement,x,y,width,height) {
         var field = drawInputField(parentElement,x,y,width,height);
         var btndn = drawDecalButton(field,1,1,height-2,height-2,"#minusSign");
