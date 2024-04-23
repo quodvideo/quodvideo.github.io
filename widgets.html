@@ -2630,6 +2630,15 @@
         drawRevealButton(dbt,21,45,70,20,"Views","closed");
       </script>
     </svg>
+    <svg width="640" height="480" id="fileBrowser"><title>File Browser</title>
+      <script>
+        var w = drawItemWindow(document.getElementById("fileBrowser"),0,0,640,480,"#folderIcon","File Browser",true);
+        var c1 = drawInputField(w,3,30,150,447,false,false,false);
+        var c2 = drawInputField(w,154,30,150,447,false,false,false);
+        var c3 = drawInputField(w,308,30,150,447,true,true,true);
+      </script>
+    </svg>
+    
     <svg width="500" height="500"><title>Playground</title>
       <rect x="0.5" y="0.5" width="499" height="499" stroke="var(--outline-color)" fill="var(--base-fill-color)"/>
       <use x="20" y="20" xlink:href="#documentIcon" fill="white" width="16" height="16"/>
