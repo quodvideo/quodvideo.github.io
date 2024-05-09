@@ -1177,8 +1177,8 @@
           w.setAttribute("class","toplevel unfocused");
         }
         if (focused) {
-          drawDecalButton(w,width-74,6,20,20,"#iconifyDecal");
-          drawDecalButton(w,width-50,6,20,20,"#maximizeDecal");
+          drawDecalButton(w,width-74,6,20,20,"#maximizeDecal");
+          drawDecalButton(w,width-50,6,20,20,"#iconifyDecal");
           drawDecalButton(w,width-26,6,20,20,"#closeDecal");
         }
         
@@ -2550,8 +2550,8 @@
         r.setAttribute("fill","url(#gripper)");
         r.setAttribute("style","cursor: move;");
         w.insertAdjacentElement("beforeend",r);
-        drawDecalButton(w,640-74,6,20,20,"#iconifyDecal");
-        drawDecalButton(w,640-50,6,20,20,"#maximizeDecal");
+        drawDecalButton(w,640-74,6,20,20,"#maximizeDecal");
+        drawDecalButton(w,640-50,6,20,20,"#iconifyDecal");
         drawDecalButton(w,640-26,6,20,20,"#closeDecal");
         drawWindowTabs(w,0,3,640,477,["Item 1","Item 2","Item 3"],0);
         drawInputField(w,3,33,634,444,true,true,true);
@@ -2568,8 +2568,8 @@
         r.setAttribute("fill","url(#gripper)");
         r.setAttribute("style","cursor: move;");
         w.insertAdjacentElement("beforeend",r);
-        drawDecalButton(w,640-74,6,20,20,"#iconifyDecal");
-        drawDecalButton(w,640-50,6,20,20,"#maximizeDecal");
+        drawDecalButton(w,640-74,6,20,20,"#maximizeDecal");
+        drawDecalButton(w,640-50,6,20,20,"#iconifyDecal");
         drawDecalButton(w,640-26,6,20,20,"#closeDecal");
 
         drawWindowTabs(w,0,3,640,477,["Site 1","Site 2","Site 3"],0);
@@ -2830,6 +2830,7 @@
       <p>An item is an abstract concept. The shell represents items graphically in views, which allow items to be manipulated and changed. A few of the shell graphics are not views of items, but are overlays on the screen.</p>
       <section><h3>Views</h3>
         <p>Each of the various graphical representations of an item is a view. The item icon is the simplest view. The item property panel is another. Every item has these two views. Most items have more views. Some items may have surprising views. For example, an OpenDocument file has its default view in an office program, but it also has a folder view because its contents are a zipped archive of other files.</p>
+        <p>Do not be confused by the term "View". As used here, a view is an interface to an object and facilitates changing the object in various ways. In terms of the model-view-controller paradigm, this shell's view is both a view and a controller.</p>
         <p>On other systems, a view might be considered the main interface of an application.</p>
       </section>
       <section><h3>Overlays</h3>
