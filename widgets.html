@@ -322,6 +322,10 @@
         g.setAttribute("height",height);
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
+
+        labels.forEach(function(l,i,a) {
+          drawHeaderButton(g,0,0,0,0,l,"");
+        });
         return g;
       }
       function drawSpinButton (parentElement,x,y,width,height) {
@@ -2707,6 +2711,9 @@
       </section>
       <section><h3>Overlays</h3>
         <p>Overlays can be regarded as peripheral devices that extend onto the screen. The most obvious of these is the menu bar, which is usually present at the top of the screen. The menu bar also contains some system status indicators. Notifications will also appear in overlays.</p>
+      </section>
+      <section><h3>Services</h3>
+        <p>Services are common procedural elements that are available to all views. The dictionary service, for example, is available to provide spelling corrections, definitions, et al. <rum>Does this belong here?</rum></p>
       </section>
       <p>Every item has at least two views: its icon and its property panel.</p>
       <section><h3>Icons</h3>
