@@ -2716,15 +2716,8 @@
       <section><h3>Services</h3>
         <p>Services are common procedural elements that are available to all views. The dictionary service, for example, is available to provide spelling corrections, definitions, et al. <rum>Does this belong here?</rum></p>
       </section>
-      <p>Every item has at least two views: its icon and its property panel.</p>
-      <section><h3>Icons</h3>
-        <p>Every item has an icon view. It is, as the name implies, an icon. The icon view may have indicators of the item's status, such as hatch marks indicating another item view is open, or badges denoting some status.</p>
-        <p>Don't confuse an icon with a decal or a badge. An icon represents an item and can be moved around. A decal takes the place of or augments some text on a control, like a button. Decals are stuck to their controls. A badge indicates some status information about an item and is usually found stuck to the item's icon.</p>
-      </section>
-      <section><h3>Property Panels</h3>
-        <p>Every item has a property panel which allows viewing and editing some of the item's metadata. Panels are divided into pages. The "General" page applies to all items as it shows the item icon and name. Additional pages depend on the type of item being viewed.</p>
-      </section>
-      <p>When an item as additional views, one of them is designated the main view.</p>
+    </section>
+    <section><h2>Items</h2>
       <p>For every kind of item on the system, there is also a template.</p>
       <section><h3>Templates</h3>
         <p>Templates are a special kind of item. When you drag and drop from a template icon, you get a new item of a kind specified by the template. For example, there is a folder template. Dragging and dropping from this template creates a new folder. There's a template for almost every kind of item you can create. One exception is a template itself; there's no template template. Templates can be created from existing items by dragging their icons into the template folder.</p>
@@ -2741,6 +2734,19 @@
       <section><h3>Desktops</h3>
         <p>Desktops are special workspaces. When a desktop is opened, its folder view becomes the background of the shell. Signing on to the system is really just opening your primary desktop, and signing out is closing it. Because the desktop is a workspace, any items that were open when it was last closed will be opened again when it's reopened.</p>
       </section>
+    </section>
+    <section><h2>Views</h2>
+      <p>Every item has at least two views: its icon and its property panel.</p>
+      <section><h3>Icons</h3>
+        <p>Every item has an icon view. It is, as the name implies, an icon. The icon view may have indicators of the item's status, such as hatch marks indicating another item view is open, or badges denoting some status.</p>
+        <p>Don't confuse an icon with a decal or a badge. An icon represents an item and can be moved around. A decal takes the place of or augments some text on a control, like a button. Decals are stuck to their controls. A badge indicates some status information about an item and is usually found stuck to the item's icon.</p>
+      </section>
+      <section><h3>Property Panels</h3>
+        <p>Every item has a property panel which allows viewing and editing some of the item's metadata. Panels are divided into pages. The "General" page applies to all items as it shows the item icon and name. Additional pages depend on the type of item being viewed.</p>
+      </section>
+      <p>When an item as additional views, one of them is designated the main view.</p>
+    </section>
+
       <p>The icon view of the primary desktop is on the sign-on screen.</p>
       <p>The first thing you see on the screen after signing on, aside from the menu bar overlay, is the main view of the primary desktop. It's a folder that forms the background of the screen. The starting desktop contains a few items: a trash can, something something, and a templates folder.</p>
 
@@ -2782,7 +2788,6 @@
           </ul>
         </li>
       </ul>
-    </section>
     <section><h2>Permanence</h2>
       <p>Items have permanence, and so do their views. Icons on the desktop don't move around or disappear unless the user moves or removes them. Where a property panel first opens is arbitrary, but when it opens a subsequent time, it appears where it was when it was closed the previous time. All the views of an item reappear where they disappeared.</p>
       <p>Views appear from somewhere and disappear to somewhere. Icons, which have fixed places in their folders, are an exception to this. If the item's icon view is on the screen, the other views of an item appear from it and disappear to it. If the item's icon view is not on the screen, then the other views of the item appear from and disappear to the nearest containing folder's icon view. <rum>How does that work?</rum></p>
