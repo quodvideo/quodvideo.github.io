@@ -2142,6 +2142,37 @@
         });
       </script>
     </svg>
+    <svg id="decalfield" width="800" height="600">
+      <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
+      <script>
+        var f = document.getElementById("decalfield");
+        // var foo = document.getElementsByTagNameNS("http://www.w3.org/2000/svg","symbol");
+        var foo = document.getElementsByClassName("decal");
+        var decals = [];
+        var sizes = [48,36,24,16];
+        var poses = [[10,60,100,130],[160,210,250,280],[310,360,400,430],[460,510,550,580],[610,660,700,730]]
+
+        for (let it=0; it < foo.length;it++) {
+          decals[it] = "#"+foo.item(it).id;
+        }
+
+        decals.forEach((decal,i) => {
+          sizes.forEach((size,j) => {
+            var u = document.createElementNS("http://www.w3.org/2000/svg","use");
+            var x = poses[Math.floor(i/11)][j];
+            var y = 10+50*(i%11);
+            u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
+            u.setAttribute("fill","var(--input-field-color)");
+            u.setAttribute("x",x);
+            u.setAttribute("y",y);
+            u.setAttribute("width",size);
+            u.setAttribute("height",size);
+            f.insertAdjacentElement("beforeend",u);
+          });
+        });
+      </script>
+    </svg>
+        
     <svg id="testfielddark" class="darkmode" style="color-scheme: dark" width="800" height="600">
       <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
       <script>
