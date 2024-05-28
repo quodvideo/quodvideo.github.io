@@ -129,6 +129,16 @@
         u.setAttribute("height",height);
         g.insertAdjacentElement("beforeend",u);
       }
+      function drawDecalButton2 (parentElement,x,y,width,height,decal) {
+        var g = drawButton(parentElement,x,y,width,height);
+        u = document.createElementNS("http://www.w3.org/2000/svg","use");
+        u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
+        u.setAttribute("x",2);
+        u.setAttribute("y",2);
+        u.setAttribute("width",width-4);
+        u.setAttribute("height",height-4);
+        g.insertAdjacentElement("beforeend",u);
+      }
       function drawPushButton (parentElement,x,y,width,height,text,isDefault) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
@@ -2421,9 +2431,9 @@
 
         drawTabbedInputField(w,3,30,634,416,["Sheet 1","Sheet 2","Sheet 3"],0);
         drawInputField(w,4,448,98,28,false,false,false,"B2");
-        drawDecalButton(w,104,448,28,28,"#cutDecal");
-        drawDecalButton(w,134,448,28,28,"#copyDecal");
-        drawDecalButton(w,164,448,28,28,"#pasteDecal");
+        drawDecalButton2(w,104,448,28,28,"#cutDecal");
+        drawDecalButton2(w,134,448,28,28,"#copyDecal");
+        drawDecalButton2(w,164,448,28,28,"#pasteDecal");
         drawInputField(w,194,448,630-84-100-18,28,false,false,false);
 
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
