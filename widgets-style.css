@@ -67,7 +67,8 @@ rect.trough { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
 .focusring { fill: none; stroke: none; }
 :focus .focusring { fill: none; stroke: var(--focus-ring-color); }
 rect.defaultIndicator { fill: none; stroke: var(--outline-color); }
-text { font-family: Sans-serif; font-size: 12px; /* 13.3px; */ stroke: none; fill: black; }
+text { font-family: Sans-serif; font-size: 16px; stroke: none; fill: var(--outline-color); }
+svg.headerbutton text { font-size: 12px; }
 text.label { fill: var(--label-color); user-select: none; }
 text.centered { text-anchor: middle; dominant-baseline: central; }
 text.centered-x { text-anchor: middle; }
