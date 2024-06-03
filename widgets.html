@@ -2285,9 +2285,17 @@
 
         decals.forEach((decal,i) => {
           sizes.forEach((size,j) => {
+            var b = document.createElementNS("http://www.w3.org/2000/svg","rect");
             var u = document.createElementNS("http://www.w3.org/2000/svg","use");
             var x = poses[Math.floor(i/11)][j];
             var y = 10+50*(i%11);
+            b.setAttribute("fill","lightblue");
+            b.setAttribute("stroke","none");
+            b.setAttribute("x",x);
+            b.setAttribute("y",y);
+            b.setAttribute("width",size);
+            b.setAttribute("height",size);
+            f.insertAdjacentElement("beforeend",b);
             u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
             u.setAttribute("fill","var(--input-field-color)");
             u.setAttribute("x",x);
