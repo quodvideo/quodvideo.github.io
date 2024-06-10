@@ -13,16 +13,27 @@
         --grip-fill-color: #eeeeee;
         --grip-stroke-color: #aaaaaa;
         font-family: sans-serif;
-        font-size: 13.3px;
+        font-size: 16px;
+      }
+      dx-field {
+        position: relative;
+        display: flex;
+        border: 1px inset;
+        box-shadow: inset 0 0 0 1px black;
+        background-color: white;
+        padding: 2px;
       }
       dx-button {
+        position: relative;
         display: flex;
-        outline: 1px solid var(--outline-color);
-        border: 1px outset white;
+        border: 1px outset;
+        box-shadow: 0 0 0 1px black;
         background-color: var(--raised-fill-color);
         text-align: center;
         justify-content: center;
         align-items: center;
+        min-width: 62px;
+        min-height: 22px;
       }
       dx-window {
         display: flex;
@@ -40,43 +51,6 @@
         display: flex;
         flex-direction: row;
       }
-      .button {
-        cursor: default;
-        & rect:first-child {
-          fill: var(--raised-fill-color);
-          stroke: var(--outline-color);
-          + polyline {
-            fill: none;
-            stroke: var(--shadow-stroke-color);
-            + polyline {
-              fill: none;
-              stroke: var(--highlight-stroke-color);
-            }
-          }
-        }
-        &:active {
-          & rect:first-child {
-            fill: var(--recessed-fill-color);
-            stroke: var(--outline-color);
-            + polyline {
-              stroke: var(--highlight-stroke-color);              
-              + polyline {
-                stroke: var(--shadow-stroke-color);
-              }
-            }
-          }
-        }
-      }
-      text {
-        font-family: Sans-serif;
-        font-size: 12px; /* 13.3px; */
-        stroke: none;
-        fill: black;
-      }
-      text.centered {
-        text-anchor: middle;
-        dominant-baseline: central;
-      }
     </style>
     <script>
     </script>
@@ -84,20 +58,12 @@
   <body>
     <dx-window>
       <dx-vbox style="width:100%">
-        <div>Upper Part</div>
+        <dx-field style="margin: 17px;">Upper Part</dx-field>
         <dx-hbox style="width: 100%; justify-content: flex-end;">
-          <dx-button style="min-width: 62px; min-height: 22px; margin-right: 18px; margin-bottom: 18px;">Cancel</dx-button>
-          <svg width="64" height="22" class="button">
-            <rect x="0.5" y="0.5" width="63" height="21"/>
-            <polyline points="1,20.5 62.5,20.5 62.5,1"/>
-            <polyline points="1.5,21 1.5,1.5 63,1.5"/>
-            <text class="centered" x="32" y="11">Cancel</text>
-          </svg>
-          <dx-button style="min-width: 62px; min-height: 22px; margin-right: 18px; margin-bottom: 18px; outline: 2px solid">OK</dx-button>
+          <dx-button style="margin-right: 18px; margin-bottom: 18px;">Cancel</dx-button>
+          <dx-button style="margin-right: 18px; margin-bottom: 18px;">OK</dx-button>
         </dx-hbox>
       </dx-vbox>
     </dx-window>
-    <p></p>
-    <dx-button style="min-width: 62px; min-height: 22px;">OK</dx-button>
   </body>
 </html>
