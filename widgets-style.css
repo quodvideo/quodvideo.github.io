@@ -83,6 +83,9 @@
   --outline-color:          #bababa;
   --focus-ring-color:       #e6e6e6;
   --label-color:            #e6e6e6;
+  --text-color:             #e6e6e6;
+  --selection-color:        #e6e6e6;
+  --selected-text-color:    black;
 }
 .darkmode.insensitive, .darkmode .insensitive {
   --input-field-color:      #4A4A4A; /* regular --raised-fill-color */
@@ -102,6 +105,9 @@
   --outline-color:          #D5D5D5;
   --focus-ring-color:       #EEEEEE;
   --label-color:            #EEEEEE;
+  --text-color:             #EEEEEE;
+  --selection-color:        #EEEEEE;
+  --selected-text-color:    black;
 }
 .dark-accessible-palette.insensitive, .dark-accessible-palette .insensitive {
   --input-field-color:      #8B8B8B; /* regular --raised-fill-color */
