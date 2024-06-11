@@ -1348,13 +1348,18 @@
     <p><small>The scroll bar buttons are only mouse controls, so they can be small and adjacent. The spinner buttons may be touch controls, so they are separated.</small></p>
     <table>
       <tr><th colspan="5">Colors</th></tr>
-      <tr><th>Name</th><th>Regular</th><th>Insensitive</th><th>New Reg.</th><th>New Ins.</th><th>Dark</th><th>Dark Ins.</th></tr>
+      <tr><th>Name</th><th>Regular</th><th>Insensitive</th><th>New Reg.</th><th>New Ins.</th><th>Dark</th><th>Dark Ins.</th><th>New Dark</th><th>New Dark Ins.</th></tr>
       <tr>
         <td>--input-field-color</td>
         <td style="background-color: var(--input-field-color);">white</td>
         <td class="insensitive" style="background-color: var(--input-field-color);">#efefef</td>
+        <td class="accessible-palette" style="background-color: var(--input-field-color);">white</td>
+        <td class="accessible-palette insensitive" style="background-color: var(--input-field-color);">#efefef</td>
         <td class="darkmode" style="background-color: var(--input-field-color); color: white;">#595959</td>
         <td class="darkmode insensitive" style="background-color: var(--input-field-color); color: white;">#4A4A4A</td>
+        <td class="dark-accessible-palette" style="background-color: var(--input-field-color); color: white;">#bdbdbd</td>
+        <td class="dark-accessible-palette insensitive" style="background-color: var(--input-field-color); color: white;">#8b8b8b</td>
+
       </tr>
       <tr>
         <td>--highlight-stroke-color</td>
@@ -1422,14 +1427,14 @@
       <tr>
         <td>--text-color</td>
         <td style="background-color: var(--text-color); color: white;">black</td>
-        <td class="insensitive" style="background-color: var(--text-color); color: white;">grey</td>
+        <td class="insensitive" style="background-color: var(--text-color); color: white;">black</td>
         <td class="darkmode" style="background-color: var(--text-color);">???</td>
         <td class="darkmode insensitive" style="background-color: var(--text-color); color: white;">???</td>
       </tr>
       <tr>
         <td>--selection-color</td>
         <td style="background-color: var(--selection-color); color: white;">black</td>
-        <td class="insensitive" style="background-color: var(--selection-color); color: white;">grey</td>
+        <td class="insensitive" style="background-color: var(--selection-color); color: white;">black</td>
         <td class="darkmode" style="background-color: var(--selection-color);">???</td>
         <td class="darkmode insensitive" style="background-color: var(--selection-color); color: white;">???</td>
       </tr>
