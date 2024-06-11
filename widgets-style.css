@@ -4,12 +4,43 @@
   --raised-fill-color:      #efefef;
   --base-fill-color:        #dddddd;
   --recessed-fill-color:    #bbbbbb;
-  --shadow-stroke-color:    grey;
+  --active-fill-color:      #bbbbbb;
+  --shadow-stroke-color:    #808080; /* grey */
   --outline-color:          black;
   --focus-ring-color:       black;
   --label-color:            black;
-  /* Consider adding colors for when a button is actively being pushed and not just in the ON state. */
   font-family: sans-serif;
+}
+.reduced-palette {
+  --input-field-color:      white;
+  --highlight-stroke-color: white;
+  --raised-fill-color:      #EEEEEE; /* stipple white and base */
+  --base-fill-color:        #D5D5D5;
+  --recessed-fill-color:    #BDBDBD; /* stipple base and shadow */
+  --active-fill-color:      #BDBDBD; /* stipple base and shadow */
+  --shadow-stroke-color:    #8B8B8B;
+  --outline-color:          black;
+  --focus-ring-color:       black;
+  --label-color:            black;
+}
+.accessible-palette {
+    --input-field-color:      white;
+    --highlight-stroke-color: #FAFAFA;
+    --raised-fill-color:      #EEEEEE;
+    --base-fill-color:        #D5D5D5;
+    --recessed-fill-color:    #BDBDBD;
+    --active-fill-color:      #A5A5A5;
+    --shadow-stroke-color:    #8B8B8B;
+  /*
+    #717171
+    #5F5F5F
+    #4C4C4C
+    #383838
+  */
+    --outline-color:          black;
+    --focus-ring-color:       black;
+    --label-color:            black;
+
 }
 .insensitive {
   --input-field-color:      #efefef;
@@ -24,6 +55,7 @@
   --raised-fill-color:      #4A4A4A;
   --base-fill-color:        #454545;
   --recessed-fill-color:    #333333;
+  --active-fill-color:      #333333;
   --shadow-stroke-color:    #121212;
   --outline-color:          #bababa;
   --focus-ring-color:       #e6e6e6;
@@ -43,6 +75,7 @@
     --raised-fill-color:      #4A4A4A;
     --base-fill-color:        #454545;
     --recessed-fill-color:    #333333;
+    --active-fill-color:      #333333;
     --shadow-stroke-color:    #121212;
     --outline-color:          #bababa;
     --focus-ring-color:       #e6e6e6;
