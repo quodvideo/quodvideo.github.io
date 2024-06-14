@@ -94,6 +94,7 @@
   --outline-color:          #999999;
   --label-color:            #999999;
 }
+
 .dark-accessible-palette {
   --input-field-color:      #BDBDBD;
   --highlight-stroke-color: #A5A5A5;
@@ -108,6 +109,36 @@
   --text-color:             #EEEEEE;
   --selection-color:        #EEEEEE;
   --selected-text-color:    black;
+}
+.darkmode-alt {
+  --focus-ring-color:       hsl(0, 0%, 90%);
+  --label-color:            hsl(0, 0%, 90%);
+  --text-color:             hsl(0, 0%, 90%);
+  --selection-color:        hsl(0, 0%, 90%);
+  --outline-color:          hsl(0, 0%, 73%); /* 17 */
+  --input-field-color:      hsl(0, 0%, 35%); /* 38 */
+  --highlight-stroke-color: hsl(0, 0%, 35%); /* 0 */
+  --raised-fill-color:      hsl(0, 0%, 29%); /* 6 */
+  --base-fill-color:        hsl(0, 0%, 27%); /* 2 */
+  --recessed-fill-color:    hsl(0, 0%, 20%); /* 7 */
+  --active-fill-color:      hsl(0, 0%, 20%); /* 0 */
+  --shadow-stroke-color:    hsl(0, 0%, 7%); /* 13 */
+  --selected-text-color:    hsl(0, 0%, 0%); /* 7 */
+}
+.dark-accessible-palette-ALT {
+  --focus-ring-color:       hsl(0, 0%, 93%);
+  --label-color:            hsl(0, 0%, 93%);
+  --text-color:             hsl(0, 0%, 93%);
+  --selection-color:        hsl(0, 0%, 93%);
+  --outline-color:          hsl(0, 0%, 84%); /* 9 */
+  --input-field-color:      hsl(0, 0%, 74%); /* 10 */
+  --highlight-stroke-color: hsl(0, 0%, 65%); /* 9 */
+  --raised-fill-color:      hsl(0, 0%, 55%); /* 10 */
+  --base-fill-color:        hsl(0, 0%, 44%); /* 11 */
+  --recessed-fill-color:    hsl(0, 0%, 37%); /* 7 */
+  --active-fill-color:      hsl(0, 0%, 30%); /* 7 */
+  --shadow-stroke-color:    hsl(0, 0%, 22%); /* 8 */
+  --selected-text-color:    hsl(0, 0%, 0%);  /* 22 */
 }
 .dark-accessible-palette.insensitive, .dark-accessible-palette .insensitive {
   --input-field-color:      #8B8B8B; /* regular --raised-fill-color */
