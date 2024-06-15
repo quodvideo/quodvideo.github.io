@@ -150,6 +150,49 @@
       box-shadow: 0 0 0 1px var(--outline-color);
       background-color: var(--raised-fill-color);
     }
+    select {
+      border: 1px outset;
+      box-shadow: 0 0 0 1px var(--outline-color);
+    }
+    select[multiple] {
+      border: 1px inset;
+      box-shadow: inset 0 0 0 1px var(--outline-color);
+      border-radius: 0;
+    }
+    textarea {
+      border: 1px inset;
+      box-shadow: inset 0 0 0 1px var(--outline-color);
+      border-radius: 0;
+    }
+    ::-webkit-scrollbar {
+      width: 16px;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: var(--recessed-fill-color);
+      border: 1px inset;
+      box-shadow: 0 0 0 1px var(--outline-color);
+    }
+    ::-webkit-scrollbar-track:disabled {
+      border: none;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--raised-fill-color);
+      border: 1px outset;
+      box-shadow: 0 0 0 1px var(--outline-color);
+    }
+    ::-webkit-scrollbar-button {
+      width: 16px;
+      height: 16px;
+      background-color: var(--raised-fill-color);
+      border: 1px outset;
+      box-shadow: 0 0 0 1px var(--outline-color);
+    }
+    ::-webkit-scrollbar-button:active {
+      background-color: var(--active-fill-color);
+    }
+    ::-webkit-scrollbar-button:disabled {
+      border: none;
+    }
   </style>
 </head>
 <body>
@@ -178,5 +221,18 @@
   <input type="time"><hr/>
   <input type="url"><hr/>
   <input type="week"><hr/>
+  <select name="numbers">
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+  <hr/>
+  <select name="numbers" multiple>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+  <hr/>
+  <textarea></textarea>
 </body>
 </html>
