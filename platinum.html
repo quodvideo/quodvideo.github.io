@@ -11,43 +11,35 @@
     input[type="button"],
     input[type="color"],
     input[type="reset"],
-    input[type="submit"] {
+    input[type="submit"],
+    input[type="file"]::file-selector-button,
+    select:not([multiple]) {
       border: 1px outset;
-      box-shadow: 0 0 0 1px var(--outline-color);
+      outline: 1px solid var(--outline-color);
+      margin: 3px;
       background-color: var(--raised-fill-color);
+    }
+    input[type="file"]:focus {
+      outline: 1px solid var(--outline-color);
     }
     button:active,
     input[type="button"]:active,
     input[type="color"]:active,
     input[type="reset"]:active,
-    input[type="submit"]:active {
+    input[type="submit"]:active,
+    input[type="file"]::file-selector-button:active,
+    select:not([multiple]):active {
       border: 1px inset;
-      box-shadow: 0 0 0 1px var(--outline-color);
       background-color: var(--active-fill-color);
     }
     button:focus,
     input[type="button"]:focus,
     input[type="color"]:focus,
     input[type="reset"]:focus,
-    input[type="submit"]:focus {
-      outline: 1px solid black;
-      outline-offset: 2px;
-    }
-    input[type="file"]::file-selector-button {
-      border: 1px outset;
-      box-shadow: 0 0 0 1px var(--outline-color);
-      background-color: var(--raised-fill-color);
-      margin: 3px;
-    }
-    input[type="file"]::file-selector-button:active {
-      border: 1px inset;
-      box-shadow: 0 0 0 1px var(--outline-color);
-      background-color: var(--active-fill-color);
-      margin: 3px;
-    }
-    input[type="file"]:focus::file-selector-button {
-      outline: 1px solid black;
-      outline-offset: 2px;
+    input[type="submit"]:focus,
+    input[type="file"]::file-selector-button:focus,
+    select:not([multiple]):focus {
+      outline: 3px double var(--outline-color);
     }
     input[type="checkbox"] {
       appearance: none;
@@ -55,11 +47,11 @@
       box-shadow: inset 0 0 0 1px;
       width: 1em;
       height: 1em;
-      background-color: white;
+      background-color: var(--input-field-color);
       display: inline-block;
     }
     input[type="checkbox"]:focus {
-      outline: 1px solid black;
+      outline: 1px solid var(--outline-color);
       /*outline-offset: 3px;*/
     }
     input[type="checkbox"]::before {
@@ -69,7 +61,7 @@
       clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
       transform: scale(0);
       transform-origin: center;
-      box-shadow: inset 1em 1em black;
+      box-shadow: inset 1em 1em var(--outline-color);
       display: block;
     }
     input[type="checkbox"]:checked::before {
@@ -82,7 +74,7 @@
       box-shadow: inset 0 0 0 1px;
       width: 1em;
       height: 1em;
-      background-color: white;
+      background-color: var(--input-field-color);
       display: grid;
       place-content: center;
     }
@@ -93,7 +85,7 @@
       clip-path: circle(0.5em) ;
       transform: scale(0);
       transform-origin: center;
-      box-shadow: inset 1em 1em black;
+      box-shadow: inset 1em 1em var(--outline-color);
     }
     input[type="radio"]:checked::before {
       transform: scale(0.4);
@@ -110,9 +102,12 @@
     input[type="tel"],
     input[type="time"],
     input[type="url"],
-    input[type="week"] {
-      border: 1px inset;
-      box-shadow: inset 0 0 0 1px var(--outline-color);
+    input[type="week"],
+    select[multiple],
+    textarea {
+      border: 1px solid var(--outline-color);
+      border-radius: 0;
+      outline: 1px inset var(--highlight-stroke-color);
       padding: 2px;
     }
     input[type="text"]:focus,
@@ -126,9 +121,10 @@
     input[type="tel"]:focus,
     input[type="time"]:focus,
     input[type="url"]:focus,
-    input[type="week"]:focus {
-      border: 1px solid black;
-      box-shadow: inset 0 0 0 1px var(--outline-color);
+    input[type="week"]:focus,
+    select[multiple]:focus,
+    textarea:focus {
+      outline: 1px solid var(--outline-color);
     }
 
     input[type="range"] {
@@ -139,7 +135,7 @@
       height: 2px;
     }
     input[type="range"]:focus {
-      outline: 1px solid black;
+      outline: 1px solid var(--outline-color);
       outline-offset: 8px;
     }
     input[type="range"]::-webkit-slider-thumb {
@@ -150,27 +146,13 @@
       box-shadow: 0 0 0 1px var(--outline-color);
       background-color: var(--raised-fill-color);
     }
-    select {
-      border: 1px outset;
-      box-shadow: 0 0 0 1px var(--outline-color);
-    }
-    select[multiple] {
-      border: 1px inset;
-      box-shadow: inset 0 0 0 1px var(--outline-color);
-      border-radius: 0;
-    }
-    textarea {
-      border: 1px inset;
-      box-shadow: inset 0 0 0 1px var(--outline-color);
-      border-radius: 0;
-    }
+
     ::-webkit-scrollbar {
       width: 16px;
     }
     ::-webkit-scrollbar-track {
       background-color: var(--recessed-fill-color);
       border: 1px inset;
-      box-shadow: 0 0 0 1px var(--outline-color);
     }
     ::-webkit-scrollbar-track:disabled {
       border: none;
@@ -178,19 +160,15 @@
     ::-webkit-scrollbar-thumb {
       background-color: var(--raised-fill-color);
       border: 1px outset;
-      box-shadow: 0 0 0 1px var(--outline-color);
     }
     ::-webkit-scrollbar-button {
       width: 16px;
       height: 16px;
       background-color: var(--raised-fill-color);
       border: 1px outset;
-      margin: 1px;
-      box-shadow: 0 0 0 1px var(--outline-color);
     }
     ::-webkit-scrollbar-corner {
       background-color: var(--base-fill-color);
-      
     }
     ::-webkit-scrollbar-button:active {
       background-color: var(--active-fill-color);
@@ -238,6 +216,23 @@
     <option value="3">Three</option>
   </select>
   <hr/>
-  <textarea></textarea>
+  <textarea style="height: 200px">    a
+    b
+    c
+    d
+    e
+    f
+    g
+    h
+    i
+    j
+    k
+    l
+    m
+    n
+    o
+    p
+
+  </textarea>
 </body>
 </html>
