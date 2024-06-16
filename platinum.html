@@ -41,6 +41,17 @@
     select:not([multiple]):focus {
       outline: 3px double var(--outline-color);
     }
+
+    button:disabled,
+    input[type="button"]:disabled,
+    input[type="color"]:disabled,
+    input[type="reset"]:disabled,
+    input[type="submit"]:disabled,
+    input[type="file"]::file-selector-button:disabled,
+    select:not([multiple]):disabled {
+      border: none;
+    }
+
     input[type="checkbox"] {
       appearance: none;
       border: 1px inset;
