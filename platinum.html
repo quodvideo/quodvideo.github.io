@@ -56,52 +56,60 @@
 
     input[type="checkbox"] {
       appearance: none;
-      border: 1px inset;
-      box-shadow: inset 0 0 0 1px;
+      border: 1px solid var(--outline-color);
+      outline: 1px inset var(--highlight-stroke-color);
       width: 1em;
       height: 1em;
       background-color: var(--input-field-color);
-      display: inline-block;
+      margin: 0 3px 0 0;
     }
     input[type="checkbox"]:focus {
       outline: 1px solid var(--outline-color);
-      /*outline-offset: 3px;*/
     }
+
     input[type="checkbox"]::before {
       content: "";
-      width: 1em;
-      height: 1em;
+      width: calc(1em - 2px);
+      height: calc(1em - 2px);
       clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
       transform: scale(0);
-      transform-origin: center;
-      box-shadow: inset 1em 1em var(--outline-color);
+      background-color: var(--outline-color);
       display: block;
     }
     input[type="checkbox"]:checked::before {
-      transform: scale(.7);
+      transform: scale(1);
     }
+    /* background-image: url('data:image/svg+xml;utf8,
+      <svg xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           width="20"
+           height="20"
+           viewBox="0 0 32 32"
+           xml:space="preserve">
+        <path style="fill: %23274c77"
+              d="M11.941,28.877l-11.941-11.942l5.695-5.696l6.246,6.246l14.364-14.364L32,8.818"/>
+      </svg>'); */
     input[type="radio"] {
       appearance: none;
-      border: 1px inset;
+      border: 1px solid black;
       border-radius: 0.5em;
-      box-shadow: inset 0 0 0 1px;
       width: 1em;
       height: 1em;
       background-color: var(--input-field-color);
-      display: grid;
       place-content: center;
+      outline: 1px inset var(--highlight-stroke-color);
     }
     input[type="radio"]::before {
       content: "";
-      width: 1em;
-      height: 1em;
-      clip-path: circle(0.5em) ;
+      width: calc(1em - 2px);
+      height: calc(1em - 2px);
+      clip-path: circle(0.3em) ;
       transform: scale(0);
-      transform-origin: center;
-      box-shadow: inset 1em 1em var(--outline-color);
+      background-color: var(--outline-color);
+      display: block;
     }
     input[type="radio"]:checked::before {
-      transform: scale(0.4);
+      transform: scale(1);
     }
 
     input[type="text"],
@@ -198,7 +206,9 @@
   <button>Click Me!</button>
   <hr/>
   <input type="button" value="Click Me!"><hr/>
-  <label><input type="checkbox"/>check it</label><hr/>
+  <label><input type="checkbox"/>check 1</label>
+  <label><input type="checkbox"/>check 2</label>
+  <label><input type="checkbox"/>check 3</label><hr/>
   <input type="color"><hr/>
   <input type="date"><hr/>
   <input type="datetime-local"><hr/>
