@@ -89,7 +89,12 @@
            xml:space="preserve">
         <path style="fill: %23274c77"
               d="M11.941,28.877l-11.941-11.942l5.695-5.696l6.246,6.246l14.364-14.364L32,8.818"/>
-      </svg>'); */
+      </svg>');
+
+      
+      */
+
+
     input[type="radio"] {
       appearance: none;
       border: 1px solid black;
@@ -203,10 +208,46 @@
       border: 1px solid var(--outline-color);
       box-shadow: inset 1px 1px var(--highlight-stroke-color), inset -1px -1px var(--shadow-stroke-color);
     }
-    ::-webkit-scrollbar-button:vertical:increment { border-bottom: none; border-right: none; }
-    ::-webkit-scrollbar-button:vertical:decrement { border-top: none; border-right: none;  }
-    ::-webkit-scrollbar-button:horizontal:increment { border-right: none; border-bottom: none; }
-    ::-webkit-scrollbar-button:horizontal:decrement { border-left: none; border-bottom: none; }
+    ::-webkit-scrollbar-button:vertical:increment {
+      border-bottom: none; border-right: none;
+      background-image: url('data:image/svg+xml;utf8,
+        <svg width="16" height="16" viewBox="-4 -6.5 16 16">
+          <path d="M0,0 H8 L4,4Z" stroke="none" fill="red"/>
+        </svg>');
+    }
+    ::-webkit-scrollbar-button:vertical:decrement {
+      border-top: none; border-right: none;
+      background-image: url('data:image/svg+xml;utf8,
+        <svg width="16" height="16" viewBox="-4 -5.5 16 16">
+          <path d="M0,4 H8 L4,0Z" stroke="none" fill="red"/>
+        </svg>');
+    }
+    ::-webkit-scrollbar-button:horizontal:increment {
+      border-right: none; border-bottom: none;
+      background-image: url('data:image/svg+xml;utf8,
+        <svg width="16" height="16" viewBox="-6.5 -4 16 16">
+          <path d="M0,0 V8 L4,4Z" stroke="none" fill="red"/>
+        </svg>');
+    }
+    ::-webkit-scrollbar-button:horizontal:decrement {
+      border-left: none; border-bottom: none;
+      background-image: url('data:image/svg+xml;utf8,
+        <svg width="16" height="16" viewBox="-5.5 -4 16 16">
+          <path d="M4,0 V8 L0,4Z" stroke="none" fill="red"/>
+        </svg>');
+    }
+
+
+
+        
+        
+
+
+
+
+
+
+
 
     ::-webkit-scrollbar-corner {
       background-color: var(--base-fill-color);
