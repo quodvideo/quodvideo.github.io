@@ -203,10 +203,10 @@
       border: 1px solid var(--outline-color);
       box-shadow: inset 1px 1px var(--highlight-stroke-color), inset -1px -1px var(--shadow-stroke-color);
     }
-    ::-webkit-scrollbar-button:vertical:increment { background-color: red; }
-    ::-webkit-scrollbar-button:vertical:decrement { background-color: blue; }
-    ::-webkit-scrollbar-button:horizontal:increment { background-color: yellow; }
-    ::-webkit-scrollbar-button:horizontal:decrement { background-color: green; }
+    ::-webkit-scrollbar-button:vertical:increment { border-bottom: none; border-right: none; }
+    ::-webkit-scrollbar-button:vertical:decrement { border-top: none; border-right: none;  }
+    ::-webkit-scrollbar-button:horizontal:increment { border-right: none; border-bottom: none; }
+    ::-webkit-scrollbar-button:horizontal:decrement { border-left: none; border-bottom: none; }
 
     ::-webkit-scrollbar-corner {
       background-color: var(--base-fill-color);
