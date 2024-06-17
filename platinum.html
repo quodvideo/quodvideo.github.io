@@ -206,6 +206,15 @@
       border-left: 1px solid var(--highlight-stroke-color);
       border-bottom: none;
       border-right: 1px solid var(--shadow-stroke-color);
+      margin: 0;
+      background-color: var(--raised-fill-color);
+    }
+    label:has(input[type="radio"].tabs:checked) {
+      background-color: var(--base-fill-color);
+    }
+    input[type="radio"].tabs {
+      appearance: none;
+      background-color: var(--raised-fill-color);
     }
   </style>
 </head>
@@ -266,7 +275,7 @@
     o
     p
 
-  </textarea>
+  </textarea><hr/>
   <label><input class="tabs" type="radio" name="notebooktabs1" checked>Tab 1</label>
   <label><input class="tabs" type="radio" name="notebooktabs1">Tab 2</label>
   <label><input class="tabs" type="radio" name="notebooktabs1">Tab 3</label><hr/>
