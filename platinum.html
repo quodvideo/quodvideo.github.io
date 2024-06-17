@@ -204,7 +204,7 @@
     label:has(input[type="radio"].tabs) {
       border-top: 1px solid var(--highlight-stroke-color);
       border-left: 1px solid var(--highlight-stroke-color);
-      border-bottom: none;
+      border-bottom: 1px solid var(--outline-color);
       border-right: 1px solid var(--shadow-stroke-color);
       margin: 0;
       background-color: var(--raised-fill-color);
@@ -212,15 +212,20 @@
     label:has(input[type="radio"].tabs:checked) {
       padding-top: 1px;
       background-color: var(--base-fill-color);
+      border-bottom: none;
     }
     input[type="radio"].tabs {
       display: none;
     }
-
     input[type="radio"].tabs::before {
       display: none;
     }
+    div.tabgroup {
+      
+    }
+    div.stack {
 
+    }
   </style>
 </head>
 <body>
@@ -281,9 +286,13 @@
     p
 
   </textarea><hr/>
-  <label><input class="tabs" type="radio" name="notebooktabs1" checked>Tab 1</label>
-  <label><input class="tabs" type="radio" name="notebooktabs1">Tab 2</label>
-  <label><input class="tabs" type="radio" name="notebooktabs1">Tab 3</label><hr/>
+  <div class="tabgroup">
+    <label><input class="tabs" type="radio" name="notebooktabs1" checked>Tab 1</label>
+    <label><input class="tabs" type="radio" name="notebooktabs1">Tab 2</label>
+    <label><input class="tabs" type="radio" name="notebooktabs1">Tab 3</label>
+    <div class="stack"></div>
+  </div>
+  <hr/>
 
 </body>
 </html>
