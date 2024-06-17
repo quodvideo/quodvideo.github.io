@@ -201,6 +201,12 @@
     ::-webkit-scrollbar-button:disabled {
       border: none;
     }
+    label:has(input[type="radio"].tabs) {
+      border-top: 1px solid var(--highlight-stroke-color);
+      border-left: 1px solid var(--highlight-stroke-color);
+      border-bottom: none;
+      border-right: 1px solid var(--shadow-stroke-color);
+    }
   </style>
 </head>
 <body>
@@ -261,5 +267,9 @@
     p
 
   </textarea>
+  <label><input class="tabs" type="radio" name="notebooktabs1" checked>Tab 1</label>
+  <label><input class="tabs" type="radio" name="notebooktabs1">Tab 2</label>
+  <label><input class="tabs" type="radio" name="notebooktabs1">Tab 3</label><hr/>
+
 </body>
 </html>
