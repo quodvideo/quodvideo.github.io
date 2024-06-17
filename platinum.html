@@ -181,8 +181,8 @@
       border: 1px solid var(--outline-color);
       box-shadow: inset 1px 1px var(--shadow-stroke-color), inset -1px -1px var(--highlight-stroke-color);
     }
-    ::-webkit-scrollbar-track:vertical { border-right: none;}
-    ::-webkit-scrollbar-track:horizontal { border-bottom: none;}
+    ::-webkit-scrollbar-track:vertical { border-top: none; border-right: none;}
+    ::-webkit-scrollbar-track:horizontal { border-left: none; border-bottom: none;}
 
     ::-webkit-scrollbar-track:disabled {
       border: none;
@@ -203,15 +203,15 @@
       border: 1px solid var(--outline-color);
       box-shadow: inset 1px 1px var(--highlight-stroke-color), inset -1px -1px var(--shadow-stroke-color);
     }
-    ::-webkit-scrollbar-button:vertical:increment { border-bottom: none; border-right: none; }
+    ::-webkit-scrollbar-button:vertical:increment { border-right: none; }
     ::-webkit-scrollbar-button:vertical:decrement { border-top: none; border-right: none;  }
-    ::-webkit-scrollbar-button:horizontal:increment { border-right: none; border-bottom: none; }
+    ::-webkit-scrollbar-button:horizontal:increment { border-bottom: none; }
     ::-webkit-scrollbar-button:horizontal:decrement { border-left: none; border-bottom: none; }
 
     ::-webkit-scrollbar-corner {
       background-color: var(--base-fill-color);
-      border-top: 1px solid var(--outline-color);
-      border-left: 1px solid var(--outline-color);
+      /*border-top: 1px solid var(--outline-color);*/
+      /*border-left: 1px solid var(--outline-color);*/
     }
     ::-webkit-scrollbar-button:active {
       background-color: var(--active-fill-color);
