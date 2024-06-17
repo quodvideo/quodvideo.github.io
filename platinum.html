@@ -210,12 +210,17 @@
       background-color: var(--raised-fill-color);
     }
     label:has(input[type="radio"].tabs:checked) {
+      padding-top: 1px;
       background-color: var(--base-fill-color);
     }
     input[type="radio"].tabs {
-      appearance: none;
-      background-color: var(--raised-fill-color);
+      display: none;
     }
+
+    input[type="radio"].tabs::before {
+      display: none;
+    }
+
   </style>
 </head>
 <body>
