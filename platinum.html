@@ -175,22 +175,26 @@
       width: 16px;
       height: 16px;
     }
+
     ::-webkit-scrollbar-track {
       background-color: var(--recessed-fill-color);
-      border: 1px inset;
+      border: 1px solid var(--outline-color);
+      box-shadow: inset 1px 1px var(--shadow-stroke-color), inset -1px -1px var(--highlight-stroke-color);
     }
     ::-webkit-scrollbar-track:disabled {
       border: none;
     }
     ::-webkit-scrollbar-thumb {
       background-color: var(--raised-fill-color);
-      border: 1px outset;
+      border: 1px solid var(--outline-color);
+      box-shadow: inset 1px 1px var(--highlight-stroke-color), inset -1px -1px var(--shadow-stroke-color);
     }
     ::-webkit-scrollbar-button {
       width: 16px;
       height: 16px;
       background-color: var(--raised-fill-color);
-      border: 1px outset;
+      border: 1px solid var(--outline-color);
+      box-shadow: inset 1px 1px var(--highlight-stroke-color), inset -1px -1px var(--shadow-stroke-color);
     }
     ::-webkit-scrollbar-corner {
       background-color: var(--base-fill-color);
@@ -232,6 +236,8 @@
   </style>
 </head>
 <body>
+  <p>This page shows a Platinum-like theme for HTML form elements. Except for the experimental section at the bottom, there is no scripting. There are no images either.</p>
+  <hr/>
   <p>A &lt;button&gt;</p>
   <button>Click Me!</button>
   <hr/>
@@ -252,8 +258,10 @@
   <hr/>
   <input type="file">
   <hr/>
+  <p>This is a hidden input control.</p>
   <input type="hidden">
   <hr/>
+  <p>This image type input is not styled.</p>
   <input type="image">
   <hr/>
   <input type="month">
