@@ -179,9 +179,11 @@
     ::-webkit-scrollbar-track {
       background-color: var(--recessed-fill-color);
       border: 1px solid var(--outline-color);
-      border-right: none;
       box-shadow: inset 1px 1px var(--shadow-stroke-color), inset -1px -1px var(--highlight-stroke-color);
     }
+    ::-webkit-scrollbar-track:vertical { border-right: none;}
+    ::-webkit-scrollbar-track:horizontal { border-bottom: none;}
+
     ::-webkit-scrollbar-track:disabled {
       border: none;
       box-shadow: none;
@@ -189,9 +191,11 @@
     ::-webkit-scrollbar-thumb {
       background-color: var(--raised-fill-color);
       border: 1px solid var(--outline-color);
-      border-right: none;
       box-shadow: inset 1px 1px var(--highlight-stroke-color), inset -1px -1px var(--shadow-stroke-color);
     }
+    ::-webkit-scrollbar-thumb:vertical { border-right: none; }
+    ::-webkit-scrollbar-thumb:horizontal { border-bottom: none; }
+
     ::-webkit-scrollbar-button {
       width: 16px;
       height: 16px;
