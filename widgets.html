@@ -222,7 +222,7 @@
 
         return g;
       }
-      function drawHScrollBar (parentElement,x,y,width,height) {
+      function drawHScrollBar (parentElement,x,y,width,height,sliderPosition=0.5) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -232,11 +232,12 @@
         drawTroughRect(g,0,0,width-height-height+2,height);
         drawStepper(g,width-height-height+1,0,height,height,"left");
         drawStepper(g,width-height,0,height,height,"right");
-        drawSlider(g,10,0,32,height,"horizontal");
+
+        drawSlider(g,sliderPosition*(width-height-height+2-32),0,32,height,"horizontal");
 
         return g;
       }
-      function drawVScrollBar (parentElement,x,y,width,height) {
+      function drawVScrollBar (parentElement,x,y,width,height,sliderPosition=0.5) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -246,7 +247,7 @@
         drawTroughRect(g,0,0,width,height-width-width+2);
         drawStepper(g,0,height-width-width+1,width,width,"up");
         drawStepper(g,0,height-width,width,width,"down");
-        drawSlider(g,0,10,width,32,"vertical");
+        drawSlider(g,0,sliderPosition*(height-width-width+2-32),width,32,"vertical");
 
         return g;
       }
@@ -1329,7 +1330,160 @@
           ts[i].insertAdjacentElement("afterend", nr);
         }
       }
-    </script>
+      function drawTestField(id) {
+        tf = document.getElementById(id);
+        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        r.setAttribute("width", 800);
+        r.setAttribute("height", 600);
+        r.setAttribute("fill","var(--base-fill-color)");
+        r.setAttribute("stroke","none");
+        tf.insertAdjacentElement("beforeend", r);
+
+        drawPushButton(tf,5,10,0,0,"Cancel");
+        drawPushButton(tf,120,10,0,0,"Cancel").setAttribute("class","button insensitive");
+        drawPushButton(tf,5,45,0,0,"OK",true);
+        drawPushButton(tf,120,45,64,22,"OK",true).setAttribute("class","button insensitive");
+        drawSwitch(tf,5,80,82,28,"off");
+        drawSwitch(tf,120,80,82,28,"off").setAttribute("class","insensitive");
+        drawSwitch(tf,5,115,80,28,"on");
+        drawSwitch(tf,120,115,80,28,"on").setAttribute("class","insensitive");
+        drawToggledButton(tf,5,150,64,22,"Blush");
+        drawToggledButton(tf,120,150,64,22,"Blush").setAttribute("class","button activetoggle insensitive");
+        drawCheckButton(tf,5,190,0,0,"Option","on");
+        drawCheckButton(tf,120,190,0,0,"Option","on").setAttribute("class","insensitive");
+        drawCheckButton(tf,5,220,0,0,"Option","mixed");
+        drawCheckButton(tf,120,220,0,0,"Option","mixed").setAttribute("class","insensitive");
+        drawCheckButton(tf,5,250,0,0,"Option","off");
+        drawCheckButton(tf,120,250,0,0,"Option","off").setAttribute("class","insensitive");
+        drawRadioButton(tf,5,280,0,0,"Option","on");
+        drawRadioButton(tf,120,280,0,0,"Option","on").setAttribute("class","insensitive");
+        drawRadioButton(tf,5,310,0,0,"Option","mixed");
+        drawRadioButton(tf,120,310,0,0,"Option","mixed").setAttribute("class","insensitive");
+        drawRadioButton(tf,5,340,0,0,"Option","off");
+        drawRadioButton(tf,120,340,0,0,"Option","off").setAttribute("class","insensitive");
+        drawRevealButton(tf,5,370,0,0,"More","closed");
+        drawRevealButton(tf,120,370,0,0,"More","closed").setAttribute("class","insensitive");
+        drawRevealButton(tf,5,400,0,0,"More","turning");
+        drawRevealButton(tf,120,400,0,0,"More","turning").setAttribute("class","insensitive");
+        drawRevealButton(tf,5,430,0,0,"More","open");
+        drawRevealButton(tf,120,430,0,0,"More","open").setAttribute("class","insensitive");
+        drawOptionButton(tf,5,460,0,0,"Option");
+        drawOptionButton(tf,120,460,0,0,"Option").setAttribute("class","insensitive");
+        drawInputField(tf,5,495,100,28,false,false,false,"Placeholder");
+        drawInputField(tf,120,495,100,28,false,false,false,"Placeholder").setAttribute("class","textfield insensitive");
+        drawSpinButton(tf,5,530,100,28);
+        drawSpinButton(tf,120,530,100,28).setAttribute("class","textfield insensitive");
+        drawHLevel(tf,230,10,100,16);
+        drawHLevel(tf,340,10,100,16).setAttribute("class","insensitive");
+        drawVLevel(tf,230,40,16,100);
+        drawVLevel(tf,340,40,16,100).setAttribute("class","insensitive");
+
+        drawHScrollBar(tf,230,150,100,16);
+        drawHScrollBar(tf,230,170,100,16,0);
+        drawHScrollBar(tf,230,190,100,16,1);
+
+        drawVScrollBar(tf,230,220,16,100);
+        drawVScrollBar(tf,250,220,16,100,0);
+        drawVScrollBar(tf,270,220,16,100,1);
+
+
+        drawInputField(tf,240,340,120,120,false,false,true);
+        drawInputField(tf,370,340,120,120,true,false,true);
+        drawInputField(tf,500,340,120,120,false,true,true);
+        drawInputField(tf,630,340,120,120,true,true,true);
+
+        drawInputField(tf,240,470,120,120,false,false,false);
+        drawInputField(tf,370,470,120,120,true,false,false);
+        drawInputField(tf,500,470,120,120,false,true,false);
+        drawInputField(tf,630,470,120,120,true,true,false);
+
+        drawTabs(tf,450,10,240,34,["a","b","c"],0);
+        drawTabs(tf,450,50,240,34,["a","b","c"],1);
+        drawTabs(tf,450,90,240,34,["a","b","c"],2);
+
+        drawTabs(tf,450,130,240,34,["a","b","c"],0).setAttribute("class","insensitive");
+        drawTabs(tf,450,170,240,34,["a","b","c"],1).setAttribute("class","insensitive");
+        drawTabs(tf,450,210,240,34,["a","b","c"],2).setAttribute("class","insensitive");
+
+        drawLeftSideTabs(tf,450,247,70,90,["a","b","c"],0);
+        drawLeftSideTabs(tf,525,247,70,90,["a","b","c"],1);
+        drawLeftSideTabs(tf,600,247,70,90,["a","b","c"],2);
+      }
+      function drawIconField(id) {
+
+        var f = document.getElementById(id);
+        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        r.setAttribute("width", 800);
+        r.setAttribute("height", 600);
+        r.setAttribute("fill","var(--base-fill-color)");
+        r.setAttribute("stroke","none");
+        f.insertAdjacentElement("beforeend", r);
+        var foo = document.getElementsByClassName("icon");
+        var icons = [];
+        var sizes = [48,36,24,16];
+        var poses = [[10,60,100,130],[160,210,250,280],[310,360,400,430],[460,510,550,580],[610,660,700,730]]
+
+        for (let it=0; it < foo.length;it++) {
+          icons[it] = "#"+foo.item(it).id;
+        }
+
+        icons.forEach((icon,i) => {
+          sizes.forEach((size,j) => {
+            var u = document.createElementNS("http://www.w3.org/2000/svg","use");
+            var x = poses[Math.floor(i/11)][j];
+            var y = 10+50*(i%11);
+            u.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
+            u.setAttribute("fill","var(--input-field-color)");
+            u.setAttribute("x",x);
+            u.setAttribute("y",y);
+            u.setAttribute("width",size);
+            u.setAttribute("height",size);
+            f.insertAdjacentElement("beforeend",u);
+          });
+        });
+      }
+      function drawDecalField(id) {
+        var f = document.getElementById(id);
+        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        r.setAttribute("width", 800);
+        r.setAttribute("height", 600);
+        r.setAttribute("fill","var(--base-fill-color)");
+        r.setAttribute("stroke","none");
+        f.insertAdjacentElement("beforeend", r);
+        var foo = document.getElementsByClassName("decal");
+        var decals = [];
+        var sizes = [48,36,24,16];
+        var poses = [[10,60,100,130],[160,210,250,280],[310,360,400,430],[460,510,550,580],[610,660,700,730]]
+
+        for (let it=0; it < foo.length;it++) {
+          decals[it] = "#"+foo.item(it).id;
+        }
+
+        decals.forEach((decal,i) => {
+          sizes.forEach((size,j) => {
+            var b = document.createElementNS("http://www.w3.org/2000/svg","rect");
+            var u = document.createElementNS("http://www.w3.org/2000/svg","use");
+            var x = poses[Math.floor(i/11)][j];
+            var y = 10+50*(i%11);
+            b.setAttribute("fill","lightblue");
+            b.setAttribute("stroke","none");
+            b.setAttribute("x",x);
+            b.setAttribute("y",y);
+            b.setAttribute("width",size);
+            b.setAttribute("height",size);
+            f.insertAdjacentElement("beforeend",b);
+            u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
+            u.setAttribute("fill","var(--input-field-color)");
+            u.setAttribute("x",x);
+            u.setAttribute("y",y);
+            u.setAttribute("width",size);
+            u.setAttribute("height",size);
+            f.insertAdjacentElement("beforeend",u);
+          });
+        });
+
+      }
+</script>
   </head>
   <body>
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
@@ -2150,243 +2304,20 @@
       </defs>
     </svg>
     <br/>
-    <p>These are messed up while I correct for having had too small a font size.</p>
     <svg id="testfield" width="800" height="600">
-      <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
-      <script>
-        tf = document.getElementById("testfield");
-        drawPushButton(tf,5,10,0,0,"Cancel");
-        drawPushButton(tf,120,10,0,0,"Cancel").setAttribute("class","button insensitive");
-        drawPushButton(tf,5,45,0,0,"OK",true);
-        drawPushButton(tf,120,45,64,22,"OK",true).setAttribute("class","button insensitive");
-        drawSwitch(tf,5,80,82,28,"off");
-        drawSwitch(tf,120,80,82,28,"off").setAttribute("class","insensitive");
-        drawSwitch(tf,5,115,80,28,"on");
-        drawSwitch(tf,120,115,80,28,"on").setAttribute("class","insensitive");
-        drawToggledButton(tf,5,150,64,22,"Blush");
-        drawToggledButton(tf,120,150,64,22,"Blush").setAttribute("class","button activetoggle insensitive");
-        drawCheckButton(tf,5,190,0,0,"Option","on");
-        drawCheckButton(tf,120,190,0,0,"Option","on").setAttribute("class","insensitive");
-        drawCheckButton(tf,5,220,0,0,"Option","mixed");
-        drawCheckButton(tf,120,220,0,0,"Option","mixed").setAttribute("class","insensitive");
-        drawCheckButton(tf,5,250,0,0,"Option","off");
-        drawCheckButton(tf,120,250,0,0,"Option","off").setAttribute("class","insensitive");
-        drawRadioButton(tf,5,280,0,0,"Option","on");
-        drawRadioButton(tf,120,280,0,0,"Option","on").setAttribute("class","insensitive");
-        drawRadioButton(tf,5,310,0,0,"Option","mixed");
-        drawRadioButton(tf,120,310,0,0,"Option","mixed").setAttribute("class","insensitive");
-        drawRadioButton(tf,5,340,0,0,"Option","off");
-        drawRadioButton(tf,120,340,0,0,"Option","off").setAttribute("class","insensitive");
-        drawRevealButton(tf,5,370,0,0,"More","closed");
-        drawRevealButton(tf,120,370,0,0,"More","closed").setAttribute("class","insensitive");
-        drawRevealButton(tf,5,400,0,0,"More","turning");
-        drawRevealButton(tf,120,400,0,0,"More","turning").setAttribute("class","insensitive");
-        drawRevealButton(tf,5,430,0,0,"More","open");
-        drawRevealButton(tf,120,430,0,0,"More","open").setAttribute("class","insensitive");
-        drawOptionButton(tf,5,460,0,0,"Option");
-        drawOptionButton(tf,120,460,0,0,"Option").setAttribute("class","insensitive");
-        drawInputField(tf,5,495,100,28,false,false,false,"Placeholder");
-        drawInputField(tf,120,495,100,28,false,false,false,"Placeholder").setAttribute("class","textfield insensitive");
-        drawSpinButton(tf,5,530,100,28);
-        drawSpinButton(tf,120,530,100,28).setAttribute("class","textfield insensitive");
-        drawHLevel(tf,230,10,100,16);
-        drawHLevel(tf,340,10,100,16).setAttribute("class","insensitive");
-        drawVLevel(tf,230,40,16,100);
-        drawVLevel(tf,340,40,16,100).setAttribute("class","insensitive");
-        drawHScrollBar(tf,230,150,100,16);
-        drawVScrollBar(tf,230,180,16,100);
-
-        drawInputField(tf,240,340,120,120,false,false,true);
-        drawInputField(tf,370,340,120,120,true,false,true);
-        drawInputField(tf,500,340,120,120,false,true,true);
-        drawInputField(tf,630,340,120,120,true,true,true);
-
-        drawInputField(tf,240,470,120,120,false,false,false);
-        drawInputField(tf,370,470,120,120,true,false,false);
-        drawInputField(tf,500,470,120,120,false,true,false);
-        drawInputField(tf,630,470,120,120,true,true,false);
-
-        drawTabs(tf,450,10,240,34,["a","b","c"],0);
-        drawTabs(tf,450,50,240,34,["a","b","c"],1);
-        drawTabs(tf,450,90,240,34,["a","b","c"],2);
-
-        drawTabs(tf,450,130,240,34,["a","b","c"],0).setAttribute("class","insensitive");
-        drawTabs(tf,450,170,240,34,["a","b","c"],1).setAttribute("class","insensitive");
-        drawTabs(tf,450,210,240,34,["a","b","c"],2).setAttribute("class","insensitive");
-
-        drawLeftSideTabs(tf,450,247,70,90,["a","b","c"],0);
-        drawLeftSideTabs(tf,525,247,70,90,["a","b","c"],1);
-        drawLeftSideTabs(tf,600,247,70,90,["a","b","c"],2);
-
-
-      </script>
+      <script>drawTestField("testfield");</script>
     </svg>
     <svg id="iconfield" width="800" height="600">
-      <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
-      <script>
-        var f = document.getElementById("iconfield");
-        // var foo = document.getElementsByTagNameNS("http://www.w3.org/2000/svg","symbol");
-        var foo = document.getElementsByClassName("icon");
-        var icons = [];
-        var sizes = [48,36,24,16];
-        var poses = [[10,60,100,130],[160,210,250,280],[310,360,400,430],[460,510,550,580],[610,660,700,730]]
-
-        for (let it=0; it < foo.length;it++) {
-          icons[it] = "#"+foo.item(it).id;
-        }
-
-        icons.forEach((icon,i) => {
-          sizes.forEach((size,j) => {
-            var u = document.createElementNS("http://www.w3.org/2000/svg","use");
-            var x = poses[Math.floor(i/11)][j];
-            var y = 10+50*(i%11);
-            u.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
-            u.setAttribute("fill","var(--input-field-color)");
-            u.setAttribute("x",x);
-            u.setAttribute("y",y);
-            u.setAttribute("width",size);
-            u.setAttribute("height",size);
-            f.insertAdjacentElement("beforeend",u);
-          });
-        });
-      </script>
+      <script>drawIconField("iconfield");</script>
     </svg>
-        
     <svg id="testfielddark" class="darkmode" style="color-scheme: dark" width="800" height="600">
-      <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
-      <script>
-        tf = document.getElementById("testfielddark");
-        drawPushButton(tf,5,10,0,0,"Cancel");
-        drawPushButton(tf,120,10,0,0,"Cancel").setAttribute("class","button insensitive");
-        drawPushButton(tf,5,45,0,0,"OK",true);
-        drawPushButton(tf,120,45,64,22,"OK",true).setAttribute("class","button insensitive");
-        drawSwitch(tf,5,80,82,28,"off");
-        drawSwitch(tf,120,80,82,28,"off").setAttribute("class","insensitive");
-        drawSwitch(tf,5,115,80,28,"on");
-        drawSwitch(tf,120,115,80,28,"on").setAttribute("class","insensitive");
-        drawToggledButton(tf,5,150,64,22,"Blush");
-        drawToggledButton(tf,120,150,64,22,"Blush").setAttribute("class","button activetoggle insensitive");
-        drawCheckButton(tf,5,190,0,0,"Option","on");
-        drawCheckButton(tf,120,190,0,0,"Option","on").setAttribute("class","insensitive");
-        drawCheckButton(tf,5,220,0,0,"Option","mixed");
-        drawCheckButton(tf,120,220,0,0,"Option","mixed").setAttribute("class","insensitive");
-        drawCheckButton(tf,5,250,0,0,"Option","off");
-        drawCheckButton(tf,120,250,0,0,"Option","off").setAttribute("class","insensitive");
-        drawRadioButton(tf,5,280,0,0,"Option","on");
-        drawRadioButton(tf,120,280,0,0,"Option","on").setAttribute("class","insensitive");
-        drawRadioButton(tf,5,310,0,0,"Option","mixed");
-        drawRadioButton(tf,120,310,0,0,"Option","mixed").setAttribute("class","insensitive");
-        drawRadioButton(tf,5,340,0,0,"Option","off");
-        drawRadioButton(tf,120,340,0,0,"Option","off").setAttribute("class","insensitive");
-        drawRevealButton(tf,5,370,0,0,"More","closed");
-        drawRevealButton(tf,120,370,0,0,"More","closed").setAttribute("class","insensitive");
-        drawRevealButton(tf,5,400,0,0,"More","turning");
-        drawRevealButton(tf,120,400,0,0,"More","turning").setAttribute("class","insensitive");
-        drawRevealButton(tf,5,430,0,0,"More","open");
-        drawRevealButton(tf,120,430,0,0,"More","open").setAttribute("class","insensitive");
-        drawOptionButton(tf,5,460,0,0,"Option");
-        drawOptionButton(tf,120,460,0,0,"Option").setAttribute("class","insensitive");
-        drawInputField(tf,5,495,100,28,false,false,false,"Placeholder");
-        drawInputField(tf,120,495,100,28,false,false,false,"Placeholder").setAttribute("class","textfield insensitive");
-        drawSpinButton(tf,5,530,100,28);
-        drawSpinButton(tf,120,530,100,28).setAttribute("class","textfield insensitive");
-        drawHLevel(tf,230,10,100,16);
-        drawHLevel(tf,340,10,100,16).setAttribute("class","insensitive");
-        drawVLevel(tf,230,40,16,100);
-        drawVLevel(tf,340,40,16,100).setAttribute("class","insensitive");
-        drawHScrollBar(tf,230,150,100,16);
-        drawVScrollBar(tf,230,180,16,100);
-
-        drawInputField(tf,240,340,120,120,false,false,true);
-        drawInputField(tf,370,340,120,120,true,false,true);
-        drawInputField(tf,500,340,120,120,false,true,true);
-        drawInputField(tf,630,340,120,120,true,true,true);
-
-        drawInputField(tf,240,470,120,120,false,false,false);
-        drawInputField(tf,370,470,120,120,true,false,false);
-        drawInputField(tf,500,470,120,120,false,true,false);
-        drawInputField(tf,630,470,120,120,true,true,false);
-
-        drawTabs(tf,450,10,240,34,["a","b","c"],0);
-        drawTabs(tf,450,50,240,34,["a","b","c"],1);
-        drawTabs(tf,450,90,240,34,["a","b","c"],2);
-
-        drawTabs(tf,450,130,240,34,["a","b","c"],0).setAttribute("class","insensitive");
-        drawTabs(tf,450,170,240,34,["a","b","c"],1).setAttribute("class","insensitive");
-        drawTabs(tf,450,210,240,34,["a","b","c"],2).setAttribute("class","insensitive");
-
-        drawLeftSideTabs(tf,450,247,70,90,["a","b","c"],0);
-        drawLeftSideTabs(tf,525,247,70,90,["a","b","c"],1);
-        drawLeftSideTabs(tf,600,247,70,90,["a","b","c"],2);
-      </script>
+      <script>drawTestField("testfielddark");</script>
     </svg>
     <svg id="iconfielddark" class="darkmode" style="color-scheme: dark" width="800" height="600">
-      <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
-      <script>
-        var f = document.getElementById("iconfielddark");
-        // var foo = document.getElementsByTagNameNS("http://www.w3.org/2000/svg","symbol");
-        var foo = document.getElementsByClassName("icon");
-        var icons = [];
-        var sizes = [48,36,24,16];
-        var poses = [[10,60,100,130],[160,210,250,280],[310,360,400,430],[460,510,550,580],[610,660,700,730]]
-
-        for (let it=0; it < foo.length;it++) {
-          icons[it] = "#"+foo.item(it).id;
-        }
-
-        icons.forEach((icon,i) => {
-          sizes.forEach((size,j) => {
-            var u = document.createElementNS("http://www.w3.org/2000/svg","use");
-            var x = poses[Math.floor(i/11)][j];
-            var y = 10+50*(i%11);
-            u.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
-            u.setAttribute("fill","var(--input-field-color)");
-            u.setAttribute("x",x);
-            u.setAttribute("y",y);
-            u.setAttribute("width",size);
-            u.setAttribute("height",size);
-            f.insertAdjacentElement("beforeend",u);
-          });
-        });
-      </script>
+      <script>drawIconField("iconfielddark");</script>
     </svg>
     <svg id="decalfield" width="800" height="600">
-      <rect width="800" height="600" fill="var(--base-fill-color)" stroke="none"/>
-      <script>
-        var f = document.getElementById("decalfield");
-        // var foo = document.getElementsByTagNameNS("http://www.w3.org/2000/svg","symbol");
-        var foo = document.getElementsByClassName("decal");
-        var decals = [];
-        var sizes = [48,36,24,16];
-        var poses = [[10,60,100,130],[160,210,250,280],[310,360,400,430],[460,510,550,580],[610,660,700,730]]
-
-        for (let it=0; it < foo.length;it++) {
-          decals[it] = "#"+foo.item(it).id;
-        }
-
-        decals.forEach((decal,i) => {
-          sizes.forEach((size,j) => {
-            var b = document.createElementNS("http://www.w3.org/2000/svg","rect");
-            var u = document.createElementNS("http://www.w3.org/2000/svg","use");
-            var x = poses[Math.floor(i/11)][j];
-            var y = 10+50*(i%11);
-            b.setAttribute("fill","lightblue");
-            b.setAttribute("stroke","none");
-            b.setAttribute("x",x);
-            b.setAttribute("y",y);
-            b.setAttribute("width",size);
-            b.setAttribute("height",size);
-            f.insertAdjacentElement("beforeend",b);
-            u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
-            u.setAttribute("fill","var(--input-field-color)");
-            u.setAttribute("x",x);
-            u.setAttribute("y",y);
-            u.setAttribute("width",size);
-            u.setAttribute("height",size);
-            f.insertAdjacentElement("beforeend",u);
-          });
-        });
-      </script>
+      <script>drawDecalField("decalfield")</script>
     </svg>
 
     <br/>
