@@ -4,7 +4,7 @@
     <title>widgets</title>
     <link rel="stylesheet" href="widgets-style.css">
     <script>
-      function drawRaisedRect (parentElement,x,y,width,height) {
+      function drawRaisedRect(parentElement,x,y,width,height) {
         var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
         r.setAttribute("x", x+0.5);
         r.setAttribute("y", y+0.5);
@@ -25,7 +25,7 @@
 
         return r;
       }
-      function drawTroughRect (parentElement,x,y,width,height) {
+      function drawTroughRect(parentElement,x,y,width,height) {
         var t = document.createElementNS("http://www.w3.org/2000/svg","rect");
         t.setAttribute("x", x+0.5);
         t.setAttribute("y", y+0.5);
@@ -46,7 +46,7 @@
         
         return t;
       }
-      function drawFocusRingRect (parentElement,x,y,width,height) {
+      function drawFocusRingRect(parentElement,x,y,width,height) {
         var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
         r.setAttribute("x",x+0.5);
         r.setAttribute("y",y+0.5);
@@ -56,7 +56,7 @@
         parentElement.insertAdjacentElement("beforeend",r);
         return r;
       }
-      function drawBaseWindow (parentElement,x,y,width,height,resizeable=true) {
+      function drawBaseWindow(parentElement,x,y,width,height,resizeable=true) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -90,7 +90,7 @@
         }
         return g;
       }
-      function drawButton (parentElement,x,y,width,height) {
+      function drawButton(parentElement,x,y,width,height) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -101,7 +101,7 @@
 
         return g;
       }
-      function drawHeaderButton (parentElement,x,y,width,height,label,state) {
+      function drawHeaderButton(parentElement,x,y,width,height,label,state) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -121,7 +121,7 @@
 
         return g;
       }
-      function drawDecalButton (parentElement,x,y,width,height,decal) {
+      function drawDecalButton(parentElement,x,y,width,height,decal) {
         var g = drawButton(parentElement,x,y,width,height);
         u = document.createElementNS("http://www.w3.org/2000/svg","use");
         u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
@@ -129,7 +129,7 @@
         u.setAttribute("height",height);
         g.insertAdjacentElement("beforeend",u);
       }
-      function drawDecalButton2 (parentElement,x,y,width,height,decal) {
+      function drawDecalButton2(parentElement,x,y,width,height,decal) {
         var g = drawButton(parentElement,x,y,width,height);
         u = document.createElementNS("http://www.w3.org/2000/svg","use");
         u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
@@ -139,7 +139,7 @@
         u.setAttribute("height",height-4);
         g.insertAdjacentElement("beforeend",u);
       }
-      function drawPushButton (parentElement,x,y,width,height,text,isDefault) {
+      function drawPushButton(parentElement,x,y,width,height,text,isDefault) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -180,12 +180,12 @@
 
         return g;
       }
-      function drawToggledButton (parentElement,x,y,width,height,text) {
+      function drawToggledButton(parentElement,x,y,width,height,text) {
         var b = drawPushButton(parentElement,x,y,width,height,text,false);
         b.setAttribute("class","button activetoggle");
         return b;
       }
-      function drawStepper (parentElement,x,y,width,height,dir) {
+      function drawStepper(parentElement,x,y,width,height,dir) {
         var arrow="#none";
         switch (dir) {
           case "up": arrow="#arrowUp"; break;
@@ -196,7 +196,7 @@
         var stepper = drawDecalButton(parentElement,x,y,width,height,arrow);
         return stepper;
       }
-      function drawSlider (parentElement,x,y,width,height,dir) {
+      function drawSlider(parentElement,x,y,width,height,dir) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -222,7 +222,7 @@
 
         return g;
       }
-      function drawHScrollBar (parentElement,x,y,width,height,sliderPosition=0.5) {
+      function drawHScrollBar(parentElement,x,y,width,height,sliderPosition=0.5) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -237,7 +237,7 @@
 
         return g;
       }
-      function drawVScrollBar (parentElement,x,y,width,height,sliderPosition=0.5) {
+      function drawVScrollBar(parentElement,x,y,width,height,sliderPosition=0.5) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -251,7 +251,7 @@
 
         return g;
       }
-      function drawInputField (parentElement,x,y,width,height,showVScrollbar=false,showHScrollbar=false,notch=false,text="") {
+      function drawInputField(parentElement,x,y,width,height,showVScrollbar=false,showHScrollbar=false,notch=false,text="") {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("class","inputfield");
         g.setAttribute("x",x);
@@ -323,7 +323,7 @@
 
         return g;
       }
-      function drawMulticolumnList (parentElement,x,y,width,height,labels) {
+      function drawMulticolumnList(parentElement,x,y,width,height,labels) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("class","inputfield");
         g.setAttribute("x",x);
@@ -338,13 +338,13 @@
         });
         return g;
       }
-      function drawSpinButton (parentElement,x,y,width,height) {
+      function drawSpinButton(parentElement,x,y,width,height) {
         var field = drawInputField(parentElement,x,y,width,height);
         var btndn = drawDecalButton(field,1,1,height-2,height-2,"#minusSign");
         var btnup = drawDecalButton(field,width-height+1,1,height-2,height-2,"#plusSign");
         return field;
       }
-      function drawSwitch (parentElement,x,y,width,height,state) {
+      function drawSwitch(parentElement,x,y,width,height,state) {
         var sliderX = 0;
         var textX = 3*width/4;
         var word = "OFF";
@@ -382,7 +382,7 @@
 
         return g;
       }
-      function drawCheckButton (parentElement,x,y,width,height,text,state) {
+      function drawCheckButton(parentElement,x,y,width,height,text,state) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -428,7 +428,7 @@
 
         return g;
       }
-      function drawRadioButton (parentElement,x,y,width,height,text,state) {
+      function drawRadioButton(parentElement,x,y,width,height,text,state) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -474,7 +474,7 @@
         
         return g;
       }
-      function drawRevealButton (parentElement,x,y,width,height,text,state) {
+      function drawRevealButton(parentElement,x,y,width,height,text,state) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -534,7 +534,7 @@
 
         return g;
       }
-      function drawOptionButton (parentElement,x,y,width,height,text) {
+      function drawOptionButton(parentElement,x,y,width,height,text) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -598,7 +598,7 @@
 
         return g;
       }
-      function drawHLevel (parentElement,x,y,width,height) {
+      function drawHLevel(parentElement,x,y,width,height) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -611,7 +611,7 @@
 
         return g;
       }
-      function drawVLevel (parentElement,x,y,width,height) {
+      function drawVLevel(parentElement,x,y,width,height) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
@@ -624,7 +624,7 @@
 
         return g;
       }
-      function drawHeaderBar (parentElement,x,y,width,height,icon,title,subtitle) {
+      function drawHeaderBar(parentElement,x,y,width,height,icon,title,subtitle) {
           var g = document.createElementNS("http://www.w3.org/2000/svg","g");
           g.setAttribute("transform","translate("+x+","+y+")");
           parentElement.insertAdjacentElement("beforeend",g);
@@ -1223,7 +1223,7 @@
           g.insertAdjacentElement("beforeend",t);
         })
       }
-      function drawTabbedInputField (parentElement,x,y,width,height,tabLabels,activeIndex) {
+      function drawTabbedInputField(parentElement,x,y,width,height,tabLabels,activeIndex) {
           var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
           g.setAttribute("class","inputfield");
           g.setAttribute("x",x);
@@ -1315,7 +1315,7 @@
           return g;
   
         }
-      function drawtextbounds () {
+      function drawtextbounds() {
         var ts = document.getElementsByTagName("text");
         for (var i=0;i<ts.length;i++) {
           var box = ts[i].getBBox();
@@ -2435,6 +2435,12 @@
         var w = drawItemWindow(document.getElementById("basicProject"),0,0,640,480,"#folderIcon","Project Title");
         var lc = drawInputField(w,3,30,150,447,false,false,false);
         var mf = drawInputField(w,154,30,483,447,true,true,true);
+      </script>
+    </svg>
+    <svg width="640" height="480" id="basicProject2"><title>Basic Project 2</title>
+      <script>
+        var w = drawItemWindow(document.getElementById("basicProject2"),0,0,640,480,"#folderIcon","Project 2 Title");
+        
       </script>
     </svg>
     <svg width="640" height="480" id="someFolder"><title>Some Folder</title>
