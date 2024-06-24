@@ -2425,6 +2425,11 @@
         drawSimpleWindow(document.getElementById("basicView2"),0,0,640,480,"#documentIcon","Item Name");
       </script>
     </svg>
+    <svg width="640" height="480" id="basicFolder"><title>Basic Folder</title>
+      <script>
+        drawSimpleWindow(document.getElementById("basicFolder"),0,0,640,480,"#folderIcon","Folder Name");
+      </script>
+    </svg>
     <svg width="640" height="480" id="someFolder"><title>Some Folder</title>
       <script>
         drawBaseWindow(document.getElementById("someFolder"),0,0,640,480);
@@ -3159,14 +3164,15 @@
     <section><h2>Containers and Items</h2>
       <section><h3>Folders, Workspaces, Desktops</h3>
         <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#folderIcon"/></svg>
-      </section>
-      <section><h3>Connections</h3>
-        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#remoteIcon"/></svg>
-        <p>There's a remote desktop application, but you never run the application. Instead, you double-click the icon representing an RDP connection. To create a new RDP connection, you drag an icon off the RDP connection template and drop it somewhere. By default, this opens the property panel for the connection. From then on, you just double-click the icon to open the connection. You can shift-double-click to open the property panel again. or you can configure it in the connection's window, using the menu bar.</p>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#desktopIcon"/></svg>
       </section>
       <section><h3>Archives</h3>
         <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#archiveIcon"/></svg>
         <p>An archive is a kind of folder.</p>
+      </section>
+      <section><h3>Connections</h3>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#remoteIcon"/></svg>
+        <p>There's a remote desktop application, but you never run the application. Instead, you double-click the icon representing an RDP connection. To create a new RDP connection, you drag an icon off the RDP connection template and drop it somewhere. By default, this opens the property panel for the connection. From then on, you just double-click the icon to open the connection. You can shift-double-click to open the property panel again. or you can configure it in the connection's window, using the menu bar.</p>
       </section>
       <section><h3>Terminals and Shells</h3>
         <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#terminalIcon"/></svg>
@@ -3312,7 +3318,7 @@
       <p>Holding down a key should present alternative characters, rather than repeating the key.</p>
     </section>
     <section><h2>Accessibility</h2>
-      <p>Having written nothing about this is a bad look. It's been on my mind since the beginning, but I have nothing to say about it yet.</p>
+      <p>I hope that the system will be accessible by default. That is to say that I hope the design decisions I'm making will have immediate benefits for accessibility. I believe the light and dark control styles I have chosen also suffice as high-contrast styles. I have not chosen a widget toolkit, but I will be chosing one, or creating one, to work with assistive technologies. I'm barely approaching writing code, so I'm far from any sort of release. This system must be accessible from day zero. I expect to solicit accessibility input as soon as I'm satisfied that my design documents make a modicum of sense.</p>
     </section>
     </div>
     <hr />
