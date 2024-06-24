@@ -128,6 +128,7 @@
         u.setAttribute("width",width);
         u.setAttribute("height",height);
         g.insertAdjacentElement("beforeend",u);
+        return g;
       }
       function drawDecalButton2(parentElement,x,y,width,height,decal) {
         var g = drawButton(parentElement,x,y,width,height);
@@ -138,6 +139,7 @@
         u.setAttribute("width",width-4);
         u.setAttribute("height",height-4);
         g.insertAdjacentElement("beforeend",u);
+        return g;
       }
       function drawPushButton(parentElement,x,y,width,height,text,isDefault) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
