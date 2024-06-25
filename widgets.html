@@ -1317,6 +1317,104 @@
           return g;
   
         }
+      function drawTopTabbedInputField(parentElement,x,y,width,height,tabLabels,activeIndex) {
+          var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+          g.setAttribute("class","inputfield");
+          g.setAttribute("x",x);
+          g.setAttribute("y",y);
+          g.setAttribute("tabindex",0);
+          parentElement.insertAdjacentElement("beforeend",g);
+  
+          var f = document.createElementNS("http://www.w3.org/2000/svg","path");
+          f.setAttribute("d","M1.5,1.5 V "+(height-1.5)+" H "+(width-16.5)+" V "+(height-16.5)+" H "+(width-1.5)+" V 1.5 Z");
+          f.setAttribute("stroke","var(--outline-color)");
+          f.setAttribute("fill","var(--base-fill-color)");
+          g.insertAdjacentElement("beforeend",f);
+  
+          var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          s.setAttribute("class","shadow");
+          s.setAttribute("points","0.5,"+(height-0.5)+" 0.5,0.5 "+(width-0.5)+",0.5");
+          g.insertAdjacentElement("beforeend",s);
+  
+          var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          h.setAttribute("class","highlight");
+          h.setAttribute("points","0.5,"+(height-0.5)+" "+(width-15.5)+","+(height-0.5)+" "+(width-15.5)+","+(height-15.5)+" "+(width-0.5)+","+(height-15.5)+" "+(width-0.5)+",0.5");
+          g.insertAdjacentElement("beforeend",h);
+  
+          var r = document.createElementNS("http://www.w3.org/2000/svg","path");
+          r.setAttribute("d","M0.5,0.5 V "+(height-0.5)+" H "+(width-15.5)+" V "+(height-15.5)+" H "+(width-0.5)+" V 0.5 Z");
+          r.setAttribute("class","focusring");
+          g.insertAdjacentElement("beforeend",r);
+
+          var textLabels = tabLabels.map(function (label) {
+            var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
+            txt.innerHTML = label;
+            txt.setAttribute("class","label centered");
+            txt.setAttribute("pointer-events","none");
+            txt.setAttribute("style","font-size: 12px;")
+            g.insertAdjacentElement("beforeend",txt);
+            return txt;
+          });
+          var minh = 22;
+          var currentX = 5;
+  
+          var xywhs = textLabels.map(function(tl,i,a) {
+            var lastX = currentX;
+            var localY = 0
+            var width = 64;
+            var height = 22;
+            var box = tl.getBBox();
+            if (box.width+12 > width) w=Math.ceil(box.width)+12;
+            if (box.height+5 > height) h=Math.ceil(box.height)+5;
+            if (height>minh) minh=height;
+            currentX += width;
+            return [lastX,localY,width,height];
+          });
+
+          var drawtabsheet = function (xywh,i,a) {
+            var tp = document.createElementNS("http://www.w3.org/2000/svg","path");
+            tp.setAttribute("d","M1.5,1.5 V "+(height-16.5)
+                                +" H"+xywh[0]
+                                +" L"+(5+xywh[0])+","+(height-1.5)
+                                +" H"+(xywh[0]+xywh[2])
+                                +" L"+(5+xywh[0]+xywh[2])+","+(height-16.5)
+                                +" H"+(width-16.5)
+                                +" V 1.5 Z");
+            tp.setAttribute("d", "M1.5,16.5"
+                                +" H"+xywh[0]
+                                +" L"+(5+xywh[0])+","+1.5
+                                +" H"+(xywh[0]+xywh[2])
+                                +" L"+(5+xywh[0]+xywh[2])+","+(16.5)
+                                +" H"+(width-16.5)
+                                +" V"+(height-1.5)
+                                + "H1.5 Z");
+            tp.setAttribute("stroke","var(--outline-color)");
+            tp.setAttribute("fill","var(--input-field-color)");
+            g.insertAdjacentElement("beforeend",tp);
+          }
+          xywhs.reverse();
+
+          xywhs.map(drawtabsheet);
+          xywhs.reverse();
+
+          drawtabsheet(xywhs[activeIndex],0,0);
+
+          textLabels.map(function(tl,i,a) {
+            tl.setAttribute("x",xywhs[i][0]+xywhs[i][2]/2);
+            tl.setAttribute("y",9);
+            g.insertAdjacentElement("beforeend",tl);
+          });
+
+          drawVScrollBar(g,width-17,1+15,16,height-17-15);
+          drawHScrollBar(g,1,height-17,width-17,16);
+          drawDecalButton(g,width-62,1,16,16,"#doubleArrowLeft");
+          drawDecalButton(g,width-47,1,16,16,"#arrowLeft");
+          drawDecalButton(g,width-32,1,16,16,"#arrowRight");
+          drawDecalButton(g,width-17,1,16,16,"#doubleArrowRight");
+
+          return g;
+  
+        }
       function drawtextbounds() {
         var ts = document.getElementsByTagName("text");
         for (var i=0;i<ts.length;i++) {
@@ -2506,7 +2604,36 @@
       </script>
     </svg>
     <hr>
-    <svg width="640" height="480" id="someFolder"><title>Some Folder</title>
+    <svg width="640" height="480" id="basicProject4"><title>Basic Project 4</title>
+      <script>
+        var w = drawItemWindow(document.getElementById("basicProject4"),0,0,640,480,"#folderIcon","Project 4 Title");
+        drawDecalButton(w,3,30,48,48,"");
+        drawDecalButton(w,3,77,48,48,"");
+        drawDecalButton(w,3,124,48,48,"");
+        drawDecalButton(w,3,171,48,48,"");
+        drawDecalButton(w,3,218,48,48,"");
+        drawDecalButton(w,3,265,48,48,"");
+        drawDecalButton(w,3,312,48,48,"");
+        var tbs = drawTopTabbedInputField(w,52,30,585,416,["File 1","File 2","File 3"],0);
+        var sb = drawInputField(w,3,448,618,28);
+      </script>
+    </svg>
+    <svg width="640" height="480" id="basicProject4p2"><title>Basic Project 4.2</title>
+      <script>
+        var w = drawItemWindow(document.getElementById("basicProject4p2"),0,0,640,480,"#folderIcon","Project 4 Title");
+        drawDecalButton(w,3,30,48,48,"");
+        drawDecalButton(w,3,77,48,48,"").setAttribute("class","button activetoggle");
+        drawDecalButton(w,3,124,48,48,"");
+        drawDecalButton(w,3,171,48,48,"");
+        drawDecalButton(w,3,218,48,48,"");
+        drawDecalButton(w,3,265,48,48,"");
+        drawDecalButton(w,3,312,48,48,"");
+        drawInputField(w,52,30,100,416);
+        var tbs = drawTopTabbedInputField(w,153,30,484,416,["File 1","File 2","File 3"],0);
+        var sb = drawInputField(w,3,448,618,28);
+      </script>
+    </svg>
+    <hr>    <svg width="640" height="480" id="someFolder"><title>Some Folder</title>
       <script>
         drawBaseWindow(document.getElementById("someFolder"),0,0,640,480);
         drawHeaderBar(document.getElementById("someFolder"),0,0,640,480,"#folderIcon","Some Folder","regular folder");
