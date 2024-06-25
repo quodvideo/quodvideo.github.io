@@ -2461,8 +2461,9 @@
       <text x="84.5" y="36.5" style="font-size: 18px;">Do you have sufficient certainty?</text>
       <text x="84.5" y="58.5" style="font-size: 16px;">Isn't this an annoying question?</text>
     </svg>
+    <p>Confirmation should be requested for actions that cannot be undone. It's better to provide a way to undo an action when possible.</p>
     <hr>
-    <p>This is an Open Dialog. </p>
+    <p>This is an Open Dialog. The design of the system is such that these should only rarely be needed. It should be possible to open a file in a window by dragging its icon into the window.</p>
     <svg width="400" height="300" id="openDialog"><title>Open Dialog</title>
       <script>
         drawBaseWindow(document.getElementById("openDialog"),0,0,400,300);
@@ -2473,8 +2474,8 @@
       </script>
     </svg>
     <hr>
-    <p>This is a Save Dialog.</p>
-    <svg width="400" height="300" id="saveDialog"><title>Save Dialog</title>
+    <p>This is a Save As Dialog. These should be rare because items are named when they are created.</p>
+    <svg width="400" height="300" id="saveDialog"><title>Save As Dialog</title>
       <script>
         drawBaseWindow(document.getElementById("saveDialog"),0,0,400,300);
         drawOptionButton(document.getElementById("saveDialog"),18,18,0,0,"$PWD");
@@ -2563,6 +2564,7 @@
       </script>
     </svg>
     <hr>
+    <p>A project, which combines multiple items, might look like this. The field on the left shows a tree of items in the project, while the field on the right shows the selected item.</p>
     <svg width="640" height="480" id="basicProject"><title>Basic Project</title>
       <script>
         var w = drawItemWindow(document.getElementById("basicProject"),0,0,640,480,"#folderIcon","Project Title");
