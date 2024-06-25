@@ -2438,7 +2438,8 @@
     <p>Avoid blocking user activity for information when possible. Use a placard instead.</p>
     <svg width="640" height="480" id="placardDemo"><title>Placard Demo</title>
       <script>
-        drawSimpleWindow(document.getElementById("placardDemo"),0,0,640,480,"#documentIcon","Item Name");
+        var w = drawItemWindow(document.getElementById("placardDemo"),0,0,640,480,"#documentIcon","Item Name");
+        drawInputField(w,3,50,634,427,false,false,true);
       </script>
       <svg x="3" y="30" width="634" height="20">
         <rect x="0" y="0" width="634" height="20" fill="lightblue" stroke="red"/>
