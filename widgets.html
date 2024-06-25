@@ -2439,11 +2439,14 @@
     <svg width="640" height="480" id="placardDemo"><title>Placard Demo</title>
       <script>
         var w = drawItemWindow(document.getElementById("placardDemo"),0,0,640,480,"#documentIcon","Item Name");
-        drawInputField(w,3,50,634,427,false,false,true);
+        drawInputField(w,3,60,634,417,false,false,true);
       </script>
-      <svg x="3" y="30" width="634" height="20">
-        <rect x="0" y="0" width="634" height="20" fill="lightblue" stroke="red"/>
+      <svg id="placardDemoPlacard" x="3" y="30" width="634" height="30">
+        <rect x="0" y="0" width="634" height="30" fill="lightblue" stroke="red"/>
       </svg>
+      <script>
+        drawPushButton(document.getElementById("placardDemoPlacard"),10,1,0,0,"OK");
+      </script>
     </svg>
     <hr>
     <p>This is a Confirmation Alert. A confirmation alert is transient for another window and blocks activity in that window. As such, it should almost never be seen.</p>
