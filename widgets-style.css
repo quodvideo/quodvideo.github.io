@@ -155,7 +155,7 @@ rect.flat { fill: var(--base-fill-color); stroke: var(--outline-color); }
 rect.butte { fill: var(--raised-fill-color); stroke: var(--outline-color); }
 rect.trough { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
 .textfield { fill: var(--input-field-color); stroke: var(--outline-color); }
-.innerfocusring { fill: none; stroke: none; stroke-dasharray: 1,1;}
+.innerfocusring { fill: none; stroke: none; stroke-dasharray: 1,1; stroke-dashoffset: 0.5px;}
 :focus .innerfocusring { fill: none; stroke: var(--focus-ring-color); }
 .outerfocusring { fill: none; stroke: none;}
 :focus .outerfocusring { fill: none; stroke: var(--focus-ring-color); }
