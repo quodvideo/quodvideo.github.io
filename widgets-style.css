@@ -64,7 +64,7 @@
     --selection-color:        black;
     --selected-text-color:    white;
   }
-.accessible-palette insensitive, .accessible-palette.insensitive {
+.accessible-palette .insensitive, .accessible-palette.insensitive {
   --input-field-color:      #eeeeee; /* regular --raised-fill-color */
   --highlight-stroke-color: #ff000000;
   --shadow-stroke-color:    #00ff0000;
@@ -166,6 +166,8 @@ text.centered-x { text-anchor: middle; }
 text.centered-y { dominant-baseline: central; }
 .inputfield { cursor: text; }
 svg.button:active .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
+svg.button:active.insensitive .butte { fill: var(--raised-fill-color); stroke: var(--outline-color); }
+.insensitive svg.button:active .butte { fill: var(--raised-fill-color); stroke: var(--outline-color); }
 svg.button:active .highlight { stroke: var(--shadow-stroke-color); }
 svg.button:active .shadow { stroke: var(--highlight-stroke-color); }
 svg.button.activetoggle .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color); }

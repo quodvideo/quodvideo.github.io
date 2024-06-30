@@ -152,6 +152,91 @@
         g.insertAdjacentElement("beforeend",u);
         return g;
       }
+      function drawDecalButton4(parentElement,x,y,size,decal,decalsize) {
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
+        g.setAttribute("class","button");
+        g.setAttribute("tabindex",0);
+        parentElement.insertAdjacentElement("beforeend", g);
+        drawRaisedRect(g,2,2,size,size);
+
+        u = document.createElementNS("http://www.w3.org/2000/svg","use");
+        u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
+        u.setAttribute("x",2+(size-decalsize)/2);
+        u.setAttribute("y",2+(size-decalsize)/2);
+        u.setAttribute("width",decalsize);
+        u.setAttribute("height",decalsize);
+        g.insertAdjacentElement("beforeend",u);
+
+        drawFocusRingRect(g,0,0,size+4,size+4);
+        return g;
+      }
+      function drawDecalOptionButton(parentElement,x,y,size,decal,decalsize) {
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
+        g.setAttribute("class","button");
+        g.setAttribute("tabindex",0);
+        parentElement.insertAdjacentElement("beforeend", g);
+        drawRaisedRect(g,2,2,1+size+(size-4)/2,size);
+/*
+        var p1 = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        p1.setAttribute("x",3.5);
+        p1.setAttribute("y",3.5);
+        p1.setAttribute("width",size-3);
+        p1.setAttribute("height",size-3);
+        p1.setAttribute("stroke","red");
+        p1.setAttribute("stroke-width",1);
+        p1.setAttribute("fill","none");
+        g.insertAdjacentElement("beforeend",p1);
+
+        var p2 = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        p2.setAttribute("x",size+1.5);
+        p2.setAttribute("y",3.5);
+        p2.setAttribute("width",(size-4)/2);
+        p2.setAttribute("height",size-3);
+        p2.setAttribute("stroke","blue");
+        p2.setAttribute("fill","none");
+        g.insertAdjacentElement("beforeend",p2); */
+
+        var l1 = document.createElementNS("http://www.w3.org/2000/svg","line");
+        l1.setAttribute("x1",0.5+size)
+        l1.setAttribute("y1",3.5)
+        l1.setAttribute("x2",0.5+size)
+        l1.setAttribute("y2",0.5+size)
+        l1.setAttribute("class","shadow");
+        l1.setAttribute("stroke","var(--shadow-stroke-color)")
+        g.insertAdjacentElement("beforeend",l1);
+        
+        var l2 = document.createElementNS("http://www.w3.org/2000/svg","line");
+        l2.setAttribute("x1",1.5+size)
+        l2.setAttribute("y1",3.5)
+        l2.setAttribute("x2",1.5+size)
+        l2.setAttribute("y2",0.5+size)
+        l2.setAttribute("class","highlight");
+        l2.setAttribute("stroke","var(--highlight-stroke-color)")
+        g.insertAdjacentElement("beforeend",l2);
+
+        var a = document.createElementNS("http://www.w3.org/2000/svg","use");
+        a.setAttribute("x",size+0.5);
+        a.setAttribute("y",size/2 -5);
+        a.setAttribute("width",size/2);
+        a.setAttribute("height",size/2);
+        a.setAttributeNS("http://www.w3.org/1999/xlink","href","#arrowDown");
+        g.insertAdjacentElement("beforeend",a);
+
+        u = document.createElementNS("http://www.w3.org/2000/svg","use");
+        u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
+        u.setAttribute("x",2+(size-decalsize)/2);
+        u.setAttribute("y",2+(size-decalsize)/2);
+        u.setAttribute("width",decalsize);
+        u.setAttribute("height",decalsize);
+        g.insertAdjacentElement("beforeend",u);
+
+        drawFocusRingRect(g,0,0,1+size+(size-4)/2+4,size+4);
+        return g;
+      }
       function drawPushButton(parentElement,x,y,width,height,text,isDefault) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
@@ -357,6 +442,11 @@
         var btnup = drawDecalButton(field,width-height+1,1,height-2,height-2,"#plusSign");
         return field;
       }
+      function drawComboBox(parentElement,x,y,width,height,text) {
+        var field = drawInputField(parentElement,x,y,width,height,false,false,false,text);
+        var menubtn = drawDecalButton(field,width-height+1,1,height-2,height-2,"#arrowDown")
+        return field;
+      }
       function drawSwitch(parentElement,x,y,width,height,state) {
         var sliderX = 0;
         var textX = 3*width/4;
@@ -551,6 +641,7 @@
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
         g.setAttribute("y",y);
+        g.setAttribute("class","button");
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend", g);
 
@@ -570,6 +661,7 @@
         r.setAttribute("y", 2.5);
         r.setAttribute("width", width+height-1);
         r.setAttribute("height", height-1);
+        r.setAttribute("class","butte");
         r.setAttribute("fill","var(--raised-fill-color)");
         r.setAttribute("stroke","var(--outline-color)");
         g.insertAdjacentElement("beforeend", r);
@@ -1076,9 +1168,9 @@
           w.setAttribute("class","toplevel unfocused");
         }
         if (focused) {
-          drawDecalButton(w,width-74,6,20,20,"#maximizeDecal");
-          drawDecalButton(w,width-50,6,20,20,"#iconifyDecal");
-          drawDecalButton(w,width-26,6,20,20,"#closeDecal");
+          drawDecalButton4(w,width-74-2,6-2,20,"#maximizeDecal",20);
+          drawDecalButton4(w,width-50-2,6-2,20,"#iconifyDecal",20);
+          drawDecalButton4(w,width-26-2,6-2,20,"#closeDecal",20);
         }
         
         var u = document.createElementNS("http://www.w3.org/2000/svg","use");
@@ -1127,7 +1219,7 @@
       }
       function drawSimplePanel(parentElement,x,y,width,height,iconId,itemName,focused=true) {
         var w = drawBaseWindow(parentElement,x,y,width,height);
-        drawDecalButton(w,width-26,6,20,20,"#closeDecal");
+        drawDecalButton4(w,width-26-2,6-2,20,"#closeDecal",20);
 
         var u = document.createElementNS("http://www.w3.org/2000/svg","use");
         u.setAttributeNS("http://www.w3.org/1999/xlink","href",iconId);
@@ -1451,52 +1543,58 @@
         tf.insertAdjacentElement("beforeend", r);
 
         drawPushButton(tf,5,10,0,0,"Cancel");
-        drawPushButton(tf,120,10,0,0,"Cancel").setAttribute("class","button insensitive");
+        drawPushButton(tf,120,10,0,0,"Cancel").classList.add("insensitive");
         drawPushButton(tf,5,45,0,0,"OK",true);
-        drawPushButton(tf,120,45,64,22,"OK",true).setAttribute("class","button insensitive");
+        drawPushButton(tf,120,45,64,22,"OK",true).classList.add("insensitive");
         drawSwitch(tf,5,80,82,28,"off");
-        drawSwitch(tf,120,80,82,28,"off").setAttribute("class","insensitive");
+        drawSwitch(tf,120,80,82,28,"off").classList.add("insensitive");
         drawSwitch(tf,5,115,80,28,"on");
-        drawSwitch(tf,120,115,80,28,"on").setAttribute("class","insensitive");
+        drawSwitch(tf,120,115,80,28,"on").classList.add("insensitive");
         drawToggledButton(tf,5,150,64,22,"Blush");
-        drawToggledButton(tf,120,150,64,22,"Blush").setAttribute("class","button activetoggle insensitive");
+        drawToggledButton(tf,120,150,64,22,"Blush").classList.add("insensitive");
         drawCheckButton(tf,5,190,0,0,"Option","on");
-        drawCheckButton(tf,120,190,0,0,"Option","on").setAttribute("class","insensitive");
+        drawCheckButton(tf,120,190,0,0,"Option","on").classList.add("insensitive");
         drawCheckButton(tf,5,220,0,0,"Option","mixed");
-        drawCheckButton(tf,120,220,0,0,"Option","mixed").setAttribute("class","insensitive");
+        drawCheckButton(tf,120,220,0,0,"Option","mixed").classList.add("insensitive");
         drawCheckButton(tf,5,250,0,0,"Option","off");
-        drawCheckButton(tf,120,250,0,0,"Option","off").setAttribute("class","insensitive");
+        drawCheckButton(tf,120,250,0,0,"Option","off").classList.add("insensitive");
         drawRadioButton(tf,5,280,0,0,"Option","on");
-        drawRadioButton(tf,120,280,0,0,"Option","on").setAttribute("class","insensitive");
+        drawRadioButton(tf,120,280,0,0,"Option","on").classList.add("insensitive");
         drawRadioButton(tf,5,310,0,0,"Option","mixed");
-        drawRadioButton(tf,120,310,0,0,"Option","mixed").setAttribute("class","insensitive");
+        drawRadioButton(tf,120,310,0,0,"Option","mixed").classList.add("insensitive");
         drawRadioButton(tf,5,340,0,0,"Option","off");
-        drawRadioButton(tf,120,340,0,0,"Option","off").setAttribute("class","insensitive");
+        drawRadioButton(tf,120,340,0,0,"Option","off").classList.add("insensitive");
         drawRevealButton(tf,5,370,0,0,"More","closed");
-        drawRevealButton(tf,120,370,0,0,"More","closed").setAttribute("class","insensitive");
+        drawRevealButton(tf,120,370,0,0,"More","closed").classList.add("insensitive");
         drawRevealButton(tf,5,400,0,0,"More","turning");
-        drawRevealButton(tf,120,400,0,0,"More","turning").setAttribute("class","insensitive");
+        drawRevealButton(tf,120,400,0,0,"More","turning").classList.add("insensitive");
         drawRevealButton(tf,5,430,0,0,"More","open");
-        drawRevealButton(tf,120,430,0,0,"More","open").setAttribute("class","insensitive");
+        drawRevealButton(tf,120,430,0,0,"More","open").classList.add("insensitive");
         drawOptionButton(tf,5,460,0,0,"Option");
-        drawOptionButton(tf,120,460,0,0,"Option").setAttribute("class","insensitive");
+        drawOptionButton(tf,120,460,0,0,"Option").classList.add("insensitive");
         drawInputField(tf,5,495,100,28,false,false,false,"Placeholder");
-        drawInputField(tf,120,495,100,28,false,false,false,"Placeholder").setAttribute("class","textfield insensitive");
-        drawSpinButton(tf,5,530,100,28);
-        drawSpinButton(tf,120,530,100,28).setAttribute("class","textfield insensitive");
+        drawInputField(tf,120,495,100,28,false,false,false,"Placeholder").classList.add("insensitive");
+        drawComboBox(tf,5,530,100,28,"Placeholder");
+        drawComboBox(tf,120,530,100,28,"Placeholder").classList.add("insensitive");
+        drawSpinButton(tf,5,565,100,28);
+        drawSpinButton(tf,120,565,100,28).classList.add("insensitive");
         drawHLevel(tf,230,10,100,16);
-        drawHLevel(tf,340,10,100,16).setAttribute("class","insensitive");
+        drawHLevel(tf,340,10,100,16).classList.add("insensitive");
         drawVLevel(tf,230,40,16,100);
-        drawVLevel(tf,340,40,16,100).setAttribute("class","insensitive");
+        drawVLevel(tf,340,40,16,100).classList.add("insensitive");
 
-        drawHScrollBar(tf,230,150,100,16);
-        drawHScrollBar(tf,230,170,100,16,0);
-        drawHScrollBar(tf,230,190,100,16,1);
+        drawDecalOptionButton(tf,230,150,28,"",24);
+        drawDecalOptionButton(tf,340,150,28,"",24).classList.add("insensitive");
+
+        drawHScrollBar(tf,320,220,100,16);
+        drawHScrollBar(tf,320,240,100,16,0);
+        drawHScrollBar(tf,320,260,100,16,1);
+        drawHScrollBar(tf,320,280,100,16).classList.add("insensitive");
 
         drawVScrollBar(tf,230,220,16,100);
         drawVScrollBar(tf,250,220,16,100,0);
         drawVScrollBar(tf,270,220,16,100,1);
-
+        drawVScrollBar(tf,290,220,16,100).classList.add("insensitive");
 
         drawInputField(tf,240,340,120,120,false,false,true);
         drawInputField(tf,370,340,120,120,true,false,true);
@@ -1512,9 +1610,9 @@
         drawTabs(tf,450,50,240,34,["a","b","c"],1);
         drawTabs(tf,450,90,240,34,["a","b","c"],2);
 
-        drawTabs(tf,450,130,240,34,["a","b","c"],0).setAttribute("class","insensitive");
-        drawTabs(tf,450,170,240,34,["a","b","c"],1).setAttribute("class","insensitive");
-        drawTabs(tf,450,210,240,34,["a","b","c"],2).setAttribute("class","insensitive");
+        drawTabs(tf,450,130,240,34,["a","b","c"],0).classList.add("insensitive");
+        drawTabs(tf,450,170,240,34,["a","b","c"],1).classList.add("insensitive");
+        drawTabs(tf,450,210,240,34,["a","b","c"],2).classList.add("insensitive");
 
         drawLeftSideTabs(tf,450,247,70,90,["a","b","c"],0);
         drawLeftSideTabs(tf,525,247,70,90,["a","b","c"],1);
@@ -1857,24 +1955,55 @@
         <symbol class="decal" id="branchDecal" viewBox="0 0 24 24">
           <circle cx="8.5" cy="3.5" r="2"/>
           <circle cx="8.5" cy="20.5" r="2"/>
-          <circle cx="16.5" cy="10.5" r="2"/>
+          <circle cx="16.5" cy="8.5" r="2"/>
           <path d="M8.5,18.5 V5.5"/>
-          <path d="M8.5,18.5 Q 8.5,15.5 11.5,15.5 H13.5 Q 16.5,15.5 16.5,12.5 V12.5"/>
+          <path d="M8.5,18.5 Q 8.5,14.5 12.5,14.5 H12.5 Q 16.5,14.5 16.5,11.5 V10.5"/>
         </symbol>
         <symbol class="decal" id="folderDecal" viewBox="0 0 16 16">
           <path d="M8.5,3.5 L6.5,5.5 H0.5 V3.5 L2.5,1.5 H6.5 L8.5,3.5 H15.5 V14.5 H0.5 V5.5"/>
         </symbol>
         <symbol class="decal" id="playDecal" viewBox="0 0 24 24">
-          <path d="M0.5,0.5 L23.5,12 L0,23.5 Z"/>
+          <path d="M0.5,0.5 L23.5,12 L0.5,23.5 Z"/>
         </symbol>
         <symbol class="decal" id="debugDecal" viewBox="0 0 24 24">
-          <path d="M0.5,0.5 L23.5,12 L0,23.5 Z"/>
+          <path d="M0.5,0.5 L23.5,12 L0.5,23.5 Z"/>
           <circle cx="10" cy="14" r="4"/>
         </symbol>
         <symbol class="decal" id="debugDecal2" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="11" stroke-width="2"/>
           <path d="M0,0 L0,0 L0,0 Z"/>
         </symbol>
+        <symbol class="decal" id="justifyLeftDecal" viewBox="0 0 24 24">
+          <line x1="0" y1="2"  x2="24" y2="2" stroke-width="2"/>
+          <line x1="0" y1="7"  x2="16" y2="7" stroke-width="2"/>
+          <line x1="0" y1="12" x2="24" y2="12" stroke-width="2"/>
+          <line x1="0" y1="17" x2="16" y2="17" stroke-width="2"/>
+          <line x1="0" y1="22" x2="24" y2="22" stroke-width="2"/>
+        </symbol>
+        <symbol class="decal" id="justifyCenterDecal" viewBox="0 0 24 24">
+          <line x1="0" y1="2"  x2="24" y2="2" stroke-width="2"/>
+          <line x1="4" y1="7"  x2="20" y2="7" stroke-width="2"/>
+          <line x1="0" y1="12" x2="24" y2="12" stroke-width="2"/>
+          <line x1="4" y1="17" x2="20" y2="17" stroke-width="2"/>
+          <line x1="0" y1="22" x2="24" y2="22" stroke-width="2"/>
+        </symbol>
+        <symbol class="decal" id="justifyRightDecal" viewBox="0 0 24 24">
+          <line x1="0" y1="2"  x2="24" y2="2" stroke-width="2"/>
+          <line x1="8" y1="7"  x2="24" y2="7" stroke-width="2"/>
+          <line x1="0" y1="12" x2="24" y2="12" stroke-width="2"/>
+          <line x1="8" y1="17" x2="24" y2="17" stroke-width="2"/>
+          <line x1="0" y1="22" x2="24" y2="22" stroke-width="2"/>
+        </symbol>
+        <symbol class="decal" id="justifySidesDecal" viewBox="0 0 24 24">
+          <line x1="0" y1="2"  x2="24" y2="2" stroke-width="2"/>
+          <line x1="0" y1="7"  x2="8" y2="7" stroke-width="2"/>
+          <line x1="16" y1="7"  x2="24" y2="7" stroke-width="2"/>
+          <line x1="0" y1="12" x2="24" y2="12" stroke-width="2"/>
+          <line x1="0" y1="17" x2="8" y2="17" stroke-width="2"/>
+          <line x1="16" y1="17" x2="24" y2="17" stroke-width="2"/>
+          <line x1="0" y1="22" x2="24" y2="22" stroke-width="2"/>
+        </symbol>
+
         <g id="hGrippy">
           <rect width="10" height="10" fill="var(--highlight-stroke-color)"/>
           <path stroke="var(--shadow-stroke-color)" d="M1.5,0 V10 M3.5,0 V10 M5.5,0 V10 M7.5,0 V10 M9.5,0 V10" />
@@ -2589,7 +2718,43 @@
       </script>
     </svg>
     <hr>
-    <p>An empty folder view is similar.</p>
+    <p>This item has a toolbar.</p>
+    <svg width="640" height="480" id="basicViewWithToolbar"><title>Basic View with Toolbar</title>
+      <script>
+        var w = drawItemWindow(document.getElementById("basicViewWithToolbar"),0,0,640,480,"#documentIcon","Item Name");
+        drawDecalButton4(w,3,30,28,"#folderDecal",20);
+        drawDecalButton4(w,34,30,28,"",18);
+        drawDecalButton4(w,65,30,28,"",18);
+        drawDecalButton4(w,100,30,28,"",18);
+        drawDecalButton4(w,134,30,28,"",18);
+        drawComboBox(w,168,32,120,28,"foo");
+        drawOptionButton(w,292,30,0,0);
+        drawInputField(w,3,58+4,640-6,480-33-28-4,false,false,true);
+
+      </script>
+    </svg>
+    <p>And this one has two.</p>
+    <svg width="640" height="480" id="basicViewWithToolbars"><title>Basic View with Toolbar</title>
+      <script>
+        var w = drawItemWindow(document.getElementById("basicViewWithToolbars"),0,0,640,480,"#documentIcon","Item Name");
+        drawDecalButton4(w,3,30,28,"#folderDecal",20);
+        drawDecalButton4(w,34,30,28,"",18);
+        drawDecalButton4(w,65,30,28,"",18);
+        drawDecalButton4(w,100,30,28,"",18);
+        drawDecalButton4(w,134,30,28,"",18);
+        drawComboBox(w,168,32,120,28,"foo");
+        drawOptionButton(w,292,30,0,0);
+        drawComboBox(w,3,64,120,28,"bar");
+        drawDecalButton4(w,130,62,28,"",18);
+        drawDecalButton4(w,161,62,28,"",18);
+        drawDecalButton4(w,192,62,28,"",18);
+        drawDecalOptionButton(w,223,62,28,"",18);
+        drawInputField(w,3,58+4+32,640-6,480-33-28-4-32,false,false,true);
+
+      </script>
+    </svg>
+    <hr>
+    <p>An empty folder view is simple.</p>
     <svg width="640" height="480" id="basicFolder"><title>Basic Folder</title>
       <script>
         drawSimpleWindow(document.getElementById("basicFolder"),0,0,640,480,"#folderIcon","Folder Name");
@@ -2605,11 +2770,13 @@
       </script>
     </svg>
     <hr>
+    <p>This is another project look, based on VS Code. The buttons on the left are radio buttons to open the various side panels. They used the joined together look seen in radio buttons on some toolbars. How to do focus indication is not clear.</p>
+    <p>The tabs are the heavy tabs that don't look like they can be moved around or closed.</p>
     <svg width="640" height="480" id="basicProject2"><title>Basic Project 2</title>
       <script>
         var w = drawItemWindow(document.getElementById("basicProject2"),0,0,640,480,"#folderIcon","Project 2 Title");
-        drawDecalButton(w,3,30,48,48,"");
-        drawDecalButton(w,3,77,48,48,"");
+        drawDecalButton3(w,3,30,48,"#folderDecal",24);
+        drawDecalButton3(w,3,77,48,"#branchDecal",24);
         drawDecalButton(w,3,124,48,48,"");
         drawDecalButton(w,3,171,48,48,"");
         drawDecalButton(w,3,218,48,48,"");
@@ -2623,8 +2790,8 @@
     <svg width="640" height="480" id="basicProject2p2"><title>Basic Project 2.2</title>
       <script>
         var w = drawItemWindow(document.getElementById("basicProject2p2"),0,0,640,480,"#folderIcon","Project 2 Title");
-        drawDecalButton(w,3,30,48,48,"");
-        drawDecalButton(w,3,77,48,48,"").setAttribute("class","button activetoggle");
+        drawDecalButton3(w,3,30,48,"#folderDecal",24);
+        drawDecalButton3(w,3,77,48,"#branchDecal",24).setAttribute("class","button activetoggle");
         drawDecalButton(w,3,124,48,48,"");
         drawDecalButton(w,3,171,48,48,"");
         drawDecalButton(w,3,218,48,48,"");
@@ -2637,11 +2804,12 @@
       </script>
     </svg>
     <hr>
+    <p>This changes the tabs to be like those of a spreadsheet, to indicate they can be rearranged and more.</p>
     <svg width="640" height="480" id="basicProject3"><title>Basic Project 3</title>
       <script>
         var w = drawItemWindow(document.getElementById("basicProject3"),0,0,640,480,"#folderIcon","Project 3 Title");
-        drawDecalButton(w,3,30,48,48,"");
-        drawDecalButton(w,3,77,48,48,"");
+        drawDecalButton3(w,3,30,48,"#folderDecal",24);
+        drawDecalButton3(w,3,77,48,"#branchDecal",24);
         drawDecalButton(w,3,124,48,48,"");
         drawDecalButton(w,3,171,48,48,"");
         drawDecalButton(w,3,218,48,48,"");
@@ -2654,8 +2822,8 @@
     <svg width="640" height="480" id="basicProject3p2"><title>Basic Project 3.2</title>
       <script>
         var w = drawItemWindow(document.getElementById("basicProject3p2"),0,0,640,480,"#folderIcon","Project 3 Title");
-        drawDecalButton(w,3,30,48,48,"");
-        drawDecalButton(w,3,77,48,48,"").setAttribute("class","button activetoggle");
+        drawDecalButton3(w,3,30,48,"#folderDecal",24);
+        drawDecalButton3(w,3,77,48,"#branchDecal",24).setAttribute("class","button activetoggle");
         drawDecalButton(w,3,124,48,48,"");
         drawDecalButton(w,3,171,48,48,"");
         drawDecalButton(w,3,218,48,48,"");
@@ -2667,6 +2835,7 @@
       </script>
     </svg>
     <hr>
+    <p>It's more conventional for tabs in an IDE to be at the top, so spreadsheet style at the top instead.</p>
     <svg width="640" height="480" id="basicProject4"><title>Basic Project 4</title>
       <script>
         var w = drawItemWindow(document.getElementById("basicProject4"),0,0,640,480,"#folderIcon","Project 4 Title");
@@ -2697,6 +2866,37 @@
       </script>
     </svg>
     <hr>
+    <p>Perhaps the radio buttons should not be stuck together. This makes focus indication possible.</p>
+    <svg width="640" height="480" id="basicProject5"><title>Basic Project 5</title>
+      <script>
+        var w = drawItemWindow(document.getElementById("basicProject5"),0,0,640,480,"#folderIcon","Project 5 Title");
+        drawDecalButton4(w,2,30,48,"#folderDecal",24);
+        drawDecalButton4(w,2,81,48,"#branchDecal",24);
+        drawDecalButton4(w,2,132,48,"",24);
+        drawDecalButton4(w,2,183,48,"",24);
+        drawDecalButton4(w,2,234,48,"",24);
+        drawDecalButton4(w,2,285,48,"",24);
+        drawDecalButton4(w,2,336,48,"",24);
+        var tbs = drawTopTabbedInputField(w,54,30,583,416,["File 1","File 2","File 3"],0);
+        var sb = drawInputField(w,3,448,618,28);
+      </script>
+    </svg>
+    <svg width="640" height="480" id="basicProject5p2"><title>Basic Project 5.2</title>
+      <script>
+        var w = drawItemWindow(document.getElementById("basicProject5p2"),0,0,640,480,"#folderIcon","Project 5 Title");
+        drawDecalButton4(w,2,30,48,"#folderDecal",24);
+        drawDecalButton4(w,2,81,48,"#branchDecal",24).setAttribute("class","button activetoggle");
+        drawDecalButton4(w,2,132,48,"",24);
+        drawDecalButton4(w,2,183,48,"",24);
+        drawDecalButton4(w,2,234,48,"",24);
+        drawDecalButton4(w,2,285,48,"",24);
+        drawDecalButton4(w,2,336,48,"",24);
+        drawInputField(w,54,30,100,416);
+        var tbs = drawTopTabbedInputField(w,155,30,484,416,["File 1","File 2","File 3"],0);
+        var sb = drawInputField(w,3,448,618,28);
+      </script>
+    </svg>
+    <hr>
     <!--
     <svg width="640" height="480" id="someFolder"><title>Some Folder</title>
       <script>
@@ -2721,16 +2921,17 @@
       <text x="165.5" y="71.5">Lorem ipsum dolor sit amet.</text>
     </svg>
     -->
+    <p>A spreadsheet might look like this.</p>
     <svg width="640" height="480" id="spreadsheet"><title>Spreadsheet</title>
       <script>
         var w = drawItemWindow(document.getElementById("spreadsheet"),0,0,640,480,"#spreadsheetIcon","Spreadsheet Name");
 
         drawTabbedInputField(w,3,30,634,416,["Sheet 1","Sheet 2","Sheet 3"],0);
         drawInputField(w,4,448,98,28,false,false,false,"B2");
-        drawDecalButton2(w,104,448,28,28,"#cutDecal");
-        drawDecalButton2(w,134,448,28,28,"#copyDecal");
-        drawDecalButton2(w,164,448,28,28,"#pasteDecal");
-        drawInputField(w,194,448,630-84-100-18,28,false,false,false);
+        drawDecalButton4(w,104,446,28,"",24);
+        drawDecalButton4(w,137,446,28,"",24);
+        drawDecalButton4(w,170,446,28,"",24);
+        drawInputField(w,194+9,448,630-84-100-18-9,28,false,false,false);
 
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",4);
@@ -2749,7 +2950,7 @@
           l.setAttribute("stroke","var(--base-fill-color)");
           g.insertAdjacentElement("beforeend",l);
         }
-        for (var i=1;i < 26;i++) {
+        for (var i=1;i < 10;i++) {
           let b = drawHeaderButton(g,i*63 - 16,0,64,16,String.fromCharCode(64+i),i==2?"selected":"");
           let l = document.createElementNS("http://www.w3.org/2000/svg","path");
           l.setAttribute("d","M"+(47.5+i*63)+",16 v404");
@@ -2763,10 +2964,65 @@
         r.setAttribute("width",64-1);
         r.setAttribute("height",16-1);
         r.setAttribute("fill","none");
-        r.setAttribute("stroke","var(--outline-color");
+        r.setAttribute("stroke","var(--outline-color)");
         g.insertAdjacentElement("beforeend",r);
       </script>
     </svg>
+    <svg width="640" height="480" id="spreadsheet2"><title>Spreadsheet 2</title>
+      <script>
+        var w = drawItemWindow(document.getElementById("spreadsheet2"),0,0,640,480,"#spreadsheetIcon","Spreadsheet Name");
+
+        drawTabbedInputField(w,3,30,634,416-32,["Sheet 1","Sheet 2","Sheet 3"],0);
+        drawInputField(w,4,448,98,28,false,false,false,"B2");
+        drawDecalButton4(w,104,446,28,"",24);
+        drawDecalButton4(w,137,446,28,"",24);
+        drawDecalButton4(w,170,446,28,"",24);
+        drawInputField(w,194+9,448,630-84-100-18-9,28,false,false,false);
+
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",4);
+        g.setAttribute("y",31);
+        g.setAttribute("width",616);
+        g.setAttribute("height",398-32);
+        w.insertAdjacentElement("beforeend",g);
+
+        drawButton(g,0,0,48,16);
+
+        for (var i=1;i < 30;i++) {
+          let b = drawHeaderButton(g,0,i*15,48,16,i,i==2?"selected":"");
+          let l = document.createElementNS("http://www.w3.org/2000/svg","path");
+          l.setAttribute("d","M48,"+(15.5+i*15)+" h616");
+          l.setAttribute("fill","none");
+          l.setAttribute("stroke","var(--base-fill-color)");
+          g.insertAdjacentElement("beforeend",l);
+        }
+        for (var i=1;i < 10;i++) {
+          let b = drawHeaderButton(g,i*63 - 16,0,64,16,String.fromCharCode(64+i),i==2?"selected":"");
+          let l = document.createElementNS("http://www.w3.org/2000/svg","path");
+          l.setAttribute("d","M"+(47.5+i*63)+",16 v404");
+          l.setAttribute("fill","none");
+          l.setAttribute("stroke","var(--base-fill-color)");
+          g.insertAdjacentElement("beforeend",l);
+        }
+        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        r.setAttribute("x",110.5);
+        r.setAttribute("y",30.5);
+        r.setAttribute("width",64-1);
+        r.setAttribute("height",16-1);
+        r.setAttribute("fill","none");
+        r.setAttribute("stroke","var(--outline-color)");
+        g.insertAdjacentElement("beforeend",r);
+        drawDecalButton4(w,3,414,28,"",24);
+        drawDecalButton4(w,36,414,28,"",24);
+        drawDecalButton4(w,36+33,414,28,"",24);
+        drawDecalButton4(w,36+66,414,28,"",24);
+        drawDecalButton4(w,36+99,414,28,"",24);
+        drawDecalButton4(w,36+99+33,414,28,"",24);
+        drawDecalButton4(w,36+99+66,414,28,"",24);
+        drawDecalButton4(w,36+99+99,414,28,"",24);
+      </script>
+    </svg>
+    <hr>
     <svg width="640" height="480" id="tabbedWindow"><title>Tabbed Window</title>
       <script>
         drawItemWindow(document.getElementById("tabbedWindow"),0,0,640,480,"#documentIcon","Some Items",false);
