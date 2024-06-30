@@ -453,6 +453,8 @@
         return field;
       }
       function drawSwitch(parentElement,x,y,width,height,state) {
+        if (width<80) width=80;
+        if (height<28) height=28;
         var sliderX = 0;
         var textX = 3*width/4;
         var word = "OFF";
@@ -1688,8 +1690,8 @@
       function drawTestField(id) {
         tf = document.getElementById(id);
         var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        r.setAttribute("width", 800);
-        r.setAttribute("height", 600);
+        r.setAttribute("width", tf.width.baseVal.value);
+        r.setAttribute("height", tf.height.baseVal.value);
         r.setAttribute("fill","var(--base-fill-color)");
         r.setAttribute("stroke","none");
         tf.insertAdjacentElement("beforeend", r);
@@ -1698,10 +1700,10 @@
         drawPushButton(tf,120,10,0,0,"Cancel").classList.add("insensitive");
         drawPushButton(tf,5,45,0,0,"OK",true);
         drawPushButton(tf,120,45,64,22,"OK",true).classList.add("insensitive");
-        drawSwitch(tf,5,80,82,28,"off");
-        drawSwitch(tf,120,80,82,28,"off").classList.add("insensitive");
-        drawSwitch(tf,5,115,80,28,"on");
-        drawSwitch(tf,120,115,80,28,"on").classList.add("insensitive");
+        drawSwitch(tf,5,80,0,0,"off");
+        drawSwitch(tf,120,80,0,0,"off").classList.add("insensitive");
+        drawSwitch(tf,5,115,0,0,"on");
+        drawSwitch(tf,120,115,0,0,"on").classList.add("insensitive");
         drawToggledButton(tf,5,150,64,22,"Blush");
         drawToggledButton(tf,120,150,64,22,"Blush").classList.add("insensitive");
         drawCheckButton(tf,5,190,0,0,"Option","on");
@@ -1730,13 +1732,36 @@
         drawComboBox(tf,120,530,100,28,"Placeholder").classList.add("insensitive");
         drawSpinButton(tf,5,565,100,28);
         drawSpinButton(tf,120,565,100,28).classList.add("insensitive");
-        drawHLevel(tf,230,10,100,16);
-        drawHLevel(tf,340,10,100,16).classList.add("insensitive");
-        drawVLevel(tf,230,40,16,100);
-        drawVLevel(tf,340,40,16,100).classList.add("insensitive");
+        drawHLevel(tf,5,600,100,16);
+        drawHLevel(tf,120,600,100,16).classList.add("insensitive");
+        drawVLevel(tf,5,620,16,100);
+        drawVLevel(tf,120,620,16,100).classList.add("insensitive");
+        drawDecalButton4(tf,230,10,28,"",19);
+        drawDecalButton4(tf,340,10,28,"",19).classList.add("insensitive");
+        drawDecalOptionButton(tf,230,45,28,"",19);
+        drawDecalOptionButton(tf,340,45,28,"",19).classList.add("insensitive");
 
-        drawDecalOptionButton(tf,230,150,28,"",24);
-        drawDecalOptionButton(tf,340,150,28,"",24).classList.add("insensitive");
+        drawDecalButton4(tf,230,80,28,"",19).classList.add("activetoggle");
+        drawDecalButton4(tf,257,80,28,"",19);
+        drawDecalButton4(tf,284,80,28,"",19);
+        drawDecalButton4(tf,340,80,28,"",19).classList.add("activetoggle","insensitive");
+        drawDecalButton4(tf,367,80,28,"",19).classList.add("insensitive");
+        drawDecalButton4(tf,394,80,28,"",19).classList.add("insensitive");
+
+        drawDecalButton4(tf,230,115,28,"",19);
+        drawDecalButton4(tf,257,115,28,"",19).classList.add("activetoggle");
+        drawDecalButton4(tf,284,115,28,"",19);
+        drawDecalButton4(tf,340,115,28,"",19).classList.add("insensitive");
+        drawDecalButton4(tf,367,115,28,"",19).classList.add("activetoggle","insensitive");
+        drawDecalButton4(tf,394,115,28,"",19).classList.add("insensitive");
+
+        drawDecalButton4(tf,230,150,28,"",19);
+        drawDecalButton4(tf,257,150,28,"",19);
+        drawDecalButton4(tf,284,150,28,"",19).classList.add("activetoggle");
+        drawDecalButton4(tf,340,150,28,"",19).classList.add("insensitive");
+        drawDecalButton4(tf,367,150,28,"",19).classList.add("insensitive");
+        drawDecalButton4(tf,394,150,28,"",19).classList.add("activetoggle","insensitive");
+
 
         drawHScrollBar(tf,320,220,100,16);
         drawHScrollBar(tf,320,240,100,16,0);
@@ -1762,13 +1787,16 @@
         drawTabs(tf,450,50,240,34,["a","b","c"],1);
         drawTabs(tf,450,90,240,34,["a","b","c"],2);
 
-        drawTabs(tf,450,130,240,34,["a","b","c"],0).classList.add("insensitive");
-        drawTabs(tf,450,170,240,34,["a","b","c"],1).classList.add("insensitive");
-        drawTabs(tf,450,210,240,34,["a","b","c"],2).classList.add("insensitive");
+        drawTabs(tf,700,10,240,34,["a","b","c"],0).classList.add("insensitive");
+        drawTabs(tf,700,50,240,34,["a","b","c"],1).classList.add("insensitive");
+        drawTabs(tf,700,90,240,34,["a","b","c"],2).classList.add("insensitive");
 
-        drawLeftSideTabs(tf,450,247,70,90,["a","b","c"],0);
-        drawLeftSideTabs(tf,525,247,70,90,["a","b","c"],1);
-        drawLeftSideTabs(tf,600,247,70,90,["a","b","c"],2);
+        drawLeftSideTabs(tf,450,130,70,90,["a","b","c"],0);
+        drawLeftSideTabs(tf,525,130,70,90,["a","b","c"],1);
+        drawLeftSideTabs(tf,600,130,70,90,["a","b","c"],2);
+        drawLeftSideTabs(tf,700,130,70,90,["a","b","c"],0).classList.add("insensitive");
+        drawLeftSideTabs(tf,775,130,70,90,["a","b","c"],1).classList.add("insensitive");
+        drawLeftSideTabs(tf,850,130,70,90,["a","b","c"],2).classList.add("insensitive");
       }
       function drawIconField(id) {
 
@@ -2724,13 +2752,16 @@
       </defs>
     </svg>
     <br/>
-    <svg id="testfield" width="800" height="600">
+    <svg id="testfield" width="1024" height="768">
       <script>drawTestField("testfield");</script>
+    </svg>
+    <svg id="testfield2" class="accessible-palette" width="1024" height="768">
+      <script>drawTestField("testfield2");</script>
     </svg>
     <svg id="iconfield" width="800" height="600">
       <script>drawIconField("iconfield");</script>
     </svg>
-    <svg id="testfielddark" class="darkmode" style="color-scheme: dark" width="800" height="600">
+    <svg id="testfielddark" class="darkmode" style="color-scheme: dark" width="1024" height="768">
       <script>drawTestField("testfielddark");</script>
     </svg>
     <svg id="iconfielddark" class="darkmode" style="color-scheme: dark" width="800" height="600">
