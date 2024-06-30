@@ -25,6 +25,8 @@
   --text-color:             black;
   --selection-color:        black;
   --selected-text-color:    white;
+  --placeholder-color:      red;
+  --decal-placeholder-color: lightblue;
   font-family: sans-serif;
 }
 .insensitive {
@@ -86,6 +88,7 @@
   --text-color:             #e6e6e6;
   --selection-color:        #e6e6e6;
   --selected-text-color:    black;
+  --decal-placeholder-color: navy;
 }
 .darkmode.insensitive, .darkmode .insensitive {
   --input-field-color:      #4A4A4A; /* regular --raised-fill-color */
@@ -109,6 +112,7 @@
   --text-color:             #EEEEEE;
   --selection-color:        #EEEEEE;
   --selected-text-color:    black;
+  --decal-placeholder-color: navy;
 }
 .darkmode-alt {
   --focus-ring-color:       hsl(0, 0%, 90%);
@@ -124,6 +128,7 @@
   --active-fill-color:      hsl(0, 0%, 20%); /* 0 */
   --shadow-stroke-color:    hsl(0, 0%, 7%); /* 13 */
   --selected-text-color:    hsl(0, 0%, 0%); /* 7 */
+  --decal-placeholder-color: navy;
 }
 .dark-accessible-palette-ALT {
   --focus-ring-color:       hsl(0, 0%, 93%);
@@ -139,6 +144,7 @@
   --active-fill-color:      hsl(0, 0%, 30%); /* 7 */
   --shadow-stroke-color:    hsl(0, 0%, 22%); /* 8 */
   --selected-text-color:    hsl(0, 0%, 0%);  /* 22 */
+  --decal-placeholder-color: navy;
 }
 .dark-accessible-palette.insensitive, .dark-accessible-palette .insensitive {
   --input-field-color:      #8B8B8B; /* regular --raised-fill-color */

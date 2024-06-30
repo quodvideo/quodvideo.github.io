@@ -138,7 +138,7 @@
           u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
         } else {
           var u = document.createElementNS("http://www.w3.org/2000/svg","rect");
-          u.setAttribute("fill","lightblue");
+          u.setAttribute("fill","var(--decal-placeholder-color)");
           u.setAttribute("stroke","none");
         }
         u.setAttribute("width",width);
@@ -153,7 +153,7 @@
           u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
         } else {
           var u = document.createElementNS("http://www.w3.org/2000/svg","rect");
-          u.setAttribute("fill","lightblue");
+          u.setAttribute("fill","var(--decal-placeholder-color)");
           u.setAttribute("stroke","none");
         }
         u.setAttribute("x",(size-decalsize)/2);
@@ -177,7 +177,7 @@
           u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
         } else {
           var u = document.createElementNS("http://www.w3.org/2000/svg","rect");
-          u.setAttribute("fill","lightblue");
+          u.setAttribute("fill","var(--decal-placeholder-color)");
           u.setAttribute("stroke","none");
         }
         u.setAttribute("x",(size-decalsize)/2);
@@ -229,7 +229,7 @@
           u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
         } else {
           var u = document.createElementNS("http://www.w3.org/2000/svg","rect");
-          u.setAttribute("fill","lightblue");
+          u.setAttribute("fill","var(--decal-placeholder-color)");
           u.setAttribute("stroke","none");
         }
         u.setAttribute("x",(size-decalsize)/2);
@@ -1854,7 +1854,7 @@
             var u = document.createElementNS("http://www.w3.org/2000/svg","use");
             var x = poses[Math.floor(i/11)][j];
             var y = 10+50*(i%11);
-            b.setAttribute("fill","lightblue");
+            b.setAttribute("fill","var(--decal-placeholder-color)");
             b.setAttribute("stroke","none");
             b.setAttribute("x",x);
             b.setAttribute("y",y);
@@ -2752,25 +2752,46 @@
       </defs>
     </svg>
     <br/>
-    <svg id="testfield" width="1024" height="768">
-      <script>drawTestField("testfield");</script>
-    </svg>
-    <svg id="testfield2" class="accessible-palette" width="1024" height="768">
-      <script>drawTestField("testfield2");</script>
-    </svg>
-    <svg id="iconfield" width="800" height="600">
-      <script>drawIconField("iconfield");</script>
-    </svg>
-    <svg id="testfielddark" class="darkmode" style="color-scheme: dark" width="1024" height="768">
-      <script>drawTestField("testfielddark");</script>
-    </svg>
-    <svg id="iconfielddark" class="darkmode" style="color-scheme: dark" width="800" height="600">
-      <script>drawIconField("iconfielddark");</script>
-    </svg>
-    <svg id="decalfield" width="800" height="600">
-      <script>drawDecalField("decalfield")</script>
-    </svg>
-    <br/>
+    <label for="fooselect">Select a theme:</label>
+    <select id="fooselect">
+      <option value="">Old</option>
+      <option value="accessible-palette" selected>Accessible</option>
+      <option value="darkmode">Dark</option>
+      <option value="dark-accessible-palette">Dark Accessible</option>
+    </select><br>
+    <figure>
+      <svg id="foofield" width="1024" height="768">
+        <script>drawTestField("foofield");</script>
+      </svg>
+      <figcaption>Basic Widgets</figcaption>
+    </figure>
+    <figure>
+      <svg id="iconfield" width="800" height="600">
+        <script>drawIconField("iconfield");</script>
+      </svg>
+      <figcaption>Item Icons</figcaption>
+    </figure>
+    <figure>
+      <svg id="decalfield" width="800" height="600">
+        <script>drawDecalField("decalfield")</script>
+      </svg>
+      <figcaption>Control Decals</figcaption>
+    </figure>
+    <script>
+      var s = document.getElementById("fooselect");
+      var f = document.getElementById("foofield");
+      var icons = document.getElementById("iconfield");
+      var decals = document.getElementById("decalfield");
+      f.setAttribute("class",s.options[s.selectedIndex].value);
+      icons.setAttribute("class",s.options[s.selectedIndex].value);
+      decals.setAttribute("class",s.options[s.selectedIndex].value);
+      s.addEventListener("change",() => {
+        f.setAttribute("class",s.options[s.selectedIndex].value);
+        icons.setAttribute("class",s.options[s.selectedIndex].value);
+        decals.setAttribute("class",s.options[s.selectedIndex].value);
+      });
+    </script>
+    
     <hr>
     <p>This is a Message Alert. A message alert is transient for another window and blocks activity in that window. As such, it should almost never be seen.</p>
     <svg width="400" height="150" id="messageAlert"><title>Message Alert</title>
@@ -3094,7 +3115,7 @@
         drawLabeledIcon(document.getElementById("someFolder"),16,54,48,"white","#documentIcon","Some File");
         drawLabeledIcon(document.getElementById("someFolder"),112,54,48,"white","#documentIcon","Some Other File");
         drawLabeledIcon(document.getElementById("someFolder"),208,54,48,"red","#documentIcon","Something Else");
-        drawLabeledIcon(document.getElementById("someFolder"),304,54,48,"lightblue","#documentIcon","Yet Another File");
+        drawLabeledIcon(document.getElementById("someFolder"),304,54,48,"var(--decal-placeholder-color)","#documentIcon","Yet Another File");
       </script>
     </svg>
     <svg width="640" height="480" id="projectFolder"><title>Project Folder</title>
