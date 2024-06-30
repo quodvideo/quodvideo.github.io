@@ -116,10 +116,13 @@
         g.setAttribute("x",x);
         g.setAttribute("y",y);
         g.setAttribute("class","button headerbutton");
+        g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend", g);
 
         var r = drawRaisedRect(g,0,0,width,height);
         if (state=="selected") { r.setAttribute("class","flat"); }
+
+        drawInnerFocusRingRect(g,3,3,width-6,height-6);
 
         let t = document.createElementNS("http://www.w3.org/2000/svg","text");
         t.innerHTML = label;
@@ -136,13 +139,17 @@
         if (decal) {
           var u = document.createElementNS("http://www.w3.org/2000/svg","use");
           u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
+          u.setAttribute("width",width);
+          u.setAttribute("height",height);
         } else {
           var u = document.createElementNS("http://www.w3.org/2000/svg","rect");
           u.setAttribute("fill","var(--decal-placeholder-color)");
           u.setAttribute("stroke","none");
+          u.setAttribute("x",3);
+          u.setAttribute("y",3);
+          u.setAttribute("width",width-6);
+          u.setAttribute("height",height-6);
         }
-        u.setAttribute("width",width);
-        u.setAttribute("height",height);
         g.insertAdjacentElement("beforeend",u);
         return g;
       }
@@ -1411,6 +1418,7 @@
           var ly = 3+i*21;
 
           var g = document.createElementNS("http://www.w3.org/2000/svg","g");
+          g.setAttribute("tabindex",0);
           if (i==selected) {
             g.setAttribute("class","listitem selected");
           } else {
@@ -1423,6 +1431,9 @@
           r.setAttribute("width",width-4);
           r.setAttribute("height",21);
           g.insertAdjacentElement("beforeend",r);
+
+          drawInnerFocusRingRect(g,lx+1,ly+1,width-6,19);
+
           var t = document.createElementNS("http://www.w3.org/2000/svg","text");
           t.setAttribute("x",lx+3);
           t.setAttribute("y",ly+15);
@@ -1783,6 +1794,8 @@
         drawInputField(tf,500,470,120,120,false,true,false);
         drawInputField(tf,630,470,120,120,true,true,false);
 
+        drawSimpleList(tf,240,600,120,120,["Option 1","Option 2","Option 3"],1);
+
         drawTabs(tf,450,10,240,34,["a","b","c"],0);
         drawTabs(tf,450,50,240,34,["a","b","c"],1);
         drawTabs(tf,450,90,240,34,["a","b","c"],2);
@@ -1797,6 +1810,8 @@
         drawLeftSideTabs(tf,700,130,70,90,["a","b","c"],0).classList.add("insensitive");
         drawLeftSideTabs(tf,775,130,70,90,["a","b","c"],1).classList.add("insensitive");
         drawLeftSideTabs(tf,850,130,70,90,["a","b","c"],2).classList.add("insensitive");
+
+        drawTabbedInputField(tf,450,230,400,100,["1","2","3"],0)
       }
       function drawIconField(id) {
 
@@ -1884,7 +1899,7 @@
     <p>The art is primitive. That's because I can't draw. I also think icons should be iconic. The icons have been made in SVG to have decent 16x16 rasters that scale up to at least 48x48. I've no objection to people customizing their icons. In fact, I encourage it.</p>
     <p>I make a distinction between icons and decals. An icon is a view of an item. It can be moved around from folder to folder. A decal is an iconic representation of an action that is attached to a control.</p>
     <p>The decals are different sizes.</p>
-    <p>Almost everything here is greyscale. There are some other colors while I'm playing around with things. A red rectangle is often a placeholder.</p>
+    <p>Almost everything here is greyscale. There are some other colors while I'm playing around with things. Red and blue rectangles are placeholders.</p>
     <p>The default graphics will be greyscale. There are three reasons for this. First, the system should work in greyscale. Second, I've heard some artists prefer a greyscale GUI because a colorful one would affect their sense of color in their work. Third, leaving color to a customization provides an avenue for users to explore customizing the GUI; they can start small, by changing the accent color, which is used to mark selections.</p>
     <p>I believe this default theme should also work as a high-contrast theme. There is also a dark mode theme.</p>
     <p><rum>Remember <a href="https://accessiblepalette.com/">Accessible Palette</a>.</rum></p>
@@ -3073,6 +3088,7 @@
       </script>
     </svg>
     <hr>
+    <!--
     <p>Perhaps the radio buttons should not be stuck together. This makes focus indication possible.</p>
     <svg width="640" height="480" id="basicProject5"><title>Basic Project 5</title>
       <script>
@@ -3104,6 +3120,7 @@
       </script>
     </svg>
     <hr>
+    -->
     <!--
     <svg width="640" height="480" id="someFolder"><title>Some Folder</title>
       <script>
@@ -3135,9 +3152,9 @@
 
         drawTabbedInputField(w,3,30,634,416,["Sheet 1","Sheet 2","Sheet 3"],0);
         drawInputField(w,4,448,98,28,false,false,false,"B2");
-        drawDecalButton4(w,104,448,28,"",24);
-        drawDecalButton4(w,137,448,28,"",24);
-        drawDecalButton4(w,170,448,28,"",24);
+        drawDecalButton4(w,104,448,28,"",19);
+        drawDecalButton4(w,137,448,28,"",19);
+        drawDecalButton4(w,170,448,28,"",19);
         drawInputField(w,194+9,448,630-84-100-18-9,28,false,false,false);
 
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
@@ -3180,18 +3197,18 @@
         var w = drawItemWindow(document.getElementById("spreadsheet2"),0,0,640,480,"#spreadsheetIcon","Spreadsheet Name");
 
         drawTabbedInputField(w,3,30,634,416-32,["Sheet 1","Sheet 2","Sheet 3"],0);
-        drawDecalButton4(w,3,416,28,"",24);
-        drawDecalButton4(w,36,416,28,"",24);
-        drawDecalButton4(w,36+33+9,416,28,"",24);
-        drawDecalButton4(w,36+66+3,416,28,"",24);
-        drawDecalButton4(w,36+99-3,416,28,"",24);
-        drawDecalButton4(w,36+99+33-9,416,28,"",24);
-        drawDecalButton4(w,36+99+66,416,28,"",24);
-        drawDecalButton4(w,36+99+99,416,28,"",24);
+        drawDecalButton4(w,3,416,28,"",19);
+        drawDecalButton4(w,36,416,28,"",19);
+        drawDecalButton4(w,36+33+9,416,28,"",19);
+        drawDecalButton4(w,36+66+3,416,28,"",19);
+        drawDecalButton4(w,36+99-3,416,28,"",19);
+        drawDecalButton4(w,36+99+33-9,416,28,"",19);
+        drawDecalButton4(w,36+99+66,416,28,"",19);
+        drawDecalButton4(w,36+99+99,416,28,"",19);
         drawInputField(w,4,448,98,28,false,false,false,"B2");
-        drawDecalButton4(w,104,448,28,"",24);
-        drawDecalButton4(w,137,448,28,"",24);
-        drawDecalButton4(w,170,448,28,"",24);
+        drawDecalButton4(w,104,448,28,"",19);
+        drawDecalButton4(w,137,448,28,"",19);
+        drawDecalButton4(w,170,448,28,"",19);
         drawInputField(w,194+9,448,630-84-100-18-9,28,false,false,false);
 
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
