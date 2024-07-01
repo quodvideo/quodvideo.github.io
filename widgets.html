@@ -1440,6 +1440,7 @@
           t.innerHTML = item;
           g.insertAdjacentElement("beforeend",t);
         })
+        return f;
       }
       function drawSimpleMenu(parentElement,x,y,items) {
         var height = 6+21*items.length;
@@ -1795,6 +1796,7 @@
         drawInputField(tf,630,470,120,120,true,true,false);
 
         drawSimpleList(tf,240,600,120,120,["Option 1","Option 2","Option 3"],1);
+        drawSimpleList(tf,370,600,120,120,["Option 1","Option 2","Option 3"],1).classList.add("insensitive");
 
         drawTabs(tf,450,10,240,34,["a","b","c"],0);
         drawTabs(tf,450,50,240,34,["a","b","c"],1);
