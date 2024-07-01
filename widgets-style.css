@@ -29,8 +29,6 @@
   --placeholder-color:      red;
   --decal-placeholder-color: lightblue;
   font-family: sans-serif;
-  background-color: light-dark(white, black);
-  color: light-dark(black,white);
 }
 .insensitive {
   --input-field-color:      #efefef; /* regular --raised-fill-color */
