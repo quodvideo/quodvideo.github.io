@@ -166,6 +166,7 @@ rect.trough { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
 :focus.selected > .innerfocusring { fill: none; stroke: var(--selected-text-color); }
 .outerfocusring { fill: none; stroke: none;}
 :focus .outerfocusring { fill: none; stroke: var(--focus-ring-color); }
+:focus-within > .outerfocusring { fill: none; stroke: var(--focus-ring-color); }
 rect.defaultIndicator { fill: none; stroke: var(--outline-color); }
 text { font-family: Sans-serif; font-size: 16px; stroke: none; fill: var(--outline-color); }
 svg.headerbutton text { font-size: 12px; }
@@ -190,11 +191,11 @@ svg.scrollbar.insensitive .slider { visibility: hidden; }
   }
   &:hover {
     & rect:first-child {
-      fill: black;
+      fill: var(--selection-color);
       stroke: none;
     }
     & text {
-      fill:white;
+      fill:var(--selected-text-color);
     }
   }
 }
@@ -205,11 +206,11 @@ svg.scrollbar.insensitive .slider { visibility: hidden; }
   }
   &.selected {
     & rect:first-child {
-      fill: black;
+      fill: var(--selection-color);
       stroke: none;
     }
     & text {
-      fill:white;
+      fill: var(--selected-text-color);
     }
   }
 }
@@ -220,7 +221,7 @@ symbol.decal * { vector-effect: non-scaling-stroke; stroke: var(--outline-color)
 .toplevel.focused > .base { fill: var(--base-fill-color); }
 .toplevel.focused > .shadow { fill: none; stroke: var(--shadow-stroke-color); }
 .toplevel.focused > .highlight { fill: none; stroke: var(--highlight-stroke-color); }
-.toplevel.focused > .windowTitle { fill: #000000; }
+.toplevel.focused > .windowTitle { fill: var(--label-color); }
 .toplevel.unfocused > .base { fill: var(--raised-fill-color); stroke: grey; }
 .toplevel.unfocused > .shadow { fill: none; stroke: none; }
 .toplevel.unfocused > .highlight { fill: none; stroke: none; }
