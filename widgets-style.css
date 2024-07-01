@@ -181,6 +181,8 @@ svg.button:active.insensitive .butte { fill: var(--raised-fill-color); stroke: v
 svg.button:active .highlight { stroke: var(--shadow-stroke-color); }
 svg.button:active .shadow { stroke: var(--highlight-stroke-color); }
 svg.button.activetoggle .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
+svg.button.activetoggle.insensitive .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
+svg.button.activetoggle.insensitive:active .butte { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
 svg.button.activetoggle .highlight { stroke: var(--shadow-stroke-color); }
 svg.button.activetoggle .shadow { stroke: var(--highlight-stroke-color); }
 svg.scrollbar.insensitive .slider { visibility: hidden; }
