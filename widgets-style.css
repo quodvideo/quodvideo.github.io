@@ -12,6 +12,7 @@
 */
 
 :root {
+  color-scheme: light dark;
   --input-field-color:      white;
   --highlight-stroke-color: white;
   --raised-fill-color:      #efefef;
