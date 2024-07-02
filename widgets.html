@@ -433,8 +433,8 @@
         var g = drawInputField(parentElement,x,y,width,height,false,true,false);
 
         var c = document.createElementNS("http://www.w3.org/2000/svg","svg");
-        c.setAttribute("x",x+1);
-        c.setAttribute("y",y+1);
+        c.setAttribute("x",1);
+        c.setAttribute("y",1);
         c.setAttribute("width",width-2);
         c.setAttribute("height",height-2);
         g.insertAdjacentElement("beforeend",c);
