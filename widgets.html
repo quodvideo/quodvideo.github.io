@@ -445,7 +445,7 @@
         return g;
       }
       function drawMulticolumnList(parentElement,x,y,width,height,labels) {
-        var g = drawInputField(parentElement,x,y,width,height,false,false,false);
+        var g = drawInputField(parentElement,x,y,width,height,false,true,false);
         var cx = 1;
         labels.forEach(function(l,i,a) {
           var hb = drawHeaderButton(g,cx,1,0,0,l);
@@ -1841,8 +1841,8 @@
         drawSimpleList(tf,240,600,120,120,["Option 1","Option 2","Option 3"],1);
         drawSimpleList(tf,370,600,120,120,["Option 1","Option 2","Option 3"],1).classList.add("insensitive");
 
-        drawMulticolumnList(tf,500,600,250,120,["Column 1","Column 2","Column 3"]);
-        drawMulticolumnList(tf,760,600,250,120,["Column 1","Column 2","Column 3"]).classList.add("insensitive");
+        drawMulticolumnList(tf,500,600,250,120,["Column 1","Column 2","Column 3","Column 4"]);
+        drawMulticolumnList(tf,760,600,250,120,["Column 1","Column 2","Column 3","Column 4"]).classList.add("insensitive");
 
 
         drawTabs(tf,450,10,240,34,["a","b","c"],0);
