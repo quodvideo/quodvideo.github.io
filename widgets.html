@@ -443,9 +443,20 @@
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend",g);
 
-        labels.forEach(function(l,i,a) {
-          drawHeaderButton(g,0,0,0,0,l,"");
+        var textLabels = labels.map(function (label) {
+          var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
+          txt.innerHTML = label;
+          txt.setAttribute("class","label centered");
+          txt.setAttribute("pointer-events","none");
+          g.insertAdjacentElement("beforeend",txt);
+          return txt;
         });
+
+        labels.forEach(function(l,i,a) {
+          var hb = drawHeaderButton();
+          g.insertAdjacentElement("beforeend",hb);
+        });
+
         return g;
       }
       function drawSpinButton(parentElement,x,y,width,height) {
@@ -1896,7 +1907,8 @@
   <body>
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
     <br/>
-    <p>These are just drawings for prototyping, not actual widgets. <a href="#mainBody">After the drawings</a>, there is some description of the system I want to make.</p>
+    <p><em>This is all a work in progress. What I'm sharing here is like my private sketchbook. It's poorly organized, has gaps, has mistakes, and so forth.</em></p>
+    <p>These are just drawings for prototyping, not actual widgets. Some of them respond a little bit, as CSS allows, but there's no JavaScript making things dynamic. <a href="#mainBody">After the drawings</a>, there is some description of the system I want to make.</p>
     <p>The style of these drawings is meant as a guide. It might be possible to do this without SVG, but I remember some details being hard or impossible to achieve with Gtk 2.x. The way scroll bars join with a text field was one impossibility. Part of the idea is to make it obvious when widgets are not active because they're in a background window or because they just can't be used in the current state. This should all work for various modes like light, dark, high contrast, and low contrast. It should be possible to change the basic colors per widget and with themes. I suspect this basic style can also be adapted to use gradients, blends, patterns, and more.</p>
     <p>Update: It looks like Gtk4 may be able to achieve this look with CSS.</p>
     <p>This style is heavy compared to most of today's GUIs. That's on purpose. If a window looks too "chrome-y" with this style, then there's probably a better design.</p>
@@ -1906,7 +1918,6 @@
     <p>Almost everything here is greyscale. There are some other colors while I'm playing around with things. Red and blue rectangles are placeholders.</p>
     <p>The default graphics will be greyscale. There are three reasons for this. First, the system should work in greyscale. Second, I've heard some artists prefer a greyscale GUI because a colorful one would affect their sense of color in their work. Third, leaving color to a customization provides an avenue for users to explore customizing the GUI; they can start small, by changing the accent color, which is used to mark selections.</p>
     <p>I believe this default theme should also work as a high-contrast theme. There is also a dark mode theme.</p>
-    <p><rum>Remember <a href="https://accessiblepalette.com/">Accessible Palette</a>.</rum></p>
     <p><small>The scroll bar buttons are only mouse controls, so they can be small and adjacent. The spinner buttons may be touch controls, so they are separated.</small></p>
     <p>In the process of ensuring keyboard accessibility, I've come to realize that an early design decision needs to be revised. Alas, I cannot remember why I made the choice I did before, some I'm making note now I've why I'm going with the other option. There are at least two ways to indicate that a button has keyboard focus. One is to draw a line around the outside of the control. The other is to draw a dashed line inside the control but around the text, icon, or both that are inside the control. Having chosen the outside indicator, I had to sacrifice the joined together look for radio button groups. I also had to increase the whitespace around controls in toolbars. I was fine with these, though not having the joined together radio buttons bugged me.Now it seems I made the wrong choice, because I can't consistently indicate focus on notebook tabs. I'm not sure why, but I thought notebook tabs, like scrollbar buttons, didn't need keyboard focus. I had failed to consider that notebook tabs, in at least some forms, might have additional controls like a menu trigger or a close button. Like joined together radio buttons, there's no clear way to indicate which tab has keyboard focus with an outside indicator that doesn't look ugly. (I suppose I could make focus indicators more like OSD graphics, but I'm pretty sure that won't look right.) So, now I have to start revising various controls to have their focus indicators on the inside.</p>
     <p>As far as I know, there's no problem with the current look of focus indicators for text areas. That is that their inset rectangled are replaced by solid rectangles when they have focus. The inner dashed line look wouldn't make sense for text areas.</p>
@@ -2770,12 +2781,13 @@
       </defs>
     </svg>
     <br/>
+    <p>I originally chose a range of greys by means I do not remember. That's the "Old" theme. Using <a href="https://accessiblepalette.com/">Accessible Palette</a>, I selected a new range of greys for the "Accessible" theme. I half-heartedly tried to make my own dark theme, which is called "Dark". Last theme here takes the "Accessible" theme and shifts everything to a darker shade. I doesn't really work.</p>
     <label for="fooselect">Select a theme:</label>
     <select id="fooselect">
       <option value="">Old</option>
       <option value="accessible-palette" selected>Accessible</option>
       <option value="darkmode">Dark</option>
-      <option value="dark-accessible-palette">Dark Accessible</option>
+      <option value="dark-accessible-palette">Dark(?) Accessible(?)</option>
     </select><br>
     <figure>
       <svg id="foofield" width="1024" height="768">
