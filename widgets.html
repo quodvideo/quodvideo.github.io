@@ -119,17 +119,25 @@
         g.setAttribute("tabindex",0);
         parentElement.insertAdjacentElement("beforeend", g);
 
+        var t = document.createElementNS("http://www.w3.org/2000/svg","text");
+        t.innerHTML = label;
+        t.setAttribute("class","label centered-x centered-y");
+        t.setAttribute("pointer-events","none");
+        g.insertAdjacentElement("beforeend",t);
+
+        var box = t.getBBox();
+        if (width<48) width=48;
+        if (height<28) height=28;
+        if (box.width+12 > width) width=Math.ceil(box.width)+12;
+        if (box.height+5 > height) height=Math.ceil(box.height)+5;
+        
         var r = drawRaisedRect(g,0,0,width,height);
         if (state=="selected") { r.setAttribute("class","flat"); }
 
         drawInnerFocusRingRect(g,3,3,width-6,height-6);
 
-        let t = document.createElementNS("http://www.w3.org/2000/svg","text");
-        t.innerHTML = label;
         t.setAttribute("x",width/2);
         t.setAttribute("y",height/2);
-        t.setAttribute("class","label centered-x centered-y");
-        t.setAttribute("pointer-events","none");
         g.insertAdjacentElement("beforeend",t);
 
         return g;
