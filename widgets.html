@@ -3187,12 +3187,12 @@
         g.setAttribute("height",398);
         w.insertAdjacentElement("beforeend",g);
 
-        drawButton(g,0,0,48,16);
+        drawButton(g,0,0,48,28);
 
         for (var i=1;i < 30;i++) {
-          let b = drawHeaderButton(g,0,i*15,48,16,i,i==2?"selected":"");
+          let b = drawHeaderButton(g,0,i*15,48,28,i,i==2?"selected":"");
           let l = document.createElementNS("http://www.w3.org/2000/svg","path");
-          l.setAttribute("d","M48,"+(15.5+i*15)+" h616");
+          l.setAttribute("d","M48,"+(28.5+i*28)+" h616");
           l.setAttribute("fill","none");
           l.setAttribute("stroke","var(--base-fill-color)");
           g.insertAdjacentElement("beforeend",l);
@@ -3209,7 +3209,7 @@
         r.setAttribute("x",110.5);
         r.setAttribute("y",30.5);
         r.setAttribute("width",64-1);
-        r.setAttribute("height",16-1);
+        r.setAttribute("height",28-1);
         r.setAttribute("fill","none");
         r.setAttribute("stroke","var(--outline-color)");
         g.insertAdjacentElement("beforeend",r);
