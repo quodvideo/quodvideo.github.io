@@ -449,7 +449,7 @@
         var cx = 1;
         labels.forEach(function(l,i,a) {
           var hb = drawHeaderButton(g,cx,1,0,0,l);
-          cx += Number(hb.getAttribute("width"));
+          cx += Number(hb.getAttribute("width")-1);
         });
 
         return g;
@@ -1690,6 +1690,43 @@
           return g;
   
         }
+      function drawSpreadsheetGrid(parentElement,x,y,width,height) {
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
+        g.setAttribute("width",width);
+        g.setAttribute("height",height);
+        w.insertAdjacentElement("beforeend",g);
+
+        drawButton(g,0,0,48,28);
+
+        for (var i=1;i < 15;i++) {
+          let b = drawHeaderButton(g,0,i*27,48,28,i,i==2?"selected":"");
+          let l = document.createElementNS("http://www.w3.org/2000/svg","path");
+          l.setAttribute("d","M48,"+(26.5+i*28)+" h616");
+          l.setAttribute("fill","none");
+          l.setAttribute("stroke","var(--base-fill-color)");
+          g.insertAdjacentElement("beforeend",l);
+        }
+        for (var i=1;i < 11;i++) {
+          let b = drawHeaderButton(g,i*63 - 16,0,64,28,String.fromCharCode(64+i),i==2?"selected":"");
+          let l = document.createElementNS("http://www.w3.org/2000/svg","path");
+          l.setAttribute("d","M"+(47.5+i*63)+",28 v404");
+          l.setAttribute("fill","none");
+          l.setAttribute("stroke","var(--base-fill-color)");
+          g.insertAdjacentElement("beforeend",l);
+        }
+        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        r.setAttribute("x",110.5);
+        r.setAttribute("y",54.5);
+        r.setAttribute("width",63);
+        r.setAttribute("height",28);
+        r.setAttribute("fill","none");
+        r.setAttribute("stroke","var(--outline-color)");
+        g.insertAdjacentElement("beforeend",r);
+
+        return g;
+      }
       function drawtextbounds() {
         var ts = document.getElementsByTagName("text");
         for (var i=0;i<ts.length;i++) {
@@ -1804,8 +1841,8 @@
         drawSimpleList(tf,240,600,120,120,["Option 1","Option 2","Option 3"],1);
         drawSimpleList(tf,370,600,120,120,["Option 1","Option 2","Option 3"],1).classList.add("insensitive");
 
-        drawMulticolumnList(tf,500,600,300,120,["Column 1","Column 2","Column 3"]);
-        drawMulticolumnList(tf,850,600,300,120,["Column 1","Column 2","Column 3"]).classList.add("insensitive");
+        drawMulticolumnList(tf,500,600,250,120,["Column 1","Column 2","Column 3"]);
+        drawMulticolumnList(tf,760,600,250,120,["Column 1","Column 2","Column 3"]).classList.add("insensitive");
 
 
         drawTabs(tf,450,10,240,34,["a","b","c"],0);
@@ -1901,43 +1938,7 @@
         });
 
       }
-      function drawSpreadsheetGrid(parentElement,x,y,width,height) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
-        g.setAttribute("x",x);
-        g.setAttribute("y",y);
-        g.setAttribute("width",width);
-        g.setAttribute("height",height);
-        w.insertAdjacentElement("beforeend",g);
 
-        drawButton(g,0,0,48,28);
-
-        for (var i=1;i < 15;i++) {
-          let b = drawHeaderButton(g,0,i*27,48,28,i,i==2?"selected":"");
-          let l = document.createElementNS("http://www.w3.org/2000/svg","path");
-          l.setAttribute("d","M48,"+(26.5+i*28)+" h616");
-          l.setAttribute("fill","none");
-          l.setAttribute("stroke","var(--base-fill-color)");
-          g.insertAdjacentElement("beforeend",l);
-        }
-        for (var i=1;i < 11;i++) {
-          let b = drawHeaderButton(g,i*63 - 16,0,64,28,String.fromCharCode(64+i),i==2?"selected":"");
-          let l = document.createElementNS("http://www.w3.org/2000/svg","path");
-          l.setAttribute("d","M"+(47.5+i*63)+",28 v404");
-          l.setAttribute("fill","none");
-          l.setAttribute("stroke","var(--base-fill-color)");
-          g.insertAdjacentElement("beforeend",l);
-        }
-        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        r.setAttribute("x",110.5);
-        r.setAttribute("y",54.5);
-        r.setAttribute("width",63);
-        r.setAttribute("height",28);
-        r.setAttribute("fill","none");
-        r.setAttribute("stroke","var(--outline-color)");
-        g.insertAdjacentElement("beforeend",r);
-
-        return g;
-      }
 </script>
   </head>
   <body>
