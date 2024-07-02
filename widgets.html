@@ -459,10 +459,10 @@
           g.insertAdjacentElement("beforeend",txt);
           return txt;
         });
-
+        var cx = 0;
         labels.forEach(function(l,i,a) {
-          var hb = drawHeaderButton();
-          g.insertAdjacentElement("beforeend",hb);
+          var hb = drawHeaderButton(g,cx,0,0,0,l);
+          cx += hb.getAttribute("width");
         });
 
         return g;
@@ -1816,6 +1816,10 @@
 
         drawSimpleList(tf,240,600,120,120,["Option 1","Option 2","Option 3"],1);
         drawSimpleList(tf,370,600,120,120,["Option 1","Option 2","Option 3"],1).classList.add("insensitive");
+
+        drawMulticolumnList(tf,500,600,300,120,["Column 1","Column 2","Column 3"]);
+        drawMulticolumnList(tf,850,600,300,120,["Column 1","Column 2","Column 3"]).classList.add("insensitive");
+
 
         drawTabs(tf,450,10,240,34,["a","b","c"],0);
         drawTabs(tf,450,50,240,34,["a","b","c"],1);
