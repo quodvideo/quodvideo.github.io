@@ -435,13 +435,13 @@
         var c = document.createElementNS("http://www.w3.org/2000/svg","svg");
         c.setAttribute("x",1);
         c.setAttribute("y",1);
-        c.setAttribute("width",width-2);
+        c.setAttribute("width",width-2-1);
         c.setAttribute("height",height-2);
         g.insertAdjacentElement("beforeend",c);
 
         var cx = 0;
         labels.forEach(function(l,i,a) {
-          var hb = drawHeaderButton(c,cx,1,0,0,l);
+          var hb = drawHeaderButton(c,cx,0,0,0,l);
           cx += Number(hb.getAttribute("width")-1);
         });
 
