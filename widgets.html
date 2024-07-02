@@ -1910,7 +1910,44 @@
         });
 
       }
-    </script>
+      function drawSpreadsheetGrid(parentElement,x,y,width,height) {
+        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        g.setAttribute("x",x);
+        g.setAttribute("y",y);
+        g.setAttribute("width",width);
+        g.setAttribute("height",height);
+        w.insertAdjacentElement("beforeend",g);
+
+        drawButton(g,0,0,48,28);
+
+        for (var i=1;i < 30;i++) {
+          let b = drawHeaderButton(g,0,i*27,48,28,i,i==2?"selected":"");
+          let l = document.createElementNS("http://www.w3.org/2000/svg","path");
+          l.setAttribute("d","M48,"+(28.5+i*28)+" h616");
+          l.setAttribute("fill","none");
+          l.setAttribute("stroke","var(--base-fill-color)");
+          g.insertAdjacentElement("beforeend",l);
+        }
+        for (var i=1;i < 10;i++) {
+          let b = drawHeaderButton(g,i*63 - 28,0,64,28,String.fromCharCode(64+i),i==2?"selected":"");
+          let l = document.createElementNS("http://www.w3.org/2000/svg","path");
+          l.setAttribute("d","M"+(47.5+i*63)+",28 v404");
+          l.setAttribute("fill","none");
+          l.setAttribute("stroke","var(--base-fill-color)");
+          g.insertAdjacentElement("beforeend",l);
+        }
+        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        r.setAttribute("x",110.5);
+        r.setAttribute("y",30.5);
+        r.setAttribute("width",64-1);
+        r.setAttribute("height",28-1);
+        r.setAttribute("fill","none");
+        r.setAttribute("stroke","var(--outline-color)");
+        g.insertAdjacentElement("beforeend",r);
+
+        return g;
+      }
+</script>
   </head>
   <body>
     <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label>
@@ -3179,40 +3216,7 @@
         drawDecalButton4(w,137,448,28,"",19);
         drawDecalButton4(w,170,448,28,"",19);
         drawInputField(w,194+9,448,630-84-100-18-9,28,false,false,false);
-
-        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
-        g.setAttribute("x",4);
-        g.setAttribute("y",31);
-        g.setAttribute("width",616);
-        g.setAttribute("height",398);
-        w.insertAdjacentElement("beforeend",g);
-
-        drawButton(g,0,0,48,28);
-
-        for (var i=1;i < 30;i++) {
-          let b = drawHeaderButton(g,0,i*15,48,28,i,i==2?"selected":"");
-          let l = document.createElementNS("http://www.w3.org/2000/svg","path");
-          l.setAttribute("d","M48,"+(28.5+i*28)+" h616");
-          l.setAttribute("fill","none");
-          l.setAttribute("stroke","var(--base-fill-color)");
-          g.insertAdjacentElement("beforeend",l);
-        }
-        for (var i=1;i < 10;i++) {
-          let b = drawHeaderButton(g,i*63 - 28,0,64,28,String.fromCharCode(64+i),i==2?"selected":"");
-          let l = document.createElementNS("http://www.w3.org/2000/svg","path");
-          l.setAttribute("d","M"+(47.5+i*63)+",28 v404");
-          l.setAttribute("fill","none");
-          l.setAttribute("stroke","var(--base-fill-color)");
-          g.insertAdjacentElement("beforeend",l);
-        }
-        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        r.setAttribute("x",110.5);
-        r.setAttribute("y",30.5);
-        r.setAttribute("width",64-1);
-        r.setAttribute("height",28-1);
-        r.setAttribute("fill","none");
-        r.setAttribute("stroke","var(--outline-color)");
-        g.insertAdjacentElement("beforeend",r);
+        drawSpreadsheetGrid(w,4,31,616,398);
       </script>
     </svg>
     <svg width="640" height="480" id="spreadsheet2"><title>Spreadsheet 2</title>
@@ -3234,39 +3238,7 @@
         drawDecalButton4(w,170,448,28,"",19);
         drawInputField(w,194+9,448,630-84-100-18-9,28,false,false,false);
 
-        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
-        g.setAttribute("x",4);
-        g.setAttribute("y",31);
-        g.setAttribute("width",616);
-        g.setAttribute("height",398-32);
-        w.insertAdjacentElement("beforeend",g);
-
-        drawButton(g,0,0,48,28);
-
-        for (var i=1;i < 30;i++) {
-          let b = drawHeaderButton(g,0,i*15,48,28,i,i==2?"selected":"");
-          let l = document.createElementNS("http://www.w3.org/2000/svg","path");
-          l.setAttribute("d","M48,"+(28.5+i*28)+" h616");
-          l.setAttribute("fill","none");
-          l.setAttribute("stroke","var(--base-fill-color)");
-          g.insertAdjacentElement("beforeend",l);
-        }
-        for (var i=1;i < 10;i++) {
-          let b = drawHeaderButton(g,i*63 - 28,0,64,28,String.fromCharCode(64+i),i==2?"selected":"");
-          let l = document.createElementNS("http://www.w3.org/2000/svg","path");
-          l.setAttribute("d","M"+(47.5+i*63)+",28 v404");
-          l.setAttribute("fill","none");
-          l.setAttribute("stroke","var(--base-fill-color)");
-          g.insertAdjacentElement("beforeend",l);
-        }
-        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        r.setAttribute("x",110.5);
-        r.setAttribute("y",30.5);
-        r.setAttribute("width",64-1);
-        r.setAttribute("height",28-1);
-        r.setAttribute("fill","none");
-        r.setAttribute("stroke","var(--outline-color)");
-        g.insertAdjacentElement("beforeend",r);
+        drawSpreadsheetGrid(w,4,31,616,398-32);
       </script>
     </svg>
     <hr>
