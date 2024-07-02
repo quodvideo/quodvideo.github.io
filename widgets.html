@@ -130,7 +130,10 @@
         if (height<28) height=28;
         if (box.width+12 > width) width=Math.ceil(box.width)+12;
         if (box.height+5 > height) height=Math.ceil(box.height)+5;
-        
+
+        g.setAttribute("width",width);
+        g.setAttribute("height",height);
+
         var r = drawRaisedRect(g,0,0,width,height);
         if (state=="selected") { r.setAttribute("class","flat"); }
 
