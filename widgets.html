@@ -458,7 +458,7 @@
         var cx = 1;
         labels.forEach(function(l,i,a) {
           var hb = drawHeaderButton(g,cx,1,0,0,l);
-          cx += hb.getAttribute("width");
+          cx += Number(hb.getAttribute("width"));
         });
 
         return g;
