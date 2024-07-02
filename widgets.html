@@ -455,9 +455,9 @@
           g.insertAdjacentElement("beforeend",txt);
           return txt;
         });
-        var cx = 0;
+        var cx = 1;
         labels.forEach(function(l,i,a) {
-          var hb = drawHeaderButton(g,cx,0,0,0,l);
+          var hb = drawHeaderButton(g,cx,1,0,0,l);
           cx += hb.getAttribute("width");
         });
 
