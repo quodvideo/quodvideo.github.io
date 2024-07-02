@@ -442,14 +442,7 @@
         return g;
       }
       function drawMulticolumnList(parentElement,x,y,width,height,labels) {
-        var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
-        g.setAttribute("class","inputfield");
-        g.setAttribute("x",x);
-        g.setAttribute("y",y);
-        g.setAttribute("width",width);
-        g.setAttribute("height",height);
-        g.setAttribute("tabindex",0);
-        parentElement.insertAdjacentElement("beforeend",g);
+        var g = drawInputField(parentElement,x,y,width,height,false,false,false);
 
         var textLabels = labels.map(function (label) {
           var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
