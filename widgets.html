@@ -164,23 +164,6 @@
         g.insertAdjacentElement("beforeend",u);
         return g;
       }
-      function drawDecalButton3(parentElement,x,y,size,decal,decalsize) {
-        var g = drawButton(parentElement,x,y,size,size);
-        if (decal) {
-          var u = document.createElementNS("http://www.w3.org/2000/svg","use");
-          u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
-        } else {
-          var u = document.createElementNS("http://www.w3.org/2000/svg","rect");
-          u.setAttribute("fill","var(--decal-placeholder-color)");
-          u.setAttribute("stroke","none");
-        }
-        u.setAttribute("x",(size-decalsize)/2);
-        u.setAttribute("y",(size-decalsize)/2);
-        u.setAttribute("width",decalsize);
-        u.setAttribute("height",decalsize);
-        g.insertAdjacentElement("beforeend",u);
-        return g;
-      }
       function drawDecalButton4(parentElement,x,y,size,decal,decalsize) {
         var g = document.createElementNS("http://www.w3.org/2000/svg","svg");
         g.setAttribute("x",x);
@@ -3042,13 +3025,13 @@
     <svg width="640" height="480" id="basicProject2"><title>Basic Project 2</title>
       <script>
         var w = drawItemWindow(document.getElementById("basicProject2"),0,0,640,480,"#folderIcon","Project 2 Title");
-        drawDecalButton3(w,3,30,48,"#folderDecal",24);
-        drawDecalButton3(w,3,77,48,"#branchDecal",24);
-        drawDecalButton3(w,3,124,48,"",24);
-        drawDecalButton3(w,3,171,48,"",24);
-        drawDecalButton3(w,3,218,48,"",24);
-        drawDecalButton3(w,3,265,48,"",24);
-        drawDecalButton3(w,3,312,48,"",24);
+        drawDecalButton4(w,3,30,48,"#folderDecal",24);
+        drawDecalButton4(w,3,77,48,"#branchDecal",24);
+        drawDecalButton4(w,3,124,48,"",24);
+        drawDecalButton4(w,3,171,48,"",24);
+        drawDecalButton4(w,3,218,48,"",24);
+        drawDecalButton4(w,3,265,48,"",24);
+        drawDecalButton4(w,3,312,48,"",24);
         var tbs = drawTabs(w,52,30,585,416,["File 1","File 2","File 3"],0);
         var ff = drawInputField(tbs,3,30,579,383,false,false,false);
         var sb = drawInputField(w,3,448,618,28);
@@ -3057,13 +3040,13 @@
     <svg width="640" height="480" id="basicProject2p2"><title>Basic Project 2.2</title>
       <script>
         var w = drawItemWindow(document.getElementById("basicProject2p2"),0,0,640,480,"#folderIcon","Project 2 Title");
-        drawDecalButton3(w,3,30,48,"#folderDecal",24);
-        drawDecalButton3(w,3,77,48,"#branchDecal",24).setAttribute("class","button activetoggle");
-        drawDecalButton3(w,3,124,48,"",24);
-        drawDecalButton3(w,3,171,48,"",24);
-        drawDecalButton3(w,3,218,48,"",24);
-        drawDecalButton3(w,3,265,48,"",24);
-        drawDecalButton3(w,3,312,48,"",24);
+        drawDecalButton4(w,3,30,48,"#folderDecal",24);
+        drawDecalButton4(w,3,77,48,"#branchDecal",24).setAttribute("class","button activetoggle");
+        drawDecalButton4(w,3,124,48,"",24);
+        drawDecalButton4(w,3,171,48,"",24);
+        drawDecalButton4(w,3,218,48,"",24);
+        drawDecalButton4(w,3,265,48,"",24);
+        drawDecalButton4(w,3,312,48,"",24);
         drawInputField(w,52,30,100,416);
         var tbs = drawTabs(w,153,30,484,416,["File 1","File 2","File 3"],0);
         var ff = drawInputField(tbs,3,30,478,383,false,false,false);
@@ -3075,13 +3058,13 @@
     <svg width="640" height="480" id="basicProject3"><title>Basic Project 3</title>
       <script>
         var w = drawItemWindow(document.getElementById("basicProject3"),0,0,640,480,"#folderIcon","Project 3 Title");
-        drawDecalButton3(w,3,30,48,"#folderDecal",24);
-        drawDecalButton3(w,3,77,48,"#branchDecal",24);
-        drawDecalButton3(w,3,124,48,"",24);
-        drawDecalButton3(w,3,171,48,"",24);
-        drawDecalButton3(w,3,218,48,"",24);
-        drawDecalButton3(w,3,265,48,"",24);
-        drawDecalButton3(w,3,312,48,"",24);
+        drawDecalButton4(w,3,30,48,"#folderDecal",24);
+        drawDecalButton4(w,3,77,48,"#branchDecal",24);
+        drawDecalButton4(w,3,124,48,"",24);
+        drawDecalButton4(w,3,171,48,"",24);
+        drawDecalButton4(w,3,218,48,"",24);
+        drawDecalButton4(w,3,265,48,"",24);
+        drawDecalButton4(w,3,312,48,"",24);
         var tbs = drawTabbedInputField(w,52,30,585,416,["File 1","File 2","File 3"],0);
         var sb = drawInputField(w,3,448,618,28);
       </script>
@@ -3089,13 +3072,13 @@
     <svg width="640" height="480" id="basicProject3p2"><title>Basic Project 3.2</title>
       <script>
         var w = drawItemWindow(document.getElementById("basicProject3p2"),0,0,640,480,"#folderIcon","Project 3 Title");
-        drawDecalButton3(w,3,30,48,"#folderDecal",24);
-        drawDecalButton3(w,3,77,48,"#branchDecal",24).setAttribute("class","button activetoggle");
-        drawDecalButton3(w,3,124,48,"",24);
-        drawDecalButton3(w,3,171,48,"",24);
-        drawDecalButton3(w,3,218,48,"",24);
-        drawDecalButton3(w,3,265,48,"",24);
-        drawDecalButton3(w,3,312,48,"",24);
+        drawDecalButton4(w,3,30,48,"#folderDecal",24);
+        drawDecalButton4(w,3,77,48,"#branchDecal",24).setAttribute("class","button activetoggle");
+        drawDecalButton4(w,3,124,48,"",24);
+        drawDecalButton4(w,3,171,48,"",24);
+        drawDecalButton4(w,3,218,48,"",24);
+        drawDecalButton4(w,3,265,48,"",24);
+        drawDecalButton4(w,3,312,48,"",24);
         drawInputField(w,52,30,100,416);
         var tbs = drawTabbedInputField(w,153,30,484,416,["File 1","File 2","File 3"],0);
         var sb = drawInputField(w,3,448,618,28);
@@ -3106,13 +3089,13 @@
     <svg width="640" height="480" id="basicProject4"><title>Basic Project 4</title>
       <script>
         var w = drawItemWindow(document.getElementById("basicProject4"),0,0,640,480,"#folderIcon","Project 4 Title");
-        drawDecalButton3(w,3,30,48,"#folderDecal",24);
-        drawDecalButton3(w,3,77,48,"#branchDecal",24);
-        drawDecalButton3(w,3,124,48,"",24);
-        drawDecalButton3(w,3,171,48,"",24);
-        drawDecalButton3(w,3,218,48,"",24);
-        drawDecalButton3(w,3,265,48,"",24);
-        drawDecalButton3(w,3,312,48,"",24);
+        drawDecalButton4(w,3,30,48,"#folderDecal",24);
+        drawDecalButton4(w,3,77,48,"#branchDecal",24);
+        drawDecalButton4(w,3,124,48,"",24);
+        drawDecalButton4(w,3,171,48,"",24);
+        drawDecalButton4(w,3,218,48,"",24);
+        drawDecalButton4(w,3,265,48,"",24);
+        drawDecalButton4(w,3,312,48,"",24);
         var tbs = drawTopTabbedInputField(w,52,30,585,416,["File 1","File 2","File 3"],0);
         var sb = drawInputField(w,3,448,618,28);
       </script>
@@ -3120,13 +3103,13 @@
     <svg width="640" height="480" id="basicProject4p2"><title>Basic Project 4.2</title>
       <script>
         var w = drawItemWindow(document.getElementById("basicProject4p2"),0,0,640,480,"#folderIcon","Project 4 Title");
-        drawDecalButton3(w,3,30,48,"#folderDecal",24);
-        drawDecalButton3(w,3,77,48,"#branchDecal",24).setAttribute("class","button activetoggle");
-        drawDecalButton3(w,3,124,48,"",24);
-        drawDecalButton3(w,3,171,48,"",24);
-        drawDecalButton3(w,3,218,48,"",24);
-        drawDecalButton3(w,3,265,48,"",24);
-        drawDecalButton3(w,3,312,48,"",24);
+        drawDecalButton4(w,3,30,48,"#folderDecal",24);
+        drawDecalButton4(w,3,77,48,"#branchDecal",24).setAttribute("class","button activetoggle");
+        drawDecalButton4(w,3,124,48,"",24);
+        drawDecalButton4(w,3,171,48,"",24);
+        drawDecalButton4(w,3,218,48,"",24);
+        drawDecalButton4(w,3,265,48,"",24);
+        drawDecalButton4(w,3,312,48,"",24);
         drawInputField(w,52,30,100,416);
         var tbs = drawTopTabbedInputField(w,153,30,484,416,["File 1","File 2","File 3"],0);
         var sb = drawInputField(w,3,448,618,28);
@@ -3244,9 +3227,9 @@
         r.setAttribute("fill","url(#gripper)");
         r.setAttribute("style","cursor: move;");
         w.insertAdjacentElement("beforeend",r);
-        drawDecalButton3(w,640-74,6,20,"#maximizeDecal",20);
-        drawDecalButton3(w,640-50,6,20,"#iconifyDecal",20);
-        drawDecalButton3(w,640-26,6,20,"#closeDecal",20);
+        drawDecalButton4(w,640-74,6,20,"#maximizeDecal",20);
+        drawDecalButton4(w,640-50,6,20,"#iconifyDecal",20);
+        drawDecalButton4(w,640-26,6,20,"#closeDecal",20);
         drawWindowTabs(w,0,3,640,477,["Item 1","Item 2","Item 3"],0);
         drawInputField(w,3,33,634,444,true,true,true);
       </script>
@@ -3262,9 +3245,9 @@
         r.setAttribute("fill","url(#gripper)");
         r.setAttribute("style","cursor: move;");
         w.insertAdjacentElement("beforeend",r);
-        drawDecalButton3(w,640-74,6,20,"#maximizeDecal",20);
-        drawDecalButton3(w,640-50,6,20,"#iconifyDecal",20);
-        drawDecalButton3(w,640-26,6,20,"#closeDecal",20);
+        drawDecalButton4(w,640-74,6,20,"#maximizeDecal",20);
+        drawDecalButton4(w,640-50,6,20,"#iconifyDecal",20);
+        drawDecalButton4(w,640-26,6,20,"#closeDecal",20);
 
         drawWindowTabs(w,0,3,640,477,["Site 1","Site 2","Site 3"],0);
 
@@ -3272,9 +3255,9 @@
 
         drawInputField(w,94,448,528,28,false,false,false);
 
-        drawDecalButton3(w,4,448,28,"#backArrowDecal",24);
-        drawDecalButton3(w,34,448,28,"#forwardArrowDecal",24);
-        drawDecalButton3(w,64,448,28,"#reloadDecal",24);
+        drawDecalButton4(w,4,448,28,"#backArrowDecal",24);
+        drawDecalButton4(w,34,448,28,"#forwardArrowDecal",24);
+        drawDecalButton4(w,64,448,28,"#reloadDecal",24);
 
         var u = document.createElementNS("http://www.w3.org/2000/svg","use");
         u.setAttribute("x",640-18);
