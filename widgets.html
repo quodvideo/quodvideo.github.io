@@ -1939,167 +1939,6 @@
     </script>
   </head>
   <body>
-    <p><em>This is all a work in progress. What I'm sharing here is like my private sketchbook. It's poorly organized, has gaps, has mistakes, and so forth.</em></p>
-    <p>These are just drawings for prototyping, not actual widgets. Some of them respond a little bit, as CSS allows, but there's no JavaScript making things dynamic. <a href="#mainBody">After the drawings</a>, there is some description of the system I want to make.</p>
-    <p>The style of these drawings is meant as a guide. It might be possible to do this without SVG, but I remember some details being hard or impossible to achieve with Gtk 2.x. The way scroll bars join with a text field was one impossibility. Part of the idea is to make it obvious when widgets are not active because they're in a background window or because they just can't be used in the current state. This should all work for various modes like light, dark, high contrast, and low contrast. It should be possible to change the basic colors per widget and with themes. I suspect this basic style can also be adapted to use gradients, blends, patterns, and more.</p>
-    <p>Update: It looks like Gtk4 may be able to achieve this look with CSS.</p>
-    <p>This style is heavy compared to most of today's GUIs. That's on purpose. If a window looks too "chrome-y" with this style, then there's probably a better design.</p>
-    <p>The art is primitive. That's because I can't draw. I also think icons should be iconic. The icons have been made in SVG to have decent 16x16 rasters that scale up to at least 48x48. I've no objection to people customizing their icons. In fact, I encourage it.</p>
-    <p>I make a distinction between icons and decals. An icon is a view of an item. It can be moved around from folder to folder. A decal is an iconic representation of an action that is attached to a control.</p>
-    <p>The decals are different sizes.</p>
-    <p>Almost everything here is greyscale. There are some other colors while I'm playing around with things. Red and blue rectangles are placeholders.</p>
-    <p>The default graphics will be greyscale. There are three reasons for this. First, the system should work in greyscale. Second, I've heard some artists prefer a greyscale GUI because a colorful one would affect their sense of color in their work. Third, leaving color to a customization provides an avenue for users to explore customizing the GUI; they can start small, by changing the accent color, which is used to mark selections.</p>
-    <p>I believe this default theme should also work as a high-contrast theme. There is also a dark mode theme.</p>
-    <p><small>The scroll bar buttons are only mouse controls, so they can be small and adjacent. The spinner buttons may be touch controls, so they are separated.</small></p>
-    <p>In the process of ensuring keyboard accessibility, I've come to realize that an early design decision needs to be revised. Alas, I cannot remember why I made the choice I did before, some I'm making note now I've why I'm going with the other option. There are at least two ways to indicate that a button has keyboard focus. One is to draw a line around the outside of the control. The other is to draw a dashed line inside the control but around the text, icon, or both that are inside the control. Having chosen the outside indicator, I had to sacrifice the joined together look for radio button groups. I also had to increase the whitespace around controls in toolbars. I was fine with these, though not having the joined together radio buttons bugged me.Now it seems I made the wrong choice, because I can't consistently indicate focus on notebook tabs. I'm not sure why, but I thought notebook tabs, like scrollbar buttons, didn't need keyboard focus. I had failed to consider that notebook tabs, in at least some forms, might have additional controls like a menu trigger or a close button. Like joined together radio buttons, there's no clear way to indicate which tab has keyboard focus with an outside indicator that doesn't look ugly. (I suppose I could make focus indicators more like OSD graphics, but I'm pretty sure that won't look right.) So, now I have to start revising various controls to have their focus indicators on the inside.</p>
-    <p>As far as I know, there's no problem with the current look of focus indicators for text areas. That is that their inset rectangled are replaced by solid rectangles when they have focus. The inner dashed line look wouldn't make sense for text areas.</p>
-    <p>Perhaps an unanticipated boon from this change is a better focus indicator in list widgets. Those look a lot like text areas and I hadn't gotten to the point of considering how focus would look within them. There a dashed line around the currently focused item makes sense to me.</p>
-    <table><caption>Colors</caption>
-      <tr><th>Name</th><th>Regular</th><th>Insensitive</th><th>New Reg.</th><th>New Ins.</th><th>Dark</th><th>Dark Ins.</th><th>New Dark</th><th>New Dark Ins.</th></tr>
-      <tr>
-        <td>--input-field-color</td>
-        <td style="background-color: var(--input-field-color); color: var(--text-color);">white</td>
-        <td class="insensitive" style="background-color: var(--input-field-color); color: var(--text-color);">#efefef</td>
-        <td class="accessible-palette" style="background-color: var(--input-field-color); color: var(--text-color);">white</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--input-field-color); color: var(--text-color);">#eeeeee</td>
-        <td class="darkmode" style="background-color: var(--input-field-color); color: var(--text-color);">#595959</td>
-        <td class="darkmode insensitive" style="background-color: var(--input-field-color); color: var(--text-color);">#4A4A4A</td>
-        <td class="dark-accessible-palette" style="background-color: var(--input-field-color); color: var(--text-color);">#bdbdbd</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--input-field-color); color: var(--text-color);">#8b8b8b</td>
-      </tr>
-      <tr>
-        <td>--highlight-stroke-color</td>
-        <td style="background-color: var(--highlight-stroke-color); color: var(--label-color)">white</td>
-        <td class="insensitive" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">none</td>
-        <td class="accessible-palette" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">#fafafa</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">none</td>
-        <td class="darkmode" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">#595959</td>
-        <td class="darkmode insensitive" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">none</td>
-        <td class="dark-accessible-palette" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">#a5a5a5</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">none</td>
-      </tr>
-      <tr>
-        <td>--raised-fill-color</td>
-        <td style="background-color: var(--raised-fill-color); color: var(--label-color)">#efefef</td>
-        <td class="insensitive" style="background-color: var(--raised-fill-color); color: var(--label-color)">#efefef</td>
-        <td class="accessible-palette" style="background-color: var(--raised-fill-color); color: var(--label-color)">#eeeeee</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--raised-fill-color); color: var(--label-color)">#eeeeee</td>
-        <td class="darkmode" style="background-color: var(--raised-fill-color); color: var(--label-color)">#4A4A4A</td>
-        <td class="darkmode insensitive" style="background-color: var(--raised-fill-color); color: var(--label-color)">#4A4A4A</td>
-        <td class="dark-accessible-palette" style="background-color: var(--raised-fill-color); color: var(--label-color)">#8b8b8b</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--raised-fill-color); color: var(--label-color)">#8b8b8b</td>
-      </tr>
-      <tr>
-        <td>--base-fill-color</td>
-        <td style="background-color: var(--base-fill-color); color: var(--label-color)">#dddddd</td>
-        <td class="insensitive" style="background-color: var(--base-fill-color); color: var(--label-color)">#dddddd</td>
-        <td class="accessible-palette" style="background-color: var(--base-fill-color); color: var(--label-color)">#d5d5d5</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--base-fill-color); color: var(--label-color)">#d5d5d5</td>
-        <td class="darkmode" style="background-color: var(--base-fill-color); color: var(--label-color)">#454545</td>
-        <td class="darkmode insensitive" style="background-color: var(--base-fill-color); color: var(--label-color)">#454545</td>
-        <td class="dark-accessible-palette" style="background-color: var(--base-fill-color); color: var(--label-color)">#717171</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--base-fill-color); color: var(--label-color)">#717171</td>
-      </tr>
-      <tr>
-        <td>--recessed-fill-color</td>
-        <td style="background-color: var(--recessed-fill-color); color: var(--label-color)">#bbbbbb</td>
-        <td class="insensitive" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#bbbbbb</td>
-        <td class="accessible-palette" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#bdbdbd</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#bdbdbd</td>
-        <td class="darkmode" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#333333</td>
-        <td class="darkmode insensitive" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#333333</td>
-        <td class="dark-accessible-palette" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#5f5f5f</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#5f5f5f</td>
-      </tr>
-      <tr>
-        <td>--active-fill-color</td>
-        <td style="background-color: var(--active-fill-color); color: var(--label-color)">#bbbbbb</td>
-        <td class="insensitive" style="background-color: var(--active-fill-color); color: var(--label-color)">#bbbbbb</td>
-        <td class="accessible-palette" style="background-color: var(--active-fill-color); color: var(--label-color)">#a5a5a5</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--active-fill-color); color: var(--label-color)">#a5a5a5</td>
-        <td class="darkmode" style="background-color: var(--active-fill-color); color: var(--label-color)">#333333</td>
-        <td class="darkmode insensitive" style="background-color: var(--active-fill-color); color: var(--label-color)">#333333</td>
-        <td class="dark-accessible-palette" style="background-color: var(--active-fill-color); color: var(--label-color)">#4c4c4c</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--active-fill-color); color: var(--label-color)">#4c4c4c</td>
-      </tr>
-      <tr>
-        <td>--shadow-stroke-color</td>
-        <td style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">grey</td>
-        <td class="insensitive" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">none</td>
-        <td class="accessible-palette" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">#8b8b8b</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">none</td>
-        <td class="darkmode" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">#121212</td>
-        <td class="darkmode insensitive" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">none</td>
-        <td class="dark-accessible-palette" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">#383838</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">none</td>
-      </tr>
-      <tr>
-        <td>--outline-color</td>
-        <td style="background-color: var(--outline-color); color: var(--base-fill-color);">black</td>
-        <td class="insensitive" style="background-color: var(--outline-color); color: var(--base-fill-color);">grey</td>
-        <td class="accessible-palette" style="background-color: var(--outline-color); color: var(--base-fill-color);">black</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--outline-color); color: var(--base-fill-color);">#8b8b8b</td>
-        <td class="darkmode" style="background-color: var(--outline-color); color: var(--base-fill-color);">#bababa</td>
-        <td class="darkmode insensitive" style="background-color: var(--outline-color); color: var(--base-fill-color);">#999999</td>
-        <td class="dark-accessible-palette" style="background-color: var(--outline-color); color: var(--base-fill-color);">#d5d5d5</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--outline-color); color: var(--base-fill-color);">???</td>
-      </tr>
-      <tr>
-        <td>--focus-ring-color</td>
-        <td style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">black</td>
-        <td class="insensitive" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">black</td>
-        <td class="accessible-palette" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">black</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">black</td>
-        <td class="darkmode" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">#e6e6e6</td>
-        <td class="darkmode insensitive" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">#e6e6e6</td>
-        <td class="dark-accessible-palette" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">#eeeeee</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">#eeeeee</td>
-      </tr>
-      <tr>
-        <td>--label-color</td>
-        <td style="background-color: var(--label-color); color: var(--base-fill-color);">black</td>
-        <td class="insensitive" style="background-color: var(--label-color); color: var(--base-fill-color);">grey</td>
-        <td class="accessible-palette" style="background-color: var(--label-color); color: var(--base-fill-color);">black</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--label-color); color: var(--base-fill-color);">#8b8b8b</td>
-        <td class="darkmode" style="background-color: var(--label-color); color: var(--base-fill-color);">#e6e6e6</td>
-        <td class="darkmode insensitive" style="background-color: var(--label-color); color: var(--base-fill-color);">#999999</td>
-        <td class="dark-accessible-palette" style="background-color: var(--label-color); color: var(--base-fill-color);">#eeeeee</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--label-color); color: var(--base-fill-color);">???</td>
-      </tr>
-      <tr>
-        <td>--text-color</td>
-        <td style="background-color: var(--text-color); color: var(--input-field-color);">black</td>
-        <td class="insensitive" style="background-color: var(--text-color); color: var(--input-field-color);">black</td>
-        <td class="accessible-palette" style="background-color: var(--text-color); color: var(--input-field-color);">black</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--text-color); color: var(--input-field-color);">black</td>
-        <td class="darkmode" style="background-color: var(--text-color); color: var(--input-field-color);">#e6e6e6</td>
-        <td class="darkmode insensitive" style="background-color: var(--text-color); color: var(--input-field-color);">#e6e6e6</td>
-        <td class="dark-accessible-palette" style="background-color: var(--text-color); color: var(--input-field-color);">#eeeeee</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--text-color); color: var(--input-field-color);">#eeeeee</td>
-      </tr>
-      <tr>
-        <td>--selection-color</td>
-        <td style="background-color: var(--selection-color); color: var(--selected-text-color);">black</td>
-        <td class="insensitive" style="background-color: var(--selection-color); color: var(--selected-text-color);">black</td>
-        <td class="accessible-palette" style="background-color: var(--selection-color); color: var(--selected-text-color);">black</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--selection-color); color: var(--selected-text-color);">black</td>
-        <td class="darkmode" style="background-color: var(--selection-color); color: var(--selected-text-color);">#e6e6e6</td>
-        <td class="darkmode insensitive" style="background-color: var(--selection-color); color: var(--selected-text-color);">#e6e6e6</td>
-        <td class="dark-accessible-palette" style="background-color: var(--selection-color); color: var(--selected-text-color);">#eeeeee</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--selection-color); color: var(--selected-text-color);">#eeeeee</td>
-      </tr>
-      <tr>
-        <td>--selected-text-color</td>
-        <td style="background-color: var(--selected-text-color); color: var(--selection-color);">white</td>
-        <td class="insensitive" style="background-color: var(--selected-text-color); color: var(--selection-color);">white</td>
-        <td class="accessible-palette" style="background-color: var(--selected-text-color); color: var(--selection-color);">white</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--selected-text-color); color: var(--selection-color);">white</td>
-        <td class="darkmode" style="background-color: var(--selected-text-color); color: var(--selection-color);">black</td>
-        <td class="darkmode insensitive" style="background-color: var(--selected-text-color); color: var(--selection-color);">black</td>
-        <td class="dark-accessible-palette" style="background-color: var(--selected-text-color); color: var(--selection-color);">black</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--selected-text-color);  color: var(--selection-color);">black</td>
-      </tr>
-    </table>
     <svg width="1" height="1"><title>Definitions</title>
       <defs>
         <pattern id="pattern0" width="2" height="2" x="0" y="0" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
@@ -2812,11 +2651,174 @@
         </symbol>
       </defs>
     </svg>
-    <br/>
+    <p><em>This is all a work in progress. What I'm sharing here is like my private sketchbook. It's poorly organized, has gaps, has mistakes, and so forth.</em></p>
+    <p>These are just drawings for prototyping, not actual widgets. Some of them respond a little bit, as CSS allows, but there's no JavaScript making things dynamic. <a href="#mainBody">After the drawings</a>, there is some description of the system I want to make.</p>
+    <p>The style of these drawings is meant as a guide. It might be possible to do this without SVG, but I remember some details being hard or impossible to achieve with Gtk 2.x. The way scroll bars join with a text field was one impossibility. Part of the idea is to make it obvious when widgets are not active because they're in a background window or because they just can't be used in the current state. This should all work for various modes like light, dark, high contrast, and low contrast. It should be possible to change the basic colors per widget and with themes. I suspect this basic style can also be adapted to use gradients, blends, patterns, and more.</p>
+    <p>Update: It looks like Gtk4 may be able to achieve this look with CSS.</p>
+    <p>This style is heavy compared to most of today's GUIs. That's on purpose. If a window looks too "chrome-y" with this style, then there's probably a better design.</p>
+    <p>The art is primitive. That's because I can't draw. I also think icons should be iconic. The icons have been made in SVG to have decent 16x16 rasters that scale up to at least 48x48. I've no objection to people customizing their icons. In fact, I encourage it.</p>
+    <p>I make a distinction between icons and decals. An icon is a view of an item. It can be moved around from folder to folder. A decal is an iconic representation of an action that is attached to a control.</p>
+    <p>The decals are different sizes.</p>
+    <p>Almost everything here is greyscale. There are some other colors while I'm playing around with things. Red and blue rectangles are placeholders.</p>
+    <p>The default graphics will be greyscale. There are three reasons for this. First, the system should work in greyscale. Second, I've heard some artists prefer a greyscale GUI because a colorful one would affect their sense of color in their work. Third, leaving color to a customization provides an avenue for users to explore customizing the GUI; they can start small, by changing the accent color, which is used to mark selections.</p>
+    <p>I believe this default theme should also work as a high-contrast theme. There is also a dark mode theme.</p>
+    <p><small>The scroll bar buttons are only mouse controls, so they can be small and adjacent. The spinner buttons may be touch controls, so they are separated.</small></p>
+    <p>In the process of ensuring keyboard accessibility, I've come to realize that an early design decision needs to be revised. Alas, I cannot remember why I made the choice I did before, some I'm making note now I've why I'm going with the other option. There are at least two ways to indicate that a button has keyboard focus. One is to draw a line around the outside of the control. The other is to draw a dashed line inside the control but around the text, icon, or both that are inside the control. Having chosen the outside indicator, I had to sacrifice the joined together look for radio button groups. I also had to increase the whitespace around controls in toolbars. I was fine with these, though not having the joined together radio buttons bugged me.Now it seems I made the wrong choice, because I can't consistently indicate focus on notebook tabs. I'm not sure why, but I thought notebook tabs, like scrollbar buttons, didn't need keyboard focus. I had failed to consider that notebook tabs, in at least some forms, might have additional controls like a menu trigger or a close button. Like joined together radio buttons, there's no clear way to indicate which tab has keyboard focus with an outside indicator that doesn't look ugly. (I suppose I could make focus indicators more like OSD graphics, but I'm pretty sure that won't look right.) So, now I have to start revising various controls to have their focus indicators on the inside.</p>
+    <p>As far as I know, there's no problem with the current look of focus indicators for text areas. That is that their inset rectangled are replaced by solid rectangles when they have focus. The inner dashed line look wouldn't make sense for text areas.</p>
+    <p>Perhaps an unanticipated boon from this change is a better focus indicator in list widgets. Those look a lot like text areas and I hadn't gotten to the point of considering how focus would look within them. There a dashed line around the currently focused item makes sense to me.</p>
+    <!--
+    <table><caption>Colors</caption>
+      <tr><th>Name</th><th>Regular</th><th>Insensitive</th><th>New Reg.</th><th>New Ins.</th><th>Dark</th><th>Dark Ins.</th><th>New Dark</th><th>New Dark Ins.</th></tr>
+      <tr>
+        <td>--input-field-color</td>
+        <td class="old" style="background-color: var(--input-field-color); color: var(--text-color);">white</td>
+        <td class="old insensitive" style="background-color: var(--input-field-color); color: var(--text-color);">#efefef</td>
+        <td class="accessible-palette" style="background-color: var(--input-field-color); color: var(--text-color);">white</td>
+        <td class="accessible-palette insensitive" style="background-color: var(--input-field-color); color: var(--text-color);">#eeeeee</td>
+        <td class="darkmode" style="background-color: var(--input-field-color); color: var(--text-color);">#595959</td>
+        <td class="darkmode insensitive" style="background-color: var(--input-field-color); color: var(--text-color);">#4A4A4A</td>
+        <td class="dark-accessible-palette" style="background-color: var(--input-field-color); color: var(--text-color);">#bdbdbd</td>
+        <td class="dark-accessible-palette insensitive" style="background-color: var(--input-field-color); color: var(--text-color);">#8b8b8b</td>
+      </tr>
+      <tr>
+        <td>--highlight-stroke-color</td>
+        <td class="old" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">white</td>
+        <td class="old insensitive" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">none</td>
+        <td class="accessible-palette" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">#fafafa</td>
+        <td class="accessible-palette insensitive" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">none</td>
+        <td class="darkmode" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">#595959</td>
+        <td class="darkmode insensitive" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">none</td>
+        <td class="dark-accessible-palette" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">#a5a5a5</td>
+        <td class="dark-accessible-palette insensitive" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">none</td>
+      </tr>
+      <tr>
+        <td>--raised-fill-color</td>
+        <td class="old" style="background-color: var(--raised-fill-color); color: var(--label-color)">#efefef</td>
+        <td class="old insensitive" style="background-color: var(--raised-fill-color); color: var(--label-color)">#efefef</td>
+        <td class="accessible-palette" style="background-color: var(--raised-fill-color); color: var(--label-color)">#eeeeee</td>
+        <td class="accessible-palette insensitive" style="background-color: var(--raised-fill-color); color: var(--label-color)">#eeeeee</td>
+        <td class="darkmode" style="background-color: var(--raised-fill-color); color: var(--label-color)">#4A4A4A</td>
+        <td class="darkmode insensitive" style="background-color: var(--raised-fill-color); color: var(--label-color)">#4A4A4A</td>
+        <td class="dark-accessible-palette" style="background-color: var(--raised-fill-color); color: var(--label-color)">#8b8b8b</td>
+        <td class="dark-accessible-palette insensitive" style="background-color: var(--raised-fill-color); color: var(--label-color)">#8b8b8b</td>
+      </tr>
+      <tr>
+        <td>--base-fill-color</td>
+        <td class="old" style="background-color: var(--base-fill-color); color: var(--label-color)">#dddddd</td>
+        <td class="old insensitive" style="background-color: var(--base-fill-color); color: var(--label-color)">#dddddd</td>
+        <td class="accessible-palette" style="background-color: var(--base-fill-color); color: var(--label-color)">#d5d5d5</td>
+        <td class="accessible-palette insensitive" style="background-color: var(--base-fill-color); color: var(--label-color)">#d5d5d5</td>
+        <td class="darkmode" style="background-color: var(--base-fill-color); color: var(--label-color)">#454545</td>
+        <td class="darkmode insensitive" style="background-color: var(--base-fill-color); color: var(--label-color)">#454545</td>
+        <td class="dark-accessible-palette" style="background-color: var(--base-fill-color); color: var(--label-color)">#717171</td>
+        <td class="dark-accessible-palette insensitive" style="background-color: var(--base-fill-color); color: var(--label-color)">#717171</td>
+      </tr>
+      <tr>
+        <td>--recessed-fill-color</td>
+        <td class="old" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#bbbbbb</td>
+        <td class="old insensitive" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#bbbbbb</td>
+        <td class="accessible-palette" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#bdbdbd</td>
+        <td class="accessible-palette insensitive" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#bdbdbd</td>
+        <td class="darkmode" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#333333</td>
+        <td class="darkmode insensitive" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#333333</td>
+        <td class="dark-accessible-palette" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#5f5f5f</td>
+        <td class="dark-accessible-palette insensitive" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#5f5f5f</td>
+      </tr>
+      <tr>
+        <td>--active-fill-color</td>
+        <td class="old" style="background-color: var(--active-fill-color); color: var(--label-color)">#bbbbbb</td>
+        <td class="old insensitive" style="background-color: var(--active-fill-color); color: var(--label-color)">#bbbbbb</td>
+        <td class="accessible-palette" style="background-color: var(--active-fill-color); color: var(--label-color)">#a5a5a5</td>
+        <td class="accessible-palette insensitive" style="background-color: var(--active-fill-color); color: var(--label-color)">#a5a5a5</td>
+        <td class="darkmode" style="background-color: var(--active-fill-color); color: var(--label-color)">#333333</td>
+        <td class="darkmode insensitive" style="background-color: var(--active-fill-color); color: var(--label-color)">#333333</td>
+        <td class="dark-accessible-palette" style="background-color: var(--active-fill-color); color: var(--label-color)">#4c4c4c</td>
+        <td class="dark-accessible-palette insensitive" style="background-color: var(--active-fill-color); color: var(--label-color)">#4c4c4c</td>
+      </tr>
+      <tr>
+        <td>--shadow-stroke-color</td>
+        <td class="old" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">grey</td>
+        <td class="old insensitive" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">none</td>
+        <td class="accessible-palette" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">#8b8b8b</td>
+        <td class="accessible-palette insensitive" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">none</td>
+        <td class="darkmode" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">#121212</td>
+        <td class="darkmode insensitive" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">none</td>
+        <td class="dark-accessible-palette" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">#383838</td>
+        <td class="dark-accessible-palette insensitive" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">none</td>
+      </tr>
+      <tr>
+        <td>--outline-color</td>
+        <td class="old" style="background-color: var(--outline-color); color: var(--base-fill-color);">black</td>
+        <td class="old insensitive" style="background-color: var(--outline-color); color: var(--base-fill-color);">grey</td>
+        <td class="accessible-palette" style="background-color: var(--outline-color); color: var(--base-fill-color);">black</td>
+        <td class="accessible-palette insensitive" style="background-color: var(--outline-color); color: var(--base-fill-color);">#8b8b8b</td>
+        <td class="darkmode" style="background-color: var(--outline-color); color: var(--base-fill-color);">#bababa</td>
+        <td class="darkmode insensitive" style="background-color: var(--outline-color); color: var(--base-fill-color);">#999999</td>
+        <td class="dark-accessible-palette" style="background-color: var(--outline-color); color: var(--base-fill-color);">#d5d5d5</td>
+        <td class="dark-accessible-palette insensitive" style="background-color: var(--outline-color); color: var(--base-fill-color);">???</td>
+      </tr>
+      <tr>
+        <td>--focus-ring-color</td>
+        <td class="old" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">black</td>
+        <td class="old insensitive" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">black</td>
+        <td class="accessible-palette" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">black</td>
+        <td class="accessible-palette insensitive" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">black</td>
+        <td class="darkmode" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">#e6e6e6</td>
+        <td class="darkmode insensitive" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">#e6e6e6</td>
+        <td class="dark-accessible-palette" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">#eeeeee</td>
+        <td class="dark-accessible-palette insensitive" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">#eeeeee</td>
+      </tr>
+      <tr>
+        <td>--label-color</td>
+        <td class="old" style="background-color: var(--label-color); color: var(--base-fill-color);">black</td>
+        <td class="old insensitive" style="background-color: var(--label-color); color: var(--base-fill-color);">grey</td>
+        <td class="accessible-palette" style="background-color: var(--label-color); color: var(--base-fill-color);">black</td>
+        <td class="accessible-palette insensitive" style="background-color: var(--label-color); color: var(--base-fill-color);">#8b8b8b</td>
+        <td class="darkmode" style="background-color: var(--label-color); color: var(--base-fill-color);">#e6e6e6</td>
+        <td class="darkmode insensitive" style="background-color: var(--label-color); color: var(--base-fill-color);">#999999</td>
+        <td class="dark-accessible-palette" style="background-color: var(--label-color); color: var(--base-fill-color);">#eeeeee</td>
+        <td class="dark-accessible-palette insensitive" style="background-color: var(--label-color); color: var(--base-fill-color);">???</td>
+      </tr>
+      <tr>
+        <td>--text-color</td>
+        <td class="old" style="background-color: var(--text-color); color: var(--input-field-color);">black</td>
+        <td class="old insensitive" style="background-color: var(--text-color); color: var(--input-field-color);">black</td>
+        <td class="accessible-palette" style="background-color: var(--text-color); color: var(--input-field-color);">black</td>
+        <td class="accessible-palette insensitive" style="background-color: var(--text-color); color: var(--input-field-color);">black</td>
+        <td class="darkmode" style="background-color: var(--text-color); color: var(--input-field-color);">#e6e6e6</td>
+        <td class="darkmode insensitive" style="background-color: var(--text-color); color: var(--input-field-color);">#e6e6e6</td>
+        <td class="dark-accessible-palette" style="background-color: var(--text-color); color: var(--input-field-color);">#eeeeee</td>
+        <td class="dark-accessible-palette insensitive" style="background-color: var(--text-color); color: var(--input-field-color);">#eeeeee</td>
+      </tr>
+      <tr>
+        <td>--selection-color</td>
+        <td class="old" style="background-color: var(--selection-color); color: var(--selected-text-color);">black</td>
+        <td class="old insensitive" style="background-color: var(--selection-color); color: var(--selected-text-color);">black</td>
+        <td class="accessible-palette" style="background-color: var(--selection-color); color: var(--selected-text-color);">black</td>
+        <td class="accessible-palette insensitive" style="background-color: var(--selection-color); color: var(--selected-text-color);">black</td>
+        <td class="darkmode" style="background-color: var(--selection-color); color: var(--selected-text-color);">#e6e6e6</td>
+        <td class="darkmode insensitive" style="background-color: var(--selection-color); color: var(--selected-text-color);">#e6e6e6</td>
+        <td class="dark-accessible-palette" style="background-color: var(--selection-color); color: var(--selected-text-color);">#eeeeee</td>
+        <td class="dark-accessible-palette insensitive" style="background-color: var(--selection-color); color: var(--selected-text-color);">#eeeeee</td>
+      </tr>
+      <tr>
+        <td>--selected-text-color</td>
+        <td class="old" style="background-color: var(--selected-text-color); color: var(--selection-color);">white</td>
+        <td class="old insensitive" style="background-color: var(--selected-text-color); color: var(--selection-color);">white</td>
+        <td class="accessible-palette" style="background-color: var(--selected-text-color); color: var(--selection-color);">white</td>
+        <td class="accessible-palette insensitive" style="background-color: var(--selected-text-color); color: var(--selection-color);">white</td>
+        <td class="darkmode" style="background-color: var(--selected-text-color); color: var(--selection-color);">black</td>
+        <td class="darkmode insensitive" style="background-color: var(--selected-text-color); color: var(--selection-color);">black</td>
+        <td class="dark-accessible-palette" style="background-color: var(--selected-text-color); color: var(--selection-color);">black</td>
+        <td class="dark-accessible-palette insensitive" style="background-color: var(--selected-text-color);  color: var(--selection-color);">black</td>
+      </tr>
+    </table>
+    -->
+    
     <p>I originally chose a range of greys by means I do not remember. That's the "Old" theme. Using <a href="https://accessiblepalette.com/">Accessible Palette</a>, I selected a new range of greys for the "Accessible" theme. I half-heartedly tried to make my own dark theme, which is called "Dark". Last theme here takes the "Accessible" theme and shifts everything to a darker shade. I doesn't really work.</p>
     <label for="fooselect">Select a theme:</label>
     <select id="fooselect">
-      <option value="">Old</option>
+      <option value="old">Old</option>
       <option value="accessible-palette" selected>Accessible</option>
       <option value="darkmode">Dark</option>
       <option value="dark-accessible-palette">Dark(?) Accessible(?)</option>

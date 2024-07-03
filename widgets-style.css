@@ -13,6 +13,9 @@
 
 :root {
   color-scheme: light dark;
+  font-family: sans-serif;
+}
+.old {
   --input-field-color:      white;
   --highlight-stroke-color: white;
   --raised-fill-color:      #efefef;
@@ -28,9 +31,8 @@
   --selected-text-color:    white;
   --placeholder-color:      red;
   --decal-placeholder-color: lightblue;
-  font-family: sans-serif;
 }
-.insensitive {
+.old.insensitive, .old .insensitive {
   --input-field-color:      #efefef; /* regular --raised-fill-color */
   --highlight-stroke-color: #ff000000;
   --shadow-stroke-color:    #00ff0000;
@@ -67,8 +69,10 @@
     --text-color:             black;
     --selection-color:        black;
     --selected-text-color:    white;
+    --placeholder-color:      red;
+    --decal-placeholder-color: lightblue;
   }
-.accessible-palette .insensitive, .accessible-palette.insensitive {
+  .accessible-palette.insensitive, .accessible-palette .insensitive {
   --input-field-color:      #eeeeee; /* regular --raised-fill-color */
   --highlight-stroke-color: #ff000000;
   --shadow-stroke-color:    #00ff0000;
@@ -91,6 +95,7 @@
   --text-color:             #e6e6e6;
   --selection-color:        #e6e6e6;
   --selected-text-color:    black;
+  --placeholder-color:      red;
   --decal-placeholder-color: navy;
 }
 .darkmode.insensitive, .darkmode .insensitive {
@@ -116,7 +121,9 @@
   --text-color:             #EEEEEE;
   --selection-color:        #EEEEEE;
   --selected-text-color:    black;
+  --placeholder-color:      red;
   --decal-placeholder-color: navy;
+
 }
 .darkmode-alt {
   --focus-ring-color:       hsl(0, 0%, 90%);
