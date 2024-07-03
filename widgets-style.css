@@ -164,8 +164,8 @@
   --outline-color:          #999999; /* ??? */
   --label-color:            #999999; /* ??? */
 }
-:focus { outline: none; }
 svg { cursor: default; }
+svg :focus { outline: none; }
 .highlight { fill: none; stroke: var(--highlight-stroke-color); stroke-linecap: square; }
 .shadow { fill: none; stroke: var(--shadow-stroke-color); stroke-linecap: square; }
 rect.flat { fill: var(--base-fill-color); stroke: var(--outline-color); }
