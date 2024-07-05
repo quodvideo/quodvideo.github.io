@@ -179,7 +179,7 @@ rect.trough { fill: var(--recessed-fill-color); stroke: var(--outline-color); }
 :focus .outerfocusring { fill: none; stroke: var(--focus-ring-color); }
 :focus-within > .outerfocusring { fill: none; stroke: var(--focus-ring-color); }
 rect.defaultIndicator { fill: none; stroke: var(--outline-color); }
-text { font-family: Sans-serif; font-size: 16px; stroke: none; fill: var(--outline-color); }
+text { font-family: Sans-serif; font-size: 16px; stroke: none; fill: var(--outline-color); white-space: pre; }
 /* svg.headerbutton text { font-size: 12px; } */
 text.label { fill: var(--label-color); user-select: none; }
 text.centered { text-anchor: middle; dominant-baseline: central; }

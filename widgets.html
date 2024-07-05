@@ -897,10 +897,12 @@
 
         return tg;
       }
-      function drawTabs(parentElement,x,y,width,height,labels,activeIndex) {
+      function drawTabs(parentElement,x,y,width,height,labels,activeIndex,header=false) {
         var tg = document.createElementNS("http://www.w3.org/2000/svg","svg");
         tg.setAttribute("x",x);
         tg.setAttribute("y",y);
+        tg.setAttribute("width",width);
+        tg.setAttribute("height",height);
         parentElement.insertAdjacentElement("beforeend",tg);
 
         var textLabels = labels.map(function (label) {
@@ -908,11 +910,12 @@
           txt.innerHTML = label;
           txt.setAttribute("class","label centered");
           txt.setAttribute("pointer-events","none");
+          if (header) { txt.setAttribute("style","font-size: 18px;"); }
           tg.insertAdjacentElement("beforeend",txt);
           return txt;
         });
         var minh = 28;//22;
-        var currentX = 0;
+        var currentX = 3;
 
         var xywhs = textLabels.map(function(tl,i,a) {
           var lastX = currentX;
@@ -1048,7 +1051,7 @@
         var minw = 64;
         var minh = 28;//22;
         var currentX = 0;
-        var currentY = 0;
+        var currentY = 3;
 
         var xywhs = textLabels.map(function(tl,i,a) {
           var lastX = (i==activeIndex)?0:1;
@@ -1165,129 +1168,6 @@
         var tl = textLabels[activeIndex];
         tl.setAttribute("x",corners[0][0]+(corners[1][0]-corners[0][0])/2);
         tl.setAttribute("y",corners[0][1]+(corners[6][1]-corners[1][1])/2);
-        tg.insertAdjacentElement("beforeend",tl);
-
-        return tg;
-      }
-      function drawWindowTabs(parentElement,x,y,width,height,labels,activeIndex) {
-        var tg = document.createElementNS("http://www.w3.org/2000/svg","svg");
-        tg.setAttribute("x",x);
-        tg.setAttribute("y",y);
-        parentElement.insertAdjacentElement("beforeend",tg);
-
-        var textLabels = labels.map(function (label) {
-          var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
-          txt.innerHTML = label;
-          txt.setAttribute("class","label centered");
-          txt.setAttribute("pointer-events","none");
-          txt.setAttribute("style","font-size: 18px;");
-          tg.insertAdjacentElement("beforeend",txt);
-          return txt;
-        });
-        var minh = 22;
-        var currentX = 3;
-
-        var xywhs = textLabels.map(function(tl,i,a) {
-          var lastX = currentX;
-          var localY = (i==activeIndex)?0:1;
-          var w = 64;
-          var h = 28;
-          var box = tl.getBBox();
-          if (box.width+12 > w) w=Math.ceil(box.width)+12;
-          if (box.height+5 > h) h=Math.ceil(box.height)+5;
-          if (h>minh) minh=h;
-          currentX += w-1;
-          return [lastX,localY,w,h];
-        });
-        xywhs.forEach(function(xywh,i,a) { xywh[3] = (i==activeIndex)?minh+1:minh; });
-
-        textLabels.forEach(function(tl,i,a) {
-          var g = document.createElementNS("http://www.w3.org/2000/svg","g");
-          g.setAttribute("transform","translate("+(xywhs[i][0])+","+(xywhs[i][1])+")");
-          tg.insertAdjacentElement("beforeend",g);
-
-          var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
-          r.setAttribute("x",0.5);
-          r.setAttribute("y",0.5);
-          r.setAttribute("width",xywhs[i][2]-1);
-          r.setAttribute("height",xywhs[i][3]-1);
-          r.setAttribute("fill", (i==activeIndex)?"var(--base-fill-color)":"var(--raised-fill-color)"); // or recessed???
-          r.setAttribute("stroke","var(--outline-color)");
-          g.insertAdjacentElement("beforeend",r);
-
-          var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-          s.setAttribute("class","shadow");
-          s.setAttribute("points",""+(xywhs[i][2]-1.5)+","+(xywhs[i][3]-1)+" "+(xywhs[i][2]-1.5)+",1.5");
-          g.insertAdjacentElement("beforeend",s);
-
-          var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-          h.setAttribute("class","highlight");
-          h.setAttribute("points","1.5,"+(xywhs[i][3]-1)+" 1.5,1.5 "+(xywhs[i][2]-1)+",1.5");
-          g.insertAdjacentElement("beforeend",h);
-
-          tl.setAttribute("x",xywhs[i][2]/2);
-          tl.setAttribute("y",(xywhs[i][3]/2) + ((i==activeIndex)?0:1));
-          g.insertAdjacentElement("beforeend",tl);
-        });
-
-        var xywh = xywhs[activeIndex];
-        var corners = [
-          [xywh[0]+0.5,         xywh[1]+0.5],         // tabtopleft
-          [xywh[0]+xywh[2]-0.5, xywh[1]+0.5],         // tabtopright
-          [xywh[0]+xywh[2]-0.5, xywh[1]+xywh[3]-1.5], // tabbottomright
-          [width-0.5,           xywh[1]+xywh[3]-1.5], // sheettopright
-          [width-0.5,           height-0.5],          // sheetbottomright
-          [0.5,                 height-0.5],          // sheetbottomleft
-          [0.5,                 xywh[1]+xywh[3]-1.5], // sheettopleft
-          [xywh[0]+0.5,         xywh[1]+xywh[3]-1.5]  // tabbottomleft
-        ]
-            
-        /* Draw tabbed sheet. */
-        var tsp = document.createElementNS("http://www.w3.org/2000/svg","path");
-        tsp.setAttribute("fill","var(--base-fill-color)");
-        tsp.setAttribute("stroke", "var(--outline-color)");
-        tsp.setAttribute("d","M"+corners[0][0]+","+corners[0][1]
-                          + " H"+corners[1][0]
-                          + " V"+corners[2][1]
-                          + " H"+corners[3][0]
-                          + " V"+corners[4][1]
-                          + " H"+corners[5][0]
-                          + " V"+corners[6][1]
-                          + " H"+corners[7][0]
-                          + " Z");
-        tg.insertAdjacentElement("beforeend",tsp);
-
-        var tsps = document.createElementNS("http://www.w3.org/2000/svg","path");
-        tsps.setAttribute("fill","none");
-        tsps.setAttribute("stroke","var(--shadow-stroke-color)");
-        tsps.setAttribute("d","M"+(corners[0][0]+1)+","+(corners[0][1]+1)
-                            + " H"+(corners[1][0]-1)
-                            + " V"+(corners[2][1]+1)
-                            + " H"+(corners[3][0]-1)
-                            + " V"+(corners[4][1]-1)
-                            + " H"+(corners[5][0]+1)
-                            + " V"+(corners[6][1]+1)
-                            + " H"+(corners[7][0]+1)
-                            + " Z");
-        tg.insertAdjacentElement("beforeend",tsps);
-
-        var tsph = document.createElementNS("http://www.w3.org/2000/svg","path");
-        tsph.setAttribute("fill","none");
-        tsph.setAttribute("stroke", "var(--highlight-stroke-color)");
-        tsph.setAttribute("d","M"+(corners[0][0]+1)+","+(corners[0][1]+1)
-                            + " H"+(corners[1][0]-0.5)
-                            + " M"+(corners[2][0]-1.5)+","+(corners[2][1]+1)
-                            + " H"+(corners[3][0]-0.5)
-                            + " M"+(corners[4][0]-1)+","+(corners[4][1]+1)
-                            + " M"+(corners[5][0]+1)+","+(corners[5][1]-0.5)
-                            + " V"+(corners[6][1]+1)
-                            + " H"+(corners[7][0]+1)
-                            + " L"+(corners[0][0]+1)+","+(corners[0][1]+0.5));
-        tg.insertAdjacentElement("beforeend",tsph);
-
-        var tl = textLabels[activeIndex];
-        tl.setAttribute("x",corners[0][0]+(corners[1][0]-corners[0][0])/2);
-        tl.setAttribute("y",corners[0][1]+(corners[2][1]-corners[1][1])/2);
         tg.insertAdjacentElement("beforeend",tl);
 
         return tg;
@@ -1813,15 +1693,15 @@
         drawDecalButton4(tf,394,150,28,"",19).classList.add("activetoggle","insensitive");
 
 
-        drawHScrollBar(tf,320,220,100,16);
-        drawHScrollBar(tf,320,240,100,16,0);
-        drawHScrollBar(tf,320,260,100,16,1);
-        drawHScrollBar(tf,320,280,100,16).classList.add("insensitive");
+        drawHScrollBar(tf,340,220,100,16);
+        drawHScrollBar(tf,340,250,100,16,0);
+        drawHScrollBar(tf,340,280,100,16,1);
+        drawHScrollBar(tf,340,310,100,16).classList.add("insensitive");
 
         drawVScrollBar(tf,230,220,16,100);
-        drawVScrollBar(tf,250,220,16,100,0);
-        drawVScrollBar(tf,270,220,16,100,1);
-        drawVScrollBar(tf,290,220,16,100).classList.add("insensitive");
+        drawVScrollBar(tf,260,220,16,100,0);
+        drawVScrollBar(tf,290,220,16,100,1);
+        drawVScrollBar(tf,320,220,16,100).classList.add("insensitive");
 
         drawInputField(tf,240,340,120,120,false,false,true);
         drawInputField(tf,370,340,120,120,true,false,true);
@@ -3025,6 +2905,16 @@
         drawSimpleWindow(document.getElementById("basicFolder"),0,0,640,480,"#folderIcon","Folder Name");
       </script>
     </svg>
+    <svg width="640" height="480" id="basicFolder2"><title>Basic Folder 2</title>
+      <script>
+        var w = drawItemWindow(document.getElementById("basicFolder2"),0,0,640,480,"#folderIcon","Folder Name");
+        drawMulticolumnList(w,3,30,640-6,480-33,["Name                                 ▼",
+                                                 "Type              ",
+                                                 "Size        ",
+                                                 "Date Modified          ",
+                                                 "                       "]);
+      </script>
+    </svg>
     <hr>
     <p>A project, which combines multiple items, might look like this. The field on the left shows a tree of items in the project, while the field on the right shows the selected item.</p>
     <svg width="640" height="480" id="basicProject"><title>Basic Project</title>
@@ -3033,6 +2923,7 @@
         var lc = drawInputField(w,3,30,150,447,false,false,false);
         var mf = drawInputField(w,154,30,483,447,true,true,true);
       </script>
+      <rect x="153" y="30" width="1" height="447" fill="#00000000" stroke="none" style="cursor: ew-resize"/>
     </svg>
     <hr>
     <p>This is another project look, based on VS Code. The buttons on the left are radio buttons to open the various side panels. They used the joined together look seen in radio buttons on some toolbars. How to do focus indication is not clear.</p>
@@ -3067,6 +2958,7 @@
         var ff = drawInputField(tbs,3,30,478,383,false,false,false);
         var sb = drawInputField(w,3,448,618,28);
       </script>
+      <rect x="152" y="30" width="1" height="447" fill="#00000000" stroke="none" style="cursor: ew-resize"/>
     </svg>
     <hr>
     <p>This changes the tabs to be like those of a spreadsheet, to indicate they can be rearranged and more.</p>
@@ -3098,6 +2990,7 @@
         var tbs = drawTabbedInputField(w,153,30,484,416,["File 1","File 2","File 3"],0);
         var sb = drawInputField(w,3,448,618,28);
       </script>
+      <rect x="152" y="30" width="1" height="447" fill="#00000000" stroke="none" style="cursor: ew-resize"/>
     </svg>
     <hr>
     <p>It's more conventional for tabs in an IDE to be at the top, so spreadsheet style at the top instead.</p>
@@ -3129,6 +3022,7 @@
         drawTopTabbedInputField(w,153,30,484,416,["File 1","File 2","File 3"],0);
         drawInputField(w,3,448,618,28);
       </script>
+      <rect x="152" y="30" width="1" height="447" fill="#00000000" stroke="none" style="cursor: ew-resize"/>
     </svg>
     <hr>
     <!--
@@ -3245,7 +3139,7 @@
         drawDecalButton4(w,640-74,6,20,"#maximizeDecal",20);
         drawDecalButton4(w,640-50,6,20,"#iconifyDecal",20);
         drawDecalButton4(w,640-26,6,20,"#closeDecal",20);
-        drawWindowTabs(w,0,3,640,477,["Item 1","Item 2","Item 3"],0);
+        drawTabs(w,0,3,640,477,["Item 1","Item 2","Item 3"],0,true);
         drawInputField(w,3,33,634,444,true,true,true);
       </script>
     </svg>
@@ -3264,7 +3158,7 @@
         drawDecalButton4(w,640-50,6,20,"#iconifyDecal",20);
         drawDecalButton4(w,640-26,6,20,"#closeDecal",20);
 
-        drawWindowTabs(w,0,3,640,477,["Site 1","Site 2","Site 3"],0);
+        drawTabs(w,0,3,640,477,["Site 1","Site 2","Site 3"],0,true);
 
         drawInputField(w,3,33,634,413,true,true,true);
 
