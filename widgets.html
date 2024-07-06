@@ -1742,79 +1742,46 @@
         drawItemWindow(tf,700,230,240,100,"#documentIcon","Window Title",false);
         
       }
-      function drawIconField(id) {
-
+      function drawImageCatalog(id,imageclass,backfill) {
         var f = document.getElementById(id);
-        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        r.setAttribute("width", 800);
-        r.setAttribute("height", 600);
-        r.setAttribute("fill","var(--base-fill-color)");
-        r.setAttribute("stroke","none");
-        f.insertAdjacentElement("beforeend", r);
-        var foo = document.getElementsByClassName("icon");
-        var icons = [];
-        var sizes = [48,36,24,16];
-        var poses = [[10,60,100,130],[160,210,250,280],[310,360,400,430],[460,510,550,580],[610,660,700,730]]
+        var images = document.getElementsByClassName(imageclass);
+        
+        for (let i=0;i<images.length;i++) {
+          var fig = document.createElement("figure");
+          fig.setAttribute("style","display: inline-block;");
+          f.insertAdjacentElement("beforeend",fig);
+  
+          var cap = document.createElement("figcaption");
+          cap.innerHTML = images.item(i).querySelector("title").innerHTML;
+          fig.insertAdjacentElement("beforeend",cap);
 
-        for (let it=0; it < foo.length;it++) {
-          icons[it] = "#"+foo.item(it).id;
-        }
+          var sizes = [48,36,24,16];
+          var xpos = [0,58,104,138];
 
-        icons.forEach((icon,i) => {
-          sizes.forEach((size,j) => {
-            var u = document.createElementNS("http://www.w3.org/2000/svg","use");
-            var x = poses[Math.floor(i/11)][j];
-            var y = 10+50*(i%11);
-            u.setAttributeNS("http://www.w3.org/1999/xlink","href",icon);
-            u.setAttribute("fill","var(--input-field-color)");
-            u.setAttribute("x",x);
-            u.setAttribute("y",y);
-            u.setAttribute("width",size);
-            u.setAttribute("height",size);
-            f.insertAdjacentElement("beforeend",u);
-          });
-        });
-      }
-      function drawDecalField(id) {
-        var f = document.getElementById(id);
-        var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
-        r.setAttribute("width", 800);
-        r.setAttribute("height", 600);
-        r.setAttribute("fill","var(--base-fill-color)");
-        r.setAttribute("stroke","none");
-        f.insertAdjacentElement("beforeend", r);
-        var foo = document.getElementsByClassName("decal");
-        var decals = [];
-        var sizes = [48,36,24,16];
-        var poses = [[10,60,100,130],[160,210,250,280],[310,360,400,430],[460,510,550,580],[610,660,700,730]]
+          var fs = document.createElementNS("http://www.w3.org/2000/svg","svg");
+          fs.setAttribute("width",154);
+          fs.setAttribute("height",48);
+          fig.insertAdjacentElement("beforeend",fs);
 
-        for (let it=0; it < foo.length;it++) {
-          decals[it] = "#"+foo.item(it).id;
-        }
-
-        decals.forEach((decal,i) => {
           sizes.forEach((size,j) => {
             var b = document.createElementNS("http://www.w3.org/2000/svg","rect");
-            var u = document.createElementNS("http://www.w3.org/2000/svg","use");
-            var x = poses[Math.floor(i/11)][j];
-            var y = 10+50*(i%11);
-            b.setAttribute("fill","var(--decal-placeholder-color)");
+            b.setAttribute("fill",backfill);
             b.setAttribute("stroke","none");
-            b.setAttribute("x",x);
-            b.setAttribute("y",y);
+            b.setAttribute("x",xpos[j]);
+            b.setAttribute("y",0);
             b.setAttribute("width",size);
             b.setAttribute("height",size);
-            f.insertAdjacentElement("beforeend",b);
-            u.setAttributeNS("http://www.w3.org/1999/xlink","href",decal);
+            fs.insertAdjacentElement("beforeend",b);
+            var u = document.createElementNS("http://www.w3.org/2000/svg","use");
+            u.setAttributeNS("http://www.w3.org/1999/xlink","href", "#"+images.item(i).id  );
             u.setAttribute("fill","var(--input-field-color)");
-            u.setAttribute("x",x);
-            u.setAttribute("y",y);
+            u.setAttribute("x",xpos[j]);
+            u.setAttribute("y",0);
             u.setAttribute("width",size);
             u.setAttribute("height",size);
-            f.insertAdjacentElement("beforeend",u);
+            fs.insertAdjacentElement("beforeend",u);
           });
-        });
-
+        }
       }
     </script>
   </head>
@@ -1847,117 +1814,117 @@
           <path d="M1,16 L16 1 V16 Z" />
         </clipPath>
         <rect id="newcornergrip" width="16" height="16" fill="url(#pattern0)" clip-path="url(#cornerclip)" style="cursor: nwse-resize;"/>
-        <symbol class="decal" id="arrowDown" viewBox="-4 -6.5 16 16">
+        <symbol class="decal" id="arrowDown" viewBox="-4 -6.5 16 16"><title>Arrow Down</title>
           <path d="M0,0 H8 L4,4Z" style="stroke: none; fill: var(--outline-color);"/>
         </symbol>
-        <symbol class="decal" id="arrowUp" viewBox="-4 -5.5 16 16">
+        <symbol class="decal" id="arrowUp" viewBox="-4 -5.5 16 16"><title>Arrow Up</title>
           <path d="M0,4 H8 L4,0Z" style="stroke: none; fill: var(--outline-color);""/>
         </symbol>
-        <symbol class="decal" id="arrowRight" viewBox="-6.5 -4 16 16">
+        <symbol class="decal" id="arrowRight" viewBox="-6.5 -4 16 16"><title>Arrow Right</title>
           <path d="M0,0 V8 L4,4Z" style="stroke: none; fill: var(--outline-color);""/>
         </symbol>
-        <symbol class="decal" id="arrowLeft" viewBox="-5.5 -4 16 16">
+        <symbol class="decal" id="arrowLeft" viewBox="-5.5 -4 16 16"><title>Arrow Left</title>
           <path d="M4,0 V8 L0,4Z" style="stroke: none; fill: var(--outline-color);""/>
         </symbol>
-        <symbol class="decal" id="doubleArrowLeft" viewBox="-5.5 -4 16 16">
+        <symbol class="decal" id="doubleArrowLeft" viewBox="-5.5 -4 16 16"><title>Double Arrow Left</title>
           <path d="M2,0 V8 L-2,4Z" style="stroke: none; fill: var(--outline-color);""/>
           <path d="M6,0 V8 L2,4Z" style="stroke: none; fill: var(--outline-color);""/>
         </symbol>
-        <symbol class="decal" id="doubleArrowRight" viewBox="-6.5 -4 16 16">
+        <symbol class="decal" id="doubleArrowRight" viewBox="-6.5 -4 16 16"><title>Double Arrow Right</title>
           <path d="M-2,0 V8 L2,4Z" style="stroke: none; fill: var(--outline-color);""/>
           <path d="M2,0 V8 L6,4Z" style="stroke: none; fill: var(--outline-color);""/>
         </symbol>
-        <symbol class="decal" id="minusSign" viewBox="0 0 20 20">
+        <symbol class="decal" id="minusSign" viewBox="0 0 20 20"><title>Minus Sign</title>
           <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke="var(--label-color)"/>
         </symbol>
-        <symbol class="decal" id="plusSign" viewBox="0 0 20 20">
+        <symbol class="decal" id="plusSign" viewBox="0 0 20 20"><title>Plus Sign</title>
           <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke="var(--label-color)"/>
           <line x1="10" y1="4" x2="10" y2="16" stroke-width="2" stroke="var(--label-color)"/>
         </symbol>
-        <symbol class="decal" id="iconifyDecal" viewBox="0 0 20 20">
+        <symbol class="decal" id="iconifyDecal" viewBox="0 0 20 20"><title>Iconify</title>
           <rect x="8.5" y="8.5" width="3" height="3" style="fill: var(--outline-color); stroke: var(--outline-color);"/>
         </symbol>
-        <symbol class="decal" id="maximizeDecal" viewBox="0 0 20 20">
+        <symbol class="decal" id="maximizeDecal" viewBox="0 0 20 20"><title>Maximize</title>
           <rect x="4.5" y="4.5" width="11" height="11" style="fill: none; stroke: var(--outline-color);"/>
           <rect x="4.5" y="4.5" width="11" height="2" style="fill: var(--outline-color); stroke: var(--outline-color);"/>
         </symbol>
-        <symbol class="decal" id="closeDecal" viewBox="0 0 20 20">
+        <symbol class="decal" id="closeDecal" viewBox="0 0 20 20"><title>Close</title>
           <line x1="4.5" y1="4.5" x2="15.5" y2="15.5" stroke="var(--outline-color)" stroke-width="2"/>
           <line x1="4.5" y1="15.5" x2="15.5" y2="4.5" stroke="var(--outline-color)" stroke-width="2"/>
         </symbol>
-        <symbol class="decal" id="backArrowDecal" viewBox="0 0 16 16">
+        <symbol class="decal" id="backArrowDecal" viewBox="0 0 16 16"><title>Back Arrow</title>
           <path d="M4,8 H12 M8,4 L4,8 L8,12" stroke-width="2"/>
         </symbol>
-        <symbol class="decal" id="forwardArrowDecal" viewBox="0 0 16 16">
+        <symbol class="decal" id="forwardArrowDecal" viewBox="0 0 16 16"><title>Forward Arrow</title>
           <path d="M4,8 H12 M8,4 L12,8 L8,12" stroke-width="2"/>
         </symbol>
-        <symbol class="decal" id="reloadDecal" viewBox="0 0 16 16">
+        <symbol class="decal" id="reloadDecal" viewBox="0 0 16 16"><title>Reload</title>
           <circle cx="8" cy="8" r="4" stroke-width="2"/>
           <path d="M6,2 L8,4 L6,6" stroke-width="2"/>
           <path d="M10,14 L8,12 L10,10" stroke-width="2"/>
         </symbol>
-        <symbol class="decal" id="cutDecal" viewBox="0 0 24 24">
+        <symbol class="decal" id="cutDecal" viewBox="0 0 24 24"><title>Cut</title>
           <!-- <path d="M8,10 L1,6 v-2 L8,8 V0 l2,2 v6 " stroke="var(--outline-color)" /> -->
           <path d="M12,12 L8,0 L6,2 L10,14 M12,12 L16,0 L18,2 L14,14"/>
         </symbol>
-        <symbol class="decal" id="copyDecal" viewBox="0 0 24 24">
+        <symbol class="decal" id="copyDecal" viewBox="0 0 24 24"><title>Copy</title>
           <!--<rect x="1.5" y="0.5" width="12" height="13" stroke="var(--outline-color)" fill="none"/>
           <path d="M3.5,14.4 V15.5 H15.5 V2.5 H14.5" stroke="var(--outline-color)" fill="none"/>-->
           <rect x="6.5" y="5.5" width="14" height="16" stroke="var(--outline-color)" fill="none"/>
           <rect x="2.5" y="2.5" width="14" height="16" stroke="var(--outline-color)" fill="var(--input-field-color)"/>
         </symbol>
-        <symbol class="decal" id="pasteDecal" viewBox="0 0 24 24">
+        <symbol class="decal" id="pasteDecal" viewBox="0 0 24 24"><title>Paste</title>
           <rect x="2.5" y="2.5" width="14" height="16" stroke="var(--outline-color)" fill="none"/>
           <rect x="7.5" y="2.5" width="4" height="2" stroke="var(--outline-color)" fill="var(--outline-color)"/>
           <rect x="8.5" y="6.5" width="12" height="14" stroke="var(--outline-color)" fill="var(--input-field-color)"/>
         </symbol>
-        <symbol class="decal" id="searchDecal" viewBox="0 0 24 24">
+        <symbol class="decal" id="searchDecal" viewBox="0 0 24 24"><title>Search</title>
           <circle cx="15" cy="9" r="8"/>
           <line x1="0" y1="24" x2="9" y2="15"/>
         </symbol>
-        <symbol class="decal" id="branchDecal" viewBox="0 0 24 24">
+        <symbol class="decal" id="branchDecal" viewBox="0 0 24 24"><title>Branch</title>
           <circle cx="8.5" cy="3.5" r="2"/>
           <circle cx="8.5" cy="20.5" r="2"/>
           <circle cx="16.5" cy="8.5" r="2"/>
           <path d="M8.5,18.5 V5.5"/>
           <path d="M8.5,18.5 Q 8.5,14.5 12.5,14.5 H12.5 Q 16.5,14.5 16.5,11.5 V10.5"/>
         </symbol>
-        <symbol class="decal" id="folderDecal" viewBox="0 0 16 16">
+        <symbol class="decal" id="folderDecal" viewBox="0 0 16 16"><title>Folder</title>
           <path d="M8.5,3.5 L6.5,5.5 H0.5 V3.5 L2.5,1.5 H6.5 L8.5,3.5 H15.5 V14.5 H0.5 V5.5"/>
         </symbol>
-        <symbol class="decal" id="playDecal" viewBox="0 0 24 24">
+        <symbol class="decal" id="playDecal" viewBox="0 0 24 24"><title>Play</title>
           <path d="M0.5,0.5 L23.5,12 L0.5,23.5 Z"/>
         </symbol>
-        <symbol class="decal" id="debugDecal" viewBox="0 0 24 24">
+        <symbol class="decal" id="debugDecal" viewBox="0 0 24 24"><title>Debug</title>
           <path d="M0.5,0.5 L23.5,12 L0.5,23.5 Z"/>
           <circle cx="10" cy="14" r="4"/>
         </symbol>
-        <symbol class="decal" id="debugDecal2" viewBox="0 0 24 24">
+        <symbol class="decal" id="debugDecal2" viewBox="0 0 24 24"><title>Debug</title>
           <circle cx="12" cy="12" r="11" stroke-width="2"/>
           <path d="M0,0 L0,0 L0,0 Z"/>
         </symbol>
-        <symbol class="decal" id="justifyLeftDecal" viewBox="0 0 24 24">
+        <symbol class="decal" id="justifyLeftDecal" viewBox="0 0 24 24"><title>Justify Left</title>
           <line x1="0" y1="2"  x2="24" y2="2" stroke-width="2"/>
           <line x1="0" y1="7"  x2="16" y2="7" stroke-width="2"/>
           <line x1="0" y1="12" x2="24" y2="12" stroke-width="2"/>
           <line x1="0" y1="17" x2="16" y2="17" stroke-width="2"/>
           <line x1="0" y1="22" x2="24" y2="22" stroke-width="2"/>
         </symbol>
-        <symbol class="decal" id="justifyCenterDecal" viewBox="0 0 24 24">
+        <symbol class="decal" id="justifyCenterDecal" viewBox="0 0 24 24"><title>Justify Center</title>
           <line x1="0" y1="2"  x2="24" y2="2" stroke-width="2"/>
           <line x1="4" y1="7"  x2="20" y2="7" stroke-width="2"/>
           <line x1="0" y1="12" x2="24" y2="12" stroke-width="2"/>
           <line x1="4" y1="17" x2="20" y2="17" stroke-width="2"/>
           <line x1="0" y1="22" x2="24" y2="22" stroke-width="2"/>
         </symbol>
-        <symbol class="decal" id="justifyRightDecal" viewBox="0 0 24 24">
+        <symbol class="decal" id="justifyRightDecal" viewBox="0 0 24 24"><title>Justify Right</title>
           <line x1="0" y1="2"  x2="24" y2="2" stroke-width="2"/>
           <line x1="8" y1="7"  x2="24" y2="7" stroke-width="2"/>
           <line x1="0" y1="12" x2="24" y2="12" stroke-width="2"/>
           <line x1="8" y1="17" x2="24" y2="17" stroke-width="2"/>
           <line x1="0" y1="22" x2="24" y2="22" stroke-width="2"/>
         </symbol>
-        <symbol class="decal" id="justifySidesDecal" viewBox="0 0 24 24">
+        <symbol class="decal" id="justifySidesDecal" viewBox="0 0 24 24"><title>Justify Sides</title>
           <line x1="0" y1="2"  x2="24" y2="2" stroke-width="2"/>
           <line x1="0" y1="7"  x2="8" y2="7" stroke-width="2"/>
           <line x1="16" y1="7"  x2="24" y2="7" stroke-width="2"/>
@@ -2014,22 +1981,22 @@
           <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H5 L10,13 H60 L65,0 H180"/>
           <text style="font-size: 10px; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
         </g>
-        <symbol class="icon" id="documentIcon" viewBox="0 0 16 16">
+        <symbol class="icon" id="documentIcon" viewBox="0 0 16 16"><title>Generic Item</title>
           <path d="M1.5,0.5 H9.5 L14.5,5.5 V15.5 H1.5 Z"/>
           <path style="fill: none;" d="M9.5,0.5 V5.5 H14.5"/>
         </symbol>
-        <symbol class="icon" id="document2Icon" viewBox="0 0 16 16">
+        <symbol class="icon" id="document2Icon" viewBox="0 0 16 16"><title>Generic Item</title>
           <path d="M1.5,0.5 H9.5 L14.5,5.5 V15.5 H1.5 Z" style="fill: var(--input-field-color)"/>
           <path d="M9.5,0.5 V5.5 H14.5 Z" style="fill: var(--raised-fill-color);"/>
         </symbol>
-        <symbol class="icon" id="folderIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="folderIcon" viewbox="0 0 16 16"><title>Folder</title>
           <path d="M8.5,3.5 L6.5,5.5 H0.5 V3.5 L2.5,1.5 H6.5 L8.5,3.5 H15.5 V14.5 H0.5 V5.5"/>
         </symbol>
-        <symbol class="icon" id="folder2Icon" viewbox="0 0 16 16">
+        <symbol class="icon" id="folder2Icon" viewbox="0 0 16 16"><title>Folder</title>
           <path d="M 8.5,3.5 H15.5 V14.5 H0.5 V5.5" style="fill: var(--raised-fill-color)"/>
           <path d="M 8.5,3.5 L6.5,5.5 H0.5 V3.5 L2.5,1.5 H6.5 Z" style="fill: var(--recessed-fill-color)"/>
         </symbol>
-        <symbol class="icon" id="archiveIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="archiveIcon" viewbox="0 0 16 16"><title>Archive</title>
           <path d="M8.5,3.5 L6.5,5.5 H0.5 V3.5 L2.5,1.5 H6.5 L8.5,3.5 H15.5 V14.5 H0.5 V5.5"/>
           <line x1="9.5"  y1="4.5"  x2="11.5" y2="4.5"/>
           <line x1="11.5" y1="5.5"  x2="13.5" y2="5.5"/>
@@ -2054,17 +2021,17 @@
                    L 12 13.5
                    L 11 14.5" style="fill: none;"/>
         </symbol>
-        <symbol class="icon" id="networkFolderIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="networkFolderIcon" viewbox="0 0 16 16"><title>Network Folder</title>
           <path d="M 8.5 2.5 L 6.5 4.5 H 0.5 V 2.5 L 2.5 0.5 H 6.5 L 8.5 2.5 H 15.5 V 13.5 H 0.5 V 4.5"/>
           <path d="M 0.5 14.5 H 7.5 V 11.5 H 6.5 V 8.5 H 9.5 V 11.5 H 8.5 V 14.5 H 15.5 V 15.5 H 0.5 V 14.5 Z" style="fill: var(--raised-fill-color); stroke: none;"/>
           <path d="M 0.5 15.5 H 15.5 M 0.5 14.5 H 7.5 V 11.5 H 6.5 V 8.5 H 9.5 V 11.5 H 8.5 V 14.5 H 15.5" style="fill: none;"/>
         </symbol>
-        <symbol class="icon" id="addressbookIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="addressbookIcon" viewbox="0 0 16 16"><title>Address Book</title>
           <path d="M1.5,1.5 H13.5 A 2 2 90 0 1 15.5 3.5 V13.5 A 2 2 90 0 1 13.5 15.5 H1.5 V1.5 Z M3.5,1.5 V15.5"/>
           <path style="stroke: grey; fill: grey;" d="M9.5,3.5 A 2 2 180 1 1 9.5 7.5 A 2 2 180 1 1 9.5 3.5"/>
           <path style="stroke: grey; fill: grey;" d="M5.5 13.5 H13.5 A 4 4 180 1 0 5.5 13.5 Z"/>
         </symbol>
-        <symbol class="icon" id="contactIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="contactIcon" viewbox="0 0 16 16"><title>Contact</title>
           <rect x="0.5" y="2.5" width="15" height="12"/>
           <path style="stroke: grey; fill: grey;" d="M 11 4.5 A 2 2 180 1 1 11 8.5 A 2 2 180 1 1 11 4.5"/>
           <path style="stroke: grey; fill: grey;" d="M 8.5 12.5 H13.5 A 2.5 2.5 180 1 0 8.5 12.5 Z"/>
@@ -2073,7 +2040,7 @@
           <line x1="2.5" y1="9.5" x2="6.5" y2="9.5"/>
           <line x1="2.5" y1="11.5" x2="6.5" y2="11.5"/>
         </symbol>
-        <symbol class="icon" id="calendarIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="calendarIcon" viewbox="0 0 16 16"><title>Calendar</title>
           <rect x="0.5" y="0.5" rx="2" ry="2" width="15" height="15"/>
           <line x1="0.5" y1="3.5" x2="15.5" y2="3.5"/>
           <line x1="0.5" y1="6.5" x2="15.5" y2="6.5"/>
@@ -2084,7 +2051,7 @@
           <line x1="9.5" y1="3.5" x2="9.5" y2="15.5"/>
           <line x1="12.5" y1="3.5" x2="12.5" y2="15.5"/>
         </symbol>
-        <symbol class="icon" id="eventIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="eventIcon" viewbox="0 0 16 16"><title>Event</title>
           <rect x="0.5" y="0.5" rx="2" ry="2" width="12" height="12"/>
           <line x1="0.5" y1="3.5" x2="12.5" y2="3.5"/>
           <line x1="0.5" y1="6.5" x2="12.5" y2="6.5"/>
@@ -2095,13 +2062,13 @@
           <circle cx="11" cy="11" r="4.5"/>
           <path style="fill: none;" d="M8.5 11 H 11 V 7.5"/>
         </symbol>
-        <symbol class="icon" id="templateIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="templateIcon" viewbox="0 0 16 16"><title>Template</title>
           <rect x="1.5" y="1.5" width="14" height="14" style="fill: var(--recessed-fill-color);"/>
           <rect x="1" y="1" width="14" height="14" style="fill: var(--recessed-fill-color);"/>
           <path d="M10.5,14.5 L14.5,10.5 V0.5 H0.5 V14.5 H10.5 V10.5 H14.5"/>
           <path style="fill: #efefef;" d="M10.5,14.5 V10.5 H14.5"/>
         </symbol>
-        <symbol class="icon" id="bibliographyIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="bibliographyIcon" viewbox="0 0 16 16"><title>Bibliography</title>
           <path d="M4.5,11.5 V2.5 H11.5 V0.5 H15.5 V11.5 Z"/>
           <path d="M4.5,11.5 V2.5 H7.5  V0.5 H11.5 V2.5 H15.5 V11.5 Z"/>
           <path d="M3.5,11.5 V0.5 H7.5  V2.5 H15.5 V11.5 Z"/>
@@ -2116,7 +2083,7 @@
             <path d="M3.5,11.5 V0.5 H7.5  V2.5 H15.5 V11.5 Z"/>
           </g>
         </symbol>
-        <symbol class="icon" id="bibliography2Icon" viewBox="0 0 16 16">
+        <symbol class="icon" id="bibliography2Icon" viewBox="0 0 16 16"><title>Bibliography</title>
           <path d="M 0.5 6.5 L3.5 0.5 V11.5 L 0.5 15.5 Z" style="stroke: var(--outline-color); fill: var(--shadow-stroke-color)"/>
           <path d="M4.5,11.5 V2.5 H11.5 V0.5 H15.5 V11.5 Z"/>
           <path d="M4.5,11.5 V2.5 H7.5  V0.5 H11.5 V2.5 H15.5 V11.5 Z"/>
@@ -2138,12 +2105,12 @@
                    M 10.5 9.5 L 11.5 11.5 L 10.5 13.5
                    M  8.5 9.5 L  9.5 11.5 L  8.5 13.5" style="fill:none"/>
         </symbol>
-        <symbol class="icon" id="citationIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="citationIcon" viewbox="0 0 16 16"><title>Citation</title>
           <rect x="0.5" y="1.5" width="15" height="13"/>
           <path d="M 3.5 3.5 L 2.5 5.5 L 3.5 7.5 M 6.5 3.5 L 5.5 5.5 L 6.5 7.5"/>
           <path d="M 12.5 8.5 L 13.5 10.5 L 12.5 12.5 M 9.5 8.5 L 10.5 10.5 L 9.5 12.5"/>
         </symbol>
-        <symbol class="icon" id="jukeboxIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="jukeboxIcon" viewbox="0 0 16 16"><title>Music Collection</title>
           <circle cx="9.5" cy="6.5" r="6"/>
           <circle cx="8.5" cy="7.5" r="6"/>
           <circle cx="7.5" cy="8.5" r="6"/>
@@ -2157,7 +2124,7 @@
           <rect x="9" y="0" width="7" height="7"/>
           <rect x="9" y="9" width="7" height="7"/>
         </clipPath>
-        <symbol class="icon" id="playlistIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="playlistIcon" viewbox="0 0 16 16"><title>Playlist</title>
           <circle cx="8" cy="8" r="7" style="fill:none; vector-effect: none;" clip-path="url(#breakuptransmission)"/>
           <circle cx="8" cy="8" r="5" style="fill:none; vector-effect: none;" clip-path="url(#breakuptransmission)"/>
           <circle cx="8" cy="8" r="3"/>
@@ -2170,7 +2137,7 @@
           <path d="M 2.5 7.5 A 6 6 90 0 1 8.5 13.5" style="fill: none; stroke-width: 2; vector-effect: none;"/> -->
 
         </symbol>
-        <symbol class="icon" id="musicIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="musicIcon" viewbox="0 0 16 16"><title>Music</title>
           <circle cx="8" cy="8" r="7.5"/>
           <ellipse cx="4.5" cy="11.5" rx="2" ry="1" transform="rotate(-20 4.5 11.5)" style="stroke: none; fill: var(--outline-color);"/>
           <!--<line x1="6" y1="11.5" x2="6" y2="5" style="vector-effect: none;"/>-->
@@ -2178,7 +2145,7 @@
           <!--<line x1="12" y1="10.5" x2="12" y2="4" style="vector-effect: none;"/>-->
           <path d="M 5.9 11 V 5 L 11.9 4 V 10 M 5.9 6.5 L 11.9 5.5" style="vector-effect: none; fill: none;">
         </symbol>
-        <symbol class="icon" id="albumIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="albumIcon" viewbox="0 0 16 16"><title>Music Album</title>
           <rect x="0.5" y="0.5" width="15" height="15"/>
           <circle cx="8" cy="8" r="7.5"/>
           <ellipse cx="4.5" cy="11.5" rx="2" ry="1" transform="rotate(-20 4.5 11.5)" style="stroke: none; fill: var(--outline-color);"/>
@@ -2187,7 +2154,7 @@
           <!--<line x1="12" y1="10.5" x2="12" y2="4" style="vector-effect: none;"/>-->
           <path d="M 5.9 11 V 5 L 11.9 4 V 10 M 5.9 6.5 L 11.9 5.5" style="vector-effect: none; fill: none;">
         </symbol>
-        <symbol class="icon" id="photoAlbumIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="photoAlbumIcon" viewbox="0 0 16 16"><title>Photo Album</title>
           <rect x="0.5" y="0.5" width="15" height="15"/>
           <line x1="1.5" y1="0.5" x2="1.5" y2="15.5"/>
           <rect x="3.5" y="9.5" width="4" height="4"/>
@@ -2195,7 +2162,7 @@
           <rect x="3.5" y="2.5" width="5" height="5"/>
           <rect x="10.5" y="2.5" width="3" height="4"/>
         </symbol>
-        <symbol class="icon" id="photoIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="photoIcon" viewbox="0 0 16 16"><title>Photo</title>
           <rect x="0.5" y="1.5" width="15" height="13" style="fill: var(--base-fill-color);"/>
           <rect x="2.5" y="3.5" width="11" height="9" style="stroke: var(--outline-color);"/>
           <line x1="0.5"  y1="1.5"  x2="2.5"  y2="3.5"  style="stroke: var(--outline-color);"/>
@@ -2203,7 +2170,7 @@
           <line x1="15.5" y1="1.5"  x2="13.5" y2="3.5"  style="stroke: var(--outline-color);"/>
           <line x1="15.5" y1="14.5" x2="13.5" y2="12.5" style="stroke: var(--outline-color);"/>
         </symbol>
-        <symbol class="icon" id="spreadsheetIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="spreadsheetIcon" viewbox="0 0 16 16"><title>Spreadsheet</title>
           <rect x="0.5" y="2.5" width="15" height="12"/>
           <rect x="0.5" y="2.5" width="15" height="2" style="fill: var(--base-fill-color);"/>
           <rect x="0.5" y="2.5" width="4" height="12" style="fill: var(--base-fill-color);"/>
@@ -2215,7 +2182,7 @@
           <line x1="8.5"  y1="2.5"  x2="8.5"  y2="14.5"/>
           <line x1="12.5" y1="2.5"  x2="12.5" y2="14.5"/>
         </symbol>
-        <symbol class="icon" id="slideshowIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="slideshowIcon" viewbox="0 0 16 16"><title>Slideshow</title>
           <g transform="translate(4,-4)">
             <rect x="0.5" y="5.5" width="11" height="9" style="fill: var(--base-fill-color);"/>
             <rect x="2.5" y="7.5" width="7" height="5"/>
@@ -2227,7 +2194,7 @@
           <rect x="0.5" y="5.5" width="11" height="9" style="fill: var(--base-fill-color);"/>
           <rect x="2.5" y="7.5" width="7" height="5"/>
         </symbol>
-        <symbol class="icon" id="mailboxIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="mailboxIcon" viewbox="0 0 16 16"><title>Mailbox</title>
           <g transform="translate(4,-4)">
             <rect x="0.5" y="7.5" width="11" height="7" />
             <path style="fill: none;" d="M0.5,7.5 L6,10.5 L11.5,7.5"/>
@@ -2239,11 +2206,11 @@
           <rect x="0.5" y="7.5" width="11" height="7" />
           <path style="fill: none;" d="M0.5,7.5 L6,10.5 L11.5,7.5"/>
         </symbol>
-        <symbol class="icon" id="messageIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="messageIcon" viewbox="0 0 16 16"><title>Message</title>
           <rect x="0.5" y="3.5" width="15" height="9" />
           <path d="M 0.5 3.5 L 8 8 L 15.5 3.5" style="fill: none;"/>
         </symbol>
-        <symbol class="icon" id="mailbox2Icon" viewbox="0 0 16 16">
+        <symbol class="icon" id="mailbox2Icon" viewbox="0 0 16 16"><title>Mailbox</title>
           <rect x="3.5" y="8.5" width="12" height="4" style="fill: var(--shadow-stroke-color)"/>
           <path style="fill: var(--recessed-fill-color)"
                 d="M 0.5 15.5
@@ -2279,7 +2246,7 @@
                    "/>
 
         </symbol>
-        <symbol class="icon" id="notebookIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="notebookIcon" viewbox="0 0 16 16"><title>Notebook</title>
           <path d="M1.5,1.5 H13.5 A 2 2 90 0 1 15.5 3.5 V13.5 A 2 2 90 0 1 13.5 15.5 H1.5 V1.5 Z M3.5,1.5 V15.5"/>
           <rect x="9.5" y="3.5" width="4" height="4" style="fill: none;"/>
           <line x1="4.5" y1="3.5" x2="8.5" y2="3.5"/>
@@ -2287,7 +2254,7 @@
           <line x1="4.5" y1="9.5" x2="14.5" y2="9.5"/>
           <line x1="4.5" y1="12.5" x2="14.5" y2="12.5"/>
         </symbol>
-        <symbol class="icon" id="computationalNotebookIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="computationalNotebookIcon" viewbox="0 0 16 16"><title>Computational Notebook</title>
           <path d="M1.5,1.5 H13.5 A 2 2 90 0 1 15.5 3.5 V13.5 A 2 2 90 0 1 13.5 15.5 H1.5 V1.5 Z M3.5,1.5 V15.5"/>
           <line x1="0.5" y1="3.5" x2="2.5" y2="3.5"/>
           <line x1="0.5" y1="5.5" x2="2.5" y2="5.5"/>
@@ -2297,7 +2264,7 @@
           <line x1="0.5" y1="13.5" x2="2.5" y2="13.5"/>
           <path d="M12.5,6.5 V4.5 H6.5 L9.5,8.5 L6.5,12.5 H12.5 V10.5"/>
         </symbol>
-        <symbol class="icon" id="notebook2Icon" viewbox="0 0 16 16">
+        <symbol class="icon" id="notebook2Icon" viewbox="0 0 16 16"><title>Notebook</title>
           <path d="M1.5,1.5 H13.5 A 2 2 90 0 1 15.5 3.5 V13.5 A 2 2 90 0 1 13.5 15.5 H1.5 V1.5 Z M3.5,1.5 V15.5"/>
           <line x1="4.5" y1="3.5" x2="14.5" y2="3.5"/>
           <line x1="4.5" y1="6.5" x2="14.5" y2="6.5"/>
@@ -2305,7 +2272,7 @@
           <line x1="4.5" y1="12.5" x2="8.5" y2="12.5"/>
           <path style="stroke: grey; fill: lightgrey" d="M7.5 12.5 V11.5 L13.5 5.5 L14.5 6.5 L8.5 12.5 Z"/>
         </symbol>
-        <symbol class="icon" id="notebook3Icon" viewbox="0 0 16 16">
+        <symbol class="icon" id="notebook3Icon" viewbox="0 0 16 16"><title>Notebook</title>
           <path d="M1.5,1.5 H13.5 A 2 2 90 0 1 15.5 3.5 V13.5 A 2 2 90 0 1 13.5 15.5 H1.5 V1.5 Z M3.5,1.5 V15.5"/>
           <line x1="0.5" y1="3.5" x2="2.5" y2="3.5"/>
           <line x1="0.5" y1="5.5" x2="2.5" y2="5.5"/>
@@ -2320,7 +2287,7 @@
           <line x1="4.5" y1="12.5" x2="8.5" y2="12.5"/>
           <path style="stroke: grey; fill: lightgrey;" d="M7.5 12.5 V11.5 L13.5 5.5 L14.5 6.5 L8.5 12.5 Z"/>
         </symbol>
-        <symbol class="icon" id="notebook4Icon" viewbox="0 0 16 16">
+        <symbol class="icon" id="notebook4Icon" viewbox="0 0 16 16"><title>Notebook</title>
           <path d="M 1.5 1.5
                    H 14.5
                    V 13.5
@@ -2340,7 +2307,7 @@
           <line x1="2.5" y1="12.5" x2="8.5" y2="12.5"/>
           <path style="stroke: grey; fill: lightgrey;" d="M7.5 12.5 V11.5 L13.5 5.5 L14.5 6.5 L8.5 12.5 Z"/>
         </symbol>
-        <symbol class="icon" id="shellIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="shellIcon" viewbox="0 0 16 16"><title>Shell</title>
           <path d="M 8 15.5
                    S 0.5 15.5 3.5 14.5
                    L 0.5 4.5
@@ -2353,25 +2320,25 @@
           <line x1="9"  y1="8.5" x2="9.5"  y2="2.5"/>
           <line x1="11" y1="9"   x2="12.5" y2="4"  />
         </symbol>
-        <symbol class="icon" id="terminalIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="terminalIcon" viewbox="0 0 16 16"><title>Terminal</title>
           <rect x="0.5" y="1.5" rx="2" ry="2" width="15" height="13" style="fill: var(--base-fill-color);"/>
           <rect x="2.5" y="3.5" width="11" height="9" style="fill: var(--outline-color);"/>
           <path style="fill: none; stroke: white;" d="M 3.5 4.5 L 7 8 L 3.5 11.5"/>
           <path style="fill: none; stroke: white;" d="M 8.5 11.5 H12.5"/>
         </symbol>
-        <symbol class="icon" id="feedIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="feedIcon" viewbox="0 0 16 16"><title>Feed</title>
           <rect x="0.5" y="0.5" rx="2" ry="2" width="15" height="15"/>
           <circle cx="4" cy="12" r="1.5" style="fill: var(--outline-color); stroke:none;"/>
           <path d="M 2.5 3.5 A 10 10 90 0 1 12.5 13.5" style="fill: none;stroke-width: 2; vector-effect: none;"/>
           <path d="M 2.5 7.5 A 6 6 90 0 1 8.5 13.5" style="fill: none; stroke-width: 2; vector-effect: none;"/>
         </symbol>
-        <symbol class="icon" id="remoteIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="remoteIcon" viewbox="0 0 16 16"><title>Remote Desktop</title>
           <rect x="0.5" y="1.5" rx="2" ry="2" width="15" height="13" style="fill: var(--base-fill-color);"/>
           <rect x="2.5" y="3.5" width="11" height="9" style="fill: var(--outline-color);"/>
           <path style="fill: none; stroke: white;" d="M 3.5 6.5 L 7 9 L 3.5 11.5"/>
           <path style="fill: none; stroke: white;" d="M 12.5 4.5 L 9 7 L 12.5 9.5"/>
         </symbol>
-        <symbol class="icon" id="calculatorIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="calculatorIcon" viewbox="0 0 16 16"><title>Calculator</title>
           <path d="M 0.5 0.5 H 14.5 V 13.5 A 2 2 90 0 1 12.5 15.5 H 2.5 A 2 2 90 0 1 0.5 13.5 Z" style="fill: var(--base-fill-color)"/>
           <rect x="1.5"  y="1.5" width="12" height="3" style="fill: black;"/>
           <rect x="2.5"  y="6.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
@@ -2387,7 +2354,7 @@
           <rect x="8.5"  y="12.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
           <rect x="11.5" y="12.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
         </symbol>
-        <symbol class="icon" id="queryIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="queryIcon" viewbox="0 0 16 16"><title>Database Query</title>
           <path d="M 0.5  4 A 7.5 2.5 180 0 0 15.5  4
                             A 7.5 2.5 180 0 0  0.5  4
                    V 13
@@ -2396,21 +2363,21 @@
                    M 0.5  7 A 7.5 2.5 180 0 0 15.5  7
                    M 0.5 10 A 7.5 2.5 180 0 0 15.5 10"/>
         </symbol>
-        <symbol class="icon" id="outlineIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="outlineIcon" viewbox="0 0 16 16"><title>Outline</title>
           <path d="M1.5,0.5 H9.5 L14.5,5.5 V15.5 H1.5 Z"/>
           <path style="fill: none;" d="M9.5,0.5 V5.5 H14.5"/>
           <path style="fill: none;" d="M 3.5 2.5 h 3 h -3 v 2 h 3 v 2 h 2 h-2 v 2 h3 h-3 v-4 h-3 v6 h6 h-3 v2 h3"/>
         </symbol>
-        <symbol class="icon" id="bookmarkIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="bookmarkIcon" viewbox="0 0 16 16"><title>Bookmark</title>
           <path d="M 0.5 12.5 L 12.5 0.5 L 15.5 3.5 L 3.5 15.5 V 12.5 Z"/>
         </symbol>
-        <symbol class="icon" id="bookmark2Icon" viewbox="0 0 16 16">
+        <symbol class="icon" id="bookmark2Icon" viewbox="0 0 16 16"><title>Bookmark</title>
           <path d="M 0.5 3.5 L 3.5 0.5 L 15.5 12.5 H 12.5 V 15.5 Z"/>
         </symbol>
-        <symbol class="icon" id="bookmark3Icon" viewbox="0 0 16 16">
+        <symbol class="icon" id="bookmark3Icon" viewbox="0 0 16 16"><title>Bookmark</title>
           <path d="M 6.5 0.5 H 10.5 V 15.5 L 8.5 13.5 L 6.5 15.5 Z"/>
         </symbol>
-        <symbol class="icon" id="documentationIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="documentationIcon" viewbox="0 0 16 16"><title>Documentation</title>
           <rect width="16" height="16" style="fill: grey; stroke: none;"/>
           <path d="M 2.5 6.5
                    A 5.5 5.5 90 0 1 13.5 6.5
@@ -2423,18 +2390,18 @@
                    A 2.5 2.5 90 0 0 5.5 6.5 Z"/>
           <rect x="6.5" y="12.5" width="3" height="3"/>
         </symbol>
-        <symbol class="icon" id="browserIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="browserIcon" viewbox="0 0 16 16"><title>Web Browser</title>
           <circle cx="8" cy="8" r="7.5"/>
           <ellipse cx="8" cy="8" rx="3.5" ry="7.5"/>
           <line x1="0.5" y1="8" x2="15.5" y2="8"/>
           <path d="M 2.5 3 A 4 1 180 0 0 13.5 3" style="fill: none;"/>
           <path d="M 2.5 13 A 4 1 180 0 1 13.5 13" style="fill: none;"/>
         </symbol>
-        <symbol class="icon" id="messagesIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="messagesIcon" viewbox="0 0 16 16"><title>Messaging</title>
           <path d="M 6.5 0.5 H 15.5 V 7.5 L 13.5 5.5 H 6.5 Z"/>
           <path d="M 0.5 8.5 H 9.5 V 13.5 H 2.5 L 0.5 15.5 Z"/>
         </symbol>
-        <symbol class="icon" id="meetingIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="meetingIcon" viewbox="0 0 16 16"><title>Meeting</title>
           <circle cx="4" cy="3" r="2.5" style="fill: var(--recessed-fill-color);"/>
           <path d="M 0.5 9.5 A 3 3 90 0 1 7.5 9.5 Z"
                 style="fill: var(--recessed-fill-color);"/>
@@ -2443,7 +2410,7 @@
                 style="fill: var(--recessed-fill-color);"/>
           <circle cx="8" cy="13" r="2.5" style="fill: var(--raised-fill-color);"/>
         </symbol>
-        <symbol class="icon" id="meeting2Icon" viewbox="0 0 16 16">
+        <symbol class="icon" id="meeting2Icon" viewbox="0 0 16 16"><title>Meeting</title>
           <circle cx="4" cy="3" r="2.5" style="fill: var(--recessed-fill-color);"/>
           <path d="M 0.5 9.5 A 3 3 90 0 1 7.5 9.5 Z"
                 style="fill: var(--recessed-fill-color);"/>
@@ -2454,7 +2421,7 @@
           <path d="M 4.5 15.5 A 3 3 90 0 1 11.5 15.5 Z"
                 style="fill: var(--raised-fill-color);"/>
         </symbol>
-        <symbol class="icon" id="phonecallIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="phonecallIcon" viewbox="0 0 16 16"><title>Phone Call</title>
           <path d="M 7.5 5.5
                    H 11.5
                    V 0.5
@@ -2470,7 +2437,7 @@
                    M 9.5 10.5
                    V 15.5"/>
         </symbol>
-        <symbol class="icon" id="filebrowserIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="filebrowserIcon" viewbox="0 0 16 16"><title>File Browser</title>
           <rect x="0.5" y="0.5" width="15" height="4"/>
           <rect x="0.5" y="4.5" width="5" height="11"/>
           <rect x="5.5" y="4.5" width="5" height="11"/>
@@ -2489,7 +2456,7 @@
           <line x1="6.5" y1="12.5" x2="9.5" y2="12.5"/>
           <rect x="12" y="6.5" width="2" height="2" style="stroke: var(--outline-color); fill: var(--outline-color);"/>
         </symbol>
-        <symbol class="icon" id="ledgerIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="ledgerIcon" viewbox="0 0 16 16"><title>Ledger</title>
           <rect x="0.5" y="0.5" width="15" height="12"/>
           <rect x="12.5" y="2.5" width="3" height="10" style="fill: var(--base-fill-color)"/>
           <rect x="9.5" y="2.5" width="3" height="10" style="fill: var(--base-fill-color)"/>
@@ -2499,7 +2466,7 @@
           <line x1="0.5" y1="8.5" x2="15.5" y2="8.5"/>
           <line x1="0.5" y1="10.5" x2="15.5" y2="10.5"/>
         </symbol>
-        <symbol class="icon" id="microphoneIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="microphoneIcon" viewbox="0 0 16 16"><title>Microphone</title>
           <path d="M 4 15.5 H 12"/>
           <path d="M 8 15.5 V 12.5"/>
           <path d="M 4 5 V 8.5 A 4 4 180 0 0 12 8.5 V 5" style="fill: none;"/>
@@ -2507,7 +2474,7 @@
           <path d="M 5 3.5 V 8.5 A 3 3 180 0 0 11 8.5 V 3.5 A 3 3 180 0 0 5 3.5 Z"/>
           <rect x="5" y="5" width="6" height="2" style="fill: var(--raised-fill-color)"/>
         </symbol>
-        <symbol class="icon" id="bindersIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="bindersIcon" viewbox="0 0 16 16"><title>Binders</title>
           <rect x="0.5" y="3.5" width="4" height="12"/>
           <circle cx="2.5" cy="5.5" r="1"/>
           <rect x="4.5" y="3.5" width="4" height="12"/>
@@ -2517,11 +2484,11 @@
             <circle cx="10.5" cy="5.5" r="1"/>
           </g>
         </symbol>
-        <symbol class="icon" id="trashIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="trashIcon" viewbox="0 0 16 16"><title>Trash</title>
           <path d="M 0.5 4 L 2.5 13 A 5.5 2.5 180 0 0 13.5 13 L 15.5 4" style="fill: var(--raised-fill-color)"/>
           <ellipse cx="8" cy="4" rx="7.5" ry="1.5" style="fill: var(--recessed-fill-color)"/>
         </symbol>
-        <symbol class="icon" id="desktopIcon" viewbox="0 0 16 16">
+        <symbol class="icon" id="desktopIcon" viewbox="0 0 16 16"><title>Desktop</title>
           <!--<rect x="0" y="0" width="16" height="16" style="fill: red; stroke: none;"/>-->
           <rect x="0.5" y="1.5" width="15" height="13" style="fill: var(--raised-fill-color); stroke: var(--outline-color)"/>
           <path d="M0.5,1.5 h3 l-3,3 z" style="fill: var(--outline-color); stroke: none"/>
@@ -2546,182 +2513,61 @@
     <p>In the process of ensuring keyboard accessibility, I've come to realize that an early design decision needs to be revised. Alas, I cannot remember why I made the choice I did before, some I'm making note now I've why I'm going with the other option. There are at least two ways to indicate that a button has keyboard focus. One is to draw a line around the outside of the control. The other is to draw a dashed line inside the control but around the text, icon, or both that are inside the control. Having chosen the outside indicator, I had to sacrifice the joined together look for radio button groups. I also had to increase the whitespace around controls in toolbars. I was fine with these, though not having the joined together radio buttons bugged me.Now it seems I made the wrong choice, because I can't consistently indicate focus on notebook tabs. I'm not sure why, but I thought notebook tabs, like scrollbar buttons, didn't need keyboard focus. I had failed to consider that notebook tabs, in at least some forms, might have additional controls like a menu trigger or a close button. Like joined together radio buttons, there's no clear way to indicate which tab has keyboard focus with an outside indicator that doesn't look ugly. (I suppose I could make focus indicators more like OSD graphics, but I'm pretty sure that won't look right.) So, now I have to start revising various controls to have their focus indicators on the inside.</p>
     <p>As far as I know, there's no problem with the current look of focus indicators for text areas. That is that their inset rectangled are replaced by solid rectangles when they have focus. The inner dashed line look wouldn't make sense for text areas.</p>
     <p>Perhaps an unanticipated boon from this change is a better focus indicator in list widgets. Those look a lot like text areas and I hadn't gotten to the point of considering how focus would look within them. There a dashed line around the currently focused item makes sense to me.</p>
-    <!--
-    <table><caption>Colors</caption>
-      <tr><th>Name</th><th>Regular</th><th>Insensitive</th><th>New Reg.</th><th>New Ins.</th><th>Dark</th><th>Dark Ins.</th><th>New Dark</th><th>New Dark Ins.</th></tr>
-      <tr>
-        <td>--input-field-color</td>
-        <td class="old" style="background-color: var(--input-field-color); color: var(--text-color);">white</td>
-        <td class="old insensitive" style="background-color: var(--input-field-color); color: var(--text-color);">#efefef</td>
-        <td class="accessible-palette" style="background-color: var(--input-field-color); color: var(--text-color);">white</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--input-field-color); color: var(--text-color);">#eeeeee</td>
-        <td class="darkmode" style="background-color: var(--input-field-color); color: var(--text-color);">#595959</td>
-        <td class="darkmode insensitive" style="background-color: var(--input-field-color); color: var(--text-color);">#4A4A4A</td>
-        <td class="dark-accessible-palette" style="background-color: var(--input-field-color); color: var(--text-color);">#bdbdbd</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--input-field-color); color: var(--text-color);">#8b8b8b</td>
-      </tr>
-      <tr>
-        <td>--highlight-stroke-color</td>
-        <td class="old" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">white</td>
-        <td class="old insensitive" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">none</td>
-        <td class="accessible-palette" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">#fafafa</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">none</td>
-        <td class="darkmode" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">#595959</td>
-        <td class="darkmode insensitive" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">none</td>
-        <td class="dark-accessible-palette" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">#a5a5a5</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--highlight-stroke-color); color: var(--label-color)">none</td>
-      </tr>
-      <tr>
-        <td>--raised-fill-color</td>
-        <td class="old" style="background-color: var(--raised-fill-color); color: var(--label-color)">#efefef</td>
-        <td class="old insensitive" style="background-color: var(--raised-fill-color); color: var(--label-color)">#efefef</td>
-        <td class="accessible-palette" style="background-color: var(--raised-fill-color); color: var(--label-color)">#eeeeee</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--raised-fill-color); color: var(--label-color)">#eeeeee</td>
-        <td class="darkmode" style="background-color: var(--raised-fill-color); color: var(--label-color)">#4A4A4A</td>
-        <td class="darkmode insensitive" style="background-color: var(--raised-fill-color); color: var(--label-color)">#4A4A4A</td>
-        <td class="dark-accessible-palette" style="background-color: var(--raised-fill-color); color: var(--label-color)">#8b8b8b</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--raised-fill-color); color: var(--label-color)">#8b8b8b</td>
-      </tr>
-      <tr>
-        <td>--base-fill-color</td>
-        <td class="old" style="background-color: var(--base-fill-color); color: var(--label-color)">#dddddd</td>
-        <td class="old insensitive" style="background-color: var(--base-fill-color); color: var(--label-color)">#dddddd</td>
-        <td class="accessible-palette" style="background-color: var(--base-fill-color); color: var(--label-color)">#d5d5d5</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--base-fill-color); color: var(--label-color)">#d5d5d5</td>
-        <td class="darkmode" style="background-color: var(--base-fill-color); color: var(--label-color)">#454545</td>
-        <td class="darkmode insensitive" style="background-color: var(--base-fill-color); color: var(--label-color)">#454545</td>
-        <td class="dark-accessible-palette" style="background-color: var(--base-fill-color); color: var(--label-color)">#717171</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--base-fill-color); color: var(--label-color)">#717171</td>
-      </tr>
-      <tr>
-        <td>--recessed-fill-color</td>
-        <td class="old" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#bbbbbb</td>
-        <td class="old insensitive" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#bbbbbb</td>
-        <td class="accessible-palette" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#bdbdbd</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#bdbdbd</td>
-        <td class="darkmode" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#333333</td>
-        <td class="darkmode insensitive" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#333333</td>
-        <td class="dark-accessible-palette" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#5f5f5f</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--recessed-fill-color); color: var(--label-color)">#5f5f5f</td>
-      </tr>
-      <tr>
-        <td>--active-fill-color</td>
-        <td class="old" style="background-color: var(--active-fill-color); color: var(--label-color)">#bbbbbb</td>
-        <td class="old insensitive" style="background-color: var(--active-fill-color); color: var(--label-color)">#bbbbbb</td>
-        <td class="accessible-palette" style="background-color: var(--active-fill-color); color: var(--label-color)">#a5a5a5</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--active-fill-color); color: var(--label-color)">#a5a5a5</td>
-        <td class="darkmode" style="background-color: var(--active-fill-color); color: var(--label-color)">#333333</td>
-        <td class="darkmode insensitive" style="background-color: var(--active-fill-color); color: var(--label-color)">#333333</td>
-        <td class="dark-accessible-palette" style="background-color: var(--active-fill-color); color: var(--label-color)">#4c4c4c</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--active-fill-color); color: var(--label-color)">#4c4c4c</td>
-      </tr>
-      <tr>
-        <td>--shadow-stroke-color</td>
-        <td class="old" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">grey</td>
-        <td class="old insensitive" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">none</td>
-        <td class="accessible-palette" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">#8b8b8b</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">none</td>
-        <td class="darkmode" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">#121212</td>
-        <td class="darkmode insensitive" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">none</td>
-        <td class="dark-accessible-palette" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">#383838</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--shadow-stroke-color); color: var(--base-fill-color);">none</td>
-      </tr>
-      <tr>
-        <td>--outline-color</td>
-        <td class="old" style="background-color: var(--outline-color); color: var(--base-fill-color);">black</td>
-        <td class="old insensitive" style="background-color: var(--outline-color); color: var(--base-fill-color);">grey</td>
-        <td class="accessible-palette" style="background-color: var(--outline-color); color: var(--base-fill-color);">black</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--outline-color); color: var(--base-fill-color);">#8b8b8b</td>
-        <td class="darkmode" style="background-color: var(--outline-color); color: var(--base-fill-color);">#bababa</td>
-        <td class="darkmode insensitive" style="background-color: var(--outline-color); color: var(--base-fill-color);">#999999</td>
-        <td class="dark-accessible-palette" style="background-color: var(--outline-color); color: var(--base-fill-color);">#d5d5d5</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--outline-color); color: var(--base-fill-color);">???</td>
-      </tr>
-      <tr>
-        <td>--focus-ring-color</td>
-        <td class="old" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">black</td>
-        <td class="old insensitive" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">black</td>
-        <td class="accessible-palette" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">black</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">black</td>
-        <td class="darkmode" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">#e6e6e6</td>
-        <td class="darkmode insensitive" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">#e6e6e6</td>
-        <td class="dark-accessible-palette" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">#eeeeee</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--focus-ring-color); color: var(--base-fill-color);">#eeeeee</td>
-      </tr>
-      <tr>
-        <td>--label-color</td>
-        <td class="old" style="background-color: var(--label-color); color: var(--base-fill-color);">black</td>
-        <td class="old insensitive" style="background-color: var(--label-color); color: var(--base-fill-color);">grey</td>
-        <td class="accessible-palette" style="background-color: var(--label-color); color: var(--base-fill-color);">black</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--label-color); color: var(--base-fill-color);">#8b8b8b</td>
-        <td class="darkmode" style="background-color: var(--label-color); color: var(--base-fill-color);">#e6e6e6</td>
-        <td class="darkmode insensitive" style="background-color: var(--label-color); color: var(--base-fill-color);">#999999</td>
-        <td class="dark-accessible-palette" style="background-color: var(--label-color); color: var(--base-fill-color);">#eeeeee</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--label-color); color: var(--base-fill-color);">???</td>
-      </tr>
-      <tr>
-        <td>--text-color</td>
-        <td class="old" style="background-color: var(--text-color); color: var(--input-field-color);">black</td>
-        <td class="old insensitive" style="background-color: var(--text-color); color: var(--input-field-color);">black</td>
-        <td class="accessible-palette" style="background-color: var(--text-color); color: var(--input-field-color);">black</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--text-color); color: var(--input-field-color);">black</td>
-        <td class="darkmode" style="background-color: var(--text-color); color: var(--input-field-color);">#e6e6e6</td>
-        <td class="darkmode insensitive" style="background-color: var(--text-color); color: var(--input-field-color);">#e6e6e6</td>
-        <td class="dark-accessible-palette" style="background-color: var(--text-color); color: var(--input-field-color);">#eeeeee</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--text-color); color: var(--input-field-color);">#eeeeee</td>
-      </tr>
-      <tr>
-        <td>--selection-color</td>
-        <td class="old" style="background-color: var(--selection-color); color: var(--selected-text-color);">black</td>
-        <td class="old insensitive" style="background-color: var(--selection-color); color: var(--selected-text-color);">black</td>
-        <td class="accessible-palette" style="background-color: var(--selection-color); color: var(--selected-text-color);">black</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--selection-color); color: var(--selected-text-color);">black</td>
-        <td class="darkmode" style="background-color: var(--selection-color); color: var(--selected-text-color);">#e6e6e6</td>
-        <td class="darkmode insensitive" style="background-color: var(--selection-color); color: var(--selected-text-color);">#e6e6e6</td>
-        <td class="dark-accessible-palette" style="background-color: var(--selection-color); color: var(--selected-text-color);">#eeeeee</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--selection-color); color: var(--selected-text-color);">#eeeeee</td>
-      </tr>
-      <tr>
-        <td>--selected-text-color</td>
-        <td class="old" style="background-color: var(--selected-text-color); color: var(--selection-color);">white</td>
-        <td class="old insensitive" style="background-color: var(--selected-text-color); color: var(--selection-color);">white</td>
-        <td class="accessible-palette" style="background-color: var(--selected-text-color); color: var(--selection-color);">white</td>
-        <td class="accessible-palette insensitive" style="background-color: var(--selected-text-color); color: var(--selection-color);">white</td>
-        <td class="darkmode" style="background-color: var(--selected-text-color); color: var(--selection-color);">black</td>
-        <td class="darkmode insensitive" style="background-color: var(--selected-text-color); color: var(--selection-color);">black</td>
-        <td class="dark-accessible-palette" style="background-color: var(--selected-text-color); color: var(--selection-color);">black</td>
-        <td class="dark-accessible-palette insensitive" style="background-color: var(--selected-text-color);  color: var(--selection-color);">black</td>
-      </tr>
-    </table>
-    -->
-    
     <p>I originally chose a range of greys by means I do not remember. That's the "Old" theme. Using <a href="https://accessiblepalette.com/">Accessible Palette</a>, I selected a new range of greys for the "Accessible" theme. I half-heartedly tried to make my own dark theme, which is called "Dark". Last theme here takes the "Accessible" theme and shifts everything to a darker shade. I doesn't really work.</p>
+    <table id="themecolors">
+      <caption>Theme Colors</caption>
+      <thead>
+        <tr>
+          <th></th>
+          <th colspan="2">Old</th>
+          <th colspan="2">Accessible</th>
+          <th colspan="2">Dark</th>
+          <th colspan="2">Ugly</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script>
+      var colortable = document.getElementById("themecolors");
+      styles = ["old","old insensitive","accessible-palette","accessible-palette insensitive",
+                "darkmode","darkmode insensitive","dark-accessible-palette", "dark-accessible-palette insensitive"];
+      stylevars = [
+        ["--input-field-color","--text-color"],
+        ["--highlight-stroke-color","--text-color"],
+        ["--raised-fill-color","--text-color"],
+        ["--base-fill-color","--text-color"],
+        ["--recessed-fill-color","--text-color"],
+        ["--active-fill-color","--text-color"],
+        ["--shadow-stroke-color","--text-color"],
+        ["--outline-color","--selected-text-color"],
+        ["--focus-ring-color","--selected-text-color"],
+        ["--label-color","--selected-text-color"],
+        ["--text-color","--selected-text-color"],
+        ["--selection-color","--selected-text-color"],
+        ["--selected-text-color","--selection-color"],
+        ["--placeholder-color","--text-color"],
+        ["--decal-placeholder-color","--text-color"]];
+      stylevars.forEach((stylevar,i) => {
+        var tr = colortable.tBodies[0].insertRow(-1);
+        tr.insertCell(0).innerHTML = stylevar[0];
+        styles.forEach((style,j)=>{
+          tc = tr.insertCell(-1);
+          tc.setAttribute("class",style);
+          var bgc = window.getComputedStyle(tc).getPropertyValue(stylevar[0]);
+          var fgc = window.getComputedStyle(tc).getPropertyValue(stylevar[1]);
+          tc.setAttribute("style","background-color: "+bgc+"; color: "+fgc+";");
+          tc.innerHTML = window.getComputedStyle(tc).getPropertyValue(stylevar[0]);
+        });
+      });
+    </script>
+<br>
     <label for="fooselect">Select a theme:</label>
     <select id="fooselect">
       <option value="old">Old</option>
       <option value="accessible-palette" selected>Accessible</option>
       <option value="darkmode">Dark</option>
       <option value="dark-accessible-palette">Dark(?) Accessible(?)</option>
-    </select><br>
-    <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label><br>
-    <figure>
-      <svg id="foofield" width="1024" height="768">
-        <script>drawTestField("foofield");</script>
-      </svg>
-      <figcaption>Basic Widgets</figcaption>
-    </figure>
-    <figure>
-      <svg id="iconfield" width="800" height="600">
-        <script>drawIconField("iconfield");</script>
-      </svg>
-      <figcaption>Item Icons</figcaption>
-    </figure>
-    <figure>
-      <svg id="decalfield" width="800" height="600">
-        <script>drawDecalField("decalfield")</script>
-      </svg>
-      <figcaption>Control Decals</figcaption>
-    </figure>
+    </select>
     <script>
       var s = document.getElementById("fooselect");
       document.getElementsByTagName("body")[0].setAttribute("class",s.options[s.selectedIndex].value);
@@ -2729,7 +2575,28 @@
         document.getElementsByTagName("body")[0].setAttribute("class",s.options[s.selectedIndex].value);
       });
     </script>
-    
+
+    <br>
+    <input type="checkbox" id="showbounds"><label for="showbounds">Show Text Bounds</label><br>
+    <figure>
+      <figcaption>Basic Widgets</figcaption>
+      <svg id="foofield" width="1024" height="768">
+        <script>drawTestField("foofield");</script>
+      </svg>
+    </figure>
+    <div id="newiconfield" style="border: 1px solid black;">
+      <header>File Type Icons</header>
+      <script>
+        drawImageCatalog("newiconfield","icon","none");
+      </script>
+    </div>
+    <hr>
+    <div id="decalfield" style="border: 1px solid black;">
+      <header>Control Decals</header>
+      <script>
+        drawImageCatalog("decalfield","decal","var(--decal-placeholder-color)");
+      </script>
+    </div>
     <hr>
     <p>This is a Message Alert. A message alert is transient for another window and blocks activity in that window. As such, it should almost never be seen.</p>
     <svg width="400" height="150" id="messageAlert"><title>Message Alert</title>
