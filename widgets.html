@@ -1767,6 +1767,7 @@
           r.setAttribute("width",180);
           r.setAttribute("height",48);          
           r.setAttribute("fill","var(--base-fill-color)");
+          fs.insertAdjacentElement("beforeend",r);
 
           sizes.forEach((size,j) => {
             var b = document.createElementNS("http://www.w3.org/2000/svg","rect");
