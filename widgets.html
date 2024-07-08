@@ -1763,6 +1763,11 @@
           fs.setAttribute("height",48);
           fig.insertAdjacentElement("beforeend",fs);
 
+          var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
+          r.setAttribute("width",180);
+          r.setAttribute("height",48);          
+          r.setAttribute("fill","var(--base-fill-color)");
+
           sizes.forEach((size,j) => {
             var b = document.createElementNS("http://www.w3.org/2000/svg","rect");
             b.setAttribute("fill",backfill);
@@ -2586,7 +2591,7 @@
     <div id="newiconfield" style="border: 1px solid black;">
       <header>File Type Icons</header>
       <script>
-        drawImageCatalog("newiconfield","icon","var(--input-field-color)");
+        drawImageCatalog("newiconfield","icon","none");
       </script>
     </div>
     <hr>
