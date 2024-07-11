@@ -1796,6 +1796,13 @@
   <body>
     <svg width="1" height="1"><title>Definitions</title>
       <defs>
+        <pattern id="rootweave" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+          <rect width="4" height="4" fill="black" stroke="none"/>
+          <rect x="0" y="0" width="1" height="1" fill="white" stroke="none"/>
+          <rect x="2" y="1" width="1" height="1" fill="white" stroke="none"/>
+          <rect x="1" y="2" width="1" height="1" fill="white" stroke="none"/>
+          <rect x="3" y="3" width="1" height="1" fill="white" stroke="none"/>
+        </pattern>
         <pattern id="pattern0" width="2" height="2" x="0" y="0" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
           <rect height="1" width="2" fill="var(--shadow-stroke-color)" stroke="none" />
           <rect y="1" height="1" width="2" fill="var(--highlight-stroke-color)" stroke="none" />
@@ -3130,7 +3137,7 @@ ORDER BY columnname DESC
     </svg>
     <div style="background-color: black; padding: 10px; width: fit-content">
       <svg width="800" height="600" id="windowStates"><title>Window States</title>
-        <rect width="800" height="600" fill="#717171"/>
+        <rect width="800" height="600" fill="url(#rootweave)"/>
         <script>
           drawSimpleWindow(document.getElementById("windowStates"),30,40,640,480,"#documentIcon","Item Name",false);
           drawSimpleWindow(document.getElementById("windowStates"),150,100,640,283,"#documentIcon","Item Name",true);
@@ -3139,7 +3146,7 @@ ORDER BY columnname DESC
     </div>
     <div style="background-color: black; padding: 10px; width: fit-content">
       <svg width="800" height="600"><title>Sign On Screen</title>
-        <rect width="800" height="600" fill="#717171"/>
+        <rect width="800" height="600" fill="url(#rootweave)"/>
         <foreignObject x="300" y="200" width="200" height="200">
           <div style="background-color: var(--base-fill-color);">
             <h1>Hello, World!</h1>
