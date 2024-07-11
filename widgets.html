@@ -915,7 +915,7 @@
           return txt;
         });
         var minh = 28;//22;
-        var currentX = 3;
+        var currentX = (header)?3:0;
 
         var xywhs = textLabels.map(function(tl,i,a) {
           var lastX = currentX;
@@ -1042,7 +1042,7 @@
         var textLabels = labels.map(function (label) {
           var txt = document.createElementNS("http://www.w3.org/2000/svg","text");
           txt.innerHTML = label;
-          txt.setAttribute("class","label centered");
+          txt.setAttribute("class","label centered-y");
           txt.setAttribute("pointer-events","none");
           tg.insertAdjacentElement("beforeend",txt);
           return txt;
@@ -1051,7 +1051,7 @@
         var minw = 64;
         var minh = 28;//22;
         var currentX = 0;
-        var currentY = 3;
+        var currentY = 0;
 
         var xywhs = textLabels.map(function(tl,i,a) {
           var lastX = (i==activeIndex)?0:1;
@@ -1097,6 +1097,7 @@
           g.insertAdjacentElement("beforeend",h);
 
           tl.setAttribute("x",xywhs[i][2]/2);
+          tl.setAttribute("x",5);
           tl.setAttribute("y",(xywhs[i][3]/2) + ((i==activeIndex)?0:1));
           g.insertAdjacentElement("beforeend",tl);
 
@@ -1167,6 +1168,7 @@
 
         var tl = textLabels[activeIndex];
         tl.setAttribute("x",corners[0][0]+(corners[1][0]-corners[0][0])/2);
+        tl.setAttribute("x",6);
         tl.setAttribute("y",corners[0][1]+(corners[6][1]-corners[1][1])/2);
         tg.insertAdjacentElement("beforeend",tl);
 
@@ -1259,7 +1261,7 @@
       }
       function drawSimplePanel(parentElement,x,y,width,height,iconId,itemName,focused=true) {
         var w = drawBaseWindow(parentElement,x,y,width,height);
-        drawDecalButton4(w,width-26-2,6-2,20,"#closeDecal",20);
+        drawDecalButton4(w,width-24,4,20,"#closeDecal",20);
 
         var u = document.createElementNS("http://www.w3.org/2000/svg","use");
         u.setAttributeNS("http://www.w3.org/1999/xlink","href",iconId);
@@ -1282,7 +1284,7 @@
         var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
         r.setAttribute("x", box.x + box.width + 6);
         r.setAttribute("y",6);
-        r.setAttribute("width", width - 26 - (box.x + box.width + 6) - 4);
+        r.setAttribute("width", width - 26 - (box.x + box.width + 6)-2);
         r.setAttribute("height",21);
         r.setAttribute("fill","url(#gripper)");
         r.setAttribute("style","cursor: move;");
@@ -2346,19 +2348,19 @@
         </symbol>
         <symbol class="icon" id="calculatorIcon" viewbox="0 0 16 16"><title>Calculator</title>
           <path d="M 0.5 0.5 H 14.5 V 13.5 A 2 2 90 0 1 12.5 15.5 H 2.5 A 2 2 90 0 1 0.5 13.5 Z" style="fill: var(--base-fill-color)"/>
-          <rect x="1.5"  y="1.5" width="12" height="3" style="fill: black;"/>
-          <rect x="2.5"  y="6.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
-          <rect x="5.5"  y="6.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
-          <rect x="8.5"  y="6.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
-          <rect x="11.5" y="6.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
-          <rect x="2.5"  y="9.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
-          <rect x="5.5"  y="9.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
-          <rect x="8.5"  y="9.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
-          <rect x="11.5" y="9.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
-          <rect x="2.5"  y="12.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
-          <rect x="5.5"  y="12.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
-          <rect x="8.5"  y="12.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
-          <rect x="11.5" y="12.5" width="1" height="1" style="fill: var(--shadow-stroke-color); stroke: var(--shadow-stroke-color); vector-effect: none;"/>
+          <rect x="1.5"  y="1.5" width="12" height="3" style="fill: black; stroke: none;"/>
+          <rect x="2"  y="6" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="5"  y="6" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="8"  y="6" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="11" y="6" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="2"  y="9" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="5"  y="9" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="8"  y="9" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="11" y="9" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="2"  y="12" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="5"  y="12" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="8"  y="12" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="11" y="12" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
         </symbol>
         <symbol class="icon" id="queryIcon" viewbox="0 0 16 16"><title>Database Query</title>
           <path d="M 0.5  4 A 7.5 2.5 180 0 0 15.5  4
@@ -2719,6 +2721,14 @@
       <svg x="104" y="32" width="293" height="265">
         <rect x="0.5" y="0.5" width="292" height="264" fill="red" stroke="blue"/>
       </svg>
+    </svg>
+    <hr>
+    <svg width="400" height="300" id="altfileSettingsPanel0"><title>File Settings Panel</title>
+      <script>
+        drawSimplePanel(document.getElementById("altfileSettingsPanel0"),0,0,400,300,"#documentIcon","Item Name - Properties");
+        drawLeftSideTabs(document.getElementById("altfileSettingsPanel0"),3,32,397,268,["General","Permissions","Checksums","Details"],0);
+      </script>
+
     </svg>
     <hr>
     <!--<svg width="640" height="480" id="basicView"><title>Basic View</title>
