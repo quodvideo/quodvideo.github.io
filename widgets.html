@@ -1796,6 +1796,9 @@
   <body>
     <svg width="1" height="1"><title>Definitions</title>
       <defs>
+        <marker id="arrowheadMarker" viewBox="0 0 4 4" refX="2" refY="2" markerWidth="3" markerHeight="3" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+          <path d="M 0 0 L 4 2 L 0 4 z" />
+        </marker>
         <pattern id="rootweave" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
           <rect width="4" height="4" fill="black" stroke="none"/>
           <rect x="0" y="0" width="1" height="1" fill="white" stroke="none"/>
@@ -1874,9 +1877,8 @@
           <path d="M4,8 H12 M8,4 L12,8 L8,12" stroke-width="2"/>
         </symbol>
         <symbol class="decal" id="reloadDecal" viewBox="0 0 16 16"><title>Reload</title>
-          <circle cx="8" cy="8" r="4" stroke-width="2"/>
-          <path d="M6,2 L8,4 L6,6" stroke-width="2"/>
-          <path d="M10,14 L8,12 L10,10" stroke-width="2"/>
+          <path d="M8 2 A 6 6 0 0 1 8 14" marker-end="url(#arrowheadMarker)" stroke-width="2"/>
+          <path d="M8 14 A 6 6 0 0 1 8 2" marker-end="url(#arrowheadMarker)" stroke-width="2"/>
         </symbol>
         <symbol class="decal" id="cutDecal" viewBox="0 0 24 24"><title>Cut</title>
           <!-- <path d="M8,10 L1,6 v-2 L8,8 V0 l2,2 v6 " stroke="var(--outline-color)" /> -->
@@ -2481,6 +2483,12 @@
           <line x1="0.5" y1="8.5" x2="15.5" y2="8.5"/>
           <line x1="0.5" y1="10.5" x2="15.5" y2="10.5"/>
         </symbol>
+        <symbol class="icon" id="transactionIcon" viewBox="0 0 16 16"><title>Transaction</title>
+          <rect x="0.5" y="4.5" width="4" height="7"/>
+          <rect x="11.5" y="4.5" width="4" height="7"/>
+          <path d="M 4.5 5.5 H 10.5" marker-end="url(#arrowheadMarker)"/>
+          <path d="M 11.5 10.5 H 5.5" marker-end="url(#arrowheadMarker)"/>
+        </symbol>
         <symbol class="icon" id="microphoneIcon" viewbox="0 0 16 16"><title>Microphone</title>
           <path d="M 4 15.5 H 12"/>
           <path d="M 8 15.5 V 12.5"/>
@@ -2514,7 +2522,7 @@
       </defs>
     </svg>
     <p><em>This is all a work in progress. What I'm sharing here is like my private sketchbook. It's poorly organized, has gaps, has mistakes, and so forth.</em></p>
-    <p>These are just drawings for prototyping, not actual widgets. Some of them respond a little bit, as CSS allows, but there's no JavaScript making things dynamic. <a href="#mainBody">After the drawings</a>, there is some description of the system I want to make.</p>
+    <p>These are just drawings for prototyping, not actual widgets. Some of them respond a little bit, as CSS allows, but there's no JavaScript making things dynamic. <a href="#mainBody">After the drawings</a>, there is some description of the system I want to make. That description is what I really want to develop. The drawings a like doodles on a page while I think about what to write.</p>
     <p>The style of these drawings is meant as a guide. It might be possible to do this without SVG, but I remember some details being hard or impossible to achieve with Gtk 2.x. The way scroll bars join with a text field was one impossibility. Part of the idea is to make it obvious when widgets are not active because they're in a background window or because they just can't be used in the current state. This should all work for various modes like light, dark, high contrast, and low contrast. It should be possible to change the basic colors per widget and with themes. I suspect this basic style can also be adapted to use gradients, blends, patterns, and more.</p>
     <p>Update: It looks like Gtk4 may be able to achieve this look with CSS.</p>
     <p>This style is heavy compared to most of today's GUIs. That's on purpose. If a window looks too "chrome-y" with this style, then there's probably a better design.</p>
@@ -3751,8 +3759,9 @@ ORDER BY columnname DESC
         <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#bookmark3Icon"/></svg>
       </section>
       <section><h3>Documentation</h3></section>
-      <section><h3>Ledgers</h3>
+      <section><h3>Ledgers and Transactions</h3>
         <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#ledgerIcon"/></svg>
+        <svg width="48" height="48"><use width="48" height="48" fill="white" xlink:href="#transactionIcon"/></svg>
       </section>
       <section><h3>Programs</h3></section>
       <section><h3>Projects and Solutions</h3>
