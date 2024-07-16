@@ -243,3 +243,7 @@ div#mainBody {
   width: 1024px;
   margin: auto;
 }
+section.ib {
+  display: inline-block;
+  width: 256px;
+}
