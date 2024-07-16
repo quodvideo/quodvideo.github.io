@@ -247,4 +247,5 @@ section.ib {
   display: inline-block;
   width: 240px;
   padding: 6px;
+  vertical-align: top;
 }
