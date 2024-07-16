@@ -227,7 +227,7 @@ svg.scrollbar.insensitive .slider { visibility: hidden; }
     }
   }
 }
-section { margin-left: 10%; margin-right: 10%; }
+/** section { margin-left: 10%; margin-right: 10%; } **/
 rum { display: inline; font-style: italic; }
 symbol.icon * { vector-effect: non-scaling-stroke; stroke: var(--outline-color); fill: inherit; }
 symbol.decal * { vector-effect: non-scaling-stroke; stroke: var(--outline-color); fill: none; }
