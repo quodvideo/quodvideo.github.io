@@ -56,6 +56,7 @@
           e.stopPropagation();
         });
         this.svg.addEventListener("pointerleave", (e) => {
+          console.log("left");
           if (this.svg.hasPointerCapture(e.pointerId)) {
             this.baseRect.setAttribute("fill","var(--raised-fill-color)");
             this.shadowStroke.setAttribute("stroke","var(--shadow-stroke-color)");
@@ -71,6 +72,11 @@
         });
         this.svg.addEventListener("pointerup", (e) => {
           this.svg.releasePointerCapture(e.pointerId);
+          this.baseRect.setAttribute("fill","var(--raised-fill-color)");
+          this.shadowStroke.setAttribute("stroke","var(--shadow-stroke-color)");
+          this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
+        });
+        this.svg.addEventListener("lostpointercapture", (e) => {
           this.baseRect.setAttribute("fill","var(--raised-fill-color)");
           this.shadowStroke.setAttribute("stroke","var(--shadow-stroke-color)");
           this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
