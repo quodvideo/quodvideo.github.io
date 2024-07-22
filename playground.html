@@ -60,8 +60,7 @@
             let CTM = this.svg.getScreenCTM();
             let x = (e.clientX-CTM.e)/CTM.a;
             let y = (e.clientY-CTM.f)/CTM.d;
-            console.log(x,y);
-            if (0) {
+            if (x<0 || y<0 || x>Number(this.svg.getAttribute("width")) || y>Number(this.svg.getAttribute("height"))) {
               this.baseRect.setAttribute("fill","var(--raised-fill-color)");
               this.shadowStroke.setAttribute("stroke","var(--shadow-stroke-color)");
               this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
