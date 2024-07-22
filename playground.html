@@ -47,13 +47,13 @@
         this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
         this.svg.append(this.highlightStroke);
         this.setGeometry(x,y,width,height);
-        this.setDecal(decal,decalsize,decalsize);
+        this.setDecal(decal,decalsize,decalsize);/*
         this.svg.addEventListener("pointerdown", (e) => {
           //this.svg.setPointerCapture(e.pointerId);
         });
         this.svg.addEventListener("pointerup", (e) => {
           //this.svg.releasePointerCapture(e.pointerId);
-        });
+        });*/
       }
       function Surface(id,x,y,width,height) {
         this.svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
