@@ -53,6 +53,7 @@
           this.baseRect.setAttribute("fill","var(--active-fill-color)");
           this.shadowStroke.setAttribute("stroke","var(--highlight-stroke-color)");
           this.highlightStroke.setAttribute("stroke","var(--shadow-stroke-color)");
+          e.stopPropagation();
         });
         this.svg.addEventListener("pointerleave", (e) => {
           if (this.svg.hasPointerCapture(e.pointerId)) {
