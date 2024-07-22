@@ -55,19 +55,21 @@
           this.highlightStroke.setAttribute("stroke","var(--shadow-stroke-color)");
           e.stopPropagation();
         });
-        this.svg.addEventListener("pointerleave", (e) => {
-          console.log("left");
+        this.svg.addEventListener("pointermove", (e) => {
           if (this.svg.hasPointerCapture(e.pointerId)) {
-            this.baseRect.setAttribute("fill","var(--raised-fill-color)");
-            this.shadowStroke.setAttribute("stroke","var(--shadow-stroke-color)");
-            this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
-          }
-        });
-        this.svg.addEventListener("pointerenter", (e) => {
-          if (this.svg.hasPointerCapture(e.pointerId)) {
-            this.baseRect.setAttribute("fill","var(--active-fill-color)");
-            this.shadowStroke.setAttribute("stroke","var(--highlight-stroke-color)");
-            this.highlightStroke.setAttribute("stroke","var(--shadow-stroke-color)");
+            let CTM = this.svg.getScreenCTM();
+            let x = (e.clientX-CTM.e)/CTM.a;
+            let y = (e.clientY-CTM.f)/CTM.d;
+            console.log(x,y);
+            if (0) {
+              this.baseRect.setAttribute("fill","var(--raised-fill-color)");
+              this.shadowStroke.setAttribute("stroke","var(--shadow-stroke-color)");
+              this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
+            } else {
+              this.baseRect.setAttribute("fill","var(--active-fill-color)");
+              this.shadowStroke.setAttribute("stroke","var(--highlight-stroke-color)");
+              this.highlightStroke.setAttribute("stroke","var(--shadow-stroke-color)");  
+            }
           }
         });
         this.svg.addEventListener("pointerup", (e) => {
