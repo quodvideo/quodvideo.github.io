@@ -257,17 +257,17 @@
           this.baseRect.setAttribute("fill","var(--base-fill-color)");
           this.shadowStroke.setAttribute("stroke","var(--shadow-stroke-color)");
           this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
-          this.maximizeButton.setAttribute("visibility","visible");
-          this.minimizeButton.setAttribute("visibility","visible");
-          this.closeButton.setAttribute("visibility","visible");
+          this.maximizeButton.svg.setAttribute("visibility","visible");
+          this.minimizeButton.svg.setAttribute("visibility","visible");
+          this.closeButton.svg.setAttribute("visibility","visible");
         });
         this.svg.addEventListener("blur", (e)=>{
           this.baseRect.setAttribute("fill","var(--raised-fill-color)");
           this.shadowStroke.setAttribute("stroke","none");
           this.highlightStroke.setAttribute("stroke","none");
-          this.maximizeButton.setAttribute("visibility","hidden");
-          this.minimizeButton.setAttribute("visibility","hidden");
-          this.closeButton.setAttribute("visibility","hidden");
+          this.maximizeButton.svg.setAttribute("visibility","hidden");
+          this.minimizeButton.svg.setAttribute("visibility","hidden");
+          this.closeButton.svg.setAttribute("visibility","hidden");
         });
         this.svg.addEventListener("lostpointercapture", (e) => {
           if (this.moveresizeState.action != "none") {
