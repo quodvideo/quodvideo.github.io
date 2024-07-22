@@ -49,10 +49,10 @@
         this.setGeometry(x,y,width,height);
         this.setDecal(decal,decalsize,decalsize);
         this.svg.addEventListener("pointerdown", (e) => {
-          this.svg.setPointerCapture(e.pointerId);
+          //this.svg.setPointerCapture(e.pointerId);
         });
         this.svg.addEventListener("pointerup", (e) => {
-          this.svg.releasePointerCapture(e.pointerId);
+          //this.svg.releasePointerCapture(e.pointerId);
         });
       }
       function Surface(id,x,y,width,height) {
