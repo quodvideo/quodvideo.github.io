@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Playground for SVG Interaction</title>
+    <link rel="stylesheet" href="widgets-style.css">
+    <script>
+      function Button(parent,id,x,y,width,height,text,decal,decalsize) {
+        this.setGeometry = function (nx,ny,nwidth,nheight) {
+          this.svg.setAttribute("x",nx);
+          this.svg.setAttribute("y",ny);
+          this.svg.setAttribute("width",nwidth);
+          this.svg.setAttribute("height",nheight);
+          this.baseRect.setAttribute("width",nwidth);
+          this.baseRect.setAttribute("height",nheight);
+          this.shadowStroke.setAttribute("d","M"+(1)+","+(nheight-1)
+                                          +" "+(nwidth-1)+" "+(nheight-1)
+                                          +" "+(nwidth-1)+" "+(1));
+          this.highlightStroke.setAttribute("d","M"+(1)+","+(nheight-1)
+                                          +" "+(1)+" "+(1)
+                                          +" "+(nwidth-1)+" "+(1));
+        };
+        this.svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        this.svg.setAttribute("class","button");
+        this.svg.setAttribute("id",id);
+        this.baseRect = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        this.baseRect.setAttribute("fill","var(--raised-fill-color)");
+        this.baseRect.setAttribute("stroke","var(--outline-color)");
+        this.svg.append(this.baseRect);
+        this.shadowStroke = document.createElementNS("http://www.w3.org/2000/svg","path");
+        this.shadowStroke.setAttribute("fill","none");
+        this.shadowStroke.setAttribute("stroke","var(--shadow-stroke-color)");
+        this.svg.append(this.shadowStroke);
+        this.highlightStroke = document.createElementNS("http://www.w3.org/2000/svg","path");
+        this.highlightStroke.setAttribute("fill","none");
+        this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
+        this.svg.append(this.highlightStroke);
+        this.setGeometry(x,y,width,height);
+      }
+      function Surface(id,x,y,width,height) {
+        this.svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+        this.svg.setAttribute("class","surface");
+        this.svg.setAttribute("id",id);
+        this.svg.setAttribute("x",x+0.5);
+        this.svg.setAttribute("y",y+0.5);
+        this.svg.setAttribute("width",width-1);
+        this.svg.setAttribute("height",height-1);
+        this.baseRect = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        this.baseRect.setAttribute("width",width-1);
+        this.baseRect.setAttribute("height",height-1);
+        this.baseRect.setAttribute("fill","var(--raised-fill-color)");
+        this.baseRect.setAttribute("stroke","var(--outline-color)");
+        this.svg.append(this.baseRect);
+        this.shadowStroke = document.createElementNS("http://www.w3.org/2000/svg","path");
+        this.shadowStroke.setAttribute("fill","none");
+        this.shadowStroke.setAttribute("stroke","none");
+        this.shadowStroke.setAttribute("d","M"+(1)+","+(height-2)
+                                          +" "+(width-2)+" "+(height-2)
+                                          +" "+(width-2)+" "+(1));
+        this.svg.append(this.shadowStroke);
+        this.highlightStroke = document.createElementNS("http://www.w3.org/2000/svg","path");
+        this.highlightStroke.setAttribute("fill","none");
+        this.highlightStroke.setAttribute("stroke","none");
+        this.highlightStroke.setAttribute("d","M"+(1)+","+(height-2)
+                                          +" "+(1)+" "+(1)
+                                          +" "+(width-2)+" "+(1));
+        this.svg.append(this.highlightStroke);
+
+        this.maximizeButton = new Button();
+        this.minimizeButton = new Button();
+        this.closeButton = new Button();
+
+        this.moveresizeState = {
+          "action":"none",
+          "surfaceX":0,
+          "surfaceY":0,
+          "originalX":0,
+          "originalY":0,
+          "originalWidth":0,
+          "originalHeight":0,
+          "screenX":0,
+          "screenY":0
+        };
+
+        this.minimumWidth = 100;
+        this.minimumHeight = 33;
+
+        this.moveresize = function (x,y,w,h) {
+          if (h<this.minimumHeight) h=this.minimumHeight;
+          if (w<this.minimumWidth) w=this.minimumWidth;
+          if (this.moveresizeState.action!="move" && this.moveresizeState.action!="none") {
+            if (x > this.moveresizeState.originalX+this.moveresizeState.originalWidth-this.minimumWidth) {
+              x = this.moveresizeState.originalX+this.moveresizeState.originalWidth-this.minimumWidth;
+            }
+            if (y > this.moveresizeState.originalY+this.moveresizeState.originalHeight-this.minimumHeight) {
+              y = this.moveresizeState.originalY+this.moveresizeState.originalHeight-this.minimumHeight;
+            }
+          }
+          this.svg.setAttribute("x",x);
+          this.svg.setAttribute("y",y);
+          this.svg.setAttribute("width",w);
+          this.svg.setAttribute("height",h);
+          this.baseRect.setAttribute("width",w);
+          this.baseRect.setAttribute("height",h);
+          this.shadowStroke.setAttribute("d","M"+(1)+","+(h-1)
+                                          +" "+(w-1)+" "+(h-1)
+                                          +" "+(w-1)+" "+(1));
+          this.highlightStroke.setAttribute("d","M"+(1)+","+(h-1)
+                                          +" "+(1)+" "+(1)
+                                          +" "+(w-1)+" "+(1));
+        }
+        this.svg.addEventListener("pointermove", (e)=>{
+          let CTM = this.svg.getScreenCTM();
+          let x = (e.clientX-CTM.e)/CTM.a;
+          let y = (e.clientY-CTM.f)/CTM.d;
+          let w = Number(this.svg.getAttribute("width"));
+          let h = Number(this.svg.getAttribute("height"));
+
+          let dx = e.offsetX - this.moveresizeState.surfaceX;
+          let dy = e.offsetY - this.moveresizeState.surfaceY;
+
+          let screenDx = e.screenX - this.moveresizeState.screenX;
+          let screenDy = e.screenY - this.moveresizeState.screenY;
+
+          if (this.moveresizeState.action=="none") {
+          } else if (this.moveresizeState.action=="move") {
+            this.moveresize(dx,dy,w,h);
+          } else if (this.moveresizeState.action=="resize-nw") {
+            this.moveresize(dx,
+                            dy,
+                            this.moveresizeState.originalWidth-screenDx,
+                            this.moveresizeState.originalHeight-screenDy);
+          } else if (this.moveresizeState.action=="resize-ne") {
+            this.moveresize(this.moveresizeState.originalX,
+                            dy,
+                            this.moveresizeState.originalWidth+screenDx,
+                            this.moveresizeState.originalHeight-screenDy);
+          } else if (this.moveresizeState.action=="resize-se") {
+            this.moveresize(this.moveresizeState.originalX,
+                            this.moveresizeState.originalY,
+                            this.moveresizeState.originalWidth+screenDx,
+                            this.moveresizeState.originalHeight+screenDy);
+          } else if (this.moveresizeState.action=="resize-sw") {
+            this.moveresize(dx,
+                            this.moveresizeState.originalY,
+                            this.moveresizeState.originalWidth-screenDx,
+                            this.moveresizeState.originalHeight+screenDy);
+          } else if (this.moveresizeState.action=="resize-n") {
+            this.moveresize(this.moveresizeState.originalX,
+                            dy,
+                            this.moveresizeState.originalWidth,
+                            this.moveresizeState.originalHeight-screenDy);
+          } else if (this.moveresizeState.action=="resize-e") {
+            this.moveresize(this.moveresizeState.originalX,
+                            this.moveresizeState.originalY,
+                            this.moveresizeState.originalWidth+screenDx,
+                            this.moveresizeState.originalHeight);
+          } else if (this.moveresizeState.action=="resize-s") {
+            this.moveresize(this.moveresizeState.originalX,
+                            this.moveresizeState.originalY,
+                            this.moveresizeState.originalWidth,
+                            this.moveresizeState.originalHeight+screenDy);
+          } else if (this.moveresizeState.action=="resize-w") {
+            this.moveresize(dx,
+                            this.moveresizeState.originalY,
+                            this.moveresizeState.originalWidth-screenDx,
+                            this.moveresizeState.originalHeight);
+          } else {
+          }
+
+          if (x>3 && x<w-3 && y>3 && y<h-3) {
+            this.svg.setAttribute("style","cursor: default");
+          } else if ((x<=3 && y<=30) || (x<=30 && y<=3) ) {
+            this.svg.setAttribute("style","cursor: nw-resize");
+          } else if ((x>=w-30 && y<=3) || (x>=w-3 && y<=30)) {
+            this.svg.setAttribute("style","cursor: ne-resize");
+          } else if ((x>=w-30 && y>=h-3)||(x>=w-3 && y>=h-30)) {
+            this.svg.setAttribute("style","cursor: nw-resize");
+          } else if ((x<=3 && y>=h-30) || (x<=30 && y>=h-3)) {
+            this.svg.setAttribute("style","cursor: ne-resize");
+          } else if (y<=3) {
+            this.svg.setAttribute("style","cursor: ns-resize");
+          } else if (x>=w-3) {
+            this.svg.setAttribute("style","cursor: ew-resize");
+          } else if (y>=h-3) {
+            this.svg.setAttribute("style","cursor: ns-resize");
+          } else if (x<=3) {
+            this.svg.setAttribute("style","cursor: ew-resize");
+          } else {
+            this.svg.setAttribute("style","cursor: default");
+          }
+        });
+        this.svg.addEventListener("pointerdown", (e)=>{
+          if (e.buttons == 1) {
+            document.getElementById("rootwindow").append(this.svg);
+            this.svg.setPointerCapture(e.pointerId);
+            let CTM = this.svg.getScreenCTM();
+            let x = (e.clientX-CTM.e)/CTM.a;
+            let y = (e.clientY-CTM.f)/CTM.d;
+            let w = Number(this.svg.getAttribute("width"));
+            let h = Number(this.svg.getAttribute("height"));
+            this.moveresizeState.surfaceX = x;
+            this.moveresizeState.surfaceY = y;
+            this.moveresizeState.originalX = Number(this.svg.getAttribute("x"));
+            this.moveresizeState.originalY = Number(this.svg.getAttribute("y"));
+            this.moveresizeState.originalWidth = w;
+            this.moveresizeState.originalHeight = h;
+            this.moveresizeState.screenX = e.screenX;
+            this.moveresizeState.screenY = e.screenY;
+            if (x>3 && x<w-3 && y>3 && y<h-3) {
+              this.moveresizeState.action = "move";
+            } else if ((x<=3 && y<=30) || (x<=30 && y<=3) ) {
+              this.moveresizeState.action = "resize-nw";
+            } else if ((x>=w-30 && y<=3) || (x>=w-3 && y<=30)) {
+              this.moveresizeState.action = "resize-ne";
+            } else if ((x>=w-30 && y>=h-3)||(x>=w-3 && y>=h-30)) {
+              this.moveresizeState.action = "resize-se";
+            } else if ((x<=3 && y>=h-30) || (x<=30 && y>=h-3)) {
+              this.moveresizeState.action = "resize-sw";
+            } else if (y<=3) {
+              this.moveresizeState.action = "resize-n";
+            } else if (x>=w-3) {
+              this.moveresizeState.action = "resize-e";
+            } else if (y>=h-3) {
+              this.moveresizeState.action = "resize-s";
+            } else if (x<=3) {
+              this.moveresizeState.action = "resize-w";
+            } else {
+              this.moveresizeState.action = "none";
+            }
+          }
+        });
+        this.svg.addEventListener("pointerup", (e)=>{
+          this.moveresizeState.action = "none";
+          this.svg.releasePointerCapture(e.pointerId);
+          
+        });
+        this.svg.addEventListener("focus", (e)=>{
+          this.baseRect.setAttribute("fill","var(--base-fill-color)");
+          this.shadowStroke.setAttribute("stroke","var(--shadow-stroke-color)");
+          this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
+        });
+        this.svg.addEventListener("blur", (e)=>{
+          this.baseRect.setAttribute("fill","var(--raised-fill-color)");
+          this.shadowStroke.setAttribute("stroke","none");
+          this.highlightStroke.setAttribute("stroke","none");
+        });
+        this.svg.addEventListener("lostpointercapture", (e) => {
+          if (this.moveresizeState.action != "none") {
+            this.moveresize(this.moveresizeState.originalX,
+                            this.moveresizeState.originalY,
+                            this.moveresizeState.originalWidth,
+                            this.moveresizeState.originalHeight);
+          }
+        });
+        document.getElementById("rootwindow").append(this.svg);
+      }
+    </script>
+  </head>
+  <body class="accessible-palette">
+    <svg width="1" height="1"><title>Definitions</title>
+      <defs>
+        <marker id="arrowheadMarker" viewBox="0 0 4 4" refX="2" refY="2" markerWidth="3" markerHeight="3" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+          <path d="M 0 0 L 4 2 L 0 4 z" />
+        </marker>
+        <marker id="largeArrowheadMarker" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" />
+        </marker>
+        <pattern id="rootweave" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+          <rect width="4" height="4" fill="black" stroke="none"/>
+          <rect x="0" y="0" width="1" height="1" fill="white" stroke="none"/>
+          <rect x="2" y="1" width="1" height="1" fill="white" stroke="none"/>
+          <rect x="1" y="2" width="1" height="1" fill="white" stroke="none"/>
+          <rect x="3" y="3" width="1" height="1" fill="white" stroke="none"/>
+        </pattern>
+        <pattern id="pattern0" width="2" height="2" x="0" y="0" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+          <rect height="1" width="2" fill="var(--shadow-stroke-color)" stroke="none" />
+          <rect y="1" height="1" width="2" fill="var(--highlight-stroke-color)" stroke="none" />
+        </pattern>
+        <pattern id="patternv" width="2" height="2" x="0" y="0" patternUnits="userSpaceOnUse">
+          <rect height="1" width="2" fill="var(--highlight-stroke-color)" stroke="none" />
+          <rect y="1" height="1" width="2" fill="var(--shadow-stroke-color)" stroke="none" />
+        </pattern>
+        <pattern id="patternh" width="2" height="2" x="0" y="0" patternUnits="userSpaceOnUse">
+          <rect height="2" width="1" fill="var(--highlight-stroke-color)" stroke="none" />
+          <rect x="1" height="2" width="1" fill="var(--shadow-stroke-color)" stroke="none" />
+        </pattern>
+        <pattern id="gripper" width="3" height="3" patternUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="2" height="2" fill="var(--recessed-fill-color)" stroke="none"/>
+          <rect x="0" y="0" width="1" height="1" fill="var(--shadow-stroke-color)" stroke="none"/>
+          <rect x="1" y="1" width="1" height="1" fill="var(--highlight-stroke-color)" stroke="none"/>
+        </pattern>
+        <pattern id="gripper2" width="4" height="4" patternUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="2" height="2" fill="var(--recessed-fill-color)" stroke="none"/>
+          <rect x="0" y="0" width="1" height="1" fill="var(--shadow-stroke-color)" stroke="none"/>
+          <rect x="1" y="1" width="1" height="1" fill="var(--highlight-stroke-color)" stroke="none"/>
+        </pattern>
+        <clipPath id="cornerclip">
+          <path d="M1,16 L16 1 V16 Z" />
+        </clipPath>
+        <rect id="newcornergrip" width="16" height="16" fill="url(#pattern0)" clip-path="url(#cornerclip)" style="cursor: nwse-resize;"/>
+        <symbol class="decal" id="arrowDown" viewBox="-4 -6.5 16 16"><title>Arrow Down</title>
+          <path d="M0,0 H8 L4,4Z" style="stroke: none; fill: var(--outline-color);"/>
+        </symbol>
+        <symbol class="decal" id="arrowUp" viewBox="-4 -5.5 16 16"><title>Arrow Up</title>
+          <path d="M0,4 H8 L4,0Z" style="stroke: none; fill: var(--outline-color);""/>
+        </symbol>
+        <symbol class="decal" id="arrowRight" viewBox="-6.5 -4 16 16"><title>Arrow Right</title>
+          <path d="M0,0 V8 L4,4Z" style="stroke: none; fill: var(--outline-color);""/>
+        </symbol>
+        <symbol class="decal" id="arrowLeft" viewBox="-5.5 -4 16 16"><title>Arrow Left</title>
+          <path d="M4,0 V8 L0,4Z" style="stroke: none; fill: var(--outline-color);""/>
+        </symbol>
+        <symbol class="decal" id="doubleArrowLeft" viewBox="-5.5 -4 16 16"><title>Double Arrow Left</title>
+          <path d="M2,0 V8 L-2,4Z" style="stroke: none; fill: var(--outline-color);""/>
+          <path d="M6,0 V8 L2,4Z" style="stroke: none; fill: var(--outline-color);""/>
+        </symbol>
+        <symbol class="decal" id="doubleArrowRight" viewBox="-6.5 -4 16 16"><title>Double Arrow Right</title>
+          <path d="M-2,0 V8 L2,4Z" style="stroke: none; fill: var(--outline-color);""/>
+          <path d="M2,0 V8 L6,4Z" style="stroke: none; fill: var(--outline-color);""/>
+        </symbol>
+        <symbol class="decal" id="minusSign" viewBox="0 0 20 20"><title>Minus Sign</title>
+          <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke="var(--label-color)"/>
+        </symbol>
+        <symbol class="decal" id="plusSign" viewBox="0 0 20 20"><title>Plus Sign</title>
+          <line x1="4" y1="10" x2="16" y2="10" stroke-width="2" stroke="var(--label-color)"/>
+          <line x1="10" y1="4" x2="10" y2="16" stroke-width="2" stroke="var(--label-color)"/>
+        </symbol>
+        <symbol class="decal" id="iconifyDecal" viewBox="0 0 20 20"><title>Iconify</title>
+          <rect x="8.5" y="8.5" width="3" height="3" style="fill: var(--outline-color); stroke: var(--outline-color);"/>
+        </symbol>
+        <symbol class="decal" id="maximizeDecal" viewBox="0 0 20 20"><title>Maximize</title>
+          <rect x="4.5" y="4.5" width="11" height="11" style="fill: none; stroke: var(--outline-color);"/>
+          <rect x="4.5" y="4.5" width="11" height="2" style="fill: var(--outline-color); stroke: var(--outline-color);"/>
+        </symbol>
+        <symbol class="decal" id="closeDecal" viewBox="0 0 20 20"><title>Close</title>
+          <line x1="4.5" y1="4.5" x2="15.5" y2="15.5" stroke="var(--outline-color)" stroke-width="2"/>
+          <line x1="4.5" y1="15.5" x2="15.5" y2="4.5" stroke="var(--outline-color)" stroke-width="2"/>
+        </symbol>
+        <symbol class="decal" id="backArrowDecal" viewBox="0 0 16 16"><title>Back Arrow</title>
+          <path d="M4,8 H12 M8,4 L4,8 L8,12" stroke-width="2"/>
+        </symbol>
+        <symbol class="decal" id="forwardArrowDecal" viewBox="0 0 16 16"><title>Forward Arrow</title>
+          <path d="M4,8 H12 M8,4 L12,8 L8,12" stroke-width="2"/>
+        </symbol>
+        <symbol class="decal" id="reloadDecal" viewBox="0 0 16 16"><title>Reload</title>
+          <path d="M8 2 A 6 6 0 0 1 8 14" marker-end="url(#largeArrowheadMarker)" stroke-width="2"/>
+          <path d="M8 14 A 6 6 0 0 1 8 2" marker-end="url(#largeArrowheadMarker)" stroke-width="2"/>
+        </symbol>
+        <symbol class="decal" id="cutDecal" viewBox="0 0 24 24"><title>Cut</title>
+          <!-- <path d="M8,10 L1,6 v-2 L8,8 V0 l2,2 v6 " stroke="var(--outline-color)" /> -->
+          <path d="M12,12 L8,0 L6,2 L10,14 M12,12 L16,0 L18,2 L14,14"/>
+        </symbol>
+        <symbol class="decal" id="copyDecal" viewBox="0 0 24 24"><title>Copy</title>
+          <!--<rect x="1.5" y="0.5" width="12" height="13" stroke="var(--outline-color)" fill="none"/>
+          <path d="M3.5,14.4 V15.5 H15.5 V2.5 H14.5" stroke="var(--outline-color)" fill="none"/>-->
+          <rect x="6.5" y="5.5" width="14" height="16" stroke="var(--outline-color)" fill="none"/>
+          <rect x="2.5" y="2.5" width="14" height="16" stroke="var(--outline-color)" fill="var(--input-field-color)"/>
+        </symbol>
+        <symbol class="decal" id="pasteDecal" viewBox="0 0 24 24"><title>Paste</title>
+          <rect x="2.5" y="2.5" width="14" height="16" stroke="var(--outline-color)" fill="none"/>
+          <rect x="7.5" y="2.5" width="4" height="2" stroke="var(--outline-color)" fill="var(--outline-color)"/>
+          <rect x="8.5" y="6.5" width="12" height="14" stroke="var(--outline-color)" fill="var(--input-field-color)"/>
+        </symbol>
+        <symbol class="decal" id="searchDecal" viewBox="0 0 24 24"><title>Search</title>
+          <circle cx="15" cy="9" r="8"/>
+          <line x1="0" y1="24" x2="9" y2="15"/>
+        </symbol>
+        <symbol class="decal" id="branchDecal" viewBox="0 0 24 24"><title>Branch</title>
+          <circle cx="8.5" cy="3.5" r="2"/>
+          <circle cx="8.5" cy="20.5" r="2"/>
+          <circle cx="16.5" cy="8.5" r="2"/>
+          <path d="M8.5,18.5 V5.5"/>
+          <path d="M8.5,18.5 Q 8.5,14.5 12.5,14.5 H12.5 Q 16.5,14.5 16.5,11.5 V10.5"/>
+        </symbol>
+        <symbol class="decal" id="folderDecal" viewBox="0 0 16 16"><title>Folder</title>
+          <path d="M8.5,3.5 L6.5,5.5 H0.5 V3.5 L2.5,1.5 H6.5 L8.5,3.5 H15.5 V14.5 H0.5 V5.5"/>
+        </symbol>
+        <symbol class="decal" id="playDecal" viewBox="0 0 24 24"><title>Play</title>
+          <path d="M0.5,0.5 L23.5,12 L0.5,23.5 Z"/>
+        </symbol>
+        <symbol class="decal" id="debugDecal" viewBox="0 0 24 24"><title>Debug</title>
+          <path d="M0.5,0.5 L23.5,12 L0.5,23.5 Z"/>
+          <circle cx="10" cy="14" r="4"/>
+        </symbol>
+        <symbol class="decal" id="debugDecal2" viewBox="0 0 24 24"><title>Debug</title>
+          <circle cx="12" cy="12" r="11" stroke-width="2"/>
+          <path d="M0,0 L0,0 L0,0 Z"/>
+        </symbol>
+        <symbol class="decal" id="justifyLeftDecal" viewBox="0 0 24 24"><title>Justify Left</title>
+          <line x1="0" y1="2"  x2="24" y2="2" stroke-width="2"/>
+          <line x1="0" y1="7"  x2="16" y2="7" stroke-width="2"/>
+          <line x1="0" y1="12" x2="24" y2="12" stroke-width="2"/>
+          <line x1="0" y1="17" x2="16" y2="17" stroke-width="2"/>
+          <line x1="0" y1="22" x2="24" y2="22" stroke-width="2"/>
+        </symbol>
+        <symbol class="decal" id="justifyCenterDecal" viewBox="0 0 24 24"><title>Justify Center</title>
+          <line x1="0" y1="2"  x2="24" y2="2" stroke-width="2"/>
+          <line x1="4" y1="7"  x2="20" y2="7" stroke-width="2"/>
+          <line x1="0" y1="12" x2="24" y2="12" stroke-width="2"/>
+          <line x1="4" y1="17" x2="20" y2="17" stroke-width="2"/>
+          <line x1="0" y1="22" x2="24" y2="22" stroke-width="2"/>
+        </symbol>
+        <symbol class="decal" id="justifyRightDecal" viewBox="0 0 24 24"><title>Justify Right</title>
+          <line x1="0" y1="2"  x2="24" y2="2" stroke-width="2"/>
+          <line x1="8" y1="7"  x2="24" y2="7" stroke-width="2"/>
+          <line x1="0" y1="12" x2="24" y2="12" stroke-width="2"/>
+          <line x1="8" y1="17" x2="24" y2="17" stroke-width="2"/>
+          <line x1="0" y1="22" x2="24" y2="22" stroke-width="2"/>
+        </symbol>
+        <symbol class="decal" id="justifySidesDecal" viewBox="0 0 24 24"><title>Justify Sides</title>
+          <line x1="0" y1="2"  x2="24" y2="2" stroke-width="2"/>
+          <line x1="0" y1="7"  x2="8" y2="7" stroke-width="2"/>
+          <line x1="16" y1="7"  x2="24" y2="7" stroke-width="2"/>
+          <line x1="0" y1="12" x2="24" y2="12" stroke-width="2"/>
+          <line x1="0" y1="17" x2="8" y2="17" stroke-width="2"/>
+          <line x1="16" y1="17" x2="24" y2="17" stroke-width="2"/>
+          <line x1="0" y1="22" x2="24" y2="22" stroke-width="2"/>
+        </symbol>
+
+        <g id="hGrippy">
+          <rect width="10" height="10" fill="var(--highlight-stroke-color)"/>
+          <path stroke="var(--shadow-stroke-color)" d="M1.5,0 V10 M3.5,0 V10 M5.5,0 V10 M7.5,0 V10 M9.5,0 V10" />
+        </g>
+        <g id="vGrippy">
+          <rect width="10" height="10" fill="var(--highlight-stroke-color)"/>
+          <path stroke="var(--shadow-stroke-color)" d="M0,1.5 H10 M0,3.5 H10 M0,5.5 H10 M0,7.5 H10 M0,9.5 H10" />
+        </g>
+        <clipPath id="circle-slice">
+          <polyline points="-2,14 14,-2 -2,-2 -2,14"/>
+        </clipPath>
+        <g id="radioCircle">
+          <circle cx="6" cy="6" r="7" fill="var(--highlight-stroke-color)" stroke="var(--highlight-stroke-color)"/>
+          <circle cx="6" cy="6" r="7" fill="var(--shadow-stroke-color)" stroke="var(--shadow-stroke-color)" clip-path="url(#circle-slice)"/>
+          <circle cx="6" cy="6" r="6" fill="var(--input-field-color)" stroke="var(--outline-color)"/>
+        </g>
+        <symbol id="checkmark" viewbox="0 0 16 16">
+          <path d="M1,6.5 L5,10.5 L11,1.5" stroke="var(--label-color)" stroke-width="2" fill="none"/>
+        </symbol>
+        <g id="checkbox">
+          <rect width="12" height="12" fill="var(--input-field-color)" stroke="var(--outline-color)"/>
+          <polyline class="shadow" points="-1,13 -1,-1 13,-1"/>
+          <polyline class="highlight" points="-1,13 13,13 13,-1"/>
+        </g>
+        <g id="sheettab-active">
+          <path fill="none" stroke="white" d="M0.5,0.5 h70"/>
+          <path fill="white" stroke="var(--outline-color)" d="M0.5,0.5 h5 l5,13 h50 l5,-13 h5"/>
+          <path fill="none" stroke="none" d="M0.5,0.5 h70"/>
+          <text style="font-size: 10px;font-family:Sans-serif;text-anchor:middle;" x="35.5" y="10.5">label</text>
+        </g>
+        <g id="sheettab-inactive">
+          <path fill="none" stroke="none" d="M0.5,0.5 h70"/>
+          <path fill="white" stroke="var(--outline-color)" d="M0.5,0.5 h5 l5,13 h50 l5,-13 h5"/>
+          <path fill="none" stroke="var(--outline-color)" d="M0.5,0.5 h70"/>
+          <text style="font-size: 10px;font-family:Sans-serif;text-anchor:middle;" x="35.5" y="10.5">label</text>
+        </g>
+        <g id="sheetTabGroup">
+          <!-- old note: Alternative: Let the tabs go to 15 and don't outline the area. -->
+          <rect width="180" height="16" fill="var(--base-fill-color)" stroke="var(--outline-color)"/>
+          <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H115 L120,13 H170 L175,0 H180"/>
+          <text style="font-size: 10px; font-family: Sans-serif; stroke: none; fill: black;" x="141" y="10">3</text>
+          <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H60 L65,13 H115 L120,0 H180"/>
+          <text style="font-size: 10px; font-family: Sans-serif; stroke: none; fill: black;" x="86" y="10">2</text>
+          <path d="M1,0 H179" stroke="#ffffff"/>
+          <path fill="#ffffff" stroke="var(--outline-color)" d="M0,0 H5 L10,13 H60 L65,0 H180"/>
+          <text style="font-size: 10px; font-family: Sans-serif; stroke: none; fill: black;" x="31" y="10">1</text>
+        </g>
+        <symbol class="icon" id="documentIcon" viewBox="0 0 16 16"><title>Generic Item</title>
+          <path d="M1.5,0.5 H9.5 L14.5,5.5 V15.5 H1.5 Z"/>
+          <path style="fill: none;" d="M9.5,0.5 V5.5 H14.5"/>
+        </symbol>
+        <symbol class="icon" id="document2Icon" viewBox="0 0 16 16"><title>Generic Item</title>
+          <path d="M1.5,0.5 H9.5 L14.5,5.5 V15.5 H1.5 Z" style="fill: var(--input-field-color)"/>
+          <path d="M9.5,0.5 V5.5 H14.5 Z" style="fill: var(--raised-fill-color);"/>
+        </symbol>
+        <symbol class="icon" id="folderIcon" viewbox="0 0 16 16"><title>Folder</title>
+          <path d="M8.5,3.5 L6.5,5.5 H0.5 V3.5 L2.5,1.5 H6.5 L8.5,3.5 H15.5 V14.5 H0.5 V5.5"/>
+        </symbol>
+        <symbol class="icon" id="folder2Icon" viewbox="0 0 16 16"><title>Folder</title>
+          <path d="M 8.5,3.5 H15.5 V14.5 H0.5 V5.5" style="fill: var(--raised-fill-color)"/>
+          <path d="M 8.5,3.5 L6.5,5.5 H0.5 V3.5 L2.5,1.5 H6.5 Z" style="fill: var(--recessed-fill-color)"/>
+        </symbol>
+        <symbol class="icon" id="archiveIcon" viewbox="0 0 16 16"><title>Archive</title>
+          <path d="M8.5,3.5 L6.5,5.5 H0.5 V3.5 L2.5,1.5 H6.5 L8.5,3.5 H15.5 V14.5 H0.5 V5.5"/>
+          <line x1="9.5"  y1="4.5"  x2="11.5" y2="4.5"/>
+          <line x1="11.5" y1="5.5"  x2="13.5" y2="5.5"/>
+          <line x1="9.5"  y1="6.5"  x2="11.5" y2="6.5"/>
+          <line x1="11.5" y1="7.5"  x2="13.5" y2="7.5"/>
+          <line x1="9.5"  y1="8.5"  x2="11.5" y2="8.5"/>
+          <line x1="11.5" y1="9.5"  x2="13.5" y2="9.5"/>
+          <line x1="9.5"  y1="10.5" x2="11.5" y2="10.5"/>
+          <line x1="11.5" y1="11.5" x2="13.5" y2="11.5"/>
+          <line x1="9.5"  y1="12.5" x2="11.5" y2="12.5"/>
+          <line x1="11.5" y1="13.5" x2="13.5" y2="13.5"/>
+          <path d="M 12 3.5
+                   L 11 4.5
+                   L 12 5.5
+                   L 11 6.5
+                   L 12 7.5
+                   L 11 8.5
+                   L 12 9.5
+                   L 11 10.5
+                   L 12 11.5
+                   L 11 12.5
+                   L 12 13.5
+                   L 11 14.5" style="fill: none;"/>
+        </symbol>
+        <symbol class="icon" id="networkFolderIcon" viewbox="0 0 16 16"><title>Network Folder</title>
+          <path d="M 8.5 2.5 L 6.5 4.5 H 0.5 V 2.5 L 2.5 0.5 H 6.5 L 8.5 2.5 H 15.5 V 13.5 H 0.5 V 4.5"/>
+          <path d="M 0.5 14.5 H 7.5 V 11.5 H 6.5 V 8.5 H 9.5 V 11.5 H 8.5 V 14.5 H 15.5 V 15.5 H 0.5 V 14.5 Z" style="fill: var(--raised-fill-color); stroke: none;"/>
+          <path d="M 0.5 15.5 H 15.5 M 0.5 14.5 H 7.5 V 11.5 H 6.5 V 8.5 H 9.5 V 11.5 H 8.5 V 14.5 H 15.5" style="fill: none;"/>
+        </symbol>
+        <symbol class="icon" id="addressbookIcon" viewbox="0 0 16 16"><title>Address Book</title>
+          <path d="M1.5,1.5 H13.5 A 2 2 90 0 1 15.5 3.5 V13.5 A 2 2 90 0 1 13.5 15.5 H1.5 V1.5 Z M3.5,1.5 V15.5"/>
+          <path style="stroke: grey; fill: grey;" d="M9.5,3.5 A 2 2 180 1 1 9.5 7.5 A 2 2 180 1 1 9.5 3.5"/>
+          <path style="stroke: grey; fill: grey;" d="M5.5 13.5 H13.5 A 4 4 180 1 0 5.5 13.5 Z"/>
+        </symbol>
+        <symbol class="icon" id="contactIcon" viewbox="0 0 16 16"><title>Contact</title>
+          <rect x="0.5" y="2.5" width="15" height="12"/>
+          <path style="stroke: grey; fill: grey;" d="M 11 4.5 A 2 2 180 1 1 11 8.5 A 2 2 180 1 1 11 4.5"/>
+          <path style="stroke: grey; fill: grey;" d="M 8.5 12.5 H13.5 A 2.5 2.5 180 1 0 8.5 12.5 Z"/>
+          <line x1="2.5" y1="5.5" x2="6.5" y2="5.5"/>
+          <line x1="2.5" y1="7.5" x2="6.5" y2="7.5"/>
+          <line x1="2.5" y1="9.5" x2="6.5" y2="9.5"/>
+          <line x1="2.5" y1="11.5" x2="6.5" y2="11.5"/>
+        </symbol>
+        <symbol class="icon" id="calendarIcon" viewbox="0 0 16 16"><title>Calendar</title>
+          <rect x="0.5" y="0.5" rx="2" ry="2" width="15" height="15"/>
+          <line x1="0.5" y1="3.5" x2="15.5" y2="3.5"/>
+          <line x1="0.5" y1="6.5" x2="15.5" y2="6.5"/>
+          <line x1="0.5" y1="9.5" x2="15.5" y2="9.5"/>
+          <line x1="0.5" y1="12.5" x2="15.5" y2="12.5"/>
+          <line x1="3.5" y1="3.5" x2="3.5" y2="15.5"/>
+          <line x1="6.5" y1="3.5" x2="6.5" y2="15.5"/>
+          <line x1="9.5" y1="3.5" x2="9.5" y2="15.5"/>
+          <line x1="12.5" y1="3.5" x2="12.5" y2="15.5"/>
+        </symbol>
+        <symbol class="icon" id="eventIcon" viewbox="0 0 16 16"><title>Event</title>
+          <rect x="0.5" y="0.5" rx="2" ry="2" width="12" height="12"/>
+          <line x1="0.5" y1="3.5" x2="12.5" y2="3.5"/>
+          <line x1="0.5" y1="6.5" x2="12.5" y2="6.5"/>
+          <line x1="0.5" y1="9.5" x2="12.5" y2="9.5"/>
+          <line x1="3.5" y1="3.5" x2="3.5" y2="12.5"/>
+          <line x1="6.5" y1="3.5" x2="6.5" y2="12.5"/>
+          <line x1="9.5" y1="3.5" x2="9.5" y2="12.5"/>
+          <circle cx="11" cy="11" r="4.5"/>
+          <path style="fill: none;" d="M8.5 11 H 11 V 7.5"/>
+        </symbol>
+        <symbol class="icon" id="templateIcon" viewbox="0 0 16 16"><title>Template</title>
+          <rect x="1.5" y="1.5" width="14" height="14" style="fill: var(--recessed-fill-color);"/>
+          <rect x="1" y="1" width="14" height="14" style="fill: var(--recessed-fill-color);"/>
+          <path d="M10.5,14.5 L14.5,10.5 V0.5 H0.5 V14.5 H10.5 V10.5 H14.5"/>
+          <path style="fill: #efefef;" d="M10.5,14.5 V10.5 H14.5"/>
+        </symbol>
+        <symbol class="icon" id="bibliographyIcon" viewbox="0 0 16 16"><title>Bibliography</title>
+          <path d="M4.5,11.5 V2.5 H11.5 V0.5 H15.5 V11.5 Z"/>
+          <path d="M4.5,11.5 V2.5 H7.5  V0.5 H11.5 V2.5 H15.5 V11.5 Z"/>
+          <path d="M3.5,11.5 V0.5 H7.5  V2.5 H15.5 V11.5 Z"/>
+          <g transform="translate(-1,2)">
+            <path d="M4.5,11.5 V2.5 H11.5 V0.5 H15.5 V11.5 Z"/>
+            <path d="M4.5,11.5 V2.5 H7.5  V0.5 H11.5 V2.5 H15.5 V11.5 Z"/>
+            <path d="M3.5,11.5 V0.5 H7.5  V2.5 H15.5 V11.5 Z"/>
+          </g>
+          <g transform="translate(-2,4)">
+            <path d="M4.5,11.5 V2.5 H11.5 V0.5 H15.5 V11.5 Z"/>
+            <path d="M4.5,11.5 V2.5 H7.5  V0.5 H11.5 V2.5 H15.5 V11.5 Z"/>
+            <path d="M3.5,11.5 V0.5 H7.5  V2.5 H15.5 V11.5 Z"/>
+          </g>
+        </symbol>
+        <symbol class="icon" id="bibliography2Icon" viewBox="0 0 16 16"><title>Bibliography</title>
+          <path d="M 0.5 6.5 L3.5 0.5 V11.5 L 0.5 15.5 Z" style="stroke: var(--outline-color); fill: var(--shadow-stroke-color)"/>
+          <path d="M4.5,11.5 V2.5 H11.5 V0.5 H15.5 V11.5 Z"/>
+          <path d="M4.5,11.5 V2.5 H7.5  V0.5 H11.5 V2.5 H15.5 V11.5 Z"/>
+          <path d="M3.5,11.5 V0.5 H7.5  V2.5 H15.5 V11.5 Z"/>
+          <g transform="translate(-1,2)">
+            <path d="M4.5,11.5 V2.5 H11.5 V0.5 H15.5 V11.5 Z"/>
+            <path d="M4.5,11.5 V2.5 H7.5  V0.5 H11.5 V2.5 H15.5 V11.5 Z"/>
+            <path d="M3.5,11.5 V0.5 H7.5  V2.5 H15.5 V11.5 Z"/>
+          </g>
+          <g transform="translate(-2,4)">
+            <path d="M4.5,11.5 V2.5 H11.5 V0.5 H15.5 V11.5 Z"/>
+            <path d="M4.5,11.5 V2.5 H7.5  V0.5 H11.5 V2.5 H15.5 V11.5 Z"/>
+            <path d="M3.5,11.5 V0.5 H7.5  V2.5 H15.5 V11.5 Z"/>
+          </g>
+          <rect x="0.5" y="6.5" width="13" height="9" style="fill: var(--raised-fill-color)"/>
+          <path d="M 13.5 6.5 L15.5 2.5 V11.5 L 13.5 15.5 Z" style="stroke: var(--outline-color); fill: var(--shadow-stroke-color)"/>
+          <path d="M  3.5 9.5 L  2.5 11.5 L  3.5 13.5
+                   M  5.5 9.5 L  4.5 11.5 L  5.5 13.5
+                   M 10.5 9.5 L 11.5 11.5 L 10.5 13.5
+                   M  8.5 9.5 L  9.5 11.5 L  8.5 13.5" style="fill:none"/>
+        </symbol>
+        <symbol class="icon" id="citationIcon" viewbox="0 0 16 16"><title>Citation</title>
+          <rect x="0.5" y="1.5" width="15" height="13"/>
+          <path d="M 3.5 3.5 L 2.5 5.5 L 3.5 7.5 M 6.5 3.5 L 5.5 5.5 L 6.5 7.5"/>
+          <path d="M 12.5 8.5 L 13.5 10.5 L 12.5 12.5 M 9.5 8.5 L 10.5 10.5 L 9.5 12.5"/>
+        </symbol>
+        <symbol class="icon" id="jukeboxIcon" viewbox="0 0 16 16"><title>Music Collection</title>
+          <circle cx="9.5" cy="6.5" r="6"/>
+          <circle cx="8.5" cy="7.5" r="6"/>
+          <circle cx="7.5" cy="8.5" r="6"/>
+          <circle cx="6.5" cy="9.5" r="6"/>
+          <ellipse cx="6.5" cy="11.5" rx="2.5" ry="1.5" transform="rotate(-20 6.5 11.5)" style="stroke: none; fill: var(--outline-color);"/>
+          <line x1="8.4" y1="11" x2="8.5" y2="5" style="vector-effect: none;"/>
+        </symbol>
+        <clipPath id="breakuptransmission">
+          <rect x="0" y="0" width="7" height="7"/>
+          <rect x="0" y="9" width="7" height="7"/>
+          <rect x="9" y="0" width="7" height="7"/>
+          <rect x="9" y="9" width="7" height="7"/>
+        </clipPath>
+        <symbol class="icon" id="playlistIcon" viewbox="0 0 16 16"><title>Playlist</title>
+          <circle cx="8" cy="8" r="7" style="fill:none; vector-effect: none;" clip-path="url(#breakuptransmission)"/>
+          <circle cx="8" cy="8" r="5" style="fill:none; vector-effect: none;" clip-path="url(#breakuptransmission)"/>
+          <circle cx="8" cy="8" r="3"/>
+          <g transform="translate(4.5 3.5) scale(0.5 0.5)">
+            <ellipse cx="6.5" cy="11.5" rx="2.5" ry="1.5" transform="rotate(-20 6.5 11.5)" style="stroke: none; fill: var(--outline-color);"/>
+            <line x1="8.4" y1="11" x2="8.5" y2="5" style="vector-effect: none;"/>
+          </g>
+
+          <!--<path d="M 2.5 3.5 A 10 10 90 0 1 12.5 13.5" style="fill: none;stroke-width: 2; vector-effect: none;"/>
+          <path d="M 2.5 7.5 A 6 6 90 0 1 8.5 13.5" style="fill: none; stroke-width: 2; vector-effect: none;"/> -->
+
+        </symbol>
+        <symbol class="icon" id="musicIcon" viewbox="0 0 16 16"><title>Music</title>
+          <circle cx="8" cy="8" r="7.5"/>
+          <ellipse cx="4.5" cy="11.5" rx="2" ry="1" transform="rotate(-20 4.5 11.5)" style="stroke: none; fill: var(--outline-color);"/>
+          <!--<line x1="6" y1="11.5" x2="6" y2="5" style="vector-effect: none;"/>-->
+          <ellipse cx="10.5" cy="10.5" rx="2" ry="1" transform="rotate(-20 10.5 10.5)" style="stroke: none; fill: var(--outline-color);"/>
+          <!--<line x1="12" y1="10.5" x2="12" y2="4" style="vector-effect: none;"/>-->
+          <path d="M 5.9 11 V 5 L 11.9 4 V 10 M 5.9 6.5 L 11.9 5.5" style="vector-effect: none; fill: none;">
+        </symbol>
+        <symbol class="icon" id="albumIcon" viewbox="0 0 16 16"><title>Music Album</title>
+          <rect x="0.5" y="0.5" width="15" height="15"/>
+          <circle cx="8" cy="8" r="7.5"/>
+          <ellipse cx="4.5" cy="11.5" rx="2" ry="1" transform="rotate(-20 4.5 11.5)" style="stroke: none; fill: var(--outline-color);"/>
+          <!--<line x1="6" y1="11.5" x2="6" y2="5" style="vector-effect: none;"/>-->
+          <ellipse cx="10.5" cy="10.5" rx="2" ry="1" transform="rotate(-20 10.5 10.5)" style="stroke: none; fill: var(--outline-color);"/>
+          <!--<line x1="12" y1="10.5" x2="12" y2="4" style="vector-effect: none;"/>-->
+          <path d="M 5.9 11 V 5 L 11.9 4 V 10 M 5.9 6.5 L 11.9 5.5" style="vector-effect: none; fill: none;">
+        </symbol>
+        <symbol class="icon" id="photoAlbumIcon" viewbox="0 0 16 16"><title>Photo Album</title>
+          <rect x="0.5" y="0.5" width="15" height="15"/>
+          <line x1="1.5" y1="0.5" x2="1.5" y2="15.5"/>
+          <rect x="3.5" y="9.5" width="4" height="4"/>
+          <rect x="9.5" y="8.5" width="4" height="5"/>
+          <rect x="3.5" y="2.5" width="5" height="5"/>
+          <rect x="10.5" y="2.5" width="3" height="4"/>
+        </symbol>
+        <symbol class="icon" id="photoIcon" viewbox="0 0 16 16"><title>Photo</title>
+          <rect x="0.5" y="1.5" width="15" height="13" style="fill: var(--base-fill-color);"/>
+          <rect x="2.5" y="3.5" width="11" height="9" style="stroke: var(--outline-color);"/>
+          <line x1="0.5"  y1="1.5"  x2="2.5"  y2="3.5"  style="stroke: var(--outline-color);"/>
+          <line x1="0.5"  y1="14.5" x2="2.5"  y2="12.5" style="stroke: var(--outline-color);"/>
+          <line x1="15.5" y1="1.5"  x2="13.5" y2="3.5"  style="stroke: var(--outline-color);"/>
+          <line x1="15.5" y1="14.5" x2="13.5" y2="12.5" style="stroke: var(--outline-color);"/>
+        </symbol>
+        <symbol class="icon" id="spreadsheetIcon" viewbox="0 0 16 16"><title>Spreadsheet</title>
+          <rect x="0.5" y="2.5" width="15" height="12"/>
+          <rect x="0.5" y="2.5" width="15" height="2" style="fill: var(--base-fill-color);"/>
+          <rect x="0.5" y="2.5" width="4" height="12" style="fill: var(--base-fill-color);"/>
+          <line x1="0.5"  y1="4.5"  x2="15.5" y2="4.5"/>
+          <line x1="0.5"  y1="6.5"  x2="15.5" y2="6.5"/>
+          <line x1="0.5"  y1="8.5"  x2="15.5" y2="8.5"/>
+          <line x1="0.5"  y1="10.5" x2="15.5" y2="10.5"/>
+          <line x1="0.5"  y1="12.5" x2="15.5" y2="12.5"/>
+          <line x1="8.5"  y1="2.5"  x2="8.5"  y2="14.5"/>
+          <line x1="12.5" y1="2.5"  x2="12.5" y2="14.5"/>
+        </symbol>
+        <symbol class="icon" id="slideshowIcon" viewbox="0 0 16 16"><title>Slideshow</title>
+          <g transform="translate(4,-4)">
+            <rect x="0.5" y="5.5" width="11" height="9" style="fill: var(--base-fill-color);"/>
+            <rect x="2.5" y="7.5" width="7" height="5"/>
+          </g>
+          <g transform="translate(2,-2)">
+            <rect x="0.5" y="5.5" width="11" height="9" style="fill: var(--base-fill-color);"/>
+            <rect x="2.5" y="7.5" width="7" height="5"/>
+          </g>
+          <rect x="0.5" y="5.5" width="11" height="9" style="fill: var(--base-fill-color);"/>
+          <rect x="2.5" y="7.5" width="7" height="5"/>
+        </symbol>
+        <symbol class="icon" id="mailboxIcon" viewbox="0 0 16 16"><title>Mailbox</title>
+          <g transform="translate(4,-4)">
+            <rect x="0.5" y="7.5" width="11" height="7" />
+            <path style="fill: none;" d="M0.5,7.5 L6,10.5 L11.5,7.5"/>
+          </g>
+          <g transform="translate(2,-2)">
+            <rect x="0.5" y="7.5" width="11" height="7" />
+            <path style="fill: none;" d="M0.5,7.5 L6,10.5 L11.5,7.5"/>
+          </g>
+          <rect x="0.5" y="7.5" width="11" height="7" />
+          <path style="fill: none;" d="M0.5,7.5 L6,10.5 L11.5,7.5"/>
+        </symbol>
+        <symbol class="icon" id="messageIcon" viewbox="0 0 16 16"><title>Message</title>
+          <rect x="0.5" y="3.5" width="15" height="9" />
+          <path d="M 0.5 3.5 L 8 8 L 15.5 3.5" style="fill: none;"/>
+        </symbol>
+        <symbol class="icon" id="mailbox2Icon" viewbox="0 0 16 16"><title>Mailbox</title>
+          <rect x="3.5" y="8.5" width="12" height="4" style="fill: var(--shadow-stroke-color)"/>
+          <path style="fill: var(--recessed-fill-color)"
+                d="M 0.5 15.5
+                   V 11.5
+                   L 3.5 8.5
+                   V 12.5
+                   Z
+                  "/>
+          <g transform="translate(3,-3)">
+            <rect x="0.5" y="7.5" width="11" height="7" />
+            <path style="fill: none;" d="M0.5,7.5 L6,10.5 L11.5,7.5"/>
+          </g>
+          <g transform="translate(1,-1)">
+            <rect x="0.5" y="7.5" width="11" height="7" />
+            <path style="fill: none;" d="M0.5,7.5 L6,10.5 L11.5,7.5"/>
+          </g>
+          <path style="fill: var(--raised-fill-color)"
+                d="M 0.5 15.5
+                   V 11.5
+                   H 3.5
+                   L 5.5 13.5
+                   H 7.5
+                   L 9.5 11.5
+                   H 12.5
+                   V 15.5
+                   Z"/>
+          <path style="fill: var(--base-fill-color)"
+                d="M 12.5 15.5
+                   V 11.5
+                   L 15.5 8.5
+                   V 12.5
+                   Z
+                   "/>
+
+        </symbol>
+        <symbol class="icon" id="notebookIcon" viewbox="0 0 16 16"><title>Notebook</title>
+          <path d="M1.5,1.5 H13.5 A 2 2 90 0 1 15.5 3.5 V13.5 A 2 2 90 0 1 13.5 15.5 H1.5 V1.5 Z M3.5,1.5 V15.5"/>
+          <rect x="9.5" y="3.5" width="4" height="4" style="fill: none;"/>
+          <line x1="4.5" y1="3.5" x2="8.5" y2="3.5"/>
+          <line x1="4.5" y1="6.5" x2="8.5" y2="6.5"/>
+          <line x1="4.5" y1="9.5" x2="14.5" y2="9.5"/>
+          <line x1="4.5" y1="12.5" x2="14.5" y2="12.5"/>
+        </symbol>
+        <symbol class="icon" id="computationalNotebookIcon" viewbox="0 0 16 16"><title>Computational Notebook</title>
+          <path d="M1.5,1.5 H13.5 A 2 2 90 0 1 15.5 3.5 V13.5 A 2 2 90 0 1 13.5 15.5 H1.5 V1.5 Z M3.5,1.5 V15.5"/>
+          <line x1="0.5" y1="3.5" x2="2.5" y2="3.5"/>
+          <line x1="0.5" y1="5.5" x2="2.5" y2="5.5"/>
+          <line x1="0.5" y1="7.5" x2="2.5" y2="7.5"/>
+          <line x1="0.5" y1="9.5" x2="2.5" y2="9.5"/>
+          <line x1="0.5" y1="11.5" x2="2.5" y2="11.5"/>
+          <line x1="0.5" y1="13.5" x2="2.5" y2="13.5"/>
+          <path d="M12.5,6.5 V4.5 H6.5 L9.5,8.5 L6.5,12.5 H12.5 V10.5"/>
+        </symbol>
+        <symbol class="icon" id="notebook2Icon" viewbox="0 0 16 16"><title>Notebook</title>
+          <path d="M1.5,1.5 H13.5 A 2 2 90 0 1 15.5 3.5 V13.5 A 2 2 90 0 1 13.5 15.5 H1.5 V1.5 Z M3.5,1.5 V15.5"/>
+          <line x1="4.5" y1="3.5" x2="14.5" y2="3.5"/>
+          <line x1="4.5" y1="6.5" x2="14.5" y2="6.5"/>
+          <line x1="4.5" y1="9.5" x2="14.5" y2="9.5"/>
+          <line x1="4.5" y1="12.5" x2="8.5" y2="12.5"/>
+          <path style="stroke: grey; fill: lightgrey" d="M7.5 12.5 V11.5 L13.5 5.5 L14.5 6.5 L8.5 12.5 Z"/>
+        </symbol>
+        <symbol class="icon" id="notebook3Icon" viewbox="0 0 16 16"><title>Notebook</title>
+          <path d="M1.5,1.5 H13.5 A 2 2 90 0 1 15.5 3.5 V13.5 A 2 2 90 0 1 13.5 15.5 H1.5 V1.5 Z M3.5,1.5 V15.5"/>
+          <line x1="0.5" y1="3.5" x2="2.5" y2="3.5"/>
+          <line x1="0.5" y1="5.5" x2="2.5" y2="5.5"/>
+          <line x1="0.5" y1="7.5" x2="2.5" y2="7.5"/>
+          <line x1="0.5" y1="9.5" x2="2.5" y2="9.5"/>
+          <line x1="0.5" y1="11.5" x2="2.5" y2="11.5"/>
+          <line x1="0.5" y1="13.5" x2="2.5" y2="13.5"/>
+
+          <line x1="4.5" y1="3.5" x2="14.5" y2="3.5"/>
+          <line x1="4.5" y1="6.5" x2="14.5" y2="6.5"/>
+          <line x1="4.5" y1="9.5" x2="14.5" y2="9.5"/>
+          <line x1="4.5" y1="12.5" x2="8.5" y2="12.5"/>
+          <path style="stroke: grey; fill: lightgrey;" d="M7.5 12.5 V11.5 L13.5 5.5 L14.5 6.5 L8.5 12.5 Z"/>
+        </symbol>
+        <symbol class="icon" id="notebook4Icon" viewbox="0 0 16 16"><title>Notebook</title>
+          <path d="M 1.5 1.5
+                   H 14.5
+                   V 13.5
+                   A 2 2 90 0 1 12.5 15.5
+                   H 3.5
+                   A 2 2 90 0 1 1.5 13.5
+                   Z"/>
+          <line x1="3.5" y1="0.5" x2="3.5" y2="2.5"/>
+          <line x1="6.5" y1="0.5" x2="6.5" y2="2.5"/>
+          <line x1="9.5" y1="0.5" x2="9.5" y2="2.5"/>
+          <line x1="12.5" y1="0.5" x2="12.5" y2="2.5"/>
+
+          <line x1="2.5" y1="4.5" x2="13.5" y2="4.5"/>
+          <line x1="2.5" y1="6.5" x2="13.5" y2="6.5"/>
+          <line x1="2.5" y1="8.5" x2="13.5" y2="8.5"/>
+          <line x1="2.5" y1="10.5" x2="13.5" y2="10.5"/>
+          <line x1="2.5" y1="12.5" x2="8.5" y2="12.5"/>
+          <path style="stroke: grey; fill: lightgrey;" d="M7.5 12.5 V11.5 L13.5 5.5 L14.5 6.5 L8.5 12.5 Z"/>
+        </symbol>
+        <symbol class="icon" id="shellIcon" viewbox="0 0 16 16"><title>Shell</title>
+          <path d="M 8 15.5
+                   S 0.5 15.5 3.5 14.5
+                   L 0.5 4.5
+                   S 8 -5 15.5 4.5
+                   L 12.5 14.5
+                   S 15.5 15.5 8 15.5
+                   Z"/>
+          <line x1="5"  y1="9"   x2="3.5"  y2="4"  />
+          <line x1="7"  y1="8.5" x2="6.5"  y2="2.5"/>
+          <line x1="9"  y1="8.5" x2="9.5"  y2="2.5"/>
+          <line x1="11" y1="9"   x2="12.5" y2="4"  />
+        </symbol>
+        <symbol class="icon" id="terminalIcon" viewbox="0 0 16 16"><title>Terminal</title>
+          <rect x="0.5" y="1.5" rx="2" ry="2" width="15" height="13" style="fill: var(--base-fill-color);"/>
+          <rect x="2.5" y="3.5" width="11" height="9" style="fill: var(--outline-color);"/>
+          <path style="fill: none; stroke: white;" d="M 3.5 4.5 L 7 8 L 3.5 11.5"/>
+          <path style="fill: none; stroke: white;" d="M 8.5 11.5 H12.5"/>
+        </symbol>
+        <symbol class="icon" id="feedIcon" viewbox="0 0 16 16"><title>Feed</title>
+          <rect x="0.5" y="0.5" rx="2" ry="2" width="15" height="15"/>
+          <circle cx="4" cy="12" r="1.5" style="fill: var(--outline-color); stroke:none;"/>
+          <path d="M 2.5 3.5 A 10 10 90 0 1 12.5 13.5" style="fill: none;stroke-width: 2; vector-effect: none;"/>
+          <path d="M 2.5 7.5 A 6 6 90 0 1 8.5 13.5" style="fill: none; stroke-width: 2; vector-effect: none;"/>
+        </symbol>
+        <symbol class="icon" id="remoteIcon" viewbox="0 0 16 16"><title>Remote Desktop</title>
+          <rect x="0.5" y="1.5" rx="2" ry="2" width="15" height="13" style="fill: var(--base-fill-color);"/>
+          <rect x="2.5" y="3.5" width="11" height="9" style="fill: var(--outline-color);"/>
+          <path style="fill: none; stroke: white;" d="M 3.5 6.5 L 7 9 L 3.5 11.5"/>
+          <path style="fill: none; stroke: white;" d="M 12.5 4.5 L 9 7 L 12.5 9.5"/>
+        </symbol>
+        <symbol class="icon" id="calculatorIcon" viewbox="0 0 16 16"><title>Calculator</title>
+          <path d="M 0.5 0.5 H 14.5 V 13.5 A 2 2 90 0 1 12.5 15.5 H 2.5 A 2 2 90 0 1 0.5 13.5 Z" style="fill: var(--base-fill-color)"/>
+          <rect x="1.5"  y="1.5" width="12" height="3" style="fill: black; stroke: none;"/>
+          <rect x="2"  y="6" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="5"  y="6" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="8"  y="6" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="11" y="6" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="2"  y="9" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="5"  y="9" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="8"  y="9" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="11" y="9" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="2"  y="12" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="5"  y="12" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="8"  y="12" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+          <rect x="11" y="12" width="2" height="2" style="fill: var(--shadow-stroke-color); stroke: none;"/>
+        </symbol>
+        <symbol class="icon" id="queryIcon" viewbox="0 0 16 16"><title>Database Query</title>
+          <path d="M 0.5  4 A 7.5 2.5 180 0 0 15.5  4
+                            A 7.5 2.5 180 0 0  0.5  4
+                   V 13
+                            A 7.5 2.5 180 0 0 15.5 13
+                   V 4
+                   M 0.5  7 A 7.5 2.5 180 0 0 15.5  7
+                   M 0.5 10 A 7.5 2.5 180 0 0 15.5 10"/>
+        </symbol>
+        <symbol class="icon" id="outlineIcon" viewbox="0 0 16 16"><title>Outline</title>
+          <path d="M1.5,0.5 H9.5 L14.5,5.5 V15.5 H1.5 Z"/>
+          <path style="fill: none;" d="M9.5,0.5 V5.5 H14.5"/>
+          <path style="fill: none;" d="M 3.5 2.5 h 3 h -3 v 2 h 3 v 2 h 2 h-2 v 2 h3 h-3 v-4 h-3 v6 h6 h-3 v2 h3"/>
+        </symbol>
+        <symbol class="icon" id="bookmarkIcon" viewbox="0 0 16 16"><title>Bookmark</title>
+          <path d="M 0.5 12.5 L 12.5 0.5 L 15.5 3.5 L 3.5 15.5 V 12.5 Z"/>
+        </symbol>
+        <symbol class="icon" id="bookmark2Icon" viewbox="0 0 16 16"><title>Bookmark</title>
+          <path d="M 0.5 3.5 L 3.5 0.5 L 15.5 12.5 H 12.5 V 15.5 Z"/>
+        </symbol>
+        <symbol class="icon" id="bookmark3Icon" viewbox="0 0 16 16"><title>Bookmark</title>
+          <path d="M 6.5 0.5 H 10.5 V 15.5 L 8.5 13.5 L 6.5 15.5 Z"/>
+        </symbol>
+        <symbol class="icon" id="documentationIcon" viewbox="0 0 16 16"><title>Documentation</title>
+          <rect width="16" height="16" style="fill: grey; stroke: none;"/>
+          <path d="M 2.5 6.5
+                   A 5.5 5.5 90 0 1 13.5 6.5
+                   A 5 5 120 0 1  9.5 9.5
+                   V 11.5
+                   H 6.5
+                   V 9.5
+                   A 5 5 45 0 1 8.5 8
+                   A 5 5 45 0 0 10.5 6.5
+                   A 2.5 2.5 90 0 0 5.5 6.5 Z"/>
+          <rect x="6.5" y="12.5" width="3" height="3"/>
+        </symbol>
+        <symbol class="icon" id="browserIcon" viewbox="0 0 16 16"><title>Web Browser</title>
+          <circle cx="8" cy="8" r="7.5"/>
+          <ellipse cx="8" cy="8" rx="3.5" ry="7.5"/>
+          <line x1="0.5" y1="8" x2="15.5" y2="8"/>
+          <path d="M 2.5 3 A 4 1 180 0 0 13.5 3" style="fill: none;"/>
+          <path d="M 2.5 13 A 4 1 180 0 1 13.5 13" style="fill: none;"/>
+        </symbol>
+        <symbol class="icon" id="messagesIcon" viewbox="0 0 16 16"><title>Messaging</title>
+          <path d="M 6.5 0.5 H 15.5 V 7.5 L 13.5 5.5 H 6.5 Z"/>
+          <path d="M 0.5 8.5 H 9.5 V 13.5 H 2.5 L 0.5 15.5 Z"/>
+        </symbol>
+        <symbol class="icon" id="meetingIcon" viewbox="0 0 16 16"><title>Meeting</title>
+          <circle cx="4" cy="3" r="2.5" style="fill: var(--recessed-fill-color);"/>
+          <path d="M 0.5 9.5 A 3 3 90 0 1 7.5 9.5 Z"
+                style="fill: var(--recessed-fill-color);"/>
+          <circle cx="12" cy="3" r="2.5" style="fill: var(--recessed-fill-color);"/>
+          <path d="M 8.5 9.5 A 3 3 90 0 1 15.5 9.5 Z"
+                style="fill: var(--recessed-fill-color);"/>
+          <circle cx="8" cy="13" r="2.5" style="fill: var(--raised-fill-color);"/>
+        </symbol>
+        <symbol class="icon" id="meeting2Icon" viewbox="0 0 16 16"><title>Meeting</title>
+          <circle cx="4" cy="3" r="2.5" style="fill: var(--recessed-fill-color);"/>
+          <path d="M 0.5 9.5 A 3 3 90 0 1 7.5 9.5 Z"
+                style="fill: var(--recessed-fill-color);"/>
+          <circle cx="12" cy="3" r="2.5" style="fill: var(--recessed-fill-color);"/>
+          <path d="M 8.5 9.5 A 3 3 90 0 1 15.5 9.5 Z"
+                style="fill: var(--recessed-fill-color);"/>
+          <circle cx="8" cy="9" r="2.5" style="fill: var(--raised-fill-color);"/>
+          <path d="M 4.5 15.5 A 3 3 90 0 1 11.5 15.5 Z"
+                style="fill: var(--raised-fill-color);"/>
+        </symbol>
+        <symbol class="icon" id="phonecallIcon" viewbox="0 0 16 16"><title>Phone Call</title>
+          <path d="M 7.5 5.5
+                   H 11.5
+                   V 0.5
+                   H 6.5
+                   A 18 16 180 0 0 6.5 15.5
+                   H 11.5
+                   V 10.5
+                   H 7.5
+                   A 18 16 180 0 1 7.5 5.5
+                   Z
+                   M 9.5 5.5
+                   V 0.5
+                   M 9.5 10.5
+                   V 15.5"/>
+        </symbol>
+        <symbol class="icon" id="filebrowserIcon" viewbox="0 0 16 16"><title>File Browser</title>
+          <rect x="0.5" y="0.5" width="15" height="4"/>
+          <rect x="0.5" y="4.5" width="5" height="11"/>
+          <rect x="5.5" y="4.5" width="5" height="11"/>
+          <rect x="10.5" y="4.5" width="5" height="11"/>
+          <rect x="2" y="1.5" width="2" height="2" style="stroke: none; fill: var(--outline-color);"/>
+          <rect x="7" y="1.5" width="2" height="2" style="stroke: none; fill: var(--outline-color);"/>
+          <rect x="0.5" y="7.5" width="5" height="2" style="stroke: none; fill: var(--outline-color);"/>
+          <rect x="5.5" y="5.5" width="5" height="2" style="stroke: none; fill: var(--outline-color);"/>
+          <line x1="1.5" y1="6.5" x2="4.5" y2="6.5"/>
+          <line x1="1.5" y1="8.5" x2="4.5" y2="8.5" style="stroke: var(--input-field-color);"/>
+          <line x1="1.5" y1="10.5" x2="4.5" y2="10.5"/>
+          <line x1="1.5" y1="12.5" x2="4.5" y2="12.5"/>
+          <line x1="6.5" y1="6.5" x2="9.5" y2="6.5" style="stroke: var(--input-field-color);"/>
+          <line x1="6.5" y1="8.5" x2="9.5" y2="8.5"/>
+          <line x1="6.5" y1="10.5" x2="9.5" y2="10.5"/>
+          <line x1="6.5" y1="12.5" x2="9.5" y2="12.5"/>
+          <rect x="12" y="6.5" width="2" height="2" style="stroke: var(--outline-color); fill: var(--outline-color);"/>
+        </symbol>
+        <symbol class="icon" id="ledgerIcon" viewbox="0 0 16 16"><title>Ledger</title>
+          <rect x="0.5" y="0.5" width="15" height="12"/>
+          <rect x="12.5" y="2.5" width="3" height="10" style="fill: var(--base-fill-color)"/>
+          <rect x="9.5" y="2.5" width="3" height="10" style="fill: var(--base-fill-color)"/>
+          <line x1="0.5" y1="2.5" x2="15.5" y2="2.5"/>
+          <line x1="0.5" y1="4.5" x2="15.5" y2="4.5"/>
+          <line x1="0.5" y1="6.5" x2="15.5" y2="6.5"/>
+          <line x1="0.5" y1="8.5" x2="15.5" y2="8.5"/>
+          <line x1="0.5" y1="10.5" x2="15.5" y2="10.5"/>
+        </symbol>
+        <symbol class="icon" id="transactionIcon" viewBox="0 0 16 16"><title>Transaction</title>
+          <rect x="0.5" y="4.5" width="4" height="7"/>
+          <rect x="11.5" y="4.5" width="4" height="7"/>
+          <path d="M 4.5 5.5 H 10.5" marker-end="url(#arrowheadMarker)"/>
+          <path d="M 11.5 10.5 H 5.5" marker-end="url(#arrowheadMarker)"/>
+        </symbol>
+        <symbol class="icon" id="microphoneIcon" viewbox="0 0 16 16"><title>Microphone</title>
+          <path d="M 4 15.5 H 12"/>
+          <path d="M 8 15.5 V 12.5"/>
+          <path d="M 4 5 V 8.5 A 4 4 180 0 0 12 8.5 V 5" style="fill: none;"/>
+          <rect x="4" y="5.5" width="8" height="1" style="fill: var(--outline-color)"/>
+          <path d="M 5 3.5 V 8.5 A 3 3 180 0 0 11 8.5 V 3.5 A 3 3 180 0 0 5 3.5 Z"/>
+          <rect x="5" y="5" width="6" height="2" style="fill: var(--raised-fill-color)"/>
+        </symbol>
+        <symbol class="icon" id="bindersIcon" viewbox="0 0 16 16"><title>Binders</title>
+          <rect x="0.5" y="3.5" width="4" height="12"/>
+          <circle cx="2.5" cy="5.5" r="1"/>
+          <rect x="4.5" y="3.5" width="4" height="12"/>
+          <circle cx="6.5" cy="5.5" r="1"/>
+          <g transform="translate(1.3 -0.2) rotate(-10 10.5 11)">
+            <rect x="8.5" y="3.5" width="4" height="12"/>
+            <circle cx="10.5" cy="5.5" r="1"/>
+          </g>
+        </symbol>
+        <symbol class="icon" id="trashIcon" viewbox="0 0 16 16"><title>Trash</title>
+          <path d="M 0.5 4 L 2.5 13 A 5.5 2.5 180 0 0 13.5 13 L 15.5 4" style="fill: var(--raised-fill-color)"/>
+          <ellipse cx="8" cy="4" rx="7.5" ry="1.5" style="fill: var(--recessed-fill-color)"/>
+        </symbol>
+        <symbol class="icon" id="desktopIcon" viewbox="0 0 16 16"><title>Desktop</title>
+          <!--<rect x="0" y="0" width="16" height="16" style="fill: red; stroke: none;"/>-->
+          <rect x="0.5" y="1.5" width="15" height="13" style="fill: var(--raised-fill-color); stroke: var(--outline-color)"/>
+          <path d="M0.5,1.5 h3 l-3,3 z" style="fill: var(--outline-color); stroke: none"/>
+          <path d="M15.5,1.5 h-3 l3,3 z" style="fill: var(--outline-color); stroke: none"/>
+          <path d="M0.5,14.5 h3 l-3,-3 z" style="fill: var(--outline-color); stroke: none"/>
+          <path d="M15.5,14.5 h-3 l3,-3 z" style="fill: var(--outline-color); stroke: none"/>
+        </symbol>
+      </defs>
+    </svg>
+    <svg id="rootwindow" width="800" height="600" onclick='console.log("Root Clicked")'>
+      <rect width="800" height="600" fill="url(#rootweave)" stroke="none"/>
+      <script>
+        let w1 = new Surface("awindow",100,100,400,300);
+        let w2 = new Surface("bwindow",300,200,400,300);
+      </script>
+    </svg>
+  </body>
+</html>
