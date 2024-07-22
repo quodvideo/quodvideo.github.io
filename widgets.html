@@ -170,7 +170,7 @@
         g.setAttribute("y",y);
         g.setAttribute("class","button");
         g.setAttribute("tabindex",0);
-        parentElement.insertAdjacentElement("beforeend", g);
+        parentElement.append(g);
         drawRaisedRect(g,0,0,size,size);
 
         if (decal) {
@@ -185,7 +185,7 @@
         u.setAttribute("y",(size-decalsize)/2);
         u.setAttribute("width",decalsize);
         u.setAttribute("height",decalsize);
-        g.insertAdjacentElement("beforeend",u);
+        g.append(u);
 
         drawInnerFocusRingRect(g,3,3,size-6,size-6);
         return g;

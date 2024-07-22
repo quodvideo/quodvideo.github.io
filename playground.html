@@ -4,7 +4,19 @@
     <title>Playground for SVG Interaction</title>
     <link rel="stylesheet" href="widgets-style.css">
     <script>
-      function Button(parent,id,x,y,width,height,text,decal,decalsize) {
+      function Button(id,x,y,width,height,text,decal,decalsize) {
+        this.setDecal = function (dcl,dclwidth,dclheight) {
+          this.decal = document.createElementNS("http://www.w3.org/2000/svg","use");
+          this.decal.setAttributeNS("http://www.w3.org/1999/xlink","href",dcl);
+          this.decal.setAttribute("width",dclwidth);
+          this.decal.setAttribute("height",dclheight);
+          this.svg.append(this.decal); 
+        };
+        this.setLabel = function (label) {
+          this.label = document.createElementNS("http://www.w3.org/2000/svg","text");
+          this.label.innerHTML = label;
+          this.svg.append(this.label);
+        };
         this.setGeometry = function (nx,ny,nwidth,nheight) {
           this.svg.setAttribute("x",nx);
           this.svg.setAttribute("y",ny);
@@ -35,6 +47,7 @@
         this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
         this.svg.append(this.highlightStroke);
         this.setGeometry(x,y,width,height);
+        this.setDecal(decal,decalsize,decalsize);
       }
       function Surface(id,x,y,width,height) {
         this.svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
@@ -65,9 +78,12 @@
                                           +" "+(width-2)+" "+(1));
         this.svg.append(this.highlightStroke);
 
-        this.maximizeButton = new Button();
-        this.minimizeButton = new Button();
-        this.closeButton = new Button();
+        this.maximizeButton = new Button("",0,0,20,20,"","#maximizeDecal",20);
+        this.svg.append(this.maximizeButton.svg);
+        this.minimizeButton = new Button("",0,0,20,20,"","#iconifyDecal",20);
+        this.svg.append(this.minimizeButton.svg);
+        this.closeButton = new Button("",0,0,20,20,"","#closeDecal",20);
+        this.svg.append(this.closeButton.svg);
 
         this.moveresizeState = {
           "action":"none",
@@ -107,6 +123,9 @@
           this.highlightStroke.setAttribute("d","M"+(1)+","+(h-1)
                                           +" "+(1)+" "+(1)
                                           +" "+(w-1)+" "+(1));
+          this.maximizeButton.setGeometry(w-74,6,20,20);
+          this.minimizeButton.setGeometry(w-50,6,20,20);
+          this.closeButton.setGeometry(w-26,6,20,20);
         }
         this.svg.addEventListener("pointermove", (e)=>{
           let CTM = this.svg.getScreenCTM();
