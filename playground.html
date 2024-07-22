@@ -78,11 +78,11 @@
                                           +" "+(width-2)+" "+(1));
         this.svg.append(this.highlightStroke);
 
-        this.maximizeButton = new Button("",0,0,20,20,"","#maximizeDecal",20);
+        this.maximizeButton = new Button("",width-1-74,6,20,20,"","#maximizeDecal",20);
         this.svg.append(this.maximizeButton.svg);
-        this.minimizeButton = new Button("",0,0,20,20,"","#iconifyDecal",20);
+        this.minimizeButton = new Button("",width-1-50,6,20,20,"","#iconifyDecal",20);
         this.svg.append(this.minimizeButton.svg);
-        this.closeButton = new Button("",0,0,20,20,"","#closeDecal",20);
+        this.closeButton = new Button("",width-1-26,6,20,20,"","#closeDecal",20);
         this.svg.append(this.closeButton.svg);
 
         this.moveresizeState = {
