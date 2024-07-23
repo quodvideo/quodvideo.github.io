@@ -150,6 +150,7 @@
         this.windowTitle.setAttribute("y",22);
         this.windowTitle.setAttribute("class","WindowTitle");
         this.windowTitle.setAttribute("style","font-size: 18px;");
+        this.windowTitle.setAttribute("fill","--var(shadow-stroke-color)")
         this.svg.append(this.windowTitle);
 
         let box = this.windowTitle.getBBox();
@@ -159,7 +160,7 @@
         this.windowGrip.setAttribute("y",6);
         this.windowGrip.setAttribute("width",width - 74 - (box.x + box.width + 6) - 4);
         this.windowGrip.setAttribute("height",21);
-        this.windowGrip.setAttribute("fill","url(#gripper)");
+        this.windowGrip.setAttribute("fill","none");
         this.windowGrip.setAttribute("stroke","none");
         this.windowGrip.setAttribute("style","cursor: move");
         this.svg.append(this.windowGrip);
@@ -354,6 +355,7 @@
           this.baseRect.setAttribute("fill","var(--base-fill-color)");
           this.shadowStroke.setAttribute("stroke","var(--shadow-stroke-color)");
           this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
+          this.windowTitle.setAttribute("fill","--var(label-color)")
           this.windowGrip.setAttribute("fill","url(#gripper)");
           this.maximizeButton.svg.setAttribute("visibility","visible");
           this.minimizeButton.svg.setAttribute("visibility","visible");
@@ -364,6 +366,7 @@
             this.baseRect.setAttribute("fill","var(--raised-fill-color)");
             this.shadowStroke.setAttribute("stroke","none");
             this.highlightStroke.setAttribute("stroke","none");
+            this.windowTitle.setAttribute("fill","--var(shadow-stroke-color)")
             this.windowGrip.setAttribute("fill","none");
             this.maximizeButton.svg.setAttribute("visibility","hidden");
             this.minimizeButton.svg.setAttribute("visibility","hidden");
