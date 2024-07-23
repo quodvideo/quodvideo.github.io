@@ -314,12 +314,16 @@
           this.closeButton.svg.setAttribute("visibility","visible");
         });
         this.svg.addEventListener("focusout", (e)=>{
-          this.baseRect.setAttribute("fill","var(--raised-fill-color)");
-          this.shadowStroke.setAttribute("stroke","none");
-          this.highlightStroke.setAttribute("stroke","none");
-          this.maximizeButton.svg.setAttribute("visibility","hidden");
-          this.minimizeButton.svg.setAttribute("visibility","hidden");
-          this.closeButton.svg.setAttribute("visibility","hidden");
+          if (e.currentTarget.contains(e.relatedTarget)) {
+
+          } else {
+            this.baseRect.setAttribute("fill","var(--raised-fill-color)");
+            this.shadowStroke.setAttribute("stroke","none");
+            this.highlightStroke.setAttribute("stroke","none");
+            this.maximizeButton.svg.setAttribute("visibility","hidden");
+            this.minimizeButton.svg.setAttribute("visibility","hidden");
+            this.closeButton.svg.setAttribute("visibility","hidden");
+          }
         });
         this.svg.addEventListener("lostpointercapture", (e) => {
           if (this.moveresizeState.action != "none") {
