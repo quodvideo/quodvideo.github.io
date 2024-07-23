@@ -58,6 +58,7 @@
         this.focusRing.setAttribute("stroke","var(--focus-ring-color)");
         this.focusRing.setAttribute("stroke-dasharray","1,1");
         this.focusRing.setAttribute("stroke-dashoffset","0.5px");
+        this.svg.append(this.focusRing);
         this.setGeometry(x,y,width,height);
         this.setDecal(decal,decalsize,decalsize);
         this.svg.addEventListener("pointerdown", (e) => {
