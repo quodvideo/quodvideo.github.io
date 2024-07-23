@@ -95,6 +95,12 @@
           this.shadowStroke.setAttribute("stroke","var(--shadow-stroke-color)");
           this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
         });
+        this.svg.addEventListener("focus", (e) => {
+          this.focusRing.setAttribute("stroke","var(--focus-ring-color)");
+        });
+        this.svg.addEventListener("blur", (e) => {
+          this.focusRing.setAttribute("stroke","none");
+        });
       }
       function Surface(id,x,y,width,height) {
         this.svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
@@ -314,9 +320,7 @@
           this.closeButton.svg.setAttribute("visibility","visible");
         });
         this.svg.addEventListener("focusout", (e)=>{
-          if (e.currentTarget.contains(e.relatedTarget)) {
-
-          } else {
+          if (!e.currentTarget.contains(e.relatedTarget)) {
             this.baseRect.setAttribute("fill","var(--raised-fill-color)");
             this.shadowStroke.setAttribute("stroke","none");
             this.highlightStroke.setAttribute("stroke","none");
