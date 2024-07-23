@@ -87,11 +87,13 @@
         this.svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
         this.svg.setAttribute("class","surface");
         this.svg.setAttribute("id",id);
-        this.svg.setAttribute("x",x+0.5);
-        this.svg.setAttribute("y",y+0.5);
-        this.svg.setAttribute("width",width-1);
-        this.svg.setAttribute("height",height-1);
+        this.svg.setAttribute("x",x);
+        this.svg.setAttribute("y",y);
+        this.svg.setAttribute("width",width);
+        this.svg.setAttribute("height",height);
         this.baseRect = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        this.baseRect.setAttribute("x",0.5);
+        this.baseRect.setAttribute("y",0.5);
         this.baseRect.setAttribute("width",width-1);
         this.baseRect.setAttribute("height",height-1);
         this.baseRect.setAttribute("fill","var(--raised-fill-color)");
@@ -100,16 +102,16 @@
         this.shadowStroke = document.createElementNS("http://www.w3.org/2000/svg","path");
         this.shadowStroke.setAttribute("fill","none");
         this.shadowStroke.setAttribute("stroke","none");
-        this.shadowStroke.setAttribute("d","M"+(1)+","+(height-2)
-                                          +" "+(width-2)+" "+(height-2)
-                                          +" "+(width-2)+" "+(1));
+        this.shadowStroke.setAttribute("d","M"+(1.5)+","+(height-1.5)
+                                          +" "+(width-1.5)+" "+(height-1.5)
+                                          +" "+(width-1.5)+" "+(1.5));
         this.svg.append(this.shadowStroke);
         this.highlightStroke = document.createElementNS("http://www.w3.org/2000/svg","path");
         this.highlightStroke.setAttribute("fill","none");
         this.highlightStroke.setAttribute("stroke","none");
-        this.highlightStroke.setAttribute("d","M"+(1)+","+(height-2)
-                                          +" "+(1)+" "+(1)
-                                          +" "+(width-2)+" "+(1));
+        this.highlightStroke.setAttribute("d","M"+(1.5)+","+(height-1.5)
+                                          +" "+(1.5)+" "+(1.5)
+                                          +" "+(width-1.5)+" "+(1.5));
         this.svg.append(this.highlightStroke);
 
         this.maximizeButton = new Button("",width-1-74,6,20,20,"","#maximizeDecal",20);
