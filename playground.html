@@ -22,14 +22,16 @@
           this.svg.setAttribute("y",ny);
           this.svg.setAttribute("width",nwidth);
           this.svg.setAttribute("height",nheight);
-          this.baseRect.setAttribute("width",nwidth);
-          this.baseRect.setAttribute("height",nheight);
-          this.shadowStroke.setAttribute("d","M"+(1)+","+(nheight-1)
-                                          +" "+(nwidth-1)+" "+(nheight-1)
-                                          +" "+(nwidth-1)+" "+(1));
-          this.highlightStroke.setAttribute("d","M"+(1)+","+(nheight-1)
-                                          +" "+(1)+" "+(1)
-                                          +" "+(nwidth-1)+" "+(1));
+          this.baseRect.setAttribute("x",0.5);
+          this.baseRect.setAttribute("y",0.5);
+          this.baseRect.setAttribute("width",nwidth-1);
+          this.baseRect.setAttribute("height",nheight-1);
+          this.shadowStroke.setAttribute("d","M"+(1.5)+","+(nheight-1.5)
+                                          +" "+(nwidth-1.5)+" "+(nheight-1.5)
+                                          +" "+(nwidth-1.5)+" "+(1.5));
+          this.highlightStroke.setAttribute("d","M"+(1.5)+","+(nheight-1.5)
+                                          +" "+(1.5)+" "+(1.5)
+                                          +" "+(nwidth-1.5)+" "+(1.5));
         };
         this.svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
         this.svg.setAttribute("class","button");
@@ -154,14 +156,14 @@
           this.svg.setAttribute("y",y);
           this.svg.setAttribute("width",w);
           this.svg.setAttribute("height",h);
-          this.baseRect.setAttribute("width",w);
-          this.baseRect.setAttribute("height",h);
-          this.shadowStroke.setAttribute("d","M"+(1)+","+(h-1)
-                                          +" "+(w-1)+" "+(h-1)
-                                          +" "+(w-1)+" "+(1));
-          this.highlightStroke.setAttribute("d","M"+(1)+","+(h-1)
-                                          +" "+(1)+" "+(1)
-                                          +" "+(w-1)+" "+(1));
+          this.baseRect.setAttribute("width",w-1);
+          this.baseRect.setAttribute("height",h-1);
+          this.shadowStroke.setAttribute("d","M"+(1.5)+","+(h-1.5)
+                                          +" "+(w-1.5)+" "+(h-1.5)
+                                          +" "+(w-1.5)+" "+(1.5));
+          this.highlightStroke.setAttribute("d","M"+(1.5)+","+(h-1.5)
+                                          +" "+(1.5)+" "+(1.5)
+                                          +" "+(w-1.5)+" "+(1.5));
           this.maximizeButton.setGeometry(w-74,6,20,20);
           this.minimizeButton.setGeometry(w-50,6,20,20);
           this.closeButton.setGeometry(w-26,6,20,20);
