@@ -55,7 +55,7 @@
         this.svg.append(this.highlightStroke);
         this.focusRing = document.createElementNS("http://www.w3.org/2000/svg","rect");
         this.focusRing.setAttribute("fill","none");
-        this.focusRing.setAttribute("stroke","var(--focus-ring-color)");
+        this.focusRing.setAttribute("stroke","none");
         this.focusRing.setAttribute("stroke-dasharray","1,1");
         this.focusRing.setAttribute("stroke-dashoffset","0.5px");
         this.svg.append(this.focusRing);
@@ -133,15 +133,47 @@
                                           +" "+(width-1.5)+" "+(1.5));
         this.svg.append(this.highlightStroke);
 
+        this.windowIcon = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        this.windowIcon.setAttribute("x",3);
+        this.windowIcon.setAttribute("y",3);
+        this.windowIcon.setAttribute("width",24);
+        this.windowIcon.setAttribute("height",24);
+        this.windowIcon.setAttribute("fill","red");
+        this.windowIcon.setAttribute("stroke","none");
+        this.svg.append(this.windowIcon);
+
+        this.windowTitle = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        this.windowTitle.innerHTML = "Title";
+        this.windowTitle.setAttribute("x",30);
+        this.windowTitle.setAttribute("y",22);
+        this.windowTitle.setAttribute("class","WindowTitle");
+        this.windowTitle.setAttribute("style","font-size: 18px;");
+        this.svg.append(this.windowTitle);
+
+        let box = this.windowTitle.getBBox();
+
+        this.windowGrip = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        this.windowGrip.setAttribute("x",6+box.x+box.width);
+        this.windowGrip.setAttribute("y",6);
+        this.windowGrip.setAttribute("width",width - 74 - (box.x + box.width + 6) - 4);
+        this.windowGrip.setAttribute("height",21);
+        this.windowGrip.setAttribute("fill","url(#gripper)");
+        this.windowGrip.setAttribute("stroke","none");
+        this.windowGrip.setAttribute("style","cursor: move");
+        this.svg.append(this.windowGrip);
+
         this.maximizeButton = new Button("",width-1-74,6,20,20,"","#maximizeDecal",20);
-        this.svg.append(this.maximizeButton.svg);
         this.maximizeButton.svg.setAttribute("visibility","hidden");
+        this.svg.append(this.maximizeButton.svg);
+        
         this.minimizeButton = new Button("",width-1-50,6,20,20,"","#iconifyDecal",20);
-        this.svg.append(this.minimizeButton.svg);
         this.minimizeButton.svg.setAttribute("visibility","hidden");
+        this.svg.append(this.minimizeButton.svg);
+        
         this.closeButton = new Button("",width-1-26,6,20,20,"","#closeDecal",20);
-        this.svg.append(this.closeButton.svg);
         this.closeButton.svg.setAttribute("visibility","hidden");
+        this.svg.append(this.closeButton.svg);
+        
 
         this.moveresizeState = {
           "action":"none",
@@ -181,6 +213,11 @@
           this.highlightStroke.setAttribute("d","M"+(1.5)+","+(h-1.5)
                                           +" "+(1.5)+" "+(1.5)
                                           +" "+(w-1.5)+" "+(1.5));
+
+          let box = this.windowTitle.getBBox();
+
+          this.windowGrip.setAttribute("width",w - 74 - (box.x + box.width + 6) - 4);
+
           this.maximizeButton.setGeometry(w-74,6,20,20);
           this.minimizeButton.setGeometry(w-50,6,20,20);
           this.closeButton.setGeometry(w-26,6,20,20);
