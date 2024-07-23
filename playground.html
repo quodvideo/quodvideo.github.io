@@ -56,6 +56,7 @@
         this.focusRing = document.createElementNS("http://www.w3.org/2000/svg","rect");
         this.focusRing.setAttribute("fill","none");
         this.focusRing.setAttribute("stroke","green");
+        this.svg.append(this.focusRing);
         this.setGeometry(x,y,width,height);
         this.setDecal(decal,decalsize,decalsize);
         this.svg.addEventListener("pointerdown", (e) => {
@@ -302,7 +303,7 @@
           this.svg.releasePointerCapture(e.pointerId);
           
         });
-        this.svg.addEventListener("focus", (e)=>{
+        this.svg.addEventListener("focusin", (e)=>{
           this.baseRect.setAttribute("fill","var(--base-fill-color)");
           this.shadowStroke.setAttribute("stroke","var(--shadow-stroke-color)");
           this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
@@ -310,7 +311,7 @@
           this.minimizeButton.svg.setAttribute("visibility","visible");
           this.closeButton.svg.setAttribute("visibility","visible");
         });
-        this.svg.addEventListener("blur", (e)=>{
+        this.svg.addEventListener("focusout", (e)=>{
           this.baseRect.setAttribute("fill","var(--raised-fill-color)");
           this.shadowStroke.setAttribute("stroke","none");
           this.highlightStroke.setAttribute("stroke","none");
