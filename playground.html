@@ -118,7 +118,7 @@
         this.baseRect.setAttribute("width",width-1);
         this.baseRect.setAttribute("height",height-1);
         this.baseRect.setAttribute("fill","var(--raised-fill-color)");
-        this.baseRect.setAttribute("stroke","var(--outline-color)");
+        this.baseRect.setAttribute("stroke","var(--shadow-stroke-color)");
         this.svg.append(this.baseRect);
         this.shadowStroke = document.createElementNS("http://www.w3.org/2000/svg","path");
         this.shadowStroke.setAttribute("fill","none");
@@ -353,6 +353,7 @@
         });
         this.svg.addEventListener("focusin", (e)=>{
           this.baseRect.setAttribute("fill","var(--base-fill-color)");
+          this.baseRect.setAttribute("stroke","var(--outline-color)");
           this.shadowStroke.setAttribute("stroke","var(--shadow-stroke-color)");
           this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
           this.windowTitle.setAttribute("fill","var(--label-color)")
@@ -364,6 +365,7 @@
         this.svg.addEventListener("focusout", (e)=>{
           if (!e.currentTarget.contains(e.relatedTarget)) {
             this.baseRect.setAttribute("fill","var(--raised-fill-color)");
+            this.baseRect.setAttribute("stroke","var(--shadow-stroke-color)");
             this.shadowStroke.setAttribute("stroke","none");
             this.highlightStroke.setAttribute("stroke","none");
             this.windowTitle.setAttribute("fill","var(--shadow-stroke-color)")
