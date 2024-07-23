@@ -32,10 +32,15 @@
           this.highlightStroke.setAttribute("d","M"+(1.5)+","+(nheight-1.5)
                                           +" "+(1.5)+" "+(1.5)
                                           +" "+(nwidth-1.5)+" "+(1.5));
+          this.focusRing.setAttribute("x",3.5);
+          this.focusRing.setAttribute("y",3.5);
+          this.focusRing.setAttribute("width",width-6);
+          this.focusRing.setAttribute("height",height-6);
         };
         this.svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
         this.svg.setAttribute("class","button");
         this.svg.setAttribute("id",id);
+        this.svg.setAttribute("tabindex",0);
         this.baseRect = document.createElementNS("http://www.w3.org/2000/svg","rect");
         this.baseRect.setAttribute("fill","var(--raised-fill-color)");
         this.baseRect.setAttribute("stroke","var(--outline-color)");
@@ -48,6 +53,9 @@
         this.highlightStroke.setAttribute("fill","none");
         this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
         this.svg.append(this.highlightStroke);
+        this.focusRing = document.createElementNS("http://www.w3.org/2000/svg","rect");
+        this.focusRing.setAttribute("fill","none");
+        this.focusRing.setAttribute("stroke","green");
         this.setGeometry(x,y,width,height);
         this.setDecal(decal,decalsize,decalsize);
         this.svg.addEventListener("pointerdown", (e) => {

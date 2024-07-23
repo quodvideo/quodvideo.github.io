@@ -73,7 +73,7 @@
         g.setAttribute("width",width);
         g.setAttribute("height",height);
         g.setAttribute("class","toplevel");
-        parentElement.insertAdjacentElement("beforeend",g);
+        parentElement.append(g);
         var r = document.createElementNS("http://www.w3.org/2000/svg","rect");
         r.setAttribute("x", 0.5);
         r.setAttribute("y", 0.5);
@@ -82,21 +82,21 @@
         r.setAttribute("fill","var(--base-fill-color)");
         r.setAttribute("stroke","var(--outline-color)");
         r.setAttribute("class","base");
-        g.insertAdjacentElement("beforeend",r);
+        g.append(r);
         var s = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         s.setAttribute("class","shadow");
         s.setAttribute("points","1.5,"+(height-1.5)+" "+(width-1.5)+","+(height-1.5)+" "+(width-1.5)+",1.5");
-        g.insertAdjacentElement("beforeend",s);
+        g.append(s);
         var h = document.createElementNS("http://www.w3.org/2000/svg","polyline");
         h.setAttribute("class","highlight");
         h.setAttribute("points","1.5,"+(height-1.5)+" 1.5,1.5 "+(width-1.5)+",1.5");
-        g.insertAdjacentElement("beforeend",h);
+        g.append(h);
         if (resizeable) {
           var u = document.createElementNS("http://www.w3.org/2000/svg","use");
           u.setAttribute("x",width-18);
           u.setAttribute("y",height-18);
           u.setAttributeNS("http://www.w3.org/1999/xlink","href","#newcornergrip");
-          g.insertAdjacentElement("beforeend",u);
+          g.append(u);
         }
         return g;
       }
