@@ -110,6 +110,8 @@
         this.svg.setAttribute("y",y);
         this.svg.setAttribute("width",width);
         this.svg.setAttribute("height",height);
+        document.getElementById("rootwindow").append(this.svg);
+
         this.baseRect = document.createElementNS("http://www.w3.org/2000/svg","rect");
         this.baseRect.setAttribute("x",0.5);
         this.baseRect.setAttribute("y",0.5);
@@ -352,6 +354,7 @@
           this.baseRect.setAttribute("fill","var(--base-fill-color)");
           this.shadowStroke.setAttribute("stroke","var(--shadow-stroke-color)");
           this.highlightStroke.setAttribute("stroke","var(--highlight-stroke-color)");
+          this.windowGrip.setAttribute("fill","url(#gripper)");
           this.maximizeButton.svg.setAttribute("visibility","visible");
           this.minimizeButton.svg.setAttribute("visibility","visible");
           this.closeButton.svg.setAttribute("visibility","visible");
@@ -361,6 +364,7 @@
             this.baseRect.setAttribute("fill","var(--raised-fill-color)");
             this.shadowStroke.setAttribute("stroke","none");
             this.highlightStroke.setAttribute("stroke","none");
+            this.windowGrip.setAttribute("fill","none");
             this.maximizeButton.svg.setAttribute("visibility","hidden");
             this.minimizeButton.svg.setAttribute("visibility","hidden");
             this.closeButton.svg.setAttribute("visibility","hidden");
@@ -374,7 +378,6 @@
                             this.moveresizeState.originalHeight);
           }
         });
-        document.getElementById("rootwindow").append(this.svg);
       }
     </script>
   </head>
