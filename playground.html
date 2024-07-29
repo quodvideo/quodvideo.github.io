@@ -101,8 +101,13 @@
         this.svg.addEventListener("blur", (e) => {
           this.focusRing.setAttribute("stroke","none");
         });
+        this.action = null;
+        this.svg.addEventListener("click", (e) => {
+          this.action();
+        });
       }
       function Surface(id,x,y,width,height) {
+        this.normalGeometry = { "x": x, "y": y, "width": width, "height": height };
         this.svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
         this.svg.setAttribute("class","surface");
         this.svg.setAttribute("id",id);
@@ -204,6 +209,10 @@
               y = this.moveresizeState.originalY+this.moveresizeState.originalHeight-this.minimumHeight;
             }
           }
+          this.normalGeometry.x = x;
+          this.normalGeometry.y = y;
+          this.normalGeometry.width = w;
+          this.normalGeometry.height = h;
           this.svg.setAttribute("x",x);
           this.svg.setAttribute("y",y);
           this.svg.setAttribute("width",w);
@@ -225,6 +234,23 @@
           this.minimizeButton.setGeometry(w-50,6,20,20);
           this.closeButton.setGeometry(w-26,6,20,20);
         }
+
+        this.maximize = function () {
+          console.log("maximize");
+        }
+        this.restore = function () {
+          console.log("restore");
+        }
+        this.iconify = function () {
+          console.log("iconify");
+        }
+        this.close = function () {
+          console.log("close");
+        }
+        this.maximizeButton.action = this.maximize;
+        this.minimizeButton.action = this.iconify;
+        this.closeButton.action = this.close;
+
         this.svg.addEventListener("pointermove", (e)=>{
           let CTM = this.svg.getScreenCTM();
           let x = (e.clientX-CTM.e)/CTM.a;
